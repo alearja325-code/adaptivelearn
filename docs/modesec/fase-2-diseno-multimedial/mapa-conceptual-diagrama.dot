@@ -1,0 +1,75 @@
+digraph MapaConceptual {
+  bgcolor="#fcfcfb";
+  rankdir=LR;
+  fontname="Arial";
+  splines=true;
+  nodesep=0.5;
+  ranksep=0.95;
+  pad="0.3,0.3";
+
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+        fontcolor="#0b0b0b", margin="0.18,0.12", penwidth=1.6];
+  edge [fontname="Arial", fontsize=10, fontcolor="#52514e",
+        color="#898781", penwidth=1.4, arrowsize=0.75];
+
+  /* ---- Grupo 1: Dominio curricular (azul, slot 1) ---- */
+  subgraph cluster_0 {
+    label="DOMINIO CURRICULAR (MEN)";
+    fontname="Arial Bold"; fontsize=13; fontcolor="#0b0b0b";
+    color="#2a78d6"; penwidth=1.8; style="rounded"; margin=16;
+    node [fillcolor="#e3ecf7", color="#2a78d6"];
+    DBA; Aprendizaje; Evidencia;
+  }
+
+  /* ---- Grupo 2: Ciclo de la experiencia (naranja, slot 2) ---- */
+  subgraph cluster_1 {
+    label="CICLO DE LA EXPERIENCIA";
+    fontname="Arial Bold"; fontsize=13; fontcolor="#0b0b0b";
+    color="#eb6834"; penwidth=1.8; style="rounded"; margin=16;
+    node [fillcolor="#faeae3", color="#eb6834"];
+    Experiencia; Diagnostico [label="Diagnóstico"]; Reporte;
+    node [fillcolor="#f3f2ef", color="#898781", style="rounded,filled,dashed", fontcolor="#52514e"];
+    Practica [label="Práctica\n(diferida a v2)"];
+    Verificacion [label="Verificación\n(diferida a v2)"];
+  }
+
+  /* ---- Grupo 3: Mecanismo de diagnóstico (aqua, slot 3) ---- */
+  subgraph cluster_2 {
+    label="MECANISMO DE DIAGNÓSTICO";
+    fontname="Arial Bold"; fontsize=13; fontcolor="#0b0b0b";
+    color="#1baf7a"; penwidth=1.8; style="rounded"; margin=16;
+    node [fillcolor="#e1f3ec", color="#1baf7a"];
+    Distractor [label="Distractor plausible"];
+    CRI [label="Certainty of\nResponse Index (CRI)"];
+    Banco [label="Banco de ítems"];
+    Resultado [label="Resultado de\nevidencia"];
+    EstadoDBA [label="Estado general\npor DBA"];
+  }
+
+  /* ---- Grupo 4: Alcance y gobernanza (amarillo, slot 4 -> texto siempre en tinta primaria) ---- */
+  subgraph cluster_3 {
+    label="ALCANCE Y GOBERNANZA";
+    fontname="Arial Bold"; fontsize=13; fontcolor="#0b0b0b";
+    color="#c98500"; penwidth=1.8; style="rounded"; margin=16;
+    node [fillcolor="#f3f2ef", color="#898781", style="rounded,filled,dashed", fontcolor="#52514e"];
+    Unidad [label="Unidad\n(fuera de alcance)"];
+    Tema [label="Tema\n(diferido)"];
+  }
+
+  DBA -> Evidencia [label="tiene"];
+  Aprendizaje -> DBA [label="es, operativamente"];
+  Experiencia -> DBA [label="se ancla a"];
+  Experiencia -> Diagnostico [label="ejecuta (único momento\ndel estudiante en esta versión)", penwidth=1.8, color="#52514e"];
+  Experiencia -> Practica [label="diseño diferido", style=dashed];
+  Experiencia -> Verificacion [label="diseño diferido", style=dashed];
+  Diagnostico -> Evidencia [label="evalúa"];
+  Diagnostico -> Banco [label="usa"];
+  Banco -> Distractor [label="construido con"];
+  Diagnostico -> CRI [label="registra"];
+  Diagnostico -> Resultado [label="produce"];
+  Resultado -> EstadoDBA [label="se agregan en\n(ADR-018, ADR-022)"];
+  Resultado -> Reporte [label="alimenta", penwidth=1.8, color="#52514e"];
+  EstadoDBA -> Reporte [label="alimenta", penwidth=1.8, color="#52514e"];
+  Tema -> Aprendizaje [label="buscaría\n(sin puente semántico)", style=dashed];
+  Unidad -> Experiencia [label="agruparía", style=dashed];
+}

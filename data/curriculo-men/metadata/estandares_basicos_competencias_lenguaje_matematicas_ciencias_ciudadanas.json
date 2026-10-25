@@ -1,0 +1,21 @@
+{
+  "id": "estandares_basicos_competencias_lenguaje_matematicas_ciencias_ciudadanas",
+  "title": "Estándares Básicos de Competencias en Lenguaje, Matemáticas, Ciencias y Ciudadanas",
+  "type": "estandares",
+  "areas": [
+    "Lenguaje",
+    "Matemáticas",
+    "Ciencias Naturales",
+    "Ciencias Sociales",
+    "Ciudadanas"
+  ],
+  "grades": "grupos de grados",
+  "official_page": "https://www.mineducacion.gov.co/portal/Preescolar-basica-y-media/Referentes-de-calidad/340021:Estandares-Basicos-de-competencia",
+  "url": "https://www.mineducacion.gov.co/1621/articles-340021_recurso_1.pdf",
+  "local_pdf": "mvp/backend/data/men_sources/pdfs/estandares_basicos_competencias_lenguaje_matematicas_ciencias_ciudadanas.pdf",
+  "local_raw_text": "mvp/backend/data/men_sources/raw_text/estandares_basicos_competencias_lenguaje_matematicas_ciencias_ciudadanas.txt",
+  "local_text": "mvp/backend/data/men_sources/text/estandares_basicos_competencias_lenguaje_matematicas_ciencias_ciudadanas.txt",
+  "download_status": "downloaded",
+  "normalization_status": "normalizado",
+  "bytes": 1840688
+}

@@ -1,0 +1,18 @@
+{
+  "id": "dba_ciencias_sociales_v2",
+  "title": "Derechos Basicos de Aprendizaje - Ciencias Sociales V.2",
+  "type": "dba",
+  "areas": [
+    "Ciencias Sociales"
+  ],
+  "grades": "1°-11°",
+  "official_page": "https://www.colombiaaprende.edu.co/recurso-coleccion/explora-derechos-basicos-de-aprendizaje-dba-ciencias-sociales",
+  "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_C.Sociales-V2.pdf",
+  "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_ciencias_sociales_v2.pdf",
+  "local_raw_text": "mvp/backend/data/men_sources/raw_text/dba_ciencias_sociales_v2.txt",
+  "local_text": "mvp/backend/data/men_sources/text/dba_ciencias_sociales_v2.txt",
+  "download_status": "downloaded",
+  "normalization_status": "normalizado",
+  "bytes": 16945059,
+  "notes": "Fuente oficial descargada y normalizada mediante parser conservador con coordenadas visuales por pagina/columna. La extraccion conserva solo registros con enunciado y evidencias observables suficientes."
+}

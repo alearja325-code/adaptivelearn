@@ -1,0 +1,214 @@
+[
+  {
+    "id": "estandares_basicos_competencias_lenguaje_matematicas_ciencias_ciudadanas",
+    "title": "Estándares Básicos de Competencias en Lenguaje, Matemáticas, Ciencias y Ciudadanas",
+    "type": "estandares",
+    "areas": [
+      "Lenguaje",
+      "Matemáticas",
+      "Ciencias Naturales",
+      "Ciencias Sociales",
+      "Ciudadanas"
+    ],
+    "grades": "grupos de grados",
+    "official_page": "https://www.mineducacion.gov.co/portal/Preescolar-basica-y-media/Referentes-de-calidad/340021:Estandares-Basicos-de-competencia",
+    "url": "https://www.mineducacion.gov.co/1621/articles-340021_recurso_1.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/estandares_basicos_competencias_lenguaje_matematicas_ciencias_ciudadanas.pdf",
+    "download_status": "downloaded",
+    "normalization_status": "normalizado",
+    "bytes": 1840688
+  },
+  {
+    "id": "dba_matematicas_v2",
+    "title": "Derechos Básicos de Aprendizaje - Matemáticas V.2",
+    "type": "dba",
+    "areas": [
+      "Matemáticas"
+    ],
+    "grades": "1°-11°",
+    "official_page": "https://www.colombiaaprende.edu.co/contenidos/coleccion/derechos-basicos-de-aprendizaje",
+    "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_Matematicas-min.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_matematicas_v2.pdf",
+    "download_status": "downloaded",
+    "bytes": 11236412
+  },
+  {
+    "id": "dba_lenguaje_v2",
+    "title": "Derechos Básicos de Aprendizaje - Lenguaje V.2",
+    "type": "dba",
+    "areas": [
+      "Lenguaje"
+    ],
+    "grades": "1°-11°",
+    "official_page": "https://www.colombiaaprende.edu.co/contenidos/coleccion/derechos-basicos-de-aprendizaje",
+    "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_Lenguaje-min.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_lenguaje_v2.pdf",
+    "download_status": "downloaded",
+    "bytes": 6029229
+  },
+  {
+    "id": "dba_ciencias_naturales_v1",
+    "title": "Derechos Básicos de Aprendizaje - Ciencias Naturales V.1",
+    "type": "dba",
+    "areas": [
+      "Ciencias Naturales"
+    ],
+    "grades": "1°-11°",
+    "official_page": "https://www.colombiaaprende.edu.co/recurso-coleccion/explora-derechos-basicos-de-aprendizaje-dba-ciencias-naturales",
+    "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_C.Naturales-min.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_ciencias_naturales_v1.pdf",
+    "download_status": "downloaded",
+    "bytes": 3998056
+  },
+  {
+    "id": "dba_ciencias_sociales_v2",
+    "title": "Derechos Básicos de Aprendizaje - Ciencias Sociales V.2",
+    "type": "dba",
+    "areas": [
+      "Ciencias Sociales"
+    ],
+    "grades": "1°-11°",
+    "official_page": "https://www.colombiaaprende.edu.co/recurso-coleccion/explora-derechos-basicos-de-aprendizaje-dba-ciencias-sociales",
+    "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_C.Sociales-V2.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_ciencias_sociales_v2.pdf",
+    "download_status": "downloaded",
+    "normalization_status": "normalizado",
+    "bytes": 16945059
+  },
+  {
+    "id": "estandares_ingles_guia_22",
+    "title": "Guía No. 22 Estándares Básicos de Competencias en Lenguas Extranjeras: Inglés",
+    "type": "estandares",
+    "areas": [
+      "Inglés"
+    ],
+    "grades": "1°-11° por grupos de grados",
+    "official_page": "https://www.mineducacion.gov.co/portal/men/Publicaciones/Guias/115174:Guia-No-22-Estandares-Basicos-de-Competencias-en-Lenguas-Extranjeras-Ingles",
+    "url": "https://www.mineducacion.gov.co/1780/articles-115174_archivo_pdf.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/estandares_ingles_guia_22.pdf",
+    "download_status": "downloaded",
+    "bytes": 1230697,
+    "url_part2": "https://www.mineducacion.gov.co/1780/articles-115174_archivo_pdf1.pdf",
+    "local_pdf_part2": "mvp/backend/data/men_sources/pdfs/estandares_ingles_guia_22_parte2.pdf",
+    "local_text": "mvp/backend/data/men_sources/text/estandares_ingles_guia_22.txt",
+    "local_text_part2": "mvp/backend/data/men_sources/text/estandares_ingles_guia_22_parte2.txt",
+    "normalization_status": "normalizado",
+    "contract_layers": [
+      "estandares"
+    ],
+    "normalized_records": 55
+  },
+  {
+    "id": "curriculo_sugerido_ingles_6_11",
+    "title": "Esquema Curricular Sugerido de Inglés para grados 6° a 11°",
+    "type": "curriculo_sugerido",
+    "areas": [
+      "Inglés"
+    ],
+    "grades": "6°-11°",
+    "official_page": "https://eco.colombiaaprende.edu.co/2021/09/07/esquema-circular-sugerido/",
+    "url": "https://eco.colombiaaprende.edu.co/wp-content/uploads/2021/09/Esquema-Curricular-Espa_RevMEN.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/curriculo_sugerido_ingles_6_11.pdf",
+    "download_status": "downloaded",
+    "bytes": 3512496
+  },
+  {
+    "id": "lineamientos_curriculares_matematicas",
+    "title": "Lineamientos Curriculares - Matematicas",
+    "type": "lineamientos",
+    "areas": [
+      "Matematicas"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "official_page": "https://www.mineducacion.gov.co/portal/micrositios-preescolar-basica-y-media/Direccion-de-Calidad/Referentes-de-Calidad/339975:Lineamientos-curriculares",
+    "url": "https://www.mineducacion.gov.co/1759/articles-339975_matematicas.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/lineamientos_curriculares_matematicas.pdf",
+    "local_text": "mvp/backend/data/men_sources/text/lineamientos_curriculares_matematicas.txt",
+    "download_status": "downloaded",
+    "normalization_status": "modelado_principios_v1",
+    "contract_layers": [
+      "lineamientos"
+    ],
+    "bytes": 1032380
+  },
+  {
+    "id": "lineamientos_curriculares_lengua_castellana",
+    "title": "Lineamientos Curriculares - Lengua Castellana",
+    "type": "lineamientos",
+    "areas": [
+      "Lenguaje",
+      "Espanol",
+      "Lengua Castellana"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "official_page": "https://www.mineducacion.gov.co/portal/micrositios-preescolar-basica-y-media/Direccion-de-Calidad/Referentes-de-Calidad/339975:Lineamientos-curriculares",
+    "url": "https://www.mineducacion.gov.co/1759/articles-339975_recurso_6.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/lineamientos_curriculares_lengua_castellana.pdf",
+    "local_text": "mvp/backend/data/men_sources/text/lineamientos_curriculares_lengua_castellana.txt",
+    "download_status": "downloaded",
+    "normalization_status": "modelado_principios_v1",
+    "contract_layers": [
+      "lineamientos"
+    ],
+    "bytes": 509784
+  },
+  {
+    "id": "lineamientos_curriculares_ciencias_naturales",
+    "title": "Lineamientos Curriculares - Ciencias Naturales y Educacion Ambiental",
+    "type": "lineamientos",
+    "areas": [
+      "Ciencias Naturales"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "official_page": "https://www.mineducacion.gov.co/portal/micrositios-preescolar-basica-y-media/Direccion-de-Calidad/Referentes-de-Calidad/339975:Lineamientos-curriculares",
+    "url": "https://www.mineducacion.gov.co/1759/articles-339975_recurso_5.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/lineamientos_curriculares_ciencias_naturales.pdf",
+    "local_text": "mvp/backend/data/men_sources/text/lineamientos_curriculares_ciencias_naturales.txt",
+    "download_status": "downloaded",
+    "normalization_status": "modelado_principios_v1",
+    "contract_layers": [
+      "lineamientos"
+    ],
+    "bytes": 688345
+  },
+  {
+    "id": "lineamientos_curriculares_ciencias_sociales",
+    "title": "Lineamientos Curriculares - Ciencias Sociales",
+    "type": "lineamientos",
+    "areas": [
+      "Ciencias Sociales",
+      "Sociales"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "official_page": "https://www.mineducacion.gov.co/portal/micrositios-preescolar-basica-y-media/Direccion-de-Calidad/Referentes-de-Calidad/339975:Lineamientos-curriculares",
+    "url": "https://www.mineducacion.gov.co/1780/articles-339975_recurso_1.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/lineamientos_curriculares_ciencias_sociales.pdf",
+    "local_text": "mvp/backend/data/men_sources/text/lineamientos_curriculares_ciencias_sociales.txt",
+    "download_status": "downloaded",
+    "normalization_status": "modelado_principios_v1",
+    "contract_layers": [
+      "lineamientos"
+    ],
+    "bytes": 782926
+  },
+  {
+    "id": "lineamientos_curriculares_idiomas_extranjeros",
+    "title": "Lineamientos Curriculares - Idiomas Extranjeros",
+    "type": "lineamientos",
+    "areas": [
+      "Ingles",
+      "Idiomas Extranjeros"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "official_page": "https://www.mineducacion.gov.co/portal/micrositios-preescolar-basica-y-media/Direccion-de-Calidad/Referentes-de-Calidad/339975:Lineamientos-curriculares",
+    "url": "https://www.mineducacion.gov.co/1759/articles-339975_recurso_7.pdf",
+    "local_pdf": "mvp/backend/data/men_sources/pdfs/lineamientos_curriculares_idiomas_extranjeros.pdf",
+    "local_text": "mvp/backend/data/men_sources/text/lineamientos_curriculares_idiomas_extranjeros.txt",
+    "download_status": "downloaded",
+    "normalization_status": "modelado_principios_v1",
+    "contract_layers": [
+      "lineamientos"
+    ],
+    "bytes": 419246
+  }
+]

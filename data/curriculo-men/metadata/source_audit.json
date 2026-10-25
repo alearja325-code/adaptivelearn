@@ -1,0 +1,176 @@
+[
+  {
+    "id": "estandares_basicos_competencias_lenguaje_matematicas_ciencias_ciudadanas",
+    "title": "Estándares Básicos de Competencias en Lenguaje, Matemáticas, Ciencias y Ciudadanas",
+    "areas": [
+      "Lenguaje",
+      "Matemáticas",
+      "Ciencias Naturales",
+      "Ciencias Sociales",
+      "Ciudadanas"
+    ],
+    "grades": "grupos de grados",
+    "pdf_bytes": 1840688,
+    "text_chars": 942670,
+    "mentions_dba": 0,
+    "mentions_estandar": 339,
+    "normalization_status": "normalizado",
+    "normalized_records": 55
+  },
+  {
+    "id": "dba_matematicas_v2",
+    "title": "Derechos Básicos de Aprendizaje - Matemáticas V.2",
+    "areas": [
+      "Matemáticas"
+    ],
+    "grades": "1°-11°",
+    "pdf_bytes": 11236412,
+    "text_chars": 335514,
+    "mentions_dba": 114,
+    "mentions_estandar": 6
+  },
+  {
+    "id": "dba_lenguaje_v2",
+    "title": "Derechos Básicos de Aprendizaje - Lenguaje V.2",
+    "areas": [
+      "Lenguaje"
+    ],
+    "grades": "1°-11°",
+    "pdf_bytes": 6029229,
+    "text_chars": 178344,
+    "mentions_dba": 80,
+    "mentions_estandar": 3
+  },
+  {
+    "id": "dba_ciencias_naturales_v1",
+    "title": "Derechos Básicos de Aprendizaje - Ciencias Naturales V.1",
+    "areas": [
+      "Ciencias Naturales"
+    ],
+    "grades": "1°-11°",
+    "pdf_bytes": 3998056,
+    "text_chars": 128583,
+    "mentions_dba": 67,
+    "mentions_estandar": 4
+  },
+  {
+    "id": "dba_ciencias_sociales_v2",
+    "title": "Derechos Básicos de Aprendizaje - Ciencias Sociales V.2",
+    "areas": [
+      "Ciencias Sociales"
+    ],
+    "grades": "1°-11°",
+    "pdf_bytes": 16945059,
+    "text_chars": 873655,
+    "mentions_dba": 28,
+    "mentions_estandar": 1,
+    "normalization_status": "normalizado",
+    "normalized_records": 82
+  },
+  {
+    "id": "estandares_ingles_guia_22",
+    "title": "Guía No. 22 Estándares Básicos de Competencias en Lenguas Extranjeras: Inglés",
+    "areas": [
+      "Inglés"
+    ],
+    "grades": "1°-11° por grupos de grados",
+    "pdf_bytes": 1230697,
+    "text_chars": 149625,
+    "mentions_dba": 0,
+    "mentions_estandar": 77,
+    "normalization_status": "normalizado",
+    "usage_model": "capa_estandar_ingles_ciclo_nivel_habilidad",
+    "normalized_records": 55
+  },
+  {
+    "id": "curriculo_sugerido_ingles_6_11",
+    "title": "Esquema Curricular Sugerido de Inglés para grados 6° a 11°",
+    "areas": [
+      "Inglés"
+    ],
+    "grades": "6°-11°",
+    "pdf_bytes": 3512496,
+    "text_chars": 473313,
+    "mentions_dba": 3,
+    "mentions_estandar": 65
+  },
+  {
+    "id": "lineamientos_curriculares_matematicas",
+    "title": "Lineamientos Curriculares - Matematicas",
+    "areas": [
+      "Matematicas"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "pdf_bytes": 1032380,
+    "text_chars": 348944,
+    "mentions_lineamientos": 30,
+    "mentions_curriculo": 74,
+    "normalization_status": "modelado_principios_v1",
+    "usage_model": "principios_generacion_validacion_por_area",
+    "normalized_records": 0
+  },
+  {
+    "id": "lineamientos_curriculares_lengua_castellana",
+    "title": "Lineamientos Curriculares - Lengua Castellana",
+    "areas": [
+      "Lenguaje",
+      "Espanol",
+      "Lengua Castellana"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "pdf_bytes": 509784,
+    "text_chars": 414238,
+    "mentions_lineamientos": 16,
+    "mentions_curriculo": 133,
+    "normalization_status": "modelado_principios_v1",
+    "usage_model": "principios_generacion_validacion_por_area",
+    "normalized_records": 0
+  },
+  {
+    "id": "lineamientos_curriculares_ciencias_naturales",
+    "title": "Lineamientos Curriculares - Ciencias Naturales y Educacion Ambiental",
+    "areas": [
+      "Ciencias Naturales"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "pdf_bytes": 688345,
+    "text_chars": 526254,
+    "mentions_lineamientos": 27,
+    "mentions_curriculo": 79,
+    "normalization_status": "modelado_principios_v1",
+    "usage_model": "principios_generacion_validacion_por_area",
+    "normalized_records": 0
+  },
+  {
+    "id": "lineamientos_curriculares_ciencias_sociales",
+    "title": "Lineamientos Curriculares - Ciencias Sociales",
+    "areas": [
+      "Ciencias Sociales",
+      "Sociales"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "pdf_bytes": 782926,
+    "text_chars": 267701,
+    "mentions_lineamientos": 77,
+    "mentions_curriculo": 119,
+    "normalization_status": "modelado_principios_v1",
+    "usage_model": "principios_generacion_validacion_por_area",
+    "normalized_records": 0
+  },
+  {
+    "id": "lineamientos_curriculares_idiomas_extranjeros",
+    "title": "Lineamientos Curriculares - Idiomas Extranjeros",
+    "areas": [
+      "Ingles",
+      "Idiomas Extranjeros"
+    ],
+    "grades": "area obligatoria y fundamental",
+    "pdf_bytes": 419246,
+    "text_chars": 302609,
+    "mentions_lineamientos": 11,
+    "mentions_curriculo": 49,
+    "normalization_status": "modelado_principios_v1",
+    "usage_model": "principios_generacion_validacion_por_area",
+    "normalized_records": 0
+  }
+]

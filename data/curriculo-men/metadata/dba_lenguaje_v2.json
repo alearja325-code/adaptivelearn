@@ -1,0 +1,14 @@
+{
+  "id": "dba_lenguaje_v2",
+  "title": "Derechos Básicos de Aprendizaje - Lenguaje V.2",
+  "type": "dba",
+  "areas": [
+    "Lenguaje"
+  ],
+  "grades": "1°-11°",
+  "official_page": "https://www.colombiaaprende.edu.co/contenidos/coleccion/derechos-basicos-de-aprendizaje",
+  "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_Lenguaje-min.pdf",
+  "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_lenguaje_v2.pdf",
+  "download_status": "downloaded",
+  "bytes": 6029229
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Vista general</title>
+<style>
+  body { margin:0; padding:40px; background:#FFFFFF; font-family:Helvetica,Arial,sans-serif; color:#111111; }
+  h1 { font-size:20px; margin:0 0 4px 0; }
+  p.sub { font-size:13px; color:#555555; margin:0 0 28px 0; max-width:720px; }
+  h2 { font-size:15px; margin:32px 0 10px 0; }
+  table { border-collapse: collapse; width:100%; max-width:900px; font-size:13px; }
+  th { text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:0.03em;
+        color:#555555; border-bottom:2px solid #111111; padding:8px 10px; }
+  td { padding:8px 10px; border-bottom:1px solid #E3E7ED; }
+  td.nombre { font-weight:700; }
+  td.rel { color:#3B7DD8; font-weight:600; }
+  td.card { font-weight:700; text-align:center; }
+  td.bloque { color:#555555; }
+  td.nota { color:#555555; }
+  .tag { border:1px solid #888888; border-radius:4px; padding:2px 8px; font-size:11.5px; }
+</style></head><body>
+<h1>Vista general del modelo</h1>
+<p class="sub">Las 11 entidades del modelo y sus 13 relaciones, de un vistazo, antes de entrar al detalle bloque por bloque. Cada relación indica en qué bloque se desarrolla con sus atributos completos.</p>
+
+<h2>Entidades</h2>
+<table>
+  <tr><th>Entidad</th><th>Tipo</th><th>Qué representa ese tipo</th></tr>
+  <tr>
+      <td class="nombre">Docente</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Estudiante</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Experiencia</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Inscripción</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Ítem</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Opción</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Respuesta</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">DBA</td>
+      <td><span class="tag" style="background:#F5F3EE">Externa (MEN)</span></td>
+      <td class="nota">dato oficial del MEN, referenciado, sin id propio</td>
+    </tr>
+<tr>
+      <td class="nombre">Evidencia</td>
+      <td><span class="tag" style="background:#F5F3EE">Externa (MEN)</span></td>
+      <td class="nota">dato oficial del MEN, referenciado, sin id propio</td>
+    </tr>
+<tr>
+      <td class="nombre">Resultado</td>
+      <td><span class="tag" style="background:#FFFFFF">Débil</span></td>
+      <td class="nota">entidad débil: depende de Inscripción + Evidencia, sin id propio</td>
+    </tr>
+<tr>
+      <td class="nombre">Reporte</td>
+      <td><span class="tag" style="background:#FFFFFF">Calculada</span></td>
+      <td class="nota">vista calculada sobre Resultado, no persiste, sin atributos</td>
+    </tr>
+
+</table>
+
+<h2>Relaciones y cardinalidades</h2>
+<table>
+  <tr><th>Entidad A</th><th>Relación</th><th>Entidad B</th><th>Cardinalidad</th><th>Se detalla en</th></tr>
+  <tr>
+      <td>Docente</td>
+      <td class="rel">crea</td>
+      <td>Experiencia</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 1</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">se ancla a</td>
+      <td>DBA</td>
+      <td class="card">N a 1</td>
+      <td class="bloque">Bloque 1</td>
+    </tr>
+<tr>
+      <td>DBA</td>
+      <td class="rel">tiene</td>
+      <td>Evidencia</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 2</td>
+    </tr>
+<tr>
+      <td>Estudiante</td>
+      <td class="rel">tiene</td>
+      <td>Inscripción</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 3</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">tiene</td>
+      <td>Inscripción</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 3</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">genera</td>
+      <td>Ítem</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 4</td>
+    </tr>
+<tr>
+      <td>Evidencia</td>
+      <td class="rel">se evalúa con</td>
+      <td>Ítem</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 4</td>
+    </tr>
+<tr>
+      <td>Ítem</td>
+      <td class="rel">tiene</td>
+      <td>Opción</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 4</td>
+    </tr>
+<tr>
+      <td>Inscripción</td>
+      <td class="rel">da</td>
+      <td>Respuesta</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Ítem</td>
+      <td class="rel">recibe</td>
+      <td>Respuesta</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Inscripción</td>
+      <td class="rel">tiene</td>
+      <td>Resultado</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Evidencia</td>
+      <td class="rel">mide</td>
+      <td>Resultado</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">tiene</td>
+      <td>Reporte</td>
+      <td class="card">1 a 1 (calculado)</td>
+      <td class="bloque">Bloque 6</td>
+    </tr>
+
+</table>
+
+</body></html>

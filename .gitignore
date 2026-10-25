@@ -1,0 +1,46 @@
+# ================================================================ SECRETOS
+# Nunca subir credenciales: lo que entra al historial de git queda ahí
+# aunque se borre después, y es visible si el repositorio se hace público.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+.db-password.txt
+
+# ============================================================ DEPENDENCIAS
+# Se reconstruyen con `npm install` / `pip install`; no se versionan.
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ==================================================== COMPILADOS Y DATOS
+dist/
+*.tsbuildinfo
+*.db
+*.sqlite
+*.sqlite3
+uploads/
+coverage/
+
+# ============================================== TEMPORALES Y RESPALDOS
+.respaldo-*/
+*.bak
+.~lock.*
+*.__tmp__.html
+chk-*.png
+crop-*.png
+*.zip
+*.log
+
+# ============================================ SISTEMA Y EDITORES
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.claude/

@@ -1,0 +1,97 @@
+digraph Navegacion {
+  graph [rankdir=LR, bgcolor="#F7F6F3", fontname="Inter", pad="0.4", nodesep=0.35, ranksep=0.7, splines=true, compound=true];
+  node [shape=box, style="rounded,filled", fontname="Inter", fontsize=11, fillcolor="#FFFFFF", color="#BDBDBD", penwidth=1.2, margin="0.15,0.08"];
+  edge [fontname="Inter", fontsize=9, fontcolor="#555555", color="#888888", penwidth=1.1, arrowsize=0.7];
+  INICIO [label="Inicio", shape=circle, fillcolor="#111111", fontcolor="#FFFFFF", color="#111111", fontsize=10];
+  subgraph cluster_auth {
+    label="AUTENTICACIÓN (ambos roles)"; fontsize=12; fontcolor="#555555"; style="rounded,filled"; fillcolor="#FAFAF8"; color="#555555"; penwidth=1.4;
+    "014" [label="014\nIniciar sesión / Crear cuenta"];
+    "015" [label="015\nVerifica tu correo"];
+    "016" [label="016\nCompleta tu perfil"];
+    "017" [label="017\nElige tu rol"];
+    "018" [label="018\nRecupera tu contraseña"];
+    "019" [label="019\nNueva contraseña"];
+  }
+  subgraph cluster_docente {
+    label="DOCENTE"; fontsize=12; fontcolor="#111111"; style="rounded,filled"; fillcolor="#F5F3EE"; color="#111111"; penwidth=1.4;
+    "001D" [label="001\nDashboard (docente)"];
+    "002" [label="002\nCrear experiencia · Paso 1 (área)"];
+    "003" [label="003\nCrear experiencia · Paso 2 (DBA)"];
+    "004" [label="004\nCrear experiencia · Paso 3 (confirmar)"];
+    "006" [label="006\nVista Interna (marco)"];
+    "007" [label="007\nPestaña Resumen"];
+    "008" [label="008\nPestaña Materiales"];
+    "011" [label="011\nPestaña Estudiantes"];
+    "009" [label="009\nModal: Banco de preguntas"];
+    "010" [label="010\nModal: Reporte"];
+    "012" [label="012\nModal: Confirmar publicación"];
+    "013" [label="013\nModal: Código de invitación"];
+    "027" [label="027\nModal: Historial del estudiante"];
+    "025D" [label="025\nModal: Eliminar experiencia"];
+  }
+  subgraph cluster_estudiante {
+    label="ESTUDIANTE"; fontsize=12; fontcolor="#111111"; style="rounded,filled"; fillcolor="#FFFFFF"; color="#111111"; penwidth=1.4;
+    "001E" [label="001\nDashboard (estudiante)"];
+    "005" [label="005\nModal: Unirse con código"];
+    "020" [label="020\nDiagnóstico · Inicio"];
+    "021" [label="021\nDiagnóstico · Ítem"];
+    "022" [label="022\nDiagnóstico · Certeza"];
+    "023" [label="023\nDiagnóstico · Cierre"];
+    "025E" [label="025\nModal: Salir de la experiencia"];
+  }
+  subgraph cluster_comun {
+    label="COMPONENTES COMUNES"; fontsize=12; fontcolor="#888888"; style="rounded,filled"; fillcolor="#FFFFFF"; color="#888888"; penwidth=1.4;
+    "024" [label="024\nModal: Cargando", style="rounded,filled,dashed"];
+    "026" [label="026\nModal: Mi perfil"];
+  }
+  "INICIO" -> "014" [label="abrir la plataforma"];
+  "014" -> "015" [label="Crear cuenta con correo"];
+  "014" -> "016" [label="Google/Microsoft, cuenta nueva"];
+  "014" -> "001D" [label="Iniciar sesión (docente)"];
+  "014" -> "001E" [label="Iniciar sesión (estudiante)"];
+  "014" -> "018" [label="¿Olvidaste tu contraseña?"];
+  "015" -> "016" [label="Código válido (registro)"];
+  "015" -> "019" [label="Código válido (recuperación)"];
+  "015" -> "014" [label="Volver (registro)", style=dotted, constraint=false];
+  "015" -> "018" [label="Volver (recuperación)", style=dotted, constraint=false];
+  "016" -> "017" [label="Continuar"];
+  "017" -> "016" [label="Volver", style=dotted, constraint=false];
+  "017" -> "001D" [label="Soy Docente"];
+  "017" -> "001E" [label="Soy Estudiante"];
+  "018" -> "015" [label="Enviar código"];
+  "018" -> "014" [label="Volver a inicio de sesión", style=dotted, constraint=false];
+  "019" -> "014" [label="Guardar"];
+  "001D" -> "002" [label="Crear experiencia"];
+  "002" -> "003" [label="Continuar"];
+  "003" -> "002" [label="Volver", style=dotted, constraint=false];
+  "003" -> "004" [label="Continuar"];
+  "004" -> "003" [label="Volver", style=dotted, constraint=false];
+  "004" -> "006" [label="Crear experiencia (pasa por 024)"];
+  "001D" -> "006" [label="Clic en una experiencia"];
+  "006" -> "007" [label="pestaña (por defecto)", style=dashed, arrowhead=none];
+  "006" -> "008" [label="pestaña", style=dashed, arrowhead=none];
+  "006" -> "011" [label="pestaña", style=dashed, arrowhead=none];
+  "006" -> "001D" [label="←", style=dotted, constraint=false];
+  "006" -> "025D" [label="… (Eliminar)"];
+  "025D" -> "001D" [label="Eliminar experiencia (pasa por 024)"];
+  "008" -> "009" [label="Ver banco de preguntas"];
+  "008" -> "010" [label="Ver reporte"];
+  "011" -> "012" [label="Publicar experiencia"];
+  "011" -> "013" [label="Código de invitación"];
+  "011" -> "027" [label="Ver historial completo"];
+  "001D" -> "026" [label="Bloque de perfil"];
+  "001D" -> "014" [label="Cerrar sesión"];
+  "001E" -> "005" [label="Unirse con código"];
+  "005" -> "020" [label="Código válido"];
+  "001E" -> "020" [label="Clic en una experiencia"];
+  "020" -> "001E" [label="←", style=dotted, constraint=false];
+  "020" -> "025E" [label="… (Salir)"];
+  "025E" -> "001E" [label="Salir de la experiencia (pasa por 024)"];
+  "020" -> "021" [label="Comenzar / Continuar"];
+  "021" -> "022" [label="Siguiente"];
+  "022" -> "021" [label="Confirmar · el sistema sigue (pasa por 024)"];
+  "022" -> "023" [label="Confirmar · el sistema concluye (pasa por 024)"];
+  "023" -> "001E" [label="Volver al inicio"];
+  "001E" -> "026" [label="Bloque de perfil"];
+  "001E" -> "014" [label="Cerrar sesión"];
+}

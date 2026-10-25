@@ -1,0 +1,797 @@
+                                                                                                                                                                                       CÓDIGO:
+                                                                                                                                                                                       FDOC-088
+                                                                    UNIVERSIDAD DE CÓRDOBA                                                                                           VERSIÓN: 05
+                                                                                                                                                                                      EMISIÓN:
+                                                                                                                                                                                      10/04/2024
+                                                                                    PLAN DE CURSO                                                                                      PÁGINA
+                                                                                                                                                                                        1 DE 12
+
+
+
+                                             1. IDENTIFICACIÓN DEL CURSO
+                                                              Nivel de Formación                                                                                                     Área de
+        Facultad           Programa Académico
+                                                      Pregrado                   Posgrado                                                                                           formación
+                             LICENCIATURA EN
+         FACEDU                                           X                                                                                                                       INFORMÁTICA
+                               INFORMÁTICA
+                       Curso                                        Código                                                                                                           Créditos
+Diseño y Desarrollo de Software Educativo I                          203447                                                                                                             3
+  Lugar de Desarrollo              Año                        Periodo Académico                                                                                                      Semestre
+       MONTERÍA                    2024                              2024-2                                                                                                             8
+                                                    Modalidades
+                    Presencial                                              A Distancia
+        Horas de                              Horas de trabajo                      Horas trabajo                  Horas trabajo             Horas trabajo tutoría                 Horas trabajo
+ acompañamiento docente                        independiente                      tutorial presencial               autónomo                        virtual                        Colaborativo
+                4                                        5                                   NA                            NA                            NA                                NA
+
+                                                                                         2. JUSTIFICACIÓN
+ El curso Diseño y Desarrollo de Software Educativo I es fundamental en la formación de licenciados en Informática, ya que responde a la necesidad de formar docentes capaces de diseñar, desarrollar
+ e implementar soluciones tecnológicas que aborden de manera efectiva las necesidades de aprendizaje en diversos contextos. Esto se alinea directamente con la misión del programa de Licenciatura en
+ Informática, que busca formar profesionales que lideren los cambios en la educación y la cultura, y con el PEI de la Universidad de Córdoba, que promueve la formación integral de personas capaces
+ de interactuar en un mundo globalizado.
+
+ El desarrollo de software educativo está experimentando una transformación acelerada gracias a la incorporación de la Inteligencia Artificial (IA), lo que abre nuevas posibilidades para la
+ personalización del aprendizaje, la creación de experiencias más atractivas e interactivas, y la automatización de tareas. Este curso le brindará a los estudiantes las bases conceptuales y prácticas para
+ comprender estas nuevas tendencias y aplicarlas en el diseño de software educativo, preparándolos para un ejercicio profesional a la vanguardia de la innovación tecnológica en el contexto local,
+ regional, nacional e internacional.
+
+
+                                                                                    3. OBJETIVO DEL CURSO
+
+ Proporcionar a los estudiantes los conocimientos teóricos y prácticos fundamentales para el diseño inicial de software educativo, con un enfoque centrado en el usuario y la innovación pedagógica.
+
+
+
+
+                    “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                               asegúrese que ésta es la versión vigente”
+                                                                                                                                                                                   CÓDIGO:
+                                                                                                                                                                                   FDOC-088
+                                                                  UNIVERSIDAD DE CÓRDOBA                                                                                         VERSIÓN: 05
+                                                                                                                                                                                  EMISIÓN:
+                                                                                                                                                                                  10/04/2024
+                                                                                  PLAN DE CURSO                                                                                    PÁGINA
+                                                                                                                                                                                    2 DE 12
+
+
+                                                                       4. COMPETENCIAS TRANSVERSALES
+Comunicativa:
+
+Los estudiantes desarrollarán habilidades de comunicación oral y escrita a través de la elaboración de informes, la presentación de sus diseños, la gestión de información de diversas fuentes y la
+representación de ideas en mapas conceptuales, presentaciones, mapas mentales o infografías.
+
+Razonamiento Cuantitativo:
+
+Los estudiantes analizarán e interpretarán datos para la toma de decisiones en el diseño del software educativo, evaluando su usabilidad y accesibilidad. Además, analizarán situaciones del contexto
+educativo local a través de estudios de caso para identificar problemas y proponer alternativas de solución usando las TIC.
+
+Competencia Comunicativa en inglés:
+
+Los estudiantes utilizarán expresiones cotidianas y técnicas en inglés, a través de la lectura de documentos, visualización de videos y análisis de recursos gráficos con contenidos en este idioma.
+
+Competencia Ciudadana, Paz, Resolución de Conflictos y Procesos de reconciliación y sana convivencia:
+
+Los estudiantes actuarán de forma reflexiva y crítica frente a problemas del entorno, experimentando un sentido de pertenencia en una humanidad común. Adquirirán actitudes de empatía,
+solidaridad y respeto por las diferencias y la diversidad, reconociendo los derechos y responsabilidades inherentes al ejercicio de la ciudadanía en una democracia. Se promoverá el trabajo
+colaborativo en equipos interdisciplinarios para fortalecer estas competencias y fomentar la conciencia de la importancia del diseño de software educativo que contribuya a la formación de
+ciudadanos responsables.
+
+Competencia Investigativa:
+
+Los estudiantes desarrollarán habilidades para identificar problemáticas del contexto escolar, proponer acciones de mejora y gestionar información para fortalecer sus bases conceptuales y construir
+nuevos aprendizajes significativos. Para ello, se incentivará la búsqueda, análisis y síntesis de información sobre modelos de desarrollo de software educativo y el uso de la IA en educación, a través
+de la lectura de artículos científicos, la consulta de bases de datos y la exploración de herramientas de IA.
+
+Competencia Emprendimiento e Innovación:
+
+Se estimulará la creatividad y el pensamiento innovador en el diseño de software educativo a través de la propuesta de soluciones originales a problemas educativos, la exploración de nuevas
+tecnologías y la elaboración de prototipos funcionales. Los estudiantes desarrollarán habilidades para la creación de ideas que mejoren los procesos pedagógicos y administrativos en el contexto
+escolar, formulando propuestas de proyectos tecnológicos educativos.
+
+
+
+
+                   “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                              asegúrese que ésta es la versión vigente”
+                                                                                                                                                        CÓDIGO:
+                                                                                                                                                        FDOC-088
+                                                         UNIVERSIDAD DE CÓRDOBA                                                                       VERSIÓN: 05
+                                                                                                                                                       EMISIÓN:
+                                                                                                                                                       10/04/2024
+                                                                       PLAN DE CURSO                                                                    PÁGINA
+                                                                                                                                                         3 DE 12
+
+
+                                                                     5. ALINEACIÓN CURRICULAR
+                                         Resultados de                                                                                           Resultado de
+   Competencias del                                                                                               Unidades de
+                                        Aprendizaje del                Competencia del curso                                                   Aprendizaje de la
+    perfil de egreso                                                                                              Aprendizaje
+                                           Programa                                                                                                Unidad
+                                                                                                                                           RA - 203447 - U1: Selecciona
+                                                                                                                                           (V) el modelo para un diseño de
+                                                                       C-01: Analiza las necesidades                                       software educativo (O)
+PE-01: El egresado desarrolla y                                                                            Unidad 1: Panorama de
+                                                                       educativas y define los objetivos                                   basándose en las
+evalúa proyectos y/o soluciones                                                                            Desarrollo de Software
+                                                                       de aprendizaje que el software                                      características, etapas, ventajas
+tecnológicas que respondan a       RP-01: Diseña ambientes                                                 Educativo
+                                                                       educativo espera abordar.                                           y desventajas (C) para dar
+las necesidades de aprendizaje,    educativos mediados por
+                                                                                                                                           solución a una necesidad
+poniendo en ejercicio técnicas     tecnología que aborden de
+                                                                                                                                           educativa (F).
+avanzadas de programación,         manera efectiva las
+                                                                                                                                           RA - 203447 - U2: Define (V) los
+especialmente en contextos         necesidades de aprendizaje en
+                                                                                                                                           aspectos educativos esenciales
+educativos y con tecnologías       diversos contextos, utilizando
+                                                                       C-02: Aplica metodologías de                                        en el diseño de un software
+actualizadas con capacidades       enfoques innovadores.
+                                                                       diseño de software educativo,                                       educativo (O) que se requieren
+de colaboración y liderazgo en                                                                             Unidad 2: Aspectos Educativos
+                                                                       incluyendo principios de                                            para un adecuado proceso de
+equipos interdisciplinarios.
+                                                                       usabilidad y accesibilidad.                                         aprendizaje (C) para dar
+                                                                                                                                           solución a una necesidad
+                                                                                                                                           educativa (F).
+PE-02: El egresado gestiona
+didácticamente los ambientes
+de aprendizaje fundamentados
+en principios psicoeducativos
+                                                                       C-03: Comprende diferentes
+tomando en cuenta el contexto y
+                                                                       modelos de desarrollo de
+las reflexiones de situaciones
+                                                                       software educativo, desde los
+específicas.
+                                                                       clásicos hasta las metodologías                                     RA - 203447 - U3: Modela (V)
+PE-04: El egresado se              RP-04: Aplica de forma
+                                                                       ágiles, identificando sus                                           los aspectos interactivos,
+desempeña con idoneidad como       integrada los fundamentos del
+                                                                       fortalezas y debilidades.                                           multimedia y de
+docente en el área de              aprendizaje, la pedagogía, la
+                                                                       C-04: Identifica las                                                almacenamiento de datos (O)
+tecnología e informática en los    didáctica, la comunicación y la
+                                                                       características pedagógicas y       Unidad 3: Diseño de la          que se requieren para un
+diferentes niveles de educación,   tecnología educativa, para
+                                                                       didácticas que debe tener un        Propuesta y Prototipo           adecuado proceso de
+gestionando proyectos de aula y    abordar problemas complejos y
+                                                                       software educativo efectivo.                                        aprendizaje, incluyendo
+de investigación a partir de la    fomentar la innovación en
+                                                                       C-05: Elabora un guion                                              estándares de accesibilidad (C)
+reflexión sobre su práctica en     ecosistemas educativos
+                                                                       estratégico y lúdico que sirva                                      para dar solución a una
+diversos contextos                 mediados por tecnología.
+                                                                       como base para el desarrollo del                                    necesidad educativa (F).
+socioculturales, desde una
+                                                                       software educativo,
+perspectiva pedagógica y
+                                                                       incorporando elementos de
+didáctica innovadora, para el
+                                                                       diseño multimedia e interactivo.
+mejoramiento de la calidad de la
+educación, utilizando las
+tecnologías de la información y
+la comunicación.
+
+
+
+                “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                           asegúrese que ésta es la versión vigente”
+                                                                                                                                                                CÓDIGO:
+                                                                                                                                                                FDOC-088
+                                                         UNIVERSIDAD DE CÓRDOBA                                                                               VERSIÓN: 05
+                                                                                                                                                               EMISIÓN:
+                                                                                                                                                               10/04/2024
+                                                                          PLAN DE CURSO                                                                         PÁGINA
+                                                                                                                                                                 4 DE 12
+
+
+
+                                                                    6. ALINEACIÓN DEL CURSO
+     Nombre de la Unidad de
+                                                 Unidad 1: Panorama del Desarrollo de Software Educativo
+           Aprendizaje
+      Número de semanas                                                                                         4
+     Niveles de comprensión                                                                   Abstracto, Relacional, Multiestructural
+            esperado
+                                                                                              Actividades                                                       Evidencias e
+ Resultado de                                                                                                                            Criterios de          instrumentos
+                                                 Metodología de
+Aprendizaje de           Contenidos                                         Acompañamiento                     Trabajo                    evaluación          (conocimiento,
+                                                  la enseñanza
+  la Unidad                                                                     docente                     Independiente               (indicadores)          desempeño y
+                                                                                                                                                                 producto)
+                       Ingeniería de             Aprendizaje activo:
+                                                                                                                                        RA - 203447 - U1 -
+                       Software                  Se privilegiarán
+                                                                                                                                        E1: Elaboración de
+                       Educativo:                estrategias como el
+                                                                                                                                        un documento con
+                       Conceptos básicos,        aprendizaje basado en
+                                                                                                                                        la comparación de
+                       enfoques y                problemas, el
+                                                                                                                                        los diferentes
+                       principios.               aprendizaje
+                                                                                                                                        modelos de
+                       Modelos clásicos          colaborativo y el
+                                                                                                                                        desarrollo de
+                       de desarrollo de          aprendizaje basado en                                     Lectura y consulta                                 E1: Documento con
+                                                                                                                                        software educativo,
+                       software: Cascada,        proyectos,                                                sobre software                                     la comparación de los
+                                                                                                                                        sus características
+                       Espiral, Prototipado,     incorporando el uso de                                    educativo (libros,                                 modelos de desarrollo
+RA - 203447 - U1:                                                                                                                       y aplicaciones.
+                       Incremental. Análisis     herramientas de IA.                                       artículos, páginas                                 de software
+Selecciona (V) el                                                          Articulación del contenido y                                 RA - 203447 - U1 -
+                       de sus fases,             Estudio de casos:                                         web).                                              educativo, sus
+modelo para un                                                             desarrollo de actividades en                                 E2: Elaboración de
+                       características,          Análisis de ejemplos                                      Creación de un                                     características y
+diseño de software                                                         la Plataforma CINTIA.                                        un documento con
+                       ventajas,                 reales de software                                        repositorio en Github                              aplicaciones.
+educativo (O)                                                              Sesiones síncronas para                                      el análisis de
+                       desventajas y             educativo para                                            para compartir                                     E2: Documento con
+basándose en las                                                           introducción de temas,                                       ejemplos de
+                       aplicaciones en           comprender los                                            documentos y código.                               el análisis de
+características,                                                           discusión de casos y                                         software educativo
+                       educación.                principios y                                              Puesta en práctica de                              ejemplos de software
+etapas, ventajas y                                                         retroalimentación.                                           y se identifiquen
+                       Metodologías              metodologías                                              los contenidos del                                 educativo y sus
+desventajas (C) para                                                       Asesoría individual o grupal                                 sus componentes.
+                       ágiles: Scrum, XP,        aplicados.                                                curso en un proyecto                               componentes.
+dar solución a una                                                         a través de foros, chat o                                     RA - 203447 - U1
+                       Kanban, Lean.             Discusiones en                                            grupal.                                              E3: Documento
+necesidad educativa                                                        videoconferencia.                                             - E3: Elaboración
+                       Análisis de sus           foros: Intercambio de                                     Investigación y                                      técnico que
+(F).                                                                                                                                     de un documento
+                       principios, prácticas y   ideas, argumentos y                                       análisis de modelos                                  contenga la
+                                                                                                                                         técnico que
+                       adaptación al             reflexiones sobre los                                     de desarrollo de                                     propuesta de
+                                                                                                                                         contenga la
+                       desarrollo de             temas abordados en la                                     software educativo.                                  software.
+                                                                                                                                         propuesta de
+                       software educativo.       unidad.
+                                                                                                                                         software
+                       Comparación de            Lectura de artículos
+                                                                                                                                         considerando los
+                       modelos:                  científicos:
+                                                                                                                                         modelos de
+                       Fortalezas,               Profundización en
+                                                                                                                                         desarrollo de
+                       debilidades y             conceptos y
+                                                                                                                                         software
+                       selección del modelo      tendencias del
+                                                                                                                                         educativo.
+                       más adecuado en           desarrollo de software
+                “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                           asegúrese que ésta es la versión vigente”
+                                                                                                                                                                CÓDIGO:
+                                                                                                                                                                FDOC-088
+                                                              UNIVERSIDAD DE CÓRDOBA                                                                          VERSIÓN: 05
+                                                                                                                                                               EMISIÓN:
+                                                                                                                                                               10/04/2024
+                                                                               PLAN DE CURSO                                                                    PÁGINA
+                                                                                                                                                                 5 DE 12
+
+                        función de la                educativo y la IA en
+                        necesidad educativa          educación.
+                        y el uso de la IA.           Exploración de
+                        Ejemplos de                  herramientas de IA:
+                        software educativo:          Experimentación
+                        Análisis de casos de         práctica con
+                        éxito, identificando         herramientas de IA
+                        los modelos de               para el diseño y
+                        desarrollo utilizados,       desarrollo de software.
+                        las decisiones de            Trabajo colaborativo
+                        diseño y los                 en equipos
+                        componentes                  interdisciplinarios:
+                        pedagógicos.                 Simulación de
+                        Uso de la IA en el           entornos reales de
+                        desarrollo de                trabajo para el
+                        software educativo:          desarrollo de
+                        Técnicas,                    proyectos de software
+                        herramientas y               educativo.
+                        aplicaciones para la
+                        personalización del
+                        aprendizaje y la
+                        creación de
+                        experiencias más
+                        atractivas.
+
+
+
+     Nombre de la unidad de                            RA - 203447 - U2: Define (V) los aspectos educativos esenciales en el diseño de un software educativo (O) que se requieren
+           aprendizaje                                 para un adecuado proceso de aprendizaje (C) para dar solución a una necesidad educativa (F).
+      Número de semanas                                                                                             5
+Niveles de comprensión esperado                                                               Multiestructural, Uniestructural, Preestructural
+                                                                                                   Actividades                                                  Evidencias e
+ Resultado de                                                                                                                              Criterios de        instrumentos
+                                                         Metodología de
+Aprendizaje de              Contenidos                                            Acompañamiento                   Trabajo                  evaluación        (conocimiento,
+                                                          la enseñanza
+  la Unidad                                                                           docente                   Independiente             (indicadores)        desempeño y
+                                                                                                                                                                 producto)
+RA - 203447 - U2:                                        Aprendizaje basado
+Define (V) los
+                         Análisis de
+                                                         en problemas: Análisis
+                                                                                                                Análisis de casos                         • E1: Documento
+                         Necesidad                                                                              de software                                    técnico con los
+aspectos educativos                                      de situaciones                                         educativo, para
+                         Educativa: Técnicas                                                                                                                   aspectos técnicos
+esenciales en el                                         problemáticas en el                                    identificar sus
+                         e instrumentos para                                                                                                                   del sistema.
+diseño de un software                                    contexto educativo
+educativo (O) que se
+                         identificar y definir las
+                                                         para proponer
+                                                                                                                componentes                               •   E2: Documento
+                         necesidades                                                                            educativos.                                    técnico con el
+requieren para un                                        soluciones mediante el
+adecuado proceso de
+                         educativas que el
+                                                         diseño de software                                •    **Diseño de                                    Estudio de un Caso
+                         software abordará.                                                                     estrategias de                                 de Requisitos.
+aprendizaje (C) para                                     educativo.
+                “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                           asegúrese que ésta es la versión vigente”
+                                                                                                                                             CÓDIGO:
+                                                                                                                                             FDOC-088
+                                                         UNIVERSIDAD DE CÓRDOBA                                                            VERSIÓN: 05
+                                                                                                                                            EMISIÓN:
+                                                                                                                                            10/04/2024
+                                                                       PLAN DE CURSO                                                         PÁGINA
+                                                                                                                                              6 DE 12
+
+dar solución a una    •   Diseño centrado en •       Juego de roles:                             enseñanza y                                   E3: Documento
+necesidad educativa       el usuario (DCU):          Simulación de la                            aprendizaje para un                           técnico con los
+(F).                      Metodologías y             interacción del usuario                     software educativo.                           requisitos
+                          herramientas para          con el software para                        **                                            funcionales y no
+                          diseñar software           evaluar la usabilidad y                     Juego de roles                                funcionales del
+                          enfocado en las            la efectividad del                          para simular la                               sistema.
+                          necesidades y              diseño.                                     interacción del
+                                                                                                 usuario con el
+                          experiencias del       •   Discusiones en foros:
+                                                                                                 software.
+                          usuario final.             Intercambio de ideas y
+                      •   Modelo Pedagógico:         experiencias sobre el
+                          Selección y                uso de software
+                          justificación del          educativo y las mejores
+                          modelo pedagógico          prácticas de diseño.
+                          más adecuado para el       Trabajo colaborativo
+                          software educativo.        en equipos
+                      •   Estrategias de             interdisciplinarios:
+                          Enseñanza: Diseño          Diseño de un software
+                          de actividades,            educativo como
+                          recursos y                 proyecto grupal,
+                          metodologías para la       integrando las
+                          presentación de            perspectivas de
+                          contenidos y la            diferentes disciplinas.
+                          facilitación del
+                          aprendizaje.
+                      •   Estrategias de
+                          Aprendizaje:
+                          Incorporación de
+                          estrategias que
+                          promuevan la
+                          participación activa del
+                          estudiante, la
+                          colaboración y la
+                          reflexión.
+                          Evaluación del
+                          aprendizaje en
+                          software educativo:
+                          Diseño de
+                          mecanismos de
+                          evaluación formativa
+                          y sumativa que se
+                          integren con el
+                          software y permitan
+                          medir el logro de los
+                          objetivos de
+                          aprendizaje.
+
+
+               “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                          asegúrese que ésta es la versión vigente”
+                                                                                                                                                                               CÓDIGO:
+                                                                                                                                                                               FDOC-088
+                                                                 UNIVERSIDAD DE CÓRDOBA                                                                                      VERSIÓN: 05
+                                                                                                                                                                              EMISIÓN:
+                                                                                                                                                                              10/04/2024
+                                                                                 PLAN DE CURSO                                                                                 PÁGINA
+                                                                                                                                                                                7 DE 12
+
+
+
+
+   Nombre de la unidad de
+                                                     Unidad 3: Diseño de la Propuesta y Prototipo
+         aprendizaje
+     Número de semanas                                                                                                     6
+   Niveles de comprensión
+          esperado
+ Resultado                                                                                          Actividades                                                                 Evidencias e
+    de                                                                                                                                            Criterios de                 instrumentos
+                                                     Metodología de
+Aprendizaje     Contenidos                                                       Acompañamiento                     Trabajo                        evaluación                 (conocimiento,
+                                                      la enseñanza
+   de la                                                                             docente                     Independiente                   (indicadores)                 desempeño y
+  Unidad                                                                                                                                                                         producto)
+                       Guion Estratégico:
+                       Definición de los
+                       objetivos, contenidos,
+                       estructura y
+RA - 203447 -                                        Talleres prácticos:
+                       funcionalidades del                                                                      Investigación sobre
+U3: Modela (V)                                       Diseño y desarrollo de                                                                   RA - 203447 - U3 - E1:
+                       software educativo.                                                                      herramientas de
+los aspectos                                         prototipos de software                                                                   Elaboración de documento
+                       Guion Lúdico:                                                                            prototipado de software.                                      E1: Documento técnico
+interactivos,                                        educativo utilizando        Articulación del contenido y                                 técnico con los requisitos
+                       Incorporación de                                                                         Elaboración de guiones y                                      con los requisitos
+multimedia y de                                      herramientas específicas.   desarrollo de actividades en                                 funcionales y no funcionales
+                       elementos de                                                                             diseño de interfaces de                                       funcionales y no
+almacenamiento                                       Diseño colaborativo:        la Plataforma CINTIA.                                        del sistema.
+                       gamificación, narrativa                                                                  usuario.                                                      funcionales del sistema.
+de datos (O) que                                     Trabajo en equipo para la   Sesiones síncronas para                                      RA - 203447 - U3 - E2:
+                       interactiva y estética para                                                              Definición de la estructura                                   E2: Documento técnico
+se requieren para                                    creación del guion, la      introducción de temas,                                       Elaboración de documento
+                       mejorar la experiencia del                                                               de la base de datos.                                          de las Tarjetas de Casos
+un adecuado                                          interfaz de usuario y la    talleres prácticos y                                         técnico de las Tarjetas de
+                       usuario.                                                                                 Participación en talleres y                                   de Uso y la Matriz de
+proceso de                                           base de datos.              retroalimentación.                                           Casos de Uso y la Matriz de
+                       Diseño Multimedia e                                                                      presentación de prototipos.                                   Priorización de
+aprendizaje,                                         Presentación y              Asesoría individual o                                        Priorización de Requisitos.
+                       Interactivo: Principios y                                                                Elaboración del guion                                         Requisitos.
+incluyendo                                           discusión de prototipos:    grupal a través de foros,                                    RA - 203447 - U3 - E3:
+                       herramientas para el                                                                     estratégico y lúdico del                                      E3: Documento
+estándares de                                        Socialización de los        chat o videoconferencia.                                     Documento técnico de
+                       diseño de interfaces                                                                     software educativo.                                           técnico de requisitos
+accesibilidad (C)                                    prototipos desarrollados                                                                 requisitos de datos del
+                       atractivas, intuitivas y                                                                 Definición de la estructura                                   de datos del sistema.
+para dar solución                                    para recibir                                                                             sistema.
+                       accesibles.                                                                              de la base de datos.
+a una necesidad                                      retroalimentación de los
+                       Lineamientos
+educativa (F).                                       compañeros y el docente.
+                       LIDERAR: Aplicación
+                       de los lineamientos para
+                       el diseño de software
+                       educativo del programa
+
+                    “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                               asegúrese que ésta es la versión vigente”
+                                                                                                                                                                    CÓDIGO:
+                                                                                                                                                                    FDOC-088
+                                                         UNIVERSIDAD DE CÓRDOBA                                                                                   VERSIÓN: 05
+                                                                                                                                                                   EMISIÓN:
+                                                                                                                                                                   10/04/2024
+                                                                       PLAN DE CURSO                                                                                PÁGINA
+                                                                                                                                                                     8 DE 12
+
+                de Licenciatura en
+                Informática.
+                Herramientas de
+                prototipado de software:
+                Selección y uso de
+                herramientas para crear
+                prototipos funcionales del
+                software educativo.
+                Diseño y especificación
+                de la base de datos:
+                Estructuración de la base
+                de datos para almacenar
+                la información del
+                software.
+                Uso de la IA para la
+                personalización del
+                aprendizaje y la
+                creación de
+                experiencias más
+                atractivas: Integración
+                de componentes de IA
+                para adaptar el software
+                a las necesidades
+                individuales de los
+                estudiantes y ofrecer
+                retroalimentación
+                personalizada.
+
+
+
+
+                                                                    7. RÚBRICA DE EVALUACIÓN
+                                                                         Escala de valoración
+            Criterios de                      Abstracto
+                                                                         Relacional               Multiestructural                Uniestructural                  Prestructural
+Unidad       evaluación                       ampliado
+                                                                         (3.8 – 4.5)                (3.0 – 3.7)                     (2.1-2.9)                      (0.0 – 2.0)
+           (indicadores)                     (4.6 – 5.0)
+         Evidencia 1 de la Unidad      El análisis de los modelos                                 El análisis de los modelos
+                                                                    El análisis de los modelos                                  El análisis de los modelos     No se evidencia un
+         1: RA - 203447 - U1 - E1      de desarrollo es profundo                                  de desarrollo es básico,
+                                                                    de desarrollo es adecuado,                                  de desarrollo es superficial   análisis de los modelos de
+  1      - Elaboración de un           y reflexivo, evidenciando
+                                                                    estableciendo conexiones
+                                                                                                  identificando las
+                                                                                                                                y fragmentado, sin una         desarrollo de software
+         documento con la              una comprensión                                            características principales
+                                                                    entre sus características y                                 comprensión clara de sus       educativo.
+         comparación de los            completa de sus                                            de cada modelo.
+            “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                       asegúrese que ésta es la versión vigente”
+                                                                                                                                                              CÓDIGO:
+                                                                                                                                                              FDOC-088
+                                                    UNIVERSIDAD DE CÓRDOBA                                                                                  VERSIÓN: 05
+                                                                                                                                                             EMISIÓN:
+                                                                                                                                                             10/04/2024
+                                                                  PLAN DE CURSO                                                                               PÁGINA
+                                                                                                                                                               9 DE 12
+
+    diferentes modelos de         principios, fases y          aplicaciones en el                                         implicaciones en
+    desarrollo de software        aplicaciones en educación.   contexto educativo.                                        educación.
+    educativo, sus
+    características y
+    aplicaciones.
+    Evidencia 2 de la Unidad
+                                  Los ejemplos de software     Los ejemplos de software
+    1: RA - 203447 - U1 - E2                                                                Los ejemplos de software
+                                  educativo seleccionados      educativo seleccionados                                                                   No se presentan ejemplos
+    - Elaboración de un                                                                     educativo seleccionados       Los ejemplos de software
+                                  son relevantes, variados y   son pertinentes y                                                                         de software educativo o
+    documento con el análisis                                                               son aceptables, aunque        educativo seleccionados
+1   de ejemplos de software
+                                  representativos de           representan diferentes
+                                                                                            puede haber alguna            son limitados o
+                                                                                                                                                         los ejemplos son
+                                  diferentes tipos de          tipos de software, aunque                                                                 completamente
+    educativo y se                                                                          irrelevancia o falta de       irrelevantes.
+                                  software y modelos de        puede haber alguna                                                                        inadecuados.
+    identifiquen sus                                                                        variedad.
+                                  desarrollo.                  limitación en su variedad.
+    componentes.
+    Evidencia 3 de la Unidad
+    1: RA - 203447 - U1 - E3      La propuesta de software
+                                                               La propuesta de software     La propuesta de software                                     No se presenta una
+    - Elaboración de un           educativo es altamente                                                                  La propuesta de software
+                                                               educativo es original y      educativo presenta                                           propuesta de software
+    documento técnico que         original e innovadora,                                                                  educativo es poco original
+1   contenga la propuesta de      presentando una solución
+                                                               presenta algunas ideas       algunas ideas interesantes,
+                                                                                                                          y no aporta ideas
+                                                                                                                                                         educativo o la propuesta
+                                                               innovadoras para abordar     pero no es particularmente                                   es completamente
+    software considerando los     creativa a una necesidad                                                                innovadoras.
+                                                               la necesidad educativa.      original o innovadora.                                       inadecuada.
+    modelos de desarrollo de      educativa relevante.
+    software educativo.
+    Evidencia 1 de la Unidad      Los objetivos del software
+    2: RA - 203447 - U2 - E1      educativo están definidos
+                                                               Los objetivos del software                                 Los objetivos del software
+    - Elaboración de un           de forma clara, precisa,                                  Los objetivos del software                                   No se definen objetivos
+                                                               educativo están bien                                       educativo son vagos,
+    documento técnico con los     medible y alcanzable,                                     educativo son generales,                                     para el software educativo
+2   aspectos técnicos del         demostrando una
+                                                               definidos, aunque puede
+                                                                                            poco específicos o
+                                                                                                                          imprecisos o irrelevantes
+                                                                                                                                                         o los objetivos son
+                                                               haber alguna falta de                                      para la necesidad
+    sistema como son,             comprensión profunda de                                   difíciles de medir.                                          incorrectos.
+                                                               precisión o medibilidad.                                   educativa.
+    objetivos, funcionalidades,   la necesidad educativa a
+    usuarios y restricciones.     abordar.
+                                  La descripción del
+    Evidencia 2 de la Unidad      contexto educativo es        La descripción del
+                                                                                            La descripción del
+    2: RA - 203447 - U2 - E2      completa, detallada y        contexto educativo es                                      La descripción del             No se describe el contexto
+                                                                                            contexto educativo es
+    - Elaboración de un           relevante. Se identifica     adecuada, aunque puede                                     contexto educativo es          educativo o la descripción
+2   documento técnico con el      claramente la necesidad      haber alguna falta de
+                                                                                            básica, con algunas
+                                                                                                                          superficial o contiene         es completamente
+                                                                                            generalizaciones o falta de
+    Estudio de un Caso de         específica que el software   detalle o precisión en                                     errores importantes.           inadecuada.
+                                                                                            profundidad.
+    Requisitos                    busca abordar y se           algunas partes.
+                                  justifica su importancia.
+    Evidencia 3 de la Unidad
+    2: RA - 203447 - U2 - E3      Las técnicas de              Las técnicas de
+                                                                                            Las técnicas de
+    - Elaboración de un           recopilación seleccionadas   recopilación seleccionadas
+                                                                                            recopilación son              La selección de técnicas
+    documento técnico donde       son altamente pertinentes    son pertinentes para el                                                                   No se seleccionan técnicas
+                                                                                            generalmente adecuadas,       de recopilación es
+2   apliquen técnicas y           para el contexto del         proyecto, aunque puede
+                                                                                            pero puede haber alguna       deficiente o no se ajusta al
+                                                                                                                                                         de recopilación o las
+    enfoques de recopilación      proyecto y se justifica su   haber alguna limitación en                                                                técnicas son inadecuadas.
+                                                                                            irrelevancia o falta de       contexto del proyecto.
+    de información para           elección de manera clara y   su variedad o
+                                                                                            justificación.
+    identificar y documentar      concisa.                     justificación.
+    los requisitos funcionales
+
+       “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                  asegúrese que ésta es la versión vigente”
+                                                                                                                                                                 CÓDIGO:
+                                                                                                                                                                 FDOC-088
+                                                         UNIVERSIDAD DE CÓRDOBA                                                                                VERSIÓN: 05
+                                                                                                                                                                EMISIÓN:
+                                                                                                                                                                10/04/2024
+                                                                       PLAN DE CURSO                                                                             PÁGINA
+                                                                                                                                                                 10 DE 12
+
+        y no funcionales del
+        sistema.
+                                      La selección de técnicas
+                                      de recopilación es
+                                      estratégica y se basa en un
+                                                                    Las técnicas de
+        Evidencia 1 de la Unidad      análisis profundo del                                       La selección de técnicas
+                                                                    recopilación seleccionadas                                La selección de técnicas      No se seleccionan técnicas
+        3: RA - 203447 - U3 - E1      contexto del proyecto y                                     de recopilación es
+                                                                    son pertinentes, aunque                                   de recopilación es            de recopilación o las
+        - Elaboración de un           las necesidades de                                          adecuada, pero la
+3       documento técnico con los     información. Se justifica
+                                                                    puede haber alguna
+                                                                                                  justificación es básica o
+                                                                                                                              deficiente o no se ajusta a   técnicas son
+                                                                    limitación en la                                          las necesidades del           completamente
+        requisitos funcionales y no   claramente la elección de                                   no considera todos los
+                                                                    profundidad de la                                         proyecto.                     inadecuadas.
+        funcionales del sistema       cada técnica y se explica                                   factores relevantes.
+                                                                    justificación.
+                                      cómo contribuirá a la
+                                      obtención de requisitos
+                                      relevantes.
+                                                                                                  Las tarjetas de casos de
+                                      Las tarjetas de casos de      Las tarjetas de casos de
+        Evidencia 2 de la Unidad                                                                  uso presentan algunas       Las tarjetas de casos de
+                                      uso están perfectamente       uso están bien elaboradas,
+        3: RA - 203447 - U3 - E2                                                                  deficiencias o errores en   uso son incompletas,          No se presentan tarjetas de
+                                      elaboradas, con toda la       con la mayoría de la
+        - Elaboración de un                                                                       su elaboración. Puede       imprecisas o contienen        casos de uso o las tarjetas
+                                      información necesaria         información necesaria
+3       documento técnico de las
+                                      presentada de forma clara,    presentada de forma
+                                                                                                  faltar información          errores significativos. No    son incomprensibles o
+        Tarjetas de Casos de Uso                                                                  importante o haber          se evidencia una              completamente
+                                      precisa y completa. Se        correcta. Puede haber
+        y la Matriz de Priorización                                                               inconsistencias en la       comprensión clara de la       incorrectas.
+                                      evidencia un dominio          algunas omisiones o
+        de Requisitos.                                                                            descripción de los flujos   técnica.
+                                      completo de la técnica.       imprecisiones menores.
+                                                                                                  de eventos.
+                                      Se identifican todas las
+        Evidencia 3 de la Unidad
+                                      entidades relevantes del      Se identifican la mayoría     La identificación de
+        3: RA - 203447 - U3 - E3                                                                                              La identificación de
+                                      software educativo y sus      de las entidades y            entidades y atributos es
+        - Elaboración de un                                                                                                   entidades y atributos es      No se identifican
+3       documento técnico de
+                                      atributos, con una            atributos relevantes. Puede   básica o incompleta.
+                                                                                                                              incorrecta o muy              entidades ni atributos.
+                                      comprensión profunda de       haber alguna omisión o        Puede haber errores o
+        requisitos de datos del                                                                                               deficiente.
+                                      la estructura de datos        falta de precisión menor.     omisiones significativas.
+        sistema
+                                      necesaria.
+
+
+                                                                            8. BIBLIOGRAFÍA
+
+• Aguirre, C. A. M., Quintana, H. P., Romero, O. T., & Miranda, R. T. (2015). Aplicación de las TIC en la educación superior como estrategia innovadora para el desarrollo de
+     competencias digitales. Campus virtuales, 3(1), 88-101.
+• Bernal, D. J. D., Miranda, R. E. T., Gómez, A. A., & Piñeres, M. F. C. (2017). Sinopsis de metodologías y modelos de software educativo. Acta ScientiÆ InformaticÆ, 1(1).
+     Recuperado de http://revistas.unicordoba.edu.co/index.php/ACTASCIENTIAEINFORMATICAE/article/view/1164
+• Caro, M., Toscano-Miranda, R., Hernández Rozo, F. M., & David Lobo, M. E. (2009). MODESEC: Modelo para el desarrollo de software educativo basado en
+     competencias. Nuevas Ideas En Informática Educativa, 5, 188-200.
+• Caro, M. , Builes, J. A. J., & Toscano, R. (2011). Una arquitectura integrada para el modelado de sistemas informáticos de gestión de conocimiento en investigación
+     formativa. Avances en Sistemas e Informática, 8(3), 157-164.
+• Casillas Alvarado, M. A., & Ramírez Martinell, A. (2016). Háblame de TIC: educación virtual y recursos educativos. Volumen 3. Córdoba: Editorial Brujas. Recuperado de
+     http://ebookcentral.proquest.com/lib/unicordobasp/detail.action?docID=4626988
+
+
+            “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                       asegúrese que ésta es la versión vigente”
+                                                                                                                                                            CÓDIGO:
+                                                                                                                                                            FDOC-088
+                                                      UNIVERSIDAD DE CÓRDOBA                                                                              VERSIÓN: 05
+                                                                                                                                                           EMISIÓN:
+                                                                                                                                                           10/04/2024
+                                                                     PLAN DE CURSO                                                                          PÁGINA
+                                                                                                                                                            11 DE 12
+
+
+• Cova, Á., & Arrieta, X. (2008). Análisis y comparación de diversos modelos de evaluación de software educativo. Caracas: Red Enlace. Recuperado de
+     http://ebookcentral.proquest.com/lib/unicordobasp/detail.action?docID=3203205
+• España, J. G. L., & Toscano-Miranda, R. E. T. (2017). Una revisión de literatura sobre software desarrollados para la preservación de lenguas indígenas. Acta ScientiÆ
+     InformaticÆ, 1(1).
+• Dueñas Bernal, D. J., Toscano Miranda, R. E., Gómez, A. A., & Caro Piñeres, M. F. (2017). Sinopsis de metodologías y modelos de software educativo. Acta ScientiÆ
+     InformaticÆ, 1(1). https://revistas.unicordoba.edu.co/index.php/asinf/article/view/1164
+• García Frías, S. H. (2015). Concepción desarrolladora para el diseño didáctico del software educativo de la escuela primaria. Havana: Editorial Universitaria. Recuperado de
+     http://ebookcentral.proquest.com/lib/unicordobasp/detail.action?docID=4310190
+• Giraldo, J. C. (2004a). Grupo AVI: Arte Virtual Interactivo. [Sin información adicional para completar la referencia]
+• Giraldo, J. C. (2004b). METODOLOGIA SEMLI Software Educativo, Multimedia, Lúdico e Interactivo. Montería. [Sin información adicional para completar la referencia]
+• Giraldo, J. C. (2007). Methodology for Educational Games Develop with Intelillent Agents. University of Córdoba, Colombia. Recuperado de
+     http://jucagi.com.co/articulos/SECMALI.pdf
+• Giraldo, J. C. (2012). Estrategias Metodológicas para la Construcción de un Sistema de Intervención para la Promoción de la Permanencia y la Graduación en la Universidad
+     de Córdoba. Montería: Fondo Editorial de la Universidad de Córdoba.
+• Giraldo, J. C., Baldiris Navarro, S. M., & Salas Álvarez, D. J. (2015). Diseño e Implementación de Recursos Educativos Digitales Abiertos Inclusivos. Revista Q, 9(18), 1–21.
+• Giraldo, J. C., & Gómez, A. A. (2008). MEDSHI: METODOLOGÍA PARA EL DISEÑO Y DESARROLLO DE SISTEMAS HIPERMEDIALES EDUCATIVOS BASADOS EN LA
+     WEB 2.0. Montería. Recuperado de https://ezproxyucor.unicordoba.edu.co:2097/science/article/pii/S0360131516301397
+• Giraldo, J. C., & Muñoz, I. C. (2017). Modelo de e-Learning, su aplicación y resultados. En D. (Venezuela) Colectivo de Investigación, G. de E. S. A. y C. (Colombia)
+    Investigadores de Educación a Distancia, & REOALCeL (Eds.), Procesos Formativos Para el Siglo XXI (1a. ed., pp. 352–380). Cabimas: Fondo Editorial UNERMB,
+    Universidad Nacional Experimental “Rafael María Baralt.”
+• Giraldo, J. C., Muñoz, I. C., & Toscano Miranda, R. E. (2017). XIII Congreso de Informática Educativa versión Internacional. En J. C. Giraldo Cardozo & I. C. Muñoz Vargas
+    (Eds.), (p. 683). Montería: Red Iberoamericana de Informática Educativa - Nodo Colombia. Recuperado de http://bit.ly/Ribie2017Memorias
+• Gómez-Zermeño, M. G., & Toscano-Miranda, R. E. (2018). Causales de deserción en equipos de investigación formativa. Revista científica, (32), 147-156.
+• Jimeno, D., Lopera, J., & Giraldo, J. C. (2010). DEFINICIÓN DE UNA METODOLOGÍA PARA EL DESARROLLO DE OBJETOS DE APRENDIZAJE PARA LA ENSEÑANZA
+    DE LA PROGRAMACIÓN, BASADA EN EL MODELO PEDAGÓGICO DE LA LICENCIATURA EN INFORMÁTICA Y MEDIOS AUDIOVISUALES EN LA UNIVERSIDAD
+    DE CÓRDOBA. Montería.
+• Kamel Boulos, M. N., Maramba, I., & Wheeler, S. (2006). Wikis, blogs and podcasts: A new generation of Web-based tools for virtual collaborative clinical practice and
+    education. BMC Medical Education, 6, 1–8. https://doi.org/10.1186/1472-6920-6-41
+• Maican, C., & Lixandroiu, R. (2016). A system architecture based on open source enterprise content management systems for supporting educational institutions.
+    International Journal of Information Management, 36(2), 207–214. https://doi.org/10.1016/J.IJINFOMGT.2015.11.003
+• Márquez, L. A., Narváez, J. L., Giraldo, J. C., & Caro, M. F. (2017). Construcción Colaborativa de Lineamientos de Informática para el DEsarrollo de Software que permita la
+    Realización modular del sistema de Acreditación y el Registro calificado LIDERAR. Acta Scientiae Informaticae, 1(1), 31–40. Recuperado de
+    revistas.unicordoba.edu.co/informatica/
+• Mosquera, A., & Finol, J. (2012). La semiosis infinita y sus fronteras en un software educativo. Caracas: Red Enlace. Recuperado de
+    http://ebookcentral.proquest.com/lib/unicordobasp/detail.action?docID=3203269
+• Palomo, J., Llerena, E., Caro, M., & Toscano, R. ETNOLITERATURA DIGITAL: HERRAMIENTA PEDAGÓGICA PARA LA COMPRENSIÓN Y LAPRODUCCIÓN TEXTUAL.
+• Parroquín, P., Olmos, K., & Fernández, L. F. (2009). Identificación de competencias para el diseño de un modelo educativo en ingeniería de software. México: Universidad
+    Autónoma de Ciudad Juárez. Recuperado de http://ebookcentral.proquest.com/lib/unicordobasp/detail.action?docID=3178667
+• Peñate, A., Corrales, M., & Toscano-Miranda, R. (2019). Diseño de un entorno virtual para el aprendizaje básico del idioma coreano. Acta ScientiÆ InformaticÆ, 3(3), 6-6.
+• Pereira, J. C., & Russo, R. de F. S. M. (2018). Design thinking integrated in agile software development: A systematic literature review. Procedia Computer Science, 138,
+    775–782. https://doi.org/10.1016/j.procs.2018.10.101
+            “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                       asegúrese que ésta es la versión vigente”
+                                                                                                                                                                 CÓDIGO:
+                                                                                                                                                                 FDOC-088
+                                                           UNIVERSIDAD DE CÓRDOBA                                                                              VERSIÓN: 05
+                                                                                                                                                                EMISIÓN:
+                                                                                                                                                                10/04/2024
+                                                                          PLAN DE CURSO                                                                          PÁGINA
+                                                                                                                                                                 12 DE 12
+
+
+     • Pressman, R., Maxim, B. (2020). Software Engineering: A Practitioner's Approach.
+     • Ruiz Piedra, A. M. (2016). Estrategia de dirección para la gestión del software educativo en el proceso de enseñanza-aprendizaje. La Habana: Editorial Universitaria.
+          Recuperado de http://ebookcentral.proquest.com/lib/unicordobasp/detail.action?docID=5513882
+     • Salas Alvarez, D. J., Baldiris Navarro, S. M., & Giraldo, J. C. (2014). Estrategia de formación y acceso para la apropiación pedagógica de las TIC. Revista Ingeniería e
+          Innovación, 2(2), 59–66. Recuperado de http://revistas.unicordoba.edu.co/ojs/index.php/rii/article/view/935
+     • Seyitoğulları, K., & Katrancıoğlu, S. (2013). Mobile Learning Management System as a Course Supplementary. Procedia - Social and Behavioral Sciences, 83, 443–447.
+          https://doi.org/10.1016/j.sbspro.2013.06.087
+     • Soto, J., Franco, M., & Giraldo, J. (2014). Desarrollo de una metodología para integrar las TIC (Tecnologías de la Información y la Comunicación) en las IE (Instituciones
+          Educativas) de Montería. Zona Próxima, 21. https://doi.org/10.14482/zp.21.5780
+     • The use of a mobile learning management system and academic achievement of online students. (2016). Computers & Education, 102, 79–89.
+        https://doi.org/10.1016/J.COMPEDU.2016.07.003
+Recomendaciones adicionales:
+    • Recursos sobre diseño de software educativo:
+             o Alessi, S. M., & Trollip, S. R. (2001). Multimedia for learning: Methods and development. Boston: Allyn and Bacon.
+             o Branch, R. M. (2009). Instructional design: The ADDIE approach. Boston: Springer.
+    • Recursos sobre metodologías ágiles:
+             o Beck, K., & Andres, C. (2001). Extreme programming explained: Embrace change. Boston: Addison-Wesley.
+             o Schwaber, K., & Sutherland, J. (2017). The scrum guide: The definitive guide to scrum: The rules of the game. Recuperado de
+                    https://www.scrumguides.org/docs/scrumguide/v2017/2017-Scrum-Guide-US.pdf
+    • Recursos sobre IA en educación:
+             o Holmes, W., Bialik, M., & Fadel, C. (2023). Artificial intelligence in education: Promise and implications for teaching and learning. Boston: Center for Curriculum
+                    Redesign.
+             o Luckin, R., Holmes, W., Griffiths, M., & Forcier, L. B. (2016). Intelligence Unleashed. An argument for AI in Education. Pearson.
+
+
+Elaborado por:                                                                                               Raúl Toscano
+Fecha de aprobación del Comité de
+Acreditación y Currículo del                                                                            16 de agosto de 2024
+Programa:
+
+
+
+
+                 “Si usted ha accedido a este formato a través de un medio diferente al sitio web del Sistema de Control Documental del SIGEC,
+                                                            asegúrese que ésta es la versión vigente”
+

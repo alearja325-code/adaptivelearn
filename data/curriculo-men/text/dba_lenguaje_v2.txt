@@ -1,0 +1,2481 @@
+                                       D
+                                       B
+        Derechos Básicos               A
+            de Aprendizaje
+                                       V.2
+
+
+
+
+                            Lenguaje
+
+
+
+
+Lenguaje DBA_Final.indd 1               12/10/16 3:32 p.m.
+                                                                                                                              Lenguaje •
+
+
+                                        Derechos Básicos de Aprendizaje • V.2
+
+                            Presidente de la República
+                            Juan Manuel Santos Calderón
+
+                            Ministro (e) de Educación Nacional
+                            Francisco Javier Cardona Acosta
+
+                            Viceministro de Educación Preescolar, Básica y Media
+                            Victor Javier Saavedra Mercado
+
+                            Directora de Calidad para la Educación Preescolar, Básica y Media
+                            Paola Andrea Trujillo Pulido
+
+                            Subdirector (e) de Fomento de Competencias
+                            Alfredo Olaya Toro
+
+                            Subdirectora de Referentes y Evaluación de la Calidad Educativa
+                            María Claudia Sarta Herrera
+                            Equipo Técnico Ministerio de Educación Nacional
+                            Ana Camila Medina Pulido
+                            Félix Antonio Gómez Hernández
+                            Ángela Viviana Cortés Gutiérrez
+                            Mónica Lucía Suárez Beltrán
+                            Poliana Carolina Otálora Cruz
+                            Deisy Liliana Urbina Pachón
+                            James Valderrama Rengifo
+                            Equipo Técnico Universidad de Antioquia
+                            Gilberto de Jesús Obando Zapata – Coordinador general
+                            Selen Catalina Arango Rodríguez -Coordinadora
+                            Margarita María Osorio Álvarez -Experta académica
+                            Carolina Gallón Londoño - Experta académica
+                            Vanesa Castrillón Monsalve - Experta académica
+                            Libia López Ríos - Experta académica
+                            Ana María Isaza Avendaño - Experta académica
+                            Roger Alexander González Ramírez - Experto académica
+                            Mónica Andrea Hidalgo Vergara - Sistematizadora
+                            Jampier Jiménez Córdoba - Dinamizador
+                            Gabriel Rodríguez Castaño -Dinamizador
+                            Gustavo Bombini - Asesor internacional
+                            Geral Eduardo Matéus Ferro - Par lector nacional
+                            Equipo gestión Siempre Día E
+                            Diana Beatriz Quiceno Montoya
+                            Isabel Cristina Ortiz Correa
+                            Sebastian Estrada Jaramillo
+
+                            Equipo de Diseño y diagramación
+                            Estratégica Comunicaciones LTDA.
+                            Impresión
+                            Panamericana Formas E Impresos S.A.
+
+                            ISBN: 978-958-691-924-1
+
+                            Agradecimientos al equipo de la Dirección de Calidad para la Educación Preescolar, Básica y Media y a
+                            Ana Bolena Escobar Escobar, por su gestión y aportes al desarrollo de este propósito.
+                            Este documento se elaboró en el marco del Contrato Interadministrativo No. 0803 de 2016 suscrito entre la
+                            Universidad de Antioquia y el Ministerio de Educación Nacional.
+                            Los materiales de la Caja Siempre Día E se encuentran en permanente revisión y construcción con la comunidad
+                            educativa para responder a las necesidades de nuestro contexto.
+
+
+
+
+                   2
+
+Lenguaje DBA_Final.indd 2                                                                                                                  12/10/16 3:32 p.m.
+            • Derechos Básicos de Aprendizaje •
+                            Lenguaje
+
+
+
+
+Lenguaje DBA_Final.indd 3                     12/10/16 3:32 p.m.
+                                                                          Lenguaje •
+
+
+                                      Derechos Básicos de Aprendizaje • V.2
+
+
+
+
+                            Contenido
+
+                            1. Introducción                                   5
+
+                            2. El camino recorrido                            5
+
+                            3. ¿Qué son los DBA?                              6
+
+                               3.1. Estructura de los DBA                     6
+
+                            Comentarios finales sobre los DBA                 7
+
+
+
+
+                   4
+
+Lenguaje DBA_Final.indd 4                                                              12/10/16 3:32 p.m.
+                      Lenguaje •
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+                  Introducción
+
+                  La educación de calidad es un derecho fundamental y social que debe ser garantizado para todos. Presupone
+                  el desarrollo de conocimientos, habilidades y valores que forman a la persona de manera integral. Este
+                  derecho deber ser extensivo a todos los ciudadanos en tanto es condición esencial para la democracia y
+                  la igualdad de oportunidades.
+
+                  En esta ocasión, el Ministerio de Educación Nacional (MEN) presenta los Derechos Básicos de
+                  Aprendizaje (DBA), un conjunto de aprendizajes estructurantes1 que han de aprender los estudiantes en
+                  cada uno de los grados de educación escolar, desde transición hasta once, y en las áreas de
+                  lenguaje, matemáticas en su segunda versión, ciencias sociales y ciencias naturales en su primera
+                  versión. Los DBA de ciencias sociales se publicarán virtualmente dado el momento histórico de nuestro
+                  país que invita a su construcción conjunta cuidadosa por parte de todas las colombianas y los
+                  colombianos. Estas cuatro versiones de los DBA continúan abiertas a la realimentación de la comunidad
+                  educativa del país y se harán procesos de revisión en los que serán tenidos en cuenta los comentarios de
+                  docentes, directivos docentes y formadores de formadores, entre otros actores.
+
+                  2. El camino recorrido
+
+                  Desde su publicación en el 2015, la primera versión de los DBA, para las áreas de matemáticas y
+                  lenguaje, fue objeto de análisis y reflexión por parte de la comunidad educativa en mesas de
+                  discusión en todo el país. De esta revisión surgió una nueva versión de los DBA que rescata las fortalezas de
+                  la primera versión y responde a los aspectos que en dichos escenarios de discusión fueron reseñados
+                  como oportunidades para el mejoramiento.
+
+                  El Ministerio de Educación Nacional (MEN) agradece la participación de la comunidad nacional en
+                  este debate público, bien a título personal o en representación de Redes o Asociaciones de profesionales;
+                  pues sus aportes fueron de gran valor en la construcción de la propuesta que se presenta en esta
+                  oportunidad. Esta versión, elaborada con el apoyo de la Universidad de Antioquia, recorrió el camino que
+                  se muestra en la Figura 1.
+
+                                    Figura 1. Fases o momentos del proceso de construcción de los DBA
+
+
+                                                                                                 Presentación
+                                              Presentación                                      de la segunda
+                                                                      Segunda Versión
+                                             Primera Versión                                    Versión de los
+                                                                         de los DBA
+                                             de los DBA, 2015                                      DBA, 2016
+
+
+
+                                                Revisión con          Discusión Pública            Discusión
+                                               la comunidad            Mesas regionales             Pública
+                                                 educativa             Mesas sectoriales          Foros regionales
+                                               Foros regionales         Mesas virtuales            Foros virtuales
+                                                Foros virtuales          Foros virtuales            Documentos
+                                                 Documentos              Evaluación de              académicos
+                                                 académicos           pares nacionales e        Sistematización de
+                                               Sistematización          internacionales        la discusión pública
+                                                de la discusión
+                                                    pública           Discusión interna
+                                                                      Análisis de referentes
+                                                                          Nacionales e
+                                                                        Internacionales
+                                                                       Discusiones en los
+                                                                      equipos de trabajo.
+
+                  1
+                   Entendidos como un conjunto coherente de conocimientos y habilidades con potencial para organizar los procesos
+                  necesarios en el logro de nuevos aprendizajes, y que, por ende, permiten profundas transformaciones en el desarrollo
+                  de las personas.
+
+
+
+                                                                                                                              5
+
+Lenguaje DBA_Final.indd 5                                                                                                         12/10/16 3:32 p.m.
+                                                                                                                  Lenguaje •
+
+
+                                       Derechos Básicos de Aprendizaje • V.2
+
+
+                            Producto de este trabajo académico, presentamos a la comunidad nacional la segunda
+                            versión de los DBA en las áreas de matemáticas y lenguaje, para los grados primero a once, la
+                            cual es resultado de la conjunción de aportes de las mesas de discusión y sigue abierta a un
+                            proceso de revisión permanente.
+
+                            Igualmente ofrecemos la primera versión de los DBA en ciencias naturales y ciencias sociales,
+                            también de los grados primero a once, que serán analizados y realimentados a través de
+                            procesos de socialización que se encuentran en curso en diferentes escenarios académicos, y sus
+                            posibilidades de uso en el aula.
+
+                            3. ¿Qué son los DBA?
+
+                            Los DBA, en su conjunto, explicitan los aprendizajes estructurantes para un grado y un área particular.
+                            Se entienden los aprendizajes como la conjunción de unos conocimientos, habilidades y actitudes
+                            que otorgan un contexto cultural e histórico a quien aprende. Son estructurantes en tanto expresan
+                            las unidades básicas y fundamentales sobre las cuales se puede edificar el desarrollo futuro del
+                            individuo.
+
+                            Los DBA se organizan guardando coherencia con los Lineamientos Curriculares y los Estándares
+                            Básicos de Competencias (EBC). Su importancia radica en que plantean elementos para construir
+                            rutas de enseñanza que promueven la consecución de aprendizajes año a año para que, como
+                            resultado de un proceso, los estudiantes alcancen los EBC propuestos por cada grupo de grados.
+
+                            Sin embargo, es importante tener en cuenta que los DBA por sí solos no constituyen una propuesta
+                            curricular y estos deben ser articulados con los enfoques, metodologías, estrategias y contextos
+                            definidos en cada establecimiento educativo, en el marco de los Proyectos Educativos Institucionales
+                            (PEI) materializados en los planes de área y de aula. Los DBA también constituyen un conjunto de
+                            conocimientos y habilidades que se pueden movilizar de un grado a otro, en función de los procesos
+                            de aprendizaje de los estudiantes. Si bien los DBA se formulan para cada grado, el maestro puede
+                            trasladarlos de uno a otro en función de las especificidades de los procesos de aprendizaje de los
+                            estudiantes. De esta manera, los DBA son una estrategia para promover la flexibilidad curricular
+                            puesto que definen aprendizajes amplios que requieren de procesos a lo largo del año y no son
+                            alcanzables con una o unas actividades.
+
+                              3.1 Estructura de los DBA
+                              La estructura para la enunciación de los DBA está compuesta por tres elementos centrales:
+
+                              u El enunciado.
+
+
+                              u Las evidencias de aprendizaje.
+
+
+                              u El ejemplo.
+
+
+
+
+                   6
+
+Lenguaje DBA_Final.indd 6                                                                                                             12/10/16 3:32 p.m.
+                     Lenguaje •
+
+                                        Derechos Básicos de Aprendizaje • V.2
+
+
+
+                                                                      El enunciado referencia el aprendizaje estructurante
+                                                                      para el área.
+
+                                                                      Las evidencias expresan indicios claves que
+                                                                      muestran a los maestros si se está alcanzando el
+                                                                      aprendizaje expresado en el enunciado.
+
+
+
+
+                                                                      El ejemplo concreta y complementa las evidencias
+                                                                      de aprendizaje.
+
+
+
+
+                            Comentarios finales sobre los DBA
+
+                            a) Los DBA buscan ser de fácil comprensión tanto para docentes como para padres de familia y
+                               otros actores claves del ámbito educativo.
+
+                            b) Los DBA están numerados pero esto no define un orden de trabajo en el aula; es decir, son los
+                               aprendizajes que se buscan alcanzar al finalizar el año, de manera que exigen que a lo largo
+                               del año se planeen experiencias para que los estudiantes los logren.
+
+                            c) El profesor podrá -según los aprendizajes- desarrollar experiencias que aporten al alcance de
+                               varios de los aprendizajes propuestos por los DBA simultáneamente.
+
+                            d) Las evidencias de aprendizaje le sirven de referencia al maestro para hacer el aprendizaje
+                               observable. Algunas de ellas podrán observarse más rápido; otras exigen un proceso más
+                               largo, pero todas en su conjunto buscan dar pistas adecuadas del aprendizaje expresado en
+                               el enunciado.
+
+                            e) Los ejemplos muestran lo que el niño debe estar en capacidad de hacer al alcanzar los
+                               aprendizajes enunciados según su edad y momento de desarrollo para dar cuenta de su
+                               apropiación del aprendizaje enunciado.
+
+                            f)   Los ejemplos pueden ser contextualizados de acuerdo con lo que el docente considere
+                                 pertinente para sus estudiantes según su región, características étnicas y demás elementos
+                                 determinantes.
+
+
+
+
+                                                                                                                              7
+
+Lenguaje DBA_Final.indd 7                                                                                                         12/10/16 3:32 p.m.
+                                                                                              Lenguaje • Grado 1º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Identifica los diferentes medios de                       Relaciona códigos no verbales, como los
+          1.      comunicación como una posibilidad para                 2. movimientos corporales y los gestos de las
+                  informarse, participar y acceder al universo              manos o del rostro, con el significado que
+                  cultural que lo rodea.                                    pueden tomar de acuerdo con el contexto.
+
+           Evidencias de aprendizaje                                     Evidencias de aprendizaje
+                                                                            m Identifica las intenciones de los gestos y los
+                  m Establece semejanzas y diferencias entre los              movimientos corporales de los interlocutores
+                    principales medios de comunicación de su                  para dar cuenta de lo que quieren comunicar.
+                    contexto: radio, periódicos, televisión, revistas,      m Interpreta ilustraciones e imágenes en relación
+                    vallas publicitarias, afiches e internet.                 a sus colores, formas y tamaños.
+                  m Comprende los mensajes emitidos por diferentes          m Representa objetos, personas y lugares mediante
+                    medios de comunicación.                                   imágenes.
+                  m Distingue los medios de comunicación para               m Reconoce el sentido de algunas cualidades
+                    reconocer los posibles usos que tienen en su              sonoras como la entonación, las pausas y los
+                    entorno.                                                  silencios.
+                  m Describe los diferentes tipos de voz que se usan
+                    en los programas radiales y televisivos para dar
+                                                                         Ejemplo
+                    una noticia, narrar un partido de fútbol o leer un
+                    texto escrito.
+
+           Ejemplo
+
+                  Tras escuchar u observar programas de radio y
+                  televisión:
+                  u Representa el contenido del programa mediante
+                     gestos o dibujos, con la intención de que los
+                     demás compañeros adivinen temáticas o
+                     acciones específicas.
+                  u Conversa sobre el contenido del programa y
+                                                                              Tomado de: Schreiber-Wicke, E. & Holland, C. (2005).
+                     explica por qué es de su agrado.                         ¡Cuidado! ¡Palabra terrible!. Bogotá: Grupo Editorial
+                                                                              Norma.
+
+                                                                            Observa detenidamente en la imagen los siguientes
+                                                                            aspectos y comenta sus apreciaciones sobre ellos:
+                                                                            u La expresión de cada uno de los personajes
+                                                                               que aparecen en la portada.
+                                                                            u La posición corporal que tiene cada personaje.
+                                                                            u La posible relación que hay entre los personajes
+                                                                               presentados.
+                                                                            u Las posibles palabras terribles que son
+                                                                               mencionadas en la historia.
+
+
+
+
+                   8
+
+Lenguaje DBA_Final.indd 8                                                                                                       12/10/16 3:32 p.m.
+                     Lenguaje • Grado 1º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Reconoce en los textos literarios la posibilidad            Interpreta textos literarios como parte de su
+           3.     de desarrollar su capacidad creativa y lúdica.         4.   iniciación en la comprensión de textos.
+
+           Evidencias de aprendizaje                                     Evidencias de aprendizaje
+
+                  m Escucha o lee adivinanzas, anagramas, retahílas,        m Comparte sus impresiones sobre los textos literarios
+                    pregones y acrósticos que hacen parte de su               y las relaciona con situaciones que se dan en
+                    entorno cultural.                                         los contextos donde vive.
+                  m Comprende el sentido de los textos de la tradición      m Emplea las imágenes o ilustraciones de los textos
+                    oral como canciones y cuentos con los que                 literarios para comprenderlos.
+                    interactúa.                                             m Expresa sus opiniones e impresiones a través de
+                  m Entiende que hay diferencias en la forma en que           dibujos, caricaturas, canciones, y los comparte
+                    se escriben algunos textos como los acrósticos            con sus compañeros.
+                    y adivinanzas.                                          m Identifica la repetición de algunos sonidos al
+                  m Interactúa con sus compañeros en dinámicas                final de los versos en textos de la tradición oral
+                    grupales que incluyen: declamación, canto,                y los vincula con su respectiva escritura.
+                    música y recitales, teniendo en cuenta los sonidos
+                    y juegos de palabras.                                Ejemplo
+
+           Ejemplo
+
+                  Indaga con personas de su comunidad por algunos
+                  cantos, cuentos, retahílas, refranes o canciones que
+                  recuerden de cuando eran pequeños. Comparte
+                  los textos con sus compañeros.
+                  Para complementar la actividad, puede buscar
+                  en algunos libros. Aquí se proponen algunos de
+                  la Colección Semilla.                                     Coleóptero
+                                                                            Un paseóptero en helicóptero
+                                                                            a la islóptera de Cococópteros,
+                                                                            organisóptero un coleóptero.
+                                                                            Entran todópteros aprentandóptero
+                                                                            y volandóptero van con ruidóptero,
+                                                                            los resongópteros muelonedópteros
+                                                                            testarudópteros cascaridópteros.
+                                                                            Clarisa Ruiz
+
+                                                                            Tomado de: Robledo, B. (2001). (Comp.). En: Antología
+                                                                            de poesía colombiana para niños. Bogotá: Alfaguara
+                                                                            infantil, pp.63.
+
+
+
+
+                                                                                                                          9
+
+Lenguaje DBA_Final.indd 9                                                                                                     12/10/16 3:32 p.m.
+                                                                                           Lenguaje • Grado 1º
+
+
+                                  Derechos Básicos de Aprendizaje • V.2
+
+
+                   Reconoce las temáticas presentes en                     Interpreta diversos textos a partir de la lectura
+           5.      los mensajes que escucha, a partir de la             6. de palabras sencillas y de las imágenes que
+                  diferenciación de los sonidos que componen               contienen.
+                  las palabras.
+                                                                        Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                           m Comprende el propósito de los textos que
+                  m Extrae información del contexto comunicativo             lee, apoyándose en sus títulos, imágenes e
+                    que le permite identificar quién lo produce y en         ilustraciones.
+                    dónde.                                                 m Explica las semejanzas y diferencias que encuentra
+                  m Comprende las temáticas tratadas en diferentes           entre lo que dice un texto y lo que muestran las
+                    textos que escucha.                                      imágenes o ilustraciones que lo acompañan.
+                  m Segmenta los discursos que escucha en unidades         m Lee palabras sencillas.
+                    significativas como las palabras.                      m Identifica la letra o grupo de letras que
+                  m Identifica los sonidos presentes en las palabras,        corresponden con un sonido al momento de
+                    oraciones y discursos que escucha para                   pronunciar las palabras escritas.
+                    comprender el sentido de lo que oye.
+                                                                        Ejemplo
+
+           Ejemplo                                                         Para lograr una mejor comprensión de los textos
+                                                                           que lee o que escucha de su profesor o profesora
+                  Durante la escucha de diferentes textos:                 puede emplear estrategias en las que:
+                                                                           u Establece relaciones entre las dos imágenes.
+                  Agrupa las palabras que pertenecen a una misma           u Comenta sobre el sentido que puede tener cada
+                  familia de objetos.                                         una de las historias a partir de las imágenes.
+                                                                           u Atribuye acciones y funciones a cada personaje.
+                                                                           u Pronuncia las palabras de un texto sencillo a
+                                                                              partir del reconocimiento de las letras que las
+                                                                              componen.
+
+
+
+
+                   10
+
+Lenguaje DBA_Final.indd 10                                                                                                 12/10/16 3:32 p.m.
+                      Lenguaje • Grado 1º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Enuncia textos orales de diferente índole sobre
+          7.
+                                                                             Escribe palabras que le permiten comunicar
+                  temas de su interés o sugeridos por otros.            8.   sus ideas, preferencias y aprendizajes.
+
+           Evidencias de aprendizaje                                    Evidencias de aprendizaje
+
+                 m Emplea palabras adecuadas según la situación            m Construye textos cortos para relatar, comunicar
+                   comunicativa en sus conversaciones y diálogos.            ideas o sugerencias y hacer peticiones al interior
+                 m Expresa sus ideas con claridad, teniendo en               del contexto en el que interactúa.
+                   cuenta el orden de las palabras en los textos           m Expresa sus ideas en torno a una sola temática
+                   orales que produce.                                       a partir del vocabulario que conoce.
+                 m Practica las palabras que representan dificultades      m Elabora listas de palabras parecidas y reconoce
+                   en su pronunciación y se autocorrige cuando               las diferencias que guardan entre sí (luna, lupa,
+                   las articula erróneamente en sus discursos.               lucha; casa, caza, taza; pelo, peso, perro).
+                 m Adecúa el volumen de la voz teniendo en cuenta          m Escribe palabras sencillas.
+                   a su interlocutor y si el espacio en el que se          m Relaciona los sonidos de la lengua con sus
+                   encuentra es abierto o cerrado.                           diferentes grafemas.
+
+           Ejemplo                                                      Ejemplo
+
+                  En una conversación sobre temas de actualidad            En la producción de textos cortos como las
+                  o problemas de su entorno como el siguiente:             invitaciones:
+                                                                           u Escribe algunas palabras sencillas en relación
+                                                                               con la invitación como globo, años, fiesta, lugar,
+                                                                               fecha, hora, entre otras.
+                                                                           u Escribe algunas oraciones sencillas como: “Te
+                                                                               invito a mi fiesta”.
+                                                                           u Se interesa por completar algunos formatos
+                                                                               como la carta de invitación.
+
+
+
+
+                  u   Respeta los turnos en la conversación.
+                  u   Expone con claridad lo que opina sobre el
+                      problema.
+                  u   Habla sobre la manera de cuidar a las mascotas
+                      y de ayudar a los animales callejeros.
+
+
+
+
+                                                                                                                        11
+
+Lenguaje DBA_Final.indd 11                                                                                                   12/10/16 3:32 p.m.
+                                                                                              Lenguaje • Grado 2º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Identifica las características de los medios de              Identifica la función que cumplen las señales
+          1.      comunicación masiva a los que tiene acceso.             2.   y símbolos que aparecen en su entorno.
+
+            Evidencias de aprendizaje                                     Evidencias de aprendizaje
+
+                  m Utiliza los medios de comunicación masiva para           m Utiliza las señales que circulan en su entorno
+                    informarse y manifestar sus puntos de vista.               para informar, prevenir, prohibir, instruir y obligar.
+                  m Identifica las diferencias y semejanzas entre los        m Asocia los dibujos de las señales y símbolos con
+                    contenidos provenientes de los diversos medios             sus posibles significados.
+                    de comunicación masiva con los que interactúa:           m Identifica la función de las imágenes en textos
+                    radio, televisión, prensa.                                 como: manuales de instrucción, carteles y
+                  m Contrasta las características de diferentes medios         etiquetas de productos.
+                    de comunicación masiva a partir de la manera
+                    como presentan la información.                        Ejemplo
+                  m Expresa con claridad contenidos propios de los
+                    medios de comunicación masiva.                           u   Revisa etiquetas de ropa, busca las señales
+                                                                                 que hay en ellas y las compara con otras.
+           Ejemplo
+
+                  Una misma información puede presentarse en
+                  diferentes medios de comunicación:
+                  u Elige noticias abordadas en la televisión, la radio
+                     o la prensa sobre un tema de interés como el
+                     ciclismo.
+                  u Comprende que algunos medios abordan
+                     la misma noticia con mayor especificidad o
+                     mayor generalidad, y que algunos se apoyan
+                     en sonidos e imágenes para hacerlo.
+
+
+
+
+                                                                             u   Inventa señales con otros fines, por ejemplo: no
+                                                                                 meter las manos en la lavadora mientras esté
+                                                                                 en funcionamiento, no comerse el detergente
+                                                                                 u otras precauciones que se deban tener en
+                                                                                 cuenta al momento de lavar la ropa.
+
+
+
+
+                   12
+
+Lenguaje DBA_Final.indd 12                                                                                                       12/10/16 3:32 p.m.
+                     Lenguaje • Grado 2º
+
+                                  Derechos Básicos de Aprendizaje • V.2
+
+
+                  Identifica algunos elementos constitutivos de                Comprende diversos textos literarios a partir
+           3.     textos literarios como personajes, espacios y           4.   de sus propias vivencias.
+                  acciones.
+                                                                          Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                             m Reconstruye las acciones y los espacios donde se
+                  m Establece semejanzas y diferencias entre los               desarrolla la narración y atribuye nuevos perfiles
+                    textos literarios que lee.                                 a los personajes.
+                  m Relaciona los personajes, tiempos, espacios y            m Elabora hipótesis predictivas del contenido de
+                    acciones para dar sentido a la historia narrada.           textos literarios.
+                  m Reconoce las principales partes de un texto              m Reconoce el orden lógico de los eventos en una
+                    literario.                                                 narración.
+                                                                             m Lee en voz alta textos literarios teniendo en cuenta
+           Ejemplo                                                             el ritmo, las pausas y la velocidad.
+
+
+                 En los cuentos se presentan personajes, situaciones         Ejemplo
+                 y lugares que en algunos casos son parecidos y
+                 en otros diferentes.                                        Mientras lee textos literarios como las fábulas:
+                 u Recuerda algunos de los cuentos que conoce
+                     y dibuja los lugares y los personajes donde se          u   Hace pausas y cambia ritmos, tonos y velocidades
+                     desarrollan los hechos de la narración. Identifica          en la lectura.
+                     las características comunes en ellos.                   u   Dialoga sobre lo que entiende de ellas.
+                 u Expone sus dibujos y conversa sobre: cómo                 u   Expresa cuáles personajes de las fábulas le gustan
+                     actúan los personajes, qué acciones que realizan            más y por qué.
+                     y de qué manera esto se relaciona con sus               u   Opina sobre las acciones, actitudes y decisiones
+                     experiencias.                                               de los personajes de las fábulas.
+                 u Escucha la lectura en voz alta de los cuentos
+                     trabajados e identifica las palabras que
+                     conforman el título.
+
+
+
+
+                                                                                                                          13
+
+Lenguaje DBA_Final.indd 13                                                                                                      12/10/16 3:32 p.m.
+                                                                                           Lenguaje • Grado 2º
+
+
+                                  Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                           Predice y analiza los contenidos y estructuras
+           5.
+                  Identifica las palabras relevantes de un mensaje
+                  y las agrupa en unidades significativas:              6. de diversos tipos de texto, a partir de sus
+                  sonidos en palabras y palabras en oraciones.             conocimientos previos.
+
+           Evidencias de aprendizaje                                    Evidencias de aprendizaje
+
+                  m Reconoce el propósito comunicativo de su               m Relaciona la información que proporciona el texto
+                    interlocutor de acuerdo con las palabras que             con sus conocimientos previos.
+                    emplea en sus mensajes.                                m Lee con suficiente fluidez para comprender un
+                  m Comprende el contenido global de un mensaje.             escrito.
+                  m Comprende que el cambio de un sonido vocálico          m Comprende el tema global de los textos que
+                    o consonántico en una palabra modifica su                lee, y responde preguntas sobre lo que en ellos
+                    significado.                                             aparece y no aparece escrito.
+                  m Distingue los sonidos articulados de la lengua         m Ordena las secuencias presentadas en el texto.
+                    de los sonidos ambientales.                            m Identifica las sílabas que componen una palabra y
+                                                                             da cuenta del lugar donde se ubica el acento.
+           Ejemplo
+                                                                        Ejemplo
+                  Para comprender textos orales:
+                  u Participa en conversaciones que recrean                La información no siempre se presenta de forma
+                     situaciones cotidianas en las que identifica las      lineal, en algunas ocasiones se acompaña de
+                     intenciones de su interlocutor para responder         imágenes y se distribuye diferente en el texto, tal
+                     de manera adecuada.                                   como se evidencia en la estructura de la invitación
+                  u Representa situaciones en las que simula pedir         que se muestra a continuación:
+                     un favor, solicitar una explicación para hacer
+                     una tarea o contar lo realizado el fin de semana
+                     anterior.
+                  u Escucha al otro con actitud de respeto y evalúa
+                     la claridad de las ideas, la pronunciación y la
+                     gestualidad.
+
+
+
+
+                   14
+
+Lenguaje DBA_Final.indd 14                                                                                                12/10/16 3:32 p.m.
+                     Lenguaje • Grado 2º
+
+                                  Derechos Básicos de Aprendizaje • V.2
+
+
+                  Expresa sus ideas atendiendo a las                           Produce diferentes tipos de textos para atender
+          7.      características del contexto comunicativo               8.   a un propósito comunicativo particular.
+                  en que las enuncia (interlocutores, temas,
+                  lugares).                                               Evidencias de aprendizaje
+
+           Evidencias de aprendizaje                                         m Selecciona el tipo de texto que quiere escribir
+                                                                               de acuerdo con lo que pretende comunicar.
+                 m Participa dentro los espacios de conversación             m Elige palabras adecuadas a una temática y a la
+                   que hay en su entorno.                                      redacción de tipos de escrito específicos como
+                 m Respeta los turnos de uso de la palabra y las               autorretratos, invitaciones, cartas, entre otros.
+                   ideas expresadas por los interlocutores.                  m Escribe oraciones en las que emplea palabras
+                 m Selecciona palabras que tienen sentido y relación           sencillas y palabras con estructuras silábicas
+                   con las ideas que quiere expresar en los diálogos.          complejas.
+                 m Incluye en su discurso palabras que contienen             m Organiza grupos de palabras atendiendo a
+                   las letras ‘r’, ‘rr’ y ‘q’ con una pronunciación que        diversos criterios de carácter sonoro.
+                   permite a otros comprenderlas.                            m Escribe las letras ‘b’, ‘v’, ‘m’, ‘n’, ‘ñ’, ‘r’, y ‘rr’ según
+                 m Emplea distintos ritmos de voz para dar                     las reglas ortográficas.
+                   expresividad a sus ideas                                  m Realiza descomposición silábica de palabras
+                                                                               mediante los golpes de voz.
+           Ejemplo                                                        Ejemplo
+
+                  Participa en una mesa redonda en la que habla                Para reconocer el propósito de los textos que escribe:
+                  sobre temas que le interesan.                                Cruza la columna A con la B para relacionar los
+                                                                               tipos de texto con las situaciones presentadas.
+                                                                               Elige uno de los tipos de textos y lo ejemplifica.
+
+
+
+
+                                                                                                                                 15
+
+Lenguaje DBA_Final.indd 15                                                                                                             12/10/16 3:32 p.m.
+                                                                                               Lenguaje • Grado 3º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Comprende las funciones que cumplen los                    Comprende que algunos escritos y
+          1.      medios de comunicación propios de su                    2. manifestaciones artísticas pueden estar
+                  contexto.                                                  compuestos por texto, sonido e imágenes.
+
+           Evidencias de aprendizaje                                      Evidencias de aprendizaje
+
+                  m Reconoce los usos de los medios de comunicación          m Identifica diversas manifestaciones artísticas como
+                    con los que se relaciona como periódicos,                  la escultura, la pintura y la danza, y relaciona su
+                    revistas, noticieros, vallas publicitarias, afiches        contenido con el contexto en el que vive.
+                    e internet.                                              m Interpreta la información difundida en textos no
+                  m Compara la información proveniente de diferentes           verbales: caricaturas, tiras cómicas, historietas,
+                    medios de comunicación.                                    anuncios publicitarios y otros medios de expresión
+                  m Diferencia los formatos en los que se presentan            gráfica.
+                    los medios de comunicación a los que tiene               m Comprende que algunos escritos están
+                    acceso.                                                    compuestos por texto y gráficos, esquemas o
+                                                                               imágenes.
+           Ejemplo                                                           m Analiza los sonidos que se emplean en diferentes
+                                                                               manifestaciones artísticas.
+                  Durante la exploración de los medios de
+                  comunicación que hay en su contexto:                    Ejemplo
+                  Comparte con sus compañeros sus conocimientos
+                  sobre las definiciones, características y funciones          Conoce algunas manifestaciones artísticas y
+                  de los medios de comunicación.                               culturales colombianas, y analiza los textos, sonidos
+                                                                               e imágenes que se producen en ellas.
+
+
+
+
+                   16
+
+Lenguaje DBA_Final.indd 16                                                                                                      12/10/16 3:32 p.m.
+                     Lenguaje • Grado 3º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                  Reconoce algunas características de los                      Escribe textos literarios coherentes, atendiendo
+           3.     textos narrativos, tales como el concepto de              4. a las características textuales e integrando
+                  narrador y estructura narrativa, a partir de la              sus saberes e intereses.
+                  recreación y disfrute de los mismos.
+                                                                            Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                               m Comprende las características de un texto, cuyo
+                  m Diferencia entre textos ficcionales y no ficcionales.        propósito es narrar un hecho o expresar ideas,
+                  m Verifica las hipótesis que plantea acerca del                sentimientos o emociones.
+                    contenido de los textos que lee.                           m Establece en los textos literarios una relación
+                  m Afianza su capacidad de contar historias mediante            de correspondencia entre los personajes, las
+                    la creación de textos literarios narrativos.                 acciones que realizan y los contextos en que
+                  m Identifica la voz que narra una historia.                    se encuentran.
+                  m Comparte con sus compañeros los textos con                 m Crea personajes para sus historias y describe
+                    los que interactúa en clase para ello, retoma                cómo son, dónde viven, qué problemas deben
+                    elementos como la entonación, la gesticulación               enfrentar y cómo los solucionan.
+                    y el manejo escénico.                                      m Construye planes textuales para sus escribir textos
+                                                                                 literarios.
+           Ejemplo                                                             m Lee en voz alta los textos que escribe, atendiendo
+                                                                                 a los cambios de entonación de acuerdo con
+                  Durante la comprensión de narraciones responde                 lo comunicado por los personajes.
+                  a preguntas como:
+                                                                            Ejemplo
+
+                                                                               Escribe narraciones a partir de planes textuales
+                                                                               como el siguiente:
+
+
+
+
+                                                                                                                           17
+
+Lenguaje DBA_Final.indd 17                                                                                                      12/10/16 3:32 p.m.
+                                                                                                       Lenguaje • Grado 3º
+
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                  Identifica el papel del emisor y el receptor y                 Interpreta el contenido y la estructura del
+           5.     sus propósitos comunicativos en una situación             6.   texto, respondiendo preguntas de orden
+                  específica.                                                   inferencial y crítico.
+
+           Evidencias de aprendizaje                                        Evidencias de aprendizaje
+
+                  m Asocia la intención comunicativa con el contexto            m Ubica el contenido de un texto en relación con
+                    en el que se producen los enunciados y el rol                 la situación comunicativa en que se presenta.
+                    que desempeñan los interlocutores.                          m Utiliza el contexto para inferir información.
+                  m Infiere el significado de palabras desconocidas,            m Discrimina los temas principales de un texto de
+                    según el contexto donde se encuentren.                        los menos relevantes.
+                  m Organiza secuencialmente las ideas que                      mReconoce las diferencias en las estructuras de
+                    comprende de un texto oral.                                   diferentes tipos de escrito.
+                  m Deduce información de un emisor (como la edad,
+                    el sexo o la actitud) a partir de las características   Ejemplo
+                    de su voz.
+                                                                                   Durante la lectura de textos como:
+           Ejemplo
+                                                                               		
+                  Analiza el papel del emisor de una comunicación
+                                                                              Un día me encontré cara a cara con un tigre y
+                  y la información que este emite:                            supe que era inofensivo. En otra ocasión tropecé
+                                                                              con una serpiente de cascabel y se limitó a hacer
+                                                                              sonar las maracas de su cola y a mirarme
+                                                                              pacíficamente. Hace algún tiempo me sorprendió
+                                                                              la presencia de una pantera y comprobé que no
+                                                                              era peligrosa. Ayer fui atacado por una gallina, el
+                                                                              animal más sangriento y feroz que hay sobre la
+                                                                              Tierra. Eso fue lo que le dijo el gusanito
+                                                                              moribundo a sus amigos.
+
+
+
+
+                   18
+
+Lenguaje DBA_Final.indd 18                                                                                                          12/10/16 3:32 p.m.
+                     Lenguaje • Grado 3º
+
+                                      Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                                            Produce textos verbales y no verbales en los
+                                                                                         8.
+                  Produce textos orales breves de diferente tipo
+           7.     ajustando el volumen, el tono de la voz, los                              que tiene en cuenta aspectos gramaticales
+                  movimientos corporales y los gestos, al tema                              y ortográficos.
+                  y a la situación comunicativa.
+                                                                                         Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                                            m Escribe diversos tipos de texto (como cartas,
+                  m Participa en comunicaciones orales atendiendo                             afiches, pancartas, plegables, cuentos, entre
+                    a diferentes propósitos comunicativos: narrar,                            otros) para expresar sus opiniones frente a una
+                    argumentar, exponer, describir e informar.                                problemática de su entorno local.
+                  m Elige las expresiones más pertinentes para dar                          m Selecciona las palabras o expresiones más
+                    claridad a sus intervenciones.                                            indicadas para escribir sus textos, teniendo
+                  m Reconoce los roles de quien produce y de quien                            en cuenta a quién van dirigidos y el tema a
+                    interpreta un texto en una situación comunicativa                         desarrollar.
+                    específica.                                                             m Diseña un plan para comunicarse con otros
+                  m Realiza cambios en la modulación de la voz                                teniendo en cuenta aspectos como la
+                    para acompañar el sentido de lo que comunica.                             concordancia verbal y la ortografía.
+                    Elabora juegos de palabras atendiendo a la                              m Segmenta palabras escritas que contienen hiatos,
+                    pronunciación de la sílaba inicial o final de las                         diptongos y triptongos, apoyándose en los golpes
+                    palabras.                                                                 de voz.
+                                                                                            m Reconoce que algunos sonidos se corresponden
+           Ejemplo                                                                            con diferentes grafemas (C, S, Z o K, Q) y lo tiene
+                                                                                              en cuenta dentro de sus elaboraciones escritas.
+                  Prepara un diálogo atendiendo a esquemas de
+                  planeación como el siguiente:                                          Ejemplo
+
+                                                                                              Diseña textos que le permiten comunicar un mensaje
+                Partes del diálogo       Personaje 1:              Personaje 2:               de manera efectiva:
+              1. Saludo               ¡Hola! ¿Cómo estás?       Hola, ocupado con
+                                                                  tanto estudio.
+
+              2. Planteamiento del   ¿Sabes que la próxima    ¡Qué rico! Espero que la
+                 tema.               semana celebraremos      pasemos tan bien como
+                                       el día de los niños        el año anterior.
+                                           y las niñas?
+
+              3. Desarrollo del       Este año será mejor     A mí me encanta como
+                 tema.               porque los profesores     actúan los profesores
+                                       están preparando       Mónica, Alidy y Carlos.
+                                     otra obra teatral para
+                                            nosotros.
+
+              4. Conclusión y        Bueno, ahora seguimos          ¡Chaoooo!
+                 despedida            conversando porque
+                                        acaba de sonar
+                                        el timbre para el
+                                            descanso.
+
+
+
+
+                                                                                                                                        19
+
+Lenguaje DBA_Final.indd 19                                                                                                                   12/10/16 3:32 p.m.
+                                                                                                  Lenguaje • Grado 4º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Analiza la información presentada por los                    Escribe textos a partir de información dispuesta
+          1.      diferentes medios de comunicación con los                 2. en imágenes, fotografías, manifestaciones
+                  cuales interactúa.                                           artísticas o conversaciones cotidianas.
+
+           Evidencias de aprendizaje                                        Evidencias de aprendizaje
+
+                  m Compara la información presentada por diversos             m Emplea elementos no verbales en los textos
+                    medios de comunicación (como la radio y la                   que escribe para enfatizar en una intención
+                    televisión) sobre una misma noticia.                         comunicativa específica.
+                  m Reconoce las relaciones de contenido de                    m Comprende el sentido de las manifestaciones
+                    diferentes textos informativos en torno a qué                no verbales presentes en canciones, afiches y
+                    ocurrió, a quiénes, cuándo y en dónde.                       conversaciones.
+                  m Identifica las diferentes estructuras por medio            m Complementa sus escritos por medio de
+                    de las que los medios de comunicación masiva                 secuencias de imágenes o dibujos.
+                    presentan información.
+                  m Dialoga sobre el contenido de los textos informativos   Ejemplo
+                    con claridad y fluidez en la pronunciación.
+                                                                                 Para la creación de una línea de tiempo ilustrada:
+           Ejemplo                                                               u Identifica hechos, tiempos y lugares relevantes.
+                                                                                 u Organiza la información temporalmente.
+                 Una posible forma para analizar la información de               u Agrega imágenes a cada uno de los eventos.
+                 diferentes medios de comunicación es la creación
+                 de un nuevo texto informativo:
+                 u Selecciona noticias sobre un mismo tema.
+                 u Recupera la información y las imágenes que
+                     le serán útiles para el nuevo texto.
+                 u Redacta un nuevo texto sobre la temática
+                     consultada.                                                          f
+                                                                                              .      .           .
+
+
+
+
+                                                                                   .
+                                                                                                                                  .
+
+
+
+
+                   20
+
+Lenguaje DBA_Final.indd 20                                                                                                     12/10/16 3:32 p.m.
+                     Lenguaje • Grado 4º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                  Crea textos literarios en los que articula
+           3.
+                                                                              Construye textos poéticos, empleando algunas
+                  lecturas previas e impresiones sobre un tema           4.   figuras literarias.
+                  o situación.
+                                                                         Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                            m Observa la realidad como punto de partida para
+                  m Identifica el contexto en que se crea una obra            la creación de textos poéticos.
+                    literaria y lo relaciona con los conocimientos que      m Reconstruye el sentido de los poemas a partir
+                    tiene sobre él.                                           de la identificación de sus figuras literarias.
+                  m Reconoce los temas que aborda un texto literario        m Escribe poemas usando figuras literarias como
+                    y sus vínculos con la vida cotidiana y escolar.           la metáfora, el símil y la personificación.
+                  m Emplea figuras literarias en la producción de           m Declama poemas teniendo en cuenta la
+                    textos literarios.                                        pronunciación y entonación necesaria para
+                  m Produce textos literarios atendiendo a un género          expresar emociones.
+                    específico.
+                  m Participa en espacios discursivos orales en los      Ejemplo
+                    que socializa con otros los textos que crea, e
+                    incorpora efectos sonoros para acompañar la             Durante la creación de textos literarios como los
+                    narración.                                              caligramas
+
+           Ejemplo                                                          u   Elige un objeto o animal del entorno.
+                  Para crear textos literarios:                             u   Observa las características y las relaciona con
+                                                                                un sentimiento o idea.
+                 u     Elige un cuento trabajado en clase.                  u   Selecciona algunas figuras literarias que quiere
+                 u     Distingue los personajes del narrador.                   usar.
+                 u     Determina los lugares en los que se desarrollan      u   Con base en las anotaciones crea un caligrama.
+                       las acciones.
+                 u     Crea una nueva historia a partir de lo leído.
+                 u     Lee su cuento en voz alta y asigna una voz a
+                       cada personaje.
+                 u     Agrega efectos sonoros con diferentes objetos
+                       con el fin de reproducir ruidos de pisadas,
+                       apertura de puertas, cantos de pájaros, entre
+                       otros.
+
+
+
+
+                                                                                                                       21
+
+Lenguaje DBA_Final.indd 21                                                                                                  12/10/16 3:32 p.m.
+                                                                                             Lenguaje • Grado 4º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Interpreta el tono del discurso de su interlocutor,       Organiza la información que encuentra
+           5.a partir de las características de la voz, del 6.en los textos que lee, utilizando técnicas
+                  ritmo, de las pausas y de la entonación.                 para el procesamiento de la información
+                                                                           que le facilitan el proceso de compresión e
+           Evidencias de aprendizaje                                       interpretación textual.
+
+                  m Comprende los temas tratados en espacios de         Evidencias de aprendizaje
+                    discusión y los incorpora en su discurso para
+                    apoyarlos o criticarlos.                               m Comprende la intención comunicativa de
+                  m Establece intercambios en discursos orales a             diferentes tipos de texto.
+                    partir de lecturas previas, discusiones con sus        m Infiere las temáticas que desarrolla un texto a
+                    compañeros y sus experiencias de formación               partir de la información que contiene y el contexto
+                    escolar.                                                 de circulación en que se ubica.
+                  m Identifica las palabras que ordenan un discurso        m Identifica la estructura de los textos que lee de
+                    y enmarcan la introducción, el desarrollo y el           acuerdo con su intención comunicativa.
+                    cierre.
+                  m Nota el tono y el estado de ánimo del emisor a      Ejemplo
+                    partir del ritmo, las pausas y la velocidad de su
+                    discurso.                                              En una la historieta como la de Liniers:
+
+
+           Ejemplo                                                         u Determina el tema, las causas y las consecuencias
+                                                                             de lo que ocurre.
+                                                                           u Observa lo que sucede a los personajes en
+                  En espacios de diálogo planeados:
+                                                                             cada viñeta.
+                                                                           u Adiciona enunciados de lo que pueden estar
+                  u    Elige un tema.
+                  u    Escribe una lista con las principales ideas.          diciendo los personajes.
+                                                                           u Usa sonidos onomatopéyicos para expresar las
+                  u    Participa en la discusión como un experto.
+                  u    Expresa ideas y respeta las de los otros.             acciones de los personajes.
+                                                                           u Escucha los resultados de otros escritos para
+                  u    Expone las conclusiones de los temas tratados.
+                                                                             identificar en qué coinciden o difieren.
+
+
+
+
+                                                                          Liniers (2012). Macanudo 6. Buenos Aires: Editorial Común.
+
+
+
+
+                   22
+
+Lenguaje DBA_Final.indd 22                                                                                                      12/10/16 3:32 p.m.
+                     Lenguaje • Grado 4º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                  Participa en espacios de discusión en los que
+          7.
+                                                                            Produce textos atiendo a elementos como
+                  adapta sus emisiones a los requerimientos de           8.el tipo de público al que va dirigido, el
+                  la situación comunicativa.                                contexto de circulación, sus saberes previos
+                                                                            y la diversidad de formatos de la que dispone
+           Evidencias de aprendizaje                                        para su presentación.
+
+                  m Participa en espacios de discusión grupal, como:     Evidencias de aprendizaje
+                    conversatorios, exposiciones y tertulias, teniendo
+                    en cuenta la temática y la intencionalidad.             m Define la tipología textual que empleará en la
+                  m Comprende el sentido de las discusiones para              producción de un escrito a partir del análisis del
+                    manifestar sus puntos de vista en los temas               propósito comunicativo.
+                    verbales y no verbales.                                 m Consulta diversos tipos de fuentes antes de
+                  m Conduce los temas de los discursos de acuerdo             redactar un texto.
+                    con el posible desarrollo de los mismos.                m Construye un plan de escritura para definir los
+                  m Utiliza expresiones, gestos y una entonación              contenidos de un texto.
+                    coherentes con el propósito comunicativo.               m Complementa el sentido de sus producciones
+                                                                              escritas, mediante el uso consciente de recursos
+           Ejemplo                                                            de puntuación, como la exclamación y la
+                                                                              interrogación.
+                  Durante el desarrollo de una tertulia:                    m Marca la tilde en las palabras agudas, graves y
+                                                                              esdrújulas.
+                 u     Elige una temática como: la amistad, el cuidado
+                       de la naturaleza o el uso de Internet.            Ejemplo
+                 u     Conversa sobre la temática aportando sus ideas
+                       y opiniones.                                         A partir de una situación específica, como la
+                 u     Respeta los turnos de habla de los demás             necesidad que tiene un guía turístico de producir
+                       participantes.                                       textos:
+
+                                                                            u   Determina las características de los turistas que
+                                                                                constituyen el público al que se va a dirigir.
+                                                                            u   Selecciona la información que necesitan los
+                                                                                turistas.
+                                                                            u   Diseña la forma en que presentará la información.
+
+
+
+
+                                                                                                                        23
+
+Lenguaje DBA_Final.indd 23                                                                                                   12/10/16 3:32 p.m.
+                                                                                           Lenguaje • Grado 5º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Utiliza la información que recibe de los medios            Interpreta mensajes directos e indirectos en
+          1.      de comunicación para participar en espacios           2.   algunas imágenes, símbolos o gestos.
+                  discursivos de opinión.
+                                                                        Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                           m Infiere el significado del lenguaje gestual y
+                  m Caracteriza los elementos constitutivos de la            corporal de emoticones, gestos, fotografías
+                    comunicación.                                            y movimientos del cuerpo presentes en las
+                  m Reconoce los roles desempeñados por los sujetos          situaciones comunicativas en las cuales participa.
+                    que participan en las emisiones de los medios          m Compara manifestaciones artísticas de acuerdo
+                    de comunicación.                                         con sus características y las visiones de mundo
+                  m Dialoga con sus compañeros sobre el sentido              del entorno local y regional.
+                    de los mensajes emitidos por los medios de             m Identifica la coherencia de las imágenes en los
+                    comunicación masiva.                                     textos representados con ellas.
+                  m Selecciona la información de acuerdo con el
+                    formato en que ha sido presentada.                  Ejemplo
+
+           Ejemplo                                                         u   Crea convenciones a través de imágenes,
+                                                                               tarjetas o dibujos para representar estados de
+                  A partir de la selección de un tema enunciado en             ánimo, situaciones y expresiones que utiliza en
+                  los medios de comunicación:                                  su cotidianidad.
+                                                                           u   Luego las comparte con otros estudiantes, para
+                 u     Determina a qué categoría pertenece (deportes,          que hagan hipótesis a propósito de las imágenes
+                       política, tecnología, etc.) y analiza cómo              representadas y su significado.
+                       se presenta la información.
+                 u     Participa en un debate con otros estudiantes
+                       para compartir los análisis realizados.
+
+
+
+
+                   24
+
+Lenguaje DBA_Final.indd 24                                                                                                 12/10/16 3:33 p.m.
+                      Lenguaje • Grado 5º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                 Comprende los roles que asumen los personajes              Reconoce en la lectura de los distintos géneros
+           3.    en las obras literarias y su relación con la            4. literarios diferentes posibilidades de recrear
+                 temática y la época en las que estas se                    y ampliar su visión de mundo.
+                 desarrollan.
+                                                                         Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                            m Expresa en sus escritos y enunciaciones la
+                 m Establece diferencias entre narrador y autor, en           experiencia literaria que ha consolidado a partir
+                   los textos que lee y escribe.                              de los textos con los que se relaciona.
+                 m Reconoce las temáticas de los textos literarios que      m Conoce diferentes culturas a partir de la lectura
+                   lee para relacionarlas con su contexto cotidiano.          de textos literarios.
+                 m Identifica las características de los géneros            m Deduce las semejanzas y diferencias de los
+                   literarios y establece nexos entre sus elementos           géneros literarios a través de los textos que lee
+                   constitutivos.                                             y escribe.
+
+           Ejemplo                                                       Ejemplo
+
+                  Determina aspectos del texto literario como:              Selecciona un poema y un cuento que aborden
+                                                                            un tema semejante y luego de su lectura y análisis,
+                  u    Temática que desarrolla.                             determina:
+                  u    Espacio en el que se desarrolla.
+                  u    Posibles enseñanzas.
+                  u    Vestuario y actitudes de los personajes.
+
+
+
+
+                                                                            u   Crea una cartelera sobre los dos textos leídos
+                                                                                y la expone junto a las de sus compañeros en
+                                                                                una galería.
+
+
+
+
+                                                                                                                      25
+
+Lenguaje DBA_Final.indd 25                                                                                                 12/10/16 3:33 p.m.
+                                                                                         Lenguaje • Grado 5º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                         Identifica la intención comunicativa de los
+                                                                      6.
+                  Comprende el sentido global de los mensajes,
+           5.     a partir de la relación entre la información           textos con los que interactúa a partir del
+                  explícita e implícita.                                 análisis de su contenido y estructura.
+
+           Evidencias de aprendizaje                                  Evidencias de aprendizaje
+
+                  m Asume una postura crítica y respetuosa frente a      m Reconoce la función social de los textos que
+                    los mensajes que circulan en su medio.                 lee y las visiones de mundo que proponen.
+                  m Prevé los contenidos del mensaje de un emisor        m Aplica estrategias de comprensión a distintos
+                    a partir de sus entonaciones y la manera como          tipos de texto que lee para dar cuenta de las
+                    organiza un discurso.                                  relaciones entre diversos segmentos del mismo.
+                  m Comprende la diferencia de diversos espacios de      m Organiza de forma jerárquica los contenidos de
+                    expresión oral, como la mesa redonda, el panel,        un texto en relación con la forma en que son
+                    el foro y el debate, atendiendo a su respectiva        presentados.
+                    estructura.                                          			
+                                                                      Ejemplo
+           Ejemplo
+                                                                         Para comprender la intención comunicativa de
+                  En una situación comunicativa específica como          un texto:
+                  la discusión de un texto literario:
+                  u Define los siguientes aspectos:                      Analiza sus contenidos y estructura con el propósito
+                                                                         de saber lo que busca comunicar el interlocutor:
+
+
+
+
+                  u    Anticipa lo que van a decir sus compañeros.
+                  u    Participa en una tertulia literaria.
+
+
+
+
+                   26
+
+Lenguaje DBA_Final.indd 26                                                                                               12/10/16 3:33 p.m.
+                     Lenguaje • Grado 5º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Construye textos orales atendiendo a los                     Produce textos verbales y no verbales a partir
+          7.     contextos de uso, a los posibles interlocutores           8. de los planes textuales que elabora según la
+                 y a las líneas temáticas pertinentes con el                  tipología a desarrollar.
+                 propósito comunicativo en el que se enmarca
+                 el discurso.                                              Evidencias de aprendizaje
+
+           Evidencias de aprendizaje                                          m Establece relaciones de coherencia entre los
+                                                                                conceptos a tratar, el tipo de texto a utilizar y la
+                 m Reconoce los momentos adecuados para                         intención comunicativa que media su producción.
+                   intervenir y para dar la palabra a los interlocutores      m Elabora planes textuales que garantizan la
+                   de acuerdo con la situación y el propósito                   progresión de las ideas que articula en un escrito.
+                   comunicativo.                                              m Emplea técnicas para la organización de ideas
+                 m Construye saberes con otros a través de espacios             como esquemas y mapas mentales.
+                   de intercambio oral en los que comparte sus
+                   ideas y sus experiencias de formación.                  Ejemplo
+                 m Ordena la información en secuencias lógicas
+                   acordes con la situación comunicativa particular.            Al empezar un proceso de escritura enmarcado en
+                 m Articula con claridad los sonidos del discurso y             una situación comunicativa específica, se pregunta:
+                   lee de manera fluida.
+
+           Ejemplo
+
+                  En la producción de textos orales, como la
+                  producción de un noticiero:
+
+                  Tiene en cuenta criterios como:
+
+
+
+
+                                                                                                                           27
+
+Lenguaje DBA_Final.indd 27                                                                                                      12/10/16 3:33 p.m.
+                                                                                               Lenguaje • Grado 6º
+
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                 Utiliza la información ofrecida por los medios               Crea organizadores gráficos en los que integra
+          1.     de comunicación, teniendo en cuenta el                    2. signos verbales y no verbales para dar cuenta
+                 mensaje, los interlocutores, la intencionalidad              de sus conocimientos.
+                 y el contexto de producción, para participar
+                 en los procesos comunicativos de su entorno.              Evidencias de aprendizaje
+
+           Evidencias de aprendizaje                                          m Utiliza los organizadores gráficos para procesar la
+                                                                                información que encuentra en diferentes fuentes.
+                 m Reconoce una visión particular de mundo de las             m Expone sus ideas en torno a un tema específico
+                   distintas interlocuciones a las que accede en los            mediante organizadores gráficos.
+                   medios de comunicación.                                    m Interpreta signos no verbales presentes en
+                 m Interpreta los mensajes que circulan en los medios           algunos textos gráficos, tales como mapas de
+                   de comunicación de su contexto.                              ideas, cuadros sinópticos, planos, infografías y
+                 m Busca información específica en los contenidos               esquemas.
+                   emitidos por diversos medios de comunicación.              m Reconoce cómo se relacionan y estructuran los
+                 m Retoma los formatos empleados por algunos                    símbolos, colores, señales e imágenes en los
+                   medios de comunicación y los emplea como                     organizadores gráficos.
+                   modelos para sus elaboraciones textuales.
+                 		                                                        Ejemplo
+           Ejemplo
+                                                                                Para la creación de un organizador gráfico:
+                 u    Indaga en periódicos, revistas, programas radiales
+                      o televisivos sobre acontecimientos importantes         u   Expone una temática mediante textos que
+                      que están sucediendo en el mundo.                           relacionan imágenes y esquemas.
+                 u    Selecciona un tema para producir un texto al
+                      interior de un medio de comunicación como
+                      la emisora del colegio, el periódico mural del
+                      barrio, un blog, una revista u otro que tenga en
+                      su entorno.
+
+
+
+
+                   28
+
+Lenguaje DBA_Final.indd 28                                                                                                     12/10/16 3:33 p.m.
+                     Lenguaje • Grado 6º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Reconoce las obras literarias como una                      Identifica algunas expresiones de diferentes
+           3.     posibilidad de circulación del conocimiento            4.   regiones y contextos en las obras literarias.
+                  y de desarrollo de su imaginación.
+                                                                         Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                            m Reconoce que en las obras literarias se recrea
+                  m Comprende que las obras literarias se enmarcan            la cultura propia de diferentes regiones.
+                    en contextos culturales e históricos que promueven      m Comprende el sentido que tienen algunas
+                    la circulación de ciertos conocimientos.                  expresiones populares al interior de las obras
+                  m Interpreta los argumentos y temáticas que se              literarias.
+                    enuncian en las obras literarias para crear nuevos      m Clasifica expresiones formales y populares de la
+                    textos.                                                   lengua en textos literarios.
+                  m Define elementos literarios tales como personajes,      m Recita textos literarios en los que se emplean
+                    lugar, tiempo, sentimientos acciones al interior          expresiones populares con diferentes matices
+                    de una obra literaria.                                    de voz.
+                  m Reconoce que elementos como el ritmo y la
+                    rima se emplean para comunicar sentimientos o        Ejemplo
+                    emociones cuando se declaman textos poéticos.
+                                                                            Frente a obras pertenecientes a diferentes contextos:
+                  		
+                                                                            Identifica las expresiones de su región y las compara
+           Ejemplo
+                                                                            con las de otras regiones:
+                 u     Comprende y produce obras literarias a partir
+                       del análisis de elementos como:
+
+
+
+
+                                                                              Extracto de: IE Normal Superior La Inmaculada. (2016).
+                                                                              Negro he sido, negro soy, negro vengo, negro voy. Bogotá:
+                                                                              Ministerio de Educación Nacional; Save the children.
+
+
+
+                                                                                                                             29
+
+Lenguaje DBA_Final.indd 29                                                                                                         12/10/16 3:33 p.m.
+                                                                                              Lenguaje • Grado 6º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Interpreta obras de la tradición popular                    Comprende diversos tipos de texto, a partir
+           5.     propias de su entorno.                                  6.  del análisis de sus contenidos, características
+                                                                             formales e intenciones comunicativas.
+           Evidencias de aprendizaje
+                                                                          Evidencias de aprendizaje
+                  m Reconoce el componente cultural en coplas,
+                    trovas y refranes.                                       m Infiere la intención comunicativa de los textos
+                  m Distingue los sentidos de expresiones literales y          (narrar, informar, exponer, argumentar, describir)
+                    figuradas que circulan en obras de la tradición            a partir de las circunstancias en que han sido
+                    popular.                                                   creados.
+                  m Comprende los elementos líricos y las temáticas          m Reconoce que los textos son el resultado de un
+                    usadas en las expresiones artísticas de su entorno.        grupo de párrafos que desarrollan ideas con
+                  m Identifica la estructura de los textos de la               diferente jerarquía y que están relacionados entre
+                    tradición oral y las semejanzas con otro tipo de           sí por un contenido general.
+                    composiciones.                                           m Interpreta la función de elementos no verbales
+                  m Identifica los elementos líricos que acompañan             en el sentido del texto, como uso de negrita,
+                    la pronunciación de expresiones populares.                 corchetes, comillas, guiones, entre otros.
+
+           Ejemplo                                                        Ejemplo
+                  Durante el análisis de refranes, trovas o dichos
+                                                                               Realiza un análisis de la intención comunicativa,
+                  populares de las diferentes regiones de Colombia:
+                                                                               las ideas centrales y la función de los signos:
+
+                  u    Comprende el contenido y la estructura de
+                       refranes, trovas o dichos populares.
+                  u    Recita refranes, trovas o dichos populares
+                       atendiendo a su estructura.
+
+
+
+
+                                                                               Palacios, A. (2010). Las estrellas son negras. Bogotá:
+                                                                               Ministerio de Cultura. Recuperado de: 		
+                                                                               www.banrepcultural.org
+
+
+
+
+                   30
+
+Lenguaje DBA_Final.indd 30                                                                                                        12/10/16 3:33 p.m.
+                     Lenguaje • Grado 6º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Produce discursos orales y los adecúa a las                  Produce diversos tipos de texto atendiendo a
+           7.     circunstancias del contexto: el público, la               8. los destinatarios, al medio en que se escribirá
+                  intención comunicativa y el tema a desarrollar.              y a los propósitos comunicativos.
+
+            Evidencias de aprendizaje                                       Evidencias de aprendizaje
+
+                  m Analiza el público a quien se dirige y las exigencias      m Elige, entre diversos tipos de texto, aquel que
+                    propias del contexto para producir textos orales.            mejor se adecúa al propósito comunicativo del
+                  m Selecciona las ideas que emplea en un discurso               texto que debe escribir.
+                    oral.                                                      m Consulta diversas fuentes para nutrir sus textos,
+                  m Ordena su discurso de manera lógica para facilitar           y comprende el sentido de lo que escribe
+                    la comprensión de sus interlocutores.                        atendiendo a factores como el contexto, la
+                  m Adecúa las cualidades de la voz (volumen, tono)              temática y el propósito comunicativo.
+                    para dar expresividad a sus producciones orales.           m Tiene en cuenta las concordancias gramaticales
+                                                                                 entre los elementos de la oración (género, número)
+            Ejemplo                                                              al momento de escribir textos.
+
+                   Para preparar la producción de un discurso oral:         Ejemplo
+
+                                                                               Frente a una situación de comunicación específica
+                                                                               como la producción de un diario de viaje:
+                                                                               u Recopila información sobre un viaje, o una visita,
+                                                                                  a un lugar diferente a la casa, barrio o localidad.
+                                                                               u Escribe todas las ideas sobre el viaje, tratando de
+                                                                                  hacer descripciones detalladas sobre el lugar,
+                                                                                  por ejemplo: la fecha, el clima, el paisaje y el
+                                                                                  vestuario de las personas.
+                                                                               u Escribe el texto teniendo en cuenta que el
+                                                                                  propósito comunicativo es el de narrar.
+                                                                               u Revisa la concordancia de las oraciones
+                                                                                  empleadas en el escrito.
+                                                                               u Ilustra con un dibujo o una fotografía el texto
+                                                                                  sobre el viaje.
+
+
+
+
+                                                                                                                            31
+
+Lenguaje DBA_Final.indd 31                                                                                                       12/10/16 3:33 p.m.
+                                                                                            Lenguaje • Grado 7º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Clasifica la información que circula en                    Reconoce las diferencias y semejanzas entre
+          1.     los medios de comunicación con los que                  2. sistemas verbales y no verbales para utilizarlos
+                 interactúa y la retoma como referente para                 en contextos escolares y sociales.
+                 sus producciones discursivas.
+                                                                         Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                            m Comprende la intención comunicativa de textos
+                 m Recoge información con el fin de expresar su punto         que contienen segmentos verbales y no verbales.
+                   de vista frente a los medios de comunicación             m Interpreta los mensajes difundidos por medio de
+                   con los que interactúa.                                    sistemas verbales y no verbales del contexto.
+                 m Selecciona la información principal que encuentra        m Reconoce la organización de los sistemas
+                   en los diferentes medios de comunicación y la              verbales y no verbales en el contexto y cómo
+                   utiliza para apoyar sus producciones.                      estos contribuyen a dar sentido a los mensajes.
+                 m Analiza la estructura de la información que circula      m Comprende que los gestos permiten complementar
+                   por los medios de comunicación y la emplea                 los mensajes y ayudan en la construcción de
+                   como soporte para sus producciones discursivas.            sentido por parte del interlocutor.
+                 			                                                        		 			
+           Ejemplo                                                       Ejemplo
+
+                 u    Elige una temática de actualidad y rastrea              Para comprender textos que emplean sistemas
+                      la información que encuentra sobre ella en              verbales y no verbales de comunicación:
+                      diferentes medios de comunicación: prensa
+                      impresa o electrónica, noticieros, revistas o         u   Reconoce el sentido que tienen elementos como:
+                      programas radiales.
+                 u    Relaciona la información más relevante en el
+                      siguiente formato:
+
+               Periódico      Noticiero     Periódico     Noticiero
+                local        de la noche    nacional       radial
+
+
+
+
+                 u    Con base en la información recolectada, escribe
+                      una carta al lector para contradecir o apoyar
+                      una de las publicaciones revisadas.
+
+
+
+
+                   32
+
+Lenguaje DBA_Final.indd 32                                                                                                12/10/16 3:33 p.m.
+                     Lenguaje • Grado 7º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Establece conexiones entre los elementos                    Clasifica las producciones literarias a partir
+           3.    presentes en la literatura y los hechos                  4. del análisis de su contenido y estructura en
+                 históricos, culturales y sociales en los que se             diferentes géneros literarios.
+                 han producido.
+                                                                          Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                             m Reconoce en los géneros literarios las visiones
+                 m Analiza el desarrollo de hechos históricos y                de mundo que imprimen los seres humanos en
+                   conflictos sociales en historias presentes en obras         sus interacciones sociales.
+                   literarias.                                               m Categoriza las temáticas de los textos literarios con
+                 m Comprende la realidad que circunda a las                    los que interactúa y en función de ello establece
+                   obras literarias a partir de los conflictos y hechos        el género al que pertenecen.
+                   desarrollados en textos como novelas y obras              m Analiza las características formales de los textos
+                   teatrales.                                                  literarios con los que se relaciona, y a partir de
+                 m Señala las diferencias entre textos literarios y no         ellas establece el género al que pertenecen y
+                   literarios que tratan hechos históricos y conflictos        la época en que fueron escritos.
+                   sociales a partir del reconocimiento de sus
+                   recursos estilísticos.                                 Ejemplo
+
+           Ejemplo                                                           Clasifica obras literarias en géneros como:
+
+                  Durante el análisis de una obra literaria:
+                 u    Lee novelas que presentan acontecimientos
+                      históricos (un ejemplo podría ser la novela El
+                      día del odio de José Antonio Osorio Lizarazo).
+                      Identifica el tema general que se presenta y
+                      señala las ideas que lo soportan.
+                 u    Organiza esta información en un cuadro sinóptico
+                      como el que se presenta en la imagen:
+
+
+
+
+                 u    Busca información histórica relacionada con
+                      el tema para generar una discusión sobre los
+                      sucesos narrados en el texto y los acontecidos
+                      en la realidad del país durante una época
+                      específica.
+
+
+
+
+                                                                                                                          33
+
+Lenguaje DBA_Final.indd 33                                                                                                      12/10/16 3:33 p.m.
+                                                                                             Lenguaje • Grado 7º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Comprende discursos orales producidos con                  Interpreta textos informativos, expositivos,
+           5.    un objetivo determinado en diversos contextos           6. narrativos, líricos, argumentativos y descriptivos,
+                 sociales y escolares.                                      y da cuenta de sus características formales
+                                                                            y no formales.
+           Evidencias de aprendizaje
+                                                                         Evidencias de aprendizaje
+                 m Escucha los discursos orales de su entorno para
+                   deducir los propósitos comunicativos de un               m Identifica y caracteriza al posible destinatario del
+                   interlocutor.                                              texto a partir del tratamiento de la temática.
+                 m Distingue líneas temáticas en los discursos que          m Identifica elementos como temáticas, léxico
+                   escucha, la manera como son planteadas por                 especializado y estilo empleados en los textos.
+                   el autor, y las conexiones entre unas y otras a          m Ubica el texto en una tipología particular
+                   propósito de su intención comunicativa.                    de acuerdo con su estructura interna y las
+                 m Anticipa la estructura con que un interlocutor             características formales empleadas.
+                   puede organizar su discurso oral.
+                 m Discrimina los sonidos que hay en el ambiente         Ejemplo
+                   para comprender el contexto donde se produce
+                   un discurso oral.                                        Establece semejanzas y diferencias entre periódicos,
+                                                                            revistas, enciclopedias, libros de texto del colegio,
+           Ejemplo                                                          cartillas y directorios, para identificar sus usos,
+                                                                            estructuras, temáticas, contextos de circulación y
+                  Durante la emisión de un discurso oral:                   expresiones empleadas.
+
+                 u    Identifica las características generales de un
+                      tema, por ejemplo, en una conferencia sobre
+                      las tribus urbanas, comprende el tipo de música,
+                      la vestimenta, la ideología y otros aspectos.
+
+
+
+
+                   34
+
+Lenguaje DBA_Final.indd 34                                                                                                    12/10/16 3:33 p.m.
+                     Lenguaje • Grado 7º
+
+                                  Derechos Básicos de Aprendizaje • V.2
+
+
+                 Construye narraciones orales, para lo cual                 Produce textos verbales y no verbales
+          7.     retoma las características de los géneros que           8. conforme a las características de una tipología
+                 quiere relatar y los contextos de circulación              seleccionada, a partir de un proceso de
+                 de su discurso.                                            planificación textual.
+
+           Evidencias de aprendizaje                                     Evidencias de aprendizaje
+
+                 m Define la estructura y el contenido de una               m Sabe cómo emplear diversos tipos de texto
+                   producción oral, atendiendo a la necesidad                 atendiendo al propósito comunicativo.
+                   comunicativa de narrar en un contexto particular.        m Desarrolla en sus textos un único tema central,
+                   Da cuenta de la intencionalidad narrativa con              alrededor del cual organiza una serie de subtemas.
+                   la que ha elaborado su producción textual oral.          m Explica los conceptos principales de sus textos
+                 m Explica las problemáticas principales de sus               a partir de los párrafos en los que desarrolla su
+                   narraciones orales, teniendo en cuenta las                 definición.
+                   impresiones de sus interlocutores.                       m Prepara esquemas previos a la escritura para
+                 m Narra oralmente un acontecimiento en                       estructurar jerárquicamente las ideas a desenvolver
+                   consideración a los elementos que componen una             en su texto.
+                   narración (lugar, tiempo, personajes, acciones).           Usa diversos tipos de conectores para unir las
+                 m Articula los sonidos del discurso para dar claridad        ideas del texto.
+                   y expresividad a la narración.
+                                                                         Ejemplo
+           Ejemplo
+                                                                              A partir de la selección de un tipo de escrito como
+                  En un espacio en el que comparte narraciones                la reseña:
+                  orales:
+                                                                              Hace un plan de escritura como el siguiente y lo
+                 u    Escucha con atención a sus compañeros para              desarrolla en la producción del escrito:
+                      comprender los momentos de una narración y
+                      los sucesos que se relatan.
+
+
+
+
+                                                                                                                        35
+
+Lenguaje DBA_Final.indd 35                                                                                                   12/10/16 3:33 p.m.
+                                                                                             Lenguaje • Grado 8º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Caracteriza los discursos presentes en los                 Relaciona las manifestaciones artísticas con
+          1.     medios de comunicación y otras fuentes de               2. las comunidades y culturas en las que se
+                 información, atendiendo al contenido, la                   producen.
+                 intención comunicativa del autor y al contexto
+                 en que se producen.                                     Evidencias de aprendizaje
+
+           Evidencias de aprendizaje                                        m Valora expresiones artísticas propias de los distintos
+                                                                              pueblos y comunidades.
+                 m Identifica la función social de los medios de            m Determina el contenido expresado en diferentes
+                   comunicación y otras fuentes de información                manifestaciones artísticas.
+                   de la cultura, como una forma de construcción            m Resignifica las expresiones artísticas de origen
+                   de identidad.                                              popular para explorar usos no convencionales
+                 m Infiere el significado de palabras de acuerdo con          del léxico.
+                   el contexto en que se encuentren y los propósitos        m Reconoce las características de las distintas
+                   en que se enmarquen.                                       manifestaciones artísticas de una comunidad
+                 m Selecciona estrategias para organizar la                   o grupo poblacional y las incorpora en sus
+                   información que circula en los medios masivos              elaboraciones.
+                   de comunicación.
+                                                                         Ejemplo
+           Ejemplo
+                                                                              Con el objeto de relacionar algunas manifestaciones
+                  Durante la caracterización de la información emitida        artísticas con las comunidades que las producen:
+                  en los medios de comunicación, por ejemplo, las
+                  noticias:                                                 u    Elige una canción popular de su región y analiza
+                                                                                 sus contenidos y estructura.
+                 u    Compara la información presentada por                 u    Busca canciones de otras regiones y analiza sus
+                      diferentes noticias.                                       contenidos y estructura.
+                 u    Analiza el lenguaje empleado en cada medio.           u    Relaciona las dos expresiones artísticas para
+                 u    Comprende el manejo que cada medio hace                    encontrar semejanzas y diferencias.
+                      de dicha información.
+                 u    Considera las implicaciones sociales que
+                      conlleva cada mensaje presentado.
+
+
+
+
+                   36
+
+Lenguaje DBA_Final.indd 36                                                                                                      12/10/16 3:33 p.m.
+                     Lenguaje • Grado 8º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Reconoce en las producciones literarias como                    Comprende que el género lírico es una
+           3.    cuentos, relatos cortos, fábulas y novelas,                 4.  construcción mediada por la musicalidad,
+                 aspectos referidos a la estructura formal del                  la rima y el uso de figuras retóricas, que
+                 género y a la identidad cultural que recrea.                   permiten recrear una idea, un sentimiento o
+                                                                                una situación.
+           Evidencias de aprendizaje
+                                                                             Evidencias de aprendizaje
+                 m Identifica las estrategias narrativas del autor para
+                   relatar su perspectiva sobre lo que ha ocurrido              m Relaciona los textos que lee con producciones
+                   en una región.                                                 artísticas en las que se presentan rimas,
+                 m Construye el sentido de los textos literarios con              acompañamientos musicales o imágenes.
+                   base en las interacciones que sostiene con las               m Reconoce el sentido de las imágenes poéticas
+                   comunidades de lectores y escritores a las que                 en las obras literarias que lee.
+                   pertenece.                                                   m Identifica elementos formales asociados a las
+                 m Determina la identidad cultural presente en textos             figuras retóricas y al tipo de rima utilizada.
+                   literarios y la relaciona con épocas y autores.              m Comprende la diferencia que se presenta
+                 m Distingue las estructuras formales de textos literarios        entre la segmentación silábica gramatical y la
+                   como la presencia de diferentes narradores que                 segmentación silábica métrica, en los textos
+                   se encargan de nutrir la historia con diferentes               poéticos que lee o escribe.
+                   puntos de vista sobre un suceso.
+                                                                             Ejemplo
+           Ejemplo
+                                                                                En la lectura de textos líricos:
+                  Durante la lectura de obras literarias:                       u Reconoce las diferencias entre la escritura de
+                                                                                   un poema y otros textos.
+                 u    Lee textos literarios que contienen sucesos que
+                      han ocurrido en una región (por ejemplo, la
+                      novela Leopardo al Sol de Laura Restrepo).
+                 u    Consulta sobre los temas y sucesos abordados
+                      en la obra (por ejemplo el tema del narcotráfico
+                      y el conflicto en Colombia), y los comenta con
+                      sus compañeros.
+
+
+
+
+                                                                                Tomado de: Cote Lamus, E. (2004). Antología. Bogotá:
+                                                                                Universidad Externado de Colombia.
+                                                                                Eduardo Cote Lamus
+
+
+
+
+                                                                                                                           37
+
+Lenguaje DBA_Final.indd 37                                                                                                      12/10/16 3:33 p.m.
+                                                                                               Lenguaje • Grado 8º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Escucha con atención a sus compañeros en                    Infiere múltiples sentidos en los textos que
+           5.    diálogos informales y predice los contenidos             6. lee y los relaciona con los conceptos macro
+                 de la comunicación.                                         del texto y con sus contextos de producción
+                                                                             y circulación.
+           Evidencias de aprendizaje
+                                                                          Evidencias de aprendizaje
+                 m Participa en espacios discursivos que se dan en
+                   la cotidianidad de la escuela con el propósito de         m Identifica y caracteriza las voces que hablan en
+                   conocer las posturas de sus compañeros frente               el texto.
+                   a diversos temas.                                         m Elabora hipótesis sobre el sentido global de
+                 m Comprende los contenidos de un diálogo y                    un texto a partir de la relación de información
+                   predice las posibles ideas que pueden darse                 explícita e implícita.
+                   en él.                                                    m Identifica las características retóricas de las
+                 m Identifica el nivel de formalidad o informalidad            tipologías textuales con las que trabaja y señala en
+                   que se da en un diálogo con sus compañeros.                 sus notas de clase los conceptos más relevantes.
+
+                                                                          Ejemplo
+           Ejemplo
+                                                                             u   Analiza las características propias de un texto
+                  Durante una conversación informal con sus                      como el narrativo: voz que narra, punto de vista
+                  compañeros:                                                    de dicha voz, tipos de personajes, lugar, tiempo,
+                                                                                 orden la historia, recursos como la descripción
+                 u    Escucha lo que dicen sus compañeros y se                   o el diálogo, entre otras.
+                      adecúa al nivel de formalidad de la conversación.
+                                                                                            El perturbado inquilino
+                                                                             No creo en fantasmas, pero últimamente unas voces
+                                                                             miedosas han abrumado las habitaciones y muchas
+                                                                             pisadas han medido la largura polvorienta de los
+                                                                             corredores. He percibido charlas en que una voz le
+                                                                             cuenta a otra sus pánicas aventuras de caza, o el cabal
+                                                                             rendimiento de sus acciones en la capital Edimburgo,
+                                                                             o sus prohibidos amores. Estoy muy intranquilo porque
+                                                                             es la primera vez que semejantes seres impredecibles
+                                                                             perturban la paz de este castillo en el que he sido feliz
+                                                                             siglos y siglos, ambulando sus aposentos y patios,
+                                                                             atravesando sin abrir las puertas, viendo el alba por
+                                                                             entre sus ruinosas paredes, o inventando huracanados
+                                                                             silbidos que hacen bambolear las ventanas como si
+                                                                             las animara la vida .
+                                                                                                                    David Ramírez
+
+                                                                             Tomado de: Bustamante, G. y Kremer, H. (2006). Antología
+                                                                             del cuento corto colombiano. Bogotá: Universidad
+                                                                             Pedagógica Nacional.
+
+
+
+
+                     38
+
+Lenguaje DBA_Final.indd 38                                                                                                           12/10/16 3:33 p.m.
+                     Lenguaje • Grado 8º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                 Reconstruye en sus intervenciones el sentido                Compone diferentes tipos de texto atendiendo
+          7.     de los textos desde la relación existente entre          8. a las características de sus ámbitos de uso:
+                 la temática, los interlocutores y el contexto               privado/público o cotidiano/científico.
+                 histórico-cultural.
+                                                                          Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                             m Estructura los textos que compone, para lo cual
+                 m Expone sus puntos de vista para apoyar o                    elige entre las diferentes formas que puede asumir
+                   contradecir las opiniones de sus interlocutores.            la expresión (narración, explicación, descripción,
+                 m Precisa el significado de los principales conceptos         argumentación) y su adecuación al ámbito de
+                   tratados en los textos orales que produce.                  uso.
+                 m Prepara una estructura retórica que contempla el          m Evalúa sus propios textos atendiendo a las
+                   contexto formal, el papel del orador y la posición          características del género, el léxico empleado
+                   del auditorio, como base para los intercambios              y el propósito comunicativo.
+                   orales en debates, plenarias y sustentaciones.            m Evalúa el uso adecuado de elementos
+                                                                               gramaticales y ortográficos en las producciones
+           Ejemplo                                                             propias y en las de otros.
+                                                                             m Emplea de forma precisa los signos de puntuación.
+                  Durante intercambios orales como la plenaria:
+                                                                          Ejemplo
+                 u    Plantea sus argumentos a partir de una planeación
+                      previa.                                                  En la composición de un texto escrito específico,
+                 u    Conduce el tema de acuerdo con la manera                 por ejemplo un artículo de opinión:
+                      como se desarrolla el discurso.
+                 u    Usa verbos de pensamiento en sus intervenciones        u   Tiene en cuenta la estructura de este tipo de
+                      (opinar, definir, argumentar, etc.).                       texto: un buen uso de conectores, un manejo
+                 u    Apoya o refuta las ideas de sus interlocutores             adecuado de la ortografía y acontecimientos
+                      respetando sus posiciones.                                 relacionados que puedan ampliar sus argumentos
+                                                                                 y que le ayuden a presentar de una manera más
+                                                                                 convincente sus ideas.
+
+
+
+                                                                                       Estructura general y estilo
+
+
+
+
+                                                                                          Uso de argumentos
+
+
+
+
+                                                                                                                        39
+
+Lenguaje DBA_Final.indd 39                                                                                                   12/10/16 3:33 p.m.
+                                                                                                 Lenguaje • Grado 9º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Confronta los discursos provenientes de                       Incorpora símbolos de orden deportivo, cívico,
+          1.      los medios de comunicación con los que                    2.  político, religioso, científico o publicitario en
+                  interactúa en el medio para afianzar su punto                los discursos que produce, teniendo claro su
+                  de vista particular.                                         uso dentro del contexto.
+
+           Evidencias de aprendizaje                                        Evidencias de aprendizaje
+
+                  m Participa en medios escolares en los que plantea           m Identifica la función que cumplen diferentes
+                    su postura frente a un acontecimiento, situación             símbolos y signos en los contextos comunicativos
+                    o problemática que llama su atención o que                   en los que participa.
+                    incide en la cotidianidad institucional.                   m Reconoce el sentido de los símbolos presentes
+                  m Infiere significados implícitos, referentes                  en desfiles, carnavales, exposiciones, entre otros.
+                    ideológicos, sociales y culturales en los medios           m Utiliza símbolos, íconos u otras representaciones
+                    con los que interactúa.                                      gráficas en los discursos que produce y los vincula
+                  m Elabora esquemas en los que relaciona las                    con los conceptos de las temáticas a las que
+                    problemáticas que identifica en los medios de                se refieren.
+                    comunicación para proponer alternativas de
+                    confrontación y resolución.                             Ejemplo
+
+           Ejemplo                                                               Crea infografías a partir de una temática específica y
+                                                                                 en su realización hace un uso efectivo de elementos
+                  u Hace interpretaciones a partir de los titulares y            verbales y no verbales.
+                    las imágenes de un texto informativo.
+                  u Define el significado de las palabras de acuerdo
+                    con el contexto y la situación comunicativa en
+                    que se ha producido un texto.
+
+
+
+
+                  Adaptado de: Revista Semana. (19 de julio de 2016).
+                  Historia de los exámenes, ¿quién y por qué los inventó?
+                  Educación. Recuperado de: http://www.semana.com/
+                  educacion/
+
+
+
+
+                   40
+
+Lenguaje DBA_Final.indd 40                                                                                                         12/10/16 3:33 p.m.
+                      Lenguaje • Grado 9º
+
+                                     Derechos Básicos de Aprendizaje • V.2
+
+
+                  Analiza el lenguaje literario como una                         Compara los formatos de obras literarias y de
+           3.     manifestación artística que permite crear                   4. producciones audiovisuales con el propósito
+                  ficciones y expresar pensamientos o                            de analizar elementos propios de la narración.
+                  emociones.
+                                                                              Evidencias de aprendizaje
+           Evidencias de aprendizaje
+                                                                                 m Identifica estrategias narrativas relacionadas con
+                  m Relaciona su interpretación de una obra literaria              el abordaje de hechos históricos o problemáticas
+                    con las visiones de mundo vigentes en una época                reales, en obras literarias o en producciones
+                    y/o movimiento literario.                                      cinematográficas.
+                  m Reconoce la literatura como una memoria de                   m Reconoce las problemáticas o los hechos narrados
+                    los pensamientos y sucesos de una región o un                  en obras literarias y en producciones audiovisuales.
+                    país.                                                        m Reconoce la forma como se presentan los
+                  m Identifica el sentido del lenguaje figurado dentro             contenidos en textos literarios (prosa o verso) y en
+                    de los textos que lee y expresa sus interpretaciones           textos audiovisuales (planos, ángulos, movimientos
+                    sobre el mismo.                                                de la cámara).
+                  m Reconoce que la literatura puede emplear                     m Reconoce los sonidos presentes en producciones
+                    lenguaje figurado y coloquial para dar                         audiovisuales: ruidos ambientales, música y
+                    expresividad al escrito.                                       cambios en la voz de los personajes.
+
+           Ejemplo                                                            Ejemplo
+
+                  Durante la lectura de textos literarios:                       Para comprender la relación entre la narrativa de los
+                                                                                 textos literarios y de las producciones audiovisuales:
+                  u    Elige cuentos de la tradición literaria para indagar      Completa una ficha técnica para analizar el
+                       sobre las costumbres, visiones de mundo, las              contenido de dos obras de su contexto (como la
+                       características de los personajes principales y           película colombiana “Los colores de la montaña” y
+                       las diferentes versiones de varios autores.               la obra literaria colombiana “La carroza de Bolívar”).
+
+
+
+
+                                                                                                                             41
+
+Lenguaje DBA_Final.indd 41                                                                                                         12/10/16 3:33 p.m.
+                                                                                               Lenguaje • Grado 9º
+
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                               Interpreta textos atendiendo al funcionamiento
+                                                                            6.
+                  Comprende y respeta las opiniones en debates
+           5.     sobre temas de actualidad social.                            de la lengua en situaciones de comunicación,
+                                                                               a partir del uso de estrategias de lectura.
+           Evidencias de aprendizaje
+                                                                            Evidencias de aprendizaje
+                  m Respeta los diferentes puntos de vista de sus
+                    compañeros y los turnos para tomar la palabra,             m Da cuenta del papel que desempeñan el
+                    en los debates en los que participa.                         interlocutor y el contexto en relación con la
+                  m Reconoce las posiciones de sus compañeros en                 temática tratada y plantea su posición sobre la
+                    un debate, a partir de la comparación entre lo               misma.
+                    que escucha y lo que piensa en torno a un tema.            m Infiere significados implícitos y referentes
+                  m Comprende la estructura o la organización del                ideológicos, sociales y culturales en los textos
+                    debate a fin de garantizar la participación de               que lee.
+                    distintas voces con posiciones contrarias.                 m Identifica las estructuras propias de las tipologías
+                  m Analiza las características de la voz de sus                 textuales que conoce.
+                    interlocutores con el propósito de comprender
+                    el tono del discurso: ironía, agresividad, etc.         Ejemplo
+
+           Ejemplo                                                             En la interpretación de textos:
+
+                  Con el objeto de comprender las opiniones de otros:          u   Selecciona un texto de actualidad social,
+                                                                                   cultural o científico y cuestiona el papel de
+                  Participa en un debate en torno a un tema de                     los interlocutores, del contexto, la temática y
+                  actualidad social.                                               argumenta la posición personal.
+
+                  Comprende que el debate sigue una estructura:
+                  presentación de la temática por parte del
+                  moderador, características del uso de la palabra
+                  y el tiempo; desarrollo y conclusiones.
+
+                  Tiene en cuenta el punto de vista de los participantes.
+
+
+
+
+                   42
+
+Lenguaje DBA_Final.indd 42                                                                                                       12/10/16 3:33 p.m.
+                     Lenguaje • Grado 9º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Produce textos orales, a partir del empleo
+          7.
+                                                                              Produce textos verbales y no verbales, a
+                  de diversas estrategias para exponer sus                 8. partir de los planes textuales que elabora,
+                  argumentos.                                                 y siguiendo procedimientos sistemáticos de
+                                                                              corrección lingüística.
+           Evidencias de aprendizaje
+                                                                           Evidencias de aprendizaje
+                  m Argumenta las posturas y sugerencias que plantea,
+                    en el momento de proponer alternativas para               m Evalúa el rol que debe cumplir como enunciador
+                    resolver un problema.                                       de un texto, según el propósito elegido y la
+                  m Explica el significado de los conceptos que utiliza         situación comunicativa particular.
+                    en sus opiniones y realiza una síntesis de las ideas      m Evalúa estrategias de progresión y desarrollo del
+                    más relevantes de su intervención.                          tema seleccionado.
+                  m Da cuenta del orden en el que se produce una              m Evalúa el seguimiento de un plan textual y el
+                    conversación y de los mecanismos que median                 uso adecuado de elementos gramaticales y
+                    la toma de decisiones y la interacción oral con             ortográficos en los textos que escribe.
+                    otros.
+                  m Corrige la pronunciación cuando no ha articulado       Ejemplo
+                    con claridad los sonidos del discurso.
+                  m Controla los matices de voz (tono, volumen,                 Realiza planes textuales para la producción de
+                    impostación) para apoyar su discurso.                       cualquier tipo de escrito (por ejemplo una relatoría)
+           Ejemplo                                                              que permitirán, posteriormente, evaluar el texto:
+
+                  Durante la planeación de un foro sobre temas de               Redacta una relatoría sobre un tema de actualidad
+                  interés actual como la promoción de la lectura                nacional o internacional a partir de un texto que
+                  y la escritura:                                               lo desarrolle.
+                  u Completa un esquema en el que organiza la
+                                                                                Tiene en cuenta recomendaciones como:
+                      información recolectada en diferentes medios
+                      (periódicos, libros, internet).
+                  u A partir del esquema de planeación, desarrolla
+                      un foro donde expone la temática y plantea
+                      su postura frente a ella.
+
+
+
+
+                                                                                                                            43
+
+Lenguaje DBA_Final.indd 43                                                                                                       12/10/16 3:33 p.m.
+                                                                                               Lenguaje • Grado 10
+                                                                                                                               º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                                Planea la producción de textos audiovisuales
+                                                                             2.
+                  Asume una posición crítica y propositiva frente
+          1.      a los medios de comunicación masiva para                      en los que articula elementos verbales y no
+                  analizar su influencia en la sociedad actual.                 verbales de la comunicación para desarrollar
+                                                                                un tema o una historia.
+           Evidencias de aprendizaje
+                                                                             Evidencias de aprendizaje
+                  m Valora la diversidad de visiones de mundo y
+                    posiciones ideológicas presentes en los medios              m Produce guiones para textos audiovisuales, donde
+                    de comunicación.                                              caracteriza diferentes culturas, teniendo en cuenta
+                  m Analiza los discursos culturales, sociales e                  aspectos étnicos, lingüísticos, sociales y culturales,
+                    ideológicos, expresados a través de distintos                 entre otros, del mundo contemporáneo.
+                    medios de comunicación.                                     m Construye textos verbales y no verbales, donde
+                  m Encuentra claves para comunicar sus ideas en la               demuestra un amplio conocimiento tanto
+                    diferenciación de la estructura de textos como:               del tema elegido como de las relaciones de
+                    el discurso político, el artículo de opinión y la             significado y de sentido a nivel local y global.
+                    caricatura.                                                 m Elabora guiones para la producción de textos
+                  m Comprende diferentes tipos de argumentos                      audiovisuales, como cortos o películas, en los
+                    presentes en un discurso.                                     que integra recursos no verbales.
+
+           Ejemplo                                                           Ejemplo
+
+                  u    Identifica en una caricatura (como la que se             u   Elige un texto literario (novela, crónica u obra
+                       propone), la crítica que plantea el autor.                   de teatro) para adaptar al cine.
+                  u    Busca en otros textos como artículos de opinión,         u   Resume la historia en bloques, ordenando el
+                       noticias y caricaturas, la manera como se aborda             inicio, el conflicto y la resolución.
+                       dicha problemática.                                      u   Elabora un guion en el que detalla qué ocurrirá
+                  u    A partir del trabajo anterior, escribe un ensayo             en cada escena haciendo uso de elementos
+                       académico en el que plantea su punto de vista.               no verbales.
+                                                                                u   Completa el guion con la información sobre
+                                                                                    los escenarios, los personajes, los diálogos, las
+                                                                                    acotaciones, etc.
+
+
+
+
+                  Caricaturas tomadas de: El Espectador [Digital]. (2016).
+                  Magola. Bogotá. Disponible en: http://www.elespectador.
+                  com/opinion/magola
+
+
+
+
+                   44
+
+Lenguaje DBA_Final.indd 44                                                                                                          12/10/16 3:33 p.m.
+                     Lenguaje • Grado 10º
+
+                                         Derechos Básicos de Aprendizaje • V.2
+
+
+                  Caracteriza la literatura en un momento                            Formula puntos de encuentro entre la literatura
+           3.     particular de la historia desde el acercamiento               4.   y las artes plásticas y visuales.
+                  a sus principales exponentes, textos, temáticas
+                  y recursos estilísticos.                                      Evidencias de aprendizaje
+
+           Evidencias de aprendizaje                                               m Amplía su visión de las corrientes literarias mediante
+                                                                                     el conocimiento de las manifestaciones artísticas
+                  m Comprende la influencia de las épocas en la                      de una época determinada.
+                    estructura y configuración de los géneros literarios.          m Determina las principales características de
+                  m Reconoce y da cuenta de las temáticas, los                       los textos literarios que lee y los relaciona con
+                    exponentes y los perfiles estilísticos de las obras              expresiones artísticas.
+                    literarias de una época o movimiento literario.                m Reconoce las diferencias formales entre las obras
+                  m Identifica las estructuras propias de cada género                literarias y las artes plásticas o visuales.
+                    literario.
+                                                                                Ejemplo
+           Ejemplo
+                                                                                   Para analizar la relación entre la literatura y las artes
+                  Para reconocer la influencia de una época en las                 plásticas o visuales:
+                  obras literarios elige un periodo específico como                u Observa una pintura como Los amantes de René
+                  el Siglo de Oro Español que se dio entre el siglo XVI               Magritte.
+                  y el XVII, frente al que:                                        u Lee una pieza literaria que trate sobre una
+                                                                                      temática semejante como el poema “Los
+                 u     Identifica el contexto histórico, las características,         amantes” de Julio Cortázar.
+                       las obras y los autores pertenecientes a un                 u Busca información sobre las dos obras teniendo en
+                       periodo específico.                                            cuenta su estructura y características particulares.
+                 u     Relaciona los contenidos y la estructura de un
+                       texto con el momento histórico en que se produjo.
+                 u     Analiza la relación entre el texto y el contexto
+                       actual.
+
+
+
+
+                             Escrito está en mi alma vuestro gesto (Soneto V)
+                                  Escrito está en mi alma vuestro gesto,
+                                    y cuanto yo escribir de vos deseo;
+                                     vos sola lo escribisteis, yo lo leo
+                               tan solo, que aun de vos me guardo en esto.
+                                  En esto estoy y estaré siempre puesto;
+                               que aunque no cabe en mí cuanto en vos veo,
+                                  de tanto bien lo que no entiendo creo,
+                                    tomando ya la fe por presupuesto.
+
+                                      Yo no nací sino para quereros;
+                                    mi alma os ha cortado a su medida;
+                                   por hábito del alma mismo os quiero.
+                                                                                   René Magritte. (1928). Les amants (Los amantes). Óleo
+                                    Cuanto tengo confieso yo deberos;
+                                    por vos nací, por vos tengo la vida,           sobre lienzo, 54 x 73.4 cm. New York: Museum of Modern
+                                   por vos he de morir, y por vos muero.
+                                                                                   Art.
+                                           Garcilaso de la Vega
+
+
+
+
+                                                                                                                                  45
+
+Lenguaje DBA_Final.indd 45                                                                                                              12/10/16 3:33 p.m.
+                                                                                                      Lenguaje • Grado 10
+                                                                                                                                                         º
+
+                                      Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                                Comprende diversos tipos de texto, asumiendo
+           5.aspectos relacionados con la progresión 6.una actitud crítica y argumentando sus puntos
+                  Participa en discursos orales en los que evalúa
+
+                  temática, manejo de la voz, tono, estilo y                   de vista frente a lo leído.
+                  puntos de vista sobre temas sociales, culturales,
+                                                                            Evidencias de aprendizaje
+                  políticos y científicos.
+                                                                               m Deduce referentes sociales, culturales o
+           Evidencias de aprendizaje                                             ideológicos presentes en las voces que hablan
+                                                                                 en el texto y argumenta su posición al respecto.
+                  m Profundiza en los contextos en los que se dan              m Evalúa textos escritos teniendo en cuenta el plan
+                    las temáticas tratadas, a partir de la búsqueda              de contenido, las relaciones de sentido y las
+                    de información en diversas fuentes.                          estrategias discursivas empleadas.
+                  m Evalúa la progresión temática, tono, estilo y              m Identifica las estrategias organizativas sugeridas
+                    vocabulario presentes en las intervenciones                  en el texto.
+                    propias y en las de los otros.
+                  m Comprende contenidos que no se dicen                    Ejemplo
+                    explícitamente por medio de ambigüedades o                 Durante la comprensión de textos:
+                    dobles sentidos.                                           u  Busca textos de temas de interés, pueden ser
+                  m Aplica en su discurso oral la estructura de textos            artículos científicos, de opinión, trabajos de
+                    específicos como la ponencia o el debate.                     investigación, noticias, entre otros.
+                  m Infiere datos de sus interlocutores como carácter,         u Analiza los textos elegidos a la luz de preguntas
+                    actitud, propósito comunicativo a partir de las               como:
+                    modulaciones de voz que estos emplean.
+
+
+
+                                    DEBATE                                                   es la
+                                                                                     ¿ Cuál nalidad
+                                                                                                                ¿ Util
+                                                                                                                       iz
+                                                                                                               expr a palab
+                                                                                                                             ra
+                                                                                             io          no         e
+                             Para el debate es importante:                            intenc r en cada u      clara siones e s,
+                                                                                              to                   s?       ilust
+                                                                                       del au xtos ?                              racion
+                             - Emplear la planeación realizada                          de los
+                                                                                               te                                       es
+                               previamente .
+                             - Mantener el tema y evitar digresiones.                                                             ¿ En
+                             - Emplear diversos tipos de argumentos que                      enfoque                             ma uncia
+                                                                                 ¿Desde qué                                         n        l
+                                                                                                                                me era cl as idea
+                               apoyen la postura que se está defendiendo.                   conceptos?
+                                                                                 aborda los                                        d       a
+                                                                                                                               de iante ra y co s de
+                             - Expresar con acento enfático las ideas.                                                           pár      d
+                                                                                                                                     rafo istint heren
+                                                                                                                                         s?     os t      t
+                                                                                                                                                     ipo e
+                                                                                                                                                        s
+
+
+
+
+                                                                               u   Asume una posición frente a los textos leídos y
+                                                                                   la argumenta.
+
+
+
+
+                   46
+
+Lenguaje DBA_Final.indd 46                                                                                                                                    12/10/16 3:33 p.m.
+                     Lenguaje • Grado 10º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                               Escribe textos que evidencian procedimientos
+                                                                           8.sistemáticos de corrección lingüística y el uso
+                 Produce textos orales como ponencias,
+          7.     comentarios, relatorías o entrevistas,
+                 atendiendo a la progresión temática, a los                    de estrategias de producción textual.
+                 interlocutores, al propósito y a la situación
+                 comunicativa.                                             Evidencias de aprendizaje
+
+           Evidencias de aprendizaje                                           m Divulga información científica sobre temas de
+                                                                                 su interés, mediante textos que motivan a sus
+                 m Expresa de manera coherente y respetuosa sus                  compañeros a conocer dichas temáticas.
+                   posicionamientos frente a un texto o situación              m Identifica el contenido que abarca la problemática
+                   comunicativa cuando participa en espacios de                  desarrollada y evalúa los mecanismos que le dan
+                   discusión.                                                    sentido global al texto.
+                 m Demuestra apropiación en el dominio del tema                m Evalúa el uso adecuado de elementos
+                   al explicar el significado de los conceptos clave             gramaticales, ortográficos y sintácticos en los
+                   que utiliza en sus opiniones.                                 textos que produce.
+                 m Construye un texto para ser leído en voz alta, como
+                   una relatoría, teniendo en cuenta la progresión         Ejemplo
+                   temática y el uso de diversos tipos de argumentos.
+                 m Interviene oralmente empleando aspectos                     u   Produce textos informativos como el artículo de
+                   no verbales de la comunicación como la                          divulgación científica siguiendo un proceso de
+                   impostación, el volumen y el tono de voz.                       investigación y de escritura:
+
+                 Ejemplo
+
+                  Durante la producción de una ponencia:
+
+                 u    Elabora fichas de lectura que den cuenta de
+                      la búsqueda en distintas fuentes.
+                 u    Prepara los contenidos y estructura de la ponencia
+                      teniendo en cuenta a su interlocutor.
+                 u    Lee la ponencia usando diversas estrategias
+                      orales, corporales y retóricas para llamar la
+                      atención de los oyentes.
+
+
+
+
+                                                                                                                          47
+
+Lenguaje DBA_Final.indd 47                                                                                                     12/10/16 3:33 p.m.
+                                                                                             Lenguaje • Grado 11
+                                                                                                                          º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                               Expresa, con sentido crítico, cómo se articulan
+                                                                           2.
+                  Participa en escenarios académicos, políticos
+          1.      y culturales; asumiendo una posición crítica                 los códigos verbales y no verbales en diversas
+                  y propositiva frente a los discursos que le                 manifestaciones humanas y da cuenta de
+                  presentan los distintos medios de comunicación              sus implicaciones culturales, sociales e
+                  y otras fuentes de información.                             ideológicas.
+
+           Evidencias de aprendizaje                                       Evidencias de aprendizaje
+
+                  m Analiza la información difundida en los medios            m Identifica la intencionalidad de los anuncios
+                    de comunicación institucionales y regionales,               publicitarios, políticos y deportivos que se
+                    para participar en procesos democráticos.                   producen en el contexto social y cultural.
+                  m Infiere la relación de los mensajes emitidos por          m Comprende el sentido literal y figurado de
+                    los medios de comunicación masiva dentro de                 distintos símbolos empleados en los medios de
+                    contextos sociales, culturales y políticos.                 comunicación.
+                  m Contrasta estilos, tonos y estrategias discursivas,       m Clasifica los elementos simbólicos presentes
+                    para determinar sus modos de participación en               en diferentes situaciones como una clase, un
+                    los escenarios democráticos institucionales.                videoclip o un concierto musical.
+                  m Comprende que la entonación revela la intención
+                    de resaltar o encubrir información de parte del        Ejemplo
+                    interlocutor.
+                                                                                Elige un género musical y selecciona un videoclip
+           Ejemplo                                                              representativo para analizarlo a partir de los
+                                                                                siguientes criterios:
+                  Durante la lectura de medios de comunicación:
+                                                                              u    Aspectos sociales, estéticos, ideológicos y
+                  u Compara       información de los medios de
+                                                                                   culturales.
+                      comunicación a partir de criterios como: línea
+                                                                              u    Estructura del video (partes que lo organizan).
+                      temática, estrategias discursivas y mediáticas,
+                                                                              u    Relación entre imágenes, sonidos y discursos.
+                      parcialidad e imparcialidad en el tratamiento
+                                                                              u    Aspectos técnicos: tamaños, planos, formas,
+                      de la información y punto de vista.
+                                                                                   texturas y colores.
+                                                                              u    Gestos y expresiones corporales.
+
+
+
+
+                  Noticias tomadas de: La Razón, Diario Digital. (2012).
+                  Madrid: Audiovisual Española y de El Mundo. (2014).
+                  Madrid: Unidad Editorial.
+
+
+
+
+                   48
+
+Lenguaje DBA_Final.indd 48                                                                                                     12/10/16 3:34 p.m.
+                     Lenguaje • Grado 11º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                  Determina los textos que desea leer y la
+           3.
+                                                                               Identifica, en las producciones literarias
+                  manera en que abordará su comprensión,                    4. clásicas, diferentes temas que le permiten
+                  con base en sus experiencias de formación                    establecer comparaciones con las visiones
+                  e inclinaciones literarias.                                  de mundo de otras épocas.
+
+           Evidencias de aprendizaje                                        Evidencias de aprendizaje
+
+                  m Determina en los textos literarios las expresiones         m Asume una postura frente a la vigencia de las
+                    que pueden incidir tanto en las concepciones                 obras literarias clásicas.
+                    políticas, religiosas y culturales, como en la             m Analiza obras literarias clásicas y las compara
+                    construcción de ciudadanía.                                  con otras que no pertenecen al canon.
+                  m Conjuga la lectura individual con la discusión             m Reconoce que en las obras clásicas se abordan
+                    grupal sobre los textos literarios.                          temas que vinculan a los seres humanos de
+                  m Comprende las temáticas, características, estilos,           diferentes épocas.
+                    tonos, sentido local y global de las obras literarias      m Encuentra que el sentido de las obras literarias
+                    que lee.                                                     clásicas está determinado por sus recursos
+                                                                                 narrativos, poéticos y dramáticos.
+           Ejemplo
+                                                                            Ejemplo
+                  Al leer obras literarias es posible establecer diálogos
+                  interdisciplinares con las ciencias sociales, las            Para la apreciación literaria:
+                  matemáticas, el arte, entre otros.
+                  u Analiza una obra literaria en función de:                  u   Selecciona una obra literaria representativa de
+                                                                                   un movimiento literario, época o autor clásico.
+                                                                               u   Escribe una reseña crítica en la que se
+                                                                                   desarrollen los siguientes elementos: temáticas,
+                                                                                   características formales del texto, recursos
+                                                                                   empleados y contexto de la obra.
+                                                                               u   Diseña una estrategia mediática para promover
+                                                                                   la lectura del texto leído.
+
+
+
+
+                                                                                                                          49
+
+Lenguaje DBA_Final.indd 49                                                                                                     12/10/16 3:34 p.m.
+                                                                                          Lenguaje • Grado 11
+                                                                                                                         º
+
+                                  Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                        Ejemplo
+
+
+                                                                           Tanto en la vida cotidiana como en los escenarios
+                                                                           académicos estamos expuestos a la comprensión
+                                                                           e interpretación de diversas clases de discursos
+                                                                           orales que son necesarios analizar con el fin de
+                                                                           asumir puntos de vista propios. A continuación, se
+                                                                           presentan algunas ideas a tener en cuenta para
+                                                                           dicho análisis:
+
+
+
+
+                                                                           1. Descripción de la situación comunicativa: roles y
+                                                                              características de los participantes, definición del
+                  Comprende que los argumentos de sus                         contexto situacional, canal y códigos empleados.
+           5.     interlocutores involucran procesos de                    2. Asunto central referido y progresión temática.
+                                                                           3. Clasificación y pertinencia de las estrategias
+                  comprensión, crítica y proposición.
+                                                                              discursivas empleadas.
+                                                                           4. Discriminación entre hechos y opiniones.
+           Evidencias de aprendizaje
+                                                                           5. Identificación y clasificación de posibles falacias
+                                                                              empleadas.
+                  m Entiende las implicaciones sociales, políticas e
+                                                                           6. Evaluación de la inter vención oral de
+                    ideológicas de los discursos que escucha.
+                                                                              los participantes con base en criterios
+                  m Comprende las posturas de un discurso sobre
+                                                                              preestablecidos.
+                    un tema de interés social y las relaciona con sus
+                    posturas previas.
+                  m Comprende diferentes tipos de argumentos
+                    presentes en un discurso.
+                  m Infiere las variantes dialectales, sociales y
+                    geográficas en la voz de sus interlocutores.
+
+
+
+                   50
+
+Lenguaje DBA_Final.indd 50                                                                                                    12/10/16 3:34 p.m.
+                     Lenguaje • Grado 11º
+
+                                    Derechos Básicos de Aprendizaje • V.2
+
+
+                                                                                  Expresa por medio de producciones orales
+                                                                             7.
+                   Compara diversos tipos de texto, con
+           6.      capacidad crítica y argumentativa para                         el dominio de un tema, un texto o la obra
+                  establecer relaciones entre temáticas,                          de un autor.
+                  características y los múltiples contextos en
+                  los que fueron producidos.                                 Evidencias de aprendizaje
+
+           Evidencias de aprendizaje                                            m Enfatiza la importancia académica de un tema
+                                                                                  de su interés personal.
+                  m Relaciona el significado del texto con los contextos        m Hace referencia a los contenidos de otros textos
+                    sociales, culturales y políticos en los que fue               en sus producciones orales.
+                    producido y plantea su posición al respecto.                m Construye relaciones de contenido entre temas,
+                  m Contrasta textos, atendiendo a temáticas,                     categorías y conceptos.
+                    características formales, estructura interna, léxico        m Desarrolla un tema académico de su interés,
+                    y estilo empleados, entre otros.                              a través de la estructura de introducción,
+                  m Da cuenta de la organización y de los componentes             justificación, argumentación y conclusiones.
+                    del texto.                                                  m Evita el uso de falacias en discusiones académicas.
+
+
+           Ejemplo                                                           Ejemplo
+
+                                                                                  Escribe una relatoría a partir de un texto leído, por
+                                                                                  ejemplo, una obra literaria clásica, y comparte el
+                                                                                  análisis realizado en un conversatorio:
+
+
+
+                                                                                                  Conversemos en torno a las preguntas
+                                                                                                  que guiaron nuestro análisis de un autor
+                                                                                                  y una obra literaria:
+                                                                                                  * ¿Cuál es el argumento elegido por el
+                                                                                                  autor y qué implicaciones tiene en el
+                                                                                                  contexto en que se produjo la obra ?
+                                                                                                  * ¿ A qué corriente y género literarios
+                                                                                                  pertenece la obra ?
+                                                                                                  * ¿La obra leída cumple una función
+                                                                                                  estética, cultura o social ?
+                  Al hacer un análisis comparativo de dos tipologías                              * ¿ Tiene alguna importancia el marco
+                                                                                                  histórico y las influencias de otros
+                  textuales, por ejemplo, el texto expositivo y el texto                          autores en la obra ?
+                  lírico, tiene en cuenta los siguientes elementos:
+
+                 u    Intencionalidad del autor de cada texto.
+                 u    Recursos estilísticos (tipo de lenguaje: culto,
+                      coloquial, literario, especializado; uso de lenguaje
+                      literal y figurado, interrogaciones retóricas, apoyo
+                      en esquemas e ilustraciones, etc.).
+                 u    Estructura por medio de la cual se ordena el
+                      texto.
+                 u    Contextos sociales, culturales y políticos en los
+                      que se enmarca el texto.
+
+
+
+
+                                                                                                                                             51
+
+Lenguaje DBA_Final.indd 51                                                                                                                        12/10/16 3:34 p.m.
+                                                                         Lenguaje • Grado 11
+                                                                                               º
+
+                                   Derechos Básicos de Aprendizaje • V.2
+
+
+                  Produce textos académicos a partir de
+          8.procedimientos sistemáticos de corrección
+                  lingüística, atendiendo al tipo de texto y al
+                  contexto comunicativo.
+
+           Evidencias de aprendizaje
+
+                  m Evalúa la adecuación del texto en relación con su
+                    rol como enunciatario, las estrategias discursivas
+                    utilizadas y la visión de mundo que proyecta en
+                    su escrito.
+                  m Evalúa el seguimiento de un plan textual y el uso
+                    de la lengua en textos propios y producidos por
+                    sus compañeros.
+                  m Construye párrafos que tienen funciones
+                    específicas dentro del discurso como ampliar,
+                    introducir, sintetizar y concluir.
+                  m Emplea diferentes tipos de argumento para
+                    sustentar sus puntos de vista.
+
+           Ejemplo
+
+                  Escribe un ensayo sobre un tema polémico y de
+                  interés común; teniendo en cuenta las siguientes
+                  indicaciones:
+
+
+
+
+                   52
+
+Lenguaje DBA_Final.indd 52                                                                         12/10/16 3:34 p.m.
+                 Este es un documento en proceso de realimentación por
+                 medio de la construcción conjunta nacional. Para ello, participa
+                 en https://goo.gl-xZ9xmC donde encontrarás el Foro virtual que
+                 estará disponible desde noviembre de 2016 hasta la realización de
+                 los nuevos ajustes en 2017.
+
+
+
+
+                                                                               53
+
+Lenguaje DBA_Final.indd 53                                                           12/10/16 3:34 p.m.
+                   54
+
+Lenguaje DBA_Final.indd 54   12/10/16 3:34 p.m.
+                             55
+
+Lenguaje DBA_Final.indd 55        12/10/16 3:34 p.m.
+                                                 Calle 43 No 57-14
+                                Centro Administrativo Nacional, CAN
+                                           Bogotá D.C. – Colombia
+                                     Conmutador: (+571) 2222800
+                                              Fax: (+571) 2222800
+
+                                      Línea gratuita fuera de Bogotá
+                                                     018000910122
+                             Línea gratuita Bogotá (+571) 2220206
+
+                                        www.mineducacion.gov.co
+                                                   @Mineducación
+                                  Ministerio de Educación Nacional
+
+
+
+
+Lenguaje DBA_Final.indd 56                                             12/10/16 3:34 p.m.
+

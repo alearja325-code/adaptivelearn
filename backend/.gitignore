@@ -1,0 +1,26 @@
+# compiled output
+/dist
+/node_modules
+
+# logs
+*.log
+
+# env / secrets — nunca se suben al repo
+.env
+.env.*
+.db-password.txt
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+
+# OS
+.DS_Store
+
+# tests
+/coverage
+/.nyc_output

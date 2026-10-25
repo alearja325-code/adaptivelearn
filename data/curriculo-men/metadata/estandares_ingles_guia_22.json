@@ -1,0 +1,14 @@
+{
+  "id": "estandares_ingles_guia_22",
+  "title": "Guía No. 22 Estándares Básicos de Competencias en Lenguas Extranjeras: Inglés",
+  "type": "estandares",
+  "areas": [
+    "Inglés"
+  ],
+  "grades": "1°-11° por grupos de grados",
+  "official_page": "https://www.mineducacion.gov.co/1621/w3-article-340021.html",
+  "url": "https://www.mineducacion.gov.co/1780/articles-115174_archivo_pdf.pdf",
+  "local_pdf": "mvp/backend/data/men_sources/pdfs/estandares_ingles_guia_22.pdf",
+  "download_status": "downloaded",
+  "bytes": 567147
+}

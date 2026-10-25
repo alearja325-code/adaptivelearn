@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ventana 022 — Certeza (mockup visual)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --canvas: #F7F6F3;
+    --surface-0: #FFFFFF;
+    --surface-1: #FAFAF8;
+    --border: #E7E7E7;
+    --ink: #111111;
+    --secondary: #555555;
+    --muted: #888888;
+    --disabled: #BDBDBD;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--canvas);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 16px;
+  }
+
+  .ref {
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--muted);
+    text-align: center;
+  }
+  .ref b { color: var(--secondary); font-weight: 500; }
+
+  .card {
+    width: 480px;
+    max-width: 100%;
+    background: var(--surface-0);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Recordatorio de lo respondido en 021 — mismo patrón de
+     18-spec-auth-verifica-correo.md: texto fijo + dato real en su
+     propia línea, Bold */
+  .recordatorio {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+  }
+  .recordatorio .etiqueta {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--muted);
+    margin: 0;
+  }
+  .recordatorio .valor {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .titulo-bloque {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+  .titulo-bloque h1 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+  }
+  .titulo-bloque p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .certeza {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .segmentos {
+    display: flex;
+    gap: 8px;
+  }
+  .segmento {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface-0);
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  }
+  .segmento:hover { background: var(--surface-1); }
+  .segmento.seleccionado {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #FFFFFF;
+  }
+  .anclas {
+    width: 100%;
+    max-width: calc(32px * 6 + 8px * 5);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .btn-confirmar {
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+    border: none;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    text-align: center;
+    background: var(--disabled);
+    color: #FFFFFF;
+    cursor: not-allowed;
+    transition: background 0.12s ease, opacity 0.12s ease;
+  }
+  .btn-confirmar.habilitado {
+    background: var(--ink);
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  .btn-confirmar.habilitado:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+  <div class="ref">
+    Ventana 022 — Certeza &middot; <b>mockup visual, no funcional</b> &middot;
+    23-spec-toma-diagnostico.md, sección 2.3
+  </div>
+
+  <div class="card">
+    <div class="recordatorio">
+      <p class="etiqueta">Elegiste:</p>
+      <p class="valor">1/2</p>
+    </div>
+
+    <div class="titulo-bloque">
+      <h1>¿Qué tan seguro/a estás?</h1>
+      <p>
+        No existe una respuesta correcta o incorrecta en esta pregunta —
+        cuéntanos qué tan segura o seguro te sentiste al elegir la tuya.
+      </p>
+    </div>
+
+    <div class="certeza">
+      <div class="segmentos" id="segmentos">
+        <button class="segmento" type="button" data-valor="0">0</button>
+        <button class="segmento" type="button" data-valor="1">1</button>
+        <button class="segmento" type="button" data-valor="2">2</button>
+        <button class="segmento" type="button" data-valor="3">3</button>
+        <button class="segmento" type="button" data-valor="4">4</button>
+        <button class="segmento" type="button" data-valor="5">5</button>
+      </div>
+      <div class="anclas">
+        <span>Adiviné</span>
+        <span>Segurísimo/a</span>
+      </div>
+    </div>
+
+    <button class="btn-confirmar" id="btnConfirmar" type="button" disabled>
+      Confirmar
+    </button>
+  </div>
+
+  <div class="ref">
+    Escala CRI, 0-5 (Hasan et al., 1999) — componente nuevo, primera vez<br>
+    en el proyecto. Paso separado de la respuesta, no la misma pantalla.
+  </div>
+
+<script>
+  const segmentos = document.querySelectorAll('.segmento');
+  const btn = document.getElementById('btnConfirmar');
+
+  segmentos.forEach(seg => {
+    seg.addEventListener('click', () => {
+      segmentos.forEach(s => s.classList.remove('seleccionado'));
+      seg.classList.add('seleccionado');
+      btn.disabled = false;
+      btn.classList.add('habilitado');
+    });
+  });
+</script>
+
+</body>
+</html>

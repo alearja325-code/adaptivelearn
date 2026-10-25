@@ -1,0 +1,14 @@
+{
+  "id": "dba_matematicas_v2",
+  "title": "Derechos Básicos de Aprendizaje - Matemáticas V.2",
+  "type": "dba",
+  "areas": [
+    "Matemáticas"
+  ],
+  "grades": "1°-11°",
+  "official_page": "https://www.colombiaaprende.edu.co/contenidos/coleccion/derechos-basicos-de-aprendizaje",
+  "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_Matematicas-min.pdf",
+  "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_matematicas_v2.pdf",
+  "download_status": "downloaded",
+  "bytes": 11236412
+}

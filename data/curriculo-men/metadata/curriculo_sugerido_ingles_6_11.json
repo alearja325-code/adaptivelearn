@@ -1,0 +1,14 @@
+{
+  "id": "curriculo_sugerido_ingles_6_11",
+  "title": "Esquema Curricular Sugerido de Inglés para grados 6° a 11°",
+  "type": "curriculo_sugerido",
+  "areas": [
+    "Inglés"
+  ],
+  "grades": "6°-11°",
+  "official_page": "https://eco.colombiaaprende.edu.co/2021/09/07/esquema-circular-sugerido/",
+  "url": "https://eco.colombiaaprende.edu.co/wp-content/uploads/2021/09/Esquema-Curricular-Espa_RevMEN.pdf",
+  "local_pdf": "mvp/backend/data/men_sources/pdfs/curriculo_sugerido_ingles_6_11.pdf",
+  "download_status": "downloaded",
+  "bytes": 3512496
+}

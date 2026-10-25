@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<title>Modelo Entidad-Relación — AdaptiveLearn</title>
+<style>
+  body { margin:0; padding:0 0 80px 0; background:#FFFFFF; font-family:Helvetica,Arial,sans-serif; color:#111111; }
+  .page { max-width:1300px; margin:0 auto; padding:48px 40px; }
+  h1 { font-size:26px; margin:0 0 6px 0; }
+  h2 { font-size:18px; margin:0 0 10px 0; }
+  p.sub { font-size:13.5px; color:#555555; margin:0 0 20px 0; max-width:760px; }
+  section { padding:44px 0; border-top:1px solid #E3E7ED; }
+  section:first-of-type { border-top:none; }
+  .bloque svg { display:block; max-width:100%; height:auto; }
+  .explicacion { max-width:900px; margin-bottom:24px; }
+  .explicacion p { font-size:14px; line-height:1.65; color:#111111; margin:0 0 12px 0; }
+  .explicacion p:last-child { margin-bottom:0; }
+  p.fig-num { font-size:12.5px; color:#888888; margin:10px 4px 0 4px; max-width:900px; }
+  /* portada */
+  .portada h1 { font-size:30px; }
+  .portada p.kicker { font-size:13px; color:#3B7DD8; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin:0 0 10px 0; }
+  .meta { margin-top:28px; border-top:1px solid #E3E7ED; padding-top:20px; display:grid; grid-template-columns:repeat(2,1fr); gap:10px 40px; max-width:640px; }
+  .meta div { font-size:13.5px; }
+  .meta b { display:block; font-size:11px; color:#888888; text-transform:uppercase; letter-spacing:0.03em; font-weight:600; margin-bottom:2px; }
+  /* alcance / cierre */
+  .texto p { font-size:14px; line-height:1.6; max-width:800px; }
+  .texto ul { font-size:14px; line-height:1.6; max-width:800px; }
+  /* vista general */
+  table { border-collapse: collapse; width:100%; max-width:900px; font-size:13px; margin-bottom:8px; }
+  th { text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:0.03em;
+        color:#555555; border-bottom:2px solid #111111; padding:8px 10px; }
+  td { padding:8px 10px; border-bottom:1px solid #E3E7ED; }
+  td.nombre { font-weight:700; }
+  td.rel { color:#3B7DD8; font-weight:600; }
+  td.card { font-weight:700; text-align:center; }
+  td.bloque { color:#555555; }
+  td.nota { color:#555555; }
+  .tag { border:1px solid #888888; border-radius:4px; padding:2px 8px; font-size:11.5px; }
+  .vg-sub { font-size:13.5px; color:#555555; margin:0 0 24px 0; max-width:760px; }
+  /* Aviso de documento superado — agregado 2026-09-19, cierra el
+     hallazgo H-10 de la revisión docente del 2026-09-01 */
+  .superado { background:#991B1B; color:#FFFFFF; padding:28px 40px; }
+  .superado .tag { font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+        font-weight:700; opacity:0.85; margin:0 0 8px 0; }
+  .superado h2 { font-size:22px; margin:0 0 10px 0; color:#FFFFFF; }
+  .superado p { font-size:14px; line-height:1.6; margin:0 0 8px 0; max-width:820px; }
+  .superado a { color:#FFFFFF; font-weight:700; }
+  .superado p:last-child { margin-bottom:0; }
+</style></head><body>
+<div class="superado">
+  <p class="tag">Documento superado — no usar</p>
+  <h2>Esta presentación quedó obsoleta el 2026-09-08</h2>
+  <p>Corresponde al MER del <b>2026-08-19</b>. Desde entonces el modelo tuvo dos
+  revisiones más. Esta versión <b>no</b> incluye las tres entidades que responden
+  a la revisión del docente del 2026-09-01: <code>Experiencia_Evidencia</code> (H-4),
+  <code>Evidencia_Dictamen</code> (H-6) y <code>Presentación</code> (H-2/H-3).</p>
+  <p><b>El documento vigente es</b> <code>01-modelo-entidad-relacion.md</code>
+  (Quinta revisión, 2026-09-08), y sus diagramas en notación Chen están en
+  <code>mer-entrega/</code>.</p>
+  <p>Se conserva solo como historial. Este aviso cierra el hallazgo <b>H-10</b>
+  de la revisión docente, que señalaba que «quien abra la carpeta de la
+  metodología encuentra el modelo superado».</p>
+</div>
+<div class="page">
+
+<section class="portada">
+  <p class="kicker">MODESEC — Fase III, Diseño Computacional</p>
+  <h1>Modelo Entidad-Relación — AdaptiveLearn (rediseño)</h1>
+  <p class="sub">Notación Chen, construido bloque por bloque, con cada entidad, atributo y relación trazable a un ADR, una entrada del glosario o una spec de pantalla ya escrita.</p>
+  <div class="meta">
+    <div><b>Alcance</b>Diagnóstico → Reporte</div>
+    <div><b>Notación</b>Chen</div>
+    <div><b>Entidades</b>11</div>
+    <div><b>Relaciones</b>13</div>
+    <div><b>Modelo confirmado</b>2026-08-19</div>
+    <div><b>Metodología</b>MODESEC, Fase III</div>
+  </div>
+</section>
+
+<section class="texto">
+  <h2>Alcance</h2>
+  <p>Este modelo cubre el flujo Diagnóstico → Reporte: desde que un Docente crea una Experiencia anclada a un DBA oficial del MEN, hasta que el sistema calcula el Reporte final.</p>
+  <p>Quedan fuera de este modelo, con justificación documentada:</p>
+  <ul>
+    <li>Unidad, Práctica y Verificación — diferidas (ADR-007), no se construyen todavía.</li>
+    <li>La hipótesis de error como dato reportado — existe el distractor internamente, pero no se expone como "tipo de error".</li>
+    <li>Bloom como campo activo — se adoptó (ADR-003) pero quedó sin función en el mecanismo real (ADR-008).</li>
+    <li>Perfil de aprendizaje, mediaciones pedagógicas, acudientes, instituciones, Curso — pertenecen al sistema anterior, ya descartado.</li>
+  </ul>
+</section>
+
+<section class="notacion">
+  <h2>Notación empleada</h2>
+  <p class="sub">Los símbolos usados en los 6 bloques, con su significado.</p>
+  <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="370" viewBox="0 0 1250 370" font-family="Helvetica">
+<rect x="0" y="0" width="1250" height="370" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="80.0" y="40.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="170" y="75" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Entidad</text>
+<text x="170" y="118" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Rectángulo</text>
+<text x="170" y="138" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">Un objeto que se guarda</text>
+<text x="170" y="154" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">(Docente, Experiencia...).</text>
+<polygon points="470,35.0 535.0,70 470,105.0 405.0,70" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="470" y="74" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">relación</text>
+<text x="470" y="118" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Rombo</text>
+<text x="470" y="138" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">Cómo se conectan dos</text>
+<text x="470" y="154" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">entidades (crea, tiene...).</text>
+<ellipse cx="770" cy="70" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="770" y="74" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">atributo</text>
+<text x="770" y="118" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Elipse blanca</text>
+<text x="770" y="138" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">Un dato / campo de</text>
+<text x="770" y="154" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">la entidad.</text>
+<ellipse cx="1070" cy="70" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="1070" y="74" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<text x="1070" y="118" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Elipse negra</text>
+<text x="1070" y="138" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">El identificador único</text>
+<text x="1070" y="154" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">de la entidad.</text>
+<rect x="75.0" y="225.0" width="190" height="70" fill="none" stroke="#111111" stroke-width="2"/>
+<rect x="80.0" y="230.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="170" y="265" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Entidad débil</text>
+<text x="170" y="308" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Doble borde</text>
+<text x="170" y="328" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">Depende de otras para</text>
+<text x="170" y="344" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">existir, sin id propio (Resultado).</text>
+<rect x="380.0" y="230.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2" stroke-dasharray="6,5"/>
+<text x="470" y="265" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Vista calculada</text>
+<text x="470" y="308" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Borde punteado</text>
+<text x="470" y="328" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">No es tabla: se calcula</text>
+<text x="470" y="344" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">al consultar (Reporte).</text>
+<rect x="680.0" y="230.0" width="180" height="60" fill="#F5F3EE" stroke="#111111" stroke-width="2"/>
+<text x="770" y="265" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Dato externo</text>
+<text x="770" y="308" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Color tostado</text>
+<text x="770" y="328" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">Currículo oficial, solo</text>
+<text x="770" y="344" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">referenciado (DBA, Evidencia).</text>
+<circle cx="1000" cy="260" r="5" fill="#111111"/>
+<line x1="1000" y1="260" x2="1140" y2="260" stroke="#555555" stroke-width="1.2"/>
+<circle cx="1140" cy="260" r="5" fill="#111111"/>
+<text x="1015" y="250" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1125" y="250" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="1070" y="308" text-anchor="middle" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Números en la línea</text>
+<text x="1070" y="328" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">Cuántas veces participa</text>
+<text x="1070" y="344" text-anchor="middle" font-family="Helvetica" font-size="11.5" fill="#555555">cada entidad en la relación.</text>
+</svg>
+</section>
+
+<section class="vista-general">
+  <h2>Vista general del modelo</h2>
+  <p class="vg-sub">Las 10 entidades del modelo y sus 12 relaciones, de un vistazo, antes de entrar al detalle bloque por bloque. Cada relación indica en qué bloque se desarrolla con sus atributos completos.</p>
+  <h2>Entidades</h2>
+<table>
+  <tr><th>Entidad</th><th>Tipo</th><th>Qué representa ese tipo</th></tr>
+  <tr>
+      <td class="nombre">Docente</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Estudiante</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Experiencia</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Inscripción</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Ítem</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Opción</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">Respuesta</td>
+      <td><span class="tag" style="background:#FFFFFF">Propia</span></td>
+      <td class="nota">id propio, la administramos nosotros</td>
+    </tr>
+<tr>
+      <td class="nombre">DBA</td>
+      <td><span class="tag" style="background:#F5F3EE">Externa (MEN)</span></td>
+      <td class="nota">dato oficial del MEN, referenciado, sin id propio</td>
+    </tr>
+<tr>
+      <td class="nombre">Evidencia</td>
+      <td><span class="tag" style="background:#F5F3EE">Externa (MEN)</span></td>
+      <td class="nota">dato oficial del MEN, referenciado, sin id propio</td>
+    </tr>
+<tr>
+      <td class="nombre">Resultado</td>
+      <td><span class="tag" style="background:#FFFFFF">Débil</span></td>
+      <td class="nota">entidad débil: depende de Inscripción + Evidencia, sin id propio</td>
+    </tr>
+<tr>
+      <td class="nombre">Reporte</td>
+      <td><span class="tag" style="background:#FFFFFF">Calculada</span></td>
+      <td class="nota">vista calculada sobre Resultado, no persiste, sin atributos</td>
+    </tr>
+
+</table>
+
+<h2>Relaciones y cardinalidades</h2>
+<table>
+  <tr><th>Entidad A</th><th>Relación</th><th>Entidad B</th><th>Cardinalidad</th><th>Se detalla en</th></tr>
+  <tr>
+      <td>Docente</td>
+      <td class="rel">crea</td>
+      <td>Experiencia</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 1</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">se ancla a</td>
+      <td>DBA</td>
+      <td class="card">N a 1</td>
+      <td class="bloque">Bloque 1</td>
+    </tr>
+<tr>
+      <td>DBA</td>
+      <td class="rel">tiene</td>
+      <td>Evidencia</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 2</td>
+    </tr>
+<tr>
+      <td>Estudiante</td>
+      <td class="rel">tiene</td>
+      <td>Inscripción</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 3</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">tiene</td>
+      <td>Inscripción</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 3</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">genera</td>
+      <td>Ítem</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 4</td>
+    </tr>
+<tr>
+      <td>Evidencia</td>
+      <td class="rel">se evalúa con</td>
+      <td>Ítem</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 4</td>
+    </tr>
+<tr>
+      <td>Ítem</td>
+      <td class="rel">tiene</td>
+      <td>Opción</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 4</td>
+    </tr>
+<tr>
+      <td>Inscripción</td>
+      <td class="rel">da</td>
+      <td>Respuesta</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Ítem</td>
+      <td class="rel">recibe</td>
+      <td>Respuesta</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Inscripción</td>
+      <td class="rel">tiene</td>
+      <td>Resultado</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Evidencia</td>
+      <td class="rel">mide</td>
+      <td>Resultado</td>
+      <td class="card">1 a N</td>
+      <td class="bloque">Bloque 5</td>
+    </tr>
+<tr>
+      <td>Experiencia</td>
+      <td class="rel">tiene</td>
+      <td>Reporte</td>
+      <td class="card">1 a 1 (calculado)</td>
+      <td class="bloque">Bloque 6</td>
+    </tr>
+
+</table>
+</section>
+
+
+<section class="bloque-section">
+  <h2>Bloque 1 — Creación y anclaje curricular</h2>
+  <div class="explicacion"><p>Este bloque presenta tres entidades nuevas: Docente, Experiencia y DBA. Docente y Experiencia tienen cardinalidad 1 a N: un docente puede crear varias experiencias, pero cada experiencia pertenece a un único creador. Experiencia se ancla a exactamente un DBA (cardinalidad N a 1), el desempeño básico de aprendizaje oficial del Ministerio de Educación. El área y el grado no se modelan como atributos propios de Experiencia, sino como datos heredados del DBA anclado; por esa misma razón, DBA no tiene clave primaria propia en el modelo — es información externa, referenciada, no generada por el sistema. Ese mismo DBA es la entidad que conecta con el siguiente bloque, donde se muestran sus evidencias oficiales.</p></div>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="520" viewBox="0 0 1300 520" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="520" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="130.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="220" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Docente</text>
+<rect x="530.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="620" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Experiencia</text>
+<rect x="930.0" y="80.0" width="180" height="60" fill="#F5F3EE" stroke="#111111" stroke-width="2"/>
+<text x="1020" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">DBA</text>
+<polygon points="420.0,75.0 485.0,110 420.0,145.0 355.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="420.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">crea</text>
+<polygon points="820.0,75.0 885.0,110 820.0,145.0 755.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="820.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">se ancla a</text>
+<line x1="310.0" y1="110" x2="355.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="317.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="485.0" y1="110" x2="530.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="522.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="710.0" y1="110" x2="755.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="717.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="885.0" y1="110" x2="930.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="922.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 146.0 140.0 C 120.0 162.0, 96.0 150.0, 96.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="96.0" y1="190.0" x2="96.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<line x1="96.0" y1="190.0" x2="165.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="220" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="96.0" y1="248.0" x2="165.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombre</text>
+<line x1="96.0" y1="306.0" x2="165.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">correo</text>
+<line x1="96.0" y1="364.0" x2="165.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">avatar_url</text>
+<path d="M 546.0 140.0 C 520.0 162.0, 496.0 150.0, 496.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="496.0" y1="190.0" x2="496.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<line x1="496.0" y1="190.0" x2="565.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="620" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="496.0" y1="248.0" x2="565.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombre</text>
+<line x1="496.0" y1="306.0" x2="565.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">estado</text>
+<line x1="496.0" y1="364.0" x2="565.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_creacion</text>
+<line x1="496.0" y1="422.0" x2="565.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="422.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_invitacion</text>
+<path d="M 946.0 140.0 C 920.0 162.0, 896.0 150.0, 896.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="896.0" y1="190.0" x2="896.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<line x1="896.0" y1="190.0" x2="965.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="190.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">area</text>
+<line x1="896.0" y1="248.0" x2="965.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">grado</text>
+<line x1="896.0" y1="306.0" x2="965.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+<line x1="896.0" y1="364.0" x2="965.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">ejemplo</text>
+</svg></div>
+  <p class="fig-num">Fig. 1 — Docente, Experiencia y DBA, con sus atributos completos.</p>
+</section>
+
+<section class="bloque-section">
+  <h2>Bloque 2 — Currículo oficial (MEN)</h2>
+  <div class="explicacion"><p>Retomamos DBA del bloque anterior y agregamos la entidad Evidencia, con cardinalidad 1 a N desde DBA. Ninguna de las dos entidades tiene clave primaria propia, porque ambas son currículo oficial del MEN, solo referenciado por el sistema. Evidencia se modela como entidad y no como atributo de DBA porque un atributo admite un único valor por registro, y un DBA tiene varias evidencias — además, Evidencia necesita identidad propia para poder relacionarse, más adelante, directamente con un Ítem.</p></div>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="900" height="460" viewBox="0 0 900 460" font-family="Helvetica">
+<rect x="0" y="0" width="900" height="460" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="210.0" y="80.0" width="180" height="60" fill="#F5F3EE" stroke="#111111" stroke-width="2"/>
+<text x="300" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">DBA</text>
+<rect x="610.0" y="80.0" width="180" height="60" fill="#F5F3EE" stroke="#111111" stroke-width="2"/>
+<text x="700" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Evidencia</text>
+<polygon points="500.0,75.0 565.0,110 500.0,145.0 435.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="500.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">tiene</text>
+<line x1="390.0" y1="110" x2="435.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="397.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="565.0" y1="110" x2="610.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="602.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 226.0 140.0 C 200.0 162.0, 176.0 150.0, 176.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="176.0" y1="190.0" x2="176.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<line x1="176.0" y1="190.0" x2="245.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="300" cy="190.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="300" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">area</text>
+<line x1="176.0" y1="248.0" x2="245.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="300" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="300" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">grado</text>
+<line x1="176.0" y1="306.0" x2="245.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="300" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="300" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+<line x1="176.0" y1="364.0" x2="245.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="300" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="300" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">ejemplo</text>
+<path d="M 626.0 140.0 C 600.0 162.0, 576.0 150.0, 576.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="576.0" y1="190.0" x2="645.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="700" cy="190.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="700" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+</svg></div>
+  <p class="fig-num">Fig. 2 — DBA y Evidencia; ninguna tiene id propio por ser dato externo del MEN.</p>
+</section>
+
+<section class="bloque-section">
+  <h2>Bloque 3 — Inscripción</h2>
+  <div class="explicacion"><p>Retomamos Experiencia y la relacionamos con dos entidades nuevas: Estudiante e Inscripción. Estudiante y Experiencia tienen una relación N a N —un estudiante se une a varias experiencias, una experiencia agrupa a varios estudiantes—; Inscripción es la entidad que resuelve esa relación N a N, con cardinalidad 1 a N desde cada una. Su único atributo propio es la fecha de unión: no duplica datos del estudiante ni de la experiencia, que ya existen en sus propias entidades. Esta misma Inscripción es la que, en el bloque de Respuesta y Resultado, se convierte en el punto de referencia de cada estudiante dentro de la experiencia.</p></div>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="520" viewBox="0 0 1300 520" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="520" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="130.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="220" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Estudiante</text>
+<rect x="530.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="620" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Inscripción</text>
+<rect x="930.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="1020" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Experiencia</text>
+<polygon points="420.0,75.0 485.0,110 420.0,145.0 355.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="420.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">tiene</text>
+<polygon points="820.0,75.0 885.0,110 820.0,145.0 755.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="820.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">tiene</text>
+<line x1="310.0" y1="110" x2="355.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="317.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="485.0" y1="110" x2="530.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="522.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="710.0" y1="110" x2="755.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="717.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="885.0" y1="110" x2="930.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="922.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 146.0 140.0 C 120.0 162.0, 96.0 150.0, 96.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="96.0" y1="190.0" x2="96.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<line x1="96.0" y1="190.0" x2="165.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="220" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="96.0" y1="248.0" x2="165.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombre</text>
+<line x1="96.0" y1="306.0" x2="165.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">correo</text>
+<line x1="96.0" y1="364.0" x2="165.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">avatar_url</text>
+<path d="M 546.0 140.0 C 520.0 162.0, 496.0 150.0, 496.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="496.0" y1="190.0" x2="496.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<line x1="496.0" y1="190.0" x2="565.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="620" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="496.0" y1="248.0" x2="565.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_union</text>
+<path d="M 946.0 140.0 C 920.0 162.0, 896.0 150.0, 896.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="896.0" y1="190.0" x2="896.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<line x1="896.0" y1="190.0" x2="965.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="1020" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="896.0" y1="248.0" x2="965.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombre</text>
+<line x1="896.0" y1="306.0" x2="965.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">estado</text>
+<line x1="896.0" y1="364.0" x2="965.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_creacion</text>
+<line x1="896.0" y1="422.0" x2="965.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="422.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_invitacion</text>
+</svg></div>
+  <p class="fig-num">Fig. 3 — Estudiante, Inscripción y Experiencia.</p>
+</section>
+
+<section class="bloque-section">
+  <h2>Bloque 4 — Banco de diagnóstico</h2>
+  <div class="explicacion"><p>Retomamos Experiencia y Evidencia, que ahora convergen en una entidad nueva: Ítem. Experiencia genera su banco de Ítems con cardinalidad 1 a N, y cada Ítem evalúa exactamente una Evidencia (cardinalidad 1 a N desde Evidencia). Cada Ítem tiene además su propia entidad de alternativas de respuesta, Opción (cardinalidad 1 a N desde Ítem), con una estructura genérica pensada para los tres formatos de pregunta del sistema —selección única, emparejamiento y ordenamiento—, por lo que algunos de sus atributos solo aplican según el formato del ítem. Ítem es la entidad que el siguiente bloque retoma para registrar las respuestas de cada estudiante.</p></div>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="1000" viewBox="0 0 1300 1000" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="1000" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="130.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="220" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Experiencia</text>
+<rect x="530.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="620" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Ítem</text>
+<rect x="930.0" y="80.0" width="180" height="60" fill="#F5F3EE" stroke="#111111" stroke-width="2"/>
+<text x="1020" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Evidencia</text>
+<rect x="600.0" y="610.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="690" y="645" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Opción</text>
+<polygon points="420.0,75.0 485.0,110 420.0,145.0 355.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="420.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">genera</text>
+<polygon points="820.0,75.0 885.0,110 820.0,145.0 755.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="820.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">se evalúa con</text>
+<polygon points="690,445.0 755.0,480 690,515.0 625.0,480" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="690" y="484" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">tiene</text>
+<line x1="310.0" y1="110" x2="355.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="317.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="485.0" y1="110" x2="530.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="522.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="710.0" y1="110" x2="755.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="717.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="885.0" y1="110" x2="930.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="922.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="690" y1="140.0" x2="690" y2="445.0" stroke="#555555" stroke-width="1.2"/>
+<text x="704.0" y="192.8" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="690" y1="515.0" x2="690" y2="610.0" stroke="#555555" stroke-width="1.2"/>
+<text x="704.0" y="598.8" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 146.0 140.0 C 120.0 162.0, 96.0 150.0, 96.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="96.0" y1="190.0" x2="96.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<line x1="96.0" y1="190.0" x2="165.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="220" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="96.0" y1="248.0" x2="165.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombre</text>
+<line x1="96.0" y1="306.0" x2="165.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">estado</text>
+<line x1="96.0" y1="364.0" x2="165.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_creacion</text>
+<line x1="96.0" y1="422.0" x2="165.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="220" cy="422.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="220" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_invitacion</text>
+<path d="M 546.0 140.0 C 520.0 162.0, 496.0 150.0, 496.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="496.0" y1="190.0" x2="496.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<line x1="496.0" y1="190.0" x2="565.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="620" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="496.0" y1="248.0" x2="565.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+<line x1="496.0" y1="306.0" x2="565.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">formato</text>
+<line x1="496.0" y1="364.0" x2="565.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">distractor</text>
+<line x1="496.0" y1="422.0" x2="565.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="620" cy="422.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="620" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">orden_sugerido</text>
+<path d="M 946.0 140.0 C 920.0 162.0, 896.0 150.0, 896.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="896.0" y1="190.0" x2="965.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1020" cy="190.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1020" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+<path d="M 616.0 670.0 C 590.0 692.0, 566.0 680.0, 566.0 720.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="566.0" y1="720.0" x2="566.0" y2="952.0" stroke="#888888" stroke-width="1"/>
+<line x1="566.0" y1="720.0" x2="635.0" y2="720.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="690" cy="720.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="690" y="724.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="566.0" y1="778.0" x2="635.0" y2="778.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="690" cy="778.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="690" y="782.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">texto</text>
+<line x1="566.0" y1="836.0" x2="635.0" y2="836.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="690" cy="836.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="690" y="840.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">orden</text>
+<line x1="566.0" y1="894.0" x2="635.0" y2="894.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="690" cy="894.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="690" y="898.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">es_correcta</text>
+<line x1="566.0" y1="952.0" x2="635.0" y2="952.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="690" cy="952.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="690" y="956.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">grupo</text>
+</svg></div>
+  <p class="fig-num">Fig. 4 — Experiencia, Ítem, Opción y Evidencia.</p>
+</section>
+
+<section class="bloque-section">
+  <h2>Bloque 5 — Respuesta y resultado</h2>
+  <div class="explicacion"><p>Retomamos Ítem, Inscripción y Evidencia, y agregamos dos entidades nuevas: Respuesta y Resultado. Respuesta pertenece a exactamente una Inscripción y a exactamente un Ítem (cardinalidad 1 a N desde cada una), y registra si la respuesta fue correcta y con qué certeza. Resultado, en cambio, depende de la combinación de Inscripción y Evidencia, no de un solo evento: por eso se modela como entidad débil, sin clave primaria propia, identificada por esas dos entidades de las que depende. Su único atributo es un estado —muestra, no muestra, o no concluyente—, nunca una calificación. Resultado es la entidad que el siguiente bloque agrega para construir el Reporte.</p></div>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="2100" height="520" viewBox="0 0 2100 520" font-family="Helvetica">
+<rect x="0" y="0" width="2100" height="520" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="110.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="200" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Ítem</text>
+<rect x="510.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="600" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Respuesta</text>
+<rect x="910.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="1000" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Inscripción</text>
+<rect x="1305.0" y="75.0" width="190" height="70" fill="none" stroke="#111111" stroke-width="2"/>
+<rect x="1310.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="1400" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Resultado</text>
+<rect x="1710.0" y="80.0" width="180" height="60" fill="#F5F3EE" stroke="#111111" stroke-width="2"/>
+<text x="1800" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Evidencia</text>
+<polygon points="400.0,75.0 465.0,110 400.0,145.0 335.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="400.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">recibe</text>
+<polygon points="800.0,75.0 865.0,110 800.0,145.0 735.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="800.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">da</text>
+<polygon points="1200.0,75.0 1265.0,110 1200.0,145.0 1135.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="1200.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">tiene</text>
+<polygon points="1600.0,75.0 1665.0,110 1600.0,145.0 1535.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="1600.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">mide</text>
+<line x1="290.0" y1="110" x2="335.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="297.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="465.0" y1="110" x2="510.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="502.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="690.0" y1="110" x2="735.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="697.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="865.0" y1="110" x2="910.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="902.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="1090.0" y1="110" x2="1135.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="1097.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="1265.0" y1="110" x2="1305.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="1298.6" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1495.0" y1="110" x2="1535.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="1501.4" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1665.0" y1="110" x2="1710.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="1702.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 126.0 140.0 C 100.0 162.0, 76.0 150.0, 76.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="76.0" y1="190.0" x2="76.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<line x1="76.0" y1="190.0" x2="145.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="200" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="200" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="76.0" y1="248.0" x2="145.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="200" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="200" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+<line x1="76.0" y1="306.0" x2="145.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="200" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="200" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">formato</text>
+<line x1="76.0" y1="364.0" x2="145.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="200" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="200" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">distractor</text>
+<line x1="76.0" y1="422.0" x2="145.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="200" cy="422.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="200" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">orden_sugerido</text>
+<path d="M 526.0 140.0 C 500.0 162.0, 476.0 150.0, 476.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="476.0" y1="190.0" x2="476.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<line x1="476.0" y1="190.0" x2="545.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="600" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="600" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="476.0" y1="248.0" x2="545.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="600" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="600" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">certeza</text>
+<line x1="476.0" y1="306.0" x2="545.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="600" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="600" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">correcta</text>
+<path d="M 926.0 140.0 C 900.0 162.0, 876.0 150.0, 876.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="876.0" y1="190.0" x2="876.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<line x1="876.0" y1="190.0" x2="945.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1000" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="1000" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="876.0" y1="248.0" x2="945.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1000" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1000" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_union</text>
+<path d="M 1326.0 145.0 C 1300.0 167.0, 1276.0 155.0, 1276.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="1276.0" y1="190.0" x2="1345.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1400" cy="190.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1400" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">estado</text>
+<path d="M 1726.0 140.0 C 1700.0 162.0, 1676.0 150.0, 1676.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="1676.0" y1="190.0" x2="1745.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1800" cy="190.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1800" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+</svg></div>
+  <p class="fig-num">Fig. 5 — Ítem, Respuesta, Inscripción, Resultado y Evidencia.</p>
+</section>
+
+<section class="bloque-section">
+  <h2>Bloque 6 — Reporte</h2>
+  <div class="explicacion"><p>Cerramos con Experiencia, retomada por última vez, y con Reporte, que la resume. Reporte no se modela como una tabla con atributos propios: es una vista calculada sobre Resultado, generada cada vez que se consulta — por eso se representa con notación distinta (borde punteado, sin atributos), marcando que no es un dato almacenado. Su relación con Experiencia es 1 a 1, pero calculada, no persistida. Tiene dos vistas: una agrupa por evidencia y clasifica el grupo según el porcentaje en cada estado; la otra muestra el historial completo por estudiante. Con este bloque se cierra el modelo completo: de la Experiencia que crea un Docente hasta el Reporte que la resume, mostrado en seis partes para mantener cada una legible.</p></div>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1050" height="520" viewBox="0 0 1050 520" font-family="Helvetica">
+<rect x="0" y="0" width="1050" height="520" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="160.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="250" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Experiencia</text>
+<rect x="660.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2" stroke-dasharray="6,5"/>
+<text x="750" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Reporte</text>
+<polygon points="500.0,75.0 565.0,110 500.0,145.0 435.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="500.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">tiene</text>
+<line x1="340.0" y1="110" x2="435.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="355.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="565.0" y1="110" x2="660.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="644.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 176.0 140.0 C 150.0 162.0, 126.0 150.0, 126.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="126.0" y1="190.0" x2="126.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<line x1="126.0" y1="190.0" x2="195.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="250" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="126.0" y1="248.0" x2="195.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombre</text>
+<line x1="126.0" y1="306.0" x2="195.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">estado</text>
+<line x1="126.0" y1="364.0" x2="195.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_creacion</text>
+<line x1="126.0" y1="422.0" x2="195.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="422.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_invitacion</text>
+</svg></div>
+  <p class="fig-num">Fig. 6 — Experiencia y Reporte.</p>
+</section>
+
+
+<section class="texto cierre">
+  <h2>Cierre</h2>
+  <p>Este documento cierra el Modelo Entidad-Relación. Por notación Chen, no muestra llaves foráneas — esas se definen en el Modelo Relacional (MR), el siguiente entregable de Fase III según la fuente primaria de MODESEC, junto con el diccionario de datos para los metadatos de cada campo (tipos, tamaños, restricciones).</p>
+</section>
+
+</div>
+</body></html>

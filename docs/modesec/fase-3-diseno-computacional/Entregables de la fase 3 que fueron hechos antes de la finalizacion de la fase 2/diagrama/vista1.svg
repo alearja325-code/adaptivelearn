@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="582" viewBox="0 0 1640 582" font-family="Helvetica">
+<rect x="0" y="0" width="1640" height="582" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="40" y="44" font-family="Helvetica" font-size="13" letter-spacing="1.5" fill="#888888">VISTA 1 · CURRÍCULO OFICIAL</text>
+<rect x="150.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="240" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">DBA</text>
+<path d="M 166.0 140.0 C 166.0 170.0, 116.0 150.0, 116.0 270.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="116.0" y1="270.0" x2="116.0" y2="502.0" stroke="#888888" stroke-width="1"/>
+<line x1="116.0" y1="270.0" x2="174.75" y2="270.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="270.0" rx="65.25" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="240" y="274.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">codigo_dba (PK)</text>
+<line x1="116.0" y1="328.0" x2="185.0" y2="328.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="328.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="240" y="332.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">area</text>
+<line x1="116.0" y1="386.0" x2="185.0" y2="386.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="386.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="240" y="390.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">grado</text>
+<line x1="116.0" y1="444.0" x2="185.0" y2="444.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="444.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="240" y="448.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+<line x1="116.0" y1="502.0" x2="185.0" y2="502.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="502.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="240" y="506.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">ejemplo</text>
+<rect x="745.0" y="75.0" width="190" height="70" fill="none" stroke="#111111" stroke-width="2"/>
+<rect x="750.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="840" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">EVIDENCIA</text>
+<path d="M 766.0 145.0 C 766.0 175.0, 716.0 155.0, 716.0 270.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="716.0" y1="270.0" x2="716.0" y2="386.0" stroke="#888888" stroke-width="1"/>
+<line x1="716.0" y1="270.0" x2="764.1" y2="270.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="270.0" rx="75.9" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="840" y="274.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">codigo_dba (PK,FK)</text>
+<line x1="716.0" y1="328.0" x2="753.45" y2="328.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="328.0" rx="86.55" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="840" y="332.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">numero_evidencia (PK)</text>
+<line x1="716.0" y1="386.0" x2="785.0" y2="386.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="386.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="390.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">enunciado</text>
+<rect x="1341.7" y="75.0" width="196.6" height="70" fill="none" stroke="#111111" stroke-width="2"/>
+<rect x="1346.7" y="80.0" width="186.6" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="1440" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">EVIDENCIA_DICTAMEN</text>
+<path d="M 1366.0 145.0 C 1366.0 175.0, 1316.0 155.0, 1316.0 270.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="1316.0" y1="270.0" x2="1316.0" y2="502.0" stroke="#888888" stroke-width="1"/>
+<line x1="1316.0" y1="270.0" x2="1364.1" y2="270.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="270.0" rx="75.9" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="1440" y="274.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">codigo_dba (PK,FK)</text>
+<line x1="1316.0" y1="328.0" x2="1342.8" y2="328.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="328.0" rx="97.19999999999999" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="1440" y="332.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">numero_evidencia (PK,FK)</text>
+<line x1="1316.0" y1="386.0" x2="1349.9" y2="386.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="386.0" rx="90.1" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1440" y="390.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">aplica_formato_cerrado</text>
+<line x1="1316.0" y1="444.0" x2="1381.85" y2="444.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="444.0" rx="58.15" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1440" y="448.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">justificacion</text>
+<line x1="1316.0" y1="502.0" x2="1378.3" y2="502.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="502.0" rx="61.699999999999996" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1440" y="506.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_dictamen</text>
+<polygon points="540,68.0 612.0,110 540,152.0 468.0,110" fill="none" stroke="#3B7DD8" stroke-width="1.5"/>
+<polygon points="540,75.0 605.0,110 540,145.0 475.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="540" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">comprende</text>
+<text x="540" y="172.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#555555">1:n</text>
+<polygon points="1140,68.0 1212.0,110 1140,152.0 1068.0,110" fill="none" stroke="#3B7DD8" stroke-width="1.5"/>
+<polygon points="1140,75.0 1205.0,110 1140,145.0 1075.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="1140" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">se dictamina</text>
+<text x="1140" y="172.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#555555">1:1</text>
+<line x1="330.0" y1="112.0" x2="468.0" y2="112.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="330.0" y1="108.0" x2="468.0" y2="108.0" stroke="#555555" stroke-width="1.2"/>
+<text x="399.0" y="101.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="745.0" y1="108.0" x2="612.0" y2="108.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="745.0" y1="112.0" x2="612.0" y2="112.0" stroke="#555555" stroke-width="1.2"/>
+<text x="678.5" y="101.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="935.0" y1="110" x2="1068.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="1001.5" y="101.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="1341.7" y1="108.0" x2="1212.0" y2="108.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="1341.7" y1="112.0" x2="1212.0" y2="112.0" stroke="#555555" stroke-width="1.2"/>
+<text x="1276.85" y="101.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg>

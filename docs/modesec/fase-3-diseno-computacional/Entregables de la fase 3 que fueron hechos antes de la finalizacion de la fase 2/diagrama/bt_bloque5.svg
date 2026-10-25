@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="700" viewBox="0 0 1300 700" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="700" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="45.0" y="50" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="45.0" y="76" width="270" height="8" fill="#E7DEF7"/>
+<rect x="45.0" y="50" width="270" height="204" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 45.0 80 L 45.0 55 Q 45.0 50 50.0 50 L 310.0 50 Q 315.0 50 315.0 55 L 315.0 80 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="180" y="70.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">ITEM</text>
+<line x1="99.0" y1="80" x2="99.0" y2="248" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="53.0" y="100" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="107.0" y="100" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="53.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="53.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="53.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="107.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="107.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">formato (single_choice/matching/ordering)</text>
+<text x="107.0" y="220" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden_sugerido</text>
+<text x="107.0" y="240" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">excluido</text>
+<rect x="485.0" y="70" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="485.0" y="96" width="270" height="8" fill="#FDF0D5"/>
+<rect x="485.0" y="70" width="270" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 485.0 100 L 485.0 75 Q 485.0 70 490.0 70 L 750.0 70 Q 755.0 70 755.0 75 L 755.0 100 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="620" y="90.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA</text>
+<line x1="539.0" y1="100" x2="539.0" y2="208" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="547.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="493.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="547.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="493.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="547.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="547.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">certeza (CRI 0-5)</text>
+<text x="547.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correcta (derivado)</text>
+<rect x="945.0" y="60" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="945.0" y="86" width="270" height="8" fill="#FDF0D5"/>
+<rect x="945.0" y="60" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 945.0 90 L 945.0 65 Q 945.0 60 950.0 60 L 1210.0 60 Q 1215.0 60 1215.0 65 L 1215.0 90 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="1080" y="80.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">INSCRIPCION</text>
+<line x1="999.0" y1="90" x2="999.0" y2="178" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="110" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="1007.0" y="110" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="953.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1007.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="953.0" y="150" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1007.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="1007.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_union</text>
+<rect x="485.0" y="450" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="485.0" y="476" width="270" height="8" fill="#FDF0D5"/>
+<rect x="485.0" y="450" width="270" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 485.0 480 L 485.0 455 Q 485.0 450 490.0 450 L 750.0 450 Q 755.0 450 755.0 455 L 755.0 480 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="620" y="470.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA_OPCION</text>
+<line x1="539.0" y1="480" x2="539.0" y2="548" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="500" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="547.0" y="500" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="493.0" y="520" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="547.0" y="520" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="547.0" y="540" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">valor_dado</text>
+<rect x="945.0" y="430" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="945.0" y="456" width="270" height="8" fill="#E7DEF7"/>
+<rect x="945.0" y="430" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 945.0 460 L 945.0 435 Q 945.0 430 950.0 430 L 1210.0 430 Q 1215.0 430 1215.0 435 L 1215.0 460 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="1080" y="450.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">OPCION</text>
+<line x1="999.0" y1="460" x2="999.0" y2="608" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="480" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1007.0" y="480" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="953.0" y="500" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1007.0" y="500" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="1007.0" y="520" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">texto</text>
+<text x="1007.0" y="540" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden</text>
+<text x="1007.0" y="560" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">es_correcta</text>
+<text x="1007.0" y="580" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grupo</text>
+<text x="1007.0" y="600" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">hipotesis_error</text>
+<polygon points="400.0,119.0 440.0,152.0 400.0,185.0 360.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="400.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">RECIBE</text>
+<line x1="315.0" y1="152.0" x2="360.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="149.5" x2="485.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="154.5" x2="485.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<text x="329.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="471.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="850.0,109.0 890.0,142.0 850.0,175.0 810.0,142.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="850.0" y="146.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">PROVIENE DE</text>
+<line x1="755.0" y1="139.5" x2="810.0" y2="139.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="144.5" x2="810.0" y2="144.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="890.0" y1="142.0" x2="945.0" y2="142.0" stroke="#555555" stroke-width="1.2"/>
+<text x="769.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="931.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="620" y1="211.5" x2="620" y2="447.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="620" y1="216.5" x2="620" y2="452.5" stroke="#555555" stroke-width="1.2"/>
+<text x="634" y="230" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="634" y="442" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="755.0" y1="499.5" x2="945.0" y2="499.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="504.5" x2="945.0" y2="504.5" stroke="#555555" stroke-width="1.2"/>
+<text x="771.0" y="494.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">M</text>
+<text x="929.0" y="494.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg>

@@ -1,0 +1,129 @@
+{
+  "schema": "adaptivelearn.men_lineamientos_principios.v1",
+  "modelado_en": "2026-06-19",
+  "uso_curricular": "principios_generacion_validacion_por_area",
+  "politica_uso": [
+    "Los lineamientos curriculares orientan decisiones pedagogicas y criterios de calidad por area.",
+    "No se convierten en items, preguntas, brechas, indicadores por grado ni evidencias psicometricas.",
+    "No reemplazan DBA, EBC, curriculo sugerido ni revision docente.",
+    "Deben aparecer en el contrato como principios de generacion/validacion, no como referentes_curriculares_id de items.",
+    "Toda afirmacion de alineacion MEN sigue siendo formativa y revisable."
+  ],
+  "areas": {
+    "matemáticas": {
+      "source_id": "lineamientos_curriculares_matematicas",
+      "source_title": "Lineamientos Curriculares - Matematicas",
+      "principios_generacion": [
+        "Plantear situaciones problematicas que den sentido al contenido matematico y eviten ejercicios mecanicos descontextualizados.",
+        "Promover razonamiento, resolucion y planteamiento de problemas, comunicacion matematica, modelacion y comparacion de estrategias.",
+        "Articular procesos generales, conocimientos basicos y contexto de uso de las matematicas.",
+        "Usar representaciones variadas cuando sean pertinentes: lenguaje natural, simbolico, numerico, grafico, geometrico o tabular.",
+        "Favorecer explicacion de procedimientos y justificacion de decisiones, no solo seleccion de respuestas."
+      ],
+      "reglas_validacion": [
+        "Rechazar items que solo pidan aplicar una regla sin evidencia minima de comprension cuando el objetivo declare razonamiento o modelacion.",
+        "Marcar como debil una pregunta que no permite inferir el proceso matematico observado.",
+        "Exigir que problemas contextualizados mantengan coherencia matematica y no introduzcan carga verbal innecesaria.",
+        "Revisar que las opciones distractoras representen errores matematicos plausibles y no ambiguedades de lectura."
+      ],
+      "prohibiciones": [
+        "No declarar los lineamientos como evidencia especifica de un item.",
+        "No afirmar que resolver un item aislado prueba competencia matematica general.",
+        "No usar contexto decorativo que no afecte el razonamiento requerido."
+      ],
+      "notas_modelado": "Modelado conservador desde orientaciones sobre situaciones problematicas, procesos generales, conocimientos basicos y contexto."
+    },
+    "lenguaje": {
+      "source_id": "lineamientos_curriculares_lengua_castellana",
+      "source_title": "Lineamientos Curriculares - Lengua Castellana",
+      "principios_generacion": [
+        "Diseñar tareas alrededor de practicas reales de lectura, escritura, oralidad, escucha e interpretacion.",
+        "Evaluar desempeños comunicativos observables, no solo memorizacion de conceptos gramaticales.",
+        "Ubicar textos, actos de habla y producciones en contextos comunicativos claros.",
+        "Reconocer diversidad textual, cultural y discursiva cuando el tema lo permita.",
+        "Relacionar contenidos linguisticos con propositos de significacion, coherencia, cohesion, argumentacion o interpretacion."
+      ],
+      "reglas_validacion": [
+        "Marcar como debil un item de lenguaje que pregunta una regla aislada sin contexto comunicativo cuando el objetivo es comprension o produccion.",
+        "Exigir que toda pregunta de comprension tenga texto, fragmento, situacion comunicativa o evidencia suficiente.",
+        "Revisar que una respuesta abierta tenga criterios de scoring ligados al desempeno comunicativo solicitado.",
+        "Bloquear inferencias fuertes de competencia lectora o escritora basadas en un unico item cerrado."
+      ],
+      "prohibiciones": [
+        "No convertir lineamientos en lista de temas gramaticales obligatorios.",
+        "No tratar correccion ortografica aislada como dominio global de lenguaje.",
+        "No declarar alineacion verificada si el docente no aprobo el contrato curricular."
+      ],
+      "notas_modelado": "Modelado conservador desde orientaciones sobre significacion, competencias, practicas comunicativas y desempenos."
+    },
+    "ciencias naturales": {
+      "source_id": "lineamientos_curriculares_ciencias_naturales",
+      "source_title": "Lineamientos Curriculares - Ciencias Naturales y Educacion Ambiental",
+      "principios_generacion": [
+        "Partir de fenomenos, problemas o situaciones del mundo de la vida antes que de definiciones aisladas.",
+        "Promover indagacion, explicacion con evidencia, formulacion de preguntas y relacion entre ciencia, tecnologia, sociedad y ambiente.",
+        "Presentar la ciencia como construccion humana revisable, no como lista de verdades absolutas.",
+        "Cuidar la seguridad experimental y evitar sugerir pruebas domesticas peligrosas o manipulacion de sustancias desconocidas.",
+        "Relacionar conceptos con impacto ambiental, calidad de vida o comprension de fenomenos cuando sea pertinente."
+      ],
+      "reglas_validacion": [
+        "Bloquear items o retroalimentaciones que recomienden probar, oler, mezclar o manipular sustancias desconocidas sin condiciones de seguridad.",
+        "Marcar como debil una pregunta que solo exige recordar una definicion cuando el objetivo declara indagacion, explicacion o uso de evidencia.",
+        "Exigir que afirmaciones causales esten respaldadas por datos, fenomenos o relaciones cientificas plausibles.",
+        "Revisar que distractores no promuevan concepciones peligrosas o pseudocientificas sin correccion posterior."
+      ],
+      "prohibiciones": [
+        "No pedir experimentos caseros inseguros.",
+        "No usar los lineamientos como evidencia de item por grado.",
+        "No afirmar validez cientifica o experimental sin revision docente."
+      ],
+      "notas_modelado": "Modelado conservador desde orientaciones sobre mundo de la vida, ciencia-tecnologia-sociedad-ambiente, problemas e indagacion."
+    },
+    "ciencias sociales": {
+      "source_id": "lineamientos_curriculares_ciencias_sociales",
+      "source_title": "Lineamientos Curriculares - Ciencias Sociales",
+      "principios_generacion": [
+        "Abordar problemas sociales desde un enfoque abierto, flexible, integrado y contextualizado.",
+        "Usar preguntas problematizadoras, fuentes, temporalidad, espacialidad y multiperspectividad cuando el tema lo permita.",
+        "Evitar una ensenanza meramente reproductiva de fechas, nombres o datos sin analisis historico, geografico, politico o ciudadano.",
+        "Promover ciudadania critica, participacion democratica, comprension de conflictos y reconocimiento de diversidad cultural.",
+        "Distinguir entre hechos, interpretaciones, perspectivas y juicios valorativos."
+      ],
+      "reglas_validacion": [
+        "Marcar como debil un item que solo pregunta una fecha o nombre si no recoge una evidencia de interpretacion o relacion social relevante.",
+        "Exigir contexto suficiente para preguntas sobre conflicto, violencia, identidad, democracia o actores sociales.",
+        "Detectar sesgos, simplificaciones causales, relatos unicos o afirmaciones politicas sin sustento.",
+        "Favorecer items que permitan interpretar fuentes, comparar perspectivas o explicar relaciones causa-consecuencia."
+      ],
+      "prohibiciones": [
+        "No convertir lineamientos en lista cerrada de temas por grado.",
+        "No presentar una interpretacion historica controvertida como unica verdad sin fuente o contexto.",
+        "No usar lineamientos como scoring psicometrico."
+      ],
+      "notas_modelado": "Modelado conservador desde orientaciones sobre enfoque problemico, ejes generadores, preguntas problematizadoras, fuentes y ciudadania."
+    },
+    "inglés": {
+      "source_id": "lineamientos_curriculares_idiomas_extranjeros",
+      "source_title": "Lineamientos Curriculares - Idiomas Extranjeros",
+      "principios_generacion": [
+        "Priorizar uso comunicativo de la lengua en situaciones significativas sobre practica gramatical aislada.",
+        "Relacionar forma linguistica, funcion comunicativa, contexto sociocultural y proposito del mensaje.",
+        "Promover competencia comunicativa, estrategica e intercultural de acuerdo con el nivel esperado.",
+        "Evitar traduccion mecanica como unica evidencia cuando el objetivo implica comunicacion o comprension.",
+        "Usar tareas breves pero contextualizadas que permitan inferir uso funcional del idioma."
+      ],
+      "reglas_validacion": [
+        "Marcar como debil un item que solo pide completar una forma verbal si no existe contexto comunicativo minimo.",
+        "Exigir que opciones y respuestas no dependan de ambiguedades no intencionales.",
+        "Revisar que los enunciados esten en el nivel linguistico esperado para grado y objetivo.",
+        "Separar errores de forma gramatical de evidencia de comprension comunicativa cuando el item no permite distinguirlos."
+      ],
+      "prohibiciones": [
+        "No declarar dominio de ingles por aciertos en reglas aisladas.",
+        "No convertir lineamientos en nivel CEFR ni en estandar por grado.",
+        "No usar lineamientos como referente_curricular_id de items."
+      ],
+      "notas_modelado": "Modelado conservador desde orientaciones sobre competencia comunicativa, interlingualidad, interculturalidad y contexto."
+    }
+  }
+}

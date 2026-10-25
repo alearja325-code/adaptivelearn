@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revisión del MER de AdaptiveLearn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --canvas:#F7F6F3; --surface:#FFFFFF; --surface-1:#FAFAF8; --surface-2:#F5F3EE;
+  --border:#E7E7E7; --border-strong:#D2CFC7;
+  --ink:#111111; --secondary:#555555; --muted:#888888;
+  --bloq:#991B1B; --bloq-bg:#FBEDED;
+  --imp:#6D28D9;  --imp-bg:#F1EBFC;
+  --forma:#52514E; --forma-bg:#EFEEEB;
+  --ok:#2A78D6;   --ok-bg:#E9F1FB;
+  --plate:#F3F5F8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --canvas:#161512; --surface:#1D1C18; --surface-1:#232219; --surface-2:#282620;
+    --border:#343229; --border-strong:#4A473C;
+    --ink:#F2F0E9; --secondary:#B4AFA2; --muted:#8B867A;
+    --bloq:#F08B8B; --bloq-bg:#33201F;
+    --imp:#BFA4F5;  --imp-bg:#272038;
+    --forma:#B4AFA2; --forma-bg:#26251F;
+    --ok:#7EB3F0;   --ok-bg:#1B2733;
+    --plate:#E9EBEF;
+  }
+}
+:root[data-theme="dark"]{
+  --canvas:#161512; --surface:#1D1C18; --surface-1:#232219; --surface-2:#282620;
+  --border:#343229; --border-strong:#4A473C;
+  --ink:#F2F0E9; --secondary:#B4AFA2; --muted:#8B867A;
+  --bloq:#F08B8B; --bloq-bg:#33201F;
+  --imp:#BFA4F5;  --imp-bg:#272038;
+  --forma:#B4AFA2; --forma-bg:#26251F;
+  --ok:#7EB3F0;   --ok-bg:#1B2733;
+  --plate:#E9EBEF;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--canvas); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px 120px}
+
+/* ---------- utilidad tipográfica ---------- */
+.ui{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+code,.mono{
+  font-family:"JetBrains Mono",Consolas,Monaco,monospace;
+  font-size:.83em; background:var(--surface-2); color:var(--ink);
+  padding:1px 5px; border-radius:3px; border:1px solid var(--border);
+}
+.eyebrow{
+  font-family:Inter,system-ui,sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0;
+}
+h1,h2,h3{text-wrap:balance; margin:0}
+h1{font-size:clamp(32px,4.4vw,50px); line-height:1.08; font-weight:700; letter-spacing:-.015em}
+h2{
+  font-family:Inter,system-ui,sans-serif; font-size:13px; font-weight:700;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--secondary);
+}
+h3{font-size:22px; font-weight:600; line-height:1.28; letter-spacing:-.006em}
+p{margin:0 0 15px}
+p:last-child{margin-bottom:0}
+a{color:inherit}
+.lead{font-size:20px; line-height:1.55; color:var(--secondary)}
+.col{max-width:66ch}
+
+/* ---------- portada ---------- */
+header.portada{padding:72px 0 40px}
+header.portada .eyebrow{margin-bottom:14px}
+header.portada h1{margin-bottom:18px}
+.meta{
+  margin-top:40px; padding-top:24px; border-top:1px solid var(--border);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:20px 32px;
+  font-family:Inter,system-ui,sans-serif;
+}
+.meta b{display:block; font-size:10.5px; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:3px}
+.meta span{font-size:14.5px; font-weight:500; font-variant-numeric:tabular-nums}
+
+/* ---------- secciones ---------- */
+section{padding:52px 0; border-top:1px solid var(--border)}
+.sec-head{display:flex; flex-direction:column; gap:10px; margin-bottom:28px}
+
+/* ---------- veredicto ---------- */
+.veredicto{
+  display:grid; grid-template-columns:1fr 1fr; gap:1px;
+  background:var(--border); border:1px solid var(--border); border-radius:4px;
+  overflow:hidden; margin:6px 0 26px;
+}
+.veredicto>div{background:var(--surface); padding:26px 28px}
+.veredicto .tag{
+  font-family:Inter,system-ui,sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:10px;
+}
+.veredicto .si .tag{color:var(--ok)}
+.veredicto .no .tag{color:var(--bloq)}
+.veredicto h3{font-size:19px; margin-bottom:10px}
+.veredicto p{font-size:15.5px; line-height:1.58; color:var(--secondary)}
+
+/* ---------- marginalia de hallazgos ---------- */
+.hallazgo{
+  display:grid; grid-template-columns:132px minmax(0,1fr);
+  gap:0 36px; padding:30px 0; border-top:1px solid var(--border);
+}
+.hallazgo:first-of-type{border-top:none}
+.gutter{font-family:Inter,system-ui,sans-serif; display:flex; flex-direction:column; gap:8px;
+  align-items:flex-start; align-self:start; padding-top:4px}
+.hid{font-size:24px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.chip{
+  font-size:10px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+  padding:4px 9px; border-radius:3px; border:1px solid currentColor; white-space:nowrap;
+}
+.c-bloq{color:var(--bloq); background:var(--bloq-bg)}
+.c-imp{color:var(--imp); background:var(--imp-bg)}
+.c-forma{color:var(--forma); background:var(--forma-bg)}
+.hallazgo .body{max-width:70ch}
+.hallazgo h3{margin-bottom:12px}
+blockquote{
+  margin:16px 0; padding:2px 0 2px 20px; border-left:2px solid var(--border-strong);
+  color:var(--secondary); font-size:16px; line-height:1.55;
+}
+blockquote cite{display:block; margin-top:8px; font-style:normal;
+  font-family:Inter,system-ui,sans-serif; font-size:12px; color:var(--muted)}
+.consec{
+  margin-top:16px; font-family:Inter,system-ui,sans-serif; font-size:14px;
+  line-height:1.55; color:var(--ink); background:var(--surface-2);
+  border:1px solid var(--border); border-radius:4px; padding:13px 16px;
+}
+.consec b{font-weight:700}
+
+/* ---------- listas ---------- */
+ul.limpia{margin:0 0 15px; padding-left:20px}
+ul.limpia li{margin-bottom:9px}
+ul.limpia li:last-child{margin-bottom:0}
+
+/* ---------- tablas ---------- */
+.tabla-wrap{overflow-x:auto; margin:4px 0 8px; border:1px solid var(--border);
+  border-radius:4px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-family:Inter,system-ui,sans-serif;
+  font-size:13.5px; line-height:1.5}
+th{
+  text-align:left; font-size:10.5px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted); background:var(--surface-1);
+  padding:11px 14px; border-bottom:1px solid var(--border-strong); white-space:nowrap;
+}
+td{padding:11px 14px; border-bottom:1px solid var(--border); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.n{font-weight:700; white-space:nowrap}
+td.c{text-align:center; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap}
+td.mut{color:var(--secondary)}
+td code{font-size:12px}
+.nota-tabla{font-family:Inter,system-ui,sans-serif; font-size:12.5px;
+  color:var(--muted); margin:10px 0 0; max-width:80ch}
+
+/* ---------- diagrama ---------- */
+.plate{
+  background:var(--plate); border:1px solid var(--border); border-radius:6px;
+  padding:10px; overflow-x:auto; margin:8px 0 0;
+}
+.plate svg{display:block; height:auto; min-width:1400px; width:100%}
+figcaption{font-family:Inter,system-ui,sans-serif; font-size:12.5px; color:var(--muted);
+  margin-top:12px; max-width:82ch; line-height:1.55}
+figure{margin:0}
+
+/* ---------- badges de tipo de entidad ---------- */
+.tipo{font-family:Inter,system-ui,sans-serif; font-size:10.5px; font-weight:700;
+  letter-spacing:.05em; text-transform:uppercase; padding:2px 7px; border-radius:3px;
+  border:1px solid; white-space:nowrap}
+.t-nueva{color:#6D28D9; background:#F1EBFC; border-color:#C9B4F2}
+.t-mod{color:#8A6A18; background:#FDF6E4; border-color:#E4CF98}
+.t-igual{color:var(--muted); background:transparent; border-color:var(--border-strong)}
+:root[data-theme="dark"] .t-nueva,
+:root:not([data-theme="light"]) .t-nueva{color:#BFA4F5; background:#272038; border-color:#4B3D6E}
+:root[data-theme="dark"] .t-mod,
+:root:not([data-theme="light"]) .t-mod{color:#DFBA6A; background:#2C2517; border-color:#5A4A22}
+
+/* ---------- cierre ---------- */
+ol.pasos{counter-reset:p; list-style:none; margin:0; padding:0; display:grid; gap:18px}
+ol.pasos li{counter-increment:p; display:grid; grid-template-columns:34px 1fr; gap:16px}
+ol.pasos li::before{
+  content:counter(p); font-family:Inter,system-ui,sans-serif; font-size:13px;
+  font-weight:700; color:var(--muted); border:1px solid var(--border-strong);
+  border-radius:3px; width:30px; height:30px; display:flex; align-items:center;
+  justify-content:center; margin-top:2px;
+}
+footer{padding:40px 0 0; border-top:1px solid var(--border);
+  font-family:Inter,system-ui,sans-serif; font-size:13px; color:var(--muted); max-width:80ch}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .wrap{padding:0 20px 80px}
+  .veredicto{grid-template-columns:1fr}
+  .hallazgo{grid-template-columns:1fr; gap:14px}
+  .gutter{flex-direction:row; align-items:center; padding-top:0}
+  .hid{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="portada">
+  <p class="eyebrow">MODESEC · Fase III · Diseño Computacional · Revisión</p>
+  <h1>El MER responde a la mitad del sistema</h1>
+  <p class="lead col">Cubre sin huecos las ocho pantallas de Fase&nbsp;II. No sostiene el mecanismo de diagnóstico que Fase&nbsp;I define, y que es la razón de existir del proyecto. Doce hallazgos, y un modelo corregido de catorce entidades.</p>
+  <div class="meta">
+    <div><b>Documento revisado</b><span>Adaptivelearn MER.html</span></div>
+    <div><b>Versión</b><span>2026-08-20</span></div>
+    <div><b>Revisado el</b><span>2026-09-01</span></div>
+    <div><b>Hallazgos</b><span>12 · 3 bloqueantes</span></div>
+    <div><b>Modelo anterior</b><span>11 entidades · 13 rel.</span></div>
+    <div><b>Modelo v3</b><span>14 entidades · 15 rel.</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><h2>Veredicto</h2></div>
+  <div class="veredicto">
+    <div class="si">
+      <span class="tag">Sí responde</span>
+      <h3>La autoría del sistema</h3>
+      <p>Crear una experiencia anclada a un DBA oficial, unirse con código, listar y filtrar experiencias, y las tres vistas internas. Cada campo que esas ocho ventanas pintan existe en el modelo, y la corrección de <code>RESPUESTA_OPCION</code> resolvió un defecto real: antes la opción elegida por el estudiante se perdía, y los formatos <code>matching</code> y <code>ordering</code> no eran representables.</p>
+    </div>
+    <div class="no">
+      <span class="tag">No responde</span>
+      <h3>El mecanismo de diagnóstico</h3>
+      <p>Fase&nbsp;I §8 dice que el docente decide cuántos ítems ve el estudiante y en qué orden, que el sistema sugiere un orden de evaluación de las evidencias, y que una respuesta no concluyente ofrece un ítem adicional hasta un tope. Nada de eso tiene dónde guardarse. No es un detalle: es la parte que produce el dato que Reporte convierte en el valor prometido al docente.</p>
+    </div>
+  </div>
+  <p class="col">Por eso se construye un modelo nuevo, y no un parche sobre el anterior.</p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Cómo se evaluó</h2>
+    <h3 class="col">Contra los documentos del propio proyecto, no contra un criterio general de buenas prácticas</h3>
+  </div>
+  <div class="col">
+    <p>El modelo se impuso una regla: «cada entidad, atributo y relación tiene que poder señalar de dónde sale». Esta revisión la aplica en sentido inverso — en vez de preguntar de dónde sale cada caja, pregunta qué exige cada documento entregado y si el modelo lo puede sostener.</p>
+    <ul class="limpia">
+      <li><b>Fase I — Diseño Educativo</b>, ocho documentos. Sobre todo <code>08-diseno-aprendizaje</code>, donde queda escrita la secuencia ejecutable del diagnóstico, y <code>06-diseno-contenidos</code>, con los catorce conceptos.</li>
+      <li><b>Fase II — Diseño Multimedial</b>, once documentos: las ocho ventanas especificadas, del Dashboard a la Vista Interna.</li>
+    </ul>
+    <p>Los ADR, el glosario y <code>curriculo_men_normalizado.json</code> se citan en todo el modelo pero no están en la carpeta entregada — eso es el hallazgo H-11, y limita qué se pudo comprobar.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Hallazgos</h2>
+    <h3 class="col">Tres bloquean el mecanismo, cuatro son de contenido, cinco son de forma y de repositorio</h3>
+    <p class="nota-tabla">La severidad usa los colores que el propio sistema ya definió: rojo <code>#991B1B</code> Error para lo bloqueante, violeta <code>#6D28D9</code> Informativo para lo importante-pero-no-bloqueante, gris para lo formal. No se inventaron colores nuevos.</p>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-1</span><span class="chip c-bloq">Bloqueante</span></div>
+    <div class="body">
+      <h3>La configuración del diagnóstico no tiene dónde vivir</h3>
+      <blockquote>El docente, no el sistema, decide cuántos ítems observa el estudiante y en qué orden — el sistema no impone un número por defecto (ADR-009). […] el sistema sugiere un orden de evaluación de las evidencias, estimado por dificultad. […] si es no concluyente, ofrece un ítem adicional del mismo banco, hasta un límite que evita cansar al estudiante.<cite>08-diseno-aprendizaje.docx — tabla de diseño de aprendizaje y secuencia de aprendizaje</cite></blockquote>
+      <p>Son tres datos —orden de evaluación de cada evidencia, cuántos ítems se presentan, cuál es el tope de adicionales— y los tres son <em>por experiencia</em>, porque el docente los define al revisar su banco. El modelo tiene un solo atributo cercano, <code>Item.orden_sugerido</code>, que ordena ítems dentro de su evidencia, no evidencias dentro de la experiencia.</p>
+      <p>Guardarlos en <code>Evidencia</code> no sirve: es dato del MEN, compartido entre todas las experiencias que anclen a ese DBA, y dos docentes se sobrescribirían. Guardarlos en <code>Experiencia</code> tampoco: son un valor por evidencia, no uno por experiencia — que es exactamente el criterio con que el propio modelo justifica que Evidencia sea entidad y no atributo.</p>
+      <p class="consec"><b>Consecuencia.</b> El diagnóstico no se puede ejecutar como está especificado, y el docente no puede ejercer la decisión que ADR-009 le reserva.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-2</span><span class="chip c-bloq">Bloqueante</span></div>
+    <div class="body">
+      <h3>La secuencia adaptativa no se puede reconstruir, y eso deja RI-11 sin poder cumplirse</h3>
+      <p>El mecanismo es adaptativo: cuántos ítems ve un estudiante depende de lo que fue respondiendo. Para saber qué se le presentó, en qué orden y hasta dónde llegó hace falta el registro de las presentaciones. El modelo solo guarda <code>Respuesta</code>, y sin fecha — que es el vacío V-1, declarado en el propio documento pero tratado ahí como una comodidad de auditoría.</p>
+      <p>No es una comodidad. RI-11 exige que <code>Resultado.estado</code> coincida con su recálculo desde las respuestas; pero ese estado no se deriva del conjunto de respuestas sin más, se deriva de la <em>secuencia</em>: de si la primera fue decisiva, de si se ofreció una segunda, de dónde se detuvo.</p>
+      <p class="consec"><b>Consecuencia.</b> RI-11 queda enunciada pero no verificable con los datos que el modelo guarda. Es una contradicción interna, no solo una omisión.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-3</span><span class="chip c-bloq">Bloqueante</span></div>
+    <div class="body">
+      <h3>«Se le presentó y no respondió» no es representable</h3>
+      <p>La cardinalidad de <code>selecciona</code> es <code>(1,N)/(0,M)</code>, y RI-9 lo confirma: toda Respuesta selecciona al menos una Opción. Entonces un ítem que el estudiante vio y dejó en blanco no tiene forma — si no se crea la fila de Respuesta, es indistinguible de un ítem que nunca se le presentó; si se crea, hay que inventarle una opción que el estudiante no eligió.</p>
+      <p>El vacío V-3 del documento describe el síntoma («el Reporte necesita distinguir "no respondió" de "respondió y no muestra"») y lo atribuye a que falta un estado de avance en Inscripción. La causa es anterior: falta el registro de qué se presentó. Un estado de avance agregado a Inscripción sería un dato sin fuente de la cual derivarse.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-4</span><span class="chip c-imp">Importante</span></div>
+    <div class="body">
+      <h3>No existe el vínculo Experiencia–Evidencia, y RI-1 y RI-2 están tapando ese hueco</h3>
+      <p>Desde una Experiencia solo se llega a Evidencia por dos caminos indirectos: bajando por su DBA, que devuelve <em>todas</em> las evidencias del DBA incluidas las que no aplican a formato cerrado, o subiendo desde un Ítem. Qué evidencias diagnostica realmente esta experiencia es un hecho propio de la experiencia, y no está en el modelo.</p>
+      <p>Ese hueco es el que obliga a escribir RI-1 y RI-2, que dicen lo mismo por dos lados. El propio documento lo describe como un ciclo redundante. <b>Un ciclo que hay que restringir con una regla externa suele indicar que falta una entidad, no que sobre un camino.</b> Con <code>EXPERIENCIA_EVIDENCIA</code> de por medio, Ítem y Resultado cuelgan de ella, hay un solo camino al currículo, y las dos restricciones desaparecen porque pasan a ser estructura.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-5</span><span class="chip c-imp">Importante</span></div>
+    <div class="body">
+      <h3>Falta el estado de revisión del ítem, que ADR-005 convierte en condición para publicar</h3>
+      <blockquote>El docente revisa y, si lo considera necesario, edita ese banco antes de que cualquier estudiante lo vea (ADR-005) — ningún ítem generado por IA llega al estudiante sin ese paso.<cite>08-diseno-aprendizaje.docx · repetido en 04-spec-dashboard.md §2.3 como definición de Borrador y Publicada</cite></blockquote>
+      <p>El modelo tiene <code>Experiencia.estado</code>, pero nada por ítem: no se puede saber cuáles fueron revisados, ni por tanto exigir que estén todos revisados antes de publicar. Tampoco se distingue un ítem generado por IA de uno editado por el docente, distinción que Fase&nbsp;I §2 eleva a valor del proyecto.</p>
+      <p>El documento declara V-7 —falta el <em>vocabulario</em> de esos estados—, y eso sigue pendiente. Pero es distinto de no tener el atributo: sin él, la regla de publicación no es expresable ni siquiera en prosa.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-6</span><span class="chip c-imp">Importante</span></div>
+    <div class="body">
+      <h3><code>aplica_formato_cerrado</code> cuelga de una entidad declarada «dato del MEN»</h3>
+      <p>El modelo clasifica Evidencia como externa, «dato oficial del MEN, referenciado», y le agrega <code>aplica_formato_cerrado</code>. Pero ese dato no lo produce el MEN: es un dictamen nuestro, derivado de ADR-006 y pendiente del censo QA-014, y puede cambiar cuando ese censo termine.</p>
+      <p>Ponerlo dentro de la caja beige contradice la clasificación que el propio diagrama establece, y borra —justo en el atributo donde más importa— la frontera entre contenido oficial y juicio propio que Fase&nbsp;I §2 declara como valor: «el sistema no se atribuye autoridad curricular que no tiene».</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-7</span><span class="chip c-imp">Importante</span></div>
+    <div class="body">
+      <h3>La regla de parada del diagnóstico no está definida en ninguna fuente, y el modelo no la declara como vacío</h3>
+      <p>Fase&nbsp;I §8 la describe de forma cualitativa: si una primera respuesta es decisiva —certeza alta, sea acierto o error— no se insiste sobre esa evidencia; si es no concluyente, se ofrece un ítem adicional. Pero qué combinación exacta de acierto y CRI cuenta como decisiva, y qué proporción de respuestas produce cada uno de los tres estados de <code>Resultado</code>, no aparece en ningún documento de la carpeta.</p>
+      <p>Es la función que convierte Respuestas en <code>Resultado.estado</code>, es decir, lo que da sentido a la entidad Resultado. El modelo la asume resuelta —marca <code>estado</code> como derivado y escribe RI-11— sin declararla. Debería estar en la lista de vacíos, y es previa a cualquier implementación.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-8</span><span class="chip c-forma">Forma</span></div>
+    <div class="body">
+      <h3>El modelo muestra llaves foráneas: deja de ser Chen y se solapa con el Modelo Relacional</h3>
+      <p>El documento declara la desviación y la argumenta: «excluirlas por ser cosa del MR y a la vez dejar entidades sin clave era incoherente, porque el MR se deriva de aquí y no se puede derivar una llave foránea hacia una entidad que no se puede identificar».</p>
+      <p>El argumento mezcla dos cosas. Que una entidad necesite <b>clave primaria</b> es correcto, y Chen sí la representa. Que necesite mostrar sus <b>llaves foráneas</b> no se sigue de eso: la FK es precisamente lo que la derivación al MR produce a partir de la relación ya dibujada. Con las FK dentro de las cajas, el MER ya es casi el MR, y el siguiente entregable de Fase&nbsp;III queda reducido a tipos y tamaños.</p>
+      <p>No es un error de contenido y puede sostenerse como decisión de formato, pero conviene tomarla a sabiendas: si la evaluación del curso espera notación Chen, este documento no lo es.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-9</span><span class="chip c-forma">Forma</span></div>
+    <div class="body">
+      <h3>RI-7 no fija los mínimos de Opción por formato</h3>
+      <p>La participación de Ítem en <code>ofrece</code> es <code>(2,N)</code>. Alcanza para <code>single_choice</code>, pero no para <code>matching</code>, donde la pareja correcta son dos opciones de distinto grupo: el mínimo real son cuatro, con al menos dos por grupo. RI-7 fija qué atributo aplica en cada formato, pero no cuántas opciones exige cada uno.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-10</span><span class="chip c-forma">Repositorio</span></div>
+    <div class="body">
+      <h3>Conviven tres versiones del MER, y las dos que están dentro de la estructura MODESEC son las superadas</h3>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>Archivo</th><th>Versión</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td class="mut"><code>fase-3.../01-modelo-entidad-relacion.md</code></td><td>2026-08-18</td><td class="mut">Superada — <code>id</code> sin prefijo, DBA y Evidencia sin clave primaria, <code>distractor</code> en Ítem, sin <code>RESPUESTA_OPCION</code></td></tr>
+          <tr><td class="mut"><code>fase-3.../03-presentacion-mer.html</code></td><td>2026-08-19</td><td class="mut">Superada — presentación por bloques de esa misma versión</td></tr>
+          <tr><td class="n"><code>Adaptivelearn MER.html</code></td><td>2026-08-20</td><td>Vigente, pero <b>fuera</b> de la carpeta <code>Metodologia MODESEC</code></td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:14px">Quien abra la carpeta de la metodología encuentra el modelo superado, con los defectos que la revisión del 20 de agosto ya había corregido. La versión buena está donde nadie la busca.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-11</span><span class="chip c-forma">Trazabilidad</span></div>
+    <div class="body">
+      <h3>La mitad de las fuentes citadas no está en la carpeta entregada</h3>
+      <p>El modelo cita ADR-001 a ADR-014, QA-011 a QA-016, <code>glosario.md</code>, <code>decisiones.md</code>, <code>modelo-conceptual.md</code>, <code>vision.md</code>, <code>preguntas-abiertas.md</code> y <code>curriculo_men_normalizado.json</code>. Ninguno de esos archivos está en el proyecto. Lo que sí está —Fase&nbsp;I y Fase&nbsp;II— se verificó una por una y concuerda; pero afirmaciones que dependen solo de un ADR (los umbrales de ADR-013, la codificación de ADR-014, los tres formatos de ADR-006) no se pueden comprobar contra nada.</p>
+      <p>Para un entregable que se presenta como trazable, es una debilidad real: la regla de construcción existe, pero el lector no puede ejercerla.</p>
+    </div>
+  </div>
+
+  <div class="hallazgo">
+    <div class="gutter"><span class="hid">H-12</span><span class="chip c-forma">Alcance</span></div>
+    <div class="body">
+      <h3>Fase II nunca diseñó las pantallas del diagnóstico ni del Reporte</h3>
+      <p><code>01-planeacion-proceso-produccion.md</code> se compromete a diseñar «la toma del diagnóstico (estudiante), y las dos vistas de Reporte (docente)». Ninguna de las tres existe: las ocho ventanas especificadas cubren autoría, ingreso y consulta.</p>
+      <p class="consec"><b>Esto explica por qué H-1, H-2 y H-3 no se detectaron antes.</b> El método del modelo es que un campo entra si alguna spec ya lo pinta; y como la pantalla donde el estudiante responde nunca se especificó, ninguna spec podía pedir el registro de la presentación, el tope de ítems ni la configuración del docente. El método funcionó exactamente como está escrito, y aun así el hueco pasó — porque la fuente que lo exigía era Fase&nbsp;I, no Fase&nbsp;II.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Lo que se verificó y está correcto</h2>
+    <h3 class="col">No todo lo revisado tiene hallazgo</h3>
+  </div>
+  <div class="col">
+    <ul class="limpia">
+      <li>Las once entidades y trece relaciones se corresponden con lo que las ocho ventanas de Fase&nbsp;II necesitan, y el conteo interno del documento es consistente: la contradicción portada / vista general de la versión anterior está corregida.</li>
+      <li><code>codigo_invitacion</code> de seis caracteres sin <code>0/O/1/I/L</code>, <code>correo</code> único, <code>estado</code> Borrador/Publicada, <code>fecha_creacion</code> y la regla RI-10 salen todos, verbatim, de las specs de unirse con código y del Dashboard.</li>
+      <li>Área y grado heredados del DBA en vez de duplicados en Experiencia: coherente con los pasos 1 y 2 de creación y con la fila de metadata de la Vista Interna.</li>
+      <li><code>DBA.ejemplo</code> y <code>aplica_formato_cerrado</code> estaban pintados en dos specs y ausentes del modelo anterior; agregarlos fue correcto — el segundo, en la entidad equivocada (H-6).</li>
+      <li><code>RESPUESTA_OPCION</code> resuelve bien la M:N y recupera el dato de entrada que el modelo anterior descartaba. Es la corrección de más valor de la revisión del 20 de agosto.</li>
+      <li>La notación de entidad débil —doble borde, rombo doble, línea doble— está completa y bien aplicada en Evidencia y Resultado.</li>
+      <li><code>hipotesis_error</code> en Opción, en vez de <code>distractor</code> en Ítem, es correcto y por el motivo correcto.</li>
+    </ul>
+    <p style="margin-top:18px">Todo eso se conserva sin cambios en el modelo v3.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Modelo v3</h2>
+    <h3 class="col">Catorce entidades, quince relaciones, una vista derivada</h3>
+    <p class="col" style="color:var(--secondary)">Las once entidades anteriores conservan nombre, clave, atributos y relaciones. Lo que entra son tres entidades y seis atributos, y todos salen de Fase&nbsp;I §8 — que es fuente igual que Fase&nbsp;II, precisamente porque la pantalla que faltaba es una de las que Fase&nbsp;II se comprometió a diseñar.</p>
+  </div>
+  <figure>
+    <div class="plate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 2040" font-family="Helvetica">
+<rect x="0" y="0" width="3000" height="2040" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="1500" y="62" text-anchor="middle" font-size="34" font-weight="700" fill="#1C2E4A">DIAGRAMA ENTIDAD - RELACION &#8212; v3</text>
+<text x="1500" y="96" text-anchor="middle" font-size="17" fill="#555555">ADAPTIVELEARN &#183; DIAGNOSTICO ANCLADO A LOS DBA DEL MEN &#183; REVISION CONTRA FASE I Y FASE II</text>
+<g transform="translate(0,130)">
+<line x1="490.0" y1="200" x2="550.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<line x1="710.0" y1="200" x2="770.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<line x1="710.0" y1="203" x2="770.0" y2="203" stroke="#555555" stroke-width="1.2"/>
+<polygon points="630.0,167 710.0,200 630.0,233 550.0,200" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="630.0" y="204" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">CREA</text>
+<text x="524.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="736.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1070.0" y1="200" x2="1130.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<line x1="1070.0" y1="203" x2="1130.0" y2="203" stroke="#555555" stroke-width="1.2"/>
+<line x1="1290.0" y1="200" x2="1350.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1210.0,167 1290.0,200 1210.0,233 1130.0,200" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1210.0" y="197" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">SE</text>
+<text x="1210.0" y="211" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">ANCLA A</text>
+<text x="1104.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="1316.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="1650.0" y1="200" x2="1710.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<line x1="1650.0" y1="203" x2="1710.0" y2="203" stroke="#555555" stroke-width="1.2"/>
+<line x1="1870.0" y1="200" x2="1930.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<line x1="1870.0" y1="203" x2="1930.0" y2="203" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1790.0,161 1877.0,200 1790.0,239 1703.0,200" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="1790.0,167 1870.0,200 1790.0,233 1710.0,200" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1790.0" y="204" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">COMPRENDE</text>
+<text x="1684.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1896.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="2230.0" y1="200" x2="2290.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<line x1="2450.0" y1="200" x2="2510.0" y2="200" stroke="#555555" stroke-width="1.2"/>
+<line x1="2450.0" y1="203" x2="2510.0" y2="203" stroke="#555555" stroke-width="1.2"/>
+<polygon points="2370.0,161 2457.0,200 2370.0,239 2283.0,200" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="2370.0,167 2450.0,200 2370.0,233 2290.0,200" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2370.0" y="197" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">SE</text>
+<text x="2370.0" y="211" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">DICTAMINA</text>
+<text x="2264.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="2476.0" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="920" y1="302.0" x2="920" y2="520" stroke="#555555" stroke-width="1.2"/>
+<line x1="920" y1="520" x2="1060" y2="520" stroke="#555555" stroke-width="1.2"/>
+<line x1="1220" y1="520" x2="1350.0" y2="520" stroke="#555555" stroke-width="1.2"/>
+<line x1="1220" y1="523" x2="1350.0" y2="523" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1140,487 1220,520 1140,553 1060,520" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1140" y="524" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">INCLUYE</text>
+<text x="934" y="324.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1324.0" y="508" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="2080" y1="252.0" x2="2080" y2="600" stroke="#555555" stroke-width="1.2"/>
+<line x1="2080" y1="600" x2="1940" y2="600" stroke="#555555" stroke-width="1.2"/>
+<line x1="1780" y1="600" x2="1650.0" y2="600" stroke="#555555" stroke-width="1.2"/>
+<line x1="1780" y1="603" x2="1650.0" y2="603" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1860,567 1940,600 1860,633 1780,600" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1860" y="604" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">SOBRE</text>
+<text x="2094" y="274.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1676.0" y="588" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1500" y1="652.0" x2="1500" y2="687.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="1500" y1="753.0" x2="1500" y2="788.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="1503" y1="753.0" x2="1503" y2="788.0" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1500,687.0 1580,720.0 1500,753.0 1420,720.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1500" y="724.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">GENERA</text>
+<text x="1514" y="674.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1514" y="776.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1650.0" y1="900" x2="1710.0" y2="900" stroke="#555555" stroke-width="1.2"/>
+<line x1="1650.0" y1="903" x2="1710.0" y2="903" stroke="#555555" stroke-width="1.2"/>
+<line x1="1870.0" y1="900" x2="1930.0" y2="900" stroke="#555555" stroke-width="1.2"/>
+<line x1="1870.0" y1="903" x2="1930.0" y2="903" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1790.0,867 1870.0,900 1790.0,933 1710.0,900" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1790.0" y="904" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">OFRECE</text>
+<text x="1684.0" y="888" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1896.0" y="888" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="490.0" y1="1250" x2="550.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="710.0" y1="1250" x2="770.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="710.0" y1="1253" x2="770.0" y2="1253" stroke="#555555" stroke-width="1.2"/>
+<polygon points="630.0,1217 710.0,1250 630.0,1283 550.0,1250" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="630.0" y="1254" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">REALIZA</text>
+<text x="524.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="736.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1070.0" y1="1250" x2="1130.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="1290.0" y1="1250" x2="1350.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="1290.0" y1="1253" x2="1350.0" y2="1253" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1210.0,1211 1297.0,1250 1210.0,1289 1123.0,1250" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="1210.0,1217 1290.0,1250 1210.0,1283 1130.0,1250" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1210.0" y="1254" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">ATIENDE</text>
+<text x="1104.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1316.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1650.0" y1="1250" x2="1710.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="1870.0" y1="1250" x2="1930.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="1870.0" y1="1253" x2="1930.0" y2="1253" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1790.0,1217 1870.0,1250 1790.0,1283 1710.0,1250" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1790.0" y="1254" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">REGISTRA</text>
+<text x="1684.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1896.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">0..1</text>
+<line x1="2230.0" y1="1250" x2="2290.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="2450.0" y1="1250" x2="2510.0" y2="1250" stroke="#555555" stroke-width="1.2"/>
+<line x1="2450.0" y1="1253" x2="2510.0" y2="1253" stroke="#555555" stroke-width="1.2"/>
+<polygon points="2370.0,1217 2450.0,1250 2370.0,1283 2290.0,1250" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2370.0" y="1254" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">SELECCIONA</text>
+<text x="2264.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="2476.0" y="1238" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1500" y1="1012.0" x2="1500" y2="1067.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="1500" y1="1133.0" x2="1500" y2="1188.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="1503" y1="1133.0" x2="1503" y2="1188.0" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1500,1061.0 1587,1100.0 1500,1139.0 1413,1100.0" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="1500,1067.0 1580,1100.0 1500,1133.0 1420,1100.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1500" y="1097.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">SE</text>
+<text x="1500" y="1111.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">PRESENTA</text>
+<text x="1514" y="1034.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="1514" y="1176.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="2230.0" y1="900" x2="2350" y2="900" stroke="#555555" stroke-width="1.2"/>
+<line x1="2510" y1="900" x2="2660" y2="900" stroke="#555555" stroke-width="1.2"/>
+<line x1="2660" y1="900" x2="2660" y2="1198.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="2663" y1="900" x2="2663" y2="1198.0" stroke="#555555" stroke-width="1.2"/>
+<polygon points="2430,867 2510,900 2430,933 2350,900" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2430" y="904" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">APUNTA A</text>
+<text x="2260.0" y="888" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="2674" y="1186.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">M</text>
+<line x1="920" y1="1322.0" x2="920" y2="1402.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="920" y1="1468.0" x2="920" y2="1548.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="923" y1="1468.0" x2="923" y2="1548.0" stroke="#555555" stroke-width="1.2"/>
+<polygon points="920,1396.0 1007,1435.0 920,1474.0 833,1435.0" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="920,1402.0 1000,1435.0 920,1468.0 840,1435.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="920" y="1439.0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">ARROJA</text>
+<text x="934" y="1344.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="934" y="1536.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1350.0" y1="640" x2="120" y2="640" stroke="#555555" stroke-width="1.2"/>
+<line x1="120" y1="640" x2="120" y2="1620" stroke="#555555" stroke-width="1.2"/>
+<line x1="120" y1="1620" x2="560.0" y2="1620" stroke="#555555" stroke-width="1.2"/>
+<line x1="720.0" y1="1620" x2="770.0" y2="1620" stroke="#555555" stroke-width="1.2"/>
+<line x1="720.0" y1="1623" x2="770.0" y2="1623" stroke="#555555" stroke-width="1.2"/>
+<polygon points="640.0,1581 727.0,1620 640.0,1659 553.0,1620" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="640.0,1587 720.0,1620 640.0,1653 560.0,1620" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="640.0" y="1624" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">MIDE</text>
+<text x="1324.0" y="628" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="740.0" y="1608" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="1070.0" y1="1620" x2="1130.0" y2="1620" stroke="#555555" stroke-width="1.2"/>
+<line x1="1290.0" y1="1620" x2="1350.0" y2="1620" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1210.0,1587 1290.0,1620 1210.0,1653 1130.0,1620" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1210.0" y="1617" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">SE</text>
+<text x="1210.0" y="1631" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">AGREGA EN</text>
+<text x="1104.0" y="1608" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="1316.0" y="1608" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="1650.0" y1="1620" x2="2880" y2="1620" stroke="#555555" stroke-width="1.2"/>
+<line x1="2880" y1="1620" x2="2880" y2="40" stroke="#555555" stroke-width="1.2"/>
+<line x1="2880" y1="40" x2="1980" y2="40" stroke="#555555" stroke-width="1.2"/>
+<line x1="1820" y1="40" x2="920" y2="40" stroke="#555555" stroke-width="1.2"/>
+<line x1="920" y1="40" x2="920" y2="98.0" stroke="#555555" stroke-width="1.2"/>
+<polygon points="1900,7 1980,40 1900,73 1820,40" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1900" y="44" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F4D1F">RESUME</text>
+<text x="1680.0" y="1608" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="934" y="86.0" text-anchor="start" font-size="13" font-weight="700" fill="#111111">1</text>
+<rect x="190.0" y="138.0" width="300" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 190.0 168.0 L 190.0 143.0 Q 190.0 138.0 195.0 138.0 L 485.0 138.0 Q 490.0 138.0 490.0 143.0 L 490.0 168.0 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="340" y="158.0" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1F4D">DOCENTE</text>
+<line x1="248.0" y1="168.0" x2="248.0" y2="262.0" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="198.0" y="189.0" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="256.0" y="189.0" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="256.0" y="209.0" font-size="11.5" fill="#111111">nombre</text>
+<text x="256.0" y="229.0" font-size="11.5" fill="#111111">correo<tspan font-size="8.5" font-weight="400" fill="#555555"> (U)</tspan></text>
+<text x="256.0" y="249.0" font-size="11.5" fill="#111111">avatar_url</text>
+<rect x="770.0" y="98.0" width="300" height="204" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 770.0 128.0 L 770.0 103.0 Q 770.0 98.0 775.0 98.0 L 1065.0 98.0 Q 1070.0 98.0 1070.0 103.0 L 1070.0 128.0 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="920" y="118.0" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1F4D">EXPERIENCIA</text>
+<line x1="828.0" y1="128.0" x2="828.0" y2="302.0" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="778.0" y="149.0" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="836.0" y="149.0" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="778.0" y="169.0" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="836.0" y="169.0" font-size="11.5" fill="#111111">id_docente</text>
+<text x="778.0" y="189.0" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="836.0" y="189.0" font-size="11.5" fill="#111111">codigo_dba</text>
+<text x="836.0" y="209.0" font-size="11.5" fill="#111111">nombre</text>
+<text x="836.0" y="229.0" font-size="11.5" fill="#111111">estado<tspan font-size="8.5" font-weight="400" fill="#555555"> (Borrador/Publicada)</tspan></text>
+<text x="836.0" y="249.0" font-size="11.5" fill="#111111">fecha_creacion</text>
+<text x="836.0" y="269.0" font-size="11.5" fill="#111111">fecha_publicacion</text>
+<text x="836.0" y="289.0" font-size="11.5" fill="#111111">codigo_invitacion<tspan font-size="8.5" font-weight="400" fill="#555555"> (U)</tspan></text>
+<rect x="1350.0" y="128.0" width="300" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 1350.0 158.0 L 1350.0 133.0 Q 1350.0 128.0 1355.0 128.0 L 1645.0 128.0 Q 1650.0 128.0 1650.0 133.0 L 1650.0 158.0 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="1500" y="148.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4A3A16">DBA</text>
+<line x1="1408.0" y1="158.0" x2="1408.0" y2="272.0" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="1358.0" y="179.0" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1416.0" y="179.0" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1416.0" y="199.0" font-size="11.5" fill="#111111">area</text>
+<text x="1416.0" y="219.0" font-size="11.5" fill="#111111">grado</text>
+<text x="1416.0" y="239.0" font-size="11.5" fill="#111111">enunciado</text>
+<text x="1416.0" y="259.0" font-size="11.5" fill="#111111">ejemplo</text>
+<rect x="1930.0" y="148.0" width="300" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 1930.0 178.0 L 1930.0 153.0 Q 1930.0 148.0 1935.0 148.0 L 2225.0 148.0 Q 2230.0 148.0 2230.0 153.0 L 2230.0 178.0 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="2080" y="168.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4A3A16">EVIDENCIA</text>
+<line x1="1988.0" y1="178.0" x2="1988.0" y2="252.0" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="1938.0" y="199.0" font-size="9.5" font-weight="700" fill="#A98B4E">PK,FK</text>
+<text x="1996.0" y="199.0" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1938.0" y="219.0" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1996.0" y="219.0" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1996.0" y="239.0" font-size="11.5" fill="#111111">enunciado</text>
+<rect x="2510.0" y="128.0" width="300" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/>
+<path d="M 2510.0 158.0 L 2510.0 133.0 Q 2510.0 128.0 2515.0 128.0 L 2805.0 128.0 Q 2810.0 128.0 2810.0 133.0 L 2810.0 158.0 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="2660" y="148.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4D1E29">EVIDENCIA_DICTAMEN</text>
+<line x1="2568.0" y1="158.0" x2="2568.0" y2="272.0" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="2518.0" y="179.0" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="2576.0" y="179.0" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="2518.0" y="199.0" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="2576.0" y="199.0" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="2576.0" y="219.0" font-size="11.5" fill="#111111">aplica_formato_cerrado</text>
+<text x="2576.0" y="239.0" font-size="11.5" fill="#111111">justificacion</text>
+<text x="2576.0" y="259.0" font-size="11.5" fill="#111111">fecha_dictamen</text>
+<rect x="1350.0" y="468.0" width="300" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 1350.0 498.0 L 1350.0 473.0 Q 1350.0 468.0 1355.0 468.0 L 1645.0 468.0 Q 1650.0 468.0 1650.0 473.0 L 1650.0 498.0 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="1500" y="488.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4D3708">EXPERIENCIA_EVIDENCIA</text>
+<line x1="1408.0" y1="498.0" x2="1408.0" y2="652.0" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="1358.0" y="519.0" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1416.0" y="519.0" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="1358.0" y="539.0" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1416.0" y="539.0" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1358.0" y="559.0" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1416.0" y="559.0" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1416.0" y="579.0" font-size="11.5" fill="#111111">orden_evaluacion</text>
+<text x="1416.0" y="599.0" font-size="11.5" fill="#111111">items_a_presentar</text>
+<text x="1416.0" y="619.0" font-size="11.5" fill="#111111">tope_items_adicionales</text>
+<text x="1416.0" y="639.0" font-size="11.5" fill="#111111">incluida</text>
+<rect x="1350.0" y="788.0" width="300" height="224" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 1350.0 818.0 L 1350.0 793.0 Q 1350.0 788.0 1355.0 788.0 L 1645.0 788.0 Q 1650.0 788.0 1650.0 793.0 L 1650.0 818.0 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="1500" y="808.0" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1F4D">ITEM</text>
+<line x1="1408.0" y1="818.0" x2="1408.0" y2="1012.0" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="1358.0" y="839.0" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1416.0" y="839.0" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="1358.0" y="859.0" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1416.0" y="859.0" font-size="11.5" fill="#111111">id_experiencia</text>
+<text x="1358.0" y="879.0" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1416.0" y="879.0" font-size="11.5" fill="#111111">codigo_dba</text>
+<text x="1358.0" y="899.0" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1416.0" y="899.0" font-size="11.5" fill="#111111">numero_evidencia</text>
+<text x="1416.0" y="919.0" font-size="11.5" fill="#111111">enunciado</text>
+<text x="1416.0" y="939.0" font-size="11.5" fill="#111111">formato<tspan font-size="8.5" font-weight="400" fill="#555555"> (single_choice/matching/ordering)</tspan></text>
+<text x="1416.0" y="959.0" font-size="11.5" fill="#111111">orden_sugerido</text>
+<text x="1416.0" y="979.0" font-size="11.5" fill="#111111">origen<tspan font-size="8.5" font-weight="400" fill="#555555"> (ia/docente)</tspan></text>
+<text x="1416.0" y="999.0" font-size="11.5" fill="#111111">estado_revision</text>
+<rect x="1930.0" y="808.0" width="300" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 1930.0 838.0 L 1930.0 813.0 Q 1930.0 808.0 1935.0 808.0 L 2225.0 808.0 Q 2230.0 808.0 2230.0 813.0 L 2230.0 838.0 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="2080" y="828.0" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1F4D">OPCION</text>
+<line x1="1988.0" y1="838.0" x2="1988.0" y2="992.0" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="1938.0" y="859.0" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1996.0" y="859.0" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="1938.0" y="879.0" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1996.0" y="879.0" font-size="11.5" fill="#111111">id_item</text>
+<text x="1996.0" y="899.0" font-size="11.5" fill="#111111">texto</text>
+<text x="1996.0" y="919.0" font-size="11.5" fill="#111111">orden</text>
+<text x="1996.0" y="939.0" font-size="11.5" fill="#111111">es_correcta</text>
+<text x="1996.0" y="959.0" font-size="11.5" fill="#111111">grupo</text>
+<text x="1996.0" y="979.0" font-size="11.5" fill="#111111">hipotesis_error</text>
+<rect x="190.0" y="1188.0" width="300" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 190.0 1218.0 L 190.0 1193.0 Q 190.0 1188.0 195.0 1188.0 L 485.0 1188.0 Q 490.0 1188.0 490.0 1193.0 L 490.0 1218.0 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="340" y="1208.0" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1F4D">ESTUDIANTE</text>
+<line x1="248.0" y1="1218.0" x2="248.0" y2="1312.0" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="198.0" y="1239.0" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="256.0" y="1239.0" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="256.0" y="1259.0" font-size="11.5" fill="#111111">nombre</text>
+<text x="256.0" y="1279.0" font-size="11.5" fill="#111111">correo<tspan font-size="8.5" font-weight="400" fill="#555555"> (U)</tspan></text>
+<text x="256.0" y="1299.0" font-size="11.5" fill="#111111">avatar_url</text>
+<rect x="770.0" y="1178.0" width="300" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 770.0 1208.0 L 770.0 1183.0 Q 770.0 1178.0 775.0 1178.0 L 1065.0 1178.0 Q 1070.0 1178.0 1070.0 1183.0 L 1070.0 1208.0 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="920" y="1198.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4D3708">INSCRIPCION</text>
+<line x1="828.0" y1="1208.0" x2="828.0" y2="1322.0" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="778.0" y="1229.0" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="836.0" y="1229.0" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="778.0" y="1249.0" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="836.0" y="1249.0" font-size="11.5" fill="#111111">id_estudiante</text>
+<text x="778.0" y="1269.0" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="836.0" y="1269.0" font-size="11.5" fill="#111111">id_experiencia</text>
+<text x="836.0" y="1289.0" font-size="11.5" fill="#111111">fecha_union</text>
+<text x="836.0" y="1309.0" font-size="11.5" fill="#111111">estado_avance<tspan font-size="8.5" font-weight="400" fill="#555555"> (derivado)</tspan></text>
+<rect x="1350.0" y="1188.0" width="300" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/>
+<path d="M 1350.0 1218.0 L 1350.0 1193.0 Q 1350.0 1188.0 1355.0 1188.0 L 1645.0 1188.0 Q 1650.0 1188.0 1650.0 1193.0 L 1650.0 1218.0 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="1500" y="1208.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4D1E29">PRESENTACION</text>
+<line x1="1408.0" y1="1218.0" x2="1408.0" y2="1312.0" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="1358.0" y="1239.0" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1416.0" y="1239.0" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="1358.0" y="1259.0" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1416.0" y="1259.0" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="1416.0" y="1279.0" font-size="11.5" fill="#111111">orden_presentacion</text>
+<text x="1416.0" y="1299.0" font-size="11.5" fill="#111111">fecha_presentacion</text>
+<rect x="1930.0" y="1168.0" width="300" height="164" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 1930.0 1198.0 L 1930.0 1173.0 Q 1930.0 1168.0 1935.0 1168.0 L 2225.0 1168.0 Q 2230.0 1168.0 2230.0 1173.0 L 2230.0 1198.0 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="2080" y="1188.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA</text>
+<line x1="1988.0" y1="1198.0" x2="1988.0" y2="1332.0" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="1938.0" y="1219.0" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="1996.0" y="1219.0" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="1938.0" y="1239.0" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1996.0" y="1239.0" font-size="11.5" fill="#111111">id_inscripcion<tspan font-size="8.5" font-weight="400" fill="#555555"> (U)</tspan></text>
+<text x="1938.0" y="1259.0" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1996.0" y="1259.0" font-size="11.5" fill="#111111">id_item<tspan font-size="8.5" font-weight="400" fill="#555555"> (U)</tspan></text>
+<text x="1996.0" y="1279.0" font-size="11.5" fill="#111111">fecha_respuesta</text>
+<text x="1996.0" y="1299.0" font-size="11.5" fill="#111111">certeza<tspan font-size="8.5" font-weight="400" fill="#555555"> (CRI 0-5)</tspan></text>
+<text x="1996.0" y="1319.0" font-size="11.5" fill="#111111">correcta<tspan font-size="8.5" font-weight="400" fill="#555555"> (derivado)</tspan></text>
+<rect x="2510.0" y="1198.0" width="300" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 2510.0 1228.0 L 2510.0 1203.0 Q 2510.0 1198.0 2515.0 1198.0 L 2805.0 1198.0 Q 2810.0 1198.0 2810.0 1203.0 L 2810.0 1228.0 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="2660" y="1218.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA_OPCION</text>
+<line x1="2568.0" y1="1228.0" x2="2568.0" y2="1302.0" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="2518.0" y="1249.0" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="2576.0" y="1249.0" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="2518.0" y="1269.0" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="2576.0" y="1269.0" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="2576.0" y="1289.0" font-size="11.5" fill="#111111">valor_dado</text>
+<rect x="770.0" y="1548.0" width="300" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/>
+<path d="M 770.0 1578.0 L 770.0 1553.0 Q 770.0 1548.0 775.0 1548.0 L 1065.0 1548.0 Q 1070.0 1548.0 1070.0 1553.0 L 1070.0 1578.0 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="920" y="1568.0" text-anchor="middle" font-size="13" font-weight="700" fill="#4D1E29">RESULTADO</text>
+<line x1="828.0" y1="1578.0" x2="828.0" y2="1692.0" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="778.0" y="1599.0" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="836.0" y="1599.0" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="778.0" y="1619.0" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="836.0" y="1619.0" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="778.0" y="1639.0" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="836.0" y="1639.0" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="836.0" y="1659.0" font-size="11.5" fill="#111111">estado<tspan font-size="8.5" font-weight="400" fill="#555555"> (derivado)</tspan></text>
+<text x="836.0" y="1679.0" font-size="11.5" fill="#111111">calculado_en</text>
+<rect x="1350.0" y="1568.0" width="300" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="7,5"/>
+<path d="M 1350.0 1598.0 L 1350.0 1573.0 Q 1350.0 1568.0 1355.0 1568.0 L 1645.0 1568.0 Q 1650.0 1568.0 1650.0 1573.0 L 1650.0 1598.0 Z" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="7,5"/>
+<text x="1500" y="1588.0" text-anchor="middle" font-size="13" font-weight="700" fill="#333333">REPORTE</text>
+<line x1="1408.0" y1="1598.0" x2="1408.0" y2="1672.0" stroke="#8A8A8A" stroke-width="0.8" opacity="0.55"/>
+<text x="1358.0" y="1619.0" font-size="9.5" font-weight="700" fill="#8A8A8A">FK</text>
+<text x="1416.0" y="1619.0" font-size="11.5" fill="#111111">id_experiencia</text>
+<text x="1416.0" y="1639.0" font-size="11.5" fill="#111111">conteo_por_estado<tspan font-size="8.5" font-weight="400" fill="#555555"> (calc.)</tspan></text>
+<text x="1416.0" y="1659.0" font-size="11.5" fill="#111111">etiqueta_brecha<tspan font-size="8.5" font-weight="400" fill="#555555"> (calc.)</tspan></text>
+</g>
+<rect x="120" y="1850" width="2760" height="118" rx="10" ry="10" fill="#FFFFFF" stroke="#E3E7ED"/>
+<text x="150" y="1878" font-size="13" font-weight="700" fill="#1C2E4A">LEYENDA</text>
+<rect x="150" y="1898" width="34" height="22" rx="4" ry="4" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.6"/>
+<text x="194" y="1913" font-size="12" fill="#111111">Entidad propia</text>
+<rect x="302.4" y="1898" width="34" height="22" rx="4" ry="4" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.6"/>
+<text x="346.4" y="1913" font-size="12" fill="#111111">Entidad asociativa (resuelve M:N)</text>
+<rect x="580.1999999999999" y="1898" width="34" height="22" rx="4" ry="4" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.6"/>
+<text x="624.1999999999999" y="1913" font-size="12" fill="#111111">Dato externo del MEN, referenciado</text>
+<rect x="864.5999999999999" y="1898" width="34" height="22" rx="4" ry="4" fill="#FADCE0" stroke="#C0637B" stroke-width="1.6"/>
+<text x="908.5999999999999" y="1913" font-size="12" fill="#111111">Entidad debil (sin clave propia)</text>
+<rect x="1135.8" y="1898" width="34" height="22" rx="4" ry="4" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.6" stroke-dasharray="5,4"/>
+<text x="1179.8" y="1913" font-size="12" fill="#111111">Vista derivada: no persiste</text>
+<polygon points="180,1946 212,1934 244,1946 212,1958" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="256" y="1950" font-size="12" fill="#111111">Relacion</text>
+<polygon points="400,1946 438,1932 476,1946 438,1960" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="400,1946 432,1935 464,1946 432,1957" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="490" y="1950" font-size="12" fill="#111111">Relacion identificadora (rombo doble)</text>
+<line x1="800" y1="1943" x2="860" y2="1943" stroke="#555555" stroke-width="1.2"/><line x1="800" y1="1947" x2="860" y2="1947" stroke="#555555" stroke-width="1.2"/>
+<text x="872" y="1950" font-size="12" fill="#111111">Linea doble: participacion obligatoria</text>
+<text x="1240" y="1950" font-size="12" fill="#111111"><tspan font-weight="700">PK</tspan> clave primaria  ·  <tspan font-weight="700">FK</tspan> clave foranea  ·  <tspan font-weight="700">(U)</tspan> valor unico  ·  <tspan font-weight="700">( )</tspan> dominio o dato derivado</text>
+</svg>
+</div>
+    <figcaption>Modelo completo. En morado las entidades propias, en dorado las asociativas, en beige el dato del MEN referenciado, en rosa las débiles, punteado gris la vista derivada. <b>EXPERIENCIA_EVIDENCIA</b>, <b>PRESENTACION</b> y <b>EVIDENCIA_DICTAMEN</b> son las tres entidades nuevas. La figura mide 3000 × 2040 px y es vectorial: el archivo suelto, para imprimir en A3, es <code>diagrama-v3/mer-v3.svg</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Qué cambia y qué resuelve</h2>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th style="width:1%">Tipo</th><th>Cambio</th><th style="width:1%">Resuelve</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tipo t-nueva">Nueva</span></td><td><b><code>EXPERIENCIA_EVIDENCIA</code></b> — qué evidencias diagnostica cada experiencia, en qué orden, con cuántos ítems y con qué tope</td><td class="c">H-1 · H-4</td></tr>
+      <tr><td><span class="tipo t-nueva">Nueva</span></td><td><b><code>PRESENTACION</code></b> — qué ítem se le mostró a qué inscripción, en qué orden y cuándo</td><td class="c">H-2 · H-3</td></tr>
+      <tr><td><span class="tipo t-nueva">Nueva</span></td><td><b><code>EVIDENCIA_DICTAMEN</code></b> — el juicio propio sobre si una evidencia admite formato cerrado, separado del dato del MEN</td><td class="c">H-6</td></tr>
+      <tr><td><span class="tipo t-mod">Atributo</span></td><td><code>Item.origen</code> y <code>Item.estado_revision</code></td><td class="c">H-5</td></tr>
+      <tr><td><span class="tipo t-mod">Atributo</span></td><td><code>Respuesta.fecha_respuesta</code>, <code>Resultado.calculado_en</code>, <code>Experiencia.fecha_publicacion</code></td><td class="c">H-2 · V-4 ant.</td></tr>
+      <tr><td><span class="tipo t-mod">Cambio</span></td><td><code>Inscripcion.estado_avance</code> pasa a <b>derivado</b>: ya no hay que inventarlo, se calcula de Presentación contra Respuesta</td><td class="c">V-3 ant.</td></tr>
+      <tr><td><span class="tipo t-mod">Cambio</span></td><td><code>Evidencia</code> pierde <code>aplica_formato_cerrado</code> y queda como puro dato del MEN</td><td class="c">H-6</td></tr>
+      <tr><td><span class="tipo t-igual">Se van</span></td><td>RI-1 y RI-2 anteriores: el ciclo Ítem/Resultado al currículo pasa a ser estructura, no regla. RI-5 anterior también: la unicidad (Inscripción, Ítem) la garantiza la identificación débil de <code>PRESENTACION</code></td><td class="c">H-4 · H-2</td></tr>
+      <tr><td><span class="tipo t-mod">Vacío</span></td><td>Entra <b>V-5</b>, la regla de parada del diagnóstico, que el modelo anterior daba por resuelta</td><td class="c">H-7</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>Entidades</h2></div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th>Entidad</th><th>Tipo</th><th>Identificador</th><th>Nota</th></tr></thead>
+    <tbody>
+      <tr><td class="n">Docente</td><td class="mut">Propia</td><td><code>id_docente</code></td><td class="mut">clave alterna: correo. Entidad raíz — ver V-1</td></tr>
+      <tr><td class="n">Estudiante</td><td class="mut">Propia</td><td><code>id_estudiante</code></td><td class="mut">clave alterna: correo</td></tr>
+      <tr><td class="n">Experiencia</td><td class="mut">Propia</td><td><code>id_experiencia</code></td><td class="mut">clave alterna: codigo_invitacion. Se agrega <code>fecha_publicacion</code></td></tr>
+      <tr><td class="n">Experiencia_Evidencia <span class="tipo t-nueva">Nueva</span></td><td class="mut">Asociativa</td><td><code>(id_experiencia, codigo_dba, numero_evidencia)</code></td><td class="mut">resuelve la M:N Experiencia ↔ Evidencia; lleva <code>orden_evaluacion</code>, <code>items_a_presentar</code>, <code>tope_items_adicionales</code>, <code>incluida</code></td></tr>
+      <tr><td class="n">Ítem</td><td class="mut">Propia</td><td><code>id_item</code></td><td class="mut">su FK apunta ahora a Experiencia_Evidencia, no a Experiencia y Evidencia por separado. Se agrega <code>origen</code> y <code>estado_revision</code></td></tr>
+      <tr><td class="n">Opción</td><td class="mut">Propia</td><td><code>id_opcion</code></td><td class="mut">sin cambios; lleva la hipótesis de error</td></tr>
+      <tr><td class="n">Inscripción</td><td class="mut">Asociativa</td><td><code>id_inscripcion</code></td><td class="mut"><code>estado_avance</code> pasa a derivado</td></tr>
+      <tr><td class="n">Presentación <span class="tipo t-nueva">Nueva</span></td><td class="mut">Débil</td><td><code>(id_inscripcion, id_item)</code></td><td class="mut">débil de Inscripción y de Ítem a la vez; lleva <code>orden_presentacion</code> y <code>fecha_presentacion</code></td></tr>
+      <tr><td class="n">Respuesta</td><td class="mut">Asociativa</td><td><code>id_respuesta</code></td><td class="mut">su par (inscripción, ítem) es único y apunta a Presentación. Se agrega <code>fecha_respuesta</code></td></tr>
+      <tr><td class="n">Respuesta_Opción</td><td class="mut">Asociativa</td><td><code>(id_respuesta, id_opcion)</code></td><td class="mut">sin cambios; materializa «selecciona», lleva <code>valor_dado</code></td></tr>
+      <tr><td class="n">DBA</td><td class="mut">Externa (MEN)</td><td><code>codigo_dba</code></td><td class="mut">clave natural del MEN: no la generamos, pero existe</td></tr>
+      <tr><td class="n">Evidencia</td><td class="mut">Externa · débil</td><td><code>(codigo_dba, numero_evidencia)</code></td><td class="mut">pierde <code>aplica_formato_cerrado</code>: queda como puro texto oficial</td></tr>
+      <tr><td class="n">Evidencia_Dictamen <span class="tipo t-nueva">Nueva</span></td><td class="mut">Débil · propia</td><td><code>(codigo_dba, numero_evidencia)</code></td><td class="mut">1:1 con Evidencia; aloja nuestro juicio de ADR-006 con su justificación y fecha</td></tr>
+      <tr><td class="n">Resultado</td><td class="mut">Débil</td><td><code>(id_inscripcion, codigo_dba, numero_evidencia)</code></td><td class="mut">su segunda mitad apunta a Experiencia_Evidencia, no a Evidencia. Se agrega <code>calculado_en</code></td></tr>
+      <tr><td class="n">Reporte</td><td class="mut">No es entidad</td><td>—</td><td class="mut">vista derivada de Resultado, no persiste; no cuenta entre las catorce</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Relaciones y cardinalidades</h2>
+    <p class="nota-tabla">La columna de participación indica (mínimo, máximo) de cada lado. Un mínimo de 1 es participación total, y en el diagrama se dibuja con línea doble.</p>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th>Entidad A</th><th>Relación</th><th>Entidad B</th><th>Cardinalidad</th><th>Part. A / B</th></tr></thead>
+    <tbody>
+      <tr><td>Docente</td><td class="n">crea</td><td>Experiencia</td><td class="c">1 a N</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td>Experiencia</td><td class="n">se ancla a</td><td>DBA</td><td class="c">N a 1</td><td class="c">(1,1) / (0,N)</td></tr>
+      <tr><td>DBA</td><td class="n">comprende</td><td>Evidencia</td><td class="c">1 a N · ident.</td><td class="c">(1,N) / (1,1)</td></tr>
+      <tr><td>Evidencia</td><td class="n">se dictamina</td><td>Evidencia_Dictamen</td><td class="c">1 a 1 · ident.</td><td class="c">(0,1) / (1,1)</td></tr>
+      <tr><td>Experiencia</td><td class="n">incluye</td><td>Experiencia_Evidencia</td><td class="c">1 a N</td><td class="c">(1,N) / (1,1)</td></tr>
+      <tr><td>Evidencia</td><td class="n">sobre</td><td>Experiencia_Evidencia</td><td class="c">1 a N</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td>Experiencia_Evidencia</td><td class="n">genera</td><td>Ítem</td><td class="c">1 a N</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td>Ítem</td><td class="n">ofrece</td><td>Opción</td><td class="c">1 a N</td><td class="c">(2,N) / (1,1)</td></tr>
+      <tr><td>Estudiante</td><td class="n">realiza</td><td>Inscripción</td><td class="c">1 a N</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td>Ítem</td><td class="n">se presenta</td><td>Presentación</td><td class="c">1 a N · ident.</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td>Inscripción</td><td class="n">atiende</td><td>Presentación</td><td class="c">1 a N · ident.</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td>Presentación</td><td class="n">registra</td><td>Respuesta</td><td class="c">1 a 0..1</td><td class="c">(0,1) / (1,1)</td></tr>
+      <tr><td>Respuesta</td><td class="n">selecciona</td><td>Respuesta_Opción</td><td class="c">1 a N</td><td class="c">(1,N) / (1,1)</td></tr>
+      <tr><td>Opción</td><td class="n">apunta a</td><td>Respuesta_Opción</td><td class="c">1 a M</td><td class="c">(0,M) / (1,1)</td></tr>
+      <tr><td>Inscripción</td><td class="n">arroja</td><td>Resultado</td><td class="c">1 a N · ident.</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td>Experiencia_Evidencia</td><td class="n">mide</td><td>Resultado</td><td class="c">1 a N · ident.</td><td class="c">(0,N) / (1,1)</td></tr>
+      <tr><td class="mut">Resultado</td><td class="n">se agrega en</td><td class="mut">Reporte</td><td class="c">N a 1 · derivada</td><td class="c">—</td></tr>
+      <tr><td class="mut">Reporte</td><td class="n">resume</td><td class="mut">Experiencia</td><td class="c">1 a 1 · derivada</td><td class="c">—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="nota-tabla">Quince relaciones entre entidades; las dos últimas son derivadas y no cuentan, igual que Reporte no cuenta entre las entidades. La participación de Experiencia en <code>incluye</code> es (1,N), no (0,N): una experiencia sin ninguna evidencia incluida no diagnostica nada, y ADR-005 genera el banco en el mismo acto de creación.</p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Restricciones de integridad</h2>
+    <h3 class="col">Siguen siendo once, pero no son las mismas: tres se fueron por volverse estructura y entraron tres nuevas</h3>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th style="width:1%">#</th><th>Regla</th><th style="width:1%">Origen</th></tr></thead>
+    <tbody>
+      <tr><td class="n">RI-1</td><td>El par (Estudiante, Experiencia) es único en Inscripción — «sea la primera vez que se une o ya estuviera unido, el resultado es el mismo»</td><td class="mut">era RI-3</td></tr>
+      <tr><td class="n">RI-2</td><td><code>Docente.correo</code> y <code>Estudiante.correo</code> son únicos. <code>codigo_invitacion</code> es único, de 6 caracteres alfanuméricos, sin <code>0/O/1/I/L</code></td><td class="mut">era RI-6</td></tr>
+      <tr><td class="n">RI-3</td><td>Una Experiencia en Borrador no admite Inscripción</td><td class="mut">era RI-10</td></tr>
+      <tr><td class="n">RI-4</td><td><code>orden_evaluacion</code> es único dentro de una Experiencia y <code>orden_presentacion</code> dentro de una Inscripción. Sin unicidad no hay orden, y el orden es el dato</td><td class="mut">nueva</td></tr>
+      <tr><td class="n">RI-5</td><td>Las Presentaciones de una Inscripción para una evidencia no pueden exceder <code>items_a_presentar + tope_items_adicionales</code>, ni el número de ítems del banco para esa evidencia</td><td class="mut">nueva</td></tr>
+      <tr><td class="n">RI-6</td><td>Dominio de Opción según <code>Item.formato</code>, ahora con los mínimos por formato: 2 en <code>single_choice</code> y en <code>ordering</code>, 4 en <code>matching</code> con al menos 2 por grupo</td><td class="mut">era RI-7 + H-9</td></tr>
+      <tr><td class="n">RI-7</td><td><code>incluida</code> solo puede ser verdadero si el dictamen correspondiente tiene <code>aplica_formato_cerrado</code> verdadero; y solo una evidencia incluida genera Ítems</td><td class="mut">era RI-8</td></tr>
+      <tr><td class="n">RI-8</td><td>Toda Respuesta selecciona al menos una Opción, y solo del Ítem de su Presentación. Una Presentación <b>sin</b> Respuesta es válida y significa «se le mostró y no respondió»</td><td class="mut">era RI-9</td></tr>
+      <tr><td class="n">RI-9</td><td>Una Experiencia no pasa a Publicada mientras exista un Ítem suyo, de una evidencia incluida, sin revisar</td><td class="mut">nueva · depende de V-4</td></tr>
+      <tr><td class="n">RI-10</td><td>Ítem y Opción no pueden editarse una vez que existe una Presentación de ese Ítem</td><td class="mut">era el vacío V-2</td></tr>
+      <tr><td class="n">RI-11</td><td><code>Respuesta.correcta</code>, <code>Resultado.estado</code> e <code>Inscripcion.estado_avance</code> son derivados y su valor almacenado debe coincidir con el recálculo. A diferencia del modelo anterior, ese recálculo <b>ahora sí es posible</b> — salvo por la regla de parada, que es V-5</td><td class="mut">reformulada</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Vacíos declarados</h2>
+    <h3 class="col">Lo que hace falta y no sale de ninguna fuente escrita</h3>
+    <p class="col" style="color:var(--secondary)">Se declara, no se resuelve por cuenta propia. Es la misma regla del modelo anterior, y la razón por la que las tres entidades nuevas sí entran: salen de Fase&nbsp;I §8, que es un documento escrito y entregado.</p>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th style="width:1%">#</th><th>Vacío</th><th style="width:1%">Estado</th></tr></thead>
+    <tbody>
+      <tr><td class="n">V-1</td><td><b>Autenticación y creación de cuenta.</b> El sistema asume una sesión establecida, pero no hay spec de registro ni de acceso y el modelo no tiene credencial: hoy nada puede crear una fila de Docente o de Estudiante. Antes de modelarlo hace falta un ADR que decida entre contraseña propia e identidad federada — <code>avatar_url</code> sugiere lo segundo</td><td class="mut">era V-8</td></tr>
+      <tr><td class="n">V-2</td><td><b>Forma exacta de <code>codigo_dba</code>.</b> Falta confirmarla contra <code>curriculo_men_normalizado.json</code>, que no está en el proyecto</td><td class="mut">era V-5</td></tr>
+      <tr><td class="n">V-3</td><td><b>Numeración de Evidencia.</b> Igual que V-2, y además depende del censo QA-014 y del bug de extracción QA-013</td><td class="mut">era V-6</td></tr>
+      <tr><td class="n">V-4</td><td><b>Vocabulario de <code>estado_revision</code>.</b> El atributo entra porque ADR-005 lo exige; su dominio sigue sin decidirse. RI-9 depende de esto</td><td class="mut">era V-7</td></tr>
+      <tr><td class="n">V-5</td><td><b>Regla de parada del diagnóstico.</b> Qué combinación de <code>correcta</code> × <code>certeza</code> cuenta como decisiva, y qué proporción produce cada estado de Resultado. Sin ella <code>Resultado.estado</code> no es computable y RI-11 no es verificable</td><td class="mut">nuevo · H-7</td></tr>
+      <tr><td class="n">V-6</td><td><b>Dictamen de formato cerrado, pendiente de censo.</b> La entidad existe, pero sus valores dependen de QA-014, que no ha corrido. Hasta entonces RI-7 no se puede evaluar</td><td class="mut">nuevo</td></tr>
+    </tbody>
+  </table></div>
+  <p class="nota-tabla">Los vacíos V-1 y V-2 del modelo anterior no aparecen aquí porque dejaron de ser vacíos: la marca temporal de Respuesta entró como <code>fecha_respuesta</code> y la inmutabilidad de Ítem tras la primera respuesta pasó a ser la restricción RI-10, expresable ahora que existe <code>PRESENTACION</code>.</p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Qué sigue</h2>
+    <h3 class="col">Antes de derivar el Modelo Relacional hay tres cosas que resolver, en este orden</h3>
+  </div>
+  <ol class="pasos col">
+    <li><div><b>V-5 — la regla de parada.</b> Sin ella, <code>Resultado</code> es una tabla que nadie sabe llenar, y RI-11 no se puede verificar. Es previa a cualquier implementación.</div></li>
+    <li><div><b>H-8 — decidir la notación.</b> O se mantiene caja-tabla y el MR queda reducido a tipos, tamaños y reglas de borrado; o se vuelve a Chen estricto en el MER y el MR aporta lo que le corresponde. Las dos son razonables; tomarla por omisión es lo que no conviene.</div></li>
+    <li><div><b>H-10 — ordenar el repositorio.</b> Mover la versión vigente dentro de <code>Metodologia MODESEC</code> y marcar <code>01-modelo-entidad-relacion.md</code> y <code>03-presentacion-mer.html</code> como superadas, para que quien abra la carpeta de la metodología no encuentre el modelo viejo.</div></li>
+  </ol>
+</section>
+
+<footer>
+  <p>Universidad de Córdoba · Facultad de Educación y Ciencias Humanas · Licenciatura en Informática · 203453 Diseño y Desarrollo de Software Educativo II. Revisión del Modelo Entidad-Relación de AdaptiveLearn contra Fase I y Fase II de MODESEC (Caro &amp; Toscano, 2009). Documentos fuente en el proyecto: <code>04-hallazgos-revision-mer.md</code>, <code>05-modelo-entidad-relacion-v3.md</code>, <code>diagrama-v3/mer-v3.svg</code>.</p>
+</footer>
+
+</div>
+
+</body>
+</html>

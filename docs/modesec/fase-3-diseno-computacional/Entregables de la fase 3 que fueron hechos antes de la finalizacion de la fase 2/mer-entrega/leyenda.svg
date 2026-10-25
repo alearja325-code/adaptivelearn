@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="510" viewBox="0 0 1700 510" font-family="Helvetica">
+<rect x="0" y="0" width="1700" height="510" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="110.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="200" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">ENTIDAD</text>
+<rect x="105.0" y="205.0" width="190" height="70" fill="none" stroke="#111111" stroke-width="2"/>
+<rect x="110.0" y="210.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="200" y="245" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">DÉBIL</text>
+<rect x="110.0" y="350.0" width="180" height="60" fill="#F5F3EE" stroke="#111111" stroke-width="2" stroke-dasharray="6,5"/>
+<text x="200" y="385" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">COSTURA</text>
+<text x="200" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="11" fill="#888888">ya presentada · Vista N</text>
+<polygon points="620,75.0 685.0,110 620,145.0 555.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="620" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">relación</text>
+<text x="620" y="165.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#555555">1:n</text>
+<polygon points="620,198.0 692.0,240 620,282.0 548.0,240" fill="none" stroke="#3B7DD8" stroke-width="1.5"/>
+<polygon points="620,205.0 685.0,240 620,275.0 555.0,240" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="620" y="244" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">identificadora</text>
+<polygon points="620,345.0 685.0,380 620,415.0 555.0,380" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="620" y="384" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">derivada</text>
+<line x1="950" y1="90" x2="1150" y2="90" stroke="#555555" stroke-width="1.2"/>
+<text x="1050.0" y="81.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="950.0" y1="222.0" x2="1150.0" y2="222.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="950.0" y1="218.0" x2="1150.0" y2="218.0" stroke="#555555" stroke-width="1.2"/>
+<text x="1050.0" y="211.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 926.0 310 C 926.0 340, 876.0 320, 876.0 360" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="876.0" y1="360" x2="876.0" y2="418" stroke="#888888" stroke-width="1"/>
+<line x1="876.0" y1="360" x2="945.0" y2="360" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1000" cy="360" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="1000" y="364" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="876.0" y1="418" x2="945.0" y2="418" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1000" cy="418" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1000" y="422" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">atributo</text>
+<text x="1200" y="94" font-family="Helvetica" font-size="13" fill="#555555">participación parcial (0,N) — línea simple</text>
+<text x="1200" y="224" font-family="Helvetica" font-size="13" fill="#555555">participación total (1,N) — línea doble</text>
+<text x="1200" y="354" font-family="Helvetica" font-size="13" fill="#555555">atributo · elipse negra = llave primaria</text>
+<text x="700" y="154" font-family="Helvetica" font-size="13" fill="#555555">razón de cardinalidad — el tipo de la relación (1:1, 1:n, n:m)</text>
+</svg>

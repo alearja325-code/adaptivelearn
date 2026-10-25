@@ -1,0 +1,902 @@
+SERIE GUÍAS Nº 22
+                    Estándares Básicos de Competencias
+                          en Lenguas Extranjeras: Inglés
+
+
+
+
+      Formar en
+       lenguas
+     extranjeras:
+
+     ¡el reto!
+       Lo que necesitamos
+       saber y saber hacer
+                                              Ministerio de
+                                        Educación Nacional
+                                          República de Colombia
+Formar en
+lenguas extranjeras: Inglés !el reto!
+© Ministerio de Educación Nacional, 2006
+
+
+Estos Estándares Básicos de Competencias en Lenguas Extranjeras: Inglés están enmarcados en el tra-
+bajo que ha realizado el Ministerio de Educación Nacional para la formulación de Estándares Básicos
+de Competencias y en su Programa Nacional de Bilingüismo en convenio con British Council.
+
+
+
+Ministra de Educación Nacional, 2006
+Cecilia María Vélez White
+
+Viceministra de Educación Preescolar, Básica y Media
+Juana Inés Díaz Tafur
+
+Director de Calidad para la Educación Preescolar, Básica y Media
+Álvaro Leuro, Q.E.P.D.
+Santiago Gómez Mejía
+
+Subdirectora de Estándares y Evaluación
+Ingrid Vanegas Sánchez
+
+Jefa de la Oﬁcina Asesora de Comunicaciones
+Yirama Castaño Güiza
+
+Asesora Académica Programa Nacional de Bilingüismo
+Rosa María Cely Herrera
+
+Coordinación del proyecto MEN-British Council Colombia
+para el Programa Nacional de Bilingüismo
+Jan Van De Putte, ELT Manager, British Council
+
+Coordinación del proyecto MEN-British Council Colombia para la formulación
+de los Estándares Básicos de Competencias en Lenguas Extranjeras: Inglés
+Aída Salamanca, ELT Consultant, British Council
+
+Primera edición
+Octubre de 2006
+
+Coordinación editorial
+Espantapájaros Taller
+
+Diseño y diagramación
+Daniel Rabanal
+
+Ilustración
+Daniel Rabanal
+
+ISBN 978-958-691-292-1
+
+Impresión
+Imprenta Nacional
+
+Impreso y hecho en Colombia
+                                                Carta abierta
+L  a Revolución Educativa ha venido dando respuesta a las necesidades de cobertura y calidad que requiere el país para al-
+   canzar mejores condiciones de desarrollo social y económico y mejorar la calidad de vida de la población. Para cumplir este
+objetivo, el Plan de Desarrollo Educativo de esta administración continúa trabajando tres pilares: ampliar la cobertura educativa,
+mejorar la calidad de la educación y mejorar la eﬁciencia del sector educativo.
+
+          En este contexto, con el ﬁn de mejorar la calidad del sistema educativo y con miras a adecuarlo a las exigencias
+actuales y futuras del país, el Ministerio de Educación Nacional deﬁne y socializa estándares para todos los niveles de la educa-
+ción, de manera que los propósitos del sistema educativo se uniﬁquen en forma coherente. Así, inicialmente se formularon los
+estándares básicos de competencia en lenguaje, matemáticas, ciencias naturales, ciencias sociales y ciudadanas. A este grupo de
+estándares se suman los Estándares Básicos de Competencias en Lenguas Extranjeras: Inglés, los cuales adicionalmente contribuyen
+a que los estudiantes colombianos se preparen para afrontar las exigencias del mundo globalizado. La cartilla que hoy presenta-
+mos es un reto que el Ministerio, a través del Programa Nacional de Bilingüismo, entrega al país con el propósito de contribuir
+a tener ciudadanos y ciudadanas capaces de comunicarse en inglés, con estándares internacionalmente comparables.
+
+         El Gobierno Nacional tiene el compromiso fundamental de crear las condiciones para que los colombianos desarro-
+llen competencias comunicativas en otra lengua. Tener un buen nivel de inglés facilita el acceso a oportunidades laborales y
+educativas que ayudan a mejorar la calidad de vida. Ser competente en otra lengua es esencial en el mundo globalizado, el cual
+exige poderse comunicar mejor, abrir fronteras, comprender otros contextos, apropiar saberes y hacerlos circular, entender y
+hacerse entender, enriquecerse y jugar un papel decisivo en el desarrollo del país. Ser bilingüe amplía las oportunidades para ser
+más competentes y competitivos.
+
+           Los Estándares de Competencia en Lengua Extranjera: Inglés, al igual que los estándares para otras áreas, constituyen
+“criterios claros y públicos que permiten establecer cuáles son los niveles básicos de calidad a los que tienen derecho los niños
+y las niñas de todas las regiones de Colombia”. Con ellos, estamos diciéndole a la comunidad educativa y a los padres de familia,
+qué es lo que los niños y niñas deben aprender al ﬁnal de cada grupo de niveles y qué deben ser capaces de hacer con eso que
+aprendieron, para que puedan desenvolverse de manera efectiva en el mundo estudiantil y laboral.
+
+          Así mismo, los estándares de inglés constituyen una orientación fundamental para que los profesores de inglés, los
+directivos y los padres de familia tengan claridad sobre las competencias comunicativas que se espera que desarrollen los niños
+y niñas de los niveles Básico y Medio, para ayudarles a lograr la meta planteada en el Documento Visión Colombia 2019. Dicha
+meta plantea que los estudiantes de Undécimo Grado alcancen un nivel intermedio de competencia en inglés (Nivel B1, según
+el Marco Común Europeo de Referencia para Lenguas: Aprendizaje, Enseñanza y Evaluación), que les permita comunicarse en el
+idioma, apropiarse de conocimientos y utilizarlos efectivamente en situaciones reales de comunicación.
+
+         El ideal de tener colombianos capaces de comunicarse en inglés con estándares internacionalmente comparables ya
+no es un sueño, es una realidad y sólo podremos llegar a cumplir los propósitos establecidos si contamos con maestras y maes-
+tros convencidos y capaces de llevar a los niños y niñas a comunicarse en este idioma.
+
+
+
+
+Cecilia María Vélez White
+Ministra de Educación Nacional
+Contenido
+
+
+
+
+     • 1. Algunos conceptos clave en el Programa Nacional de Bilingüismo              5
+  • 2. Los estándares en el contexto del Programa Nacional de Bilingüismo             6
+                                    • 3. ¿Por qué enseñar inglés en Colombia?         7
+         • 4. Fundamentos que subyacen a la organización de los estándares           10
+                                            • 5. La estructura de los estándares     14
+                          • Estándares básicos de inglés de Primero a Tercero        18
+                           • Estándares básicos de inglés de Cuarto a Quinto         20
+                            • Estándares básicos de inglés de Sexto a Séptimo        22
+                          • Estándares básicos de inglés de Octavo a Noveno          24
+                       • Estándares básicos de inglés de Décimo a Undécimo           26
+                 • 6. Recomendaciones para la apropiación de los estándares          28
+                                   • 7. Los estándares en la práctica cotidiana      32
+                                                        • 8. Bibliografía de apoyo   38
+                                                            • 9. Agradecimientos     39
+
+
+
+
+                                            4
+                                                                                                           1
+                     Algunos conceptos clave
+             en el Programa Nacional de Bilingüismo
+
+S   er bilingüe es esencial en el mundo globalizado.
+    Por ello, el Ministerio de Educación Nacional, a
+través del Programa Nacional de Bilingüismo, im-
+                                                            o debido a la permanencia en un país extranje-
+                                                            ro. Algunas veces se adquiere durante la infancia;
+                                                            también puede aprenderse en el contexto esco-
+pulsa políticas educativas para favorecer, no sólo el       lar formal, bajo condiciones pedagógicas especial-
+desarrollo de la lengua materna y el de las diver-          mente favorables, particularmente en el caso de
+sas lenguas indígenas y criollas, sino también para         los programas intensivos de educación bilingüe.
+fomentar el aprendizaje de lenguas extranjeras,
+como es el caso del idioma inglés.                                   La lengua extranjera, en cambio, es aque-
+                                                            lla que no se habla en el ambiente inmediato y
+        Con el propósito de brindar un contex-              local, pues las condiciones sociales cotidianas no
+to amplio a la lectura de los estándares, convie-           requieren su uso permanente para la comunica-
+ne hacer algunas precisiones acerca de lo que el            ción. Una lengua extranjera se puede aprender
+Ministerio de Educación entiende por bilingüismo,           principalmente en el aula y, por lo general, el estu-
+lengua extranjera y segunda lengua.                         diante está expuesto al idioma durante períodos
+                                                            controlados. A pesar de no ser usada en circuns-
+         El bilingüismo se reﬁere a los diferentes          tancias diferentes a las académicas, los estudiantes
+grados de dominio con los que un individuo logra            de una lengua extranjera pueden alcanzar altos
+comunicarse en más de una lengua y una cultura.             niveles de desempeño para ser comunicadores
+Estos diversos grados dependen del contexto en              eﬁcientes cuando así lo requieran.
+el cual se desenvuelve cada persona. Así pues, se-
+gún el uso que se haga de otras lenguas distintas a                 En el contexto colombiano y para los al-
+la materna, éstas adquieren el carácter de segunda          cances de esta propuesta, el inglés tiene carácter
+lengua o de lengua extranjera.                              de lengua extranjera. Dada su importancia como
+                                                            lengua universal, el Ministerio de Educación ha es-
+          La segunda lengua es aquella que resulta          tablecido dentro de su política mejorar la calidad
+imprescindible para actividades oﬁciales, comer-            de la enseñanza del inglés, permitiendo mejores
+ciales, sociales y educativas o la que se requiere          niveles de desempeño en este idioma. Así pues,
+para la comunicación entre los ciudadanos de un             se pretende que los estudiantes al egresar del sis-
+país. Generalmente se adquiere por necesidad en             tema escolar, logren un nivel de competencia en
+la calle, en la vida diaria, por razones de trabajo         inglés B1 (Pre intermedio).
+
+
+                                                        5
+2
+                     Los estándares en el contexto del
+                    Programa Nacional de Bilingüismo
+El Programa Nacional de Bilingüismo se orienta a                 de desempeño paulatinos que va logrando el es-
+“lograr ciudadanos y ciudadanas capaces de comu-                 tudiante de una lengua. La tabla No. 1 demuestra
+nicarse en inglés, de tal forma que puedan insertar              cómo el Ministerio de Educación ha adoptado di-
+al país en los procesos de comunicación universal,               chos niveles como metas puntuales para las dife-
+en la economía global y en la apertura cultural,                 rentes poblaciones del sistema educativo.
+con estándares internacionalmente comparables”.
+Este propósito implica un plan estructurado de                           Si bien se adoptó la escala de niveles con
+desarrollo de las competencias comunicativas a lo                la terminología que emplea el Marco Común Eu-
+largo del sistema educativo.                                     ropeo, consideramos importante relacionarlos con
+                                                                 los nombres que tradicionalmente utilizan los do-
+         Con el ﬁn de dar coherencia a dicho plan,               centes para denominar los diversos niveles de des-
+fue necesaria la adopción de un lenguaje común                   empeño. Invitamos a adoptar esta nomenclatura,
+que estableciera las metas de nivel de desempeño                 para asegurar un lenguaje común que facilite el tra-
+en el idioma a través de las diferentes etapas del               bajo en equipo hacia el logro de las mismas metas.
+proceso educativo. Por ello, el Ministerio de Educa-
+ción escogió el “Marco Común Europeo de Referen-                         Los estándares presentados se articulan
+cia para Lenguas: Aprendizaje, Enseñanza y Evalua-               con esas metas, estableciendo lo que los estudian-
+ción”, un documento desarrollado por el Consejo                  tes deben saber y poder hacer para demostrar un
+de Europa, en el cual se describe la escala de niveles           nivel de dominio B1, al ﬁnalizar Undécimo Grado.
+
+                                                                                                              Tabla No. 1
+    NIVELES SEGÚN EL MARCO   NOMBRE COMÚN DEL    NIVEL EDUCATIVO EN EL QUE SE ESPERA   METAS PARA EL SECTOR
+    COMÚN EUROPEO            NIVEL EN COLOMBIA   DESARROLLAR CADA NIVEL DE LENGUA      EDUCATIVO A 2019
+
+    A1                       Principiante        Grados 1 a 3
+    A2                       Básico              Grados 4 a 7
+    B1                       Pre intermedio      Grados 8 a 11                         •Nivel mínimo para el 100% de los
+                                                                                        egresados de Educación Media.
+    B2                       Intermedio          Educación Superior                    •Nivel mínimo para docentes de
+                                                                                        inglés.
+                                                                                       •Nivel mínimo para profesionales de
+                                                                                        otras carreras.
+
+    C1                       Pre avanzado                                              •Nivel mínimo para los nuevos egre-
+                                                                                        sados de licenciaturas en idiomas.
+    C2                       Avanzado
+
+
+                                                           6
+                                                                                                             3
+                     ¿Por qué enseñar inglés en Colombia?
+                                Nunca ha habido una época en la que tantas naciones necesitaran hablarse entre sí.
+                           Nunca ha habido una época en la que tanta gente haya querido viajar a tantos lugares. …
+                                                   Y nunca ha sido más urgente la necesidad de una lengua global.
+                                                                                                         D. Crystal1
+
+
+
+
+E   l mundo actual se caracteriza por la comunica-
+    ción intercultural, por el creciente ritmo de los
+avances cientíﬁcos y tecnológicos y por los pro-
+                                                                 ría de las instituciones educativas colombianas ha
+                                                                 optado por ofrecer a sus estudiantes la oportuni-
+                                                                 dad de aprender el inglés como lengua extranjera.
+cesos de internacionalización. Estas circunstancias              Con ello pretenden brindar un lenguaje común
+plantean la necesidad de un idioma común que le                  que permita a niños, niñas y jóvenes mayor acceso
+permita a la sociedad internacional acceder a este               al mundo de hoy. Este hecho se ve conﬁrmado
+nuevo mundo globalizado.                                         por los datos suministrados por el Icfes respecto a
+                                                                 las pruebas del 2004, según los cuales el noventa y
+         La educación permite el desarrollo hu-                  nueve por ciento de los estudiantes seleccionaron
+mano y ofrece respuestas a los ciudadanos que                    el inglés en el examen de estado.
+conforman la sociedad, en los diversos momentos
+de la historia. Particularmente, en Colombia, la Ley
+General de Educación establece como uno de sus
+ﬁnes “El estudio y la comprensión crítica de la cul-
+tura nacional y de la diversidad étnica y cultural del
+país, como fundamento de la unidad nacional y de
+su identidad”. En la misma ley se ﬁjan como objeti-
+vos de la Educación Básica y Media “La adquisición
+de elementos de conversación y de lectura, al menos
+en una lengua extranjera” y “La comprensión y ca-
+pacidad de expresarse en una lengua extranjera”.
+
+        Teniendo en cuenta esta reglamentación
+y haciendo uso de su autonomía, la gran mayo-
+1. D. Crystal, English as a Global Language, Cambridge
+University Press, 1998.
+
+
+
+                                                             7
+El aprendizaje de una lengua                             • Aprender otra lengua favorece el desarrollo de
+extranjera y su relación                                   un mayor grado de conciencia metalingüística y
+con el desarrollo personal                                 aumenta la habilidad para apreciar lo arbitrario
+                                                           y lo convencional de los símbolos lingüísticos.
+         Aprender una lengua extranjera es una
+oportunidad invaluable para el desarrollo social,
+cultural y cognitivo de los estudiantes porque:
+                                                            La conciencia metalingüística se reﬁere a la capacidad para
+• Disminuye el etnocentrismo y permite a los                pensar en la lengua como objeto de estudio. Casi siempre
+  individuos apreciar y respetar el valor de su             uno habla sin ﬁjarse en la forma como usa su lengua ma-
+                                                            terna. Pero, cuando aprende otro idioma, se detiene a pen-
+  propio mundo, lo mismo que desarrollar el                 sar en detalles a los que antes no había prestado atención.
+  respeto por otras culturas. El aprendizaje de             Por ejemplo, se pregunta cómo se conjugan los verbos, se
+  una lengua extranjera fomenta el respeto y la             ﬁja en diferencias de género y número… y descubre claves
+                                                            para entender las convenciones y los secretos del lenguaje.
+  valoración de la pluralidad y de las diferen-
+  cias, tanto en el entorno inmediato, como en
+  el globalizado.
+
+• Apoya a los estudiantes en la práctica de la
+  interacción social y en la negociación de signi-
+  ﬁcados. Así mismo, mejora su capacidad para
+  entablar relaciones con otras personas y para
+  desenvolverse en situaciones nuevas.
+
+• Dada la naturaleza de las diferentes compe-
+  tencias que se desarrollan en el aprendizaje de
+  una lengua extranjera, el individuo aumenta su
+  conciencia de cómo aprende.
+
+• El individuo desarrolla mayor conciencia lin-
+  güística, lo que se traduce en un proceso de
+  monitoreo de la lengua que está aprendiendo,
+  de los hablantes de ese idioma y de la cultura
+  de donde provienen. En consecuencia, acentúa
+  también la conciencia social que se reﬂeja en la
+  lengua.
+
+
+
+                                                     8
+• Por medio del pensamiento conceptual, de               Razones para aprender inglés
+  la habilidad del habla y del manejo de signos,
+  símbolos y signiﬁcados, el ser humano amplía                    Además de todas las oportunidades que
+  cada vez más sus potencialidades síquicas              se abren con el manejo de una lengua extranjera,
+  superiores como la memoria mediatizada,                el inglés se ha convertido en una herramienta muy
+  el pensamiento lógico-verbal y la conciencia.          importante para la educación. He aquí algunas ra-
+  Debido a que el aprendizaje de una lengua es           zones por las cuales vale la pena aprenderlo:
+  un proceso sistémico, el aprendiz tiene que
+  ejercitar un control de las diferentes etapas          • Es la lengua internacional más difundida y es un
+  que lo llevan, poco a poco, a un nivel de des-           instrumento de comunicación estratégico en
+  empeño.                                                  diversas áreas del desarrollo humano.
+
+• Durante el proceso de acercamiento a una               • Estimula al estudiante a abrir su mente, a acep-
+  lengua extranjera se generan nuevos aprendi-             tar y comprender nuevas culturas y a promover
+  zajes que van más allá de lo lingüístico y lo            el intercambio entre diferentes sociedades.
+  local. Así, por ejemplo, un estudiante puede
+  hacer uso de publicaciones escritas en una             • Permite el acceso a becas y pasantías fuera del
+  lengua extranjera para estar más al tanto de             país. Es muy importante que los jóvenes colom-
+  la realidad nacional y mundial y ello le permite         bianos puedan aprovechar, en igualdad de con-
+  tomar decisiones que inciden en su realidad.             diciones, las oportunidades educativas que se
+                                                           ofrecen en el exterior y que requieren niveles
+• Al igual que sucede con la lengua materna, el            de desempeño especíﬁcos en inglés.
+  conocimiento de una lengua extranjera contri-
+  buye a la formación de conceptos, al razona-           • Ofrece mayores y mejores oportunidades la-
+  miento lógico y al desarrollo de la creatividad.         borales.
+  Por ello inﬂuye en el dominio de otras discipli-
+  nas como las matemáticas, las ciencias sociales,       • Facilita el intercambio de conocimientos y ex-
+  la literatura y las artes.                               periencias con otros países cuya lengua oﬁcial es
+                                                           diferente al inglés, porque permite la comunica-
+                                                           ción a través de un idioma común y difundido.
+
+
+
+
+                                                     9
+4
+                     Fundamentos que subyacen
+                 a la organización de los estándares
+
+P   ara organizar los estándares de inglés en una
+    secuencia que facilite el trabajo paulatino du-
+rante los diversos grados de la Educación Básica y
+                                                           autonomía escolar, podrán proponerse alcanzar
+                                                           niveles más altos, si las características regionales
+                                                           y culturales de su entorno lo permiten, teniendo
+Media, partimos de los diversos niveles de desem-          como punto de referencia los estándares bási-
+peño que deben lograrse a lo largo del proceso             cos de competencias.
+de aprendizaje y establecimos las competencias
+requeridas.                                                        Con el ﬁn de permitir un desarrollo inte-
+                                                           grado y gradual del idioma a través de los diver-
+Los niveles de                                             sos niveles de la educación, los Estándares Básicos
+desempeño en inglés                                        de Competencias en Lenguas Extranjeras: Inglés se
+                                                           agrupan en conjuntos de grados, así: de Primero a
+         Como ya se explicó en la página 6, el             Tercero, de Cuarto a Quinto, de Sexto a Séptimo,
+Marco Común Europeo propone seis niveles                   de Octavo a Noveno y de Décimo a Undécimo.
+de desempeño. En la Educación Básica y Media,              Para cada grupo de grados se ha establecido lo
+nos concentraremos en llevar a los estudiantes             que los estudiantes deben saber y saber hacer
+a alcanzar el nivel B1. Aunque se espera que, a            en el idioma al ﬁnalizar su paso por dichos gru-
+lo largo de la Educación Superior, los estudian-           pos de grados y se ha deﬁnido también un nivel
+tes desarrollen niveles intermedios y avanzados            de desempeño especíﬁco que es homologable,
+de inglés, durante la Educación Básica y Media las         tanto con las metas del Ministerio de Educación,
+instituciones educativas, dentro del marco de la           como con los niveles del Marco Común Europeo
+                                                           (MCE).
+
+     Tabla No. 2
+
+      GRUPOS DE GRADOS       NIVELES MCE
+
+      Décimo a Undécimo                                              B 1.2            Pre intermedio 2
+      Octavo a Noveno                B1
+                                                                B 1.1                 Pre intermedio 1
+      Sexto a Séptimo                                      A 2.2                      Básico 2
+                                    A2
+      Cuarto a Quinto                                 A 2.1                           Básico 1
+      Primero a Tercero             A1          A1                                    Principiante
+
+
+                                                      10
+        Como una forma de contribuir a la deﬁ-                             La competencia comunicativa
+nición de procesos realistas y de metas alcanza-
+bles en cada grupo de grados, el nivel de desem-                                   Al igual que en otras áreas, los estánda-
+peño A2 se subdividió en dos niveles: el A 2.1 y                           res de inglés son criterios claros que permiten a
+el A 2.2. A su vez, el nivel B1 se subdividió en los                       los estudiantes y a sus familias, a los docentes y
+niveles B 1.1 y B 1.2.                                                     a las instituciones escolares, a las Secretarías de
+                                                                           Educación y a las demás autoridades educativas,
+         Resulta importante insistir en que esta                           conocer lo que se debe aprender. Sirven, además,
+organización constituye un punto de referencia y                           como punto de referencia para establecer lo que
+que es posible superar los niveles en cada grupo                           los estudiantes están en capacidad de saber sobre
+de grados. La tarea de todas las instituciones edu-                        el idioma y lo que deben saber hacer con él en
+cativas es velar por que sus planes de estudio y                           un contexto determinado.
+las estrategias que se empleen contemplen, como
+mínimo, el logro de estos estándares en dichos                                     El conjunto de saberes, conocimientos,
+grupos de grados y ojalá los superen, conforme a                           destrezas y características individuales que permi-
+las particularidades de sus proyectos educativos                           te a una persona realizar acciones en un contexto
+institucionales y a sus orientaciones pedagógicas.                         determinado es lo que deﬁne las competencias.
+                                                                           En el caso del inglés se espera desarrollar la com-
+                                                                           petencia comunicativa.
+
+                                                                           La competencia comunicativa incluye:
+
+                                                                           •Competencia lingüística. Se reﬁere al conocimien-
+                                                                             to de los recursos formales de la lengua como
+                                                                             sistema y a la capacidad para utilizarlos en la
+                                                                             formulación de mensajes bien formados y signi-
+                                                                             ﬁcativos. Incluye los conocimientos y las destre-
+                                                                             zas léxicas, fonológicas, sintácticas y ortográﬁcas,
+   Los nombres asignados a cada nivel pretenden establecer
+   una nomenclatura común, comprensible a la comunidad. Sin                  entre otras. Esta competencia implica, no sólo el
+   embargo, no coinciden necesariamente con los nombres que                  manejo teórico de conceptos gramaticales, or-
+   las instituciones de enseñanza de inglés, los textos escolares o          tográﬁcos o semánticos, sino su aplicación en
+   el Marco Común Europeo utilizan para denominar sus cursos o
+   las diferentes etapas de sus programas. Para determinar si un             diversas situaciones. (Por ejemplo, hacer asocia-
+   curso o un libro de texto responde a las metas propuestas en              ciones para usar el vocabulario conocido en otro
+   los estándares hay que analizar los logros, las competencias,             contexto o aplicar las reglas gramaticales apren-
+   las habilidades, los contenidos y los niveles de desempeño que
+   propone.                                                                  didas en la construcción de nuevos mensajes).
+
+
+                                                                      11
+.
+•Competencia pragmática. Se relaciona con                              Desarrollar esas habilidades y saberes per-
+    el uso funcional de los recursos lingüísticos y            mite a los estudiantes ampliar sus conocimientos
+    comprende, en primer lugar, una competencia                sobre el mundo, explorar sus habilidades sociales
+    discursiva que se reﬁere a la capacidad de or-             y conocer los aspectos culturales propios de la
+    ganizar las oraciones en secuencias para pro-              lengua que se aprende.
+    ducir fragmentos textuales. En segundo lugar,
+    implica una competencia funcional para co-                         Las anteriores consideraciones se relacio-
+    nocer, tanto las formas lingüísticas y sus funcio-         nan con el informe La educación encierra un tesoro,
+    nes, como el modo en que se encadenan unas                 presentado por la Comisión Internacional sobre
+    con otras en situaciones comunicativas reales.             la Educación para el Siglo XXI de la Unesco. Este
+                                                               documento, en el cual se proponen como pilares
+•Competencia sociolingüística. Se reﬁere al conoci-            de la educación, “aprender a conocer, aprender a
+    miento de las condiciones sociales y culturales que        hacer, aprender a vivir juntos y aprender a ser”2, nos
+    están implícitas en el uso de la lengua. Por ejem-         inspiró para resaltar en este documento la impor-
+    plo, se emplea para manejar normas de cortesía             tancia de trabajar desde la clase de inglés:
+    y otras reglas que ordenan las relaciones entre
+    generaciones, géneros, clases y grupos sociales.           •Conocimientos declarativos. Son los derivados,
+    También se maneja al entrar en contacto con                   por una parte de la experiencia y, por otra, del
+    expresiones de la sabiduría popular o con las                 aprendizaje formal, es decir, de los conocimien-
+    diferencias de registro, de dialecto y de acento.             tos académicos. A ellos se suma lo que podría
+                                                                  llamarse el “conocimiento del mundo” que in-
+         La competencia comunicativa no se puede                  cluye los valores y las creencias compartidas
+trabajar aisladamente pues implica un saber/hacer                 por grupos sociales de otros países y regiones.
+ﬂexible, que se actualiza en contextos signiﬁca-                  Por ejemplo, las creencias religiosas, los tabúes, la
+tivos y que supone la capacidad para usar los                     historia y las tradiciones, entre otras, son esen-
+conocimientos acerca de la lengua en diversas                     ciales para la comunicación intercultural.
+situaciones, tanto dentro como fuera de la vida
+escolar. Por esta razón, la propuesta abarca tam-              •Destrezas y habilidades. Incluyen, por una parte, las
+bién el desarrollo de habilidades y saberes que                   destrezas y habilidades prácticas (vitales, profe-
+se relacionan con las dimensiones ética, estéti-                  sionales, deportivas; gustos, aﬁciones, artes) y, por
+ca, social y cultural de la lengua que se aprende.                otra parte, las interculturales, como la capacidad
+Más allá del conocimiento de un código aislado,
+es importante ofrecer a los niños, las niñas y los             2. La educación encierra un tesoro. Informe a la Unesco de la Comisión
+jóvenes, posibilidades reales para comprender e                Internacional sobre la Educación para el Siglo XXI, presidida por
+                                                               Jacques Delors.
+interpretar su realidad.
+
+
+                                                          12
+  de relacionarse, la sensibilidad, la posibilidad de
+  superar las relaciones estereotipadas, etc.
+
+•Conocimiento personal. Abarca la suma de las ca-
+  racterísticas individuales, los rasgos y las actitu-
+  des que conforman la personalidad y que inﬂu-
+  yen en la imagen que tenemos sobre nosotros
+  mismos y sobre los demás. Así mismo, se reﬁere
+  a la voluntad de entablar relaciones con otras
+  personas e incluye, por lo tanto, motivaciones,
+  actitudes, valores, creencias y factores de perso-
+  nalidad, entre otros.
+
+•Habilidad para aprender. Se concibe como la
+  predisposición o la habilidad para descubrir lo
+  que es diferente, bien sea que se trate de otra
+  lengua o cultura, de otras personas o de nue-
+  vas áreas de conocimiento. Incluye también la
+  conciencia sobre cómo funcionan la lengua y
+  la comunicación, las habilidades de estudio y las
+  estrategias heurísticas.
+
+
+                            Heurística viene de eureka y se                  Es importante resaltar que todos estos
+                            describe como el arte del des-
+                            cubrimiento y de la invención.
+                                                                    conocimientos, destrezas y habilidades se desa-
+                            Esta posibilidad de resolver            rrollan, existen y se maniﬁestan de manera estre-
+                            problemas mediante la creativi-         cha porque están íntimamente relacionadas entre
+                            dad, contribuye al aprendizaje
+                            del inglés. He aquí algunas es-
+                                                                    sí. Para ilustrar esta interrelación basta ver cómo,
+                            trategias heurísticas:                  en el caso del aprendizaje del inglés o de cualquier
+                                                                    lengua extranjera, el desarrollo de la competencia
+                            • Si no se entiende una pala-
+                              bra, es posible deducirla por
+                                                                    comunicativa sólo es posible cuando se desarro-
+                              el contexto.                          llan, en forma paralela, otros saberes que el estu-
+                            • Si no se sabe cómo decir algo,        diante adquiere en las distintas áreas del currícu-
+                              se busca apoyo en el lenguaje
+                              gestual.
+                                                                    lo y que le dan contenido a sus intervenciones y
+                            • Si hay un problema abstracto,         también cuando desarrolla habilidades y destrezas
+                              se puede examinar un ejem-            para interactuar de manera natural en situaciones
+                              plo concreto.
+                                                                    escolares.
+
+                                                               13
+5
+                     La estructura de los estándares
+
+E   n las páginas siguientes se encuentran los cuadros de estándares para la Educación Básica y Media. Es-
+    tos están organizados en cinco grupos de grados que corresponden, además, al desarrollo progresivo
+de los niveles de desempeño en inglés.
+
+        Como se observa a continuación, en cada grupo de grados se desarrollan los estándares necesa-
+rios para llevar a los estudiantes a un nivel de desempeño determinado, así:
+
+
+                                                        PRIMERO A TERCERO        Principiante          A1
+
+                      1a3                               CUARTO A QUINTO          Básico 1              A 2.1
+                 Básica Primaria                        SEXTO A SÉPTIMO          Básico 2              A 2.2
+
+                   Principiante                         OCTAVO A NOVENO          Pre intermedio 1 B 1.1
+                       (A1)                             DÉCIMO A UNDÉCIMO        Pre intermedio 2 B 1.2
+
+
+      Antes de iniciar la lectura de los estándares de los diversos grados, conviene examinar la manera
+como éstos han sido estructurados, para observar su coherencia horizontal y vertical:
+
+Lectura horizontal de los cuadros
+
+        En la parte superior, junto al grupo de grados, hay un estándar general. Este ofrece una descripción
+amplia de lo que las niñas, los niños o los jóvenes colombianos deben saber y saber hacer al ﬁnalizar su paso
+por ese grupo de grados. La función del estándar general es deﬁnir el nivel de desempeño en el idioma.
+
+
+
+
+                                         El estándar general encabeza cada cuadro y utiliza personajes, a manera de
+                                         historieta, para explicar lo que los estudiantes deben saber y saber hacer.
+
+
+                                                      14
+       A continuación se encuentran cinco columnas, bajo las cuales se agrupan los estándares
+especíﬁcos. Las dos columnas azules de la izquierda reúnen estándares que corresponden a habilidades
+de comprensión y las tres de la derecha –en marrón–- reúnen aquellos relacionados con habilidades de
+producción.
+
+                                                                                                                                                                                     Las de producción se
+          Las habilidades de
+                                                                                                                                                                                     subdividen en habilidades
+          comprensión se
+                                                                                                                                                                                     relacionadas con la escritura
+          subdividen, a su vez, en
+                                                                                                                                                                                     y con el uso del lenguaje
+          habilidades de escucha y
+                                                                                                                                                                                     oral, tanto en la producción
+          de lectura.
+                                                                                                                                                                                     de monólogos, como en la
+                                                                                                                                                                                     conversación.
+
+
+
+                             Escucha                                                              Lectura                                                     Escritura                                    Monólogos                                  Conversación
+
+
+
+ • Reconozco cuando me hablan en inglés y reacciono                    • Identiﬁco palabras relacionadas entre sí sobre temas                  • Copio y transcribo palabras que              • Recito y canto rimas, poemas y             • Respondo a saludos y a despedidas.      2
+   de manera verbal y no verbal.                                2, 3     que me son familiares.                                    1, 2          comprendo y que uso con frecuencia             trabalenguas que comprendo, con            • Respondo a preguntas sobre
+ • Entiendo cuando me saludan y se despiden de mí.              2, 3   • Reconozco palabras y frases cortas en inglés en libros,                 en el salón de clase.                    1     ritmo y entonación adecuados.       1, 3     cómo me siento.                         2
+ • Sigo instrucciones relacionadas con actividades de clase y            objetos, juguetes, propagandas y lugares de mi escuela.     3         • Escribo el nombre de lugares y               • Expreso mis sentimientos y estados de      • Uso expresiones cotidianas para
+   recreativas propuestas por mi profesor.                      1, 2   • Relaciono ilustraciones con oraciones simples.              1           elementos que reconozco en una                 ánimo.                              1, 2     expresar mis necesidades inmediatas
+ • Comprendo canciones, rimas y rondas infantiles, y lo                • Reconozco y sigo instrucciones sencillas, si están                      ilustración.                             1   • Menciono lo que me gusta y                   en el aula.                          1, 2
+   demuestro con gestos y movimientos.                          2, 3      ilustradas.                                              1, 2        • Respondo brevemente a las                      lo que no me gusta.                 1, 2   • Utilizo el lenguaje no verbal cuando
+ • Demuestro comprensión de preguntas sencillas sobre mí,              • Puedo predecir una historia a partir del título, las                    preguntas “qué, quién, cuándo                • Describo lo que estoy haciendo.        2     no puedo responder verbalmente a
+   mi familia y mi entorno.                                       1      ilustraciones y las palabras clave.                       1, 2          y dónde”, si se reﬁeren a mi familia,        • Nombro algunas cosas que                     preguntas sobre mis preferencias.
+ • Comprendo descripciones cortas y sencillas de objetos y             • Organizo la secuencia de una historia sencilla.           1, 2          mis amigos o mi colegio.                 1     puedo hacer y que no puedo hacer. 1, 2       Por ejemplo, asintiendo o negando
+   lugares conocidos.                                             2    • Utilizo diagramas para organizar la información de                    • Escribo información personal en              • Describo lo que hacen algunos                con la cabeza.                       2, 3
+ • Identiﬁco a las personas que participan en una                        cuentos cortos leídos en clase.                           1, 2          formatos sencillos.                   1, 2     miembros de mi comunidad.              2   • Expreso e indico necesidades
+   conversación.                                                  3    • Disfruto la lectura como una actividad de esparcimiento               • Escribo mensajes de invitación               • Uso gestos y movimientos corporales          personales básicas relacionadas
+ • Sigo la secuencia de un cuento corto apoyado en                       que me ayuda a descubrir el mundo.                                      y felicitación usando formatos                 para hacerme entender mejor.        2, 3     con el aula.                         2, 3
+   imágenes.                                                    1, 2                                                                              sencillos.                           1, 2   • Describo algunas características           • Respondo a preguntas sobre
+ • Entiendo la idea general de una historia contada                                                                                            • Demuestro conocimiento de las                  de mí mismo, de otras personas, de           personas, objetos y lugares de
+   por mi profesor cuando se apoya en movimientos,                                                                                               estructuras básicas del inglés           1     animales, de lugares y del clima.   1, 2      mi entorno.                            2
+   gestos y cambios de voz.                                     2, 3                                                                                                                          • Participo en representaciones              • Pido que me repitan el mensaje
+ • Reconozco que hay otras personas como yo que                                                                                                                                                 cortas; memorizo y comprendo los             cuando no lo comprendo.
+   se comunican en inglés.                                        3                                                                                                                             parlamentos.                        1, 2   • Participo activamente en juegos
+ • Comprendo secuencias relacionadas con hábitos                                                                                                                                                                                             de palabras y rondas.                1, 3
+   y rutinas.                                                     2                                                                                                                                                                        • Refuerzo con gestos lo que digo
+                                                                                                                                                                                                                                             para hacerme entender.                  3
+
+
+
+
+                                                                                                                                                                                                              En esta última columna,
+                                                                                                                                                                                                              se especiﬁca la habilidad
+                                                                                                                                                                                                              para interactuar con uno o
+                                                                                                                                                                                                              varios hablantes.
+
+
+        Es muy importante recalcar que las columnas están separadas por razones de claridad, pero que
+tienen múltiples intersecciones en la práctica. Durante el aprendizaje de una lengua, la comprensión y la
+producción se desarrollan de forma estrecha y no aislada. Recomendamos a los docentes hacer una lec-
+tura de conjunto de los estándares para garantizar el desarrollo integral de las habilidades en las diversas
+experiencias propuestas a los estudiantes.
+
+                                                                                                                                          15
+Lectura vertical de los cuadros
+
+        Ahora haremos una lectura vertical de los estándares especíﬁcos, con el propósito de señalar
+algunos criterios fundamentales acerca de su estructuración.
+
+                                                Escucha
+
+                    • Reconozco cuando me hablan en inglés y reacciono
+                      de manera verbal y no verbal.                                2, 3
+                    • Entiendo cuando me saludan y se despiden de mí.              2, 3
+                    • Sigo instrucciones relacionadas con actividades de clase y
+                      recreativas propuestas por mi profesor.                      1, 2
+                    • Comprendo canciones, rimas y rondas infantiles, y lo
+                      demuestro con gestos y movimientos.                          2, 3
+                    • Demuestro comprensión de preguntas sencillas sobre mí,
+                      mi familia y mi entorno.                                       1
+                    • Comprendo descripciones cortas y sencillas de objetos y             Esta columna corresponde a las
+                      lugares conocidos.                                             2    habilidades de escucha y en ella
+                    • Identiﬁco a las personas que participan en una                      se incluyen las referencias a las
+                      conversación.                                                  3    competencias comunicativas.
+                    • Sigo la secuencia de un cuento corto apoyado en
+                      imágenes.                                                    1, 2
+                    • Entiendo la idea general de una historia contada
+                      por mi profesor cuando se apoya en movimientos,
+                      gestos y cambios de voz.                                     2, 3
+                    • Reconozco que hay otras personas como yo que
+                      se comunican en inglés.                                        3
+                    • Comprendo secuencias relacionadas con hábitos
+                      y rutinas.                                                     2
+
+
+       Al observar la lista de estándares especíﬁcos agrupados bajo las columnas es importante tener
+en cuenta que éstos:
+
+• No representan etapas en el proceso de construcción de un nivel de desempeño. Es decir, no son pre-
+  rrequisitos para el logro de otros estándares y, por lo tanto, no deben ser leídos en serie hacia abajo,
+  como si el logro de uno llevara al siguiente. Los docentes y las instituciones deberán deﬁnir el orden
+  para trabajarlos y cómo relacionarlos entre sí, con el ﬁn de garantizar aprendizajes signiﬁcativos.
+
+• Se desarrollan e interrelacionan poco a poco, como en una espiral a través del tiempo. Por ello, hay que
+  desterrar la percepción de que aparecen de manera aislada en momentos especíﬁcos del aprendizaje
+  y que, una vez logrados, dejan de trabajarse. Así como sucede con el aprendizaje de la lengua materna,
+  muchos estándares se repiten, se aﬁanzan y se profundizan en los diferentes grados y, lo que denota su
+  desarrollo secuencial en la espiral de aprendizaje, es la progresiva complejidad del lenguaje requerido y
+  los retos cada vez mayores que los docentes proponen, según el nivel cognitivo de los estudiantes.
+
+
+                                                                  16
+• En ese sentido, conviene precisar que el número de estándares propuesto para un grupo de grados
+  no puede dividirse por partes iguales (por ejemplo, seis en Segundo Grado y seis en Tercero) y que
+  tampoco puede pensarse en una separación por periodos del año escolar claramente delimitados
+  para trabajar con algunos de ellos. El conjunto de estándares se alcanza gradual e integradamente, en
+  niveles de complejidad creciente.
+
+• Es importante hacer énfasis en que los estándares especíﬁcos involucran, tanto la competencia comu-
+  nicativa, como las habilidades y saberes descritos en las páginas 12 y 13. Todos estos elementos reuni-
+  dos e interrelacionados son los que conforman las competencias básicas. Así, cada enunciado deberá
+  leerse pensando en todos los componentes de la competencia comunicativa y también en las diversas
+  habilidades y saberes que entran en juego en cada caso.
+
+• Por último, queremos llamar la atención sobre los números que se encuentran al lado de muchos es-
+  tándares especíﬁcos y que aluden a las diversas competencias comunicativas, (lingüística, pragmática y
+  sociolingüística, ver deﬁniciones en las páginas 11 y 12). En la parte inferior de cada tabla, se recuerdan
+  estas convenciones numéricas así:
+
+
+
+
+                     COMPETENCIAS COMUNICATIVAS
+   Referencias
+                     1   Competencia lingüística       2   Competencia pragmática         3   Competencia sociolingüística
+
+
+
+
+                            • Comprendo canciones, rimas y rondas infantiles, y lo
+                              demuestro con gestos y movimientos.                      2, 3
+                            • Demuestro comprensión de preguntas sencillas sobre mí,
+                              mi familia y mi entorno.                                   1
+
+
+
+
+       Esperamos que esta indicación contribuya al trabajo del aula precisando las diversas competencias
+que entran en juego, pero sin olvidar que, además de éstas, hay saberes y habilidades que ofrecen un con-
+texto más amplio al reto de lograr que los estudiantes se comuniquen en inglés.
+
+
+                                                           17
+                             En este nivel                          Comprendo historias       Desarrollo estrategias que       Comprendo el lenguaje
+                                                                    cortas narradas en un     me ayudan a entender              básico sobre mi familia,
+                                                                         lenguaje sencillo.   algunas palabras, expresiones           amigos, juegos y
+       1a3                                                                                    y oraciones que leo.            lugares conocidos, si me
+                                                                                                                                 hablan despacio y con
+Básica Primaria                                                                                                                    pronunciación clara.
+
+
+  Principiante
+      (A1)
+
+
+
+                             Escucha                                                                       Lectura
+
+
+
+• Reconozco cuando me hablan en inglés y reacciono                           • Identiﬁco palabras relacionadas entre sí sobre temas
+  de manera verbal y no verbal.                                2, 3            que me son familiares.                                             1, 2
+• Entiendo cuando me saludan y se despiden de mí.              2, 3          • Reconozco palabras y frases cortas en inglés en libros,
+• Sigo instrucciones relacionadas con actividades de clase y                   objetos, juguetes, propagandas y lugares de mi escuela.               3
+  recreativas propuestas por mi profesor.                      1, 2          • Relaciono ilustraciones con oraciones simples.                        1
+• Comprendo canciones, rimas y rondas infantiles, y lo                       • Reconozco y sigo instrucciones sencillas, si están
+  demuestro con gestos y movimientos.                          2, 3             ilustradas.                                                       1, 2
+• Demuestro comprensión de preguntas sencillas sobre mí,                     • Puedo predecir una historia a partir del título, las
+  mi familia y mi entorno.                                       1             ilustraciones y las palabras clave.                                1, 2
+• Comprendo descripciones cortas y sencillas de objetos y                    • Sigo la secuencia de una historia sencilla.                        1, 2
+  lugares conocidos.                                             2           • Utilizo diagramas para organizar la información de
+• Identiﬁco a las personas que participan en una                               cuentos cortos leídos en clase.                                    1, 2
+  conversación.                                                  3           • Disfruto la lectura como una actividad de esparcimiento
+• Sigo la secuencia de un cuento corto apoyado en                              que me ayuda a descubrir el mundo.
+  imágenes.                                                    1, 2
+• Entiendo la idea general de una historia contada
+  por mi profesor cuando se apoya en movimientos,
+  gestos y cambios de voz.                                     2, 3
+• Reconozco que hay otras personas como yo que
+  se comunican en inglés.                                        3
+• Comprendo secuencias relacionadas con hábitos
+  y rutinas.                                                     2
+
+
+
+
+                         COMPETENCIAS COMUNICATIVAS
+Referencias
+                         1    Competencia lingüística           2     Competencia pragmática                    3   Competencia sociolingüística
+
+
+
+                                                               18
+Recurro frecuentemente               Hablo en inglés, con palabras          Participo en conversaciones                          Empiezo a estructurar
+a mi lengua materna para             y oraciones cortas y aisladas,           con pronunciación clara y                 mis escritos; estoy aprendiendo
+demostrar comprensión                para expresar mis ideas y                        buena entonación.                   a leer y escribir en mi lengua
+sobre lo que leo o me dicen.         sentimientos sobre temas del                                                      materna. Por lo tanto, mi nivel de
+                                     colegio y mi familia.                                                                            inglés es más bajo.
+
+
+
+
+                  Escritura                                           Monólogos                                      Conversación
+
+
+
+ • Copio y transcribo palabras que                   • Recito y canto rimas, poemas y                     • Respondo a saludos y a despedidas.      2
+   comprendo y que uso con frecuencia                  trabalenguas que comprendo, con                    • Respondo a preguntas sobre
+   en el salón de clase.                    1          ritmo y entonación adecuados.      1, 3              cómo me siento.                         2
+ • Escribo el nombre de lugares y                    • Expreso mis sentimientos y estados                 • Uso expresiones cotidianas para
+   elementos que reconozco en una                      de ánimo.                          1, 2              expresar mis necesidades inmediatas
+   ilustración.                             1        • Menciono lo que me gusta y                           en el aula.                          1, 2
+ • Respondo brevemente a las                           lo que no me gusta.                1, 2            • Utilizo el lenguaje no verbal cuando
+   preguntas “qué, quién, cuándo                     • Describo lo que estoy haciendo.       2              no puedo responder verbalmente a
+   y dónde”, si se reﬁeren a mi familia,             • Nombro algunas cosas que                             preguntas sobre mis preferencias.
+   mis amigos o mi colegio.                 1          puedo hacer y que no puedo hacer. 1, 2               Por ejemplo, asintiendo o negando
+ • Escribo información personal en                   • Describo lo que hacen algunos                        con la cabeza.                       2, 3
+   formatos sencillos.                   1, 2          miembros de mi comunidad.             2            • Expreso e indico necesidades
+ • Escribo mensajes de invitación                    • Uso gestos y movimientos corporales                  personales básicas relacionadas
+   y felicitación usando formatos                      para hacerme entender mejor.       2, 3              con el aula.                         2, 3
+    sencillos.                           1, 2        • Describo algunas características                   • Respondo a preguntas sobre
+ • Demuestro conocimiento de las                       de mí mismo, de otras personas, de                   personas, objetos y lugares de
+   estructuras básicas del inglés.          1          animales, de lugares y del clima.  1, 2               mi entorno.                            2
+                                                     • Participo en representaciones                      • Pido que me repitan el mensaje
+                                                       cortas; memorizo y comprendo los                     cuando no lo comprendo.
+                                                       parlamentos.                       1, 2            • Participo activamente en juegos
+                                                                                                            de palabras y rondas.                1, 3
+                                                                                                          • Refuerzo con gestos lo que digo
+                                                                                                            para hacerme entender.                  3
+
+
+
+
+                                                                                                                 INGLÉS
+                                                                             19
+                            Además de                          Comprendo textos cortos,      Comprendo cuentos            Participo en conversaciones
+                            lo que logré                           sencillos e ilustrados    cortos o lo que me dice         cortas usando oraciones
+                            en el nivel                          sobre temas cotidianos,     mi profesor en clase.        con estructuras predecibles.
+      4a5                   anterior, en
+                            este nivel
+                                                                  personales y literarios.
+
+Básica Primaria
+
+     Básico 1
+     (A 2.1)
+
+
+
+                            Escucha                                                                       Lectura
+
+
+
+• Sigo atentamente lo que dicen mi profesor y mis                            • Asocio un dibujo con su descripción escrita.                       2
+  compañeros durante un juego o una actividad.                  2, 3         • Comprendo descripciones cortas sobre personas,
+• Participo en juegos y actividades siguiendo instrucciones                    lugares y acciones conocidas.                                    1, 2
+  simples.                                                      1, 2         • Ubico en un texto corto los lugares y momentos en
+• Identiﬁco los nombres de los personajes y los eventos                        que suceden las acciones.                                          1
+  principales de un cuento leído por el profesor y apoyado                   • Identiﬁco las acciones en una secuencia corta de
+  en imágenes, videos o cualquier tipo de material visual.         1           eventos.                                                         1, 2
+• Reconozco algunos estados de ánimo a través del tono o                     • Utilizo gráﬁcas para representar la información más
+  volumen de voz en una historia leída por el profesor o                       relevante de un texto.                                             2
+  en una grabación.                                                3         • Utilizo el diccionario como apoyo a la comprensión
+• Identiﬁco de quién me hablan a partir de su descripción                      de textos.
+  física.                                                       1, 2         • Identiﬁco elementos culturales como nombres
+• Comprendo información personal proporcionada por                             propios y lugares, en textos sencillos.                          1, 3
+  mis compañeros y mi profesor.                                 1, 2         • Leo y entiendo textos auténticos y sencillos sobre
+• Identiﬁco objetos, personas y acciones que me son                            acontecimientos concretos asociados a tradiciones
+  conocidas en un texto descriptivo corto leído por                            culturales que conozco (cumpleaños, navidad, etc.).              1, 3
+  el profesor.                                                  1, 2         • Reconozco, en un texto narrativo corto, aspectos como
+• Identiﬁco la secuencia de las acciones y las asocio con                      qué, quién, cuándo y dónde.                                      1, 2
+  los momentos del día, cuando alguien describe su rutina                    • Participo en juegos de búsqueda de palabras
+  diaria.                                                     1, 2, 3          desconocidas.                                                 1, 2, 3
+• Memorizo y sigo el ritmo de canciones populares de
+  países angloparlantes.                                           3
+
+
+
+
+                        COMPETENCIAS COMUNICATIVAS
+Referencias
+                        1    Competencia lingüística              2     Competencia pragmática                3    Competencia sociolingüística
+
+
+
+                                                               20
+Hablo de mí, de mis                                 Mi pronunciación     Escribo pequeños textos                          Mi vocabulario se limita a
+compañeros y de                                    es comprensible y     sencillos sobre temas de                               temas y referentes
+nuestras actividades                                hablo de manera      mi entorno.                                         cercanos y conocidos.
+cotidianas con oraciones                              lenta y pausada.
+simples, encadenadas
+lógicamente y a veces
+memorizadas. Aún se me
+diﬁculta hablar de temas
+que se salen de mi rutina
+familiar o escolar.
+
+
+
+
+                 Escritura                                     Monólogos                                       Conversación
+
+
+
+• Escribo sobre temas de mi                      • Me describo a mí o a otra persona                • Respondo a preguntas personales
+  interés.                                   2     conocida, con frases simples y                     como nombre, edad, nacionalidad
+• Escribo descripciones y                          cortas, teniendo en cuenta su edad                 y dirección, con apoyo de
+  narraciones cortas basadas en                    y sus características físicas.    1, 2, 3          repeticiones cuando sea necesario. 1, 2
+  una secuencia de ilustraciones.            2   • Uso oraciones cortas para decir                  • Puedo saludar de acuerdo con la
+• Escribo tarjetas con mensajes                    lo que puedo o no puedo hacer.       1, 2          hora del día, de forma natural y
+  cortos de felicitación o invitación. 1, 2, 3   • Deletreo palabras que me son                       apropiada.                            2, 3
+• Describo los rasgos personales                   conocidas.                              1        • Saludo cortésmente de acuerdo
+  de gente de mi entorno.                 1, 2   • Expreso en una palabra o frase                     con la edad y rango del
+• Enlazo frases y oraciones                        corta, cómo me siento.               1, 2          interlocutor.                         2, 3
+  usando conectores que expresan                 • Digo un texto corto memorizado                   • Solicito a mi profesor y a mis
+  secuencia y adición.                    1, 2     en una dramatización, ayudándome                   compañeros que me aclaren una
+• Escribo textos cortos que                        con gestos.                             3          duda o me expliquen algo sobre
+  describen mi estado de ánimo                   • Describo con oraciones simples                     lo que hablamos.                      2, 3
+  y mis preferencias.                     1, 2     el clima y determino la ropa                     • Pido y acepto disculpas de forma
+• Uso adecuadamente estructuras                    necesaria, según corresponda.        2, 3          simple y cortés.                      2, 3
+  y patrones gramaticales de uso                 • Recito un trabalenguas sencillo o                • Sigo y doy instrucciones básicas
+  frecuente.                              1, 2     una rima, o canto el coro de una                   cuando participo en juegos
+• Veriﬁco la ortografía de las                     canción.                             1, 3          conocidos.                            1, 2
+  palabras que escribo con                       • Hablo de las actividades que                     • Mantengo una conversación simple
+  frecuencia.                                1     realizo habitualmente.               1, 2          en inglés con un compañero cuando
+• Escribo pequeñas historias que                 • Busco oportunidades para usar                      desarrollo una actividad de aula.     1, 2
+  me imagino.                          1, 2, 3     lo que sé en inglés.                    3        • Pregunto y respondo sobre las
+                                                 • Puedo hablar de cantidades y                       características físicas de objetos
+                                                   contar objetos hasta mil.            1, 2          familiares.                           1, 2
+                                                                                                    • Respondo preguntas sobre mis
+                                                                                                      gustos y preferencias.                1, 2
+                                                                                                    • Puedo cortésmente llamar la
+                                                                                                      atención de mi profesor con una
+                                                                                                      frase corta.                       1, 2, 3
+
+
+
+
+                                                                                                            INGLÉS
+                                                                           21
+

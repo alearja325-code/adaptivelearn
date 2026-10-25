@@ -1,0 +1,14 @@
+{
+  "id": "dba_ciencias_naturales_v1",
+  "title": "Derechos Básicos de Aprendizaje - Ciencias Naturales V.1",
+  "type": "dba",
+  "areas": [
+    "Ciencias Naturales"
+  ],
+  "grades": "1°-11°",
+  "official_page": "https://www.colombiaaprende.edu.co/recurso-coleccion/explora-derechos-basicos-de-aprendizaje-dba-ciencias-naturales",
+  "url": "https://www.colombiaaprende.edu.co/sites/default/files/files_public/2022-06/DBA_C.Naturales-min.pdf",
+  "local_pdf": "mvp/backend/data/men_sources/pdfs/dba_ciencias_naturales_v1.pdf",
+  "download_status": "downloaded",
+  "bytes": 3998056
+}

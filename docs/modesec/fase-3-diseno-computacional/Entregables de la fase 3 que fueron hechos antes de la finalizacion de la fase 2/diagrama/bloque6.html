@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Bloque 6 — Reporte</title>
+<style>
+  body { margin:0; padding:40px; background:#FFFFFF; font-family:Helvetica,Arial,sans-serif; }
+  h1 { font-size:20px; color:#111111; margin:0 0 4px 0; }
+  p.sub { font-size:13px; color:#555555; margin:0 0 32px 0; }
+  .bloque { margin-bottom: 32px; }
+  p.caption { font-size:13px; color:#555555; margin:8px 4px 0 4px; }
+  svg { display:block; }
+</style></head><body>
+<h1>Bloque 6 — Reporte</h1><p class="sub">Reporte no es una tabla propia: es una vista calculada sobre Resultado, una por Experiencia.</p>
+<div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1050" height="520" viewBox="0 0 1050 520" font-family="Helvetica">
+<rect x="0" y="0" width="1050" height="520" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="160.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="250" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Experiencia</text>
+<rect x="660.0" y="80.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2" stroke-dasharray="6,5"/>
+<text x="750" y="115" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">Reporte</text>
+<polygon points="500.0,75.0 565.0,110 500.0,145.0 435.0,110" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="500.0" y="114" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">tiene</text>
+<line x1="340.0" y1="110" x2="435.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="355.2" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="565.0" y1="110" x2="660.0" y2="110" stroke="#555555" stroke-width="1.2"/>
+<text x="644.8" y="102.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 176.0 140.0 C 150.0 162.0, 126.0 150.0, 126.0 190.0" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="126.0" y1="190.0" x2="126.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<line x1="126.0" y1="190.0" x2="195.0" y2="190.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="190.0" rx="55.0" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="250" y="194.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id (PK)</text>
+<line x1="126.0" y1="248.0" x2="195.0" y2="248.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="248.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="252.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombre</text>
+<line x1="126.0" y1="306.0" x2="195.0" y2="306.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="306.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="310.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">estado</text>
+<line x1="126.0" y1="364.0" x2="195.0" y2="364.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="364.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="368.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">fecha_creacion</text>
+<line x1="126.0" y1="422.0" x2="195.0" y2="422.0" stroke="#888888" stroke-width="1"/>
+<ellipse cx="250" cy="422.0" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="250" y="426.0" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_invitacion</text>
+</svg><p class="caption">Fig. 6 — Reporte se dibuja con borde punteado y sin atributos porque no persiste datos propios: se recalcula a partir de Resultado cada vez que se consulta. Tiene dos vistas: la principal (grupo × evidencia, con umbrales fijos por sistema, ADR-013) y la de estudiantes/aula (historial por Inscripción, ADR-010 punto 4).</p></div>
+</body></html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Modelo Entidad-Relación — AdaptiveLearn</title>
+<style>
+  body { margin:0; padding:0 0 80px 0; background:#FFFFFF; font-family:Helvetica,Arial,sans-serif; color:#111111; }
+  .page { max-width:1300px; margin:0 auto; padding:48px 40px; }
+  h1 { font-size:26px; margin:0 0 6px 0; }
+  h2 { font-size:18px; margin:0 0 10px 0; }
+  p.sub { font-size:13.5px; color:#555555; margin:0 0 20px 0; max-width:760px; }
+  section { padding:44px 0; border-top:1px solid #E3E7ED; }
+  section:first-of-type { border-top:none; }
+  .bloque svg { display:block; max-width:100%; height:auto; }
+  p.fig-num { font-size:12.5px; color:#888888; margin:10px 4px 0 4px; max-width:900px; }
+  .unificado .bloque { width:100vw; margin-left:calc(50% - 50vw); padding:0 24px; box-sizing:border-box; }
+  .unificado .bloque svg { margin:0 auto; }
+  code { font-family:Consolas,Monaco,monospace; font-size:12.5px; background:#F3F5F8; padding:1px 5px; border-radius:3px; }
+</style></head><body>
+<div class="page">
+
+<section class="portada">
+  <p class="sub" style="color:#3B7DD8;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">MODESEC — Fase III, Diseño Computacional</p>
+  <h1>Modelo Entidad-Relación — AdaptiveLearn (rediseño)</h1>
+  <p class="sub">Notación caja-tabla (Chen + extensiones): atributos como filas dentro de la caja, columna PK/FK a la izquierda, color por categoría de entidad. Texto completo, con cada decisión trazada a su fuente, en <code>01-modelo-entidad-relacion.md</code>.</p>
+</section>
+
+<section class="unificado">
+  <h2>Modelo completo</h2>
+  <p class="sub">Las 11 entidades más la vista derivada Reporte, con sus 16 relaciones. Solo trazado ortogonal (0°/90°) — sin diagonales de ángulo libre, verificado por código, no a ojo. 4 relaciones se rutean por el margen (arriba/abajo/derecha) para no cruzar cajas intermedias: Ítem–Evidencia, Inscripción–Resultado, Reporte–Resultado y Reporte–Experiencia.</p>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="2820" height="1650" viewBox="0 0 2820 1650" font-family="Helvetica">
+<rect x="0" y="0" width="2820" height="1650" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="115.0" y="190" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="115.0" y="216" width="270" height="8" fill="#E7DEF7"/>
+<rect x="115.0" y="190" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 115.0 220 L 115.0 195 Q 115.0 190 120.0 190 L 380.0 190 Q 385.0 190 385.0 195 L 385.0 220 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="250" y="210.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">DOCENTE</text>
+<line x1="169.0" y1="220" x2="169.0" y2="308" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="123.0" y="240" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="177.0" y="240" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="177.0" y="260" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="177.0" y="280" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correo (U)</text>
+<text x="177.0" y="300" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">avatar_url</text>
+<rect x="665.0" y="160" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="665.0" y="186" width="270" height="8" fill="#E7DEF7"/>
+<rect x="665.0" y="160" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 665.0 190 L 665.0 165 Q 665.0 160 670.0 160 L 930.0 160 Q 935.0 160 935.0 165 L 935.0 190 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="800" y="180.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">EXPERIENCIA</text>
+<line x1="719.0" y1="190" x2="719.0" y2="338" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="673.0" y="210" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="727.0" y="210" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="673.0" y="230" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="727.0" y="230" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="673.0" y="250" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="727.0" y="250" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="727.0" y="270" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="727.0" y="290" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (Borrador/Publicada)</text>
+<text x="727.0" y="310" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_creacion</text>
+<text x="727.0" y="330" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_invitacion (U)</text>
+<rect x="1215.0" y="180" width="270" height="38" rx="5" ry="5" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="1215.0" y="206" width="270" height="8" fill="#F5EFE0"/>
+<rect x="1215.0" y="180" width="270" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 1215.0 210 L 1215.0 185 Q 1215.0 180 1220.0 180 L 1480.0 180 Q 1485.0 180 1485.0 185 L 1485.0 210 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="1350" y="200.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4A3A16">DBA</text>
+<line x1="1269.0" y1="210" x2="1269.0" y2="318" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="1223.0" y="230" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1277.0" y="230" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1277.0" y="250" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">area</text>
+<text x="1277.0" y="270" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grado</text>
+<text x="1277.0" y="290" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="1277.0" y="310" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">ejemplo</text>
+<rect x="1760.0" y="185" width="280" height="134" rx="6" ry="6" fill="none" stroke="#A98B4E" stroke-width="2"/>
+<rect x="1765.0" y="190" width="270" height="38" rx="5" ry="5" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="1765.0" y="216" width="270" height="8" fill="#F5EFE0"/>
+<rect x="1765.0" y="190" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 1765.0 220 L 1765.0 195 Q 1765.0 190 1770.0 190 L 2030.0 190 Q 2035.0 190 2035.0 195 L 2035.0 220 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="1900" y="210.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4A3A16">EVIDENCIA</text>
+<line x1="1819.0" y1="220" x2="1819.0" y2="308" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="1773.0" y="240" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK,FK</text>
+<text x="1827.0" y="240" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1773.0" y="260" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1827.0" y="260" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1827.0" y="280" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="1827.0" y="300" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">aplica_formato_cerrado</text>
+<rect x="115.0" y="740" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="115.0" y="766" width="270" height="8" fill="#E7DEF7"/>
+<rect x="115.0" y="740" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 115.0 770 L 115.0 745 Q 115.0 740 120.0 740 L 380.0 740 Q 385.0 740 385.0 745 L 385.0 770 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="250" y="760.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">ESTUDIANTE</text>
+<line x1="169.0" y1="770" x2="169.0" y2="858" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="123.0" y="790" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="177.0" y="790" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="177.0" y="810" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="177.0" y="830" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correo (U)</text>
+<text x="177.0" y="850" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">avatar_url</text>
+<rect x="665.0" y="700" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="665.0" y="726" width="270" height="8" fill="#E7DEF7"/>
+<rect x="665.0" y="700" width="270" height="204" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 665.0 730 L 665.0 705 Q 665.0 700 670.0 700 L 930.0 700 Q 935.0 700 935.0 705 L 935.0 730 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="800" y="720.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">ITEM</text>
+<line x1="719.0" y1="730" x2="719.0" y2="898" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="673.0" y="750" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="727.0" y="750" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="673.0" y="770" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="727.0" y="770" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="673.0" y="790" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="727.0" y="790" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="673.0" y="810" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="727.0" y="810" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="727.0" y="830" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="727.0" y="850" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">formato (single_choice/matching/ordering)</text>
+<text x="727.0" y="870" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden_sugerido</text>
+<text x="727.0" y="890" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">excluido</text>
+<rect x="1215.0" y="710" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="1215.0" y="736" width="270" height="8" fill="#E7DEF7"/>
+<rect x="1215.0" y="710" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 1215.0 740 L 1215.0 715 Q 1215.0 710 1220.0 710 L 1480.0 710 Q 1485.0 710 1485.0 715 L 1485.0 740 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="1350" y="730.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">OPCION</text>
+<line x1="1269.0" y1="740" x2="1269.0" y2="888" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="1223.0" y="760" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1277.0" y="760" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="1223.0" y="780" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1277.0" y="780" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="1277.0" y="800" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">texto</text>
+<text x="1277.0" y="820" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden</text>
+<text x="1277.0" y="840" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">es_correcta</text>
+<text x="1277.0" y="860" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grupo</text>
+<text x="1277.0" y="880" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">hipotesis_error</text>
+<rect x="115.0" y="1310" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="115.0" y="1336" width="270" height="8" fill="#FDF0D5"/>
+<rect x="115.0" y="1310" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 115.0 1340 L 115.0 1315 Q 115.0 1310 120.0 1310 L 380.0 1310 Q 385.0 1310 385.0 1315 L 385.0 1340 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="250" y="1330.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">INSCRIPCION</text>
+<line x1="169.0" y1="1340" x2="169.0" y2="1428" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="123.0" y="1360" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="177.0" y="1360" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="123.0" y="1380" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="177.0" y="1380" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="123.0" y="1400" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="177.0" y="1400" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="177.0" y="1420" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_union</text>
+<rect x="665.0" y="1300" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="665.0" y="1326" width="270" height="8" fill="#FDF0D5"/>
+<rect x="665.0" y="1300" width="270" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 665.0 1330 L 665.0 1305 Q 665.0 1300 670.0 1300 L 930.0 1300 Q 935.0 1300 935.0 1305 L 935.0 1330 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="800" y="1320.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA</text>
+<line x1="719.0" y1="1330" x2="719.0" y2="1438" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="673.0" y="1350" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="727.0" y="1350" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="673.0" y="1370" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="727.0" y="1370" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="673.0" y="1390" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="727.0" y="1390" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="727.0" y="1410" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">certeza (CRI 0-5)</text>
+<text x="727.0" y="1430" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correcta (derivado)</text>
+<rect x="1215.0" y="1320" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="1215.0" y="1346" width="270" height="8" fill="#FDF0D5"/>
+<rect x="1215.0" y="1320" width="270" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 1215.0 1350 L 1215.0 1325 Q 1215.0 1320 1220.0 1320 L 1480.0 1320 Q 1485.0 1320 1485.0 1325 L 1485.0 1350 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="1350" y="1340.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA_OPCION</text>
+<line x1="1269.0" y1="1350" x2="1269.0" y2="1418" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="1223.0" y="1370" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1277.0" y="1370" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="1223.0" y="1390" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1277.0" y="1390" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="1277.0" y="1410" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">valor_dado</text>
+<rect x="1760.0" y="1305" width="280" height="134" rx="6" ry="6" fill="none" stroke="#C0637B" stroke-width="2"/>
+<rect x="1765.0" y="1310" width="270" height="38" rx="5" ry="5" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<rect x="1765.0" y="1336" width="270" height="8" fill="#FADCE0"/>
+<rect x="1765.0" y="1310" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/>
+<path d="M 1765.0 1340 L 1765.0 1315 Q 1765.0 1310 1770.0 1310 L 2030.0 1310 Q 2035.0 1310 2035.0 1315 L 2035.0 1340 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="1900" y="1330.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D1E29">RESULTADO</text>
+<line x1="1819.0" y1="1340" x2="1819.0" y2="1428" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="1773.0" y="1360" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1827.0" y="1360" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="1773.0" y="1380" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1827.0" y="1380" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1773.0" y="1400" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1827.0" y="1400" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1827.0" y="1420" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (derivado)</text>
+<rect x="2315.0" y="700" width="270" height="38" rx="5" ry="5" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,5"/>
+<rect x="2315.0" y="726" width="270" height="8" fill="#ECECEC"/>
+<rect x="2315.0" y="700" width="270" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,5"/>
+<path d="M 2315.0 730 L 2315.0 705 Q 2315.0 700 2320.0 700 L 2580.0 700 Q 2585.0 700 2585.0 705 L 2585.0 730 Z" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,5"/>
+<text x="2450" y="720.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#333333">REPORTE</text>
+<line x1="2369.0" y1="730" x2="2369.0" y2="798" stroke="#8A8A8A" stroke-width="0.8" opacity="0.55"/>
+<text x="2323.0" y="750" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#8A8A8A">FK</text>
+<text x="2377.0" y="750" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="2377.0" y="770" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">resultados_generales (calc.)</text>
+<text x="2377.0" y="790" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">resultados_por_evidencia (calc.)</text>
+<polygon points="525,219 565,252 525,285 485,252" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="525" y="256" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">CREA</text>
+<path d="M 385.0 252.0 L 485 252" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="435.0" y="244.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 565 252 L 665.0 252.0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="615.0" y="244" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="1075,219 1115,252 1075,285 1035,252" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1075" y="256" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">SE ANCLA A</text>
+<path d="M 935.0 252.0 L 1035 252" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="985.0" y="244.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 1115 252 L 1215.0 252.0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1165.0" y="244" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<polygon points="1625,211 1673,252 1625,293 1577,252" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="1625,219 1665,252 1625,285 1585,252" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1625" y="256" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">COMPRENDE</text>
+<path d="M 1485.0 252.0 L 1577 252" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1531.0" y="244.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 1673 252 L 1765.0 252.0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1719.0" y="244" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="1075,769 1115,802 1075,835 1035,802" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1075" y="806" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">OFRECE</text>
+<path d="M 935.0 802.0 L 1035 802" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="985.0" y="794.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 1115 802 L 1215.0 802.0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1165.0" y="794" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="525,1339 565,1372 525,1405 485,1372" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="525" y="1376" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">PROVIENE DE</text>
+<path d="M 385.0 1372.0 L 485 1372" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="435.0" y="1364.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 565 1372 L 665.0 1372.0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="615.0" y="1364" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<polygon points="1075,1339 1115,1372 1075,1405 1035,1372" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1075" y="1376" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">SELECCIONA</text>
+<path d="M 935.0 1372.0 L 1035 1372" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="985.0" y="1364.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 1115 1372 L 1215.0 1372.0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1165.0" y="1364" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="250,1007 290,1040 250,1073 210,1040" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="250" y="1044" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">REALIZA</text>
+<path d="M 250 864 L 250 1000" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="264" y="932.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 250 1080 L 250 1310" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="264" y="1195.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="800,427 840,460 800,493 760,460" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="800" y="464" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">GENERA</text>
+<path d="M 800 344 L 800 420" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="814" y="382.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 800 500 L 800 700" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="814" y="600.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="800,1047 840,1080 800,1113 760,1080" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="800" y="1084" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">RECIBE</text>
+<path d="M 800 904 L 800 1040" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="814" y="972.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 800 1120 L 800 1300" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="814" y="1210.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="1350,1047 1390,1080 1350,1113 1310,1080" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1350" y="1084" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">SELECCIONA</text>
+<path d="M 1350 894 L 1350 1040" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1364" y="967.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 1350 1120 L 1350 1320" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1364" y="1220.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="1350,92 1390,125 1350,158 1310,125" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1350" y="129" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">EVALUA</text>
+<path d="M 935 802 L 985 802 L 985 125 L 1310 125" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="960.0" y="794" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 1390 125 L 1900 125 L 1900 190" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1645.0" y="117" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<polygon points="1075,1539 1123,1580 1075,1621 1027,1580" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="1075,1547 1115,1580 1075,1613 1035,1580" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1075" y="1584" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">ARROJA</text>
+<path d="M 250 1434 L 250 1580 L 1019 1580" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="264" y="1507.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 1131 1580 L 1900 1580 L 1900 1434" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="1515.5" y="1572" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="2180,759 2228,800 2180,841 2132,800" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="2180,767 2220,800 2180,833 2140,800" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2180" y="804" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">MIDE</text>
+<path d="M 2035 1340 L 2180 1340 L 2180 848" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="2107.5" y="1332" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 2180 752 L 2180 252 L 2035 252" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="2194" y="502.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<polygon points="2450,1117 2490,1150 2450,1183 2410,1150" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6" stroke-dasharray="6,5"/>
+<text x="2450" y="1154" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">SE AGREGA EN</text>
+<path d="M 2035 1404 L 2450 1404 L 2450 1190" fill="none" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="2242.5" y="1396" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<path d="M 2450 1110 L 2450 804" fill="none" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="2464" y="957.0" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<polygon points="1625,12 1665,45 1625,78 1585,45" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6" stroke-dasharray="6,5"/>
+<text x="1625" y="49" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">RESUME</text>
+<path d="M 2450 700 L 2450 45 L 1665 45" fill="none" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="2464" y="372.5" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<path d="M 1585 45 L 800 45 L 800 160" fill="none" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="1192.5" y="37" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg></div>
+  <p class="fig-num">Fig. 0 — Modelo completo del MER de AdaptiveLearn.</p>
+</section>
+
+<section class="notacion">
+  <h2>Notación empleada</h2>
+  <div class="bloque" style="width:auto;"><svg xmlns="http://www.w3.org/2000/svg" width="720" height="600" viewBox="0 0 720 600" font-family="Helvetica">
+<rect x="0" y="0" width="720" height="600" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="30" y="36" font-family="Helvetica" font-size="15" font-weight="700" fill="#111111">LEYENDA</text>
+<rect x="30" y="70" width="40" height="20" rx="3" ry="3" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.6"/>
+<text x="85" y="80" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Entidad</text>
+<text x="85" y="97" font-family="Helvetica" font-size="11.5" fill="#555555">Objeto que administramos, con sus atributos adentro.</text>
+<rect x="30" y="132" width="40" height="20" rx="3" ry="3" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.6"/>
+<text x="85" y="142" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Entidad asociativa</text>
+<text x="85" y="159" font-family="Helvetica" font-size="11.5" fill="#555555">Resuelve una relacion N a N -- la caja ES la relacion.</text>
+<rect x="30" y="194" width="40" height="20" rx="3" ry="3" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.6"/>
+<text x="85" y="204" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Dato externo del MEN</text>
+<text x="85" y="221" font-family="Helvetica" font-size="11.5" fill="#555555">Curriculo oficial, solo referenciado por el sistema.</text>
+<rect x="30" y="256" width="40" height="20" rx="3" ry="3" fill="#FADCE0" stroke="#C0637B" stroke-width="1.6"/>
+<text x="85" y="266" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Entidad debil</text>
+<text x="85" y="283" font-family="Helvetica" font-size="11.5" fill="#555555">Sin clave propia: la hereda de quien la identifica.</text>
+<rect x="30" y="318" width="40" height="20" rx="3" ry="3" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.6" stroke-dasharray="4,3"/>
+<text x="85" y="328" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Vista derivada</text>
+<text x="85" y="345" font-family="Helvetica" font-size="11.5" fill="#555555">No persiste: se calcula cada vez que se consulta.</text>
+<polygon points="50,390 72,402 50,414 28,402" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.4"/>
+<text x="85" y="398" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Relacion</text>
+<text x="85" y="415" font-family="Helvetica" font-size="11.5" fill="#555555">Como se conectan dos entidades.</text>
+<polygon points="50,433 76,446 50,459 24,446" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.4"/>
+<polygon points="50,438 70,446 50,454 30,446" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.4"/>
+<text x="85" y="453" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">Relacion identificadora</text>
+<text x="85" y="470" font-family="Helvetica" font-size="11.5" fill="#555555">La que le da identidad a una entidad debil.</text>
+<text x="30" y="510" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">PK / FK</text>
+<text x="85" y="510" font-family="Helvetica" font-size="11.5" fill="#555555">Clave primaria / foranea -- "PK,FK" cuando es las dos.</text>
+<text x="30" y="540" font-family="Helvetica" font-size="12.5" font-weight="700" fill="#111111">(U) / (derivado)</text>
+<text x="150" y="540" font-family="Helvetica" font-size="11.5" fill="#555555">Valor unico / se calcula, no se guarda de forma independiente.</text>
+</svg></div>
+</section>
+
+<section class="bloques">
+  <h2>El modelo por bloques</h2>
+  <p class="sub">La misma figura de arriba, recorrida en 7 partes — para leer cada grupo de entidades sin el ruido del resto.</p>
+  <div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="320" viewBox="0 0 1300 320" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="320" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="45.0" y="80" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="45.0" y="106" width="270" height="8" fill="#E7DEF7"/>
+<rect x="45.0" y="80" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 45.0 110 L 45.0 85 Q 45.0 80 50.0 80 L 310.0 80 Q 315.0 80 315.0 85 L 315.0 110 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="180" y="100.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">DOCENTE</text>
+<line x1="99.0" y1="110" x2="99.0" y2="198" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="53.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="107.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="107.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="107.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correo (U)</text>
+<text x="107.0" y="190" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">avatar_url</text>
+<rect x="485.0" y="60" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="485.0" y="86" width="270" height="8" fill="#E7DEF7"/>
+<rect x="485.0" y="60" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 485.0 90 L 485.0 65 Q 485.0 60 490.0 60 L 750.0 60 Q 755.0 60 755.0 65 L 755.0 90 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="620" y="80.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">EXPERIENCIA</text>
+<line x1="539.0" y1="90" x2="539.0" y2="238" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="110" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="547.0" y="110" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="493.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="547.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="493.0" y="150" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="547.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="547.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="547.0" y="190" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (Borrador/Publicada)</text>
+<text x="547.0" y="210" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_creacion</text>
+<text x="547.0" y="230" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_invitacion (U)</text>
+<rect x="945.0" y="90" width="270" height="38" rx="5" ry="5" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="945.0" y="116" width="270" height="8" fill="#F5EFE0"/>
+<rect x="945.0" y="90" width="270" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 945.0 120 L 945.0 95 Q 945.0 90 950.0 90 L 1210.0 90 Q 1215.0 90 1215.0 95 L 1215.0 120 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="1080" y="110.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4A3A16">DBA</text>
+<line x1="999.0" y1="120" x2="999.0" y2="228" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1007.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1007.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">area</text>
+<text x="1007.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grado</text>
+<text x="1007.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="1007.0" y="220" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">ejemplo</text>
+<polygon points="400.0,109.0 440.0,142.0 400.0,175.0 360.0,142.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="400.0" y="146.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">CREA</text>
+<line x1="315.0" y1="142.0" x2="360.0" y2="142.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="139.5" x2="485.0" y2="139.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="144.5" x2="485.0" y2="144.5" stroke="#555555" stroke-width="1.2"/>
+<text x="329.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="471.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="850.0,119.0 890.0,152.0 850.0,185.0 810.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="850.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">SE ANCLA A</text>
+<line x1="755.0" y1="149.5" x2="810.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="154.5" x2="810.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="890.0" y1="152.0" x2="945.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<text x="769.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="931.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg></div><p class="fig-num">Fig. 1 — Docente, Experiencia y DBA — quién crea, y a qué currículo se ancla.</p><div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="820" height="300" viewBox="0 0 820 300" font-family="Helvetica">
+<rect x="0" y="0" width="820" height="300" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="25.0" y="90" width="270" height="38" rx="5" ry="5" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="25.0" y="116" width="270" height="8" fill="#F5EFE0"/>
+<rect x="25.0" y="90" width="270" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 25.0 120 L 25.0 95 Q 25.0 90 30.0 90 L 290.0 90 Q 295.0 90 295.0 95 L 295.0 120 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="160" y="110.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4A3A16">DBA</text>
+<line x1="79.0" y1="120" x2="79.0" y2="228" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="33.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="87.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="87.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">area</text>
+<text x="87.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grado</text>
+<text x="87.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="87.0" y="220" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">ejemplo</text>
+<rect x="460.0" y="65" width="280" height="134" rx="6" ry="6" fill="none" stroke="#A98B4E" stroke-width="2"/>
+<rect x="465.0" y="70" width="270" height="38" rx="5" ry="5" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="465.0" y="96" width="270" height="8" fill="#F5EFE0"/>
+<rect x="465.0" y="70" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 465.0 100 L 465.0 75 Q 465.0 70 470.0 70 L 730.0 70 Q 735.0 70 735.0 75 L 735.0 100 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="600" y="90.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4A3A16">EVIDENCIA</text>
+<line x1="519.0" y1="100" x2="519.0" y2="188" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="473.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK,FK</text>
+<text x="527.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="473.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="527.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="527.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="527.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">aplica_formato_cerrado</text>
+<polygon points="380.0,121.0 428.0,162.0 380.0,203.0 332.0,162.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="380.0,129.0 420.0,162.0 380.0,195.0 340.0,162.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="380.0" y="166.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">COMPRENDE</text>
+<line x1="295.0" y1="159.5" x2="332.0" y2="159.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="295.0" y1="164.5" x2="332.0" y2="164.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="428.0" y1="159.5" x2="465.0" y2="159.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="428.0" y1="164.5" x2="465.0" y2="164.5" stroke="#555555" stroke-width="1.2"/>
+<text x="309.0" y="154.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="451.0" y="154.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+</svg></div><p class="fig-num">Fig. 2 — DBA y Evidencia — Evidencia es entidad débil, identificada por su DBA (PK compuesta, antes ausente).</p><div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="320" viewBox="0 0 1300 320" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="320" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="45.0" y="90" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="45.0" y="116" width="270" height="8" fill="#E7DEF7"/>
+<rect x="45.0" y="90" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 45.0 120 L 45.0 95 Q 45.0 90 50.0 90 L 310.0 90 Q 315.0 90 315.0 95 L 315.0 120 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="180" y="110.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">ESTUDIANTE</text>
+<line x1="99.0" y1="120" x2="99.0" y2="208" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="53.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="107.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="107.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="107.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correo (U)</text>
+<text x="107.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">avatar_url</text>
+<rect x="485.0" y="90" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="485.0" y="116" width="270" height="8" fill="#FDF0D5"/>
+<rect x="485.0" y="90" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 485.0 120 L 485.0 95 Q 485.0 90 490.0 90 L 750.0 90 Q 755.0 90 755.0 95 L 755.0 120 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="620" y="110.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">INSCRIPCION</text>
+<line x1="539.0" y1="120" x2="539.0" y2="208" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="547.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="493.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="547.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="493.0" y="180" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="547.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="547.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_union</text>
+<rect x="945.0" y="60" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="945.0" y="86" width="270" height="8" fill="#E7DEF7"/>
+<rect x="945.0" y="60" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 945.0 90 L 945.0 65 Q 945.0 60 950.0 60 L 1210.0 60 Q 1215.0 60 1215.0 65 L 1215.0 90 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="1080" y="80.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">EXPERIENCIA</text>
+<line x1="999.0" y1="90" x2="999.0" y2="238" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="110" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1007.0" y="110" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="953.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1007.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="953.0" y="150" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1007.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1007.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="1007.0" y="190" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (Borrador/Publicada)</text>
+<text x="1007.0" y="210" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_creacion</text>
+<text x="1007.0" y="230" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_invitacion (U)</text>
+<polygon points="400.0,119.0 440.0,152.0 400.0,185.0 360.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="400.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">REALIZA</text>
+<line x1="315.0" y1="152.0" x2="360.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="149.5" x2="485.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="154.5" x2="485.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<text x="329.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="471.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="850.0,119.0 890.0,152.0 850.0,185.0 810.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="850.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">PERTENECE A</text>
+<line x1="755.0" y1="149.5" x2="810.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="154.5" x2="810.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="890.0" y1="152.0" x2="945.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<text x="769.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="931.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg></div><p class="fig-num">Fig. 3 — Estudiante, Inscripción y Experiencia — cómo un estudiante se une a una experiencia.</p><div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="620" viewBox="0 0 1300 620" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="620" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="45.0" y="60" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="45.0" y="86" width="270" height="8" fill="#E7DEF7"/>
+<rect x="45.0" y="60" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 45.0 90 L 45.0 65 Q 45.0 60 50.0 60 L 310.0 60 Q 315.0 60 315.0 65 L 315.0 90 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="180" y="80.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">EXPERIENCIA</text>
+<line x1="99.0" y1="90" x2="99.0" y2="238" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="53.0" y="110" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="107.0" y="110" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="53.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="53.0" y="150" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="107.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="107.0" y="190" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (Borrador/Publicada)</text>
+<text x="107.0" y="210" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_creacion</text>
+<text x="107.0" y="230" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_invitacion (U)</text>
+<rect x="485.0" y="50" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="485.0" y="76" width="270" height="8" fill="#E7DEF7"/>
+<rect x="485.0" y="50" width="270" height="204" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 485.0 80 L 485.0 55 Q 485.0 50 490.0 50 L 750.0 50 Q 755.0 50 755.0 55 L 755.0 80 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="620" y="70.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">ITEM</text>
+<line x1="539.0" y1="80" x2="539.0" y2="248" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="100" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="547.0" y="100" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="493.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="547.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="493.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="547.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="493.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="547.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="547.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="547.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">formato (single_choice/matching/ordering)</text>
+<text x="547.0" y="220" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden_sugerido</text>
+<text x="547.0" y="240" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">excluido</text>
+<rect x="940.0" y="75" width="280" height="134" rx="6" ry="6" fill="none" stroke="#A98B4E" stroke-width="2"/>
+<rect x="945.0" y="80" width="270" height="38" rx="5" ry="5" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="945.0" y="106" width="270" height="8" fill="#F5EFE0"/>
+<rect x="945.0" y="80" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 945.0 110 L 945.0 85 Q 945.0 80 950.0 80 L 1210.0 80 Q 1215.0 80 1215.0 85 L 1215.0 110 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="1080" y="100.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4A3A16">EVIDENCIA</text>
+<line x1="999.0" y1="110" x2="999.0" y2="198" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK,FK</text>
+<text x="1007.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="953.0" y="150" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1007.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1007.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="1007.0" y="190" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">aplica_formato_cerrado</text>
+<rect x="485.0" y="420" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="485.0" y="446" width="270" height="8" fill="#E7DEF7"/>
+<rect x="485.0" y="420" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 485.0 450 L 485.0 425 Q 485.0 420 490.0 420 L 750.0 420 Q 755.0 420 755.0 425 L 755.0 450 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="620" y="440.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">OPCION</text>
+<line x1="539.0" y1="450" x2="539.0" y2="598" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="470" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="547.0" y="470" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="493.0" y="490" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="547.0" y="490" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="547.0" y="510" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">texto</text>
+<text x="547.0" y="530" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden</text>
+<text x="547.0" y="550" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">es_correcta</text>
+<text x="547.0" y="570" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grupo</text>
+<text x="547.0" y="590" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">hipotesis_error</text>
+<polygon points="400.0,119.0 440.0,152.0 400.0,185.0 360.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="400.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">GENERA</text>
+<line x1="315.0" y1="152.0" x2="360.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="149.5" x2="485.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="154.5" x2="485.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<text x="329.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="471.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="850.0,119.0 890.0,152.0 850.0,185.0 810.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="850.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">EVALUA</text>
+<line x1="755.0" y1="149.5" x2="810.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="154.5" x2="810.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="890.0" y1="152.0" x2="945.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<text x="769.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="931.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<polygon points="620,304.0 660,337.0 620,370.0 580,337.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="620" y="341.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">OFRECE</text>
+<line x1="620" y1="251.5" x2="620" y2="301.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="620" y1="256.5" x2="620" y2="306.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="620" y1="367.5" x2="620" y2="417.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="620" y1="372.5" x2="620" y2="422.5" stroke="#555555" stroke-width="1.2"/>
+<text x="634" y="270" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="634" y="412" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+</svg></div><p class="fig-num">Fig. 4 — Experiencia, Ítem, Evidencia y Opción — el banco de diagnóstico y su contenido.</p><div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="700" viewBox="0 0 1300 700" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="700" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="45.0" y="50" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="45.0" y="76" width="270" height="8" fill="#E7DEF7"/>
+<rect x="45.0" y="50" width="270" height="204" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 45.0 80 L 45.0 55 Q 45.0 50 50.0 50 L 310.0 50 Q 315.0 50 315.0 55 L 315.0 80 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="180" y="70.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">ITEM</text>
+<line x1="99.0" y1="80" x2="99.0" y2="248" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="53.0" y="100" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="107.0" y="100" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="53.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="53.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="53.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="107.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="107.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="107.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">formato (single_choice/matching/ordering)</text>
+<text x="107.0" y="220" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden_sugerido</text>
+<text x="107.0" y="240" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">excluido</text>
+<rect x="485.0" y="70" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="485.0" y="96" width="270" height="8" fill="#FDF0D5"/>
+<rect x="485.0" y="70" width="270" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 485.0 100 L 485.0 75 Q 485.0 70 490.0 70 L 750.0 70 Q 755.0 70 755.0 75 L 755.0 100 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="620" y="90.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA</text>
+<line x1="539.0" y1="100" x2="539.0" y2="208" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="547.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="493.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="547.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="493.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="547.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="547.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">certeza (CRI 0-5)</text>
+<text x="547.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correcta (derivado)</text>
+<rect x="945.0" y="60" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="945.0" y="86" width="270" height="8" fill="#FDF0D5"/>
+<rect x="945.0" y="60" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 945.0 90 L 945.0 65 Q 945.0 60 950.0 60 L 1210.0 60 Q 1215.0 60 1215.0 65 L 1215.0 90 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="1080" y="80.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">INSCRIPCION</text>
+<line x1="999.0" y1="90" x2="999.0" y2="178" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="110" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="1007.0" y="110" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="953.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1007.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="953.0" y="150" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1007.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="1007.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_union</text>
+<rect x="485.0" y="450" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="485.0" y="476" width="270" height="8" fill="#FDF0D5"/>
+<rect x="485.0" y="450" width="270" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 485.0 480 L 485.0 455 Q 485.0 450 490.0 450 L 750.0 450 Q 755.0 450 755.0 455 L 755.0 480 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="620" y="470.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA_OPCION</text>
+<line x1="539.0" y1="480" x2="539.0" y2="548" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="500" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="547.0" y="500" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="493.0" y="520" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="547.0" y="520" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="547.0" y="540" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">valor_dado</text>
+<rect x="945.0" y="430" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="945.0" y="456" width="270" height="8" fill="#E7DEF7"/>
+<rect x="945.0" y="430" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 945.0 460 L 945.0 435 Q 945.0 430 950.0 430 L 1210.0 430 Q 1215.0 430 1215.0 435 L 1215.0 460 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="1080" y="450.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">OPCION</text>
+<line x1="999.0" y1="460" x2="999.0" y2="608" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="480" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1007.0" y="480" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="953.0" y="500" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1007.0" y="500" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="1007.0" y="520" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">texto</text>
+<text x="1007.0" y="540" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden</text>
+<text x="1007.0" y="560" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">es_correcta</text>
+<text x="1007.0" y="580" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grupo</text>
+<text x="1007.0" y="600" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">hipotesis_error</text>
+<polygon points="400.0,119.0 440.0,152.0 400.0,185.0 360.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="400.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">RECIBE</text>
+<line x1="315.0" y1="152.0" x2="360.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="149.5" x2="485.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="440.0" y1="154.5" x2="485.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<text x="329.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="471.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="850.0,109.0 890.0,142.0 850.0,175.0 810.0,142.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="850.0" y="146.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">PROVIENE DE</text>
+<line x1="755.0" y1="139.5" x2="810.0" y2="139.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="144.5" x2="810.0" y2="144.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="890.0" y1="142.0" x2="945.0" y2="142.0" stroke="#555555" stroke-width="1.2"/>
+<text x="769.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="931.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<line x1="620" y1="211.5" x2="620" y2="447.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="620" y1="216.5" x2="620" y2="452.5" stroke="#555555" stroke-width="1.2"/>
+<text x="634" y="230" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="634" y="442" text-anchor="start" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<line x1="755.0" y1="499.5" x2="945.0" y2="499.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="504.5" x2="945.0" y2="504.5" stroke="#555555" stroke-width="1.2"/>
+<text x="771.0" y="494.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">M</text>
+<text x="929.0" y="494.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg></div><p class="fig-num">Fig. 5 — Ítem, Respuesta, Inscripción, Respuesta_Opción y Opción — qué respondió el estudiante, no solo si acertó.</p><div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="300" viewBox="0 0 1300 300" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="300" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="45.0" y="90" width="270" height="38" rx="5" ry="5" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<rect x="45.0" y="116" width="270" height="8" fill="#FDF0D5"/>
+<rect x="45.0" y="90" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/>
+<path d="M 45.0 120 L 45.0 95 Q 45.0 90 50.0 90 L 310.0 90 Q 315.0 90 315.0 95 L 315.0 120 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="180" y="110.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D3708">INSCRIPCION</text>
+<line x1="99.0" y1="120" x2="99.0" y2="208" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="53.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="107.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="53.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="107.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="53.0" y="180" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="107.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="107.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_union</text>
+<rect x="480.0" y="65" width="280" height="134" rx="6" ry="6" fill="none" stroke="#C0637B" stroke-width="2"/>
+<rect x="485.0" y="70" width="270" height="38" rx="5" ry="5" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<rect x="485.0" y="96" width="270" height="8" fill="#FADCE0"/>
+<rect x="485.0" y="70" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/>
+<path d="M 485.0 100 L 485.0 75 Q 485.0 70 490.0 70 L 750.0 70 Q 755.0 70 755.0 75 L 755.0 100 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="620" y="90.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D1E29">RESULTADO</text>
+<line x1="539.0" y1="100" x2="539.0" y2="188" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="547.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="493.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="547.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="493.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="547.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="547.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (derivado)</text>
+<rect x="940.0" y="85" width="280" height="134" rx="6" ry="6" fill="none" stroke="#A98B4E" stroke-width="2"/>
+<rect x="945.0" y="90" width="270" height="38" rx="5" ry="5" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="945.0" y="116" width="270" height="8" fill="#F5EFE0"/>
+<rect x="945.0" y="90" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/>
+<path d="M 945.0 120 L 945.0 95 Q 945.0 90 950.0 90 L 1210.0 90 Q 1215.0 90 1215.0 95 L 1215.0 120 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="1080" y="110.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4A3A16">EVIDENCIA</text>
+<line x1="999.0" y1="120" x2="999.0" y2="208" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK,FK</text>
+<text x="1007.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="953.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1007.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1007.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="1007.0" y="200" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">aplica_formato_cerrado</text>
+<polygon points="400.0,111.0 448.0,152.0 400.0,193.0 352.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="400.0,119.0 440.0,152.0 400.0,185.0 360.0,152.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="400.0" y="156.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">ARROJA</text>
+<line x1="315.0" y1="152.0" x2="352.0" y2="152.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="448.0" y1="149.5" x2="485.0" y2="149.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="448.0" y1="154.5" x2="485.0" y2="154.5" stroke="#555555" stroke-width="1.2"/>
+<text x="329.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="471.0" y="144.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<polygon points="850.0,91.0 898.0,132.0 850.0,173.0 802.0,132.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="850.0,99.0 890.0,132.0 850.0,165.0 810.0,132.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="850.0" y="136.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">MIDE</text>
+<line x1="755.0" y1="129.5" x2="802.0" y2="129.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="755.0" y1="134.5" x2="802.0" y2="134.5" stroke="#555555" stroke-width="1.2"/>
+<line x1="898.0" y1="132.0" x2="945.0" y2="132.0" stroke="#555555" stroke-width="1.2"/>
+<text x="769.0" y="124.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="931.0" y="124.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg></div><p class="fig-num">Fig. 6 — Inscripción, Resultado y Evidencia — el resumen por estudiante y evidencia (Resultado, entidad débil doble).</p><div class="bloque"><svg xmlns="http://www.w3.org/2000/svg" width="1300" height="300" viewBox="0 0 1300 300" font-family="Helvetica">
+<rect x="0" y="0" width="1300" height="300" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="40.0" y="65" width="280" height="134" rx="6" ry="6" fill="none" stroke="#C0637B" stroke-width="2"/>
+<rect x="45.0" y="70" width="270" height="38" rx="5" ry="5" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<rect x="45.0" y="96" width="270" height="8" fill="#FADCE0"/>
+<rect x="45.0" y="70" width="270" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/>
+<path d="M 45.0 100 L 45.0 75 Q 45.0 70 50.0 70 L 310.0 70 Q 315.0 70 315.0 75 L 315.0 100 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="180" y="90.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#4D1E29">RESULTADO</text>
+<line x1="99.0" y1="100" x2="99.0" y2="188" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="53.0" y="120" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="107.0" y="120" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="53.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="107.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="53.0" y="160" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="107.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="107.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (derivado)</text>
+<rect x="485.0" y="90" width="270" height="38" rx="5" ry="5" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,5"/>
+<rect x="485.0" y="116" width="270" height="8" fill="#ECECEC"/>
+<rect x="485.0" y="90" width="270" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,5"/>
+<path d="M 485.0 120 L 485.0 95 Q 485.0 90 490.0 90 L 750.0 90 Q 755.0 90 755.0 95 L 755.0 120 Z" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,5"/>
+<text x="620" y="110.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#333333">REPORTE</text>
+<line x1="539.0" y1="120" x2="539.0" y2="188" stroke="#8A8A8A" stroke-width="0.8" opacity="0.55"/>
+<text x="493.0" y="140" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#8A8A8A">FK</text>
+<text x="547.0" y="140" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="547.0" y="160" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">resultados_generales (calc.)</text>
+<text x="547.0" y="180" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">resultados_por_evidencia (calc.)</text>
+<rect x="945.0" y="60" width="270" height="38" rx="5" ry="5" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<rect x="945.0" y="86" width="270" height="8" fill="#E7DEF7"/>
+<rect x="945.0" y="60" width="270" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/>
+<path d="M 945.0 90 L 945.0 65 Q 945.0 60 950.0 60 L 1210.0 60 Q 1215.0 60 1215.0 65 L 1215.0 90 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="1080" y="80.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#2E1F4D">EXPERIENCIA</text>
+<line x1="999.0" y1="90" x2="999.0" y2="238" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="953.0" y="110" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1007.0" y="110" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="953.0" y="130" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1007.0" y="130" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="953.0" y="150" font-family="Helvetica" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1007.0" y="150" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1007.0" y="170" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="1007.0" y="190" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado (Borrador/Publicada)</text>
+<text x="1007.0" y="210" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_creacion</text>
+<text x="1007.0" y="230" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_invitacion (U)</text>
+<polygon points="400.0,99.0 440.0,132.0 400.0,165.0 360.0,132.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6" stroke-dasharray="6,5"/>
+<text x="400.0" y="136.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">SE AGREGA EN</text>
+<line x1="315.0" y1="132.0" x2="360.0" y2="132.0" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="440.0" y1="132.0" x2="485.0" y2="132.0" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="329.0" y="124.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">N</text>
+<text x="471.0" y="124.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<polygon points="850.0,109.0 890.0,142.0 850.0,175.0 810.0,142.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6" stroke-dasharray="6,5"/>
+<text x="850.0" y="146.0" text-anchor="middle" font-family="Helvetica" font-size="10.5" font-weight="700" fill="#1F4D1F">RESUME</text>
+<line x1="755.0" y1="142.0" x2="810.0" y2="142.0" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="890.0" y1="142.0" x2="945.0" y2="142.0" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="769.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+<text x="931.0" y="134.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">1</text>
+</svg></div><p class="fig-num">Fig. 7 — Resultado, Reporte y Experiencia — Reporte es una vista derivada, no persiste.</p>
+</section>
+
+<section class="cierre">
+  <h2>Cierre</h2>
+  <p class="sub">Texto completo del modelo — entidades, atributos, relaciones, restricciones de integridad (RI-1 a RI-11) y vacíos declarados (V-1 a V-4) — en <code>01-modelo-entidad-relacion.md</code>. El siguiente entregable de Fase III, según la fuente primaria de MODESEC, es el Modelo Relacional (MR) derivado de este MER, junto con el diccionario de datos.</p>
+</section>
+
+</div>
+</body></html>

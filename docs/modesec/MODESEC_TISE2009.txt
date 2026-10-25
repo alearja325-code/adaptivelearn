@@ -1,0 +1,895 @@
+MODESEC: Modelo para el desarrollo de software educativo
+             basado en competencias
+
+       Manuel Fernando Caro                                                                      Raúl Emiro Toscano
+     Grupo de Investigación EdupMedia.                                                        Grupo de Investigación EdupMedia.
+ Departamento de Informática. Universidad de                                              Departamento de Informática. Universidad de
+                  Córdoba.                                                                                 Córdoba.
+                 Colombia.                                                                                Colombia.
+            loshigos@yahoo.es                                                                         rtscmrn@yahoo.es
+            www.edupmedia.org                                                                        www.edupmedia.org
+
+
+
+
+                                                                        diseño pedagógico y diseño de aprendizaje. Las
+ABSTRACT                                                                competencias son el aspecto fundamental que abarca el
+This article describes a model for educational software                 desarrollo de este modelo, las cuales son primordiales para
+development based on skills, which presents a vision of                 la realización de las fases a seguir conformadas por el
+developing these applications by combining components of                diseño computacional y el diseño multimedial, estas se
+teaching, learning, multimedia and software engineering.                encargan del análisis y modelado del software, y del sistema
+The suggested model consists of five stages that describe               de comunicación hombre-máquina. En la fase de
+step by step the process to be taken into account for the               producción se ensamblan los componentes elaborados o
+creation of educational software. The initial phase, is the             recolectados, según el caso. La última fase es la de
+description of education design, which analyzes the                     aplicación, donde se hacen las pruebas de rigor para evaluar
+educational needs, here are presented the learning objectives           el desempeño del software en los contextos para los que fue
+and outlines the skills that seek to develop the application.           desarrollado.
+The design of these sub-phases are the following: content
+design, teaching design and learning design. Skills are the             KEYWORDS
+key point involves the development of this model, which are             Educational software, software engineering, education,
+essential for carrying out the steps to follow up of the                computing, skills.
+computational design and multimedia design, these are
+essential for the analysis and modeling software, and system            PALABRAS CLAVES
+man-machine communication. In the production stage are                  Software educativo, ingeniería de software, educación,
+assembled or collected the produced components, as                      informática, competencias.
+appropriate. The last stage of the model is the
+implementation stage, where tests are done to rigorously                INTRODUCCIÓN
+assessing the performance of the software, in the contexts              Como concepto de trabajo, desde la década del 90, el tema
+for which it was designed.                                              de competencias se ha convertido en una corriente de
+                                                                        pensamiento dirigida al mejoramiento de la calidad de la
+RESUMEN
+                                                                        educación, luego que el MEN (Ministerio de Educación
+El presente artículo describe un modelo de diseño de                    Nacional) con el sistema Nacional de evaluación de la
+software educativo basado en competencias, el cual presenta             calidad (SABER) lo estableciera con el decreto 1860 de
+una visión integral del desarrollo de estas aplicaciones                1994 y el decreto 230 de 2002, especialmente para el
+mediante la combinación de componentes pedagógicos,                     desarrollo de propuestas educativas y pedagógicas [1],
+didácticos, multimediales y de ingeniería de software.                  muchas de las cuales tienen la tecnología como mediación.
+El modelo sugerido se compone de cinco fases que detallan               Gracias a los adelantos que la modernidad y la innovación
+paso a paso los aspectos a tener en cuenta para la creación             tecnológica han traído a todos los campos, los software
+de software educativo. La fase inicial constituye la                    educativos han tomado gran importancia en los procesos de
+descripción del diseño educativo, en la cual se analiza la              enseñanza, siendo herramientas que aportan tanto al docente
+necesidad educativa, se plantean los objetivos de                       como al estudiante espacios dinámicos de aprendizaje; por
+aprendizaje y se describen las competencias que se                      lo cual, y haciendo eco a lo mencionado anteriormente, es
+pretenden desarrollar con la aplicación; del diseño de éstas            necesario que el diseño de los mismos tengan como eje
+resultan las siguientes subfases: diseño de contenidos,                 central de su diseño educativo el sistema de competencias
+                                                                        a desarrollar, procurando hacer énfasis en capacitar a los
+Caro, M., Toscano, R. (2009). MODESEC: Model for educational software
+development bases on skills. En J. Sánchez (Ed.): Nuevas Ideas en
+Informática Educativa, Volumen 5, pp. 188 – 200, Santiago de Chile.
+
+
+
+
+                                                                                                                                 188
+alumnos para enfrentar los retos que se le puedan presentar               La sección de los Elementos brinda las bases de las
+en la sociedad actual, contribuyendo desde estas                           actividades que el usuario debe desarrollar con el
+aplicaciones a la formación de personas con pensamiento                    software, por lo cual el diseñador debe tomar la
+crítico y analítico.                                                       decisión de hacer una ventana para cada elemento o
+No obstante a lo anterior, en general los modelos de                       agrupar varios elementos en una ventana; cabe
+desarrollo de software educativos no están contextualizados                destacar que a mayor cantidad de elementos por
+a la realidad de la educación en Colombia, al no contener                  ventana, ésta se torna más compleja.
+directrices claras acerca del manejo de competencias en su                El listado de conceptos que se obtienen de las
+diseño, dándole más importancia a la ingeniería de software                competencias y que se consignan en la sección de
+o al diseño multimedial. El modelo que EDUPMEDIA                           los Conceptos da origen al diseño de contenidos, en
+presenta, prioriza el desarrollo de competencias, sin dejar de             el cual se determina el nivel de profundidad y el
+lado la parte estructural.                                                 tipo de vocabulario que se utilizará en el software.
+El modelo de diseño de software educativo desarrollado por                La sección del Contexto brinda al diseñador
+el grupo de Investigación EDUPMEDIA, surge de la                           información que le permite determinar las
+sistematización de la experiencia que los docentes y                       características del ambiente que debe rodear las
+jóvenes investigadores del grupo han tenido durante tres                   actividades de aprendizaje que se van a realizar con
+años en el desarrollo de software adaptado a la realidad                   el software. Éstas pueden ser de tipo físico
+educativa y basado en el desarrollo de competencias.                       (laboratorios u otros lugares), o de tiempo
+                                                                           (actualidad, siglo XIX).
+ESTRUCTURA DEL MODELO                                                     La sección de los Indicadores servirá para el
+                                                                           diseño del sistema de evaluación del software
+Competencias como eje central del modelo Edupmedia
+                                                                           educativo, pues en ellos se evidencia las
+A continuación se describen los aspectos que hacen                         habilidades y conocimientos que debe demostrar
+especialmente particular este modelo que presenta el grupo                 una persona para la realización de una tarea
+de investigación EDUPMEDIA para el diseño de software                      (elemento) en particular dentro de la competencia.
+educativo, cuyas características frente a los que en la
+                                                                  Con lo dicho anteriormente se evidencia que el eje central
+actualidad se utilizan, brindan ventajas para su
+                                                                  de todo el modelo son las competencias.
+implementación en el contexto colombiano.
+                                                                  Por otra parte, desde lo pedagógico se puede aducir que el
+Siendo las competencias el eje central del modelo, es
+                                                                  modelo EDUPMEDIA no se centra con ninguna teoría en
+necesario indicar las razones que lo justifican, con lo cual se
+                                                                  particular, hecho que lo hace flexible y le permite amoldarse
+brinda el sustento básico de su diferenciación frente a los
+                                                                  a las condiciones propias de la población objeto y a las
+modelos existentes así:
+                                                                  características propias del entorno de la necesidad estudiada.
+1.   Los modelos utilizados en la actualidad no presentan         También es factible que el modelo se adapte a las directrices
+     una sección o apartado que brinde toda la información        pedagógicas propia de cada institución educativa, las cuales
+     relacionada con las competencias requeridas según las        se encuentran consignadas en su Proyecto Educativo
+     necesidades educativas detectadas en la investigación        Institucional (PEI), así no se entraría a imponer un software
+     previa, como sí lo contempla el modelo Edupmedia,            que se trabaje en forma diferente a la realidad escolar.
+     pues en éste no sólo se enuncian las competencias, sino
+     que también se establece un formato de presentación          Descripción general
+     (por objetivos y normas) que agrupa todos los                El modelo de desarrollo de software educativo que se
+     componentes de las misma, lo que permite al diseñador        plantea en este escrito tiene como base fundamental el
+     recoger los aspectos necesarios para realizar una            sistema de competencias, e integra cinco fases: Diseño
+     documentación completa, lo cual guiará con mayor             educativo, diseño multimedial, diseño computacional,
+     certeza el proceso de desarrollo.                            producción y aplicación. Este modelo es sencillo de aplicar
+2.   El diseño del sistema de competencias actúa como eje         y sus fases están bien documentadas, lo que lo hace idóneo
+     integrador del proceso de diseño y producción del            para su utilización en procesos de desarrollo de software
+     software educativo, pues cada una de sus secciones           educativo.
+     brinda información de entrada para otros procesos del
+     desarrollo, convirtiéndose así en el centro de partida y     Cada fase del modelo está bien delimitada y se encarga de
+     principal fuente de información para las fases               un trabajo en particular así: en la Fase I se hace el estudio de
+     siguientes. Así pues, la sección de Recursos dentro de       los factores educativos que sustentarán el diseño del
+     la Norma da nociones precisas acerca de las                  software en cuanto a la didáctica, la pedagogía y la ética. La
+     herramientas complementarias que requiere el                 Fase II, trata acerca de los aspectos estéticos y del sistema
+     estudiante para realizar las actividades propuestas, las     de comunicación, según la población, sistema de contenidos
+     cuales debe proveer el software educativo.                   y estrategias planeadas el la fase anterior. En la Fase III se
+                                                                  trabajan los fundamentos de ingeniería de software que
+
+
+
+
+                                                                                                                             189
+requiere el desarrollo de una aplicación robusta y amigable.      El diseño de fines educativos comprende el nivel cognitivo,
+En la Fase IV se desarrollan y ensamblan los componentes          el cual hace referencia al tipo de conocimiento que serán
+del software, finalmente en la Fase V se utiliza el software      trabajados por los estudiantes y se redacta normalmente en
+en el aula de clases, evaluando su pertinencia e impacto. A       forma de objetivos, y el nivel valorativo, el cual hace
+continuación se explican con más detalle cada fase.               referencia a los valores, normas y conductas que serán
+                                                                  privilegiadas [2].
+
+                                                                  Diseño del Sistema de Competencias
+                                                                  En el contexto educativo el término competencias se
+                                                                  extiende al conjunto de actividades que se deben realizar
+                         FASE II
+                                                                  para enfatizar el desarrollo de potencialidades del sujeto a
+                   DISEÑO MULTIMEDIAL                             partir de lo que aprende en la escuela [3].
+     FASE I
+DISEÑO EDUCATIVO                          FASE IV      FASE V     Ahora bien, la educación en Colombia se rige por un
+                                        PRODUCCIÓN   APLICACIÓN
+                        FASE III
+                                                                  sistema de competencias en donde se educa al estudiante
+                       DISEÑO                                     para que éste sea activo en la sociedad, es decir que sea
+                    COMPUTACIONAL
+                                                                  capaz de enfrentar las distintas situaciones que se le
+                                                                  presenten de una forma crítica y responsable, permitiendo
+                                                                  que se desenvuelva en un espacio social, orientado por un
+                                                                  pensamiento de carácter sistémico y tecnológico. A partir de
+                                                                  esto es necesario incluir en la creación de software
+Figura 1. Modelo para el desarrollo de software educativo         educativo especificaciones claras acerca de cómo organizar
+basado en competencias (Edupmedia-2008)                           las competencias que se pretenden desarrollar con el
+                                                                  software. En este caso en la primera fase del modelo, se
+Fase I: Diseño educativo                                          introduce una sección para gestionar las competencias que
+Comprendiendo las necesidades que se presentan en la              se han identificado, luego de realizar el análisis de la
+educación con relación al proceso de enseñanza –                  necesidad educativa. Estas se estructuran en un formato que
+aprendizaje, es necesario realizar un estudio exhaustivo          comprende dos grandes ámbitos que son los objetivos y las
+sobre el aprendizaje educativo que conlleve al                    normas, los cuales se describen a continuación:
+establecimiento de un plan de trabajo en donde se
+especifique los aspectos que comprendan las distintas etapas      Objetivos
+que hacen parte de la fase del diseño educativo. Estas etapas     Esta dimensión abarca el enunciado y los elementos de la
+se definen a continuación:                                        competencia.
+
+Análisis de la Necesidad Educativa
+                                                                              Enunciado: Los objetivos son elementos
+                                                                      fundamentales en todo proceso debido a que estos
+Al iniciar un proceso de diseño y desarrollo de software              constituyen el derrotero a seguir y admite a su vez la
+educativo es importante tener presente los problemas que se           evaluación del estudio abordado. En esta sección se
+evidencian en una población determinada para saber                    establecerá los objetivos de las competencias para
+exactamente el tipo de necesidad educativa en la que se va            ampliar las nociones sobre la forma de definir un
+hacer énfasis, identificando las posibles causas que permitan         ambiente de aprendizaje. Aquí se indica las finalidades
+plantear las diversas alternativas de solución a la                   que se pretenden lograr o adquirir por parte de los
+problemática encontrada.                                              sujetos involucrados en el proceso.
+Entre las posibles fuentes de información podríamos contar
+los documentos de las instituciones educativas, folletos,            Elementos: Para el tratamiento de las competencias se
+boletines informativos, planes de estudio, estadísticas sobre         requieren una serie de actividades que dependen de
+pruebas de estado, libros de apuntes, entrevistas y                   cada     objetivo,    las    cuales    son    enunciadas
+cuestionarios.                                                        específicamente determinando lo que el estudiante debe
+                                                                      ser capaz de realizar para cumplir el objetivo general.
+Diseño de Fines Educativo
+En el proceso de enseñanza y aprendizaje intervienen              Norma
+diversos factores que propenden la calidad educativa, dentro      Es la dimensión de la competencia que trata acerca del
+de estos factores sobresalen los fines educativos que             contexto, los recursos y las evidencias de conocimientos.
+integran los objetivos de aprendizaje, los valores y las             Contexto: Aquí se especifica el contexto donde se hace
+dimensiones humanas, estos constituyen los propósitos                 evidente la competencia, este puede ser un lugar físico
+fundamentales de la enseñanza que serán el punto de partida           o una situación determinada por un problema o reto que
+del desarrollo de las actividades escolares.                          se debe solucionar.
+
+
+
+
+                                                                                                                         190
+   Recursos: Son los recursos tangibles e intangibles que            de actividades, en este caso los que intervienen en las
+    se requieren para realizar la competencia en el contexto          competencias planteadas.
+    determinado. Estos recursos se deben proveer en lo          A Continuación se presenta un ejemplo del formato de
+    posible con el software. Así por ejemplo si se requiere     cómo se diseña una competencia.
+    un diccionario o una libreta de apuntes, el software
+    debe proveer herramientas de diccionario y de libreta o
+    agenda según el caso. Por tanto esta sección es el punto    Competencia # 1            Tipo: cognitive
+    de partida para los elementos que debe llevar la barra de   Objetivos                  Norma
+    herramientas.
+
+                                                                1:Enunciado                1: Contexto
+    Indicadores: También llamados evidencias, son los           Reconocer palabras en      Cuando se le solicite escribir y conformar una palabra en
+    conocimientos o actitudes que se deben ver o evaluar        lenguaje maya de           el lenguaje maya
+                                                                acuerdo     a      su
+    para saber si el estudiante o persona es competente. Por    simbología basada en       2: Recursos
+    cada elemento de la competencia se pueden tener uno o       glifos.                    Libreta de apuntes cuadriculada, lápiz, borrador,
+    más indicadores, por tanto esta sección será la base para                              diccionario guía Maya
+    la elaboración del sistema de evaluación del aprendizaje    2: Elementos               3:Evidencias
+    del software educativo.                                     1.Identificar los verbos   1.1 Reconoce la estructura de los verbos del lenguaje
+                                                                y la numeración del        maya (chum; ak’taj; tzak; chuk; jatz; puluuy; uhti)
+                                                                lenguaje maya
+                                                                                           1.2 Reconoce el significado de los verbos del lenguaje
+                                                                                           maya. (sentarse-chum; bailar-ak’taj; conjurar-tzak;
+Conceptos                                                                                  agarrar-chuk; golpear-jatz; quemar-puluuy; suceder-uhti)
+Esta sección contiene una lista detallada de los conceptos                                 1.3 Identifica la numeración en maya del 1-10, su
+que aparecen en los apartados anteriores del formato de                                    escritura y pronunciación (JUN, KA, HUX, KAN, JO,
+                                                                                           WAK, WUK, WAXAK, B'OLON, LAJUN)
+competencias y que se relacionan directa o indirectamente
+                                                                2.Conocer los títulos y    2.1 Identifica los títulos de la lengua maya (baahkab;
+con el ámbito de la temática del software educativo. Aquí       colores en el lenguaje     k’inich; itz’aat;’a tz’ihb; ‘a yuxul)
+no es necesario definir o explicar cada concepto, pues más      maya
+                                                                                           2.2 Identifica los colores del lenguaje maya.(chak; ik;
+adelante con esta lista se desarrolla el diseño de contenidos                              k’an; sak; yax)
+donde se tratan con mayor profundidad sus significados y                                   2.3 Reconoce el significado de los títulos del lenguaje
+relaciones.                                                                                maya. (primero del mundo (titulo de militar)-baahkab;
+                                                                                           gran sol- k’inich; hombre inteligente o artista-itz’aat; el
+                                                                                           de la escritura-’a tz’ihb; el del tallado-‘a yuxul)
+Habilidades Requeridas
+                                                                3.    Identificar   las    3.1 Identifica las deidades del lenguaje maya (Ah puch-
+La realización de cualquier actividad implica ciertos           diferentes deidades de     Dios de la muerte violenta y sacrificios humanos; Chac-
+                                                                la lengua maya             Dios de la lluvia, y fertilidad de la agricultura; Ek chuac-
+conocimientos, destrezas que son necesarias para lograr su                                 Dios de la guerra; Hunab ku-El creador; Itzamna-Hijo de
+cumplimiento, esto conlleva a que los estudiantes deban                                    Hunab Ku; Ixchel-protectora de las parturientas y la
+poseer ciertas aptitudes que se requieren para desarrollar                                 inventora del Arte del Tejido; Ix Tab-Diosa de los
+                                                                                           suicidas; Kukulcan-Dios del viento; Xaman ek-Dios de
+cada una de las competencias así:                                                          la estrella polar; Yun Kaax-Dios del maiz y la
+
+
+                                                                                           agricultura)
+                  Intelectuales:        Las      habilidades
+                                                                Conceptos
+    intelectuales son aquellas que se necesitan en la
+                                                                      Glifos
+    realización de actividades mentales. Los test de                           o  Deidades: Ah Duch, Chac, Ek chuac, Hunab ku, Itzamna
+    Coeficiente intelectual (CI), los test de admisión, los                    o  Colores: Chak, Ik, k’an
+    test de admisión para el postgrado en negocios, están                      o  Números: Jun, Ka, Hux, Kan, Jo , Ixchel, Ix Tab, Kukulcan,
+                                                                                  Xaman ek, Yun Kaax, Sak, yax, Wak, Wuk, Waxak, B'olon,
+    diseñados para asegurarse de la habilidad intelectual de                      Lajun
+    los individuos [4].                                                    o      Lenguaje: Chum, ak’taj, tzak, chuk, jatz, puluuy, uhti
+                                                                                  Títulos: Baahkab, k’inich, itz’aat, ’a z’ihb, ‘a yuxul
+    Las habilidades intelectuales como la destreza
+                                                                           o
+                                                                Habilidades y destrezas
+    numérica, la comprensión verbal, la velocidad                     Intelectuales: Manejo básico y utilización del computador. Conocer
+    perceptual, el razonamiento inductivo, el razonamiento            conceptos, definiciones e historia relacionados con el tema lenguaje maya.
+    deductivo, la visualización espacial y la memoria, son            Físicas: condiciones físicas y mentales normales.
+                                                                      Sociales: capacidad de aprender y resolver problemas en grupo.
+    las aptitudes que deben poseer los estudiantes como
+    requisito para desarrollar las actividades propuestas en    Tabla 1. Ejemplo de Formato de competencias. (Software
+    cada competencia.                                           Lenguaje Maya - Edupmedia-2008)
+
+                 Físicas: Las habilidades físicas son          Diseño de Contenidos
+    aquellas que se necesitan para realizar tareas que
+                                                                Para la realización de un software educativo es necesario
+    demandan vigor, destreza manual, fortaleza y
+                                                                describir cada contenido que comprenda el problema
+    características parecidas [4].
+                                                                estudiado, indicando la definición de cada categoría
+    Las habilidades físicas comprenden las destrezas
+                                                                conceptual utilizada en dicho material educativo, haciendo
+    motoras que son fundamentales para el manejo de
+                                                                énfasis en las características principales del conjunto de
+    herramientas computacionales, que permiten a los
+                                                                bases conceptuales.
+    estudiantes realizar con menor dificultad distintos tipos
+
+
+
+
+                                                                                                                                                   191
+El contenido se obtiene del listado de la sección de              diseño de competencias), posteriormente se especifican las
+conceptos del formato de las competencias (ver tabla 1). Si       características del modelo pedagógico que se verán
+existe más de una competencia, se hace un único listado con       reflejadas en el software (trabajado en la sección de diseño
+la sumatoria de todos los conceptos y se procede a elaborar       pedagógico); con esos tres datos se diseña una secuencia de
+sus definiciones según las características de la población y      aprendizaje cuya finalidad es que los estudiantes realicen las
+el nivel de profundidad deseado.                                  actividades descritas en los elementos bajo las directrices
+                                                                  especificadas en las características del modelo pedagógico.
+                                                                  La secuencia debe evidenciar los aspectos relacionados en
+Concepto        Características   Definición/Descripción          los indicadores, si dicha secuencia cumple con los aspectos
+Sentarse-chum                     Asumir el trono                 mencionados, puede ser considerada como adecuada para
+                                                                  continuar el proceso de diseño.
+Bailar-ak’taj                     Él baila
+                                                                  COMPETENCIA # 1
+  Tabla 2. Vista parcial de la matriz del diseño de contenidos.                       Aplicación                modelo
+(Software Lenguaje Maya - Edupmedia-2008)                         Elementos                                                 Indicadores
+                                                                                      pedagogía
+                                                                  1.Identificar       Conoce los verbos más                 1.1.Reconoce la estructura
+                                                                  los verbos y la     significativos de una nueva           de los verbos del lenguaje
+                                                                  numeración del      cultura.                              maya (chum; ak’taj; tzak;
+Diseño Pedagógico                                                 lenguaje maya                                             chuk; jatz; puluuy; wol;
+                                                                                      Los verbos escogidos son los          uhti; pas; lok’)
+La pedagogía se refiere al saber o discurso sobre la                                  principales de la cultura maya.
+educación como proceso de socialización, de adaptación. En        Secuencia de aprendizaje
+sentido estricto, por pedagogía entendemos el saber riguroso      Se ilustran los verbos más importantes del lenguaje maya según la representación y
+                                                                  pronunciación en maya y la representación de estos en español. El usuario escogerá
+sobre la enseñanza, que se ha venido validando y                  libremente que verbo desea visualizar. Para determinar el indicador 1.1 se
+sistematizando en el siglo XX como una disciplina científica      mostrarán botones que representan los verbos, los cuales el usuario al darles clic, se
+                                                                  le mostrará la representación y pronunciación por medio de imágenes.
+en construcción, con su campo intelectual de objetos y
+                                                                  Tabla 3. Ejemplo resumido del diseño de la secuencia de
+metodologías de investigación propios, según cada                 aprendizaje basado en competencias. (Software Lenguaje Maya -
+paradigma pedagógico [5].                                         Edupmedia-2008)
+En esta sección se especifica en primera instancia el modelo
+pedagógico que se ha seleccionado, recordando que el              Fase II: Diseño multimedial
+modelo Edupmedia no trabaja con un modelo estándar, sino          A partir de los resultados obtenidos de la fase del diseño
+a partir de la elección hecha por los expertos teniendo en        educativo se establece la fase número II denominada diseño
+cuenta diversos factores como las competencias a                  multimedial. Esta fase se encarga de la descripción de las
+desarrollar y las necesidades educativas específicas y el         etapas que permitirán conocer la planeación de actividades a
+contexto donde se aplicará.                                       desarrollar, utilizando representaciones gráficas y recursos
+El modelo pedagógico seleccionado se tomará como base             multimedia que en conjunto mostrarán el diseño de cada
+para el diseño de las actividades de aprendizaje que tendrá       interfaz y la estructura que se va a utilizar en el software.
+el software educativo, esto se hace en forma detallada para
+tener una visión amplia del modelo en cuestión. Una vez           Planeación del proceso de producción
+hecho eso, se procede a especificar las características o         En todo proceso de desarrollo de software educativo se
+aspectos de dicho modelo que serán materializadas en el           necesita planificar como quedará constituido u organizado
+software, pues generalmente debido a la gran variedad de          el desarrollo de las actividades, esto ayuda a que durante el
+aspectos que abarca un modelo en particular, no todos son         proceso se tenga un control, que permita cumplir a
+viables de aplicar a determinadas necesidades educativas.         cabalidad lo establecido en la planificación de la
+                                                                  producción. El conjunto de procesos integra las metas u
+Diseño de Aprendizaje                                             objetivos que se pretenden alcanzar, la distribución de las
+Una vez realizado el diseño pedagógico, se inicia el diseño       funciones que cada persona tendrá que asumir para lograr
+de una estrategia de aprendizaje, cuyo propósito es otorgar       los objetivos que han sido planteados y por ultimo un
+a los estudiantes estrategias efectivas para el mejor             cronograma de actividades.
+desempeño en áreas y contenidos específicos. La utilización
+de distintas formas de aprendizaje dependerá de las               Diagrama de contenidos
+actividades efectuadas y de las características cognitivas de     La funcionalidad de los diagramas es representar
+los estudiantes.                                                  gráficamente la información contenida en un estudio
+Para realizar el diseño de aprendizaje se lleva a cabo el         temático de tal forma que se hace necesario complementar
+siguiente proceso:                                                el diseño de un software con un esquema que represente los
+                                                                  contenidos que se encuentran en la fase del diseño de
+Inicialmente se toman los elementos de la competencia             contenidos. Esta representación se puede esquematizar de
+seleccionados y sus indicadores (trabajado en la sección
+
+
+
+
+                                                                                                                                                    192
+distintas formas ya sea por medio de mentefactos, mapas              Descripción de las ventanas: Todas las ventanas se
+conceptuales y mapas mentales.                                        deben describir teniendo en cuenta el diseño y la
+                                                                      organización dispuesta para su presentación,
+Diseño del ambiente de aprendizaje                                    identificándolas en distintas categorías tales como: la
+Esta etapa comprende el conjunto de directrices que                   imagen, el nombre de cada ventana, el texto, el audio,
+permitirán una comunicación directa entre el usuario y la             videos, animación y por último, las acciones. Estas
+computadora, ya que se presentará visiblemente el diseño de           categorías darán una mejor explicación del contenido
+cada una de las interfaces gráficas de usuario. Estas                 que posee cada una de las interfaces.
+directrices se identifican secuencialmente iniciando con el
+diseño de la ventana estándar para seguir con cada ventana o
+                                                                 Índice de recursos
+interfaz y para finalizar con el diseño del mapa de
+navegación.                                                      Los materiales multimedia deben utilizarse cuando éstos
+                                                                 hagan alguna aportación relevante a los procesos de
+Mapa de navegación                                               enseñanza y aprendizaje. Su uso eficiente siempre estará
+El mapa de navegación de un software es una guía gráfica         supeditado a la existencia de una necesidad educativa que
+que se elabora para brindarle al usuario un fácil manejo del     razonablemente pueda satisfacer [7].
+material computacional. Este esquema muestra la forma            En la realización de un software educativo es vital
+como están organizadas las interfaces gráficas de usuario,       seleccionar o producir recursos multimedia como el audio y
+dentro de este esquema se incluye la imagen de la ventana        video para lograr la interactividad del material educativo y
+principal y el despliegue de las demás cuando hay un             captar la atención de los usuarios, permitiendo que estos
+hipervínculo que la interconecta.                                obtengan mayor comprensión de los contenidos utilizados
+                                                                 en el software.
+Guión técnico                                                    Ventana Nro. 0014 – Construcción de frases simples
+El guión técnico multimedial es un escrito que contiene          Texto      Construye la frase que aparece en el recuadro
+detalladamente que es lo que queremos mostrar en la              Imagen     Glifos agrupados por categorías
+pantalla de nuestro computador. En el guión se escribe                      Sustantivos
+cómo va a ser cada “pantallazo”, eso es lo que vamos a ver                  img027.jpg    img028.jpg      img029.jpg        img030.jpg    img031.jpg
+
+cada vez que interactuemos con el entorno. Debemos
+escribir todo, cómo van a ser los fondos, botones, sonidos,
+fotografías, colores, tipo y color de letra y donde va a estar   Audio      No aplica
+situado todo [6].
+                                                                 Video      Video de ayuda para ubicar los glifos en los bloques
+La fase del guión técnico multimedial es muy importante,                    Video0010.avi
+                                                                 Acciones   Barra de Glifos:
+debido a que permite visualizar de una forma detallada la                   Contará con botones de desplazamiento para colocar los glifos en el área
+conformación de los diferentes componentes de las                           de visualización.
+                                                                            Se debe arrastrar cada Glifo desde la Barra hasta el área de trabajo y
+interfaces gráficas de usuario. En esta fase es donde se                    ubicarlo en un cuadro.
+recolecta, describe, produce todos los recursos multimedia,      Tabla 4. Ejemplo de Índice de recursos para una ventana.
+los textos que se van utilizar en el diseño de cada una de las   (Software Lenguaje Maya - Edupmedia-2008)
+ventanas.
+
+Diseño de las interfaces
+                                                                 Fase III: Diseño computacional
+Las ventanas o interfaces gráficas del usuario (IGU), son la
+representación gráfica que concederá al usuario la               La fase del diseño computacional comprende la descripción
+visualización de las herramientas multimediales, los             de los elementos que permitirán que el sistema funcione a
+contenidos, las actividades y las evaluaciones que pueda         cabalidad con los procesos que fueron definidos en el
+tener el software educativo. Para diseñar las ventanas es        transcurso del diseño educativo y multimedial. Asimismo se
+necesario tener en cuenta el tipo de usuario a quien va          hace una representación de la interacción que tiene el
+dirigido el material computacional, además para su diseño y      usuario con el sistema en desarrollo, permitiendo que los
+creación es importante tomar como base el tipo de software       actores detallen si el software complementa y ayuda al
+seleccionado en la fase del diseño educativo.                    proceso de enseñanza y aprendizaje.
+
+                                                                 Descripción del proceso de desarrollo
+   Ventana estándar: Es la ventana principal que servirá de     En el proceso de desarrollo se ponen de manifiesto las
+    modelo para el diseño de las demás interfaces. La            etapas que harán parte del diseño del software, tales como la
+    ventana estándar se diseña por secciones que deben ser       selección de una metodología o ciclo de vida, la cual se
+    explicadas detalladamente para precisar la división de       incluirá en el material computacional, así como las
+    la ventana.                                                  descripciones funcionales del sistema. El ciclo de vida
+                                                                 permite organizar los procesos de tal forma que las
+
+
+
+
+                                                                                                                                              193
+actividades puedan ser definidas de una manera más
+ordenada y con calidad.
+
+Análisis de requerimientos
+Al planificar el diseño de un software educativo se debe
+tener presente la planta física y la población a quien va
+dirigida refiriendo a docentes, estudiantes y usuarios; es
+importante establecer los requerimientos a partir de la
+necesidad que se presentó en el proceso de enseñanza y                      Figura 2. Ejemplo de un diagrama de casos de uso. (Software
+aprendizaje, de esta forma se conocerá si el software                       Lenguaje Maya - Edupmedia-2008)
+cumplió a cabalidad con los objetivos dispuestos durante el
+proceso de diseño. Para desarrollar los requerimientos se                   Diagrama de clases
+deben dividir éstos en secciones denominadas subsistemas y                  Un diagrama de clase muestra un conjunto de clases,
+requerimientos funcionales.                                                 interfaces y colaboraciones, así como sus relaciones. Los
+REQUERIMIENTO Nro. 00046                                                    diagramas de clases se utilizan para modelar la vista de
+El sistema debe contar con un diccionario de Glifos Mayas                   diseño estático de un sistema. Principalmente, esto incluye
+                  X
+                                                                            modelar el vocabulario del sistema, modelar las
+Usuario                 El usuario podrá escribir la palabra en español o
+                        inglés, y el diccionario le mostrará el glifo       colaboraciones o modelar esquemas [8].
+Sistema
+                        correspondiente.                                    El diagrama de clases está compuesto por elementos
+Funcional         X
+                                                                            identificados como clase y relaciones, que al unirlos
+No funcional                                                                conforman los esquemas o diagramas que representarán un
+Pre-condición                          Post-condición                       modelo de clases. Estos diagramas resultan de la
+La palabra introducida debe existir    Se   muestra   el  glifo,  la        composición de los casos de uso.
+en el diccionario                      pronunciación y escritura del
+                                       mismo.                               El diagrama de clases debe expresar detalles de los objetos
+                                                                            que existen en el área de enfoque, en él se incluyen atributos
+Fecha creación        20-10-2008       Responsable
+                                                                            y métodos de cada una de las clases.
+Fecha de              01-12-2008       Raúl Toscano-Manuel Caro
+procesamiento
+                                                                            Diagrama de objetos
+Modificación                           Causa/Responsable
+                                                                            Un diagrama de objetos es un diagrama que representa un
+Tabla 5. Ejemplo de un requerimiento formalizado. (Software                 conjunto de objetos y sus relaciones en un momento
+Lenguaje Maya - Edupmedia-2008)                                             concreto. Gráficamente, un diagrama de objetos es una
+                                                                            colección de nodos y arcos. Un diagrama de objetos es un
+                                                                            tipo especial de diagramas y comparte las propiedades
+Diagrama de casos de uso                                                    comunes al resto de los diagramas (un nombre y un
+Un caso de uso especifica el comportamiento de un sistema                   contenido gráfico que es una proyección de un modelo) [8].
+o de una parte del mismo, y es una descripción de un
+conjunto de secuencias de acciones, incluyendo variantes,                   Diagrama de secuencia
+que ejecuta un sistema para producir un resultado                           Los Diagramas de Secuencia representan una interacción
+observable de valor para un actor.                                          entre objetos de manera secuencial en el tiempo. Muestra la
+Los casos de uso se utilizan para describir la forma como el                participación de objetos en la interacción entre sus “líneas
+usuario interactúa con el sistema y las acciones que presenta               de vida” (desde que se instancia el objeto) y los mensajes
+el sistema como respuesta a dicha interacción. Estos se                     que ellos organizadamente intercambian en el tiempo. El
+dividen en elementos, actores, diagramas de casos de uso y                  responsable o actor es quien inicia el ciclo interactuando
+su objetivo es permitir la captura de requisitos potenciales                inicialmente con la interfaz de usuario (IGU); en seguida se
+para el nuevo sistema.                                                      inician todos los objetos que intervienen en el
+                                                                            funcionamiento del aplicativo. En este diagrama se
+Los casos de uso deben cumplir dos objetivos: Definir los                   comienza a observar el comportamiento del sistema a partir
+requisitos funcionales del sistema y proporcionar una base                  de los eventos generados por los actores [8].
+para la validación de las pruebas [8].
+                                                                            Veamos un ejemplo del diagrama de secuencias:
+
+
+
+
+                                                                                                                                     194
+                                                               con las especificaciones del software desarrollado, es
+                                                               importante tener en cuenta que la persona encargada de la
+                                                               codificación domine la herramienta o lenguaje seleccionado
+                                                               para que se facilite la programación de las actividades y
+                                                               contenidos del software, permitiendo el cumplimiento de las
+                                                               metas propuestas en términos de eficacia y eficiencia.
+
+                                                               Codificación
+                                                               Esta etapa ayuda a que el desarrollo del software con
+                                                               respecto a la programación tenga una presentación correcta,
+                                                               entendible y con buen estilo, la aplicación de estos
+                                                               parámetros permitirá fácilmente el mantenimiento del
+                                                               software para poder corregir los errores y modificar algún
+                                                               requisito cuando sea necesario.
+Figura 3. Ejemplo de un diagrama de secuencia. (Software
+Lenguaje Maya - Edupmedia-2008)                                Presentación del prototipo
+                                                               El prototipo es la primera versión que se obtiene al culminar
+                                                               el diseño y desarrollo del software, esta presentación se
+Modelado del sistema de conocimiento/bases de datos            realiza para verificar si el software cumplió con las
+En esta etapa se recomienda la utilización de bases de datos   especificaciones planteadas en la necesidad educativa, para
+relacionales o archivos de texto con estructura XML. Si la     esto se selecciona un grupo representativo de la población
+opción es la primera, se deberá crear un MER (Modelo           objeto de estudio a quienes se les mostrará y aplicará el
+Entidad Relación), un MR (Modelo relacional) basado en el      prototipo.
+MER y un diccionario de datos para los metadatos (como
+tipos, tamaños, y otras cualidades de los campos de datos).    Evaluación del prototipo
+Estos modelos son de uso generalizado y cuenta con             Al conocer los resultados de las pruebas desarrolladas al
+abundante bibliografía. Si la opción es el archivo de XML,     prototipo se reúne el grupo de trabajo para realizar un
+bastará entonces con el diccionario de datos.                  análisis de las evaluaciones efectuadas, en donde se
+                                                               determinará dependiendo de los errores, si es necesario
+                                                               realizar ajustes al prototipo.
+
+                                                               Manual de usuario
+                                                               Pequeño libro que recibe el usuario junto con el sistema de
+                                                               composición, ya sea con referencia al hardware o al
+                                                               software, que le permite aprender las particularidades del
+                                                               equipo o del sistema y la forma de utilizarlo. Una vez
+                                                               familiarizado con el mismo, pasa a ser un instrumento de
+Figura 4. Vista parcial de un MER. (Software Lenguaje Maya -   consulta para cuando se ha olvidado algún aspecto o se
+Edupmedia-2008 [10])                                           presenta alguna duda [9].
+
+
+Fase IV: Producción                                            Fase V: Aplicación
+En la fase de producción se agrupan todos los materiales       La fase de aplicación es la etapa final donde se mostrará el
+obtenidos en el desarrollo de las fases anteriores, por tal    software terminado y funcionando a cabalidad. Esta
+motivo es aquí donde se realiza la implementación de todos     comprende la aplicación del software a toda la población
+los documentos obtenidos en las fases de diseños que serán     objeto de estudio en condiciones normales del aprendizaje
+codificados por un especialista en programación                para comprobar si el programa en realidad cumplió con los
+permitiendo el desarrollo final del software, que conllevará   requisitos establecidos en los objetivos propuesto en la
+a la presentación de un prototipo el cual será evaluado para   necesidad educativa.
+determinar si cumplió con los objetivos propuestos. Además
+como último paso se realizará un manual de usuario para        Utilización del software
+que los usuarios puedan navegar fácilmente por el software.    Para utilizar un software es necesario conocer cuales son las
+                                                               condiciones que se establecen para que los usuarios puedan
+Selección de herramienta de desarrollo                         interactuar sin mayor dificultad con el software, esto
+Para llevar a cabo la codificación es necesario seleccionar    permitirá que la aplicación tenga el efecto esperado para lo
+una herramienta o lenguaje de programación que sea acorde      cual fue desarrollada.
+
+
+
+
+                                                                                                                       195
+Obtención de resultados                                             MOSCA - Propuesta de una metodología de desarrollo de
+                                                                    software educativo bajo un enfoque de calidad sistémica [13].
+En esta fase se realiza el análisis de los resultados obtenidos
+                                                                    Este modelo mide la calidad sistémica de una organización
+en la etapa de utilización del software. A partir de este
+                                                                    desarrolladora de software partiendo de la calidad de su
+estudio se logrará determinar si el software aplicado fue
+                                                                    producto y de la calidad del proceso de desarrollo del
+eficaz, eficiente y cuenta con los requisitos necesarios para
+                                                                    mismo. El modelo MOSCA especifica los procesos que se
+seguir con su utilización en el aula de clases o por lo             deben mejorar en la empresa y las características que no son
+contrario, éste requiere que se realicen ajustes necesarios
+                                                                    satisfechas por el producto de software desarrollado.
+para cumplir con la necesidad para lo cual fue diseñado.
+                                                                    Este modelo se encuentra orientado la ingeniería de
+COMPARACIÓN CON OTROS MODELOS                                       software a procesos que describen el so se describe en este
+En este apartado primero se procederá a realizar una breve          modelo se detalla que se encuentra
+descripción de los modelos existentes en la actualidad para
+                                                                    Análisis comparativo
+el desarrollo de software educativo y luego se presentarán
+las diferencias entre el modelo propuesto y los ya existentes       Se puede apreciar en la tabla que los otros modelos
+a modo de cuadro comparativo.                                       estudiados no cuentan con indicaciones precisas acerca de
+                                                                    cómo involucrar las competencias que se esperan que el
+Modelos para el desarrollo de software educativo                    estudiante desarrolle con el proceso de diseño del software
+                                                                    educativo. En el caso de los modelos extranjeros, se deduce
+                                                                    que no soportan esta capacidad debido a estar inmersos en el
+Ingeniería de software educativo con modelaje orientado por         contexto educativo local de cada país en el que se han
+objetos: un medio para desarrollar micromundos interactivos [15].   propuesto.
+La integración de Ingeniería de Software Educativo (ISE),                                    TABLA COMPARATIVA
+con el modelaje O. O, permite hacer uso efectivo de la               Indicadores de       Modelo                          Modelos existentes
+información recolectada en la fase de análisis y diseño               comparación        propuesto
+educativo; por está razón es necesario su inclusión en todas                            MODESEC           Metodología        Metodologí   Ingeniería de
+las etapas del ciclo de desarrollo y así unificar los términos                          (Modelo para el
+                                                                                        desarrollo de
+                                                                                                          Dinámica
+                                                                                                          para       el
+                                                                                                                             a THALES     software
+                                                                                                                                          educativo con
+en los que se habla en cada etapa, estableciendo un modelo                              software          Desarrollo de                   modelaje
+                                                                                        educativo         Software                        orientado por
+del mundo del problema y de su comportamiento; de este                                  basado en         Educativo                       objetos: un
+modo se hace referencia a objetos presentes en el modelo,                               competencias)                                     medio para
+                                                                                                                                          desarrollar
+extendiendo así su funcionalidad. Al llegar a la                                                                                          micromundos
+                                                                                                                                          interactivos
+implementación, los resultados obtenidos se transcriben al
+                                                                    Adaptado al
+lenguaje de programación escogido, cambiando la sintaxis            sistema de
+en que se expresa el modelo, más no la semántica.                   competencias
+                                                                    colombiano
+
+                                                                    Personas que
+                                                                    intervienen en el
+Metodología Dinámica para el Desarrollo de Software Educativo       proyecto (menos
+                                                                    de 10 personas)
+[14].
+                                                                    Fases e                 Cinco            Cuatro             Seis            Cinco
+La metodología está compuesta por cuatro fases (Diseño              implementación
+                                                                    que comprenden
+Educativo, Producción, Realización e Implementación.) y             los distintos
+                                                                    modelos
+un eje transversal que es la Evaluación. No se requiere la          Norma o
+culminación de una fase para pasar a la otra, es posible            Estándar
+
+obtener rápidamente un prototipo que permita hacer
+validaciones parciales y correcciones de ser requeridas.            Disponibles
+                                                                    software hechos
+                                                                    con cada
+Metodología THALES [16]                                             modelos
+                                                                    Origen                Colombia        Agentina           Venezuela         Colombia
+La metodología de THALES, representa un modelo hibrido              Tipos de               Lineal            Lineal            Cíclico          Cíclico
+                                                                    modelos               solapado          solapado
+no lineal. Está metodología consta de seis fases: Planeación,
+Diseño, Producción, Prueba Piloto, Evaluación y                     Tabla 6. Tabla comparativa entre los modelos de diseño de
+Mejoramiento. Habiendo un ciclo en las fases diseño-                software educativo estudiados
+producción-prueba piloto y luego culminada la versión 1 un          Otros modelos como el Mosca y el O.O se basan más en
+ciclo evaluación-mejoramiento. En futuras evaluaciones              actividades ingenieriles que le van a dificultar a los docentes
+puede tomarse la decisión de revisar los documentos desde           de las instituciones de educación colombianas utilizarlos
+el principio, es decir retomar la fase de planeación.               para implementar soluciones a las necesidades educativas
+                                                                    que en ellas se puedan presentar.
+
+
+
+
+                                                                                                                                                          196
+APLICACIÓN Y VALIDACIÓN DEL MODELO                                                                                      ¾    Los grandes volúmenes de contenido que tienen estas
+                                                                                                                             temáticas.
+El modelo propuesto en este artículo, ha sido validado con                                                              ¾    La aplicación por parte del docente de una metodología,
+
+                                                                                                                        ¾
+éxito en los trabajos de grado de la línea de Desarrollo de                                                                  muy poco atractivas para los estudiantes.
+                                                                                                                             La falta de creatividad y recursividad de los maestros
+Software educativo que han sido orientados y/o dirigidos                                                                     para el desarrollo de su actividad académica.
+por el grupo de investigación EDUPMEDIA. Disponibles en                                                                             SOLUCIONES
+CD se encuentran Edulógica, para refuerzo de la lógica                                     POSIBLES                     ¾    Incluir en este software educativo o material multimedial
+
+                                                                                                                        ¾
+                                                                                           SOLUCIONES                        el contenido de esta temática.
+matemática; Brújula, para tratar el programa de la disgrafía
+                                                                                                                             El uso de una metodología que sea del agrado de los
+en niños y Zenulandia, para la enseñanza de la cultura Zenú
+                                                                                                                        ¾
+                                                                                                                             estudiantes.
+en Colombia.                                                                                                 Capacitar a los docentes con el fin de que sean más
+                                                                                                             creativos al momento de planear sus clases.
+Otra validación ha sido la realizada en la asignatura de                                   CONOCIMIENTOS Y HABILIDADES QUE DEBE TENER EL ESTUDIANTE
+Diseño de Software Educativo, de la cual se disponen en                                    PRECONCEPTOS   ¾  Tener claro los contenidos previos a esta temática.
+                                                                                           PRECONDICIONES ¾  Manejo básico del computador
+                                                                                                          ¾
+CD las aplicaciones: Lenguaje Wayuunaiki, La conquista de                                                    Tener habilidades psicomotrices.
+América, Los Mayas, Learning mandarín y Los Aztecas.                                       Tabla 7. Ficha para diligenciar los datos de la necesidad
+Este último será el utilizado en el presente apartado como                                 educativa
+caso de estudio de la aplicación del modelo [11]. A
+continuación se presentará la descripción de un software                                   Diseño del sistema de competencias
+educativo realizado con el modelo propuesto.                                               En este apartado se muestra una vista parcial de las
+                                                                                           competencias tratadas en el software.
+Estudio de la necesidad educativa
+                          NECESIDAD EDUCATIVA
+                                                                                                                             DISEÑO DE COMPETENCIAS
+TIPO                Según Burton y Merryl, la necesidad a tratar con el diseño de
+Tipo de necesidad   nuestro producto es de tipología sentida, ya que, está temática        Objetivos                        Normas
+                    fue sugerida por la institución educativa, en base a las falencias
+                    que presentan los estudiantes de noveno grado en las diferentes        Enunciados 1: Reconoce           Contexto: cuando se le solicite la ubicación geográfica del imperio
+                    instituciones del departamento de Córdoba.                             la ubicación geográfica del      Azteca.
+POBLACION                                                                                  imperio azteca a lo largo
+                                                                                           de su historia.                  Recursos:
+Rango de edad       Las edades de los estudiantes de noveno grado de las
+                                                                                                                                  9        Mapa de centro América.
+                                                                                                                                  9
+                    instituciones educativas del departamento de Córdoba oscilan
+                                                                                                                                           Imágenes del imperio azteca.
+                    entre los 13 y 17 años de edad.                                                                               9        Videos del imperio azteca.
+                                                                                                                                  9        Software de la cultura Azteca.
+Escolaridad         Estudiantes de noveno grado de las instituciones educativas del        Elementos                        Indicadores
+                    departamento de córdoba.
+Conocimientos       Los estudiantes beben tener conocimiento, de las temáticas que
+                                                                                           1.     Identifica la             1.1. Relata la ubicación geográfica de los aztecas en esta época.
+que poseen.         en los colegios se dan antes de esta.
+                    ¾
+                                                                                                  ubicación
+Intereses y                Desarrollar actitudes que le permitan manejar el                       geográfica de los         1.2. Reconoce en el mapa de centro América la ubicación geográfica
+                                                                                                                            de los aztecas.
+expectativas               software.                                                              aztecas en el siglo
+(población)         ¾      Que el software les facilite la comprensión de la                      XIV y principios          1.3. Conocer la ciudad principal donde se ubicaron los aztecas
+                           temática.                                                              de siglo XV.              mediante imágenes.
+Intereses y         ¾      Desarrollar actitudes en los estudiantes que le permitan
+expectativas               manejar el software.
+(creadores)         ¾      Que los estudiantes a través del software conozcan parte        2.     Identifica la             1.1. Relata la ubicación geográfica de los aztecas en esta época.
+                           de la cultura suramericana, como es la civilización.                   ubicación
+                                                                                                  geográfica de los         1.2. Reconoce en el mapa de centro América la ubicación geográfica
+                           azteca, de una manera más interactiva.                                                           de los aztecas.
+                                                                                                  aztecas a mediados
+ÁREA DE FORMACIÓN                                                                                 del siglo XV.             1.3. Conocer la ciudad principal donde se ubicaron los aztecas
+                                                                                                                            mediante imágenes.
+Área del saber      Sociales e Historia
+Área de             Grandes culturas Americanas (los Aztecas)
+contenido                                                                                  3.     Identifica la             1.1. Relata la ubicación geográfica de los aztecas en esta época.
+Unidades            ¾      Ubicación geográfica de la civilización azteca                         ubicación
+                    ¾
+                                                                                                  geográfica de los         1.2. Reconoce en el mapa de centro América la ubicación geográfica
+temáticas                  Historia de la fundación y consolidación del imperio                   aztecas a finales         de los aztecas.
+                           Azteca
+                    ¾
+                                                                                                  del siglo XV.             1.3. Conocer la ciudad principal donde se ubicaron los aztecas
+                           Aspectos culturales de los Aztecas (economía y religión)
+                    ¾
+                                                                                                                            mediante imágenes.
+                           Lenguaje Azteca. (diccionario)
+                    ¾      Conquista y caída del imperio Azteca.
+                               ESTADO ACTUAL                                               4.     Identifica la             1.1. Relata la ubicación geográfica de los aztecas en esta época.
+                                                                                                  ubicación
+                    A partir observaciones y encuestas a docentes y estudiantes, de               geográfica de los         1.2. Reconoce en el mapa de centro América la ubicación geográfica
+                    las distintas instituciones educativas del departamento de                    aztecas a principios      de los aztecas.
+DIAGNOSTICO
+                    Córdoba. Queda al descubierto que en estas se vienen                          del siglo XVI.            1.3. Conocer la ciudad principal donde se ubicaron los aztecas
+                    presentando problemas de aprendizaje en las distintas áreas del                                         mediante imágenes.
+                    saber, uno de los problemas más grandes, se da en el área de
+                    sociales e historia donde los estudiantes se muestran cansados,
+                    fatigados o simplemente desinteresados, durante el desarrollo de
+                    las actividades académicas en las que trata, sobre las grandes              CONCEPTOS                   1.     Generalidades.
+                    culturas Americanas, en especial la civilización Azteca.                                                       9     Historia, Civilización, Aztecas
+
+                                                                                                                                   9
+                                   NECESIDAD                                                                                2.     Ciudades.
+NECESIDAD           Mediante el diagnóstico realizado nos podemos dar cuenta del                                                         Texcoco, Tenochtitlan, Azcapotzalco, Tepanecas
+                    desinterés de los estudiantes por el estudio de las grandes
+                    culturas Pre-Hispánicas Americanas y en especial                  la   Tabla 8. Ficha para diligenciar los aspectos de las competencias
+                    civilización Azteca.
+                                     CAUSAS
+POSIBLES            ¾      La falta de material didáctico para el desarrollo de estas
+CAUSAS                     clases.
+
+
+
+
+                                                                                                                                                                                           197
+Diseño de contenidos
+En este caso sólo se muestran los contenidos que harán parte
+de las estrategias de la competencia que se ha descrito en el
+parágrafo anterior. Recordemos que la fuente de los
+términos e ideas que aquí se explican es la sección de
+Conceptos del formato para la formalización de
+competencias. Ver apartado Diseño de competencias.
+
+Diseño pedagógico
+De acuerdo con lo especificado en el modelo de desarrollo,
+primero se selecciona un modelo pedagógico con base en
+las necesidades educativas y luego se verifican las
+características del modelo que son susceptibles para
+incluirlas en el software educativo.
+•   Teoría del Modelo seleccionado para el software
+    Azteca:                                                      Figura 5. Ventana de presentación de la situación problémica
+                                                                 (Software Azteca – Universidad de Córdoba. 2007)
+Constructivismo social y aprendizaje significativo: Es un
+modelo de enseñanza el cual nos dice que el individuo
+aprende mientras convive o interactúa con el medio en            En esta ventana a modo se historia se le introduce en la
+donde habita y los sujetos que lo rodean los cuales ayudan a     temática y el problema a resolver se le es presentado en un
+que este construya un nuevo conocimiento.                        video y es ambientado con una animación.
+•   Principios de esta teoría aplicables al software
+    Azteca:                                                      Estrategias
+    9    El aprendizaje es responsabilidad del estudiante.       En este caso el modelo pedagógico determina la utilización
+    9    Se debe presentar un choque cognitivo para retar al     de estrategias que le darán al estudiante la información que
+         estudiante y en cierta forma hacerlo desaprender        necesita para resolver el problema que se le plantea al inicio
+         ciertos conceptos que no son los correctos.             del programa. Estas estrategias son de tipo exploratorio y no
+
+    9
+                                                                 implican secuencialidad ni obligatoriedad de visita, esto se
+         Los nuevos conceptos deben ser significativos esto      hace de este modo para ir en concordancia con el modelo
+         es relacionado con su experiencia con otros. Que        seleccionado.
+         ya posea que le sirvan de ancla para el nuevo
+         aprendizaje.                                            Cada estrategia cuenta con una sección para su evaluación.
+
+    9
+                                                                 Esto se hace con el fin de dividir el problema grande
+         El individuo aprende cuando interactúa con otros:       presentado al inicio, en varios problemas pequeños más
+         Los individuos se reúnen en grupos con otros            fáciles de solucionar por parte del estudiante
+         individuos a explorar y interactuar con el software
+
+                                                                      •
+         educativo de la cultura azteca, en donde los
+         individuos se pueden ayudar mutuamente en caso                      Estrategia 1
+         de que si uno de los Individuos no entiende o           Nombre:        Ubicación Geográfica
+         presenta problemas al momento de interactuar con        Objetivo:      Dar a conocer el lugar en donde se ubicaron los aztecas a
+         el Software los demás individuos del grupo le                          lo largo de su evolución.
+         pueden explicar o resolver la inquietud que tenga
+         acerca de la temática o el uso de este y así adquirir   Al desplegarse la ventana, aparece un mapa interactivo que
+         nuevos Conocimientos.                                   contiene la ubicación de los aztecas, este presenta una línea
+                                                                 de tiempo que muestra la ubicación del imperio a lo largo de
+Diseño de las actividades de aprendizaje
+                                                                 la historia y cuando se haga clic en la línea de tiempo
+Recordemos que para diseñar las actividades de aprendizaje       aparece la imagen de la ciudad y al lado de la imagen se
+se deben tener en cuenta las competencias especificadas y el     muestra un cuadro de texto con la explicación de la ciudad y
+modelo pedagógico seleccionado.                                  ubicación del imperio azteca. A su vez se acompaña de
+                                                                 audio y recursos extras como archivos de texto con
+Problema                                                         extensión PDF para quienes deseen profundizar más en el
+Esta ventana materializa la premisa estipulada en el diseño      tema.
+pedagógico donde se presenta una situación problémica que
+genere un choque cognitivo para retar al estudiante y en
+cierta forma hacerlo desaprender algunos conceptos que no
+son los correctos.
+
+
+
+
+                                                                                                                                    198
+                                                                  CONCLUSIONES
+                                                                  En este artículo se ha demostrado que el modelo presentado
+                                                                  es fácil de implementar por parte de los docentes y
+                                                                  practicantes de las instituciones de educación básica y
+                                                                  secundaria en Colombia, que en el fondo es el objetivo
+                                                                  principal del modelo.
+                                                                  El modelo propuesto se convierte en una guía de fácil uso
+                                                                  para implementar software educativo a la medida de las
+                                                                  necesidades de una institución educativa, las cuales cuentan
+                                                                  con profesionales en el área del problema, con expertos en
+                                                                  pedagogía y didáctica, y con docentes expertos en
+                                                                  informática. Con este personal mínimo se puede desarrollar
+                                                                  un software educativo de calidad siguiendo el modelo
+                                                                  propuesto, sin incurrir en gastos extra para la institución.
+
+Figura 6. Ventana de la estrategia para la ubicación geográfica   Con respecto a los otros modelos analizados, el modelo
+(Software Azteca – Universidad de Córdoba. 2007)                  propuesto cuenta con grandes ventajas como por ejemplo
+                                                                  ser el único que presenta una metodología para abordar de
+Evaluación                                                        forma clara el diseño de las competencias que se van a tratar
+El usuario deberá leer las instrucciones del juego, en donde      en el software educativo.
+indica cómo funciona, este deberá hacer clic sobre el             Otra ventaja que presenta es que está diseñado para
+personaje de Hernán Cortés para empezar a caminar por el          desarrollar software educativo con bajo presupuesto y con
+escenario, cuando llegue a uno de los guardias debe hacer         un equipo de trabajo que no supera las cinco personas. Estos
+clic sobre este, en donde este le arrojara una pregunta que el    son factores decisivos en la realidad colombiana, pues las
+usuario debe responder con las opciones que le den y si           instituciones educativas de las regiones cuentan con
+acierta continua caminando y seguirán las preguntas hasta         presupuestos limitados que no les permiten hacer grandes
+llegar al emperador Moctezuma y ganar la partida, pero si se      inversiones en este tipo de materiales.
+equivoca en una de las preguntas aparece un cuadro donde
+le dice el aspecto en que falló y en el lado de este hay un       Aunque el modelo esté planteado para el desarrollo de
+botón que lo lleva a las ventanas donde se encuentra la           software educativo a la medida, esto no es impedimento
+información para que repase todo lo referente a la pregunta       para poder utilizarlo a nivel industrial en la producción en
+y vuelvas a intentarlo.                                           masa, ya que los principios se mantienen igual.
+Recordemos que la evaluación general debe estar ligada a la       REFERENCIAS
+situación problémica planteada al inicio del software y debe
+abarcar todos los elementos contenidos en las estrategias de
+estudio.                                                          [1] Torrado, M. 1999. El desarrollo de competencias: una
+                                                                      propuesta para la educación colombiana. Mimeo. Bogotá D.C.
+                                                                  [2] De Zubiría, J. 2001. De la escuela nueva al constructivismo.
+                                                                      Un análisis crítico, Cooperativa Editorial Magisterio. Bogotá,
+                                                                      Colombia
+                                                                  [3] Losada, A., Moreno, H. 2003. Competencias básicas
+                                                                      aplicadas al aula. Ediciones SEM (Servicio educativo del
+                                                                      magisterio). Bogota D.C.
+                                                                  [4] Amorós, E. 2007. Comportamiento organizacional: En busca
+                                                                      del desarrollo de Ventajas Competitivas. Escuela de
+                                                                      Economía     de     USAT      de    Lambayeque.     Perú
+                                                                      www.usat.edu.pe/carreras1/economía272.
+                                                                  [5] Flórez, R. 2005. Pedagogía del Conocimiento, segunda
+                                                                      edición. Editorial Nomos. Bogotá D.C.
+                                                                  [6] Cómo elaborar un guión multimedial parte I.
+                                                                      http://nodocreativo.blogspot.com/2008/04/cmo-realizar-un-
+                                                                      guin-multimedia-parte-i.html
+                                                                  [7] Marqués, P. 1999. Selección y Uso de Recursos Multimedia.
+Figura 7. Ventana de la estrategia para la evaluación general         Diseño de Actividades. Usos en el Aula Informática.
+(Software Azteca – Universidad de Córdoba. 2007)                      http://dewey.uab.es/pmarques/interven.htm.
+                                                                  [8] Booch, G. 2001. Lenguaje de Modelado Unificado. Editorial
+                                                                      Adisson Wesley. Madrid.
+
+
+
+
+                                                                                                                               199
+[9] Manual de usuario.                                           [14] Molina, R. 2006. Modelo de desarrollo de software
+    http://www.proyectosfindecarrera.com/definicion/manualdeus       educativo. Argentin.
+    uario.htm                                                    [15] Gomez, R., Galvis, A., Mariño, O. 2000. Ingeniería de
+[10] Caro, M., Galarcio, E., Ruiz, S. 2008. Software Lenguaje        software educativo y modelaje orientado a objetos. Un medio
+     Maya. EdupMedia. Universidad de Córdoba. Montería.              para desarrollar micro mundos interactivos. Universidad de
+                                                                     Los Andes. Bogotá. Colombia.
+[11] Caro, M., Alvarez, L., Ome., L. 2008. Software Azteca.
+     EdupMedia. Universidad de Córdoba. Montería.                [16] Madueño. L. 2003. Modelo THALES de desarrollo de
+                                                                     software educativo. Universidad de Zulia. Venezuela.
+[12] Caro, M., Alvarez, L., Ome., L. 2008. Software Azteca.
+    EdupMedia. Universidad de Córdoba. Montería.
+[13] Mendoza, L., Perez, M., Grimán., A. 2004. Prototipo de
+    modelo sistémico de calidad (MOSCA) del software.
+    Universidad Simón Bolivar. Caracas Venezuela.
+
+
+
+
+                                                                                                                           200
+

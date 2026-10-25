@@ -1,0 +1,313 @@
+{
+  "info": {
+    "_postman_id": "d31b86ec-6426-4682-8b71-ab561e9d6979",
+    "name": "Backend Auth — Sección 7 de la guía JWT NestJS (AdaptiveLearn V3)",
+    "description": "Pruebas de la sección 7 (y ejemplos de la sección 6) de la guía del docente.\n\nAntes de correr: 1) levantar el backend (npm run start:dev) y 2) vaciar la base con sql/reset-datos-prueba.sql, para que el registro no choque con un correo ya existente y los ids empiecen en 1.\n\nCorrer las pruebas en orden: la 1 y la 2 guardan el token que usan las demás. Detalle y justificación de cada diferencia: backend-auth-informe-guia.md.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Sección 7 — Pruebas con ejemplos",
+      "item": [
+        {
+          "name": "1. Registrar un nuevo usuario",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Devuelve user y token', () => { const j = pm.response.json(); pm.expect(j.user.email).to.eql('usuario@example.com'); pm.expect(j.user.fullName).to.eql('Juan Pérez'); pm.expect(j.token).to.be.a('string'); });",
+                  "pm.test('No expone la contraseña', () => pm.expect(pm.response.text()).to.not.include('password'));",
+                  "pm.collectionVariables.set('token', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Guía, sección 7, prueba 1. Diferencia justificada: la contraseña de la guía (password123) no cumple la spec 17 (mínimo 8, una mayúscula y un número); se usa Password123. Respuesta: igual a la guía, con role null (el rol se elige después, spec 20) y el campo agregado emailVerificado.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"password\": \"Password123\",\n  \"fullName\": \"Juan Pérez\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Iniciar sesión",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Devuelve user y token', () => { const j = pm.response.json(); pm.expect(j.user.email).to.eql('usuario@example.com'); pm.expect(j.token).to.be.a('string'); });",
+                  "pm.collectionVariables.set('token', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Guía, sección 7, prueba 2. Mismo body que la guía salvo la contraseña (ver prueba 1).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"password\": \"Password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Obtener perfil (ruta protegida)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Devuelve el usuario autenticado', () => pm.expect(pm.response.json().user.email).to.eql('usuario@example.com'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            },
+            "description": "Guía, sección 7, prueba 3. Usa el token guardado por la prueba 2 (variable {{token}})."
+          },
+          "response": []
+        },
+        {
+          "name": "4. Crear usuario (desde módulo User)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Devuelve el usuario creado', () => pm.expect(pm.response.json().email).to.eql('otro@example.com'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Guía, sección 7, prueba 4. Diferencia justificada: en la guía /users no tiene ninguna protección (cualquiera podría crear, listar o modificar cuentas sin iniciar sesión); acá exige el token (header Authorization). Contraseña Password456 por la spec 17.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"otro@example.com\",\n  \"password\": \"Password456\",\n  \"fullName\": \"María García\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. Listar todos los usuarios",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Lista a los 2 usuarios', () => pm.expect(pm.response.json().length).to.be.at.least(2));",
+                  "pm.test('No expone contraseñas', () => pm.expect(pm.response.text()).to.not.include('password'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Guía, sección 7, prueba 5. Exige token, igual que la prueba 4."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sección 6 — Ejemplo de Guards y Decoradores",
+      "item": [
+        {
+          "name": "Ruta protegida solo con autenticación",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/example/protected",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "example",
+                "protected"
+              ]
+            },
+            "description": "Guía, sección 6, ExampleController.protectedRoute."
+          },
+          "response": []
+        },
+        {
+          "name": "Ruta solo para docentes (RolesGuard)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/example/docente",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "example",
+                "docente"
+              ]
+            },
+            "description": "Guía, sección 6, ExampleController.adminRoute. La guía usa @Roles('admin'); este modelo solo tiene docente y estudiante (spec 20). El usuario recién registrado aún no tiene rol, así que RolesGuard lo rechaza (403)."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
