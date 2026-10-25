@@ -1659,3 +1659,68 @@ respalden.
 
 **Reemplaza a:** ninguna. **Precisa a ADR-017** (sus "~0 %") **y a
 ADR-013** ("prácticamente nadie").
+
+---
+
+## ADR-033 — Alcance curricular de esta versión: 4 áreas, en sus versiones oficiales vigentes, verificadas contra lo que hoy publica el MEN
+
+**Fecha:** 2026-10-24
+**Estado:** aceptada
+
+**Contexto:** el docente del curso pidió adelantar en el MER tablas para
+el área y el grado de los DBA. Al revisarlo apareció que la aplicación
+ofrece 4 áreas sin que ninguna decisión dijera por qué, aunque el MEN
+publica DBA también para **Transición** y para **Inglés** (de
+transición y primaria, y de 6° a 11°, este último de 2016, programa
+Colombia Bilingüe). Áreas como Artística, Educación Física o Tecnología
+no tienen DBA. Además, no se había comprobado que los PDF usados fueran
+las versiones vigentes.
+
+**Verificación (2026-10-24):** se descargaron los 4 PDF que hoy publica
+el MEN en Colombia Aprende (colección "Derechos Básicos de Aprendizaje",
+publicados el 25/05/2026) y se compararon con los de
+`data/curriculo-men/pdfs/`:
+
+| Área | Versión | Páginas | Archivo oficial (Colombia Aprende) | ¿Igual al nuestro? |
+|---|---|---|---|---|
+| Matemáticas | **V.2** | 88 | `files_public/2026-06/dba_matematicas-min.pdf` | Idéntico byte a byte |
+| Lenguaje | **V.2** | 56 | `files_public/2026-05/dba_lenguaje-min.pdf` | Idéntico |
+| Ciencias Naturales | **V.1** | 44 | `files_public/2026-05/dba_c.naturales-min.pdf` | Idéntico |
+| Ciencias Sociales | **V.1** | 52 | `files_public/2026-05/dba_c.sociales-v2_0.pdf` | Idéntico |
+
+Los 4 archivos oficiales fueron creados en octubre de 2016 y son la
+versión más reciente que el MEN publica: **no hay una versión 2 de
+Ciencias Naturales ni de Ciencias Sociales**. El propio documento lo
+dice: *"…en las áreas de lenguaje, matemáticas en su segunda versión,
+ciencias sociales y ciencias naturales en su primera versión"*.
+
+**Corrección que deja esta verificación:** Ciencias Sociales se venía
+citando como **"V.2"** (en `curriculo_men_normalizado.json` y en los
+documentos `01` y `06` de la Fase I). Es **V.1**. El error viene del
+nombre del archivo, que el propio MEN publica como `…sociales-v2_0.pdf`
+—y que en este repositorio se llama `dba_ciencias_sociales_v2.pdf`—,
+aunque su portada y sus 50 encabezados dicen "V.1".
+
+**Decisión:**
+
+1. La aplicación ofrece los DBA de **Matemáticas, Lenguaje, Ciencias
+   Naturales y Ciencias Sociales**, grados **1° a 11°**, en las versiones
+   de la tabla: Matemáticas V.2, Lenguaje V.2, Ciencias Naturales V.1,
+   Ciencias Sociales V.1.
+2. **Inglés queda fuera**, por decisión de Alejandro: es un área que
+   exige más de lo que esta versión ofrece —no se puede reducir a
+   preguntas de formato cerrado: hablar, escuchar, escribir—, y su
+   conjunto de DBA no está completo.
+3. **Transición queda fuera**: es preescolar, fuera de la población del
+   producto (secundaria), y sus DBA no están organizados por área.
+4. Si el MEN publica una versión nueva de un área, se actualiza con una
+   decisión nueva; la verificación de esta tabla se repite contra los
+   archivos oficiales, no contra su nombre.
+
+**Consecuencia reconocida:** Inglés de 6° a 11° es de secundaria, la
+población del producto; dejarlo fuera es una limitación de alcance, no
+un olvido. Que el nombre de un archivo oficial contradiga su contenido
+deja una lección para la auditoría del currículo (`pendientes.md`,
+A12): **la versión se lee del documento, nunca del nombre del archivo**.
+
+**Reemplaza a:** ninguna — fija un alcance que estaba implícito.

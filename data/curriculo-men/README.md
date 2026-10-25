@@ -7,7 +7,7 @@ aplicación (subsistema SUB-06): los Derechos Básicos de Aprendizaje
 
 | Carpeta | Qué contiene |
 |---|---|
-| `pdfs/` | Los PDF oficiales: DBA de Matemáticas (v2), Lenguaje (v2), Ciencias Naturales (v1) y Ciencias Sociales (v2), más Estándares Básicos de Competencias y Lineamientos Curriculares, que se usan como referencia |
+| `pdfs/` | Los PDF oficiales: DBA de Matemáticas (V.2), Lenguaje (V.2), Ciencias Naturales (V.1) y Ciencias Sociales (**V.1**: el archivo se llama `…_v2.pdf`, igual que el que publica el MEN, pero su contenido es la versión 1 — ADR-033), más Estándares Básicos de Competencias y Lineamientos Curriculares, que se usan como referencia |
 | `raw_text/`, `text/` | Texto extraído de esos PDF |
 | `normalized/` | `curriculo_men_normalizado.json`: el currículo estructurado que usa el diseño |
 | `metadata/` | Registro de cada fuente y su auditoría |
@@ -26,6 +26,8 @@ exhaustiva (`docs/diseno/pendientes.md`, sección A12):
   agregados;
 - qué hacer cuando un elemento del DBA (sobre todo el ejemplo) es una
   imagen y no texto.
+
+**Ya se sabe un error:** el JSON registra Ciencias Sociales como "V.2"; es V.1 (ADR-033).
 
 Hasta esa auditoría, `curriculo_men_normalizado.json` no es una fuente
 confiable para cifras como "cuántas evidencias tiene un DBA".

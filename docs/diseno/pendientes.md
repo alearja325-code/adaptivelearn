@@ -345,7 +345,32 @@ Respaldo de los 8 docx previo a la edición:
 `fase-1-diseño-educativo/.respaldo-2026-10-21/` (el `03` del respaldo
 conserva el XML dañado, a propósito: es el estado original).
 
-### A12. Currículo del MEN — anotado 2026-10-24, sin empezar
+### A12. Currículo del MEN — anotado 2026-10-24, EN CURSO
+
+**Hecho el 2026-10-24:**
+- **Alcance decidido (ADR-033):** 4 áreas, 1° a 11°, versiones oficiales
+  vigentes. Inglés y Transición fuera, con razón escrita.
+- **Versiones verificadas** contra lo que hoy publica el MEN en Colombia
+  Aprende: los 4 PDF oficiales son idénticos, byte a byte, a los de
+  `data/curriculo-men/pdfs/`. Matemáticas V.2, Lenguaje V.2, Ciencias
+  Naturales V.1, **Ciencias Sociales V.1** — se venía citando como V.2
+  por el nombre del archivo (`…_v2.pdf`, igual al del MEN). Corregido en
+  la Fase I (`01`, `06`) y en el README del currículo. **Sin corregir:**
+  el JSON normalizado (se corrige en la auditoría, no a mano) y la
+  entrevista E0, ya entregada en DSE-1 (decisión de Alejandro).
+- **Primer diagnóstico de los datos:** 342 DBA (Matemáticas 118,
+  Lenguaje 88, Ciencias Sociales 82, Ciencias Naturales 54); **el
+  "ejemplo" no se extrajo en ninguno**; ningún registro con confianza de
+  extracción "alta"; conteos a comprobar (Ciencias Naturales 2° tiene 3).
+
+**Recomendación para el modelo (punto 3 de abajo):** tres tablas de
+referencia, no dos — **Área**, **Grado** (con su nivel educativo:
+básica primaria 1°-5°, básica secundaria 6°-9°, media 10°-11°, Ley 115
+de 1994) y **Documento oficial** (el PDF de cada área, con versión y
+dirección), para que cada DBA diga de qué documento y de qué página se
+copió. Pendiente de que el docente confirme el alcance de su pedido.
+
+*(Texto original del 2026-10-24:)*
 
 Planteado por Alejandro al decidir el repositorio nuevo. Se hace
 **después** de organizar GitHub:
