@@ -93,18 +93,19 @@ se edita, se regenera.
 | **RNF-06** | La autorización del acudiente: mientras falte, el sistema no se usa con estudiantes reales. | `11` |
 | **MariaDB** | `mr_mysql.sql` no usa nada que MariaDB 10.11 no tenga, pero solo se ejecutó en MySQL 8.4. Probarlo al integrar con el backend de I1. | `17` |
 | **Backend I1** | Ajustar dos rutas: que `POST /auth/elegir-rol` reciba también el perfil (E-06) y que `PATCH /users/:id` quede solo para editar el perfil (E-12). Quitar del producto las rutas de la guía (`POST /users`, `GET /users`, `GET /users/:id`, `/example/*`). | `20` §3, §7 |
-| **Decisiones por confirmar** | Retomar un registro a medias al iniciar sesión (CU-06 3a); tratar un ítem generado inválido como falla del servicio (CU-16 4a); sacar `Item.estado_revision` aunque el triaje del 2026-09-04 lo había aceptado (H-5, por ADR-026); guardar el servicio y el modelo de IA una vez en la experiencia (RI-17), cuando el punto 4 de ADR-030 dice que los guarda cada ítem. | `12` §7, `16` §10 y §13 |
+| **Decisiones confirmadas el 2026-10-26** (ADR-034, ADR-035) | Retomar un registro a medias al iniciar sesión (CU-06 3a); tratar un ítem generado inválido como falla del servicio (CU-16 4a); sacar `Item.estado_revision` aunque el triaje del 2026-09-04 lo había aceptado (H-5, por ADR-026); guardar el servicio y el modelo de IA una vez en la experiencia (RI-17), cuando el punto 4 de ADR-030 dice que los guarda cada ítem. | `12` §7, `16` §10 y §13 |
 
 ## 5. Notas sobre las fuentes
 
-- **ADR.** Las decisiones están en `docs/diseno/decisiones.md` (ADR-001 a ADR-032). Las 26 que
+- **ADR.** Las decisiones están en `docs/diseno/decisiones.md` (ADR-001 a ADR-032 al hacer esta fase; ADR-033 a ADR-035 se agregaron el 2026-10-24 y 26). Las 26 que
   citan los documentos `12` a `20` existen ahí, y las que sostienen el MER se cotejaron con su
   texto el 2026-10-26. Hay una sola diferencia, y se declara arriba: ADR-030, punto 4, dice que
   **cada ítem** guarda qué servicio y qué modelo lo generó; el MER lo guarda una vez en la
   experiencia (RI-17), porque el punto 3 de la misma ADR —«un banco, un servicio»— hace que sea
   el mismo para todos sus ítems, y guardarlo por ítem permitía mezclar servicios en un banco. El
   propósito de la ADR (rastrear de dónde vino una pregunta y comparar los dos servicios) se
-  mantiene. Si el equipo no lo acepta, vuelve a cada ítem y RI-17 pasa a ser regla del servicio.
+  mantiene. **Confirmado el 2026-10-26: ADR-035 modifica ADR-030, punto 4**, así que la diferencia
+  quedó resuelta a favor del MER.
 - **Currículo.** `data/curriculo-men/normalized/curriculo_men_normalizado.json`, en la raíz del
   repositorio: de ahí salen los `codigo_dba` y las evidencias.
 - **El borrador.** La carpeta *«Entregables de la fase 3 que fueron hechos antes de la

@@ -21,7 +21,7 @@ F2 = os.path.join(MODESEC, "fase-2-diseno-multimedial")
 DOCS = os.path.dirname(MODESEC)
 DECISIONES = os.path.join(DOCS, "diseno", "decisiones.md")
 
-FECHA = "2026-10-21"
+FECHA = "2026-10-21 (actualizado 2026-10-26)"
 RESPONSABLE = "Área 2 — Levantamiento de requerimientos (`EQUIPO.md`; nombre por asignar)"
 
 SUB = {
@@ -78,9 +78,9 @@ req("RF-01-06", "SUB-01", U, F, "Visitante",
     ["V-017"], "I1")
 req("RF-01-07", "SUB-01", U, F, "Docente, Estudiante",
     "El sistema debe permitir iniciar sesión con correo y contraseña.",
-    "Credenciales incorrectas: mensaje de error genérico.",
-    "La cuenta existe.", "La persona entra al Dashboard de su rol.",
-    ["V-014"], "I1")
+    "Credenciales incorrectas: mensaje de error genérico. Si la persona creó su cuenta pero no terminó el registro (no eligió rol), retoma en completar perfil (ADR-035).",
+    "La cuenta existe.", "La persona entra al Dashboard de su rol, o retoma su registro.",
+    ["V-014", "ADR-035"], "I1")
 req("RF-01-08", "SUB-01", U, F, "Docente, Estudiante",
     "El sistema debe permitir recuperar la contraseña mediante un código enviado al correo.",
     "Al enviar la solicitud, siempre avanza a verificar el código, exista o no la cuenta: no confirma a un desconocido si un correo está registrado. Solo valida el formato del correo.",
@@ -136,8 +136,8 @@ req("RF-02-06", "SUB-02", S, F, "Docente",
 req("RF-02-07", "SUB-02", U, F, "Docente",
     "El sistema debe permitir eliminar una experiencia, con confirmación que diga qué se pierde.",
     "Se permite siempre, aunque tenga estudiantes o respuestas; la confirmación dice cuántos estudiantes inscritos y cuántas respuestas se eliminan, y que es irreversible.",
-    "El docente es el dueño.", "La experiencia deja de existir para el docente y para sus estudiantes. Qué pasa con los datos dependientes: vacío V-11, abierto.",
-    ["V-025", "V-006"], "I2")
+    "El docente es el dueño.", "La experiencia y todo lo que depende de ella —banco, inscripciones y lo respondido— se borran en cascada (ADR-035).",
+    ["V-025", "V-006", "ADR-035"], "I2")
 
 # ===================================================== SUB-03 Banco de preguntas
 req("RF-03-01", "SUB-03", S, F, "Servicio de IA",
@@ -147,14 +147,14 @@ req("RF-03-01", "SUB-03", S, F, "Servicio de IA",
     ["ADR-005", "ADR-006", "ADR-008", "ADR-011", "ADR-014", "ADR-016"], "I2")
 req("RF-03-02", "SUB-03", S, F, "Servicio de IA",
     "La generación debe usar un servicio de IA principal y, si falla o supera el tiempo límite, uno de respaldo, sin que el docente lo note.",
-    "Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo.",
+    "Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo. Un ítem generado que no pasa la validación de su formato cuenta como falla del servicio (ADR-035).",
     "Se pidió generar un banco.", "Banco completo de un solo servicio, o error si fallan los dos.",
-    ["ADR-030", "ADR-027"], "I2")
+    ["ADR-030", "ADR-027", "ADR-035"], "I2")
 req("RF-03-03", "SUB-03", S, F, "—",
-    "Cada ítem debe registrar su origen y, si lo generó la IA, qué servicio y qué modelo lo generó.",
-    "Origen: generado por IA, editado por el docente o creado por el docente. Editar un ítem generado conserva su servicio de origen. El docente no ve el servicio.",
+    "Cada ítem debe registrar su origen, y cada experiencia, qué servicio y qué modelo de IA generaron su banco.",
+    "Origen del ítem: generado por IA, editado por el docente o creado por el docente. El servicio se guarda una vez en la experiencia, porque un banco sale entero de un solo servicio: un ítem generado o editado es de ese servicio; uno creado por el docente no se atribuye a la IA. El docente no ve el servicio. *(Corregido el 2026-10-26: decía que cada ítem guardaba su servicio; ADR-035 lo cambió.)*",
     "—", "—",
-    ["ADR-026", "ADR-030"], "I2")
+    ["ADR-026", "ADR-030", "ADR-035"], "I2")
 req("RF-03-04", "SUB-03", U, F, "Docente",
     "El sistema debe mostrar el banco agrupado por evidencia, en el orden oficial del DBA, con búsqueda y filtro por formato.",
     "Cada evidencia muestra cuántos ítems activos tiene; si son menos de 6, en rojo y con cuántos faltan para publicar. Cada ítem se expande para ver su enunciado y su respuesta correcta.",
@@ -240,8 +240,8 @@ req("RF-04-11", "SUB-04", U, F, "Estudiante",
 req("RF-04-12", "SUB-04", U, F, "Estudiante",
     "El sistema debe permitir salir de una experiencia, con confirmación que diga qué se pierde.",
     "La confirmación dice cuántas respuestas se eliminan y que para volver necesita el código otra vez.",
-    "Estudiante inscrito.", "La inscripción y lo respondido dejan de existir. Qué pasa con los datos: vacío V-11, abierto.",
-    ["V-025", "V-020"], "I3")
+    "Estudiante inscrito.", "La inscripción y lo que ese estudiante respondió se borran en cascada; nada más (ADR-035).",
+    ["V-025", "V-020", "ADR-035"], "I3")
 
 # ============================================== SUB-05 Reporte y seguimiento
 req("RF-05-01", "SUB-05", S, F, "—",
@@ -443,7 +443,7 @@ def generar(esp):
     w("")
     w("## 5. Vacíos que estos requerimientos heredan, declarados")
     w("")
-    w("- **V-11** — qué pasa con presentaciones, respuestas y resultados al eliminar una experiencia (RF-02-07) o salir de una (RF-04-12). Se resuelve en el modelo de datos.")
+    w("- ~~**V-11**~~ — **cerrado por ADR-035** (2026-10-26): eliminar una experiencia (RF-02-07) o salir de una (RF-04-12) borra en cascada lo que depende de ella.")
     w("- **QA-013 / QA-014** — errores de extracción del catálogo y censo de formato cerrado (RF-06-01, RF-06-02).")
     w("- **V-10** — una excepción de contraste, diferida (RNF-03).")
     w("- **RNF-13** — el tiempo límite de la generación no tiene número todavía; se mide.")

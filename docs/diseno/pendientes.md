@@ -393,38 +393,63 @@ Planteado por Alejandro al decidir el repositorio nuevo. Se hace
    en vez de atributos de texto dentro del DBA. Va a la lista "Entrada
    a Fase III".
 
+### A13. Fase III del compañero, revisada y unida — 2026-10-26
+
+El compañero del equipo (cuenta `josemianay987-dot`, trabajando con
+Claude) subió la Fase III completa en un solo commit: documentos `12` a
+`20` (casos de uso, clases, objetos, secuencias, MER final, MR,
+diccionario, índice y catálogo de 35 endpoints). Revisión:
+
+- **Calidad:** todos sus verificadores pasan (MER 18/18, MR 59/59 en
+  SQLite y MySQL 8.4, UML 120/120, API 33/33) y los nuestros también.
+  Solo modificó dos archivos existentes (README, `md_a_pdf.py` para
+  Windows); no tocó `docs/diseno/`.
+- **Recibió la lista de abajo:** 10 de 12 puntos hechos (ver estado en
+  cada uno). Falta Área y Grado.
+- **Decisiones que dejó por confirmar, confirmadas por Alejandro:**
+  ADR-035 (servicio de IA en la experiencia —modifica ADR-030 p. 4—,
+  retomar el registro a medias, ítem inválido = falla del servicio,
+  borrado en cascada). **La entidad CREDENCIAL**, que introdujo sin
+  decisión formal, queda respaldada por ADR-034.
+- **Puesto al día:** RF-01-07, RF-02-07, RF-03-02, RF-03-03, RF-04-12
+  (`11`), `modelo-conceptual.md`, glosario (Inscripción), `12` y `19`
+  (decisiones marcadas como confirmadas).
+- **Unión** de su commit con el nuestro (ADR-033): sin conflictos.
+
 ### Entrada a Fase III — cambios al modelo que dejó Fase II
 
+*(Estado al 2026-10-26, contra `16-modelo-entidad-relacion.md`.)*
+
 Para aplicar todos juntos al rehacer MER → MR → diccionario:
-1. `Ítem.origen`: 3 valores — `ia`, `editado_docente`,
+1. ✔ **Hecho en `16`.** `Ítem.origen`: 3 valores — `ia`, `editado_docente`,
    `creado_docente` (ADR-026).
-2. **Retirar `Ítem.estado_revision`** (ADR-026). Cierra V-7.
-3. Regla nueva: publicar exige ≥ 6 ítems no excluidos por cada
+2. ✔ **Hecho en `16`.** **Retirar `Ítem.estado_revision`** (ADR-026). Cierra V-7.
+3. ✔ **Hecho en `16` (RI-14).** Regla nueva: publicar exige ≥ 6 ítems no excluidos por cada
    evidencia incluida (ADR-026).
-4. Regla nueva: con la Experiencia Publicada, ningún Ítem ni Opción de
+4. ✔ **Hecho en `16` (RI-10, reforzada).** Regla nueva: con la Experiencia Publicada, ningún Ítem ni Opción de
    su banco se crea, edita ni cambia `excluido` (ADR-026 — más fuerte
    que RI-10, que solo protegía ítems ya presentados).
-5. `Experiencia.estado` se queda en 2 valores; creación atómica con el
+5. ✔ **Hecho en `16`.** `Experiencia.estado` se queda en 2 valores; creación atómica con el
    banco (ADR-027).
-6. Abierto: el formato se decide por evidencia (ADR-006) pero se guarda
+6. ✔ **Resuelto en `16` (RI-19):** el formato vive en el dictamen de la evidencia. Antes: el formato se decide por evidencia (ADR-006) pero se guarda
    por ítem — nada impide formatos mezclados en una evidencia.
-7. Abierto: V-11 (borrado en cascada al eliminar Experiencia o
+7. ✔ **Cerrado por ADR-035:** borrado en cascada, probado en `17`. Antes: V-11 (borrado en cascada al eliminar Experiencia o
    Inscripción).
-8. **ADR-029**: no se agrega entidad Acudiente; declarar como vacío del
+8. ✔ **Hecho en `16` §12.** **ADR-029**: no se agrega entidad Acudiente; declarar como vacío del
    modelo la ausencia de la autorización del representante legal.
    ADR-028 no cambia el modelo (todo lo que exige ya existe:
    `Presentación`, `Respuesta`, RI-10).
-9. **ADR-030**: cada Ítem guarda el servicio de IA y el modelo que lo
+9. ✔ **Cambiado por ADR-035:** se guarda en la Experiencia, no en cada Ítem (RI-17). Texto original: **ADR-030**: cada Ítem guarda el servicio de IA y el modelo que lo
    generó; vacío si `origen = creado_docente`. Al editarlo, conserva
    el servicio de origen.
-10. **ADR-031 resuelve V-5 / H-7**: la regla de parada exacta ya existe,
+10. ✔ **Hecho en `16`, y programado y probado en `uml/regla.py`.** **ADR-031 resuelve V-5 / H-7**: la regla de parada exacta ya existe,
     así que `Resultado.estado` es computable. `Respuesta.correcta` en
     emparejar y ordenar es todo o nada. Al retomar, se reusa la
     Presentación sin respuesta (no se crea otra): compatible con la
     llave de Presentación (inscripción, ítem) y con el tope de RI-9.
-11. **Área y Grado como tablas propias** (pedido del docente, A12):
+11. ✘ **Pendiente: no está en `16`.** Recomendado además Documento oficial (A12). Lo agrega quien mantiene el MER (`mer/datos_mer.py`). **Área y Grado como tablas propias** (pedido del docente, A12):
     confirmar con él el alcance antes de modelarlas.
-12. **Identificadores duplicados**: V-5, V-6 y V-9 significan cosas
+12. ◐ **En parte:** `16` §12 numera los vacíos de forma coherente (V-1 a V-12), pero la tabla de la sección C de este archivo sigue con la numeración vieja. **Identificadores duplicados**: V-5, V-6 y V-9 significan cosas
    distintas en la sección C y en la sección D de este archivo.
    Renumerar antes de entregar un MER "sin errores".
 

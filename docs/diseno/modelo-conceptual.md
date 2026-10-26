@@ -1,7 +1,7 @@
 # Modelo conceptual — AdaptiveLearn (rediseño)
 
 **Estado:** confirmado — 2026-08-06; **actualizado 2026-10-21** (barrido
-de coherencia antes de Fase III).
+de coherencia antes de Fase III) y **2026-10-26** (MER final de la Fase III).
 
 > El glosario dice qué es cada cosa. Este documento dice cuántos de uno le
 > corresponden a cuántos de otro — la forma de los datos, en lenguaje simple,
@@ -9,11 +9,12 @@ de coherencia antes de Fase III).
 >
 > **Qué manda.** La fuente de verdad es la Fase I, la Fase II y
 > `decisiones.md`. Este documento las resume en forma de datos, en
-> lenguaje simple. El MER que existe hoy
-> (`fase-3-diseno-computacional/01-modelo-entidad-relacion.md`, Quinta
-> revisión) es un **borrador anterior al cierre de la Fase II**: si dice
-> algo distinto de este documento, la diferencia se revisa contra las
-> decisiones, no se resuelve a favor del MER. *(Corrección 2026-10-21:
+> lenguaje simple. **El modelo formal vigente es
+> `fase-3-diseno-computacional/16-modelo-entidad-relacion.md`** (MER
+> final, 2026-10-26), construido desde esas fuentes. El de la Quinta
+> revisión (en la carpeta de borradores) es anterior al cierre de la
+> Fase II. Si este documento y el MER final dicen cosas distintas, la
+> diferencia se revisa contra las decisiones. *(Corrección 2026-10-21:
 > una primera versión de esta nota, escrita ese mismo día, decía "manda
 > el MER". Alejandro aclaró que la Fase III se rehace en orden y que el
 > MER actual no puede tomarse como base.)*
@@ -29,7 +30,7 @@ Evidencia, cuando es de la Evidencia **dentro de una experiencia**.)*
 |---|---|---|---|
 | Docente | crea | Experiencia | 1 a N — cada experiencia tiene exactamente 1 docente |
 | Estudiante | se inscribe en | Experiencia | N a N, a través de una **Inscripción** — con el código de invitación, y solo si la experiencia está Publicada |
-| Persona registrada | es | Docente **o** Estudiante | exactamente uno, fijo para siempre (`20-spec`). Son dos tipos de usuario separados, no uno con una casilla de rol. *(No existe una entidad "Cuenta" común: se evaluó y no se adoptó, V-8 del MER.)* |
+| Credencial (la cuenta de acceso) | da acceso como | Docente **o** Estudiante | exactamente uno, fijo para siempre (`20-spec`). La credencial guarda el correo —único entre los dos roles—, el método de acceso y la verificación; existe desde "Crear cuenta", antes de elegir rol. Docente y Estudiante guardan nombres, apellidos y foto (ADR-034). *(Corrección 2026-10-26: decía que no existía una entidad "Cuenta" común.)* |
 
 ## El currículo (dato del MEN, no nuestro)
 
@@ -50,6 +51,7 @@ Evidencia, cuando es de la Evidencia **dentro de una experiencia**.)*
 | Banco de una evidencia | necesita, para publicar | Ítems activos | **mínimo 6** no descartados (ADR-026) |
 | Ítem | tiene | Opción | 2 o más; 4 o más en emparejamiento (RI-4) |
 | Ítem | tiene | origen | generado por IA, editado por el docente, o creado por el docente (ADR-026) |
+| Experiencia | registra | Servicio y modelo de IA | 1 — el que generó su banco entero; un banco no mezcla servicios (ADR-030, ADR-035) |
 
 ## Lo que pasa cuando el estudiante responde
 
@@ -70,6 +72,10 @@ Evidencia, cuando es de la Evidencia **dentro de una experiencia**.)*
 | Práctica, Verificación | Diferidas a v2 (ADR-007) |
 | Unidad | Fuera de alcance — no está definida |
 | Acudiente y su autorización | No se modela; por eso esta versión no se usa con estudiantes reales (ADR-029) |
+
+**Al eliminar una experiencia o salir de ella**, lo que depende de
+ella se borra en cascada: su banco, sus inscripciones y lo respondido,
+o solo lo respondido por ese estudiante (ADR-035).
 
 ## Nota sobre Reporte y Unidad
 

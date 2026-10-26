@@ -1,7 +1,7 @@
 # 11. Análisis de requerimientos
 
 **Metodología:** MODESEC — Fase III, Diseño Computacional, segunda sub-etapa.
-**Fecha:** 2026-10-21. **Archivo generado** por `requerimientos/requerimientos.py`; no se edita a mano.
+**Fecha:** 2026-10-21 (actualizado 2026-10-26). **Archivo generado** por `requerimientos/requerimientos.py`; no se edita a mano.
 
 MODESEC pide aquí tener presente *"la planta física y la población a quien va dirigida"*, establecer los requerimientos *"a partir de la necesidad que se presentó en el proceso de enseñanza y aprendizaje"*, y *"dividir éstos en secciones denominadas subsistemas y requerimientos funcionales"*, en el formato de su Tabla 5 (número, enunciado, usuario o sistema, funcional o no funcional, precondición, postcondición, fechas, responsable, modificación).
 
@@ -30,7 +30,7 @@ MODESEC pide aquí tener presente *"la planta física y la población a quien va
 
 ## 3. Requerimientos, por subsistema
 
-Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: **fecha de creación** 2026-10-21; **fecha de procesamiento**: pendiente (se llena al construirlo); **responsable**: Área 2 — Levantamiento de requerimientos (`EQUIPO.md`; nombre por asignar); **modificación**: ninguna.
+Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: **fecha de creación** 2026-10-21 (actualizado 2026-10-26); **fecha de procesamiento**: pendiente (se llena al construirlo); **responsable**: Área 2 — Levantamiento de requerimientos (`EQUIPO.md`; nombre por asignar); **modificación**: ninguna.
 
 ### SUB-01 — Acceso y perfil
 
@@ -119,10 +119,10 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Requerimiento de | Usuario |
 | Tipo | Funcional |
 | Actor | Docente, Estudiante |
-| Detalle | Credenciales incorrectas: mensaje de error genérico. |
+| Detalle | Credenciales incorrectas: mensaje de error genérico. Si la persona creó su cuenta pero no terminó el registro (no eligió rol), retoma en completar perfil (ADR-035). |
 | Precondición | La cuenta existe. |
-| Postcondición | La persona entra al Dashboard de su rol. |
-| Fuente | Ventana 014 |
+| Postcondición | La persona entra al Dashboard de su rol, o retoma su registro. |
+| Fuente | Ventana 014, ADR-035 |
 | Incremento | I1 |
 
 #### RF-01-08 — El sistema debe permitir recuperar la contraseña mediante un código enviado al correo.
@@ -266,8 +266,8 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Actor | Docente |
 | Detalle | Se permite siempre, aunque tenga estudiantes o respuestas; la confirmación dice cuántos estudiantes inscritos y cuántas respuestas se eliminan, y que es irreversible. |
 | Precondición | El docente es el dueño. |
-| Postcondición | La experiencia deja de existir para el docente y para sus estudiantes. Qué pasa con los datos dependientes: vacío V-11, abierto. |
-| Fuente | Ventana 025, Ventana 006 |
+| Postcondición | La experiencia y todo lo que depende de ella —banco, inscripciones y lo respondido— se borran en cascada (ADR-035). |
+| Fuente | Ventana 025, Ventana 006, ADR-035 |
 | Incremento | I2 |
 
 ### SUB-03 — Banco de preguntas
@@ -292,23 +292,23 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Requerimiento de | Sistema |
 | Tipo | Funcional |
 | Actor | Servicio de IA |
-| Detalle | Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo. |
+| Detalle | Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo. Un ítem generado que no pasa la validación de su formato cuenta como falla del servicio (ADR-035). |
 | Precondición | Se pidió generar un banco. |
 | Postcondición | Banco completo de un solo servicio, o error si fallan los dos. |
-| Fuente | ADR-030, ADR-027 |
+| Fuente | ADR-030, ADR-027, ADR-035 |
 | Incremento | I2 |
 
-#### RF-03-03 — Cada ítem debe registrar su origen y, si lo generó la IA, qué servicio y qué modelo lo generó.
+#### RF-03-03 — Cada ítem debe registrar su origen, y cada experiencia, qué servicio y qué modelo de IA generaron su banco.
 
 | Campo | Valor |
 |---|---|
 | Requerimiento de | Sistema |
 | Tipo | Funcional |
 | Actor | — |
-| Detalle | Origen: generado por IA, editado por el docente o creado por el docente. Editar un ítem generado conserva su servicio de origen. El docente no ve el servicio. |
+| Detalle | Origen del ítem: generado por IA, editado por el docente o creado por el docente. El servicio se guarda una vez en la experiencia, porque un banco sale entero de un solo servicio: un ítem generado o editado es de ese servicio; uno creado por el docente no se atribuye a la IA. El docente no ve el servicio. *(Corregido el 2026-10-26: decía que cada ítem guardaba su servicio; ADR-035 lo cambió.)* |
 | Precondición | — |
 | Postcondición | — |
-| Fuente | ADR-026, ADR-030 |
+| Fuente | ADR-026, ADR-030, ADR-035 |
 | Incremento | I2 |
 
 #### RF-03-04 — El sistema debe mostrar el banco agrupado por evidencia, en el orden oficial del DBA, con búsqueda y filtro por formato.
@@ -530,8 +530,8 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Actor | Estudiante |
 | Detalle | La confirmación dice cuántas respuestas se eliminan y que para volver necesita el código otra vez. |
 | Precondición | Estudiante inscrito. |
-| Postcondición | La inscripción y lo respondido dejan de existir. Qué pasa con los datos: vacío V-11, abierto. |
-| Fuente | Ventana 025, Ventana 020 |
+| Postcondición | La inscripción y lo que ese estudiante respondió se borran en cascada; nada más (ADR-035). |
+| Fuente | Ventana 025, Ventana 020, ADR-035 |
 | Incremento | I3 |
 
 ### SUB-05 — Reporte y seguimiento
@@ -836,7 +836,7 @@ Toda ventana especificada en la Fase II está cubierta por al menos un requerimi
 
 ## 5. Vacíos que estos requerimientos heredan, declarados
 
-- **V-11** — qué pasa con presentaciones, respuestas y resultados al eliminar una experiencia (RF-02-07) o salir de una (RF-04-12). Se resuelve en el modelo de datos.
+- ~~**V-11**~~ — **cerrado por ADR-035** (2026-10-26): eliminar una experiencia (RF-02-07) o salir de una (RF-04-12) borra en cascada lo que depende de ella.
 - **QA-013 / QA-014** — errores de extracción del catálogo y censo de formato cerrado (RF-06-01, RF-06-02).
 - **V-10** — una excepción de contraste, diferida (RNF-03).
 - **RNF-13** — el tiempo límite de la generación no tiene número todavía; se mide.

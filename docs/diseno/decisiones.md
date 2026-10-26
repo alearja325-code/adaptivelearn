@@ -1515,7 +1515,7 @@ Decisión 2 de E0.
 ## ADR-030 — El banco se genera con dos servicios de IA: uno principal y otro de respaldo; cada ítem guarda cuál lo generó
 
 **Fecha:** 2026-10-21
-**Estado:** aceptada
+**Estado:** aceptada; **punto 4 modificado por ADR-035** (el servicio y el modelo se guardan en la experiencia, no en cada ítem).
 
 **Contexto:** el diseño nunca fijó qué servicio de IA genera el banco de
 preguntas (`10-proceso-desarrollo.md` lo dejaba "sin fijar"; la versión
@@ -1724,3 +1724,100 @@ deja una lección para la auditoría del currículo (`pendientes.md`,
 A12): **la versión se lee del documento, nunca del nombre del archivo**.
 
 **Reemplaza a:** ninguna — fija un alcance que estaba implícito.
+
+---
+
+## ADR-034 — La cuenta de acceso es una entidad propia, CREDENCIAL, separada de Docente y Estudiante
+
+**Fecha:** 2026-10-26
+**Estado:** aceptada
+
+**Contexto:** en agosto se evaluó una entidad "Cuenta" común a Docente
+y Estudiante y no se adoptó (vacío V-8 del MER: autenticación y
+credencial, sin resolver). El diseño del acceso en la Fase II
+(ventanas 014 a 019) mostró dos cosas que sin esa entidad no tienen
+dónde vivir:
+
+1. El **código de verificación del correo** tiene que guardarse *antes*
+   de que exista el docente o el estudiante: la cuenta se crea con su
+   rol al final del registro (ventana 017, RF-01-06).
+2. El **correo es único entre los dos roles** (RF-01-04): no puede haber
+   un docente y un estudiante con el mismo correo. Dos restricciones de
+   unicidad separadas, una por tabla, no lo garantizan.
+
+El backend del incremento I1 ya resolvió así el acceso
+(`backend/sql/001_esquema_auth.sql`, tabla `credencial`). El MER final
+de la Fase III (`16-modelo-entidad-relacion.md`, 2026-10-26, hecho por
+el compañero del equipo) incorporó la entidad CREDENCIAL, y faltaba la
+decisión formal que la respalda.
+
+**Decisión:**
+
+1. **CREDENCIAL** es la cuenta de acceso: correo (único, sin distinguir
+   mayúsculas), método de acceso (correo y contraseña, Google o
+   Microsoft), contraseña con hash o identificador del proveedor, si el
+   correo está verificado y el código de verificación vigente.
+2. Una credencial da acceso a **un solo rol**, Docente **o** Estudiante,
+   nunca a los dos (RI-12); cada docente y cada estudiante tiene
+   exactamente una credencial.
+3. **Docente y Estudiante dejan de guardar el correo**: está en su
+   credencial. Guardan `nombres`, `apellidos` y la foto opcional.
+
+**Consecuencia reconocida:** el modelo pasa de 14 a 15 entidades. La
+no-adopción de agosto se revierte con una razón que en agosto no
+existía: el flujo de registro de la Fase II. `diseno/modelo-conceptual.md`,
+que hasta hoy decía "no existe una entidad Cuenta común", se corrige.
+
+**Reemplaza a:** la no-adopción de "Cuenta" registrada como V-8 en el MER
+de la Quinta revisión. **Cierra V-8.**
+
+---
+
+## ADR-035 — Se confirman las decisiones que la Fase III dejó abiertas para el equipo
+
+**Fecha:** 2026-10-26
+**Estado:** aceptada
+
+**Contexto:** al hacer la Fase III (documentos `12` a `20`), el
+compañero del equipo tuvo que decidir cosas que los requerimientos no
+decían, y las declaró en vez de resolverlas en silencio
+(`19-entrega-fase-3.md` §4; `12-casos-de-uso.md` §7). Una de ellas
+contradice una decisión vigente (ADR-030, punto 4). Alejandro las
+revisó y las confirmó el 2026-10-26.
+
+**Decisión:**
+
+1. **El servicio y el modelo de IA se guardan una vez, en la
+   Experiencia** (RI-17), no en cada ítem. ADR-030 punto 3 ya dice que un
+   banco sale entero de un solo servicio, así que guardarlo por ítem
+   repite el mismo dato en los 12 ítems de cada evidencia y además
+   permitiría, por error, un banco con servicios mezclados. El propósito
+   de ADR-030 —saber de dónde vino una pregunta y comparar los dos
+   servicios— se mantiene: un ítem generado o editado es del servicio de
+   su experiencia; uno creado por el docente (`origen = creado_docente`)
+   no se atribuye a la IA. **Modifica ADR-030, punto 4.**
+2. **Registro a medias** (`12`, CU-06, alterno 3a): quien creó su
+   credencial pero no eligió rol y vuelve a iniciar sesión, retoma el
+   registro en "Completa tu perfil". No queda atrapado ni empieza de
+   nuevo.
+3. **Ítem generado inválido** (`12`, CU-16, alterno 4a): si la IA genera
+   un ítem que no pasa la validación de su formato (RI-4), se trata como
+   una falla de ese servicio y se pasa al de respaldo. Mantiene el
+   "todo o nada" de ADR-027 y "un banco, un servicio" de ADR-030.
+4. **Eliminar una experiencia o salir de ella borra en cascada** lo que
+   depende de ella (`17-modelo-relacional.md`). Es lo que ya advierten
+   los modales de la ventana 025 ("se elimina") y lo que se eligió al
+   diseñarlos ("permitir siempre, con advertencia"). Comprobado contra el
+   motor: eliminar una experiencia borra exactamente su banco, sus
+   inscripciones y todo lo respondido; salir borra solo lo respondido
+   por ese estudiante. **Cierra V-11.**
+5. **`Item.estado_revision` sale.** Ya estaba decidido en ADR-026; el
+   documento `19` lo listaba como "por confirmar" porque el triaje del
+   2026-09-04 lo había aceptado. No se reabre.
+
+**Consecuencia reconocida:** RF-03-03 cambia de "cada ítem registra su
+servicio" a "la experiencia registra su servicio, cada ítem su origen".
+Con la cascada, un docente que elimina una experiencia con estudiantes
+pierde esos datos sin vuelta atrás: el modal ya lo dice con números.
+
+**Reemplaza a:** ADR-030, en su punto 4.

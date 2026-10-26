@@ -336,6 +336,5 @@ hace en el diagnóstico —qué preguntas se le mostraron, qué respondió,
 sus resultados— cuelga de su inscripción, no de su cuenta en general.
 
 El estudiante puede **salir** de una experiencia: su inscripción se
-elimina y, con ella, lo que respondió (`25-spec`). Qué pasa exactamente
-con esos datos a nivel de base de datos es el vacío V-11, abierto para
-Fase III.
+elimina y, con ella, lo que respondió (`25-spec`): se borra en cascada
+solo lo de ese estudiante (ADR-035, que cierra el vacío V-11).
