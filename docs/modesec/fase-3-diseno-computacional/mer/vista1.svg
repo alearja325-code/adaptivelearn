@@ -36,9 +36,9 @@
 <line x1="716.0" y1="522" x2="785.0" y2="522" stroke="#888888" stroke-width="1"/>
 <ellipse cx="840" cy="522" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
 <text x="840" y="526" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">proveedor_id</text>
-<line x1="716.0" y1="580" x2="771.2" y2="580" stroke="#888888" stroke-width="1"/>
-<ellipse cx="840" cy="580" rx="68.8" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
-<text x="840" y="584" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">email_verificado</text>
+<line x1="716.0" y1="580" x2="760.55" y2="580" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="580" rx="79.45" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="584" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">estado_verificacion</text>
 <line x1="716.0" y1="638" x2="760.55" y2="638" stroke="#888888" stroke-width="1"/>
 <ellipse cx="840" cy="638" rx="79.45" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
 <text x="840" y="642" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_verificacion</text>

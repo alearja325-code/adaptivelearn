@@ -269,24 +269,24 @@ CU-08 Cerrar sesión. Operación: `ServicioAcceso.cerrarSesion()`. **Opcional.**
 
 #### E-14 · `GET /catalogo/dbas`
 
-CU-31 Consultar catálogo curricular. Operación: `Catalogo.dbas(area: string, grado: string, texto: string): DBA [*]`; se ve en `15` §3. **Falta.**
+CU-31 Consultar catálogo curricular. Operación: `Catalogo.dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]`; se ve en `15` §3. **Falta.**
 
 - **Quién:** Docente.
-- **Recibe:** `area` (una de las 4), `grado` (1 a 11) y `q` (texto), en la consulta.
-- **Responde:** 200: los DBA del área, cada uno con código, grado y enunciado.
-- **Toca:** DBA (lee).
+- **Recibe:** `codigo_area` (`MAT`, `LEN`, `CN` o `CS`), `numero_grado` (1 a 11) y `q` (texto), en la consulta.
+- **Responde:** 200: los DBA del área, cada uno con su código `ÁREA-GG-NN`, su grado (número y nombre) y su enunciado.
+- **Toca:** DBA (lee); AREA (lee); GRADO (lee).
 - **Reglas y errores:**
-  - `400` falta el área, o no es una de las 4 (CU-11 paso 1).
-- **Nota:** Las 4 áreas son fijas (CU-11 paso 1): la pantalla las tiene, no se piden al backend.
+  - `400` falta el área, o no es una de las 4 (CU-11 paso 1); o el grado no está entre 1 y 11.
+- **Nota:** Las 4 áreas son fijas (CU-11 paso 1, ADR-033): la pantalla las tiene, con los mismos códigos de la tabla `area` (ADR-036), y no se piden al backend.
 
 #### E-15 · `GET /catalogo/dbas/:codigo`
 
 CU-31 Consultar catálogo curricular · CU-11 Crear experiencia. Operación: `Catalogo.dba(codigo_dba: string): DBA`. **Falta.**
 
 - **Quién:** Docente.
-- **Recibe:** nada.
-- **Responde:** 200: enunciado oficial, ejemplo y evidencias en el orden oficial, cada una marcada si admite o no formato cerrado (RF-06-02). El enunciado prellena el nombre en el Paso 3.
-- **Toca:** DBA (lee); EVIDENCIA (lee); EVIDENCIA_DICTAMEN (lee).
+- **Recibe:** nada (`:codigo` es el código `ÁREA-GG-NN`, ej. `MAT-08-01`).
+- **Responde:** 200: enunciado oficial, ejemplo, área, grado, el documento oficial del que se copió (título y versión) y las evidencias en el orden oficial, cada una marcada si admite o no formato cerrado (RF-06-02). El enunciado prellena el nombre en el Paso 3.
+- **Toca:** DBA (lee); AREA (lee); GRADO (lee); DOCUMENTO_OFICIAL (lee); EVIDENCIA (lee); EVIDENCIA_DICTAMEN (lee).
 - **Reglas y errores:**
   - `404` no existe ese DBA.
 
@@ -309,7 +309,7 @@ CU-10 Consultar mis experiencias. Operación: `ServicioExperiencias.listar(docen
 - **Quién:** Docente.
 - **Recibe:** `estado` (borrador o publicada) y `q`, en la consulta.
 - **Responde:** 200: solo las experiencias del docente, cada una con estado, nombre, área, grado y número de estudiantes (CU-10 paso 1).
-- **Toca:** EXPERIENCIA (lee); DBA (lee); INSCRIPCION (lee).
+- **Toca:** EXPERIENCIA (lee); DBA (lee); AREA (lee); GRADO (lee); INSCRIPCION (lee).
 
 #### E-17 · `POST /experiencias`
 
@@ -333,7 +333,7 @@ CU-12 Consultar experiencia · CU-13 Publicar experiencia · CU-15 Eliminar expe
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
 - **Responde:** 200: encabezado (nombre, estado, fecha, área, grado, número de inscritos), el DBA, cuántos ítems activos faltan por evidencia para publicar (CU-13 1a), y cuántos inscritos y respuestas se perderían al eliminarla (CU-15 paso 2).
-- **Toca:** EXPERIENCIA (lee); DBA (lee); EVIDENCIA (lee); EXPERIENCIA_EVIDENCIA (lee); ITEM (lee); INSCRIPCION (lee); RESPUESTA (lee).
+- **Toca:** EXPERIENCIA (lee); DBA (lee); AREA (lee); GRADO (lee); EVIDENCIA (lee); EXPERIENCIA_EVIDENCIA (lee); ITEM (lee); INSCRIPCION (lee); RESPUESTA (lee).
 - **Reglas y errores:**
   - `403` la experiencia no es del docente.
   - `404` no existe.

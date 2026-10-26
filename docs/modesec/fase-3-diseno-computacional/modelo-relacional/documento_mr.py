@@ -18,7 +18,7 @@ from collections import Counter                                                 
 
 N_PRUEBA = Counter(p[0] for p in PRUEBAS)
 # lo que cuentan los dos verificadores: bloques A y C fijos, mas semilla y bateria
-N_SQLITE = 6 + 1 + len(PRUEBAS) + 3
+N_SQLITE = 9 + 1 + len(PRUEBAS) + 3
 N_MYSQL = 4 + 1 + len(PRUEBAS)
 
 SALIDA = os.path.join(AQUI, "..", "17-modelo-relacional.md")
@@ -51,12 +51,16 @@ def documento():
     w("**Fecha:** 2026-10-21. **Archivo generado** por `modelo-relacional/documento_mr.py` desde")
     w("`modelo-relacional/datos_mr.py`; no se edita a mano.")
     w("")
+    w("**Actualizado el 2026-10-26** por la revisión del docente del 2026-10-22: tablas `area`,")
+    w("`grado` y `documento_oficial`, código del DBA `ÁREA-GG-NN` (ADR-036) y")
+    w("`credencial.estado_verificacion` (ADR-037). Ver la sección 5.6 y la tabla de cambios (10).")
+    w("")
     w("MODESEC pide *«un MR (Modelo relacional) basado en el MER»*. La base es")
     w("`16-modelo-entidad-relacion.md`; `modelo-relacional/_verificar_mr_mer.py` comprueba en cada")
     w("corrida que este modelo no se aparte de él, entidad por entidad y atributo por atributo.")
     w("")
     w("**Motor: MySQL 8** (RNF-14, *«NestJS y MySQL»*). El esquema ejecutable es")
-    w("`modelo-relacional/mr_mysql.sql`, y **se probó contra un MySQL 8.4 real** (sección 9). No usa")
+    w("`modelo-relacional/mr_mysql.sql`, y **se probó contra MySQL real** —8.4 y 8.0— (sección 9). No usa")
     w("nada que MariaDB 10.11 no tenga —el backend de I1 hoy corre sobre MariaDB—, pero en MariaDB")
     w("no se ejecutó: queda como prueba pendiente al integrar.")
     w("")
@@ -81,9 +85,10 @@ def documento():
     w("## 3. Convención de nombres")
     w("")
     w("- Tablas y columnas en `snake_case`, en singular y sin tildes: `inscripcion`, `opcion`.")
-    w("- Llaves sustitutas `id_<tabla>`, `INT UNSIGNED AUTO_INCREMENT`. La única llave natural es")
-    w("  `codigo_dba`, que viene del MEN.")
-    w("- Una llave foránea se llama igual que la columna a la que apunta.")
+    w("- Llaves sustitutas `id_<tabla>`, `INT UNSIGNED AUTO_INCREMENT`. Las llaves naturales son las")
+    w("  del catálogo: `codigo_dba`, `codigo_area` y el `numero` del grado (ADR-036).")
+    w("- Una llave foránea se llama igual que la columna a la que apunta, con una excepción:")
+    w("  `dba.numero_grado` apunta a `grado.numero`, para no confundirla con el número del DBA.")
     w("- Restricciones con nombre: `fk_<tabla>_<n>`, `uq_<tabla>_<n>`, `ck_<tabla>_<n>`. Un error")
     w("  del motor dice qué regla se rompió.")
     w("")
@@ -92,8 +97,9 @@ def documento():
     w("**Esto cierra el vacío V-11** que el análisis de requerimientos dejó abierto en RF-02-07")
     w("(eliminar una experiencia) y RF-04-12 (salir de una): borrar una experiencia o una")
     w("inscripción borra **en cascada** todo lo que depende de ella. Las raíces que ningún flujo")
-    w("borra —credencial, docente, estudiante, DBA, evidencia— quedan en `RESTRICT`, como seguro.")
-    w("`ON UPDATE CASCADE` en todas, salvo las de `credencial` (abajo).")
+    w("borra —credencial, docente, estudiante, el catálogo (área, grado, documento, DBA) y evidencia—")
+    w("quedan en `RESTRICT`, como seguro. `ON UPDATE CASCADE` en todas, salvo las de `credencial` y")
+    w("las del catálogo hacia `area`, `grado` y `documento_oficial` (abajo).")
     w("")
     w("| Tabla | Columnas | Referencia | ON DELETE | ON UPDATE | Por qué |")
     w("|---|---|---|---|---|---|")
@@ -103,7 +109,8 @@ def documento():
     w("**Por qué las de `credencial` no llevan `ON UPDATE CASCADE`:** MySQL no admite una")
     w("restricción CHECK sobre una columna que participa en una acción referencial, y")
     w("`id_docente` / `id_estudiante` tienen el CHECK de RI-12. Como son llaves sustitutas que nunca")
-    w("se actualizan, `RESTRICT` no cuesta nada.")
+    w("se actualizan, `RESTRICT` no cuesta nada. **Lo mismo en las del catálogo:** el CHECK de RI-21")
+    w("lee `dba.codigo_area` y `dba.numero_grado`, y un código del catálogo no cambia.")
     w("")
     w("**Lo que la cascada nunca toca:** una cuenta, ni el currículo. La prueba de la sección 9")
     w("elimina una experiencia con un inscrito que respondió y cuenta, tabla por tabla, lo que queda.")
@@ -128,7 +135,7 @@ def documento():
     w("")
     w("### 5.2 Los ciclos C1 y C4 del MER, cerrados con la misma técnica (RI-18, RI-6)")
     w("")
-    w("El MER declara sus cinco ciclos y qué cierra cada uno (`16`, sección 6). Dos estaban abiertos, y")
+    w("El MER declara sus seis ciclos y qué cierra cada uno (`16`, sección 6). Dos estaban abiertos, y")
     w("el motor aceptaba los datos que los rompen; las pruebas de `pruebas_mr.py` lo demostraron:")
     w("")
     w("- **C1, RI-18.** Una experiencia podía incluir una evidencia de **otro DBA**. Ahora la FK de")
@@ -159,6 +166,26 @@ def documento():
     w("Se calcula sobre `resultado` cada vez que el docente lo abre (ADR-022): estado general por")
     w("estudiante y clasificación por evidencia. Guardarlo crearía un segundo lugar donde el mismo")
     w("dato podría quedar viejo.")
+    w("")
+    w("### 5.6 El catálogo normalizado: ciclo C6 y código del DBA (ADR-036, RI-20, RI-21)")
+    w("")
+    w("- **C6, RI-20.** El documento del que se copió un DBA tiene que ser de su misma área. Se")
+    w("  cierra con la técnica de C1 y C4: la FK de `dba` hacia `documento_oficial` es compuesta,")
+    w("  `(id_documento, codigo_area)`, y `documento_oficial` declara `UNIQUE(id_documento, codigo_area)`")
+    w("  para poder ser su destino. La prueba «un DBA de Matemáticas copiado del documento de")
+    w("  Lenguaje» lo intenta y el motor lo rechaza.")
+    w("- **RI-21.** Un CHECK arma el código esperado con el área y el grado de la misma fila y lo")
+    w("  compara con `codigo_dba`: `MAT-08-01` solo entra con `codigo_area = 'MAT'` y")
+    w("  `numero_grado = 8`. Así el código no puede contradecir las llaves foráneas.")
+    w("- **Decisión de esta sesión, para que el equipo la confirme:** las columnas de código")
+    w("  (`codigo_dba`, `codigo_area` y sus copias en otras tablas) son `CHARACTER SET ascii COLLATE")
+    w("  ascii_bin`. ADR-036 pide códigos sin tildes; con ASCII, el motor ni siquiera puede guardar")
+    w("  una tilde, y con el cotejamiento binario `mat` no es igual a `MAT`. El resto de la base sigue")
+    w("  en `utf8mb4_unicode_ci`.")
+    w("- **Defecto conocido de los datos, no del modelo.** `curriculo_men_normalizado.json` tiene 342")
+    w("  DBA y solo 329 códigos distintos (16 §4, DBA). `codigo_dba` sigue siendo llave primaria:")
+    w("  cargar hoy el JSON completo **fallaría por llave duplicada** en esos 13, y eso es lo correcto.")
+    w("  Se corrige en la auditoría del currículo (pendientes, A12).")
     w("")
     w("## 6. Análisis de normalización")
     w("")
@@ -229,10 +256,12 @@ RI_MECANISMO = [
     ("RI-12", "Motor: `CHECK(id_docente IS NULL OR id_estudiante IS NULL)` y UNIQUE sobre cada una", "`credencial`"),
     ("RI-13", "Motor: llaves foráneas compuestas con `id_experiencia` (sección 5.1)", "`presentacion`, `resultado`"),
     ("RI-14", "Servicio: al publicar, se comprueba otra vez", "`Experiencia.puedePublicarse()` (CU-13)"),
-    ("RI-15", "Motor: CHECK", "`credencial`"),
+    ("RI-15", "Motor: CHECK, con `estado_verificacion = 'verificado'` (ADR-037)", "`credencial`"),
     ("RI-16", "Motor: CHECK", "`experiencia`"),
     ("RI-17", "Motor: un solo `servicio_ia` y un solo `modelo_ia`, NOT NULL, por experiencia: un banco no puede mezclar servicios", "`experiencia`"),
     ("RI-18", "Motor: FK compuesta `(id_experiencia, codigo_dba)` de `experiencia_evidencia` hacia `experiencia` (sección 5.2)", "`experiencia_evidencia`"),
+    ("RI-20", "Motor: FK compuesta `(id_documento, codigo_area)` de `dba` hacia `documento_oficial` (sección 5.6)", "`dba`"),
+    ("RI-21", "Motor: CHECK que arma `ÁREA-GG-NN` con el área y el grado de la fila; CHECK del formato de `codigo_area`; columnas ASCII binarias (sección 5.6)", "`dba`, `area`"),
     ("RI-19", "Motor: CHECK de que el dictamen que admite formato cerrado diga cuál. Servicio: el ítem usa el formato del dictamen al generarse y al crearse", "`evidencia_dictamen` · `GeneradorBanco`, `ServicioBanco.agregarItem()` (CU-16, CU-20)"),
 ]
 
@@ -260,9 +289,11 @@ los que se cuenta qué *queda* en cada tabla ({N_QUEDA}: eliminar una experienci
 descartar un ítem). En MySQL, además, cada rechazo tiene que venir **de la restricción que la
 prueba nombra** (`MOTIVO_MYSQL`): rechazar por otra razón cuenta como falla.
 
-**Resultado del 2026-10-22, contra MySQL 8.4.11** (modo estricto por defecto): {N_MYSQL}
-comprobaciones, todas correctas. La salida completa está en
-`modelo-relacional/salida_probar_mysql.txt`.
+**Resultado del 2026-10-26, contra MySQL 8.0.46** (modo estricto por defecto), con el catálogo
+normalizado y el estado de verificación: {N_MYSQL} comprobaciones, todas correctas. La salida
+completa está en `modelo-relacional/salida_probar_mysql.txt`. La versión anterior del esquema
+se había probado el 2026-10-22 contra MySQL 8.4.11; esta todavía no se corrió en 8.4 ni en
+MariaDB.
 
 **Lo que encontró.** La primera corrida contra MySQL mostró que la prueba «resultado cuya
 experiencia no es la de su inscripción» pasaba **por la razón equivocada**: el motor rechazaba
@@ -287,6 +318,8 @@ CAMBIOS = """
 | Política de borrado en cascada desde `experiencia` e `inscripcion`; `presentacion → item` y `respuesta_opcion → opcion` pasan de RESTRICT a CASCADE, para que eliminar una experiencia con respuestas sea posible (RF-02-07). | V-11 |
 | CHECK escritos como expresiones SQL reales, con nombre (antes eran prosa). | — |
 | Motor objetivo MySQL 8 (antes MariaDB 10.11), con un DDL propio y probado. | RNF-14 |
+| *(2026-10-26)* Tablas nuevas `area`, `grado` y `documento_oficial`; `dba` pierde `area` y `grado` como texto y gana `codigo_area`, `numero_grado` e `id_documento`, con una FK compuesta que cierra el ciclo C6 (RI-20). `codigo_dba` pasa a `ÁREA-GG-NN`, con su CHECK (RI-21), en ASCII binario en todas las tablas que lo usan (5.6). | ADR-036 · revisión del docente del 2026-10-22 (R1) |
+| *(2026-10-26)* `credencial`: `email_verificado` pasa a `estado_verificacion` (`procesando` / `verificado`, por defecto `procesando`); el CHECK de RI-15 usa el estado. `codigo_expira_en` y `codigo_ultimo_envio` siguen, a la espera de la pregunta P2. | ADR-037 · revisión del docente del 2026-10-22 (R3, R4) |
 """
 
 if __name__ == "__main__":

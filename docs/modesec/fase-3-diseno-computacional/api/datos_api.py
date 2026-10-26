@@ -203,20 +203,25 @@ ENDPOINTS = [
 
     # ================================================================= I2
     ep("GET", "/catalogo/dbas", "SUB-06", ["CU-31"], "Catalogo.dbas", "docente",
-       {"DBA": "R"}, "falta",
-       "`area` (una de las 4), `grado` (1 a 11) y `q` (texto), en la consulta",
-       "200: los DBA del área, cada uno con código, grado y enunciado",
-       [("400", "falta el área, o no es una de las 4 (CU-11 paso 1)")],
-       nota="Las 4 áreas son fijas (CU-11 paso 1): la pantalla las tiene, no se piden al "
-            "backend."),
+       {"DBA": "R", "AREA": "R", "GRADO": "R"}, "falta",
+       "`codigo_area` (`MAT`, `LEN`, `CN` o `CS`), `numero_grado` (1 a 11) y `q` (texto), "
+       "en la consulta",
+       "200: los DBA del área, cada uno con su código `ÁREA-GG-NN`, su grado (número y "
+       "nombre) y su enunciado",
+       [("400", "falta el área, o no es una de las 4 (CU-11 paso 1); o el grado no está "
+                "entre 1 y 11")],
+       nota="Las 4 áreas son fijas (CU-11 paso 1, ADR-033): la pantalla las tiene, con los "
+            "mismos códigos de la tabla `area` (ADR-036), y no se piden al backend."),
     ep("GET", "/catalogo/dbas/:codigo", "SUB-06", ["CU-31", "CU-11"], "Catalogo.dba", "docente",
-       {"DBA": "R", "EVIDENCIA": "R", "EVIDENCIA_DICTAMEN": "R"}, "falta",
-       "nada",
-       "200: enunciado oficial, ejemplo y evidencias en el orden oficial, cada una marcada si "
-       "admite o no formato cerrado (RF-06-02). El enunciado prellena el nombre en el Paso 3",
+       {"DBA": "R", "AREA": "R", "GRADO": "R", "DOCUMENTO_OFICIAL": "R", "EVIDENCIA": "R",
+        "EVIDENCIA_DICTAMEN": "R"}, "falta",
+       "nada (`:codigo` es el código `ÁREA-GG-NN`, ej. `MAT-08-01`)",
+       "200: enunciado oficial, ejemplo, área, grado, el documento oficial del que se copió "
+       "(título y versión) y las evidencias en el orden oficial, cada una marcada si admite "
+       "o no formato cerrado (RF-06-02). El enunciado prellena el nombre en el Paso 3",
        [("404", "no existe ese DBA")]),
     ep("GET", "/experiencias", "SUB-02", ["CU-10"], "ServicioExperiencias.listar", "docente",
-       {"EXPERIENCIA": "R", "DBA": "R", "INSCRIPCION": "R"}, "falta",
+       {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "INSCRIPCION": "R"}, "falta",
        "`estado` (borrador o publicada) y `q`, en la consulta",
        "200: solo las experiencias del docente, cada una con estado, nombre, área, grado y "
        "número de estudiantes (CU-10 paso 1)"),
@@ -237,8 +242,8 @@ ENDPOINTS = [
        nota="Puede tardar minutos: ver la generación asíncrona en «Adicionales que conviene agregar»."),
     ep("GET", "/experiencias/:id", "SUB-02", ["CU-12", "CU-13", "CU-15"],
        "ServicioExperiencias.consultar", "docente_dueno",
-       {"EXPERIENCIA": "R", "DBA": "R", "EVIDENCIA": "R", "EXPERIENCIA_EVIDENCIA": "R",
-        "ITEM": "R", "INSCRIPCION": "R", "RESPUESTA": "R"}, "falta",
+       {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "EVIDENCIA": "R",
+        "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R", "INSCRIPCION": "R", "RESPUESTA": "R"}, "falta",
        "nada",
        "200: encabezado (nombre, estado, fecha, área, grado, número de inscritos), el DBA, "
        "cuántos ítems activos faltan por evidencia para publicar (CU-13 1a), y cuántos "

@@ -4,7 +4,7 @@
 > sin resolver) y de `decisiones.md` (lo ya decidido): esto es **trabajo
 > por hacer**, con su estado real y qué lo bloquea.
 >
-> Última actualización: 2026-10-21.
+> Última actualización: 2026-10-26.
 
 **Checklist fijo, desde ADR-024 (2026-08-29):** cada vez que se cierre
 una ADR nueva que le otorgue o le retire una capacidad al docente o al
@@ -497,8 +497,13 @@ Para aplicar todos juntos al rehacer MER → MR → diccionario:
     emparejar y ordenar es todo o nada. Al retomar, se reusa la
     Presentación sin respuesta (no se crea otra): compatible con la
     llave de Presentación (inscripción, ítem) y con el tope de RI-9.
-11. ✘ **Pendiente: no está en `16`.** Recomendado además Documento oficial (A12). Lo agrega quien mantiene el MER (`mer/datos_mer.py`). **Área y Grado como tablas propias** (pedido del docente, A12):
-    confirmar con él el alcance antes de modelarlas.
+11. ✔ **Hecho en `16`, `17` y `18` (2026-10-26, encargo 01, ADR-036).** ÁREA, GRADO y
+    DOCUMENTO_OFICIAL como entidades; DBA sin `area`/`grado` como texto; código del DBA
+    `ÁREA-GG-NN` sin tildes (RI-21); ciclo nuevo C6 cerrado por RI-20. En la misma pasada,
+    `estado_verificacion` en CREDENCIAL (ADR-037). Sigue abierto en los **datos**: el JSON
+    repite 13 identificadores de DBA, y con el código nuevo chocan los mismos 13 (A12).
+    Texto anterior: **Área y Grado como tablas propias** (pedido del docente, A12), recomendado
+    además Documento oficial.
 12. ◐ **En parte:** `16` §12 numera los vacíos de forma coherente (V-1 a V-12), pero la tabla de la sección C de este archivo sigue con la numeración vieja. **Identificadores duplicados**: V-5, V-6 y V-9 significan cosas
    distintas en la sección C y en la sección D de este archivo.
    Renumerar antes de entregar un MER "sin errores".

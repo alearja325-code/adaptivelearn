@@ -438,6 +438,29 @@
 <rect x="0" y="0" width="2900" height="1500" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
 <text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de clases 1 · Dominio</text>
 <text x="32.0" y="62.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Atributos: los del modelo relacional, sin las columnas de llave foránea (esas son las asociaciones). Métodos: de los casos de uso que cada uno cita en 13-diagrama-clases.md.</text>
+<rect x="40.0" y="90.0" width="250.0" height="156.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="40.0" y="90.0" width="250.0" height="32.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="165.0" y="111.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">DocumentoOficial</text>
+<text x="52.0" y="141.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- id_documento: int</text>
+<text x="52.0" y="157.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- titulo: string</text>
+<text x="52.0" y="173.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- version: string</text>
+<text x="52.0" y="189.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- anio: int</text>
+<text x="52.0" y="205.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- paginas: int</text>
+<text x="52.0" y="221.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- url_oficial: string</text>
+<line x1="40" y1="232" x2="290" y2="232" stroke="#111111" stroke-width="1.2"/>
+<rect x="560.0" y="90.0" width="220.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="560.0" y="90.0" width="220.0" height="32.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="670.0" y="111.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Area</text>
+<text x="572.0" y="141.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- codigo_area: string</text>
+<text x="572.0" y="157.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- nombre: string</text>
+<line x1="560" y1="168" x2="780" y2="168" stroke="#111111" stroke-width="1.2"/>
+<rect x="560.0" y="230.0" width="220.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="560.0" y="230.0" width="220.0" height="32.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="670.0" y="251.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Grado</text>
+<text x="572.0" y="281.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- numero: int</text>
+<text x="572.0" y="297.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- nombre: string</text>
+<text x="572.0" y="313.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- nivel: NivelEducativo</text>
+<line x1="560" y1="324" x2="780" y2="324" stroke="#111111" stroke-width="1.2"/>
 <rect x="40.0" y="482.0" width="334.0" height="428.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
 <rect x="40.0" y="482.0" width="334.0" height="32.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
 <text x="207.0" y="503.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Credencial</text>
@@ -446,7 +469,7 @@
 <text x="52.0" y="565.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- proveedor: Proveedor</text>
 <text x="52.0" y="581.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- password_hash: string [0..1]</text>
 <text x="52.0" y="597.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- proveedor_id: string [0..1]</text>
-<text x="52.0" y="613.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- email_verificado: bool</text>
+<text x="52.0" y="613.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- estado_verificacion: EstadoVerificacion</text>
 <text x="52.0" y="629.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- codigo_verificacion: string [0..1]</text>
 <text x="52.0" y="645.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- codigo_expira_en: Fecha [0..1]</text>
 <text x="52.0" y="661.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- codigo_ultimo_envio: Fecha [0..1]</text>
@@ -487,16 +510,14 @@
 <text x="544.0" y="951.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- id_estudiante: int</text>
 <line x1="532" y1="962" x2="772" y2="962" stroke="#111111" stroke-width="1.2"/>
 <text x="544.0" y="981.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ inscripciones(): Inscripcion [*]</text>
-<rect x="940.0" y="90.0" width="300.0" height="156.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="940.0" y="90.0" width="300.0" height="124.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
 <rect x="940.0" y="90.0" width="300.0" height="32.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
 <text x="1090.0" y="111.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">DBA</text>
 <text x="952.0" y="141.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- codigo_dba: string</text>
-<text x="952.0" y="157.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- area: string</text>
-<text x="952.0" y="173.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- grado: string</text>
-<text x="952.0" y="189.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- enunciado: string</text>
-<text x="952.0" y="205.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- ejemplo: string [0..1]</text>
-<line x1="940" y1="216" x2="1240" y2="216" stroke="#111111" stroke-width="1.2"/>
-<text x="952.0" y="235.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ evidenciasAdmitidas(): Evidencia [*]</text>
+<text x="952.0" y="157.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- enunciado: string</text>
+<text x="952.0" y="173.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">- ejemplo: string [0..1]</text>
+<line x1="940" y1="184" x2="1240" y2="184" stroke="#111111" stroke-width="1.2"/>
+<text x="952.0" y="203.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ evidenciasAdmitidas(): Evidencia [*]</text>
 <rect x="1400.0" y="90.0" width="220.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
 <rect x="1400.0" y="90.0" width="220.0" height="32.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
 <text x="1510.0" y="111.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Evidencia</text>
@@ -617,6 +638,22 @@
 <text x="307.0" y="927.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
 <text x="518.0" y="939.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">0..1</text>
 <text x="416.0" y="963.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">accede como</text>
+<polyline points="940.0,120.0 780.0,120.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<text x="932.0" y="113.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1..*</text>
+<text x="794.0" y="113.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
+<text x="860.0" y="137.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">pertenece a</text>
+<polyline points="960.0,214.0 960.0,270.0 780.0,270.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<text x="967.0" y="231.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1..*</text>
+<text x="794.0" y="263.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
+<text x="870.0" y="287.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">corresponde a</text>
+<polyline points="1015.0,214.0 1015.0,345.0 165.0,345.0 165.0,246.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<text x="1022.0" y="231.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1..*</text>
+<text x="172.0" y="269.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
+<text x="590.0" y="362.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">se copia de</text>
+<polyline points="290.0,120.0 560.0,120.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<text x="298.0" y="113.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1..*</text>
+<text x="546.0" y="113.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
+<text x="425.0" y="137.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">es de</text>
 <polyline points="1240.0,150.0 1400.0,150.0" fill="none" stroke="#111111" stroke-width="1.3" marker-start="url(#rombo)"/>
 <text x="1270.0" y="143.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
 <text x="1386.0" y="143.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1..*</text>
@@ -629,10 +666,10 @@
 <text x="780.0" y="423.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
 <text x="926.0" y="423.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">0..*</text>
 <text x="856.0" y="447.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">crea</text>
-<polyline points="1090.0,380.0 1090.0,246.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="1090.0,380.0 1090.0,214.0" fill="none" stroke="#111111" stroke-width="1.3"/>
 <text x="1097.0" y="372.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">0..*</text>
-<text x="1097.0" y="269.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
-<text x="1083.0" y="317.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">se ancla a</text>
+<text x="1097.0" y="237.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
+<text x="1083.0" y="301.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">se ancla a</text>
 <polyline points="1260.0,430.0 1400.0,430.0" fill="none" stroke="#111111" stroke-width="1.3" marker-start="url(#rombo)"/>
 <text x="1290.0" y="423.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1</text>
 <text x="1386.0" y="423.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">1..*</text>
@@ -692,7 +729,7 @@
 <polyline points="652.0,476.0 652.0,610.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#herencia)"/>
 <polyline points="652.0,900.0 652.0,765.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#herencia)"/>
 <polyline points="2495.0,718.0 2660.0,718.0" fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="4,4"/>
-<text x="40.0" y="1174.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Enumeraciones — las 7 primeras son los ENUM del modelo relacional, valor por valor; las 3 últimas son de valores calculados, que no se guardan.</text>
+<text x="40.0" y="1174.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Enumeraciones — las 9 primeras son los ENUM del modelo relacional, valor por valor; las 3 últimas son de valores calculados, que no se guardan.</text>
 <rect x="40.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
 <rect x="40.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
 <text x="105.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
@@ -700,67 +737,80 @@
 <text x="52.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">correo</text>
 <text x="52.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">google</text>
 <text x="52.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">microsoft</text>
-<rect x="196.0" y="1190.0" width="141.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="196.0" y="1190.0" width="141.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="266.5" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="266.5" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">EstadoExperiencia</text>
-<text x="208.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Borrador</text>
-<text x="208.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Publicada</text>
-<rect x="363.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="363.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="428.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="428.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Formato</text>
-<text x="375.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">single_choice</text>
-<text x="375.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">matching</text>
-<text x="375.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">ordering</text>
-<rect x="519.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="519.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="584.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="584.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Origen</text>
-<text x="531.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">ia</text>
-<text x="531.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">editado_docente</text>
-<text x="531.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">creado_docente</text>
-<rect x="675.0" y="1190.0" width="130.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="675.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="740.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="740.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">ServicioIA</text>
-<text x="687.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">gemini</text>
-<text x="687.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">deepseek</text>
-<rect x="831.0" y="1190.0" width="130.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="831.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="896.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="896.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Grupo</text>
-<text x="843.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">izquierda</text>
-<text x="843.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">derecha</text>
-<rect x="987.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="987.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="1052.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="1052.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">EstadoResultado</text>
-<text x="999.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">muestra</text>
-<text x="999.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_muestra</text>
-<text x="999.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_concluyente</text>
-<rect x="1143.0" y="1190.0" width="130.0" height="124.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="1143.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="1208.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="1208.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">EstadoGeneral</text>
-<text x="1155.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">muestra</text>
-<text x="1155.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_muestra</text>
-<text x="1155.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_concluyente</text>
-<text x="1155.0" y="1303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">sin_concluir</text>
-<rect x="1299.0" y="1190.0" width="148.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="1299.0" y="1190.0" width="148.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="1373.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="1373.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Clasificacion</text>
-<text x="1311.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">datos_insuficientes</text>
-<text x="1311.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">brecha_aparente</text>
-<text x="1311.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">sin_brecha_aparente</text>
-<rect x="1473.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
-<rect x="1473.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
-<text x="1538.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
-<text x="1538.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Progreso</text>
-<text x="1485.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_iniciada</text>
-<text x="1485.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">en_curso</text>
-<text x="1485.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">completada</text>
+<rect x="196.0" y="1190.0" width="145.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="196.0" y="1190.0" width="145.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="268.5" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="268.5" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">EstadoVerificacion</text>
+<text x="208.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">procesando</text>
+<text x="208.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">verificado</text>
+<rect x="367.0" y="1190.0" width="132.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="367.0" y="1190.0" width="132.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="433.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="433.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">NivelEducativo</text>
+<text x="379.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">basica_primaria</text>
+<text x="379.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">basica_secundaria</text>
+<text x="379.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">media</text>
+<rect x="525.0" y="1190.0" width="141.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="525.0" y="1190.0" width="141.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="595.5" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="595.5" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">EstadoExperiencia</text>
+<text x="537.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Borrador</text>
+<text x="537.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Publicada</text>
+<rect x="692.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="692.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="757.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="757.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Formato</text>
+<text x="704.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">single_choice</text>
+<text x="704.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">matching</text>
+<text x="704.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">ordering</text>
+<rect x="848.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="848.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="913.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="913.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Origen</text>
+<text x="860.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">ia</text>
+<text x="860.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">editado_docente</text>
+<text x="860.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">creado_docente</text>
+<rect x="1004.0" y="1190.0" width="130.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="1004.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="1069.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="1069.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">ServicioIA</text>
+<text x="1016.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">gemini</text>
+<text x="1016.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">deepseek</text>
+<rect x="1160.0" y="1190.0" width="130.0" height="92.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="1160.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="1225.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="1225.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Grupo</text>
+<text x="1172.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">izquierda</text>
+<text x="1172.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">derecha</text>
+<rect x="1316.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="1316.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="1381.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="1381.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">EstadoResultado</text>
+<text x="1328.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">muestra</text>
+<text x="1328.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_muestra</text>
+<text x="1328.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_concluyente</text>
+<rect x="1472.0" y="1190.0" width="130.0" height="124.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="1472.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="1537.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="1537.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">EstadoGeneral</text>
+<text x="1484.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">muestra</text>
+<text x="1484.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_muestra</text>
+<text x="1484.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_concluyente</text>
+<text x="1484.0" y="1303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">sin_concluir</text>
+<rect x="1628.0" y="1190.0" width="148.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="1628.0" y="1190.0" width="148.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="1702.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="1702.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Clasificacion</text>
+<text x="1640.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">datos_insuficientes</text>
+<text x="1640.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">brecha_aparente</text>
+<text x="1640.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">sin_brecha_aparente</text>
+<rect x="1802.0" y="1190.0" width="130.0" height="108.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.3"/>
+<rect x="1802.0" y="1190.0" width="130.0" height="46.0" rx="0" ry="0" fill="#F5F3EE" stroke="#111111" stroke-width="1.3"/>
+<text x="1867.0" y="1207.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«enumeración»</text>
+<text x="1867.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Progreso</text>
+<text x="1814.0" y="1255.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">no_iniciada</text>
+<text x="1814.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">en_curso</text>
+<text x="1814.0" y="1287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">completada</text>
 <text x="32.0" y="1480.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Rombo negro: composición (la parte no existe sin el todo). Triángulo hueco: generalización. Punteado: asociación derivada (se calcula, no se guarda) o vínculo de la clase asociación. «calculada»: no persiste.</text>
 </svg>
 </figure><figure id="clases-2-servicios"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1880 1080" width="1880" height="1080">
@@ -818,12 +868,12 @@
 <text x="622.0" y="238.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ publicar(id: int)</text>
 <text x="622.0" y="254.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ codigoInvitacion(id: int): string</text>
 <text x="622.0" y="270.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ eliminar(id: int)</text>
-<rect x="610.0" y="340.0" width="364.0" height="107.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="610.0" y="340.0" width="364.0" height="47.0" rx="0" ry="0" fill="#E3F2E6" stroke="#111111" stroke-width="1.5"/>
-<text x="792.0" y="358.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«servicio»</text>
-<text x="792.0" y="376.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Catalogo</text>
-<line x1="610" y1="401" x2="974" y2="401" stroke="#111111" stroke-width="1.2"/>
-<text x="622.0" y="420.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ dbas(area: string, grado: string, texto: string): DBA [*]</text>
+<rect x="610.0" y="340.0" width="436.0" height="107.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="610.0" y="340.0" width="436.0" height="47.0" rx="0" ry="0" fill="#E3F2E6" stroke="#111111" stroke-width="1.5"/>
+<text x="828.0" y="358.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«servicio»</text>
+<text x="828.0" y="376.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Catalogo</text>
+<line x1="610" y1="401" x2="1046" y2="401" stroke="#111111" stroke-width="1.2"/>
+<text x="622.0" y="420.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]</text>
 <text x="622.0" y="436.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ dba(codigo_dba: string): DBA</text>
 <rect x="1160.0" y="110.0" width="345.0" height="123.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
 <rect x="1160.0" y="110.0" width="345.0" height="47.0" rx="0" ry="0" fill="#E3F2E6" stroke="#111111" stroke-width="1.5"/>
@@ -907,7 +957,7 @@
 <text x="248.0" y="844.5" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
 <text x="32.0" y="1060.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Flecha punteada abierta: «usa» (dependencia). Flecha punteada con triángulo hueco: «realiza» (implementa la interfaz). GeneradorBanco recibe el servicio principal y el de respaldo por configuración (RF-03-02).</text>
 </svg>
-</figure><h2 id="diagrama-de-objetos">Diagrama de objetos <span>· 14-diagrama-objetos.md</span></h2><figure id="objetos-1-experiencia"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1060" width="1900" height="1060">
+</figure><h2 id="diagrama-de-objetos">Diagrama de objetos <span>· 14-diagrama-objetos.md</span></h2><figure id="objetos-1-experiencia"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1240" width="1900" height="1240">
 <defs>
   <marker id="lleno" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
     <path d="M0,0 L12,5 L0,10 z" fill="#111111"/></marker>
@@ -920,130 +970,153 @@
   <marker id="rombo" viewBox="0 0 22 12" refX="1" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
     <path d="M1,6 L11,1 L21,6 L11,11 z" fill="#111111" stroke="#111111" stroke-width="1"/></marker>
 </defs>
-<rect x="0" y="0" width="1900" height="1060" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="0" y="0" width="1900" height="1240" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
 <text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de objetos · vista 1 de 2 — La experiencia publicada (martes 4 de noviembre de 2026, 09:06)</text>
-<rect x="760.0" y="70.0" width="244.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="760.0" y="70.0" width="244.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="882.0" y="92.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">dba : DBA</text>
-<text x="772.0" y="123.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">codigo_dba = &quot;matemáticas_8_dba_1&quot;</text>
-<text x="772.0" y="139.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">area = &quot;Matemáticas&quot;</text>
-<text x="772.0" y="155.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">grado = &quot;8°&quot;</text>
-<rect x="40.0" y="250.0" width="209.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="40.0" y="250.0" width="209.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="144.5" y="272.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">d1 : EvidenciaDictamen</text>
-<text x="52.0" y="303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">aplica_formato_cerrado = true</text>
-<text x="52.0" y="319.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">formato = single_choice</text>
-<rect x="330.0" y="250.0" width="160.0" height="64.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="330.0" y="250.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="410.0" y="272.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ev1 : Evidencia</text>
-<text x="342.0" y="303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">numero_evidencia = 1</text>
-<rect x="770.0" y="250.0" width="246.0" height="160.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="770.0" y="250.0" width="246.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="893.0" y="272.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">exp3 : Experiencia</text>
-<text x="782.0" y="303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_experiencia = 3</text>
-<text x="782.0" y="319.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">estado = Publicada</text>
-<text x="782.0" y="335.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">fecha_creacion = 2026-11-02 10:40</text>
-<text x="782.0" y="351.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">fecha_publicacion = 2026-11-03 08:15</text>
-<text x="782.0" y="367.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">codigo_invitacion = &quot;K7M2QX&quot;</text>
-<text x="782.0" y="383.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">servicio_ia = gemini</text>
-<text x="782.0" y="399.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">modelo_ia = &quot;gemini-2.5-flash&quot;</text>
-<rect x="1320.0" y="250.0" width="160.0" height="64.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="1320.0" y="250.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="1400.0" y="272.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ev2 : Evidencia</text>
-<text x="1332.0" y="303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">numero_evidencia = 2</text>
-<rect x="1580.0" y="250.0" width="209.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="1580.0" y="250.0" width="209.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="1684.5" y="272.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">d2 : EvidenciaDictamen</text>
-<text x="1592.0" y="303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">aplica_formato_cerrado = true</text>
-<text x="1592.0" y="319.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">formato = single_choice</text>
-<rect x="330.0" y="470.0" width="206.0" height="44.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="330.0" y="470.0" width="206.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="433.0" y="492.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ee1 : ExperienciaEvidencia</text>
-<rect x="1320.0" y="470.0" width="206.0" height="44.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="1320.0" y="470.0" width="206.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="1423.0" y="492.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ee2 : ExperienciaEvidencia</text>
-<rect x="880.0" y="520.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="880.0" y="520.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="960.0" y="542.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ana : Docente</text>
-<text x="892.0" y="573.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_docente = 1</text>
-<text x="892.0" y="589.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">nombres = &quot;Ana&quot;</text>
-<text x="892.0" y="605.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">apellidos = &quot;Pérez&quot;</text>
-<rect x="880.0" y="690.0" width="211.0" height="112.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="880.0" y="690.0" width="211.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="985.5" y="712.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c1 : Credencial</text>
-<text x="892.0" y="743.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">correo = &quot;ana@colegio.edu.co&quot;</text>
-<text x="892.0" y="759.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">proveedor = correo</text>
-<text x="892.0" y="775.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">password_hash = &quot;$argon2id$…&quot;</text>
-<text x="892.0" y="791.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">email_verificado = true</text>
-<rect x="40.0" y="640.0" width="166.0" height="112.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="40.0" y="640.0" width="166.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="123.0" y="662.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it11 : Item</text>
-<text x="52.0" y="693.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 31</text>
-<text x="52.0" y="709.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">formato = single_choice</text>
-<text x="52.0" y="725.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = ia</text>
-<text x="52.0" y="741.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
-<rect x="250.0" y="640.0" width="174.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="250.0" y="640.0" width="174.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="337.0" y="662.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it12 : Item</text>
-<text x="262.0" y="693.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 32</text>
-<text x="262.0" y="709.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = editado_docente</text>
-<text x="262.0" y="725.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
-<rect x="460.0" y="640.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="460.0" y="640.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="540.0" y="662.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it13 : Item</text>
-<text x="472.0" y="693.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 33</text>
-<text x="472.0" y="709.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = ia</text>
-<text x="472.0" y="725.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
-<rect x="670.0" y="640.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="670.0" y="640.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="750.0" y="662.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it14 : Item</text>
-<text x="682.0" y="693.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 34</text>
-<text x="682.0" y="709.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = ia</text>
-<text x="682.0" y="725.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
-<rect x="1320.0" y="640.0" width="170.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="1320.0" y="640.0" width="170.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="1405.0" y="662.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it21 : Item</text>
-<text x="1332.0" y="693.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 45</text>
-<text x="1332.0" y="709.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = creado_docente</text>
-<text x="1332.0" y="725.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
-<rect x="40.0" y="880.0" width="160.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="40.0" y="880.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="120.0" y="902.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">op1 : Opcion</text>
-<text x="52.0" y="933.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_opcion = 101</text>
-<text x="52.0" y="949.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">es_correcta = true</text>
-<rect x="250.0" y="880.0" width="160.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="250.0" y="880.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="330.0" y="902.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">op2 : Opcion</text>
-<text x="262.0" y="933.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_opcion = 102</text>
-<text x="262.0" y="949.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">es_correcta = false</text>
-<polyline points="760.0,110.0 440.0,110.0 440.0,250.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="1004.0,110.0 1430.0,110.0 1430.0,250.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="330.0,282.0 249.0,282.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="1480.0,282.0 1580.0,282.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="930.0,250.0 930.0,166.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="440.0,314.0 440.0,470.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="1430.0,314.0 1430.0,470.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="770.0,360.0 650.0,360.0 650.0,492.0 536.0,492.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="1016.0,360.0 1220.0,360.0 1220.0,492.0 1320.0,492.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="930.0,410.0 930.0,520.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="930.0,690.0 930.0,616.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="433.0,514.0 123.0,640.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="433.0,514.0 337.0,640.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="433.0,514.0 540.0,640.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="433.0,514.0 750.0,640.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="1430.0,514.0 1430.0,640.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="123.0,752.0 120.0,880.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="123.0,752.0 330.0,880.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<path d="M470,880 L858,880 L870,892 L870,956 L470,956 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.2"/><path d="M858,880 L858,892 L870,892" fill="none" stroke="#888888" stroke-width="1.2"/>
-<text x="480.0" y="899.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">ee1 tiene 12 ítems (RF-03-01); aquí se ven los 4 que se le</text>
-<text x="480.0" y="914.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">presentaron a Luis. Todos salieron de Gemini: el servicio</text>
-<text x="480.0" y="929.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">es de exp3, no de cada ítem (RI-17), y it12, que editó Ana,</text>
-<text x="480.0" y="944.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">lo sigue teniendo. Publicar exigió 6 activos por evidencia.</text>
-<path d="M1560,660 L1848,660 L1860,672 L1860,706 L1560,706 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.2"/><path d="M1848,660 L1848,672 L1860,672" fill="none" stroke="#888888" stroke-width="1.2"/>
-<text x="1570.0" y="679.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">it21 lo agregó Ana: no se le atribuye a la</text>
-<text x="1570.0" y="694.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">IA. Tiene el formato que fija d2 (RI-19).</text>
-<polyline points="1560.0,690.0 1490.0,690.0" fill="none" stroke="#888888" stroke-width="1.1" stroke-dasharray="3,3"/>
-<text x="32.0" y="1040.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Rectángulo con nombre subrayado: un objeto («nombre : Clase») con los valores que tiene en este momento. Línea: un enlace, instancia de una asociación del diagrama de clases. Textos, correos y códigos son ilustrativos.</text>
+<rect x="470.0" y="70.0" width="168.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="470.0" y="70.0" width="168.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="554.0" y="92.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">mat : Area</text>
+<text x="482.0" y="123.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">codigo_area = &quot;MAT&quot;</text>
+<text x="482.0" y="139.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">nombre = &quot;Matemáticas&quot;</text>
+<rect x="790.0" y="60.0" width="180.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="790.0" y="60.0" width="180.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="880.0" y="82.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">doc : DocumentoOficial</text>
+<text x="802.0" y="113.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">version = &quot;V.2&quot;</text>
+<text x="802.0" y="129.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">anio = 2016</text>
+<text x="802.0" y="145.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">paginas = 88</text>
+<rect x="1150.0" y="70.0" width="175.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="1150.0" y="70.0" width="175.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1237.5" y="92.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">g8 : Grado</text>
+<text x="1162.0" y="123.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">numero = 8</text>
+<text x="1162.0" y="139.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">nombre = &quot;Octavo&quot;</text>
+<text x="1162.0" y="155.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">nivel = basica_secundaria</text>
+<rect x="760.0" y="250.0" width="178.0" height="64.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="760.0" y="250.0" width="178.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="849.0" y="272.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">dba : DBA</text>
+<text x="772.0" y="303.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">codigo_dba = &quot;MAT-08-01&quot;</text>
+<rect x="40.0" y="430.0" width="209.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="40.0" y="430.0" width="209.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="144.5" y="452.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">d1 : EvidenciaDictamen</text>
+<text x="52.0" y="483.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">aplica_formato_cerrado = true</text>
+<text x="52.0" y="499.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">formato = single_choice</text>
+<rect x="330.0" y="430.0" width="160.0" height="64.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="330.0" y="430.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="410.0" y="452.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ev1 : Evidencia</text>
+<text x="342.0" y="483.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">numero_evidencia = 1</text>
+<rect x="770.0" y="430.0" width="246.0" height="160.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="770.0" y="430.0" width="246.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="893.0" y="452.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">exp3 : Experiencia</text>
+<text x="782.0" y="483.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_experiencia = 3</text>
+<text x="782.0" y="499.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">estado = Publicada</text>
+<text x="782.0" y="515.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">fecha_creacion = 2026-11-02 10:40</text>
+<text x="782.0" y="531.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">fecha_publicacion = 2026-11-03 08:15</text>
+<text x="782.0" y="547.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">codigo_invitacion = &quot;K7M2QX&quot;</text>
+<text x="782.0" y="563.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">servicio_ia = gemini</text>
+<text x="782.0" y="579.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">modelo_ia = &quot;gemini-2.5-flash&quot;</text>
+<rect x="1320.0" y="430.0" width="160.0" height="64.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="1320.0" y="430.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1400.0" y="452.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ev2 : Evidencia</text>
+<text x="1332.0" y="483.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">numero_evidencia = 2</text>
+<rect x="1580.0" y="430.0" width="209.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="1580.0" y="430.0" width="209.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1684.5" y="452.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">d2 : EvidenciaDictamen</text>
+<text x="1592.0" y="483.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">aplica_formato_cerrado = true</text>
+<text x="1592.0" y="499.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">formato = single_choice</text>
+<rect x="330.0" y="650.0" width="206.0" height="44.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="330.0" y="650.0" width="206.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="433.0" y="672.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ee1 : ExperienciaEvidencia</text>
+<rect x="1320.0" y="650.0" width="206.0" height="44.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="1320.0" y="650.0" width="206.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1423.0" y="672.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ee2 : ExperienciaEvidencia</text>
+<rect x="880.0" y="700.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="880.0" y="700.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="960.0" y="722.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ana : Docente</text>
+<text x="892.0" y="753.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_docente = 1</text>
+<text x="892.0" y="769.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">nombres = &quot;Ana&quot;</text>
+<text x="892.0" y="785.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">apellidos = &quot;Pérez&quot;</text>
+<rect x="880.0" y="870.0" width="219.0" height="112.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="880.0" y="870.0" width="219.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="989.5" y="892.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c1 : Credencial</text>
+<text x="892.0" y="923.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">correo = &quot;ana@colegio.edu.co&quot;</text>
+<text x="892.0" y="939.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">proveedor = correo</text>
+<text x="892.0" y="955.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">password_hash = &quot;$argon2id$…&quot;</text>
+<text x="892.0" y="971.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">estado_verificacion = verificado</text>
+<rect x="40.0" y="820.0" width="166.0" height="112.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="40.0" y="820.0" width="166.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="123.0" y="842.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it11 : Item</text>
+<text x="52.0" y="873.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 31</text>
+<text x="52.0" y="889.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">formato = single_choice</text>
+<text x="52.0" y="905.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = ia</text>
+<text x="52.0" y="921.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
+<rect x="250.0" y="820.0" width="174.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="250.0" y="820.0" width="174.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="337.0" y="842.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it12 : Item</text>
+<text x="262.0" y="873.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 32</text>
+<text x="262.0" y="889.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = editado_docente</text>
+<text x="262.0" y="905.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
+<rect x="460.0" y="820.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="460.0" y="820.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="540.0" y="842.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it13 : Item</text>
+<text x="472.0" y="873.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 33</text>
+<text x="472.0" y="889.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = ia</text>
+<text x="472.0" y="905.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
+<rect x="670.0" y="820.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="670.0" y="820.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="750.0" y="842.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it14 : Item</text>
+<text x="682.0" y="873.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 34</text>
+<text x="682.0" y="889.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = ia</text>
+<text x="682.0" y="905.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
+<rect x="1320.0" y="820.0" width="170.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="1320.0" y="820.0" width="170.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1405.0" y="842.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">it21 : Item</text>
+<text x="1332.0" y="873.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_item = 45</text>
+<text x="1332.0" y="889.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">origen = creado_docente</text>
+<text x="1332.0" y="905.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">excluido = false</text>
+<rect x="40.0" y="1060.0" width="160.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="40.0" y="1060.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="120.0" y="1082.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">op1 : Opcion</text>
+<text x="52.0" y="1113.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_opcion = 101</text>
+<text x="52.0" y="1129.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">es_correcta = true</text>
+<rect x="250.0" y="1060.0" width="160.0" height="80.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="250.0" y="1060.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="330.0" y="1082.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">op2 : Opcion</text>
+<text x="262.0" y="1113.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">id_opcion = 102</text>
+<text x="262.0" y="1129.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">es_correcta = false</text>
+<polyline points="930.0,156.0 930.0,250.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="790.0,110.0 638.0,110.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="554.0,150.0 554.0,266.0 760.0,266.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="1237.5,166.0 1237.5,266.0 938.0,266.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="760.0,290.0 440.0,290.0 440.0,430.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="938.0,290.0 1430.0,290.0 1430.0,430.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="330.0,462.0 249.0,462.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="1480.0,462.0 1580.0,462.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="930.0,430.0 930.0,314.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="440.0,494.0 440.0,650.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="1430.0,494.0 1430.0,650.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="770.0,540.0 650.0,540.0 650.0,672.0 536.0,672.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="1016.0,540.0 1220.0,540.0 1220.0,672.0 1320.0,672.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="930.0,590.0 930.0,700.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="930.0,870.0 930.0,796.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="433.0,694.0 123.0,820.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="433.0,694.0 337.0,820.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="433.0,694.0 540.0,820.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="433.0,694.0 750.0,820.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="1430.0,694.0 1430.0,820.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="123.0,932.0 120.0,1060.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="123.0,932.0 330.0,1060.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<path d="M470,1060 L858,1060 L870,1072 L870,1136 L470,1136 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.2"/><path d="M858,1060 L858,1072 L870,1072" fill="none" stroke="#888888" stroke-width="1.2"/>
+<text x="480.0" y="1079.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">ee1 tiene 12 ítems (RF-03-01); aquí se ven los 4 que se le</text>
+<text x="480.0" y="1094.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">presentaron a Luis. Todos salieron de Gemini: el servicio</text>
+<text x="480.0" y="1109.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">es de exp3, no de cada ítem (RI-17), y it12, que editó Ana,</text>
+<text x="480.0" y="1124.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">lo sigue teniendo. Publicar exigió 6 activos por evidencia.</text>
+<path d="M1560,840 L1848,840 L1860,852 L1860,886 L1560,886 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.2"/><path d="M1848,840 L1848,852 L1860,852" fill="none" stroke="#888888" stroke-width="1.2"/>
+<text x="1570.0" y="859.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">it21 lo agregó Ana: no se le atribuye a la</text>
+<text x="1570.0" y="874.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">IA. Tiene el formato que fija d2 (RI-19).</text>
+<polyline points="1560.0,870.0 1490.0,870.0" fill="none" stroke="#888888" stroke-width="1.1" stroke-dasharray="3,3"/>
+<path d="M1400,60 L1828,60 L1840,72 L1840,121 L1400,121 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.2"/><path d="M1828,60 L1828,72 L1840,72" fill="none" stroke="#888888" stroke-width="1.2"/>
+<text x="1410.0" y="79.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">El DBA MAT-08-01 es de Matemáticas, de 8° y se copió del</text>
+<text x="1410.0" y="94.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">documento de Matemáticas V.2: el mismo que su área (RI-20). Su</text>
+<text x="1410.0" y="109.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">código se arma con esa área y ese grado (RI-21).</text>
+<text x="32.0" y="1220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Rectángulo con nombre subrayado: un objeto («nombre : Clase») con los valores que tiene en este momento. Línea: un enlace, instancia de una asociación del diagrama de clases. Textos, correos y códigos son ilustrativos.</text>
 </svg>
 </figure><figure id="objetos-2-diagnostico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1130" width="1900" height="1130">
 <defs>
@@ -1060,14 +1133,14 @@
 </defs>
 <rect x="0" y="0" width="1900" height="1130" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
 <text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de objetos · vista 2 de 2 — El diagnóstico de Luis, en curso (mismo momento)</text>
-<rect x="330.0" y="80.0" width="178.0" height="128.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="330.0" y="80.0" width="178.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="419.0" y="102.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c2 : Credencial</text>
+<rect x="330.0" y="80.0" width="219.0" height="128.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="330.0" y="80.0" width="219.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="439.5" y="102.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c2 : Credencial</text>
 <text x="342.0" y="133.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">correo = &quot;luis@gmail.com&quot;</text>
 <text x="342.0" y="149.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">proveedor = google</text>
 <text x="342.0" y="165.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">password_hash = null</text>
 <text x="342.0" y="181.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">proveedor_id = &quot;g-1847…&quot;</text>
-<text x="342.0" y="197.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">email_verificado = true</text>
+<text x="342.0" y="197.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">estado_verificacion = verificado</text>
 <rect x="330.0" y="290.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
 <rect x="330.0" y="290.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
 <text x="410.0" y="312.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">luis : Estudiante</text>
@@ -1154,10 +1227,10 @@
 <text x="1172.0" y="835.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">certeza = 3</text>
 <text x="1172.0" y="851.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">correcta = true</text>
 <text x="1172.0" y="867.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">fecha_respuesta = 2026-11-04 09:05</text>
-<polyline points="419.0,208.0 419.0,290.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="419.0,386.0 419.0,520.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="419.0,600.0 419.0,780.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="419.0,960.0 419.0,860.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,208.0 439.5,290.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,386.0 439.5,520.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,600.0 439.5,780.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,960.0 439.5,860.0" fill="none" stroke="#111111" stroke-width="1.3"/>
 <polyline points="330.0,552.0 190.0,552.0" fill="none" stroke="#111111" stroke-width="1.3"/>
 <polyline points="541.0,560.0 760.0,230.0" fill="none" stroke="#111111" stroke-width="1.3"/>
 <polyline points="541.0,560.0 760.0,430.0" fill="none" stroke="#111111" stroke-width="1.3"/>
@@ -1279,7 +1352,7 @@
 <polyline points="915.1,752.0 1274.6,752.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
 <text x="1094.8" y="745.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">10: verificarCodigo(codigo, ahora)</text>
 <polyline points="1274.6,784.0 915.1,784.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="1094.8" y="777.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">true: email_verificado = true</text>
+<text x="1094.8" y="777.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">true: estado_verificacion = verificado</text>
 <polyline points="471.0,816.0 145.0,816.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
 <text x="308.0" y="809.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Completa tu perfil» (ventana 016)</text>
 <polyline points="145.0,848.0 471.0,848.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
@@ -1449,7 +1522,7 @@
 <polyline points="145.0,194.0 482.6,194.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
 <text x="313.8" y="187.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">1: Paso 1: elige el área</text>
 <polyline points="482.6,226.0 1338.4,226.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="910.5" y="219.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">2: dbas(area, grado, texto)</text>
+<text x="910.5" y="219.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">2: dbas(codigo_area, numero_grado, texto)</text>
 <polyline points="1338.4,258.0 482.6,258.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
 <text x="910.5" y="251.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">los DBA, con evidencias y ejemplo</text>
 <polyline points="145.0,290.0 482.6,290.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>

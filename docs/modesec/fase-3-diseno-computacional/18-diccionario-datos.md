@@ -15,7 +15,7 @@ con la Fase II cerrada y el análisis de requerimientos
 este documento son los de ese motor, y no usan nada que MariaDB 10.11
 no tenga: el backend del incremento I1 hoy corre sobre MariaDB y debe
 aceptarlo igual. El esquema ejecutable es
-`modelo-relacional/mr_mysql.sql`, **probado contra un MySQL 8.4 real**
+`modelo-relacional/mr_mysql.sql`, **probado contra MySQL 8 real** (8.4 y 8.0)
 (ver `17-modelo-relacional.md`, «Verificación mecánica»). La columna
 equivalente en SQLite vive en `modelo-relacional/mr_esquema.sql`, que
 se usa solo para la verificación automática.
@@ -34,7 +34,7 @@ comprueba en cada corrida que esta fuente no se aparte del MER.
 
 | Tablas | Columnas | Llaves foráneas | UNIQUE | CHECK |
 |---|---|---|---|---|
-| 15 | 91 | 19 | 13 | 10 |
+| 18 | 104 | 23 | 17 | 14 |
 
 Reporte no aparece: no es una tabla. Se calcula sobre `resultado` cada
 vez que el docente lo abre, sin llave ni persistencia propia — así lo
@@ -70,7 +70,7 @@ La cuenta de acceso: con qué correo y qué método se entra, la verificación d
 | `proveedor` | `ENUM('correo','google','microsoft')` | No | — | correo \| google \| microsoft | — | Método con el que se creó la cuenta. No se vinculan métodos: se avisa cuál usar (RF-01-04). Sin Apple.<br>*Fuente: RF-01-01 · RF-01-02 · 17-spec-auth-login-registro.md §2.8* |
 | `password_hash` | `VARCHAR(255)` | Sí | — | hash de contraseña | NULL | Contraseña con función de hash; nunca en texto legible (RNF-08). NULL si la cuenta entra con Google o Microsoft (RI-15).<br>*Fuente: RNF-08 · RF-01-01 · 26-spec-modal-mi-perfil.md* |
 | `proveedor_id` | `VARCHAR(255)` | Sí | — | — | NULL | Identificador de la persona en Google o Microsoft. NULL si `proveedor` es `correo` (RI-15).<br>*Fuente: RF-01-02* |
-| `email_verificado` | `BOOLEAN` | No | — | true \| false | FALSE | Si el correo se verificó con el código. Con Google o Microsoft llega verdadero: lo verificó el proveedor (RI-15).<br>*Fuente: RF-01-03 · 18-spec-auth-verifica-correo.md* |
+| `estado_verificacion` | `ENUM('procesando','verificado')` | No | — | procesando \| verificado | 'procesando' | `procesando`: se envió el código y todavía no se confirma. `verificado`: se confirmó con el código. Con Google o Microsoft nace `verificado`: lo verificó el proveedor (RI-15). Reemplaza al antiguo sí/no `email_verificado`.<br>*Fuente: ADR-037 · RF-01-03 · 18-spec-auth-verifica-correo.md* |
 | `codigo_verificacion` | `CHAR(6)` | Sí | — | 6 dígitos | NULL | Último código enviado, sea de registro o de recuperación de contraseña (la misma ventana 015 sirve a los dos).<br>*Fuente: RF-01-03 · RF-01-08* |
 | `codigo_expira_en` | `DATETIME` | Sí | — | — | NULL | Hasta cuándo vale ese código.<br>*Fuente: RF-01-03 · backend I1 (10 minutos)* |
 | `codigo_ultimo_envio` | `DATETIME` | Sí | — | — | NULL | Cuándo se envió el último código: el reenvío se habilita 30 s después.<br>*Fuente: RF-01-03* |
@@ -98,7 +98,7 @@ La cuenta de acceso: con qué correo y qué método se entra, la verificación d
 **Restricciones de dominio (CHECK)**
 
 - `id_docente IS NULL OR id_estudiante IS NULL` — una credencial accede como un solo rol. *RI-12 · 20-spec-auth-elige-rol.md*
-- `(proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND email_verificado = 1)` — contraseña solo con correo; identificador externo y correo verificado solo con Google o Microsoft. *RI-15 · RF-01-01 · RF-01-02*
+- `(proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND estado_verificacion = 'verificado')` — contraseña solo con correo; identificador externo y correo verificado solo con Google o Microsoft. *RI-15 · RF-01-01 · RF-01-02*
 
 ## 2. `docente`
 
@@ -147,7 +147,7 @@ Un diagnóstico anclado a un único DBA, creado por un docente. Se guarda solo s
 |---|---|---|---|---|---|---|
 | `id_experiencia` | `INT UNSIGNED AUTO_INCREMENT` | No | PK | — | — | Identificador interno.<br>*Fuente: MER · Experiencia* |
 | `id_docente` | `INT UNSIGNED` | No | FK | — | — | Docente autor. Participación total: no existe experiencia sin autor.<br>*Fuente: MER · relación «crea»* |
-| `codigo_dba` | `VARCHAR(40)` | No | FK | — | — | DBA al que se ancla. Una experiencia, un solo DBA.<br>*Fuente: RF-02-02 · 06-spec-crear-experiencia-paso2.md* |
+| `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | FK | — | — | DBA al que se ancla. Una experiencia, un solo DBA.<br>*Fuente: RF-02-02 · 06-spec-crear-experiencia-paso2.md* |
 | `nombre` | `VARCHAR(160)` | No | — | no vacío | — | Título; llega prellenado con el enunciado del DBA y es editable.<br>*Fuente: RF-02-02 · 07-spec-crear-experiencia-paso3.md* |
 | `estado` | `ENUM('Borrador','Publicada')` | No | — | Borrador \| Publicada | 'Borrador' | Borrador = el banco se puede editar. Publicada = banco congelado y visible para estudiantes. No hay vuelta atrás (ADR-026).<br>*Fuente: RF-02-05 · ADR-026 · 04-spec-dashboard.md* |
 | `fecha_creacion` | `DATETIME` | No | — | — | — | Cuándo se creó.<br>*Fuente: RF-02-04 · 09-spec-vista-interna-marco.md* |
@@ -174,22 +174,110 @@ Un diagnóstico anclado a un único DBA, creado por un docente. Se guarda solo s
 - `(estado = 'Borrador' AND fecha_publicacion IS NULL) OR (estado = 'Publicada' AND fecha_publicacion IS NOT NULL)` — fecha de publicación solo si está Publicada. *RI-16 · RF-02-05*
 - `codigo_invitacion REGEXP '^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$'` — 6 caracteres de letras y números, sin 0 O 1 I L. *RI-3 · RF-02-06*
 
-## 5. `dba`
+## 5. `area`
 
-**Entidad del MER:** DBA · **Clasificación:** Externa (MEN)
+**Entidad del MER:** Área · **Clasificación:** Externa (MEN)
 
-Derecho Básico de Aprendizaje oficial del MEN. Dato externo, de solo lectura para los usuarios (SUB-06).
+Área del currículo con DBA en esta versión: las 4 de ADR-033. Dato de referencia, de solo lectura (SUB-06). Se carga con el catálogo.
 
 <!-- tabla:campos -->
 | Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
 |---|---|---|---|---|---|---|
-| `codigo_dba` | `VARCHAR(40)` | No | PK | — | — | Llave natural del MEN, formato `{área}_{grado}_dba_{número}`. Única llave no sustituta del modelo.<br>*Fuente: curriculo_men_normalizado.json · RF-06-01* |
-| `area` | `VARCHAR(40)` | No | — | las 4 áreas | — | Matemáticas, Lenguaje, Ciencias Naturales o Ciencias Sociales.<br>*Fuente: RF-06-01 · 05-spec-crear-experiencia-paso1.md* |
-| `grado` | `VARCHAR(4)` | No | — | 1° a 11° | — | Grado escolar.<br>*Fuente: RF-02-02 · 06-spec-crear-experiencia-paso2.md* |
+| `codigo_area` | `VARCHAR(3) CHARACTER SET ascii COLLATE ascii_bin` | No | PK | MAT \| LEN \| CN \| CS | — | Código del área, sin tildes: Matemáticas `MAT`, Lenguaje `LEN`, Ciencias Naturales `CN`, Ciencias Sociales `CS`. Encabeza el código de cada DBA (RI-21).<br>*Fuente: ADR-036 · ADR-033* |
+| `nombre` | `VARCHAR(40)` | No | UNIQUE | no vacío | — | Nombre del área, como lo escribe el MEN.<br>*Fuente: ADR-036 · 05-spec-crear-experiencia-paso1.md* |
+
+**Unicidad**
+
+- `UNIQUE(nombre)` — dos áreas no se llaman igual
+
+**Restricciones de dominio (CHECK)**
+
+- `codigo_area REGEXP '^[A-Z]{2,3}$'` — 2 o 3 letras mayúsculas, sin tildes (en MySQL la columna es ASCII binaria: una tilde no cabe y el REGEXP distingue mayúsculas). *ADR-036*
+
+## 6. `grado`
+
+**Entidad del MER:** Grado · **Clasificación:** Externa (MEN)
+
+Grado de la educación básica y media, de 1° a 11°. Sin Transición (ADR-033). Dato de referencia, de solo lectura.
+
+<!-- tabla:campos -->
+| Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
+|---|---|---|---|---|---|---|
+| `numero` | `TINYINT UNSIGNED` | No | PK | 1 a 11 | — | Número del grado. Va, con dos cifras, en el código de cada DBA (RI-21).<br>*Fuente: ADR-036 · ADR-033* |
+| `nombre` | `VARCHAR(20)` | No | UNIQUE | Primero a Undécimo | — | Nombre del grado.<br>*Fuente: ADR-036* |
+| `nivel` | `ENUM('basica_primaria','basica_secundaria','media')` | No | — | basica_primaria \| basica_secundaria \| media | — | Nivel de la educación formal: básica primaria (1° a 5°), básica secundaria (6° a 9°) o media (10° y 11°). Un CHECK lo ata al número.<br>*Fuente: ADR-036 · Ley 115 de 1994* |
+
+**Unicidad**
+
+- `UNIQUE(nombre)` — dos grados no se llaman igual
+
+**Restricciones de dominio (CHECK)**
+
+- `(numero BETWEEN 1 AND 5 AND nivel = 'basica_primaria') OR (numero BETWEEN 6 AND 9 AND nivel = 'basica_secundaria') OR (numero BETWEEN 10 AND 11 AND nivel = 'media')` — grados 1 a 11, sin Transición, y el nivel que les da la Ley 115. *ADR-036 · ADR-033 · Ley 115 de 1994*
+
+## 7. `documento_oficial`
+
+**Entidad del MER:** Documento_Oficial · **Clasificación:** Externa (MEN)
+
+El PDF del MEN del que se copiaron los DBA de un área. Uno por área en esta versión, con los datos que ADR-033 verificó contra los archivos oficiales: la versión se lee del documento, nunca del nombre del archivo.
+
+<!-- tabla:campos -->
+| Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
+|---|---|---|---|---|---|---|
+| `id_documento` | `INT UNSIGNED AUTO_INCREMENT` | No | PK | — | — | Identificador interno.<br>*Fuente: MER · Documento_Oficial* |
+| `codigo_area` | `VARCHAR(3) CHARACTER SET ascii COLLATE ascii_bin` | No | FK | — | — | Área cuyos DBA trae el documento.<br>*Fuente: MER · relación «es de» · ADR-036* |
+| `titulo` | `VARCHAR(200)` | No | — | no vacío | — | Título del documento.<br>*Fuente: ADR-036* |
+| `version` | `VARCHAR(10)` | No | — | como la escribe el documento, ej. `V.2` | — | Versión que dice la portada del documento. Ciencias Sociales es `V.1` aunque su archivo se llame «v2» (ADR-033).<br>*Fuente: ADR-033 · ADR-036* |
+| `anio` | `SMALLINT UNSIGNED` | No | — | — | — | Año de publicación. Los cuatro de esta versión, 2016.<br>*Fuente: ADR-033* |
+| `paginas` | `SMALLINT UNSIGNED` | No | — | > 0 | — | Número de páginas del PDF oficial.<br>*Fuente: ADR-033* |
+| `url_oficial` | `VARCHAR(500)` | No | — | dirección en Colombia Aprende | — | Dónde publica hoy el MEN ese documento.<br>*Fuente: ADR-033 · ADR-036* |
+
+**Llaves foráneas**
+
+<!-- tabla:fks -->
+| Columnas | Referencia | ON DELETE | ON UPDATE | Por qué esa acción |
+|---|---|---|---|---|
+| `codigo_area` | `area(codigo_area)` | `RESTRICT` | `RESTRICT` | Raíz: el catálogo no se borra por razones de este sistema. |
+
+**Unicidad**
+
+- `UNIQUE(codigo_area, version)` — una misma versión de un área se carga una sola vez (ADR-033, punto 4)
+- `UNIQUE(id_documento, codigo_area)` — destino de FK: habilita la comprobación estructural de RI-20
+
+**Restricciones de dominio (CHECK)**
+
+- `paginas > 0 AND TRIM(titulo) <> '' AND TRIM(version) <> ''` — título y versión no vacíos; al menos una página. *ADR-036*
+
+## 8. `dba`
+
+**Entidad del MER:** DBA · **Clasificación:** Externa (MEN)
+
+Derecho Básico de Aprendizaje oficial del MEN. Dato externo, de solo lectura para los usuarios (SUB-06). El área y el grado ya no son texto: son llaves foráneas hacia `area` y `grado` (ADR-036).
+
+<!-- tabla:campos -->
+| Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
+|---|---|---|---|---|---|---|
+| `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | PK | `ÁREA-GG-NN` (RI-21) | — | Código del DBA: código del área, grado y número del DBA con dos cifras, sin tildes (`MAT-01-01`, `CS-11-05`). Se arma con el área, el grado y el `numero` de cada registro de `curriculo_men_normalizado.json`; reemplaza al identificador viejo (`matemáticas_1_dba_1` → `MAT-01-01`). Los datos de hoy repiten 13 identificadores: se corrige en la auditoría (A12), no aquí.<br>*Fuente: ADR-036 · curriculo_men_normalizado.json · RF-06-01* |
+| `codigo_area` | `VARCHAR(3) CHARACTER SET ascii COLLATE ascii_bin` | No | FK | — | — | Área del DBA. Está también en la FK hacia su documento: obliga a que el documento sea de esta misma área (RI-20).<br>*Fuente: MER · relación «pertenece a» · ADR-036* |
+| `numero_grado` | `TINYINT UNSIGNED` | No | FK | — | — | Grado del DBA. Se llama `numero_grado` y no `numero` para no confundirlo con el número del DBA, que va al final del código.<br>*Fuente: MER · relación «corresponde a» · ADR-036* |
+| `id_documento` | `INT UNSIGNED` | No | FK | — | — | Documento oficial del que se copió.<br>*Fuente: MER · relación «se copia de» · ADR-036* |
 | `enunciado` | `TEXT` | No | — | — | — | Texto oficial, sin simplificar ni reescribir.<br>*Fuente: RF-06-01* |
 | `ejemplo` | `TEXT` | Sí | — | — | NULL | Ejemplo oficial; se usa como contexto al generar el banco (ADR-011). Admite NULL mientras la normalización no lo tenga (QA-011).<br>*Fuente: RF-06-01 · ADR-011 · QA-011* |
 
-## 6. `evidencia`
+**Llaves foráneas**
+
+<!-- tabla:fks -->
+| Columnas | Referencia | ON DELETE | ON UPDATE | Por qué esa acción |
+|---|---|---|---|---|
+| `codigo_area` | `area(codigo_area)` | `RESTRICT` | `RESTRICT` | Raíz. Sin ON UPDATE CASCADE: el CHECK de RI-21 lee esta columna. |
+| `numero_grado` | `grado(numero)` | `RESTRICT` | `RESTRICT` | Raíz. Sin ON UPDATE CASCADE, por la misma razón. |
+| `id_documento, codigo_area` | `documento_oficial(id_documento, codigo_area)` | `RESTRICT` | `RESTRICT` | Compuesta con codigo_area: el documento del que se copió el DBA es de su misma área (RI-20, ciclo C6 del MER). |
+
+**Restricciones de dominio (CHECK)**
+
+- `codigo_dba = CONCAT(codigo_area, '-', LPAD(numero_grado, 2, '0'), '-', RIGHT(codigo_dba, 2)) AND RIGHT(codigo_dba, 2) REGEXP '^[0-9]{2}$' AND RIGHT(codigo_dba, 2) <> '00'` — el código es ÁREA-GG-NN, con el área y el grado de la fila y un número de dos cifras desde 01. *RI-21 · ADR-036*
+
+## 9. `evidencia`
 
 **Entidad del MER:** Evidencia · **Clasificación:** Externa (MEN), débil
 
@@ -198,7 +286,7 @@ Evidencia de aprendizaje de un DBA. Entidad débil: no tiene identidad fuera de 
 <!-- tabla:campos -->
 | Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
 |---|---|---|---|---|---|---|
-| `codigo_dba` | `VARCHAR(40)` | No | PK,FK | — | — | DBA al que pertenece. Relación identificadora.<br>*Fuente: MER · Evidencia* |
+| `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | PK,FK | — | — | DBA al que pertenece. Relación identificadora.<br>*Fuente: MER · Evidencia* |
 | `numero_evidencia` | `TINYINT UNSIGNED` | No | PK | > 0 | — | Posición dentro de la lista de evidencias de ese DBA: es también el orden oficial en que se diagnostican (ADR-024).<br>*Fuente: curriculo_men_normalizado.json · ADR-024* |
 | `enunciado` | `TEXT` | No | — | — | — | Texto oficial de la evidencia.<br>*Fuente: RF-06-01* |
 
@@ -213,7 +301,7 @@ Evidencia de aprendizaje de un DBA. Entidad débil: no tiene identidad fuera de 
 
 - `numero_evidencia > 0` — posición dentro del DBA. *MER*
 
-## 7. `evidencia_dictamen`
+## 10. `evidencia_dictamen`
 
 **Entidad del MER:** Evidencia_Dictamen · **Clasificación:** Propia, débil
 
@@ -222,7 +310,7 @@ Nuestro juicio sobre una evidencia del MEN: si admite formato cerrado, y cuál. 
 <!-- tabla:campos -->
 | Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
 |---|---|---|---|---|---|---|
-| `codigo_dba` | `VARCHAR(40)` | No | PK,FK | — | — | Evidencia dictaminada (parte 1).<br>*Fuente: H-6 · MER* |
+| `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | PK,FK | — | — | Evidencia dictaminada (parte 1).<br>*Fuente: H-6 · MER* |
 | `numero_evidencia` | `TINYINT UNSIGNED` | No | PK,FK | — | — | Evidencia dictaminada (parte 2).<br>*Fuente: H-6 · MER* |
 | `aplica_formato_cerrado` | `BOOLEAN` | No | — | true \| false | — | Si esta evidencia se puede diagnosticar con pregunta cerrada.<br>*Fuente: RF-06-02 · ADR-006 · censo QA-014 pendiente* |
 | `formato` | `ENUM('single_choice','matching','ordering')` | Sí | — | single_choice \| matching \| ordering | NULL | Qué formato cerrado admite: «el formato de los ítems lo determina la evidencia» (RF-03-01), y una pregunta propia se crea con él (RF-03-07). NULL si no admite formato cerrado (RI-19).<br>*Fuente: RF-03-01 · RF-03-07 · ADR-006* |
@@ -240,7 +328,7 @@ Nuestro juicio sobre una evidencia del MEN: si admite formato cerrado, y cuál. 
 
 - `(aplica_formato_cerrado = 1 AND formato IS NOT NULL) OR (aplica_formato_cerrado = 0 AND formato IS NULL)` — si admite formato cerrado dice cuál; si no, no tiene formato. *RI-19 · RF-03-01*
 
-## 8. `experiencia_evidencia`
+## 11. `experiencia_evidencia`
 
 **Entidad del MER:** Experiencia_Evidencia · **Clasificación:** Asociativa
 
@@ -250,7 +338,7 @@ Las evidencias que diagnostica esta experiencia: una fila por evidencia incluida
 | Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
 |---|---|---|---|---|---|---|
 | `id_experiencia` | `INT UNSIGNED` | No | PK,FK | — | — | Experiencia (parte 1 de la llave).<br>*Fuente: H-4 · MER* |
-| `codigo_dba` | `VARCHAR(40)` | No | PK,FK | — | — | Evidencia incluida (parte 2).<br>*Fuente: H-4 · MER* |
+| `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | PK,FK | — | — | Evidencia incluida (parte 2).<br>*Fuente: H-4 · MER* |
 | `numero_evidencia` | `TINYINT UNSIGNED` | No | PK,FK | — | — | Evidencia incluida (parte 3).<br>*Fuente: H-4 · MER* |
 
 **Llaves foráneas**
@@ -261,7 +349,7 @@ Las evidencias que diagnostica esta experiencia: una fila por evidencia incluida
 | `id_experiencia, codigo_dba` | `experiencia(id_experiencia, codigo_dba)` | `CASCADE` | `CASCADE` | Compuesta con codigo_dba: la evidencia incluida tiene que ser del DBA al que se ancla la experiencia (RI-18, ciclo C1 del MER). Eliminar la experiencia elimina sus evidencias incluidas (V-11). |
 | `codigo_dba, numero_evidencia` | `evidencia(codigo_dba, numero_evidencia)` | `RESTRICT` | `CASCADE` | Hacia el currículo del MEN: no se borra una evidencia oficial en uso. |
 
-## 9. `inscripcion`
+## 12. `inscripcion`
 
 **Entidad del MER:** Inscripción · **Clasificación:** Asociativa
 
@@ -288,7 +376,7 @@ Un estudiante unido a una experiencia con su código. Llave propia (no compuesta
 - `UNIQUE(id_estudiante, id_experiencia)` — RI-1
 - `UNIQUE(id_inscripcion, id_experiencia)` — destino de FK: habilita la comprobación estructural de RI-13
 
-## 10. `item`
+## 13. `item`
 
 **Entidad del MER:** Ítem · **Clasificación:** Propia
 
@@ -299,7 +387,7 @@ Pregunta del banco de diagnóstico. La IA genera 12 por evidencia al crear la ex
 |---|---|---|---|---|---|---|
 | `id_item` | `INT UNSIGNED AUTO_INCREMENT` | No | PK | — | — | Identificador interno.<br>*Fuente: MER · Ítem* |
 | `id_experiencia` | `INT UNSIGNED` | No | FK | — | — | Parte 1 de la FK compuesta hacia experiencia_evidencia.<br>*Fuente: H-4 · MER* |
-| `codigo_dba` | `VARCHAR(40)` | No | FK | — | — | Parte 2 de esa misma FK compuesta.<br>*Fuente: H-4 · MER* |
+| `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | FK | — | — | Parte 2 de esa misma FK compuesta.<br>*Fuente: H-4 · MER* |
 | `numero_evidencia` | `TINYINT UNSIGNED` | No | FK | — | — | Parte 3 de esa misma FK compuesta.<br>*Fuente: H-4 · MER* |
 | `enunciado` | `TEXT` | No | — | — | — | Texto de la pregunta.<br>*Fuente: ADR-014 · RF-03-05* |
 | `formato` | `ENUM('single_choice','matching','ordering')` | No | — | single_choice \| matching \| ordering | 'single_choice' | Cómo se responde: lo determina la evidencia.<br>*Fuente: ADR-006 · RF-03-01* |
@@ -317,7 +405,7 @@ Pregunta del banco de diagnóstico. La IA genera 12 por evidencia al crear la ex
 
 - `UNIQUE(id_item, id_experiencia)` — destino de FK: habilita la comprobación estructural de RI-13
 
-## 11. `opcion`
+## 14. `opcion`
 
 **Entidad del MER:** Opción · **Clasificación:** Propia
 
@@ -345,7 +433,7 @@ Opción de respuesta de un ítem. Qué columnas aplican depende del formato del 
 
 - `UNIQUE(id_opcion, id_item)` — destino de FK: habilita la comprobación estructural de RI-6
 
-## 12. `presentacion`
+## 15. `presentacion`
 
 **Entidad del MER:** Presentación · **Clasificación:** Propia, débil
 
@@ -376,7 +464,7 @@ El hecho de HABER MOSTRADO un ítem a un estudiante — distinto del de haberlo 
 
 - `orden_presentacion > 0` — orden desde 1. *RI-8*
 
-## 13. `respuesta`
+## 16. `respuesta`
 
 **Entidad del MER:** Respuesta · **Clasificación:** Asociativa
 
@@ -408,7 +496,7 @@ Lo que el estudiante respondió a un ítem que se le presentó, con su certeza. 
 
 - `certeza BETWEEN 0 AND 5` — escala CRI. *ADR-008 punto 2*
 
-## 14. `respuesta_opcion`
+## 17. `respuesta_opcion`
 
 **Entidad del MER:** Respuesta_Opción · **Clasificación:** Asociativa
 
@@ -430,7 +518,7 @@ Qué opción u opciones eligió el estudiante — no solo si acertó. Sin esta t
 | `id_respuesta, id_item` | `respuesta(id_respuesta, id_item)` | `CASCADE` | `CASCADE` | Sin la respuesta, la selección no tiene sentido. Compuesta con id_item: fija de qué ítem es la respuesta (RI-6). |
 | `id_opcion, id_item` | `opcion(id_opcion, id_item)` | `CASCADE` | `CASCADE` | Compuesta con id_item: la opción elegida es del ítem que se presentó (RI-6, ciclo C4). CASCADE y no RESTRICT: una opción solo se borra editando un ítem en Borrador, cuando todavía no hay respuestas (ADR-026, RI-10), o al eliminar la experiencia entera, que debe poder hacerse (RF-02-07). |
 
-## 15. `resultado`
+## 18. `resultado`
 
 **Entidad del MER:** Resultado · **Clasificación:** Propia, débil
 
@@ -441,7 +529,7 @@ Lo que las respuestas de un estudiante permiten concluir sobre UNA evidencia DE 
 |---|---|---|---|---|---|---|
 | `id_inscripcion` | `INT UNSIGNED` | No | PK,FK | — | — | De quién es el resultado (parte 1 de la llave).<br>*Fuente: MER · relación «arroja»* |
 | `id_experiencia` | `INT UNSIGNED` | No | FK | — | — | COLUMNA REDUNDANTE DELIBERADA, que el MER delega al MR: permite que las dos reglas de coherencia sean estructurales (RI-13).<br>*Fuente: MER · Resultado (delegación explícita al MR)* |
-| `codigo_dba` | `VARCHAR(40)` | No | PK,FK | — | — | Evidencia medida (parte 2 de la llave).<br>*Fuente: H-4 · MER* |
+| `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | PK,FK | — | — | Evidencia medida (parte 2 de la llave).<br>*Fuente: H-4 · MER* |
 | `numero_evidencia` | `TINYINT UNSIGNED` | No | PK,FK | — | — | Evidencia medida (parte 3 de la llave).<br>*Fuente: H-4 · MER* |
 | `estado` | `ENUM('muestra','no_muestra','no_concluyente')` | No | — | muestra \| no_muestra \| no_concluyente | — | DERIVADO Y PERSISTIDO con la regla de RF-04-07 (cierra V-5). Nunca una certeza; nunca un valor que se edite a mano.<br>*Fuente: RF-04-07 · ADR-016 · ADR-021* |
 | `fecha_calculo` | `DATETIME` | No | — | — | — | Cuándo se concluyó. Una fotografía sin fecha no es auditable.<br>*Fuente: ADR-021 · RNF-11* |
@@ -465,6 +553,7 @@ marcados, no rellenados:
 | Campo | Qué falta | Dónde está declarado |
 |---|---|---|
 | `evidencia_dictamen.aplica_formato_cerrado` | El tipo está cerrado; **los valores no**: dependen del censo QA-014, que no ha corrido. Hasta entonces RI-5 no se puede evaluar contra datos reales. | **V-6**, MER |
+| `dba.codigo_dba` | El formato `ÁREA-GG-NN` está cerrado (RI-21), pero **los datos de hoy no lo cumplen como llave**: `curriculo_men_normalizado.json` tiene 342 DBA y solo 329 códigos distintos, porque la normalización de la V2 asignó al grado anterior el primer DBA de algunas páginas. Cargarlo completo falla por llave duplicada en 13, y eso es lo correcto: se corrige en los datos, no en el modelo. | **Pendientes, A12** · ADR-036 |
 | `dba.ejemplo` | Admite `NULL` porque el campo todavía no existe en la normalización del currículo. No es opcionalidad de diseño, es un dato que falta. | **QA-011** |
 
 **Cerrados desde el borrador anterior** (para no perder el rastro):
@@ -484,9 +573,10 @@ tiene tabla (V-8); y la política de borrado está en las FK (V-11).
   longitud fija y conocida (`08-spec-unirse-codigo.md` §2.3,
   RF-01-03). `CHAR` y no `VARCHAR` porque nunca varía.
 - **`TINYINT UNSIGNED` para `certeza`, `numero_evidencia`,
-  `orden_presentacion`, `orden`, `valor_dado` y los contadores de
-  intentos:** ninguno pasa de 255 por definición (la escala CRI llega
-  a 5; el tope de ítems por evidencia es 6, ADR-016).
+  `orden_presentacion`, `orden`, `valor_dado`, el número del grado y los
+  contadores de intentos:** ninguno pasa de 255 por definición (la escala
+  CRI llega a 5; el tope de ítems por evidencia es 6, ADR-016; los grados,
+  a 11). `SMALLINT UNSIGNED` para el año y las páginas de un documento.
 - **`TEXT` para todo enunciado:** los textos del MEN no tienen longitud
   acotada conocida, y truncarlos sería alterar contenido oficial.
 - **`DATETIME` y no `TIMESTAMP`:** `TIMESTAMP` tiene el límite del año
@@ -501,6 +591,15 @@ tiene tabla (V-8); y la política de borrado está en las FK (V-11).
   escriban (RF-01-04, `08-spec-unirse-codigo.md`). Se elige ese
   cotejamiento y no el `utf8mb4_0900_ai_ci` por defecto de MySQL 8
   porque MariaDB no lo tiene.
+- **Códigos del catálogo en ASCII con cotejamiento binario**
+  (`CHARACTER SET ascii COLLATE ascii_bin`): `codigo_dba` y `codigo_area`, y
+  toda columna que los repite como llave foránea. ADR-036 pide códigos sin
+  tildes: con ASCII, una tilde no se puede guardar; con el cotejamiento
+  binario, `mat` no es igual a `MAT`. Las dos cosas existen igual en MySQL 8 y
+  en MariaDB. Es una decisión de este modelo, no de una ADR: va declarada en
+  `17-modelo-relacional.md` para que el equipo la confirme.
+- **`VARCHAR(9)` para `codigo_dba`:** `ÁREA-GG-NN` mide 8 o 9 caracteres
+  (`CN-01-01`, `MAT-01-01`).
 - **Nombres de restricción** `ck_<tabla>_<n>`, `fk_<tabla>_<n>` y
   `uq_<tabla>_<n>`: un error del motor nombra la regla rota, y con el
   número se encuentra aquí.

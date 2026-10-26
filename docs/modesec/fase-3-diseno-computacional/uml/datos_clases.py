@@ -33,7 +33,7 @@ CLASES = [
     clase("Credencial", "CREDENCIAL", "credencial",
           [("id_credencial", "int"), ("correo", "string"), ("proveedor", "Proveedor"),
            ("password_hash", "string [0..1]"), ("proveedor_id", "string [0..1]"),
-           ("email_verificado", "bool"), ("codigo_verificacion", "string [0..1]"),
+           ("estado_verificacion", "EstadoVerificacion"), ("codigo_verificacion", "string [0..1]"),
            ("codigo_expira_en", "Fecha [0..1]"), ("codigo_ultimo_envio", "Fecha [0..1]"),
            ("intentos_codigo", "int"), ("intentos_login", "int"),
            ("bloqueado_hasta", "Fecha [0..1]"), ("creado_en", "Fecha"),
@@ -63,11 +63,24 @@ CLASES = [
           [("id_estudiante", "int")],
           [m("inscripciones(): Inscripcion [*]", ["CU-21"])],
           desc="Hereda de Usuario. Solo los datos mínimos (ADR-029)."),
+    clase("Area", "AREA", "area",
+          [("codigo_area", "string"), ("nombre", "string")],
+          [],
+          desc="Catálogo (ADR-036): MAT, LEN, CN o CS. De solo lectura."),
+    clase("Grado", "GRADO", "grado",
+          [("numero", "int"), ("nombre", "string"), ("nivel", "NivelEducativo")],
+          [],
+          desc="Catálogo (ADR-036): 1° a 11°, con su nivel de la Ley 115. De solo lectura."),
+    clase("DocumentoOficial", "DOCUMENTO_OFICIAL", "documento_oficial",
+          [("id_documento", "int"), ("titulo", "string"), ("version", "string"),
+           ("anio", "int"), ("paginas", "int"), ("url_oficial", "string")],
+          [],
+          desc="El PDF del MEN del que se copiaron los DBA de un área (ADR-036, ADR-033)."),
     clase("DBA", "DBA", "dba",
-          [("codigo_dba", "string"), ("area", "string"), ("grado", "string"),
-           ("enunciado", "string"), ("ejemplo", "string [0..1]")],
+          [("codigo_dba", "string"), ("enunciado", "string"), ("ejemplo", "string [0..1]")],
           [m("evidenciasAdmitidas(): Evidencia [*]", ["CU-16", "CU-31"])],
-          desc="Dato del MEN, de solo lectura."),
+          desc="Dato del MEN, de solo lectura. Su área y su grado son asociaciones (ADR-036); "
+               "codigo_dba tiene el formato ÁREA-GG-NN (RI-21)."),
     clase("Evidencia", "EVIDENCIA", "evidencia",
           [("numero_evidencia", "int"), ("enunciado", "string")],
           [m("admiteFormatoCerrado(): bool", ["CU-16", "CU-31"])],
@@ -145,10 +158,12 @@ CLASES = [
 ]
 
 # ------------------------------------------------------------- enumeraciones
-# Las 7 primeras deben coincidir valor por valor con los ENUM del MR; las 3
+# Las 9 primeras deben coincidir valor por valor con los ENUM del MR; las 3
 # ultimas son de valores calculados, que no se guardan.
 ENUMERACIONES = [
     ("Proveedor", ["correo", "google", "microsoft"], ("credencial", "proveedor")),
+    ("EstadoVerificacion", ["procesando", "verificado"], ("credencial", "estado_verificacion")),
+    ("NivelEducativo", ["basica_primaria", "basica_secundaria", "media"], ("grado", "nivel")),
     ("EstadoExperiencia", ["Borrador", "Publicada"], ("experiencia", "estado")),
     ("Formato", ["single_choice", "matching", "ordering"], ("item", "formato")),
     ("Origen", ["ia", "editado_docente", "creado_docente"], ("item", "origen")),
@@ -168,6 +183,10 @@ ENUMERACIONES = [
 ASOCIACIONES = [
     ("Credencial", "Docente", "accede como", "1", "0..1", "asociacion"),
     ("Credencial", "Estudiante", "accede como", "1", "0..1", "asociacion"),
+    ("DBA", "Area", "pertenece a", "1..*", "1", "asociacion"),
+    ("DBA", "Grado", "corresponde a", "1..*", "1", "asociacion"),
+    ("DBA", "DocumentoOficial", "se copia de", "1..*", "1", "asociacion"),
+    ("DocumentoOficial", "Area", "es de", "1..*", "1", "asociacion"),
     ("DBA", "Evidencia", "comprende", "1", "1..*", "composicion"),
     ("Evidencia", "EvidenciaDictamen", "se dictamina", "1", "0..1", "composicion"),
     ("Docente", "Experiencia", "crea", "1", "0..*", "asociacion"),
@@ -216,7 +235,7 @@ SERVICIOS = [
            m("eliminar(id: int)", ["CU-15"])],
           estereotipo="servicio"),
     clase("Catalogo", None, None, [],
-          [m("dbas(area: string, grado: string, texto: string): DBA [*]", ["CU-31"]),
+          [m("dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]", ["CU-31"]),
            m("dba(codigo_dba: string): DBA", ["CU-11", "CU-31"])],
           estereotipo="servicio"),
     clase("GeneradorBanco", None, None,

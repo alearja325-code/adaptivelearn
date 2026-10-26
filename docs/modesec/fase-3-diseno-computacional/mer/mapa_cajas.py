@@ -57,7 +57,8 @@ RX, RY = 84, 33            # medio ancho y medio alto de un rombo
 
 # ------------------------------------------------- contenido de cada caja
 ENT = {e[0]: e for e in ENTIDADES}
-TABLA = {"CREDENCIAL": "credencial", "DOCENTE": "docente", "ESTUDIANTE": "estudiante",
+TABLA = {"AREA": "area", "GRADO": "grado", "DOCUMENTO_OFICIAL": "documento_oficial",
+         "CREDENCIAL": "credencial", "DOCENTE": "docente", "ESTUDIANTE": "estudiante",
          "EXPERIENCIA": "experiencia", "DBA": "dba", "EVIDENCIA": "evidencia",
          "EVIDENCIA_DICTAMEN": "evidencia_dictamen",
          "EXPERIENCIA_EVIDENCIA": "experiencia_evidencia", "INSCRIPCION": "inscripcion",
@@ -122,20 +123,25 @@ def alto(nombre):
 # La del mapa Chen, con las columnas mas juntas: aqui los atributos van
 # dentro de la caja y no cuelgan al costado. Entre columnas quedan 300 px:
 # el rombo y, a cada lado, lugar para un (min,max).
+# 2026-10-26 (ADR-036): una fila nueva arriba (F0) para DOCUMENTO_OFICIAL y
+# GRADO; AREA va a la izquierda del DBA. Todo lo demas baja DY.
+DY = 340
 XC, C1, C2, C3, C4, C5 = 60, 640, 1260, 1880, 2500, 3120
-F1, F2, F3, F4 = 200, 540, 1160, 1500
+F0 = 200
+F1, F2, F3, F4 = 200 + DY, 540 + DY, 1160 + DY, 1500 + DY
 POS = {
-    "CREDENCIAL": (XC, 740),
+    "DOCUMENTO_OFICIAL": (C1, F0), "GRADO": (C3, F0), "AREA": (C1, F1),
+    "CREDENCIAL": (XC, 740 + DY),
     "DBA": (C2, F1), "EVIDENCIA": (C3, F1), "EVIDENCIA_DICTAMEN": (C4, F1),
     "DOCENTE": (C1, F2), "EXPERIENCIA": (C2, F2), "EXPERIENCIA_EVIDENCIA": (C3, F2),
     "ITEM": (C4, F2), "OPCION": (C5, F2),
-    "REPORTE": (C2 + 140, 930),
+    "REPORTE": (C2 + 140, 930 + DY),
     "ESTUDIANTE": (C1, F3), "INSCRIPCION": (C2, F3), "RESULTADO": (C3, F3),
     "RESPUESTA_OPCION": (C5, F3),
     "PRESENTACION": (C4, F4), "RESPUESTA": (C5, F4),
 }
 ANCHO_CAJA = {"REPORTE": 300}
-ANCHO, ALTO = 3500, 1990
+ANCHO, ALTO = 3500, 1990 + DY
 X_ACCEDE = (XC + W_CAJA + C1) / 2           # rombos de «accede como»
 X_XOR = XC + W_CAJA + 23                     # arco {xor}, entre CREDENCIAL y esos rombos
 
@@ -169,6 +175,18 @@ def recorridos():
                            [(xa + RX, yd), (B["DOCENTE"][0], yd)])
     R["accede_estudiante"] = ([(XC + 160, B["CREDENCIAL"][3]), (XC + 160, ye), (xa - RX, ye)], (xa, ye),
                               [(xa + RX, ye), (B["ESTUDIANTE"][0], ye)])
+    # catalogo (ADR-036). Las dos que salen por arriba del DBA hacen una L
+    # hasta la fila F0, cada una por su lado: hacia el documento y hacia el grado.
+    y0 = F0 + 50
+    R["es de"] = va("DOCUMENTO_OFICIAL", "AREA", C1 + 160)
+    R["pertenece_area"] = h("AREA", "DBA", yF1)
+    xd, xg = C2 + 60, C2 + 260
+    xr = (B["DOCUMENTO_OFICIAL"][2] + xd) / 2
+    R["se copia de"] = ([(xd, B["DBA"][1]), (xd, y0), (xr + RX, y0)], (xr, y0),
+                        [(xr - RX, y0), (B["DOCUMENTO_OFICIAL"][2], y0)])
+    xr = (xg + B["GRADO"][0]) / 2
+    R["corresponde a"] = ([(xg, B["DBA"][1]), (xg, y0), (xr - RX, y0)], (xr, y0),
+                          [(xr + RX, y0), (B["GRADO"][0], y0)])
     R["comprende"] = h("DBA", "EVIDENCIA", yF1)
     R["se dictamina"] = h("EVIDENCIA", "EVIDENCIA_DICTAMEN", yF1)
     R["crea"] = h("DOCENTE", "EXPERIENCIA", yF2)
@@ -178,10 +196,10 @@ def recorridos():
     R["genera"] = h("EXPERIENCIA_EVIDENCIA", "ITEM", yF2)
     R["ofrece"] = h("ITEM", "OPCION", yF2)
     R["realiza"] = h("ESTUDIANTE", "INSCRIPCION", yF3)
-    R["pertenece a"] = v("INSCRIPCION", "EXPERIENCIA", C2 + 70, yr=1082)
+    R["pertenece a"] = v("INSCRIPCION", "EXPERIENCIA", C2 + 70, yr=1082 + DY)
     R["arroja"] = h("INSCRIPCION", "RESULTADO", yF3)
-    R["mide"] = va("EXPERIENCIA_EVIDENCIA", "RESULTADO", C3 + 220, yr=900)
-    R["se presenta"] = va("ITEM", "PRESENTACION", C4 + 160, yr=1120)
+    R["mide"] = va("EXPERIENCIA_EVIDENCIA", "RESULTADO", C3 + 220, yr=900 + DY)
+    R["se presenta"] = va("ITEM", "PRESENTACION", C4 + 160, yr=1120 + DY)
     xi, yt, xat = C2 + 160, F4 + 80, C3 + 160
     R["atiende"] = ([(xi, B["INSCRIPCION"][3]), (xi, yt), (xat - RX, yt)], (xat, yt),
                     [(xat + RX, yt), (B["PRESENTACION"][0], yt)])
@@ -198,7 +216,7 @@ def recorridos():
 # Que extremo de cada recorrido toca a que entidad: los recorridos van del
 # primer punto (entidad «a» del MER) al ultimo (entidad «b»), salvo estos,
 # que se trazaron al reves por comodidad del dibujo.
-INVERTIDOS = {"se ancla a": False, "pertenece a": False, "resume": True, "se agrega en": False,
+INVERTIDOS = {"pertenece_area": True, "se ancla a": False, "pertenece a": False, "resume": True, "se agrega en": False,
               "sobre": False, "mide": False}
 
 
@@ -280,8 +298,8 @@ def dibujar():
     L.texto(ANCHO / 2, 62, "DIAGRAMA ENTIDAD - RELACIÓN — versión final", tam=34, peso=700,
             color="#1C2E4A", anchor="middle")
     L.texto(ANCHO / 2, 98, f"ADAPTIVELEARN · FASE III · {N_ENTIDADES} ENTIDADES + REPORTE (DERIVADO) · "
-            f"{N_REL_REALES} RELACIONES + {N_REL_DERIVADAS} DERIVADAS · REVISIÓN DEL DOCENTE "
-            f"(2026-09-01) ATENDIDA", tam=17, color="#555555", anchor="middle")
+            f"{N_REL_REALES} RELACIONES + {N_REL_DERIVADAS} DERIVADAS · REVISIONES DEL DOCENTE "
+            f"(2026-09-01 Y 2026-10-22, R1 Y R3) ATENDIDAS", tam=17, color="#555555", anchor="middle")
     B, R = recorridos()
     for n in POS:
         dibujar_caja(L, n)
@@ -326,7 +344,7 @@ def dibujar():
 
 
 def leyenda(L):
-    x0, y0 = 120, 1745
+    x0, y0 = 120, 1745 + DY
     L.crudo(f'<rect x="{x0}" y="{y0}" width="{ANCHO - 2 * x0}" height="200" rx="10" ry="10" '
             f'fill="#FFFFFF" stroke="#E3E7ED"/>')
     L.texto(x0 + 30, y0 + 30, "LEYENDA", tam=13, peso=700, color="#1C2E4A")

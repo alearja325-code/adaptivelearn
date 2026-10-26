@@ -56,7 +56,7 @@ SECUENCIAS = [
             ("m", "visitante", "igu", "escribe el código"),
             ("m", "igu", "acc", "verificarCorreo(correo, codigo)"),
             ("m", "acc", "cred", "verificarCodigo(codigo, ahora)"),
-            ("r", "cred", "acc", "true: email_verificado = true"),
+            ("r", "cred", "acc", "true: estado_verificacion = verificado"),
             ("r", "igu", "visitante", "«Completa tu perfil» (ventana 016)"),
             ("m", "visitante", "igu", "nombres, apellidos y foto opcional"),
             ("nota", "igu", "El perfil queda en la IGU: la cuenta todavía no existe (RF-01-05)."),
@@ -117,7 +117,7 @@ SECUENCIAS = [
                        ("res", "respaldo : ServicioGeneracion", "ServicioGeneracion", "externo")],
         pasos=[
             ("m", "docente", "igu", "Paso 1: elige el área"),
-            ("m", "igu", "cat", "dbas(area, grado, texto)"),
+            ("m", "igu", "cat", "dbas(codigo_area, numero_grado, texto)"),
             ("r", "cat", "igu", "los DBA, con evidencias y ejemplo"),
             ("m", "docente", "igu", "Paso 2: elige el DBA · Paso 3: confirma el nombre"),
             ("r", "igu", "docente", "«Generando las preguntas...» (ventana 024)"),

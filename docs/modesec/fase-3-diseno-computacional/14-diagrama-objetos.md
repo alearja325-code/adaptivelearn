@@ -27,12 +27,13 @@ necesita se dibuja allí como costura, sin repetir sus valores.
 
 | Lo que muestra | Regla |
 |---|---|
-| `c1` tiene contraseña cifrada; `c2`, que entró con Google, no tiene contraseña, sí identificador del proveedor, y el correo verificado. | RI-15 · RF-01-02 |
+| `c1` tiene contraseña cifrada; `c2`, que entró con Google, no tiene contraseña, sí identificador del proveedor, y su `estado_verificacion` es `verificado`. | RI-15 · RF-01-02 · ADR-037 |
 | Cada credencial da acceso a un solo rol. | RI-12 |
 | `exp3` está Publicada y tiene fecha de publicación; Luis se unió después. | RI-16 · RI-7 |
 | Las dos evidencias del DBA tienen dictamen que admite formato cerrado, y por eso las dos están incluidas. | RI-5 · RF-06-02 |
 | El servicio y el modelo de IA están en `exp3`, no en cada ítem: un banco sale entero de un solo servicio. `it12`, que editó Ana, sigue siendo de Gemini; `it21`, que creó Ana, no se le atribuye a la IA. | RI-17 · RF-03-02 · RF-03-03 |
 | Las dos evidencias incluidas son del DBA al que se ancla `exp3`. | RI-18 (ciclo C1) |
+| `dba` es de `mat` y de `g8`, y se copió de `doc`, que es de la misma área `mat`. Su código, `MAT-08-01`, se arma con esa área y ese grado. | RI-20 (ciclo C6) · RI-21 · ADR-036 |
 | `d1` y `d2` fijan el formato `single_choice`, y los ítems de esas evidencias lo usan. | RI-19 · RF-03-01 |
 | Las cinco presentaciones tienen órdenes 1 a 5, sin repetir, y cada ítem es de la experiencia de la inscripción. | RI-8 · RI-13 (ciclo C2) |
 | `ro1` elige `op1`, que es una opción de `it11`: el ítem que se le presentó en `p1`. | RI-6 (ciclo C4) |
@@ -46,8 +47,11 @@ necesita se dibuja allí como costura, sin repetir sus valores.
 | Objeto | Clase | Valores en este momento |
 |---|---|---|
 | `ana` | Docente | `id_docente = 1`; `nombres = "Ana"`; `apellidos = "Pérez"` |
-| `c1` | Credencial | `correo = "ana@colegio.edu.co"`; `proveedor = correo`; `password_hash = "$argon2id$…"`; `email_verificado = true` |
-| `dba` | DBA | `codigo_dba = "matemáticas_8_dba_1"`; `area = "Matemáticas"`; `grado = "8°"` |
+| `c1` | Credencial | `correo = "ana@colegio.edu.co"`; `proveedor = correo`; `password_hash = "$argon2id$…"`; `estado_verificacion = verificado` |
+| `mat` | Area | `codigo_area = "MAT"`; `nombre = "Matemáticas"` |
+| `g8` | Grado | `numero = 8`; `nombre = "Octavo"`; `nivel = basica_secundaria` |
+| `doc` | DocumentoOficial | `version = "V.2"`; `anio = 2016`; `paginas = 88` |
+| `dba` | DBA | `codigo_dba = "MAT-08-01"` |
 | `ev1` | Evidencia | `numero_evidencia = 1` |
 | `ev2` | Evidencia | `numero_evidencia = 2` |
 | `d1` | EvidenciaDictamen | `aplica_formato_cerrado = true`; `formato = single_choice` |
@@ -63,7 +67,7 @@ necesita se dibuja allí como costura, sin repetir sus valores.
 | `op1` | Opcion | `id_opcion = 101`; `es_correcta = true` |
 | `op2` | Opcion | `id_opcion = 102`; `es_correcta = false` |
 | `luis` | Estudiante | `id_estudiante = 7`; `nombres = "Luis"`; `apellidos = "Gómez"` |
-| `c2` | Credencial | `correo = "luis@gmail.com"`; `proveedor = google`; `password_hash = null`; `proveedor_id = "g-1847…"`; `email_verificado = true` |
+| `c2` | Credencial | `correo = "luis@gmail.com"`; `proveedor = google`; `password_hash = null`; `proveedor_id = "g-1847…"`; `estado_verificacion = verificado` |
 | `ins` | Inscripcion | `id_inscripcion = 15`; `fecha_union = 2026-11-04 08:57` |
 | `p1` | Presentacion | `orden_presentacion = 1`; `fecha_presentacion = 2026-11-04 09:00` |
 | `p2` | Presentacion | `orden_presentacion = 2`; `fecha_presentacion = 2026-11-04 09:01` |

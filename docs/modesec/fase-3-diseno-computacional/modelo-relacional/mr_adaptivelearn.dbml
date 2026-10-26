@@ -11,7 +11,7 @@ Table credencial {
   proveedor varchar [not null]
   password_hash varchar(255)
   proveedor_id varchar(255)
-  email_verificado boolean [not null]
+  estado_verificacion varchar [not null]
   codigo_verificacion char(6)
   codigo_expira_en datetime
   codigo_ultimo_envio datetime
@@ -42,7 +42,7 @@ Table estudiante {
 Table experiencia {
   id_experiencia "int unsigned" [pk, not null, increment]
   id_docente "int unsigned" [not null]
-  codigo_dba varchar(40) [not null]
+  codigo_dba varchar(9) [not null]
   nombre varchar(160) [not null]
   estado varchar [not null]
   fecha_creacion datetime [not null]
@@ -55,16 +55,42 @@ Table experiencia {
   }
 }
 
+Table area {
+  codigo_area varchar(3) [pk, not null]
+  nombre varchar(40) [not null, unique]
+}
+
+Table grado {
+  numero "tinyint unsigned" [pk, not null]
+  nombre varchar(20) [not null, unique]
+  nivel varchar [not null]
+}
+
+Table documento_oficial {
+  id_documento "int unsigned" [pk, not null, increment]
+  codigo_area varchar(3) [not null]
+  titulo varchar(200) [not null]
+  version varchar(10) [not null]
+  anio "smallint unsigned" [not null]
+  paginas "smallint unsigned" [not null]
+  url_oficial varchar(500) [not null]
+  indexes {
+    (codigo_area, version) [unique]
+    (id_documento, codigo_area) [unique]
+  }
+}
+
 Table dba {
-  codigo_dba varchar(40) [pk, not null]
-  area varchar(40) [not null]
-  grado varchar(4) [not null]
+  codigo_dba varchar(9) [pk, not null]
+  codigo_area varchar(3) [not null]
+  numero_grado "tinyint unsigned" [not null]
+  id_documento "int unsigned" [not null]
   enunciado text [not null]
   ejemplo text
 }
 
 Table evidencia {
-  codigo_dba varchar(40) [not null]
+  codigo_dba varchar(9) [not null]
   numero_evidencia "tinyint unsigned" [not null]
   enunciado text [not null]
   indexes {
@@ -73,7 +99,7 @@ Table evidencia {
 }
 
 Table evidencia_dictamen {
-  codigo_dba varchar(40) [not null]
+  codigo_dba varchar(9) [not null]
   numero_evidencia "tinyint unsigned" [not null]
   aplica_formato_cerrado boolean [not null]
   formato varchar
@@ -86,7 +112,7 @@ Table evidencia_dictamen {
 
 Table experiencia_evidencia {
   id_experiencia "int unsigned" [not null]
-  codigo_dba varchar(40) [not null]
+  codigo_dba varchar(9) [not null]
   numero_evidencia "tinyint unsigned" [not null]
   indexes {
     (id_experiencia, codigo_dba, numero_evidencia) [pk]
@@ -107,7 +133,7 @@ Table inscripcion {
 Table item {
   id_item "int unsigned" [pk, not null, increment]
   id_experiencia "int unsigned" [not null]
-  codigo_dba varchar(40) [not null]
+  codigo_dba varchar(9) [not null]
   numero_evidencia "tinyint unsigned" [not null]
   enunciado text [not null]
   formato varchar [not null]
@@ -169,7 +195,7 @@ Table respuesta_opcion {
 Table resultado {
   id_inscripcion "int unsigned" [not null]
   id_experiencia "int unsigned" [not null]
-  codigo_dba varchar(40) [not null]
+  codigo_dba varchar(9) [not null]
   numero_evidencia "tinyint unsigned" [not null]
   estado varchar [not null]
   fecha_calculo datetime [not null]
@@ -183,6 +209,10 @@ Ref: credencial.id_docente > docente.id_docente [delete: restrict, update: restr
 Ref: credencial.id_estudiante > estudiante.id_estudiante [delete: restrict, update: restrict]
 Ref: experiencia.id_docente > docente.id_docente [delete: restrict, update: cascade]
 Ref: experiencia.codigo_dba > dba.codigo_dba [delete: restrict, update: cascade]
+Ref: documento_oficial.codigo_area > area.codigo_area [delete: restrict, update: restrict]
+Ref: dba.codigo_area > area.codigo_area [delete: restrict, update: restrict]
+Ref: dba.numero_grado > grado.numero [delete: restrict, update: restrict]
+Ref: dba.(id_documento, codigo_area) > documento_oficial.(id_documento, codigo_area) [delete: restrict, update: restrict]
 Ref: evidencia.codigo_dba > dba.codigo_dba [delete: cascade, update: cascade]
 Ref: evidencia_dictamen.(codigo_dba, numero_evidencia) > evidencia.(codigo_dba, numero_evidencia) [delete: cascade, update: cascade]
 Ref: experiencia_evidencia.(id_experiencia, codigo_dba) > experiencia.(id_experiencia, codigo_dba) [delete: cascade, update: cascade]

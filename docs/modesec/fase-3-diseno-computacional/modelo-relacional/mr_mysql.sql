@@ -32,7 +32,7 @@ CREATE TABLE credencial (
   proveedor ENUM('correo','google','microsoft') NOT NULL,
   password_hash VARCHAR(255) NULL,
   proveedor_id VARCHAR(255) NULL,
-  email_verificado BOOLEAN NOT NULL DEFAULT FALSE,
+  estado_verificacion ENUM('procesando','verificado') NOT NULL DEFAULT 'procesando',
   codigo_verificacion CHAR(6) NULL,
   codigo_expira_en DATETIME NULL,
   codigo_ultimo_envio DATETIME NULL,
@@ -47,24 +47,64 @@ CREATE TABLE credencial (
   CONSTRAINT uq_credencial_3 UNIQUE (id_estudiante),
   CONSTRAINT uq_credencial_4 UNIQUE (proveedor, proveedor_id),
   CONSTRAINT ck_credencial_1 CHECK (id_docente IS NULL OR id_estudiante IS NULL),
-  CONSTRAINT ck_credencial_2 CHECK ((proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND email_verificado = 1)),
+  CONSTRAINT ck_credencial_2 CHECK ((proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND estado_verificacion = 'verificado')),
   CONSTRAINT fk_credencial_1 FOREIGN KEY (id_docente) REFERENCES docente(id_docente) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT fk_credencial_2 FOREIGN KEY (id_estudiante) REFERENCES estudiante(id_estudiante) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE area (
+  codigo_area VARCHAR(3) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  nombre VARCHAR(40) NOT NULL,
+  PRIMARY KEY (codigo_area),
+  CONSTRAINT uq_area_1 UNIQUE (nombre),
+  CONSTRAINT ck_area_1 CHECK (codigo_area REGEXP '^[A-Z]{2,3}$')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE grado (
+  numero TINYINT UNSIGNED NOT NULL,
+  nombre VARCHAR(20) NOT NULL,
+  nivel ENUM('basica_primaria','basica_secundaria','media') NOT NULL,
+  PRIMARY KEY (numero),
+  CONSTRAINT uq_grado_1 UNIQUE (nombre),
+  CONSTRAINT ck_grado_1 CHECK ((numero BETWEEN 1 AND 5 AND nivel = 'basica_primaria') OR (numero BETWEEN 6 AND 9 AND nivel = 'basica_secundaria') OR (numero BETWEEN 10 AND 11 AND nivel = 'media'))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE documento_oficial (
+  id_documento INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  codigo_area VARCHAR(3) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  titulo VARCHAR(200) NOT NULL,
+  version VARCHAR(10) NOT NULL,
+  anio SMALLINT UNSIGNED NOT NULL,
+  paginas SMALLINT UNSIGNED NOT NULL,
+  url_oficial VARCHAR(500) NOT NULL,
+  PRIMARY KEY (id_documento),
+  CONSTRAINT uq_documento_oficial_1 UNIQUE (codigo_area, version),
+  CONSTRAINT uq_documento_oficial_2 UNIQUE (id_documento, codigo_area),
+  CONSTRAINT ck_documento_oficial_1 CHECK (paginas > 0 AND TRIM(titulo) <> '' AND TRIM(version) <> ''),
+  CONSTRAINT fk_documento_oficial_1 FOREIGN KEY (codigo_area) REFERENCES area(codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE dba (
-  codigo_dba VARCHAR(40) NOT NULL,
-  area VARCHAR(40) NOT NULL,
-  grado VARCHAR(4) NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  codigo_area VARCHAR(3) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  numero_grado TINYINT UNSIGNED NOT NULL,
+  id_documento INT UNSIGNED NOT NULL,
   enunciado TEXT NOT NULL,
   ejemplo TEXT NULL,
-  PRIMARY KEY (codigo_dba)
+  PRIMARY KEY (codigo_dba),
+  KEY idx_dba_codigo_area (codigo_area),
+  KEY idx_dba_numero_grado (numero_grado),
+  KEY idx_dba_id_documento_codigo_area (id_documento, codigo_area),
+  CONSTRAINT ck_dba_1 CHECK (codigo_dba = CONCAT(codigo_area, '-', LPAD(numero_grado, 2, '0'), '-', RIGHT(codigo_dba, 2)) AND RIGHT(codigo_dba, 2) REGEXP '^[0-9]{2}$' AND RIGHT(codigo_dba, 2) <> '00'),
+  CONSTRAINT fk_dba_1 FOREIGN KEY (codigo_area) REFERENCES area(codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT fk_dba_2 FOREIGN KEY (numero_grado) REFERENCES grado(numero) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT fk_dba_3 FOREIGN KEY (id_documento, codigo_area) REFERENCES documento_oficial(id_documento, codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE experiencia (
   id_experiencia INT UNSIGNED AUTO_INCREMENT NOT NULL,
   id_docente INT UNSIGNED NOT NULL,
-  codigo_dba VARCHAR(40) NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   nombre VARCHAR(160) NOT NULL,
   estado ENUM('Borrador','Publicada') NOT NULL DEFAULT 'Borrador',
   fecha_creacion DATETIME NOT NULL,
@@ -84,7 +124,7 @@ CREATE TABLE experiencia (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE evidencia (
-  codigo_dba VARCHAR(40) NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   numero_evidencia TINYINT UNSIGNED NOT NULL,
   enunciado TEXT NOT NULL,
   PRIMARY KEY (codigo_dba, numero_evidencia),
@@ -93,7 +133,7 @@ CREATE TABLE evidencia (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE evidencia_dictamen (
-  codigo_dba VARCHAR(40) NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   numero_evidencia TINYINT UNSIGNED NOT NULL,
   aplica_formato_cerrado BOOLEAN NOT NULL,
   formato ENUM('single_choice','matching','ordering') NULL,
@@ -106,7 +146,7 @@ CREATE TABLE evidencia_dictamen (
 
 CREATE TABLE experiencia_evidencia (
   id_experiencia INT UNSIGNED NOT NULL,
-  codigo_dba VARCHAR(40) NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   numero_evidencia TINYINT UNSIGNED NOT NULL,
   PRIMARY KEY (id_experiencia, codigo_dba, numero_evidencia),
   KEY idx_experiencia_evidencia_codigo_dba_numero_evidencia (codigo_dba, numero_evidencia),
@@ -130,7 +170,7 @@ CREATE TABLE inscripcion (
 CREATE TABLE item (
   id_item INT UNSIGNED AUTO_INCREMENT NOT NULL,
   id_experiencia INT UNSIGNED NOT NULL,
-  codigo_dba VARCHAR(40) NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   numero_evidencia TINYINT UNSIGNED NOT NULL,
   enunciado TEXT NOT NULL,
   formato ENUM('single_choice','matching','ordering') NOT NULL DEFAULT 'single_choice',
@@ -200,7 +240,7 @@ CREATE TABLE respuesta_opcion (
 CREATE TABLE resultado (
   id_inscripcion INT UNSIGNED NOT NULL,
   id_experiencia INT UNSIGNED NOT NULL,
-  codigo_dba VARCHAR(40) NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   numero_evidencia TINYINT UNSIGNED NOT NULL,
   estado ENUM('muestra','no_muestra','no_concluyente') NOT NULL,
   fecha_calculo DATETIME NOT NULL,

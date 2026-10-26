@@ -13,14 +13,14 @@
 </defs>
 <rect x="0" y="0" width="1900" height="1130" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
 <text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de objetos · vista 2 de 2 — El diagnóstico de Luis, en curso (mismo momento)</text>
-<rect x="330.0" y="80.0" width="178.0" height="128.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="330.0" y="80.0" width="178.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="419.0" y="102.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c2 : Credencial</text>
+<rect x="330.0" y="80.0" width="219.0" height="128.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="330.0" y="80.0" width="219.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="439.5" y="102.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c2 : Credencial</text>
 <text x="342.0" y="133.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">correo = &quot;luis@gmail.com&quot;</text>
 <text x="342.0" y="149.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">proveedor = google</text>
 <text x="342.0" y="165.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">password_hash = null</text>
 <text x="342.0" y="181.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">proveedor_id = &quot;g-1847…&quot;</text>
-<text x="342.0" y="197.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">email_verificado = true</text>
+<text x="342.0" y="197.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">estado_verificacion = verificado</text>
 <rect x="330.0" y="290.0" width="160.0" height="96.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
 <rect x="330.0" y="290.0" width="160.0" height="34.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
 <text x="410.0" y="312.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">luis : Estudiante</text>
@@ -107,10 +107,10 @@
 <text x="1172.0" y="835.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">certeza = 3</text>
 <text x="1172.0" y="851.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">correcta = true</text>
 <text x="1172.0" y="867.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">fecha_respuesta = 2026-11-04 09:05</text>
-<polyline points="419.0,208.0 419.0,290.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="419.0,386.0 419.0,520.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="419.0,600.0 419.0,780.0" fill="none" stroke="#111111" stroke-width="1.3"/>
-<polyline points="419.0,960.0 419.0,860.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,208.0 439.5,290.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,386.0 439.5,520.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,600.0 439.5,780.0" fill="none" stroke="#111111" stroke-width="1.3"/>
+<polyline points="439.5,960.0 439.5,860.0" fill="none" stroke="#111111" stroke-width="1.3"/>
 <polyline points="330.0,552.0 190.0,552.0" fill="none" stroke="#111111" stroke-width="1.3"/>
 <polyline points="541.0,560.0 760.0,230.0" fill="none" stroke="#111111" stroke-width="1.3"/>
 <polyline points="541.0,560.0 760.0,430.0" fill="none" stroke="#111111" stroke-width="1.3"/>

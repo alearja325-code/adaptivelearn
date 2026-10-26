@@ -42,8 +42,8 @@ def ins(tabla, **cols):
 
 
 F = "2026-03-02 10:00:00"
-MAT = "matemáticas_8_dba_1"
-LEN = "lenguaje_8_dba_1"          # otro DBA, para las pruebas de RI-18
+MAT = "MAT-08-01"
+LEN = "LEN-08-01"                 # otro DBA, para las pruebas de RI-18
 
 
 def docente(i, nombres="Ana", apellidos="Pérez"):
@@ -52,9 +52,20 @@ def docente(i, nombres="Ana", apellidos="Pérez"):
 
 def cred_correo(i, correo, **kw):
     base = dict(id_credencial=i, correo=correo, proveedor="correo",
-                password_hash="$argon2id$hash", email_verificado=True)
+                password_hash="$argon2id$hash", estado_verificacion="verificado")
     base.update(kw)
     return ins("credencial", **base)
+
+
+def dba(codigo, area="MAT", grado=8, documento=1):
+    return ins("dba", codigo_dba=codigo, codigo_area=area, numero_grado=grado,
+               id_documento=documento, enunciado="Enunciado oficial", ejemplo=None)
+
+
+def documento(i, area, version="V.2", paginas=88):
+    return ins("documento_oficial", id_documento=i, codigo_area=area,
+               titulo=f"Derechos Básicos de Aprendizaje {area}", version=version,
+               anio=2016, paginas=paginas, url_oficial="http://www.colombiaaprende.edu.co/x.pdf")
 
 
 def experiencia(i, codigo, estado="Publicada", fecha_pub=F, **kw):
@@ -106,9 +117,14 @@ SEMILLA = [
     ins("estudiante", id_estudiante=2, nombres="Sara", apellidos="Ruiz"),
     cred_correo(1, "ana@colegio.co", id_docente=1),
     ins("credencial", id_credencial=2, id_estudiante=1, correo="luis@gmail.com",
-        proveedor="google", proveedor_id="g-111", email_verificado=True),
-    ins("dba", codigo_dba=MAT, area="Matemáticas", grado="8°",
-        enunciado="Enunciado oficial", ejemplo=None),
+        proveedor="google", proveedor_id="g-111", estado_verificacion="verificado"),
+    # catalogo (ADR-036): dos areas, para poder probar RI-20
+    ins("area", codigo_area="MAT", nombre="Matemáticas"),
+    ins("area", codigo_area="LEN", nombre="Lenguaje"),
+    ins("grado", numero=8, nombre="Octavo", nivel="basica_secundaria"),
+    documento(1, "MAT"),
+    documento(2, "LEN", paginas=56),
+    dba(MAT),
     ins("evidencia", codigo_dba=MAT, numero_evidencia=1, enunciado="Evidencia 1"),
     ins("evidencia", codigo_dba=MAT, numero_evidencia=2, enunciado="Evidencia 2"),
     dictamen(1, True, "single_choice"),
@@ -131,7 +147,8 @@ SEMILLA = [
 ]
 
 # Lo que se cuenta en las pruebas QUEDA
-CONTEOS = ["docente", "credencial", "estudiante", "dba", "evidencia",
+CONTEOS = ["docente", "credencial", "estudiante", "area", "grado", "documento_oficial",
+           "dba", "evidencia",
            "experiencia", "experiencia_evidencia", "item", "opcion",
            "inscripcion", "presentacion", "respuesta", "respuesta_opcion",
            "resultado"]
@@ -150,22 +167,65 @@ PRUEBAS = [
      [cred_correo(3, "sin@x.co", password_hash=None)]),
     ("FALLA", "cuenta de Google con contraseña guardada (RI-15)",
      [ins("credencial", id_credencial=3, correo="g@x.co", proveedor="google",
-          password_hash="hash", proveedor_id="g-222", email_verificado=True)]),
-    ("FALLA", "cuenta de Google con el correo sin verificar (RI-15)",
+          password_hash="hash", proveedor_id="g-222", estado_verificacion="verificado")]),
+    ("FALLA", "cuenta de Google con el correo todavía «procesando» (RI-15, ADR-037)",
      [ins("credencial", id_credencial=3, correo="g@x.co", proveedor="google",
-          proveedor_id="g-222", email_verificado=False)]),
+          proveedor_id="g-222", estado_verificacion="procesando")]),
+    ("FALLA", "estado de verificación inventado (ADR-037)",
+     [cred_correo(3, "e@x.co", estado_verificacion="vencido")]),
     ("FALLA", "la misma cuenta de Google abriendo una segunda credencial (RF-01-04)",
      [ins("credencial", id_credencial=3, correo="otro@gmail.com", proveedor="google",
-          proveedor_id="g-111", email_verificado=True)]),
+          proveedor_id="g-111", estado_verificacion="verificado")]),
     ("FALLA", "proveedor fuera de alcance: Apple (RF-01-02)",
      [ins("credencial", id_credencial=3, correo="a@icloud.com", proveedor="apple",
-          proveedor_id="a-1", email_verificado=True)]),
+          proveedor_id="a-1", estado_verificacion="verificado")]),
     ("FALLA", "docente con nombres vacíos (RF-01-05)",
      [docente(2, nombres="   ")]),
     ("FALLA", "borrar un docente que tiene credencial y experiencias (RESTRICT)",
      ["DELETE FROM docente WHERE id_docente = 1;"]),
     ("PASA", "credencial recién creada, sin rol elegido todavía (ventanas 014-017)",
-     [cred_correo(3, "nueva@x.co", email_verificado=False)]),
+     [cred_correo(3, "nueva@x.co", estado_verificacion="procesando")]),
+    ("PASA", "credencial de correo sin estado dicho: nace «procesando» (ADR-037)",
+     [ins("credencial", id_credencial=3, correo="nueva@x.co", proveedor="correo",
+          password_hash="$argon2id$hash")]),
+
+    # ------------------------------------------------ catálogo (ADR-036, RI-20, RI-21)
+    ("FALLA", "un DBA sin área (ADR-036)",
+     [dba("MAT-08-02", area=None)]),
+    ("FALLA", "un DBA de un área que no existe (ADR-036)",
+     [dba("ART-08-01", area="ART")]),
+    ("FALLA", "un DBA de Matemáticas copiado del documento de Lenguaje (RI-20, ciclo C6)",
+     [dba("MAT-08-02", documento=2)]),
+    ("FALLA", "un DBA de un grado fuera del catálogo: Transición, grado 0 (ADR-033)",
+     [dba("MAT-00-01", grado=0)]),
+    ("FALLA", "código de DBA en el formato viejo, sin ceros (RI-21)",
+     [dba("MAT-8-2")]),
+    ("FALLA", "código de DBA con un área distinta de la de su fila (RI-21)",
+     [dba("LEN-08-02")]),
+    ("FALLA", "código de DBA con un grado distinto del de su fila (RI-21)",
+     [ins("grado", numero=9, nombre="Noveno", nivel="basica_secundaria"),
+      dba("MAT-09-02")]),
+    ("FALLA", "código de DBA en minúsculas (RI-21)",
+     [dba("mat-08-02")]),
+    ("FALLA", "código de DBA con número 00 (RI-21)",
+     [dba("MAT-08-00")]),
+    ("FALLA", "código de área con tilde (ADR-036)",
+     [ins("area", codigo_area="CÑ", nombre="Ciencias")]),
+    ("FALLA", "código de área en minúsculas (ADR-036)",
+     [ins("area", codigo_area="cs", nombre="Ciencias Sociales")]),
+    ("FALLA", "grado con un nivel que no es el de la Ley 115 (ADR-036)",
+     [ins("grado", numero=9, nombre="Noveno", nivel="media")]),
+    ("FALLA", "grado 12, fuera de la educación básica y media",
+     [ins("grado", numero=12, nombre="Duodécimo", nivel="media")]),
+    ("FALLA", "la misma versión del documento de un área, cargada dos veces (ADR-033)",
+     [documento(3, "MAT")]),
+    ("FALLA", "borrar un área que tiene DBA y documento (RESTRICT)",
+     ["DELETE FROM area WHERE codigo_area = 'MAT';"]),
+    ("PASA", "un DBA de 11° de Ciencias Sociales, con su documento V.1 (ADR-033)",
+     [ins("area", codigo_area="CS", nombre="Ciencias Sociales"),
+      ins("grado", numero=11, nombre="Undécimo", nivel="media"),
+      documento(3, "CS", version="V.1", paginas=52),
+      dba("CS-11-05", area="CS", grado=11, documento=3)]),
 
     # ------------------------------------------------ experiencia (RI-3, RI-16)
     ("FALLA", "código de invitación repetido (RI-3)",
@@ -187,7 +247,7 @@ PRUEBAS = [
     ("FALLA", "servicio de IA fuera de ADR-030",
      [experiencia(3, "QRS234", servicio_ia="chatgpt")]),
     ("FALLA", "una experiencia incluye una evidencia de OTRO DBA (RI-18, ciclo C1)",
-     [ins("dba", codigo_dba=LEN, area="Lenguaje", grado="8°", enunciado="x", ejemplo=None),
+     [dba(LEN, area="LEN", documento=2),
       ins("evidencia", codigo_dba=LEN, numero_evidencia=1, enunciado="evidencia de lenguaje"),
       ins("experiencia_evidencia", id_experiencia=1, codigo_dba=LEN, numero_evidencia=1)]),
 
@@ -255,8 +315,8 @@ PRUEBAS = [
     # ------------------------------------------------ política de borrado (V-11)
     ("QUEDA", "eliminar una experiencia arrastra todo lo suyo y nada más (RF-02-07)",
      ["DELETE FROM experiencia WHERE id_experiencia = 1;"],
-     dict(docente=1, credencial=2, estudiante=2, dba=1, evidencia=2,
-          experiencia=1, experiencia_evidencia=1, item=1, opcion=0,
+     dict(docente=1, credencial=2, estudiante=2, area=2, grado=1, documento_oficial=2,
+          dba=1, evidencia=2, experiencia=1, experiencia_evidencia=1, item=1, opcion=0,
           inscripcion=1, presentacion=0, respuesta=0, respuesta_opcion=0,
           resultado=0)),
     ("QUEDA", "salir de una experiencia borra lo respondido y deja el banco (RF-04-12)",
@@ -280,7 +340,25 @@ MOTIVO_MYSQL = {
     "dos credenciales para el mismo docente (relación 1:1)": "uq_credencial_2",
     "cuenta de correo sin contraseña (RI-15)": "ck_credencial_2",
     "cuenta de Google con contraseña guardada (RI-15)": "ck_credencial_2",
-    "cuenta de Google con el correo sin verificar (RI-15)": "ck_credencial_2",
+    "cuenta de Google con el correo todavía «procesando» (RI-15, ADR-037)": "ck_credencial_2",
+    "estado de verificación inventado (ADR-037)": "column 'estado_verificacion'",
+    "un DBA sin área (ADR-036)": "'codigo_area' cannot be null",
+    "un DBA de un área que no existe (ADR-036)": "fk_dba_1",
+    "un DBA de Matemáticas copiado del documento de Lenguaje (RI-20, ciclo C6)": "fk_dba_3",
+    "un DBA de un grado fuera del catálogo: Transición, grado 0 (ADR-033)": "fk_dba_2",
+    "código de DBA en el formato viejo, sin ceros (RI-21)": "ck_dba_1",
+    "código de DBA con un área distinta de la de su fila (RI-21)": "ck_dba_1",
+    "código de DBA con un grado distinto del de su fila (RI-21)": "ck_dba_1",
+    "código de DBA en minúsculas (RI-21)": "ck_dba_1",
+    "código de DBA con número 00 (RI-21)": "ck_dba_1",
+    # la columna es ASCII: MySQL rechaza la tilde por el tipo, antes del CHECK
+    "código de área con tilde (ADR-036)": "Incorrect string value.*codigo_area",
+    "código de área en minúsculas (ADR-036)": "ck_area_1",
+    "grado con un nivel que no es el de la Ley 115 (ADR-036)": "ck_grado_1",
+    "grado 12, fuera de la educación básica y media": "ck_grado_1",
+    "la misma versión del documento de un área, cargada dos veces (ADR-033)":
+        "uq_documento_oficial_1",
+    "borrar un área que tiene DBA y documento (RESTRICT)": "fk_documento_oficial_1|fk_dba_1",
     "la misma cuenta de Google abriendo una segunda credencial (RF-01-04)": "uq_credencial_4",
     "proveedor fuera de alcance: Apple (RF-01-02)": "column 'proveedor'",
     "docente con nombres vacíos (RF-01-05)": "ck_docente_1",

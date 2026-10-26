@@ -1,6 +1,6 @@
 ﻿"""Mapa completo del MER en notacion Chen -- version final de la Fase III.
 
-Las 15 entidades (+ Reporte, derivado), todos sus atributos y las 20
+Todas las entidades (+ Reporte, derivado), todos sus atributos y todas las
 relaciones en un solo lienzo. Mismo contenido que las 7 vistas, porque
 las dos cosas salen de datos_mer.py; lo unico que cambia es el layout.
 
@@ -18,6 +18,11 @@ Dos cambios de trazado de esta version:
     EXPERIENCIA, EXPERIENCIA_EVIDENCIA, INSCRIPCION y RESULTADO: sus dos
     relaciones derivadas quedan cortas y dentro de ese cuadro, en vez de
     cruzar medio mapa.
+
+2026-10-26 (ADR-036): una fila nueva arriba, la F0, para el catalogo
+normalizado. DOCUMENTO_OFICIAL y GRADO van en ella; AREA, a la izquierda del
+DBA. Todo lo demas baja una fila (700 px). El ciclo C6 queda como un
+triangulo: DBA -- AREA -- DOCUMENTO_OFICIAL -- DBA.
 """
 import generador as g
 from vistas_chen import Lienzo
@@ -27,8 +32,8 @@ from datos_mer import (RELACIONES, ENTIDADES, N_ENTIDADES, N_REL_REALES,
 # --------------------------------------------------------------- reticula
 X0 = 420                                             # carril de CREDENCIAL
 C1, C2, C3, C4, C5 = 1080, 1900, 2720, 3540, 4360    # columnas
-F1, F2, F3, F4 = 170, 870, 1570, 2270                # filas
-FM = (F2 + F3) // 2                                  # fila media: 1220
+F0, F1, F2, F3, F4 = 170, 870, 1570, 2270, 2970     # filas
+FM = (F2 + F3) // 2                                  # fila media: 1920
 
 DX = 195          # cuanto se corre la columna de atributos hacia el costado
 CAIDA = 140       # cuanto baja el primer atributo respecto al centro de la caja
@@ -45,7 +50,12 @@ def ent(nombre, cx, cy, lado="right", **kw):
 # -------------------------------------------------- carril de acceso (x0)
 ent("CREDENCIAL", X0, FM, lado="left")
 
+# --------------------------- fila 0 - catalogo normalizado (ADR-036)
+ent("DOCUMENTO_OFICIAL",  C1, F0)
+ent("GRADO",              C2, F0)
+
 # ---------------------------------------------- fila 1 - curriculo oficial
+ent("AREA",               C1, F1)
 ent("DBA",                C2, F1)
 ent("EVIDENCIA",          C3, F1)
 ent("EVIDENCIA_DICTAMEN", C4, F1)
@@ -81,10 +91,14 @@ ent("REPORTE", XR, FM, lado="left", dashed=True)
 # ------------------------------------------------------------ relaciones
 m.rel("accede_docente",    X0, F2, razon_lado="izq")
 m.rel("accede_estudiante", X0, F3, razon_lado="izq")
+m.rel("es de",        C1,   F0 + 350, razon_lado="izq")
+m.rel("corresponde a", C2,  F0 + 350, razon_lado="izq")
+m.rel("pertenece_area", 1490, F1)
+m.rel("se copia de",  1490, F0, razon_lado="arriba")
 m.rel("comprende",    2310, F1)
 m.rel("se dictamina", 3130, F1)
-m.rel("se ancla a",   C2,   520,  razon_lado="izq")
-m.rel("sobre",        C3,   520,  razon_lado="izq")
+m.rel("se ancla a",   C2,   F1 + 350, razon_lado="izq")
+m.rel("sobre",        C3,   F1 + 350, razon_lado="izq")
 m.rel("crea",         1490, F2)
 m.rel("incluye",      2310, F2)
 m.rel("genera",       3130, F2)
@@ -94,7 +108,7 @@ m.rel("mide",         C3,   FM,   razon_lado="izq")
 m.rel("realiza",      1490, F3)
 m.rel("arroja",       2310, F3)
 m.rel("se presenta",  C4,   F3,   razon_lado="izq")
-m.rel("atiende",      2650, 1950)
+m.rel("atiende",      2650, F3 + 380)
 m.rel("registra",     3950, F4)
 m.rel("resume",       XR,   FM - 180, razon_lado="izq")
 m.rel("se agrega en", XR,   FM + 180, razon_lado="izq")
@@ -110,6 +124,11 @@ m.body += (f'<line x1="600" y1="{F2}" x2="600" y2="{F3}" stroke="#B4536B" stroke
            f'fill="#B4536B">{{xor}}</text>\n'
            f'<text x="612" y="{FM + 12}" font-family="Helvetica" font-size="11" '
            f'fill="#B4536B">un solo rol (RI-12)</text>\n')
+m.conecta("DOCUMENTO_OFICIAL", "es de", "AREA")
+m.conecta("DBA", "corresponde a", "GRADO")
+m.conecta("DBA", "pertenece_area", "AREA")
+# diagonal: sale del borde superior del DBA, corrida para no pisar la de GRADO
+m.conecta("DBA", "se copia de", "DOCUMENTO_OFICIAL", off_a=-45)
 m.conecta("DBA", "comprende", "EVIDENCIA")
 m.conecta("EVIDENCIA", "se dictamina", "EVIDENCIA_DICTAMEN")
 m.conecta("EXPERIENCIA", "se ancla a", "DBA")
@@ -160,6 +179,8 @@ CAPTION = (
     "<b>CREDENCIAL ocupa un carril propio a la izquierda</b>, entre DOCENTE y "
     "ESTUDIANTE: una misma credencial accede como uno de los dos, nunca como ambos "
     "(RI-12). "
+    "<b>El catálogo normalizado ocupa la fila de arriba</b> (ADR-036): ÁREA, GRADO y "
+    "DOCUMENTO_OFICIAL; el triángulo DBA – ÁREA – DOCUMENTO_OFICIAL es el ciclo C6 (RI-20). "
     "<b>REPORTE va al centro y con borde punteado</b>: no persiste, se calcula sobre "
     "RESULTADO por cada EXPERIENCIA, y por eso sus dos relaciones derivadas quedan "
     "cortas, dentro del cuadro que forman las cuatro entidades de las que depende.")
