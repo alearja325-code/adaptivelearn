@@ -1911,3 +1911,52 @@ espera de 30 segundos para reenviarlo (RF-01-03) necesitan otro lugar, y
 se le preguntó al docente qué prefiere.
 
 **Reemplaza a:** ninguna. Modifica un atributo de la entidad de ADR-034.
+
+---
+
+## ADR-038 — El frontend se programa con React, Vite, TypeScript y Tailwind, con los estilos atados a tokens.json
+
+**Fecha:** 2026-10-26
+**Estado:** aceptada
+
+**Contexto:** la Fase IV de MODESEC empieza por *"seleccionar una
+herramienta o lenguaje de programación que sea acorde con las
+especificaciones del software desarrollado"*, teniendo en cuenta *"que
+la persona encargada de la codificación domine la herramienta"*. El
+backend ya está fijado por el curso (NestJS + MySQL); el frontend no:
+ni DSE-1 ni DSE-2 imponen tecnología. Nadie del equipo es programador
+profesional: se programa con asistencia de IA, y los integrantes del
+grupo B tienen que poder leer y explicar lo que se construye.
+
+**Decisión:**
+
+1. **React**, para construir las pantallas por componentes. Las 27
+   ventanas de la Fase II ya están pensadas así (botones, cards, modales
+   y marcos que se repiten).
+2. **TypeScript**, el mismo lenguaje del backend: un solo lenguaje para
+   leer el sistema completo, y los datos que viajan entre los dos se
+   describen una vez.
+3. **Vite**, para arrancar y empaquetar el proyecto.
+4. **Tailwind**, configurado **solo con los valores de
+   `docs/modesec/fase-2-diseno-multimedial/tokens.json`**: el código no
+   puede usar un color, una medida o un tamaño de letra que el sistema
+   de diseño no aprobó. Es en el código lo mismo que hace
+   `verificar_tokens.py` en las especificaciones.
+5. **Lucide** para los íconos (ya elegida en `30-indice-recursos.md`).
+
+**Por qué no las otras:** Next.js sirve para páginas que deben aparecer
+en buscadores o generarse en el servidor; esta aplicación está detrás
+de un inicio de sesión y ya tiene su backend. Angular se parece a
+NestJS, pero es más difícil de aprender y tiene menos ayuda disponible.
+Vue es una opción válida, con menos ejemplos que React y sin la
+experiencia previa del equipo (la V2 usaba React, Vite, Tailwind y
+Lucide). HTML y JavaScript a mano multiplicaría el trabajo en 27
+pantallas con piezas repetidas.
+
+**Consecuencia reconocida:** "dominar la herramienta", el criterio de
+MODESEC, se cumple de forma indirecta: se elige lo más usado y
+documentado, que la IA maneja bien, para que el equipo pueda leerlo,
+probarlo y explicarlo. Las versiones exactas se fijan al crear el
+proyecto (la estable vigente) y quedan en `frontend/package.json`.
+
+**Reemplaza a:** ninguna.

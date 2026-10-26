@@ -409,6 +409,21 @@ Planteado por Alejandro al decidir el repositorio nuevo. Se hace
    en vez de atributos de texto dentro del DBA. Va a la lista "Entrada
    a Fase III".
 
+### A15. Fase IV (Producción) — EMPEZADA 2026-10-26
+
+- **Selección de herramienta** hecha:
+  `docs/modesec/fase-4-produccion/01-seleccion-herramienta-desarrollo.md`.
+  Frontend: **React + Vite + TypeScript + Tailwind** (ADR-038), con los
+  estilos limitados a `tokens.json`. Backend y base de datos, fijados por
+  el curso (NestJS, MySQL).
+- **Siguiente:** codificación por incrementos, empezando por **I1
+  acceso**: alinear el backend con el MER (encargo 01, cuando se una) y
+  con la revisión del docente (R2, R5; R4 espera P2), y construir su
+  frontend (ventanas 014 a 019 y 026).
+- **Grupo B (DSE-2):** su actividad es programar y socializar los
+  módulos más importantes; coincide con esta fase. Guías de
+  socialización por módulo, en preparación.
+
 ### A14. Revisión del docente del 2026-10-22 — EN CURSO
 
 Notas sobre la columna vertebral (acceso y catálogo). Triaje en

@@ -24,7 +24,8 @@ redactado por IA.
 | Diseño multimedial (Fase II) | Completo — 27 ventanas en 24 especificaciones, mapa de navegación, guión técnico, índice de recursos |
 | Diseño computacional (Fase III) | Completo, en el orden de MODESEC: proceso de desarrollo (`10`), requerimientos (`11`), casos de uso, clases, objetos y secuencias (`12` a `15`), MER, MR y diccionario de datos (`16` a `18`), y como anexo el catálogo de endpoints (`20`). Índice y cómo se comprueba: `19-entrega-fase-3.md`. El borrador anterior al cierre de la Fase II se conserva como insumo |
 | Backend | Iniciado (NestJS + MySQL): solo el acceso (I1). Lo que falta, endpoint por endpoint y por incremento: `20-catalogo-endpoints.md` |
-| Frontend | Sin empezar; su diseño está completo en la Fase II |
+| Producción (Fase IV) | Empezada: herramientas elegidas (`docs/modesec/fase-4-produccion/`) |
+| Frontend | Sin empezar: React + Vite + TypeScript + Tailwind (ADR-038); su diseño está completo en la Fase II |
 | Datos del currículo del MEN | Disponibles, **pendientes de auditoría** |
 
 ## Cómo está organizado
@@ -38,6 +39,7 @@ docs/                        Toda la documentación
     fase-1-diseño-educativo/
     fase-2-diseno-multimedial/
     fase-3-diseno-computacional/
+    fase-4-produccion/
   cursos/
     dse-1-203447/            Diseño y Desarrollo de Software Educativo I
     dse-2-203453/            Diseño y Desarrollo de Software Educativo II

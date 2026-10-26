@@ -85,12 +85,12 @@ del verificador; no lo "arregles" debilitando la comprobación.
 
 ```
 docs/diseno/            decisiones, visión, glosario, pendientes, verificadores
-docs/modesec/           fase-1 (docx), fase-2 (ventanas), fase-3 (UML, MER, MR...)
+docs/modesec/           fase-1 (docx), fase-2 (ventanas), fase-3 (UML, MER, MR...), fase-4 (producción)
 docs/cursos/            entregables de los cursos DSE-1 y DSE-2
 docs/encargos/          encargos escritos para sesiones de Claude Code
 data/curriculo-men/     PDF oficiales de los DBA y su normalización
 backend/                NestJS + MySQL (hoy: solo el acceso, incremento I1)
-frontend/               vacío todavía
+frontend/               vacío todavía; se programa con React + Vite + TypeScript + Tailwind (ADR-038)
 ```
 
 ## Mensajes de commit
