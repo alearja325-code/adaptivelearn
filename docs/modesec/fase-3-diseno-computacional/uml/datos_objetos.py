@@ -26,9 +26,12 @@ OBJETOS = {
     # ------------------------------------------------ vista 1: la experiencia
     "ana": ("Docente", [("id_docente", "1"), ("nombres", '"Ana"'), ("apellidos", '"Pérez"')]),
     "c1": ("Credencial", [("correo", '"ana@colegio.edu.co"'), ("proveedor", "correo"),
-                          ("password_hash", '"$argon2id$…"'), ("email_verificado", "true")]),
-    "dba": ("DBA", [("codigo_dba", '"matemáticas_8_dba_1"'), ("area", '"Matemáticas"'),
-                    ("grado", '"8°"')]),
+                          ("password_hash", '"$argon2id$…"'), ("estado_verificacion", "verificado")]),
+    # catalogo (ADR-036): el area, el grado y el documento del DBA
+    "mat": ("Area", [("codigo_area", '"MAT"'), ("nombre", '"Matemáticas"')]),
+    "g8": ("Grado", [("numero", "8"), ("nombre", '"Octavo"'), ("nivel", "basica_secundaria")]),
+    "doc": ("DocumentoOficial", [("version", '"V.2"'), ("anio", "2016"), ("paginas", "88")]),
+    "dba": ("DBA", [("codigo_dba", '"MAT-08-01"')]),
     "ev1": ("Evidencia", [("numero_evidencia", "1")]),
     "ev2": ("Evidencia", [("numero_evidencia", "2")]),
     "d1": ("EvidenciaDictamen", [("aplica_formato_cerrado", "true"), ("formato", "single_choice")]),
@@ -53,7 +56,7 @@ OBJETOS = {
     "luis": ("Estudiante", [("id_estudiante", "7"), ("nombres", '"Luis"'), ("apellidos", '"Gómez"')]),
     "c2": ("Credencial", [("correo", '"luis@gmail.com"'), ("proveedor", "google"),
                           ("password_hash", "null"), ("proveedor_id", '"g-1847…"'),
-                          ("email_verificado", "true")]),
+                          ("estado_verificacion", "verificado")]),
     "ins": ("Inscripcion", [("id_inscripcion", "15"), ("fecha_union", "2026-11-04 08:57")]),
     "p1": ("Presentacion", [("orden_presentacion", "1"), ("fecha_presentacion", "2026-11-04 09:00")]),
     "p2": ("Presentacion", [("orden_presentacion", "2"), ("fecha_presentacion", "2026-11-04 09:01")]),
@@ -71,6 +74,8 @@ OBJETOS = {
 # (a, b, asociacion del diagrama de clases)
 ENLACES = [
     ("c1", "ana", "accede como"), ("ana", "exp3", "crea"), ("exp3", "dba", "se ancla a"),
+    ("dba", "mat", "pertenece a"), ("dba", "g8", "corresponde a"), ("dba", "doc", "se copia de"),
+    ("doc", "mat", "es de"),
     ("dba", "ev1", "comprende"), ("dba", "ev2", "comprende"),
     ("ev1", "d1", "se dictamina"), ("ev2", "d2", "se dictamina"),
     ("exp3", "ee1", "incluye"), ("exp3", "ee2", "incluye"),
@@ -106,5 +111,7 @@ NOTAS = {
             "Al volver verá it21 otra vez, no una nueva (ADR-031).",
     "n_luis": "Su estado general es Sin concluir: la evidencia 2 no tiene resultado. "
               "Se calcula al abrir el reporte, no se guarda (ADR-022).",
+    "n_dba": "El DBA MAT-08-01 es de Matemáticas, de 8° y se copió del documento de Matemáticas "
+             "V.2: el mismo que su área (RI-20). Su código se arma con esa área y ese grado (RI-21).",
     "n_c2": "Entró con Google: sin contraseña guardada y con el correo ya verificado (RI-15).",
 }

@@ -29,6 +29,18 @@ requerimientos (11) exigen. Cambios, cada uno con su fuente:
     de dibujarse como atributos; la llave parcial de EVIDENCIA va con
     subrayado punteado. Ver el comentario sobre las entidades.
 
+Cambios del 2026-10-26, por la revision del docente del 2026-10-22
+(`21-revision-docente-2026-10-22.md`, notas R1 y R3):
+
+  * AREA, GRADO y DOCUMENTO_OFICIAL (nuevas, ADR-036): el catalogo
+    curricular deja de guardar el area y el grado como texto suelto dentro
+    de cada DBA. DBA pierde `area` y `grado`; entran sus tres relaciones
+    (pertenece a, corresponde a, se copia de) y la del documento con su
+    area (es de). Forman el ciclo C6, que cierra RI-20.
+  * codigo_dba pasa al formato AREA-GG-NN, sin tildes (ADR-036, RI-21).
+  * CREDENCIAL: `email_verificado` (si/no) pasa a `estado_verificacion`,
+    con los valores procesando / verificado (ADR-037).
+
 Cada relacion declara en que VISTA vive. Regla dura, verificada por codigo
 en _verificar_vistas.py: cada relacion aparece en exactamente una vista;
 cada entidad, en al menos una.
@@ -62,7 +74,7 @@ cada entidad, en al menos una.
 # aqui -- el MER no dibuja mecanismos de seguridad.
 CREDENCIAL = ("CREDENCIAL", "propia", [
     ("id_credencial", "PK"), ("correo (U)", ""), ("proveedor", ""),
-    ("password_hash", ""), ("proveedor_id", ""), ("email_verificado", ""),
+    ("password_hash", ""), ("proveedor_id", ""), ("estado_verificacion", ""),
     ("codigo_verificacion", ""), ("codigo_expira_en", ""),
     ("codigo_ultimo_envio", ""), ("creado_en", ""),
 ])
@@ -82,9 +94,26 @@ EXPERIENCIA = ("EXPERIENCIA", "propia", [
     ("fecha_creacion", ""), ("fecha_publicacion", ""),
     ("codigo_invitacion (U)", ""), ("servicio_ia", ""), ("modelo_ia", ""),
 ])
+# Catalogo curricular normalizado (ADR-036). Las tres son dato de
+# referencia: las 4 areas de ADR-033, los grados 1 a 11 con su nivel de la
+# Ley 115 de 1994, y el PDF oficial de cada area con la version, el ano, las
+# paginas y la direccion que ADR-033 verifico contra los archivos del MEN.
+# La version se lee del documento, nunca del nombre del archivo (ADR-033):
+# Ciencias Sociales es V.1 aunque su archivo se llame "v2".
+AREA = ("AREA", "men", [
+    ("codigo_area", "PK"), ("nombre (U)", ""),
+])
+GRADO = ("GRADO", "men", [
+    ("numero", "PK"), ("nombre (U)", ""), ("nivel", ""),
+])
+DOCUMENTO_OFICIAL = ("DOCUMENTO_OFICIAL", "men", [
+    ("id_documento", "PK"), ("titulo", ""), ("version", ""), ("anio", ""),
+    ("paginas", ""), ("url_oficial", ""),
+])
+# area y grado ya no son atributos: son las relaciones «pertenece a» y
+# «corresponde a» (ADR-036). codigo_dba tiene el formato AREA-GG-NN (RI-21).
 DBA = ("DBA", "men", [
-    ("codigo_dba", "PK"), ("area", ""), ("grado", ""), ("enunciado", ""),
-    ("ejemplo", ""),
+    ("codigo_dba", "PK"), ("enunciado", ""), ("ejemplo", ""),
 ])
 EVIDENCIA = ("EVIDENCIA", "men", [
     ("numero_evidencia", "PD"), ("enunciado", ""),
@@ -134,7 +163,8 @@ REPORTE = ("REPORTE", "derivada", [
     ("estado_general", "C"), ("estado_por_evidencia", "C"),
 ])
 
-ENTIDADES = [CREDENCIAL, DOCENTE, ESTUDIANTE, EXPERIENCIA, DBA, EVIDENCIA,
+ENTIDADES = [CREDENCIAL, DOCENTE, ESTUDIANTE, EXPERIENCIA, AREA, GRADO,
+             DOCUMENTO_OFICIAL, DBA, EVIDENCIA,
              EVIDENCIA_DICTAMEN, EXPERIENCIA_EVIDENCIA, INSCRIPCION, ITEM,
              OPCION, PRESENTACION, RESPUESTA, RESPUESTA_OPCION, RESULTADO,
              REPORTE]
@@ -160,6 +190,26 @@ RELACIONES = [
     dict(id="accede_estudiante", nombre="accede como", a="CREDENCIAL", b="ESTUDIANTE",
          card_a="1", card_b="1", part_a="(0,1)", part_b="(1,1)",
          total_a=False, total_b=True,  ident=False, vista=1, xor="rol"),
+
+    # Catalogo normalizado (ADR-036). Del lado del DBA las tres son (1,1):
+    # todo DBA es de un area, de un grado y de un documento. Del otro lado,
+    # (1,N): el catalogo se carga completo (`10`, §2.3), y un area, un grado
+    # o un documento sin ningun DBA no tendria nada que ofrecer.
+    dict(id="pertenece_area", nombre="pertenece a", a="DBA", b="AREA",
+         card_a="N", card_b="1", part_a="(1,1)", part_b="(1,N)",
+         total_a=True,  total_b=True,  ident=False, vista=2),
+    dict(nombre="corresponde a", a="DBA",                   b="GRADO",
+         card_a="N", card_b="1", part_a="(1,1)", part_b="(1,N)",
+         total_a=True,  total_b=True,  ident=False, vista=2),
+    dict(nombre="se copia de",   a="DBA",                   b="DOCUMENTO_OFICIAL",
+         card_a="N", card_b="1", part_a="(1,1)", part_b="(1,N)",
+         total_a=True,  total_b=True,  ident=False, vista=2),
+    # Un documento por area en esta version (ADR-036); (1,N) del lado del
+    # area porque una version nueva del MEN entraria como otro documento
+    # (ADR-033, punto 4) sin borrar el anterior.
+    dict(nombre="es de",         a="DOCUMENTO_OFICIAL",     b="AREA",
+         card_a="N", card_b="1", part_a="(1,1)", part_b="(1,N)",
+         total_a=True,  total_b=True,  ident=False, vista=2),
 
     dict(nombre="comprende",     a="DBA",                   b="EVIDENCIA",
          card_a="1", card_b="N", part_a="(1,N)", part_b="(1,1)",
@@ -232,11 +282,11 @@ RELACIONES = [
 
 # ------------------------------------------------------------------ ciclos
 # El grafo del MER (entidades persistentes; «selecciona» cuenta como dos
-# aristas, porque pasa por RESPUESTA_OPCION) tiene 19 aristas y 15 nodos:
-# 19 - 15 + 1 = 5 ciclos independientes. Son estos, y cada uno dice si exige
+# aristas, porque pasa por RESPUESTA_OPCION) tiene 23 aristas y 18 nodos:
+# 23 - 18 + 1 = 6 ciclos independientes. Son estos, y cada uno dice si exige
 # una regla para cerrarse y quien la hace cumplir. Un ciclo sin regla es
 # exactamente lo que el docente señalo en H-4. _verificar_mer.py comprueba
-# que sean 5, que cada uno exista en el grafo y que sean independientes.
+# que sean 6, que cada uno exista en el grafo y que sean independientes.
 CICLOS = [
     dict(id="C1", que="La evidencia incluida es del DBA al que se ancla la experiencia",
          camino=["EXPERIENCIA", "EXPERIENCIA_EVIDENCIA", "EVIDENCIA", "DBA", "EXPERIENCIA"],
@@ -262,12 +312,18 @@ CICLOS = [
                  "CREDENCIAL"],
          regla=None, como="No exige regla: por RI-12 una credencial accede como un solo rol, "
                           "así que los dos extremos son siempre dos credenciales distintas."),
+    # Nuevo con ADR-036: el area del DBA y la de su documento oficial tienen
+    # que ser la misma. Se cierra con la tecnica de C1 a C4.
+    dict(id="C6", que="El documento oficial de un DBA es de su misma área",
+         camino=["DBA", "AREA", "DOCUMENTO_OFICIAL", "DBA"],
+         regla="RI-20", como="Estructura: llave foránea compuesta (id_documento, codigo_area) "
+                             "de dba hacia documento_oficial."),
 ]
 
 # ------------------------------------------------------------------ vistas
 VISTAS = {
     1: ("Acceso y cuentas", "Quién puede entrar, con qué credencial, y con cuál de los dos roles."),
-    2: ("Currículo oficial", "Qué nos entrega el MEN, y cuál es el único juicio nuestro sobre ese material."),
+    2: ("Currículo oficial", "Qué nos entrega el MEN —cada DBA con su área, su grado y el documento del que se copió—, y cuál es el único juicio nuestro sobre ese material."),
     3: ("Autoría de la experiencia", "Quién crea una experiencia, a qué DBA la ancla, y qué evidencias de ese DBA diagnostica."),
     4: ("Banco de diagnóstico", "El contenido que se genera, se edita o se agrega para cada evidencia incluida."),
     5: ("Inscripción y entrega", "Quién entró a la experiencia, y qué ítem se le mostró en qué orden."),

@@ -346,7 +346,8 @@ chk(not modificadas & set(CR.INMUTABLES), "Presentación, Respuesta, Respuesta_O
     "nunca se modifican: son hechos y fotografías (RNF-10, RNF-11)")
 borradas = {ent for d in CR.CRUD.values() for ent, op in d.items() if "D" in op}
 chk(borradas == set(CR.BORRABLES), f"solo se borra directamente {sorted(CR.BORRABLES)}")
-raices = {"DOCENTE", "ESTUDIANTE", "CREDENCIAL", "DBA", "EVIDENCIA", "EVIDENCIA_DICTAMEN"}
+raices = {"DOCENTE", "ESTUDIANTE", "CREDENCIAL", "AREA", "GRADO", "DOCUMENTO_OFICIAL", "DBA",
+          "EVIDENCIA", "EVIDENCIA_DICTAMEN"}
 casc_exp = {t.upper() for t in CR.en_cascada("experiencia", MR.FKS)}
 casc_ins = {t.upper() for t in CR.en_cascada("inscripcion", MR.FKS)}
 chk(casc_exp == {"EXPERIENCIA_EVIDENCIA", "ITEM", "OPCION", "INSCRIPCION", "PRESENTACION",

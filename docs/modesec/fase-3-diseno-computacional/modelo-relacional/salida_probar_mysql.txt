@@ -1,18 +1,18 @@
 ======================================================================
-Servidor: MySQL 8.4.11
+Servidor: MySQL 8.0.46-0ubuntu0.24.04.4
 sql_mode: ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 ======================================================================
 A. El motor acepta el esquema de producción
 ======================================================================
    OK   mr_mysql.sql se ejecuta completo sin errores
-   OK   15 tablas creadas (el MR declara 15)
-   OK   19 llaves foráneas (el MR declara 19)
-   OK   10 restricciones CHECK registradas (el MR declara 10)
+   OK   18 tablas creadas (el MR declara 18)
+   OK   23 llaves foráneas (el MR declara 23)
+   OK   14 restricciones CHECK registradas (el MR declara 14)
 
 ======================================================================
 B. La misma batería de pruebas que verificar_mr.py
 ======================================================================
-   OK   la semilla (23 filas válidas) entra sin errores
+   OK   la semilla (28 filas válidas) entra sin errores
    OK   [rechaza] correo repetido entre los dos roles (RI-3, RF-01-04)
             ↳ ERROR 1062 (23000) at line 4: Duplicate entry 'luis@gmail.com' for key 'credencial.uq_credencial_1'
    OK   [rechaza] correo repetido escrito con otras mayúsculas (RF-01-04)
@@ -25,8 +25,10 @@ B. La misma batería de pruebas que verificar_mr.py
             ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_credencial_2' is violated.
    OK   [rechaza] cuenta de Google con contraseña guardada (RI-15)
             ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_credencial_2' is violated.
-   OK   [rechaza] cuenta de Google con el correo sin verificar (RI-15)
+   OK   [rechaza] cuenta de Google con el correo todavía «procesando» (RI-15, ADR-037)
             ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_credencial_2' is violated.
+   OK   [rechaza] estado de verificación inventado (ADR-037)
+            ↳ ERROR 1265 (01000) at line 3: Data truncated for column 'estado_verificacion' at row 1
    OK   [rechaza] la misma cuenta de Google abriendo una segunda credencial (RF-01-04)
             ↳ ERROR 1062 (23000) at line 3: Duplicate entry 'google-g-111' for key 'credencial.uq_credencial_4'
    OK   [rechaza] proveedor fuera de alcance: Apple (RF-01-02)
@@ -36,6 +38,38 @@ B. La misma batería de pruebas que verificar_mr.py
    OK   [rechaza] borrar un docente que tiene credencial y experiencias (RESTRICT)
             ↳ ERROR 1451 (23000) at line 3: Cannot delete or update a parent row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`credencial`, CONS
    OK   [acepta]  credencial recién creada, sin rol elegido todavía (ventanas 014-017)
+   OK   [acepta]  credencial de correo sin estado dicho: nace «procesando» (ADR-037)
+   OK   [rechaza] un DBA sin área (ADR-036)
+            ↳ ERROR 1048 (23000) at line 3: Column 'codigo_area' cannot be null
+   OK   [rechaza] un DBA de un área que no existe (ADR-036)
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`dba`, CONSTRAINT `fk_
+   OK   [rechaza] un DBA de Matemáticas copiado del documento de Lenguaje (RI-20, ciclo C6)
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`dba`, CONSTRAINT `fk_
+   OK   [rechaza] un DBA de un grado fuera del catálogo: Transición, grado 0 (ADR-033)
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`dba`, CONSTRAINT `fk_
+   OK   [rechaza] código de DBA en el formato viejo, sin ceros (RI-21)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_dba_1' is violated.
+   OK   [rechaza] código de DBA con un área distinta de la de su fila (RI-21)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_dba_1' is violated.
+   OK   [rechaza] código de DBA con un grado distinto del de su fila (RI-21)
+            ↳ ERROR 3819 (HY000) at line 4: Check constraint 'ck_dba_1' is violated.
+   OK   [rechaza] código de DBA en minúsculas (RI-21)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_dba_1' is violated.
+   OK   [rechaza] código de DBA con número 00 (RI-21)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_dba_1' is violated.
+   OK   [rechaza] código de área con tilde (ADR-036)
+            ↳ ERROR 1366 (HY000) at line 3: Incorrect string value: '\xC3\x91' for column 'codigo_area' at row 1
+   OK   [rechaza] código de área en minúsculas (ADR-036)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_area_1' is violated.
+   OK   [rechaza] grado con un nivel que no es el de la Ley 115 (ADR-036)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_grado_1' is violated.
+   OK   [rechaza] grado 12, fuera de la educación básica y media
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_grado_1' is violated.
+   OK   [rechaza] la misma versión del documento de un área, cargada dos veces (ADR-033)
+            ↳ ERROR 1062 (23000) at line 3: Duplicate entry 'MAT-V.2' for key 'documento_oficial.uq_documento_oficial_1'
+   OK   [rechaza] borrar un área que tiene DBA y documento (RESTRICT)
+            ↳ ERROR 1451 (23000) at line 3: Cannot delete or update a parent row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`dba`, CONSTRAINT 
+   OK   [acepta]  un DBA de 11° de Ciencias Sociales, con su documento V.1 (ADR-033)
    OK   [rechaza] código de invitación repetido (RI-3)
             ↳ ERROR 1062 (23000) at line 3: Duplicate entry 'ABC234' for key 'experiencia.uq_experiencia_1'
    OK   [rechaza] código de invitación repetido en minúsculas (RI-3)
@@ -106,5 +140,5 @@ B. La misma batería de pruebas que verificar_mr.py
 
 (base de prueba `adaptivelearn_verificacion_mr` borrada)
 ======================================================================
-RESULTADO: 54 comprobaciones contra MySQL 8.4.11, todas correctas.
+RESULTADO: 72 comprobaciones contra MySQL 8.0.46-0ubuntu0.24.04.4, todas correctas.
 ======================================================================

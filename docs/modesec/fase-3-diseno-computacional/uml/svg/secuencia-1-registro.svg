@@ -71,7 +71,7 @@
 <polyline points="915.1,752.0 1274.6,752.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
 <text x="1094.8" y="745.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">10: verificarCodigo(codigo, ahora)</text>
 <polyline points="1274.6,784.0 915.1,784.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="1094.8" y="777.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">true: email_verificado = true</text>
+<text x="1094.8" y="777.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">true: estado_verificacion = verificado</text>
 <polyline points="471.0,816.0 145.0,816.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
 <text x="308.0" y="809.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Completa tu perfil» (ventana 016)</text>
 <polyline points="145.0,848.0 471.0,848.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>

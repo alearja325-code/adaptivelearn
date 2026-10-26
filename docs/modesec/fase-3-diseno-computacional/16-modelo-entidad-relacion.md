@@ -5,6 +5,11 @@
 `mer/generar_documento.py` desde `mer/datos_mer.py`, la misma fuente de los diagramas; no se
 edita a mano.
 
+**Actualizado el 2026-10-26** por la revisión del docente del 2026-10-22
+(`21-revision-docente-2026-10-22.md`): catálogo curricular normalizado —ÁREA, GRADO y
+DOCUMENTO_OFICIAL, código del DBA sin tildes— (ADR-036) y estado de verificación del correo
+(ADR-037). Ver la sección 10 y la tabla de cambios (13).
+
 MODESEC: *«En esta etapa se recomienda la utilización de bases de datos relacionales […] Si
 la opción es la primera, se deberá crear un MER (Modelo Entidad Relación), un MR (Modelo
 relacional) basado en el MER y un diccionario de datos para los metadatos»*. Este documento
@@ -28,7 +33,7 @@ exigen. Para leerlo:
 
 | Entidades | Relaciones | Atributos | Ciclos | Restricciones de integridad | Vacíos abiertos |
 |---|---|---|---|---|---|
-| **15** (+ Reporte, derivado) | **18** (+ 2 derivadas) | **62** | **5**, todos cerrados | **19** | **2** (V-6, V-9) + 1 nuevo (V-12) |
+| **18** (+ Reporte, derivado) | **22** (+ 2 derivadas) | **71** | **6**, todos cerrados | **21** | **2** (V-6, V-9) + 1 nuevo (V-12) |
 
 ## 2. Notación
 
@@ -85,7 +90,7 @@ Quién puede entrar, con qué credencial, y con cuál de los dos roles.
 
 ### Vista 2 · Currículo oficial
 
-Qué nos entrega el MEN, y cuál es el único juicio nuestro sobre ese material.
+Qué nos entrega el MEN —cada DBA con su área, su grado y el documento del que se copió—, y cuál es el único juicio nuestro sobre ese material.
 
 ![Vista 2: Currículo oficial](mer/vista2.svg)
 
@@ -123,11 +128,11 @@ En qué se traduce todo lo anterior, por estudiante y por evidencia.
 
 ### CREDENCIAL
 
-**Tipo:** Propia. **Atributos:** `id_credencial` (PK), `correo` (U), `proveedor`, `password_hash`, `proveedor_id`, `email_verificado`, `codigo_verificacion`, `codigo_expira_en`, `codigo_ultimo_envio`, `creado_en`.
+**Tipo:** Propia. **Atributos:** `id_credencial` (PK), `correo` (U), `proveedor`, `password_hash`, `proveedor_id`, `estado_verificacion`, `codigo_verificacion`, `codigo_expira_en`, `codigo_ultimo_envio`, `creado_en`.
 
-**Nueva en esta versión (cierra V-8).** La cuenta de acceso: con qué correo y qué método se entra, la verificación del correo y a qué rol da acceso. Existe desde «Crear cuenta», *antes* de que exista el docente o el estudiante: hace falta para guardar el código de verificación (RF-01-03), y el docente o el estudiante se crea recién al elegir el rol (RF-01-05, RF-01-06). El correo vive aquí y no en Docente/Estudiante: es el correo de la cuenta, y así su unicidad vale **entre los dos roles** (RF-01-04), cosa que dos UNIQUE separados no garantizan. Accede como docente **o** como estudiante, nunca como los dos ({xor}, RI-12). Es la tabla que el incremento I1 ya construyó (`backend/sql/001_esquema_auth.sql`).
+**Nueva en esta versión (cierra V-8).** La cuenta de acceso: con qué correo y qué método se entra, la verificación del correo y a qué rol da acceso. Existe desde «Crear cuenta», *antes* de que exista el docente o el estudiante: hace falta para guardar el código de verificación (RF-01-03), y el docente o el estudiante se crea recién al elegir el rol (RF-01-05, RF-01-06). El correo vive aquí y no en Docente/Estudiante: es el correo de la cuenta, y así su unicidad vale **entre los dos roles** (RF-01-04), cosa que dos UNIQUE separados no garantizan. Accede como docente **o** como estudiante, nunca como los dos ({xor}, RI-12). Es la tabla que el incremento I1 ya construyó (`backend/sql/001_esquema_auth.sql`). **Cambia el 2026-10-26 (ADR-037):** el sí/no `email_verificado` pasa a **`estado_verificacion`**, con dos valores: `procesando` (se envió el código y no se ha confirmado) y `verificado`. Una credencial de Google o Microsoft nace `verificado` (RI-15). `codigo_expira_en` y `codigo_ultimo_envio` siguen: quitarlos (nota R4 del docente) espera su respuesta a la pregunta P2 (`21-revision-docente-2026-10-22.md`).
 
-*Fuente: Ventanas 014 a 019 · RF-01-01 a RF-01-09 · backend I1.*
+*Fuente: Ventanas 014 a 019 · RF-01-01 a RF-01-09 · backend I1 · ADR-037.*
 
 ### DOCENTE
 
@@ -153,13 +158,37 @@ Un diagnóstico anclado a un único DBA, creado por un docente. Se guarda solo s
 
 *Fuente: 07-spec-crear-experiencia-paso3 · 15-spec-modal-confirmar-publicar · 08-spec-unirse-codigo · ADR-026, ADR-027, ADR-030 · RF-03-02, RF-03-03.*
 
+### AREA
+
+**Tipo:** Externa (MEN). **Atributos:** `codigo_area` (PK), `nombre` (U).
+
+**Nueva (ADR-036).** Área del currículo con DBA en esta versión: Matemáticas (`MAT`), Lenguaje (`LEN`), Ciencias Naturales (`CN`) y Ciencias Sociales (`CS`), las cuatro de ADR-033. Antes era un texto suelto dentro de cada DBA, que nada impedía escribir mal. `codigo_area` no lleva tildes y encabeza el código de cada DBA (RI-21). Dato de referencia, de solo lectura.
+
+*Fuente: ADR-036 · ADR-033 · revisión del docente del 2026-10-22, R1.*
+
+### GRADO
+
+**Tipo:** Externa (MEN). **Atributos:** `numero` (PK), `nombre` (U), `nivel`.
+
+**Nueva (ADR-036).** Grado escolar, de 1° a 11°, con su `nombre` (Primero a Undécimo) y su `nivel` de la educación formal: básica primaria (1° a 5°), básica secundaria (6° a 9°) o media (10° y 11°), según la Ley 115 de 1994. Sin Transición (ADR-033). En el modelo relacional, un CHECK ata el nivel al número.
+
+*Fuente: ADR-036 · ADR-033 · Ley 115 de 1994 · revisión del docente del 2026-10-22, R1.*
+
+### DOCUMENTO_OFICIAL
+
+**Tipo:** Externa (MEN). **Atributos:** `id_documento` (PK), `titulo`, `version`, `anio`, `paginas`, `url_oficial`.
+
+**Nueva (ADR-036).** El PDF del MEN del que se copiaron los DBA de un área: título, versión, año, páginas y dirección oficial. Uno por área en esta versión, con los datos que ADR-033 verificó contra los archivos oficiales: Matemáticas V.2 (88 páginas), Lenguaje V.2 (56), Ciencias Naturales V.1 (44) y Ciencias Sociales **V.1** (52), los cuatro de 2016. **La versión se lee del documento, nunca del nombre del archivo:** el de Ciencias Sociales se llama «v2» y su portada dice V.1 (ADR-033). Deja trazable que nada del catálogo se inventó. El documento de un DBA es de su misma área (RI-20, ciclo C6).
+
+*Fuente: ADR-036 · ADR-033.*
+
 ### DBA
 
-**Tipo:** Externa (MEN). **Atributos:** `codigo_dba` (PK), `area`, `grado`, `enunciado`, `ejemplo`.
+**Tipo:** Externa (MEN). **Atributos:** `codigo_dba` (PK), `enunciado`, `ejemplo`.
 
-Derecho Básico de Aprendizaje oficial del MEN: dato externo, referenciado, de solo lectura (SUB-06). `codigo_dba` es la llave natural del MEN, verificada contra `curriculo_men_normalizado.json` (`{área}_{grado}_dba_{número}`). `ejemplo` se usa como contexto al generar el banco (ADR-011) y todavía falta en la normalización (QA-011).
+Derecho Básico de Aprendizaje oficial del MEN: dato externo, referenciado, de solo lectura (SUB-06). **Cambia el 2026-10-26 (ADR-036):** salen `area` y `grado` como texto; ahora *pertenece a* un ÁREA, *corresponde a* un GRADO y *se copia de* un DOCUMENTO_OFICIAL. **`codigo_dba` tiene el formato `ÁREA-GG-NN`**, con ceros a la izquierda y sin tildes (`MAT-01-01`, `CS-11-05`, RI-21): se arma con el código del área, el grado y el `numero` de cada registro de `curriculo_men_normalizado.json`. Equivale al identificador viejo así: `matemáticas_1_dba_1` → `MAT-01-01`, `ciencias_naturales_2_dba_3` → `CN-02-03`. **El formato sale del JSON, pero sus datos tienen un defecto conocido:** hay 342 DBA y solo 329 identificadores distintos, porque la normalización de la V2 asignó al grado anterior el primer DBA de algunas páginas (hay dos `matemáticas_2_dba_1`; el segundo es el DBA 1 de 3°). Con el código nuevo chocan los mismos 13. `codigo_dba` **sigue siendo llave única**: el defecto se corrige en la auditoría del currículo (pendientes, A12), no relajando el modelo. `ejemplo` se usa como contexto al generar el banco (ADR-011) y todavía falta en la normalización (QA-011).
 
-*Fuente: Glosario «DBA» · ADR-005, ADR-011 · RF-06-01.*
+*Fuente: Glosario «DBA» · ADR-005, ADR-011, ADR-036 · RF-06-01.*
 
 ### EVIDENCIA
 
@@ -255,6 +284,10 @@ No persiste: se calcula sobre Resultado, por experiencia, cada vez que se abre. 
 |---|---|---|---|---|---|---|---|---|
 | CREDENCIAL | accede como {xor} | DOCENTE | 1:1 | (0,1) | (1,1) | — | 1 | RF-01-06 · 20-spec-auth-elige-rol · RI-12 |
 | CREDENCIAL | accede como {xor} | ESTUDIANTE | 1:1 | (0,1) | (1,1) | — | 1 | RF-01-06 · RI-12 |
+| DBA | pertenece a | AREA | N:1 | (1,1) | (1,N) | — | 2 | ADR-036 |
+| DBA | corresponde a | GRADO | N:1 | (1,1) | (1,N) | — | 2 | ADR-036 |
+| DBA | se copia de | DOCUMENTO_OFICIAL | N:1 | (1,1) | (1,N) | — | 2 | ADR-036 · ADR-033 |
+| DOCUMENTO_OFICIAL | es de | AREA | N:1 | (1,1) | (1,N) | — | 2 | ADR-036 · RI-20 |
 | DBA | comprende | EVIDENCIA | 1:N | (1,N) | (1,1) | sí | 2 | modelo conceptual (rango no confiable: QA-013) |
 | EVIDENCIA | se dictamina | EVIDENCIA_DICTAMEN | 1:1 | (0,1) | (1,1) | sí | 2 | H-6 |
 | DOCENTE | crea | EXPERIENCIA | 1:N | (0,N) | (1,1) | — | 3 | glosario «Experiencia» |
@@ -280,6 +313,8 @@ cero o más experiencias, y que cada experiencia la crea exactamente un docente.
 relacional; `_verificar_mer.py` comprueba que las dos cosas coincidan. Tres mínimos merecen
 nota: **(12,N)** en *genera*, porque la IA genera 12 ítems por evidencia y ninguno se borra
 (descartar solo excluye); **(2,N)** en *ofrece*, que en emparejamiento sube a 4 (RI-4); y
+**(1,N)** de ÁREA, GRADO y DOCUMENTO_OFICIAL en las relaciones del catálogo, porque el
+catálogo se carga completo y uno de ellos sin ningún DBA no tendría nada que ofrecer; y
 **(0,1)** de CREDENCIAL en las dos *accede como*, porque mientras el registro está en curso la
 credencial todavía no tiene rol. Las dos *accede como* llevan **{xor}**: una credencial da
 acceso a un solo rol (RI-12).
@@ -292,9 +327,9 @@ ejemplo—, el diagrama no lo puede decir y hace falta una regla que lo cierre. 
 argumento del hallazgo H-4: *«un ciclo que hay que restringir con una regla externa suele
 indicar que falta una entidad»*. Por eso aquí no se deja ninguno sin revisar:
 
-El grafo de las 15 entidades persistentes tiene 19 aristas —*selecciona*
+El grafo de las 18 entidades persistentes tiene 23 aristas —*selecciona*
 cuenta dos, porque pasa por Respuesta_Opción—, así que tiene exactamente
-**19 − 15 + 1 = 5 ciclos independientes**: cualquier otro ciclo
+**23 − 18 + 1 = 6 ciclos independientes**: cualquier otro ciclo
 es combinación de estos. `mer/_verificar_mer.py` comprueba que sean esos, que cada uno
 exista en el grafo y que ninguno sea combinación de los otros.
 
@@ -305,9 +340,11 @@ exista en el grafo y que ninguno sea combinación de los otros.
 | **C3** | INSCRIPCION → RESULTADO → EXPERIENCIA_EVIDENCIA → EXPERIENCIA → INSCRIPCION | El resultado es de una evidencia de la experiencia de la inscripción | RI-13 | Estructura: id_experiencia en resultado, dentro de las dos llaves foráneas compuestas. |
 | **C4** | RESPUESTA → PRESENTACION → ITEM → OPCION → RESPUESTA_OPCION → RESPUESTA | La opción elegida es del ítem que se presentó | RI-6 | Estructura: id_item en respuesta_opcion, dentro de las dos llaves foráneas compuestas. |
 | **C5** | CREDENCIAL → DOCENTE → EXPERIENCIA → INSCRIPCION → ESTUDIANTE → CREDENCIAL | Nada: el docente que crea y el estudiante que se inscribe son cuentas distintas | — | No exige regla: por RI-12 una credencial accede como un solo rol, así que los dos extremos son siempre dos credenciales distintas. |
+| **C6** | DBA → AREA → DOCUMENTO_OFICIAL → DBA | El documento oficial de un DBA es de su misma área | RI-20 | Estructura: llave foránea compuesta (id_documento, codigo_area) de dba hacia documento_oficial. |
 
-Los cuatro ciclos que exigen regla se cierran **por estructura**: el motor rechaza el dato
-que los rompería, sin triggers. Dos de ellos —C1 y C4— estaban abiertos hasta esta versión,
+Los cinco ciclos que exigen regla se cierran **por estructura**: el motor rechaza el dato
+que los rompería, sin triggers. C6 nace el 2026-10-26 con el catálogo normalizado (ADR-036)
+y se cierra con la misma técnica. Dos de ellos —C1 y C4— estaban abiertos hasta esta versión,
 y el motor aceptaba incluir en una experiencia una evidencia de otro DBA, o elegir como
 respuesta una opción de otro ítem; las pruebas de `modelo-relacional/pruebas_mr.py` intentan
 los dos casos y ahora el motor los rechaza.
@@ -325,6 +362,9 @@ relacional. Fuente: `uml/datos_crud.py`; la comprueba `uml/_verificar_uml.py`, b
 | DOCENTE | CU-05 | CU-02, CU-06, CU-09, CU-21 | CU-09 | — |
 | ESTUDIANTE | CU-05 | CU-02, CU-06, CU-09, CU-28 | CU-09 | — |
 | EXPERIENCIA | CU-11 | CU-10, CU-12, CU-13, CU-14, CU-15, CU-17, CU-21, CU-22 | CU-13 | CU-15 |
+| AREA | — *catálogo (ADR-036): lo carga el equipo con los datos del MEN, fuera del sistema* | CU-10, CU-12, CU-31 | — | — |
+| GRADO | — *catálogo (ADR-036): lo carga el equipo, fuera del sistema* | CU-10, CU-12, CU-31 | — | — |
+| DOCUMENTO_OFICIAL | — *catálogo (ADR-036): lo carga el equipo con los datos que verificó ADR-033* | CU-31 | — | — |
 | DBA | — *dato del MEN: lo carga el equipo, fuera del sistema (`10`, §2.3)* | CU-10, CU-11, CU-12, CU-16, CU-31 | — | — |
 | EVIDENCIA | — *dato del MEN: lo carga el equipo, fuera del sistema* | CU-11, CU-12, CU-16, CU-31 | — | — |
 | EVIDENCIA_DICTAMEN | — *juicio del equipo: lo carga con el censo QA-014, fuera del sistema* | CU-11, CU-16, CU-20, CU-31 | — | — |
@@ -361,8 +401,10 @@ esquema real** sin violar ninguna restricción.
    como* docente. Luis entra con Google (CU-02): su credencial nace con el correo ya verificado y
    sin contraseña (RI-15), y *accede como* ESTUDIANTE. Ninguna credencial accede como las dos
    cosas ({xor}, RI-12).
-2. **Vista 2 · Currículo.** El catálogo ya está cargado: el DBA *comprende* sus EVIDENCIAS, y cada
-   una tiene su DICTAMEN, que dice si admite formato cerrado y cuál (RI-19).
+2. **Vista 2 · Currículo.** El catálogo ya está cargado: el DBA `MAT-08-01` *pertenece a* el ÁREA
+   `MAT`, *corresponde a* el GRADO 8 y *se copia de* el DOCUMENTO_OFICIAL de Matemáticas V.2, que
+   *es de* esa misma área (RI-20, ciclo C6). El DBA *comprende* sus EVIDENCIAS, y cada una tiene su
+   DICTAMEN, que dice si admite formato cerrado y cuál (RI-19).
 3. **Vista 3 · Autoría.** Ana crea una experiencia (CU-11): la EXPERIENCIA *se ancla a* ese DBA e
    *incluye* una EXPERIENCIA_EVIDENCIA *sobre* cada evidencia admitida — todas de ese mismo DBA
    (RI-18, ciclo C1). Guarda con qué servicio y modelo se generó su banco (RI-17).
@@ -389,7 +431,7 @@ Los dos describen el mismo mundo, y `uml/_verificar_uml.py` comprueba que no se 
 | En el MER | En el diagrama de clases (`13`) | Por qué así |
 |---|---|---|
 | Cada entidad persistente | Una clase con el mismo nombre, y los mismos atributos menos las llaves foráneas | En objetos, una llave foránea es una asociación, no un atributo. Verificado columna por columna |
-| Cada una de las 20 relaciones | Una asociación con el mismo nombre y las mismas entidades | Verificado una por una |
+| Cada una de las 24 relaciones | Una asociación con el mismo nombre y las mismas entidades | Verificado una por una |
 | RESPUESTA_OPCION, entidad asociativa | RespuestaOpcion, **clase asociación** de *selecciona* | Es la misma idea en las dos notaciones |
 | REPORTE, derivado | Reporte «calculada» | No persiste en ninguno de los dos |
 | `progreso` de INSCRIPCION, calculado | El método `Inscripcion.progreso()` | Lo que se calcula es comportamiento |
@@ -409,7 +451,7 @@ aceptado. Esta es la cuenta de dónde quedó cada uno **en el modelo final**:
 | **H-1** | La configuración del diagnóstico (orden de las evidencias, ítems a presentar, tope de adicionales) no tiene dónde vivir | **Atendido; la parte que sigue vigente es H-4.** Los tres datos que pedía dejaron de ser una decisión del docente: ADR-016 fija el mínimo de 4 y el tope de 6, y ADR-024 fija el orden oficial del DBA. Por eso Experiencia_Evidencia no los lleva. También sale `Item.orden_sugerido`: los ítems se eligen al azar entre los activos que el estudiante no ha visto (RF-04-04). |
 | **H-2** | La secuencia adaptativa no se puede reconstruir; RI-11 no es verificable | **Resuelto.** PRESENTACIÓN registra qué ítem se mostró, en qué orden y cuándo; Respuesta tiene `fecha_respuesta`. Con la regla de parada definida (H-7), RI-11 se verifica de verdad. |
 | **H-3** | «Se le presentó y no respondió» no es representable | **Resuelto.** *registra* es (0,1) del lado de la presentación: una presentación sin respuesta es exactamente ese caso, y es la pregunta que se repite al retomar (ADR-031). |
-| **H-4** | Falta el vínculo Experiencia–Evidencia; RI-1 y RI-2 tapan el hueco | **Resuelto, y su criterio se aplicó a todo el modelo.** EXPERIENCIA_EVIDENCIA; Ítem y Resultado cuelgan de ella. Además, el modelo tiene exactamente 5 ciclos y cada uno está declarado con lo que lo cierra (sección 6). Aplicar ese criterio encontró dos ciclos abiertos (C1 y C4), que el motor dejaba romper; ahora los cierra la estructura. |
+| **H-4** | Falta el vínculo Experiencia–Evidencia; RI-1 y RI-2 tapan el hueco | **Resuelto, y su criterio se aplicó a todo el modelo.** EXPERIENCIA_EVIDENCIA; Ítem y Resultado cuelgan de ella. Además, el modelo tiene exactamente 6 ciclos y cada uno está declarado con lo que lo cierra (sección 6). Aplicar ese criterio encontró dos ciclos abiertos (C1 y C4), que el motor dejaba romper; ahora los cierra la estructura. |
 | **H-5** | Falta `estado_revision` del ítem, y no publicar con ítems sin revisar | **En parte, con una decisión que el equipo debe confirmar.** Lo que sí: `origen` distingue lo generado por IA de lo editado o creado por el docente (tres valores), y la experiencia guarda con qué servicio y modelo se generó su banco. Lo que no: la regla de publicar solo con todo revisado ya la había rechazado el triaje (`12-spec-modal-banco-items`: revisar el banco no es prerrequisito para publicar). Y `estado_revision`, que el triaje sí había aceptado pendiente de vocabulario (V-7), **sale**: después del triaje llegó ADR-026 (el banco pasa a ser del docente, no algo que solo revisa), y ningún requerimiento ni ventana lo escribe o lo lee. Lo que hoy habilita a publicar es RI-14: al menos 6 ítems activos por evidencia. |
 | **H-6** | `aplica_formato_cerrado` cuelga de una entidad «dato del MEN» | **Resuelto.** EVIDENCIA_DICTAMEN, separada de Evidencia — y ahora guarda también qué formato admite la evidencia (RI-19). |
 | **H-7** | La regla de parada no está definida | **Resuelto.** RF-04-07 la define (señal fuerte = certeza 3 a 5; mayoría desde la 4.ª respuesta; tope 6) y cierra V-5. Está implementada y probada en `uml/regla.py`. |
@@ -425,13 +467,27 @@ nuestro `fecha_calculo`; su regla de orden de presentación único por inscripci
 RI-8; su tope de presentaciones es RI-9, con el 6 fijo de ADR-016; su vacío de autenticación (su
 V-1) es la entidad CREDENCIAL; y su notación (mín, máx) es la que llevan ahora las relaciones.
 Lo que este modelo agrega sobre la v3 es la credencial, con sus dos relaciones excluyentes, los
-ciclos declarados y las restricciones RI-12 a RI-19.
+ciclos declarados y las restricciones RI-12 a RI-21.
+
+### Revisión del docente del 2026-10-22
+
+El docente revisó el acceso y el catálogo curricular. Sus notas y su triaje están en
+`21-revision-docente-2026-10-22.md`. En este modelo:
+
+| # | Nota | Dónde quedó |
+|---|---|---|
+| **R1** | «Tabla para grados y área, y codificar» | **Aplicada (ADR-036).** Entidades ÁREA y GRADO, y además DOCUMENTO_OFICIAL (recomendación del equipo). El DBA pierde `area` y `grado` como texto y su código pasa a `ÁREA-GG-NN`, sin tildes (RI-21). El ciclo nuevo, C6, se cierra con RI-20. |
+| **R2** | `id_usuario` → `id_estudiante` e `id_docente` | **No es de este modelo:** el MER no tiene «usuario». Se aplica al backend en la Fase IV. |
+| **R3** | `email` → `estado_verificado` / `estado_procesando` | **Aplicada (ADR-037).** CREDENCIAL guarda `estado_verificacion` (`procesando` o `verificado`) en vez del sí/no; RI-15 se reescribe con el estado. |
+| **R4** | Quitar `codigo_expira_en` y `codigo_ultimo_envio` | **Pendiente** de la respuesta del docente a la pregunta P2: sin esos datos, el vencimiento del código y la espera de 30 s para reenviarlo (RF-01-03) necesitan otro lugar. Siguen en CREDENCIAL. |
+| **R5** | Correo del sistema `adaptivelearn@` | **No es de este modelo:** es configuración del backend (Fase IV). |
 
 
 ## 11. Restricciones de integridad
 
 Reglas que el diagrama no puede expresar por sí solo. Las once del borrador se conservan con
-su número —cambia el texto de las que el cierre de la Fase II tocó— y entran ocho nuevas. Cómo
+su número —cambia el texto de las que el cierre de la Fase II tocó— y entran diez nuevas, dos de
+ellas (RI-20 y RI-21) con el catálogo normalizado del 2026-10-26. Cómo
 hace cumplir cada una el modelo relacional (una restricción del motor o el servicio) está en
 `17-modelo-relacional.md`, sección 7.
 
@@ -451,11 +507,13 @@ hace cumplir cada una el modelo relacional (una restricción del motor o el serv
 | **RI-12** | Una credencial da acceso a lo sumo a un rol ({xor}); cada docente y cada estudiante tiene exactamente una credencial. | **Nueva** (RF-01-06) |
 | **RI-13** | La experiencia de una Presentación y de un Resultado es la de su Inscripción, y el ítem presentado es de esa experiencia. | **Nueva**: cierra los ciclos C2 y C3 |
 | **RI-14** | Solo se publica una experiencia con al menos 6 ítems activos por evidencia incluida. | **Nueva** (RF-02-05) |
-| **RI-15** | Una credencial de correo tiene contraseña y no identificador externo; una de Google o Microsoft tiene identificador externo, no tiene contraseña y su correo está verificado. | **Nueva** (RF-01-01, RF-01-02) |
+| **RI-15** | Una credencial de correo tiene contraseña y no identificador externo; una de Google o Microsoft tiene identificador externo, no tiene contraseña y su `estado_verificacion` es `verificado`. | **Nueva** (RF-01-01, RF-01-02); el 2026-10-26 se escribe con el estado en vez del sí/no (ADR-037) |
 | **RI-16** | `fecha_publicacion` es nula si y solo si la experiencia está en Borrador. | **Nueva** (RF-02-05) |
 | **RI-17** | Un banco sale entero de un solo servicio y modelo de IA, y se guardan en la Experiencia. El de un ítem generado o editado es el de su experiencia; uno creado por el docente no se atribuye a la IA. | **Nueva**, rehecha en esta versión: antes iba en cada ítem y permitía que un banco mezclara servicios (RF-03-02, RF-03-03) |
 | **RI-18** | Las evidencias que incluye una experiencia son del DBA al que se ancla. | **Nueva**: cierra el ciclo C1; el motor aceptaba incluir una evidencia de otro DBA |
 | **RI-19** | Un dictamen que admite formato cerrado dice cuál, uno que no lo admite no tiene formato, y todo ítem de una evidencia tiene el formato de su dictamen (RF-03-01, RF-03-07). | **Nueva** |
+| **RI-20** | El documento oficial del que se copió un DBA es de la misma área que el DBA. | **Nueva** (2026-10-26, ADR-036): cierra el ciclo C6 |
+| **RI-21** | El código del DBA es `ÁREA-GG-NN`: el código de su área, su grado con dos cifras y su número con dos cifras desde 01, sin tildes. Los códigos de área son 2 o 3 letras mayúsculas sin tildes. | **Nueva** (2026-10-26, ADR-036) |
 
 
 ## 12. Vacíos: dónde quedó cada uno
@@ -498,6 +556,8 @@ la condición que impide usar esta versión con estudiantes reales).
 | 11 | Ocho restricciones nuevas (RI-12 a RI-19); RI-3, RI-5 y RI-8 reformuladas; RI-6, RI-10 y RI-11 reforzadas. | Sección 11 |
 | 12 | V-5, V-7, V-8 y V-11 cerrados; V-12, nuevo. | Sección 12 |
 | 13 | **Reporte** pasa al centro del mapa, entre las cuatro entidades de las que depende. | Legibilidad |
+| 14 | *(2026-10-26)* Entran **ÁREA, GRADO y DOCUMENTO_OFICIAL**; el DBA pierde `area` y `grado` como texto y gana *pertenece a*, *corresponde a* y *se copia de*; el documento *es de* un área. Código del DBA `ÁREA-GG-NN`, sin tildes (RI-21). Ciclo nuevo C6, cerrado por RI-20. Las tres van a la Vista 2. | ADR-036 · revisión del docente del 2026-10-22 (R1) |
+| 15 | *(2026-10-26)* **Credencial:** `email_verificado` (sí/no) pasa a `estado_verificacion` (`procesando` / `verificado`); RI-15 se reescribe con el estado. | ADR-037 · revisión del docente del 2026-10-22 (R3) |
 
 
 ## 14. Verificación
@@ -514,6 +574,6 @@ cd mer && python construir_vistas.py && python mapa_cajas.py && python _verifica
 | `mer/_verificar_vistas.py` | Que cada relación esté en exactamente una vista y cada entidad en al menos una. |
 | `mer/_verificar_mapa.py`, `mer/mapa_cajas.py` | La geometría de las nueve láminas, por coordenadas: ninguna línea atraviesa una caja ni tacha un rótulo. |
 | `modelo-relacional/_verificar_mr_mer.py` | Que cada FK del modelo relacional salga de una relación de este MER, y que cada relación tenga su FK. |
-| `modelo-relacional/verificar_mr.py` y `probar_mysql.py` | Que el esquema rechace lo que estas reglas prohíben —incluidos los ciclos C1 y C4—, en SQLite y en MySQL 8.4. |
+| `modelo-relacional/verificar_mr.py` y `probar_mysql.py` | Que el esquema rechace lo que estas reglas prohíben —incluidos los ciclos C1, C4 y C6 y el formato del código del DBA—, en SQLite y en MySQL 8. |
 | `uml/_verificar_uml.py` | Que las clases, las asociaciones y la matriz CRUD (sección 7) coincidan con este MER, y que el diagrama de objetos se cargue en el esquema real. |
 

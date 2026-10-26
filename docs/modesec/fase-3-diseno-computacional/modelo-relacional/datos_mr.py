@@ -26,6 +26,18 @@ finalizacion de la fase 2") y lo lleva a la Fase II cerrada:
   * V-11: borrar una experiencia o salir de una borra en cascada todo lo
     que depende de ella (RF-02-07, RF-04-12).
 
+Cambios del 2026-10-26 (revision del docente del 2026-10-22, R1 y R3):
+  * tablas `area`, `grado` y `documento_oficial` (ADR-036); `dba` pierde
+    `area` y `grado` como texto y gana tres FK. La de su documento es
+    compuesta con codigo_area: cierra el ciclo C6 del MER (RI-20), con la
+    misma tecnica que C1 a C4;
+  * `codigo_dba` pasa a AREA-GG-NN (ADR-036), con un CHECK que lo arma con
+    el area y el grado de la fila (RI-21). Los codigos se guardan en ASCII
+    con cotejamiento binario: una tilde no cabe y una minuscula no es igual
+    a una mayuscula. Decision de esta sesion, declarada en `17`;
+  * `credencial.estado_verificacion` (procesando | verificado) reemplaza a
+    `email_verificado` (ADR-037), y RI-15 se reescribe con el estado.
+
 MOTOR OBJETIVO: MySQL 8 (RNF-14: "NestJS y MySQL"). El DDL generado no usa
 nada que MariaDB 10.11 no tenga, para que el backend de I1, que hoy corre
 sobre MariaDB, lo acepte igual. La columna `sqlite` es el equivalente para
@@ -48,7 +60,13 @@ ID = "INT UNSIGNED"          # llave sustituta, AUTO_INCREMENT
 CORREO = "VARCHAR(254)"      # maximo de una direccion de correo, RFC 5321
 URL = "VARCHAR(500)"
 NOMBRE_PERSONA = "VARCHAR(120)"
-COD_DBA = "VARCHAR(40)"      # ej. "matemáticas_8_dba_3"
+# Codigos del catalogo (ADR-036): ASCII con cotejamiento binario. ASCII hace
+# que una tilde no se pueda guardar (es justo lo que ADR-036 quita), y el
+# cotejamiento binario, que "mat" no sea igual a "MAT". Toda columna que
+# guarda un codigo usa el mismo tipo: una FK exige tipos iguales.
+CODIGO = "CHARACTER SET ascii COLLATE ascii_bin"
+COD_DBA = f"VARCHAR(9) {CODIGO}"      # AREA-GG-NN, ej. "MAT-08-03" o "CN-11-02"
+COD_AREA = f"VARCHAR(3) {CODIGO}"     # MAT | LEN | CN | CS
 FECHA = "DATETIME"
 
 TABLAS = [
@@ -90,11 +108,13 @@ TABLAS = [
                "Identificador de la persona en Google o Microsoft. NULL si "
                "`proveedor` es `correo` (RI-15).",
                "RF-01-02"),
-             c("email_verificado", "BOOLEAN", "INTEGER", False, "",
-               "true | false", "FALSE",
-               "Si el correo se verificó con el código. Con Google o Microsoft "
-               "llega verdadero: lo verificó el proveedor (RI-15).",
-               "RF-01-03 · 18-spec-auth-verifica-correo.md"),
+             c("estado_verificacion", "ENUM('procesando','verificado')", "TEXT", False, "",
+               "procesando | verificado", "'procesando'",
+               "`procesando`: se envió el código y todavía no se confirma. `verificado`: "
+               "se confirmó con el código. Con Google o Microsoft nace `verificado`: lo "
+               "verificó el proveedor (RI-15). Reemplaza al antiguo sí/no "
+               "`email_verificado`.",
+               "ADR-037 · RF-01-03 · 18-spec-auth-verifica-correo.md"),
              c("codigo_verificacion", "CHAR(6)", "TEXT", True, "",
                "6 dígitos", "NULL",
                "Último código enviado, sea de registro o de recuperación de "
@@ -205,20 +225,85 @@ TABLAS = [
                "RF-03-03 · ADR-030"),
          ]),
     # ---------------------------------------------------------------- 5
+    dict(tabla="area", entidad="Área", clase="men",
+         desc="Área del currículo con DBA en esta versión: las 4 de ADR-033. Dato de "
+              "referencia, de solo lectura (SUB-06). Se carga con el catálogo.",
+         campos=[
+             c("codigo_area", COD_AREA, "TEXT", False, "PK",
+               "MAT | LEN | CN | CS", "",
+               "Código del área, sin tildes: Matemáticas `MAT`, Lenguaje `LEN`, Ciencias "
+               "Naturales `CN`, Ciencias Sociales `CS`. Encabeza el código de cada DBA (RI-21).",
+               "ADR-036 · ADR-033"),
+             c("nombre", "VARCHAR(40)", "TEXT", False, "UNIQUE",
+               "no vacío", "", "Nombre del área, como lo escribe el MEN.",
+               "ADR-036 · 05-spec-crear-experiencia-paso1.md"),
+         ]),
+    # ---------------------------------------------------------------- 6
+    dict(tabla="grado", entidad="Grado", clase="men",
+         desc="Grado de la educación básica y media, de 1° a 11°. Sin Transición "
+              "(ADR-033). Dato de referencia, de solo lectura.",
+         campos=[
+             c("numero", "TINYINT UNSIGNED", "INTEGER", False, "PK",
+               "1 a 11", "", "Número del grado. Va, con dos cifras, en el código de cada DBA (RI-21).",
+               "ADR-036 · ADR-033"),
+             c("nombre", "VARCHAR(20)", "TEXT", False, "UNIQUE",
+               "Primero a Undécimo", "", "Nombre del grado.", "ADR-036"),
+             c("nivel", "ENUM('basica_primaria','basica_secundaria','media')", "TEXT", False, "",
+               "basica_primaria | basica_secundaria | media", "",
+               "Nivel de la educación formal: básica primaria (1° a 5°), básica secundaria "
+               "(6° a 9°) o media (10° y 11°). Un CHECK lo ata al número.",
+               "ADR-036 · Ley 115 de 1994"),
+         ]),
+    # ---------------------------------------------------------------- 7
+    dict(tabla="documento_oficial", entidad="Documento_Oficial", clase="men",
+         desc="El PDF del MEN del que se copiaron los DBA de un área. Uno por área en "
+              "esta versión, con los datos que ADR-033 verificó contra los archivos "
+              "oficiales: la versión se lee del documento, nunca del nombre del archivo.",
+         campos=[
+             c("id_documento", f"{ID} AUTO_INCREMENT", "INTEGER", False, "PK",
+               "", "", "Identificador interno.", "MER · Documento_Oficial"),
+             c("codigo_area", COD_AREA, "TEXT", False, "FK",
+               "", "", "Área cuyos DBA trae el documento.", "MER · relación «es de» · ADR-036"),
+             c("titulo", "VARCHAR(200)", "TEXT", False, "",
+               "no vacío", "", "Título del documento.", "ADR-036"),
+             c("version", "VARCHAR(10)", "TEXT", False, "",
+               "como la escribe el documento, ej. `V.2`", "",
+               "Versión que dice la portada del documento. Ciencias Sociales es `V.1` "
+               "aunque su archivo se llame «v2» (ADR-033).",
+               "ADR-033 · ADR-036"),
+             c("anio", "SMALLINT UNSIGNED", "INTEGER", False, "",
+               "", "", "Año de publicación. Los cuatro de esta versión, 2016.", "ADR-033"),
+             c("paginas", "SMALLINT UNSIGNED", "INTEGER", False, "",
+               "> 0", "", "Número de páginas del PDF oficial.", "ADR-033"),
+             c("url_oficial", URL, "TEXT", False, "",
+               "dirección en Colombia Aprende", "",
+               "Dónde publica hoy el MEN ese documento.", "ADR-033 · ADR-036"),
+         ]),
+    # ---------------------------------------------------------------- 8
     dict(tabla="dba", entidad="DBA", clase="men",
          desc="Derecho Básico de Aprendizaje oficial del MEN. Dato externo, de "
-              "solo lectura para los usuarios (SUB-06).",
+              "solo lectura para los usuarios (SUB-06). El área y el grado ya no son "
+              "texto: son llaves foráneas hacia `area` y `grado` (ADR-036).",
          campos=[
              c("codigo_dba", COD_DBA, "TEXT", False, "PK",
-               "", "", "Llave natural del MEN, formato `{área}_{grado}_dba_{número}`. "
-               "Única llave no sustituta del modelo.",
-               "curriculo_men_normalizado.json · RF-06-01"),
-             c("area", "VARCHAR(40)", "TEXT", False, "",
-               "las 4 áreas", "",
-               "Matemáticas, Lenguaje, Ciencias Naturales o Ciencias Sociales.",
-               "RF-06-01 · 05-spec-crear-experiencia-paso1.md"),
-             c("grado", "VARCHAR(4)", "TEXT", False, "",
-               "1° a 11°", "", "Grado escolar.", "RF-02-02 · 06-spec-crear-experiencia-paso2.md"),
+               "`ÁREA-GG-NN` (RI-21)", "",
+               "Código del DBA: código del área, grado y número del DBA con dos cifras, "
+               "sin tildes (`MAT-01-01`, `CS-11-05`). Se arma con el área, el grado y el "
+               "`numero` de cada registro de `curriculo_men_normalizado.json`; reemplaza al "
+               "identificador viejo (`matemáticas_1_dba_1` → `MAT-01-01`). Los datos de hoy "
+               "repiten 13 identificadores: se corrige en la auditoría (A12), no aquí.",
+               "ADR-036 · curriculo_men_normalizado.json · RF-06-01"),
+             c("codigo_area", COD_AREA, "TEXT", False, "FK",
+               "", "", "Área del DBA. Está también en la FK hacia su documento: obliga a "
+               "que el documento sea de esta misma área (RI-20).",
+               "MER · relación «pertenece a» · ADR-036"),
+             c("numero_grado", "TINYINT UNSIGNED", "INTEGER", False, "FK",
+               "", "", "Grado del DBA. Se llama `numero_grado` y no `numero` para no "
+               "confundirlo con el número del DBA, que va al final del código.",
+               "MER · relación «corresponde a» · ADR-036"),
+             c("id_documento", ID, "INTEGER", False, "FK",
+               "", "", "Documento oficial del que se copió.",
+               "MER · relación «se copia de» · ADR-036"),
              c("enunciado", "TEXT", "TEXT", False, "",
                "", "", "Texto oficial, sin simplificar ni reescribir.", "RF-06-01"),
              c("ejemplo", "TEXT", "TEXT", True, "",
@@ -227,7 +312,7 @@ TABLAS = [
                "Admite NULL mientras la normalización no lo tenga (QA-011).",
                "RF-06-01 · ADR-011 · QA-011"),
          ]),
-    # ---------------------------------------------------------------- 6
+    # ---------------------------------------------------------------- 9
     dict(tabla="evidencia", entidad="Evidencia", clase="men debil",
          desc="Evidencia de aprendizaje de un DBA. Entidad débil: no tiene "
               "identidad fuera de su DBA. Dato del MEN, sin juicio nuestro.",
@@ -243,7 +328,7 @@ TABLAS = [
              c("enunciado", "TEXT", "TEXT", False, "",
                "", "", "Texto oficial de la evidencia.", "RF-06-01"),
          ]),
-    # ---------------------------------------------------------------- 7
+    # --------------------------------------------------------------- 10
     dict(tabla="evidencia_dictamen", entidad="Evidencia_Dictamen",
          clase="propia debil",
          desc="Nuestro juicio sobre una evidencia del MEN: si admite formato "
@@ -271,7 +356,7 @@ TABLAS = [
                "Cuándo se dictaminó. Obligatoria porque el dictamen puede cambiar al cerrar QA-014.",
                "H-6 · MER · V-6"),
          ]),
-    # ---------------------------------------------------------------- 8
+    # --------------------------------------------------------------- 11
     dict(tabla="experiencia_evidencia", entidad="Experiencia_Evidencia",
          clase="asociativa",
          desc="Las evidencias que diagnostica esta experiencia: una fila por "
@@ -286,7 +371,7 @@ TABLAS = [
              c("numero_evidencia", "TINYINT UNSIGNED", "INTEGER", False, "PK,FK",
                "", "", "Evidencia incluida (parte 3).", "H-4 · MER"),
          ]),
-    # ---------------------------------------------------------------- 9
+    # --------------------------------------------------------------- 12
     dict(tabla="inscripcion", entidad="Inscripción", clase="asociativa",
          desc="Un estudiante unido a una experiencia con su código. Llave propia "
               "(no compuesta) para que Presentación y Resultado no arrastren "
@@ -301,7 +386,7 @@ TABLAS = [
              c("fecha_union", FECHA, "TEXT", False, "",
                "", "", "Cuándo se unió con el código.", "RF-04-02 · 08-spec-unirse-codigo.md"),
          ]),
-    # --------------------------------------------------------------- 10
+    # --------------------------------------------------------------- 13
     dict(tabla="item", entidad="Ítem", clase="propia",
          desc="Pregunta del banco de diagnóstico. La IA genera 12 por evidencia "
               "al crear la experiencia; el docente puede editarlas, descartarlas "
@@ -332,7 +417,7 @@ TABLAS = [
                "«Descartar»: no se muestra a los estudiantes, pero sigue en el banco. "
                "Reversible.", "RF-03-06 · ADR-015"),
          ]),
-    # --------------------------------------------------------------- 11
+    # --------------------------------------------------------------- 14
     dict(tabla="opcion", entidad="Opción", clase="propia",
          desc="Opción de respuesta de un ítem. Qué columnas aplican depende "
               "del formato del ítem (RI-4).",
@@ -361,7 +446,7 @@ TABLAS = [
                "No se muestra ni se reporta (ADR-008).",
                "ADR-020"),
          ]),
-    # --------------------------------------------------------------- 12
+    # --------------------------------------------------------------- 15
     dict(tabla="presentacion", entidad="Presentación", clase="propia debil",
          desc="El hecho de HABER MOSTRADO un ítem a un estudiante — distinto "
               "del de haberlo respondido. Una pregunta mostrada y sin responder "
@@ -387,7 +472,7 @@ TABLAS = [
              c("fecha_presentacion", FECHA, "TEXT", False, "",
                "", "", "Cuándo se mostró.", "RF-04-04 · H-2"),
          ]),
-    # --------------------------------------------------------------- 13
+    # --------------------------------------------------------------- 16
     dict(tabla="respuesta", entidad="Respuesta", clase="asociativa",
          desc="Lo que el estudiante respondió a un ítem que se le presentó, con "
               "su certeza. Se guarda al confirmar la certeza, no al final "
@@ -412,7 +497,7 @@ TABLAS = [
                "verdadero solo si todos los pares o posiciones están bien.",
                "RF-04-06 · ADR-019 · ADR-021"),
          ]),
-    # --------------------------------------------------------------- 14
+    # --------------------------------------------------------------- 17
     dict(tabla="respuesta_opcion", entidad="Respuesta_Opción",
          clase="asociativa",
          desc="Qué opción u opciones eligió el estudiante — no solo si acertó. "
@@ -434,7 +519,7 @@ TABLAS = [
                "posición que le asignó. `matching`: el número de pareja.",
                "ADR-019"),
          ]),
-    # --------------------------------------------------------------- 15
+    # --------------------------------------------------------------- 18
     dict(tabla="resultado", entidad="Resultado", clase="propia debil",
          desc="Lo que las respuestas de un estudiante permiten concluir sobre "
               "UNA evidencia DE ESTA experiencia. Fotografía del momento en que "
@@ -483,6 +568,19 @@ FKS = [
      "Raíz: ningún flujo del sistema borra un docente."),
     ("experiencia", ["codigo_dba"], "dba", ["codigo_dba"], "RESTRICT",
      "Raíz: dato del MEN, no se borra por razones de este sistema."),
+    # Catalogo (ADR-036): todo en RESTRICT, tambien al actualizar. Un codigo
+    # del catalogo no cambia, y MySQL no admite un CHECK sobre una columna
+    # con accion referencial: el de RI-21 lee codigo_area y numero_grado.
+    ("documento_oficial", ["codigo_area"], "area", ["codigo_area"], "RESTRICT",
+     "Raíz: el catálogo no se borra por razones de este sistema.", "RESTRICT"),
+    ("dba", ["codigo_area"], "area", ["codigo_area"], "RESTRICT",
+     "Raíz. Sin ON UPDATE CASCADE: el CHECK de RI-21 lee esta columna.", "RESTRICT"),
+    ("dba", ["numero_grado"], "grado", ["numero"], "RESTRICT",
+     "Raíz. Sin ON UPDATE CASCADE, por la misma razón.", "RESTRICT"),
+    ("dba", ["id_documento", "codigo_area"], "documento_oficial",
+     ["id_documento", "codigo_area"], "RESTRICT",
+     "Compuesta con codigo_area: el documento del que se copió el DBA es de su misma "
+     "área (RI-20, ciclo C6 del MER).", "RESTRICT"),
     ("evidencia", ["codigo_dba"], "dba", ["codigo_dba"], "CASCADE",
      "Entidad débil: sin su DBA no tiene identidad."),
     ("evidencia_dictamen", ["codigo_dba", "numero_evidencia"],
@@ -547,6 +645,12 @@ UNICOS = [
     ("credencial", ["proveedor", "proveedor_id"],
      "RF-01-04: una misma cuenta de Google o Microsoft no abre dos credenciales"),
     ("experiencia", ["codigo_invitacion"], "RI-3"),
+    ("area", ["nombre"], "dos áreas no se llaman igual"),
+    ("grado", ["nombre"], "dos grados no se llaman igual"),
+    ("documento_oficial", ["codigo_area", "version"],
+     "una misma versión de un área se carga una sola vez (ADR-033, punto 4)"),
+    ("documento_oficial", ["id_documento", "codigo_area"],
+     "destino de FK: habilita la comprobación estructural de RI-20"),
     ("experiencia", ["id_experiencia", "codigo_dba"],
      "destino de FK: habilita la comprobación estructural de RI-18"),
     ("inscripcion", ["id_estudiante", "id_experiencia"], "RI-1"),
@@ -572,7 +676,7 @@ CHECKS = [
     ("credencial",
      "(proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR "
      "(proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL "
-     "AND email_verificado = 1)",
+     "AND estado_verificacion = 'verificado')",
      "contraseña solo con correo; identificador externo y correo verificado solo "
      "con Google o Microsoft", "RI-15 · RF-01-01 · RF-01-02"),
     ("docente", "TRIM(nombres) <> '' AND TRIM(apellidos) <> ''",
@@ -588,6 +692,28 @@ CHECKS = [
          f"substr(upper(codigo_invitacion),{i},1) GLOB '[{_COD}]'" for i in range(1, 7)),
       "mysql": f"codigo_invitacion REGEXP '^[{_COD}]{{6}}$'"},
      "6 caracteres de letras y números, sin 0 O 1 I L", "RI-3 · RF-02-06"),
+    ("area",
+     {"sqlite": "codigo_area GLOB '[A-Z][A-Z]' OR codigo_area GLOB '[A-Z][A-Z][A-Z]'",
+      "mysql": "codigo_area REGEXP '^[A-Z]{2,3}$'"},
+     "2 o 3 letras mayúsculas, sin tildes (en MySQL la columna es ASCII binaria: "
+     "una tilde no cabe y el REGEXP distingue mayúsculas)", "ADR-036"),
+    ("grado",
+     "(numero BETWEEN 1 AND 5 AND nivel = 'basica_primaria') OR "
+     "(numero BETWEEN 6 AND 9 AND nivel = 'basica_secundaria') OR "
+     "(numero BETWEEN 10 AND 11 AND nivel = 'media')",
+     "grados 1 a 11, sin Transición, y el nivel que les da la Ley 115",
+     "ADR-036 · ADR-033 · Ley 115 de 1994"),
+    ("documento_oficial", "paginas > 0 AND TRIM(titulo) <> '' AND TRIM(version) <> ''",
+     "título y versión no vacíos; al menos una página", "ADR-036"),
+    ("dba",
+     {"sqlite": "codigo_dba = codigo_area || '-' || printf('%02d', numero_grado) || '-' "
+                "|| substr(codigo_dba, -2) AND substr(codigo_dba, -2) GLOB '[0-9][0-9]' "
+                "AND substr(codigo_dba, -2) <> '00'",
+      "mysql": "codigo_dba = CONCAT(codigo_area, '-', LPAD(numero_grado, 2, '0'), '-', "
+               "RIGHT(codigo_dba, 2)) AND RIGHT(codigo_dba, 2) REGEXP '^[0-9]{2}$' "
+               "AND RIGHT(codigo_dba, 2) <> '00'"},
+     "el código es ÁREA-GG-NN, con el área y el grado de la fila y un número de "
+     "dos cifras desde 01", "RI-21 · ADR-036"),
     ("evidencia", "numero_evidencia > 0", "posición dentro del DBA", "MER"),
     ("evidencia_dictamen",
      "(aplica_formato_cerrado = 1 AND formato IS NOT NULL) OR "

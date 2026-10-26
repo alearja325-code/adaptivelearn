@@ -6,6 +6,14 @@ AdaptiveLearn delante del profesor y responder lo que pregunte, hasta lo más m�
 esta guía lo explica con otras palabras. Si el modelo cambia, manda el documento 16 (las
 cifras de aquí son las del 2026-10-22).
 
+> **Aviso (2026-10-26): esta guía quedó atrasada.** El MER cambió por la revisión del docente
+> del 2026-10-22 (ADR-036 y ADR-037): ahora tiene **18 entidades** (entran ÁREA, GRADO y
+> DOCUMENTO_OFICIAL), 22 relaciones, **6 ciclos** (el nuevo, C6, lo cierra RI-20) y **21
+> restricciones**; el DBA ya no tiene `area` ni `grado` como texto y su código es `ÁREA-GG-NN`
+> (`MAT-08-01`, RI-21); y CREDENCIAL guarda `estado_verificacion` (`procesando` o
+> `verificado`) en vez de `email_verificado`. Mientras no se reescriba, para esas partes manda
+> el documento 16 (§4, §6, §10 y §11).
+
 **Qué tener abierto mientras se expone:**
 - La lámina completa: `mer/mer-pantalla-completa.html`, a pantalla completa, con zoom.
 - El documento 16, para buscar una restricción (§11) o un hallazgo (§10) si lo pide.

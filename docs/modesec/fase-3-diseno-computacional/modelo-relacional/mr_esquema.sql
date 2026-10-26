@@ -12,7 +12,7 @@ CREATE TABLE credencial (
   proveedor TEXT NOT NULL,
   password_hash TEXT,
   proveedor_id TEXT,
-  email_verificado INTEGER NOT NULL DEFAULT 0,
+  estado_verificacion TEXT NOT NULL DEFAULT 'procesando',
   codigo_verificacion TEXT,
   codigo_expira_en TEXT,
   codigo_ultimo_envio TEXT,
@@ -25,8 +25,9 @@ CREATE TABLE credencial (
   UNIQUE (id_estudiante),
   UNIQUE (proveedor, proveedor_id),
   CHECK (proveedor IN ('correo','google','microsoft')),
+  CHECK (estado_verificacion IN ('procesando','verificado')),
   CHECK (id_docente IS NULL OR id_estudiante IS NULL),
-  CHECK ((proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND email_verificado = 1)),
+  CHECK ((proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND estado_verificacion = 'verificado')),
   FOREIGN KEY (id_docente) REFERENCES docente(id_docente) ON DELETE RESTRICT ON UPDATE RESTRICT,
   FOREIGN KEY (id_estudiante) REFERENCES estudiante(id_estudiante) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
@@ -67,12 +68,45 @@ CREATE TABLE experiencia (
   FOREIGN KEY (codigo_dba) REFERENCES dba(codigo_dba) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE TABLE area (
+  codigo_area TEXT PRIMARY KEY NOT NULL,
+  nombre TEXT NOT NULL UNIQUE,
+  CHECK (codigo_area GLOB '[A-Z][A-Z]' OR codigo_area GLOB '[A-Z][A-Z][A-Z]')
+);
+
+CREATE TABLE grado (
+  numero INTEGER PRIMARY KEY NOT NULL,
+  nombre TEXT NOT NULL UNIQUE,
+  nivel TEXT NOT NULL,
+  CHECK (nivel IN ('basica_primaria','basica_secundaria','media')),
+  CHECK ((numero BETWEEN 1 AND 5 AND nivel = 'basica_primaria') OR (numero BETWEEN 6 AND 9 AND nivel = 'basica_secundaria') OR (numero BETWEEN 10 AND 11 AND nivel = 'media'))
+);
+
+CREATE TABLE documento_oficial (
+  id_documento INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  codigo_area TEXT NOT NULL,
+  titulo TEXT NOT NULL,
+  version TEXT NOT NULL,
+  anio INTEGER NOT NULL,
+  paginas INTEGER NOT NULL,
+  url_oficial TEXT NOT NULL,
+  UNIQUE (codigo_area, version),
+  UNIQUE (id_documento, codigo_area),
+  CHECK (paginas > 0 AND TRIM(titulo) <> '' AND TRIM(version) <> ''),
+  FOREIGN KEY (codigo_area) REFERENCES area(codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
+
 CREATE TABLE dba (
   codigo_dba TEXT PRIMARY KEY NOT NULL,
-  area TEXT NOT NULL,
-  grado TEXT NOT NULL,
+  codigo_area TEXT NOT NULL,
+  numero_grado INTEGER NOT NULL,
+  id_documento INTEGER NOT NULL,
   enunciado TEXT NOT NULL,
-  ejemplo TEXT
+  ejemplo TEXT,
+  CHECK (codigo_dba = codigo_area || '-' || printf('%02d', numero_grado) || '-' || substr(codigo_dba, -2) AND substr(codigo_dba, -2) GLOB '[0-9][0-9]' AND substr(codigo_dba, -2) <> '00'),
+  FOREIGN KEY (codigo_area) REFERENCES area(codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  FOREIGN KEY (numero_grado) REFERENCES grado(numero) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  FOREIGN KEY (id_documento, codigo_area) REFERENCES documento_oficial(id_documento, codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 CREATE TABLE evidencia (
@@ -197,6 +231,9 @@ CREATE TABLE resultado (
 -- ---- indices sobre FK no cubiertas por una llave existente ----
 CREATE INDEX idx_experiencia_id_docente ON experiencia(id_docente);
 CREATE INDEX idx_experiencia_codigo_dba ON experiencia(codigo_dba);
+CREATE INDEX idx_dba_codigo_area ON dba(codigo_area);
+CREATE INDEX idx_dba_numero_grado ON dba(numero_grado);
+CREATE INDEX idx_dba_id_documento_codigo_area ON dba(id_documento, codigo_area);
 CREATE INDEX idx_experiencia_evidencia_codigo_dba_numero_evidencia ON experiencia_evidencia(codigo_dba, numero_evidencia);
 CREATE INDEX idx_inscripcion_id_experiencia ON inscripcion(id_experiencia);
 CREATE INDEX idx_item_id_experiencia_codigo_dba_numero_evidencia ON item(id_experiencia, codigo_dba, numero_evidencia);

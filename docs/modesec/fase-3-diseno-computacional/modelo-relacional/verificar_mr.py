@@ -1,6 +1,6 @@
 """Prueba el esquema del MR contra un motor real, no leyendolo.
 
-Reescrito el 2026-10-21 para el MER final de la Fase III (15 tablas). Las
+Reescrito el 2026-10-21 para el MER final de la Fase III (hoy, 18 tablas). Las
 pruebas ya no viven aqui: estan en `pruebas_mr.py`, compartidas con
 `probar_mysql.py`, que corre exactamente las mismas contra MySQL 8.
 
@@ -69,7 +69,9 @@ chk(tablas == esperadas,
     f"(difieren: {tablas ^ esperadas or 'ninguna'})")
 
 for t, h in [("credencial", "V-8"), ("experiencia_evidencia", "H-4"),
-             ("evidencia_dictamen", "H-6"), ("presentacion", "H-2/H-3")]:
+             ("evidencia_dictamen", "H-6"), ("presentacion", "H-2/H-3"),
+             ("area", "R1 del 2026-10-22"), ("grado", "R1 del 2026-10-22"),
+             ("documento_oficial", "ADR-036")]:
     chk(t in tablas, f"existe `{t}` — la tabla que responde a {h}")
 
 

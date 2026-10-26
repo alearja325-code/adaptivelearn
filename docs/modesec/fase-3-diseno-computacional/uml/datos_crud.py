@@ -28,10 +28,11 @@ CRUD = {
     "CU-07": {"CREDENCIAL": "RU"},
     "CU-08": {},
     "CU-09": {"DOCENTE": "RU", "ESTUDIANTE": "RU", "CREDENCIAL": "R"},
-    "CU-10": {"EXPERIENCIA": "R", "DBA": "R", "INSCRIPCION": "R"},
+    "CU-10": {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "INSCRIPCION": "R"},
     "CU-11": {"EXPERIENCIA": "C", "EXPERIENCIA_EVIDENCIA": "C", "DBA": "R", "EVIDENCIA": "R",
               "EVIDENCIA_DICTAMEN": "R"},
-    "CU-12": {"EXPERIENCIA": "R", "DBA": "R", "EVIDENCIA": "R", "INSCRIPCION": "R"},
+    "CU-12": {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "EVIDENCIA": "R",
+              "INSCRIPCION": "R"},
     "CU-13": {"EXPERIENCIA": "RU", "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R"},
     "CU-14": {"EXPERIENCIA": "R"},
     "CU-15": {"EXPERIENCIA": "RD", "INSCRIPCION": "R", "RESPUESTA": "R"},
@@ -54,11 +55,15 @@ CRUD = {
     "CU-29": {"PRESENTACION": "R", "RESPUESTA": "R", "RESPUESTA_OPCION": "R", "ITEM": "R",
               "OPCION": "R", "RESULTADO": "R"},
     "CU-30": {"REPORTE": "R", "RESULTADO": "R", "EXPERIENCIA_EVIDENCIA": "R"},
-    "CU-31": {"DBA": "R", "EVIDENCIA": "R", "EVIDENCIA_DICTAMEN": "R"},
+    "CU-31": {"AREA": "R", "GRADO": "R", "DOCUMENTO_OFICIAL": "R", "DBA": "R", "EVIDENCIA": "R",
+              "EVIDENCIA_DICTAMEN": "R"},
 }
 
 # Entidades que ningun caso de uso crea, y por que.
 SIN_CREADOR = {
+    "AREA": "catálogo (ADR-036): lo carga el equipo con los datos del MEN, fuera del sistema",
+    "GRADO": "catálogo (ADR-036): lo carga el equipo, fuera del sistema",
+    "DOCUMENTO_OFICIAL": "catálogo (ADR-036): lo carga el equipo con los datos que verificó ADR-033",
     "DBA": "dato del MEN: lo carga el equipo, fuera del sistema (`10`, §2.3)",
     "EVIDENCIA": "dato del MEN: lo carga el equipo, fuera del sistema",
     "EVIDENCIA_DICTAMEN": "juicio del equipo: lo carga con el censo QA-014, fuera del sistema",

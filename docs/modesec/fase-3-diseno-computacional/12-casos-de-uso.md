@@ -833,12 +833,14 @@ si quedó bien hecho.
 **Flujo principal**
 
 1. El sistema lista los DBA del área elegida, con su grado.
-2. El docente busca por texto y filtra por grado (1° a 11°).
+2. El docente busca por texto y filtra por grado (1° a 11°). El área y el grado se piden por su código —`MAT`, `LEN`, `CN` o `CS`, y el número del grado— (ADR-036).
 3. Al elegir uno, el sistema muestra su enunciado oficial, sus evidencias —marcadas las que no admiten formato cerrado— y su ejemplo.
 
 **Postcondición:** Ninguna: el catálogo es de solo lectura.
 
 **Prueba de aceptación:** Filtrar Matemáticas por 8° muestra solo DBA de 8°; las evidencias que no admiten formato cerrado se ven marcadas.
+
+> Cada DBA se muestra con su código `ÁREA-GG-NN` (`MAT-08-01`) y puede decir de qué documento oficial del MEN se copió, con su versión (ADR-036, ADR-033).
 
 > Cargar el catálogo y el dictamen no es un caso de uso: no tiene pantalla (`10`, §2.3). Lo hace el equipo con los datos del MEN y el censo QA-014.
 

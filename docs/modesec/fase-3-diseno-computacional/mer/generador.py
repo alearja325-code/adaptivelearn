@@ -221,6 +221,11 @@ def relation_diamond2(cx, cy, label, ident=False, derivada=False, razon=None,
             xx = cx - ROMBO_W / 2 - (7 if ident else 0) - 8
             svg += (f'<text x="{xx}" y="{cy+4}" text-anchor="end" font-family="Helvetica" '
                     f'font-size="{CARD_FONT}" font-weight="700" fill="{GRIS_MEDIO}">{razon}</text>\n')
+        elif razon_lado == "arriba":
+            # rombo en una esquina: la linea sale por abajo y entra por un costado
+            yy = cy - ROMBO_H / 2 - (7 if ident else 0) - 10
+            svg += (f'<text x="{cx}" y="{yy}" text-anchor="middle" font-family="Helvetica" '
+                    f'font-size="{CARD_FONT}" font-weight="700" fill="{GRIS_MEDIO}">{razon}</text>\n')
         else:
             yy = cy + ROMBO_H / 2 + (7 if ident else 0) + 20
             svg += (f'<text x="{cx}" y="{yy}" text-anchor="middle" font-family="Helvetica" '

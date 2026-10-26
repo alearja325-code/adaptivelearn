@@ -17,6 +17,8 @@ from datos_clases import (POR_NOMBRE, ASOCIACIONES, GENERALIZACIONES, ENUMERACIO
 # ------------------------------------------------------------ ubicacion
 # nombre: (x, y, ancho forzado o None)
 POS = {
+    # catalogo (ADR-036), en el hueco de arriba a la izquierda, junto al DBA
+    "DocumentoOficial": (40, 90, 250), "Area": (560, 90, 220), "Grado": (560, 230, 220),
     "Credencial": (40, 482, None),
     "Docente": (532, 384, 240), "Usuario": (440, 610, None), "Estudiante": (532, 900, 240),
     "DBA": (940, 90, 300), "Evidencia": (1400, 90, 220), "EvidenciaDictamen": (1700, 90, 250),
@@ -38,6 +40,11 @@ def rutas(B):
     return {
         ("Credencial", "Docente"): [(300, B["Credencial"][1]), (300, yD), (B["Docente"][0], yD)],
         ("Credencial", "Estudiante"): [(300, B["Credencial"][3]), (300, yE), (B["Estudiante"][0], yE)],
+        ("DBA", "Area"): [(B["DBA"][0], 120), (B["Area"][2], 120)],
+        ("DBA", "Grado"): [(960, B["DBA"][3]), (960, 270), (B["Grado"][2], 270)],
+        ("DBA", "DocumentoOficial"): [(1015, B["DBA"][3]), (1015, 345), (165, 345),
+                                      (165, B["DocumentoOficial"][3])],
+        ("DocumentoOficial", "Area"): [(B["DocumentoOficial"][2], 120), (B["Area"][0], 120)],
         ("DBA", "Evidencia"): [(B["DBA"][2], 150), (B["Evidencia"][0], 150)],
         ("Evidencia", "EvidenciaDictamen"): [(B["Evidencia"][2], 150), (B["EvidenciaDictamen"][0], 150)],
         ("Docente", "Experiencia"): [(B["Docente"][2], yD), (B["Experiencia"][0], yD)],
@@ -120,7 +127,7 @@ def dibujar_dominio():
             permitidos={nombre_ca}, desc="clase asociación")
     # enumeraciones, en una fila
     x, y = 40, 1190
-    L.texto(40, y - 16, "Enumeraciones — las 7 primeras son los ENUM del modelo relacional, valor por "
+    L.texto(40, y - 16, "Enumeraciones — las 9 primeras son los ENUM del modelo relacional, valor por "
             "valor; las 3 últimas son de valores calculados, que no se guardan.", tam=12, color=GRIS)
     for nombre, valores, _ in ENUMERACIONES:
         w, h = medir_enum(nombre, valores)

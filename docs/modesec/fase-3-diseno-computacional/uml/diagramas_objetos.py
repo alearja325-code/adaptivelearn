@@ -60,18 +60,28 @@ def mitad(B, n, eje):
 
 # ================================================================= vista 1
 def vista1():
-    L = Lienzo(1900, 1060)
+    # 2026-10-26 (ADR-036): una fila arriba para el catalogo -- el area, el
+    # grado y el documento del DBA --; todo lo demas baja D.
+    D = 180
+    L = Lienzo(1900, 1060 + D)
     L.texto(32, 40, "Diagrama de objetos · vista 1 de 2 — La experiencia publicada "
             "(martes 4 de noviembre de 2026, 09:06)", tam=16, peso=700, color="#333333")
     B = {}
+    for oid, x, y in [("mat", 470, 70), ("doc", 790, 60), ("g8", 1150, 70)]:
+        B[oid] = objeto(L, oid, x, y)
     for oid, x, y in [("dba", 760, 70), ("d1", 40, 250), ("ev1", 330, 250), ("exp3", 770, 250),
                       ("ev2", 1320, 250), ("d2", 1580, 250), ("ee1", 330, 470), ("ee2", 1320, 470),
                       ("ana", 880, 520), ("c1", 880, 690), ("it11", 40, 640), ("it12", 250, 640),
                       ("it13", 460, 640), ("it14", 670, 640), ("it21", 1320, 640),
                       ("op1", 40, 880), ("op2", 250, 880)]:
-        B[oid] = objeto(L, oid, x, y)
+        B[oid] = objeto(L, oid, x, y + D)
     cy = lambda n: mitad(B, n, "y")
     cx = lambda n: mitad(B, n, "x")
+    yc = B["dba"][1] + 16                     # entran el area y el grado
+    enlace(L, "doc", "dba", [(930, B["doc"][3]), (930, B["dba"][1])])
+    enlace(L, "doc", "mat", [(B["doc"][0], cy("mat")), (B["mat"][2], cy("mat"))])
+    enlace(L, "mat", "dba", [(cx("mat"), B["mat"][3]), (cx("mat"), yc), (B["dba"][0], yc)])
+    enlace(L, "g8", "dba", [(cx("g8"), B["g8"][3]), (cx("g8"), yc), (B["dba"][2], yc)])
     yd = B["dba"][1] + 40
     enlace(L, "dba", "ev1", [(B["dba"][0], yd), (440, yd), (440, B["ev1"][1])])
     enlace(L, "dba", "ev2", [(B["dba"][2], yd), (1430, yd), (1430, B["ev2"][1])])
@@ -81,8 +91,8 @@ def vista1():
     enlace(L, "ev1", "ee1", [(440, B["ev1"][3]), (440, B["ee1"][1])])
     enlace(L, "ev2", "ee2", [(1430, B["ev2"][3]), (1430, B["ee2"][1])])
     ye = cy("ee1")
-    enlace(L, "exp3", "ee1", [(B["exp3"][0], 360), (650, 360), (650, ye), (B["ee1"][2], ye)])
-    enlace(L, "exp3", "ee2", [(B["exp3"][2], 360), (1220, 360), (1220, ye), (B["ee2"][0], ye)])
+    enlace(L, "exp3", "ee1", [(B["exp3"][0], 360 + D), (650, 360 + D), (650, ye), (B["ee1"][2], ye)])
+    enlace(L, "exp3", "ee2", [(B["exp3"][2], 360 + D), (1220, 360 + D), (1220, ye), (B["ee2"][0], ye)])
     enlace(L, "exp3", "ana", [(930, B["exp3"][3]), (930, B["ana"][1])])
     enlace(L, "c1", "ana", [(930, B["c1"][1]), (930, B["ana"][3])])
     for it in ("it11", "it12", "it13", "it14"):
@@ -90,9 +100,10 @@ def vista1():
     enlace(L, "ee2", "it21", [(1430, B["ee2"][3]), (1430, B["it21"][1])])
     for op in ("op1", "op2"):
         enlace(L, "it11", op, [(cx("it11"), B["it11"][3]), (cx(op), B[op][1])])
-    nota(L, "n_banco", 470, 880, 400)
-    nota(L, "n_it21", 1560, 660, 300, hacia=("it21", [(1560, 690), (B["it21"][2], 690)]))
-    L.texto(32, 1040, "Rectángulo con nombre subrayado: un objeto («nombre : Clase») con los valores "
+    nota(L, "n_banco", 470, 880 + D, 400)
+    nota(L, "n_it21", 1560, 660 + D, 300, hacia=("it21", [(1560, 690 + D), (B["it21"][2], 690 + D)]))
+    nota(L, "n_dba", 1400, 60, 440)
+    L.texto(32, 1040 + D, "Rectángulo con nombre subrayado: un objeto («nombre : Clase») con los valores "
             "que tiene en este momento. Línea: un enlace, instancia de una asociación del diagrama "
             "de clases. Textos, correos y códigos son ilustrativos.", tam=11.5, color=GRIS_CLARO)
     return L

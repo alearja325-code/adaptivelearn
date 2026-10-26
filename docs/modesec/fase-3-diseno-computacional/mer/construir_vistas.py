@@ -48,14 +48,36 @@ CAP[1] = ("<b>CREDENCIAL es la entidad que cierra el vacío V-8.</b> La Fase II 
     "(ventanas 016 y 026).")
 
 # ------------------------------------------------------------------ VISTA 2
+# El catalogo normalizado (ADR-036) forma un cuadro con ÁREA arriba: es el
+# ciclo C6, que se ve a simple vista. GRADO cuelga bajo el DBA; la columna
+# de atributos del DBA se corre a un costado para dejar libres las
+# lineas que salen de ellos.
 v = Lienzo()
-v.ent("DBA", 240, 110).ent("EVIDENCIA", 840, 110).ent("EVIDENCIA_DICTAMEN", 1440, 110)
-v.rel("comprende", 540, 110).rel("se dictamina", 1140, 110)
+v.ent("AREA", 540, 140, first_row=260)
+v.ent("DOCUMENTO_OFICIAL", 240, 560, first_row=690)
+v.ent("DBA", 840, 560, dx=-240, side="left", first_row=720)
+v.ent("GRADO", 840, 1010, dx=260, side="right", first_row=1100)
+v.ent("EVIDENCIA", 1440, 560).ent("EVIDENCIA_DICTAMEN", 2040, 560)
+v.rel("es de", 240, 140, razon_lado="arriba").rel("pertenece_area", 840, 140, razon_lado="arriba")
+v.rel("se copia de", 540, 560).rel("corresponde a", 840, 800, razon_lado="izq")
+v.rel("comprende", 1140, 560).rel("se dictamina", 1740, 560)
+v.conecta("DOCUMENTO_OFICIAL", "es de", "AREA")
+v.conecta("DBA", "pertenece_area", "AREA")
+v.conecta("DBA", "se copia de", "DOCUMENTO_OFICIAL")
+v.conecta("DBA", "corresponde a", "GRADO")
 v.conecta("DBA", "comprende", "EVIDENCIA")
 v.conecta("EVIDENCIA", "se dictamina", "EVIDENCIA_DICTAMEN")
-V[2] = v.titulo(2).svg(1640)
+V[2] = v.titulo(2).svg(2240)
 CAP[2] = ("<b>DBA y EVIDENCIA son dato del MEN</b>, referenciado, no generado por "
-    "nosotros: el catálogo es de solo lectura (SUB-06). EVIDENCIA es <b>entidad débil</b> "
+    "nosotros: el catálogo es de solo lectura (SUB-06). <b>ÁREA, GRADO y "
+    "DOCUMENTO_OFICIAL son nuevas</b> (ADR-036, pedido del docente en la revisión del "
+    "2026-10-22): el área y el grado dejan de ser texto suelto dentro de cada DBA, y "
+    "cada DBA dice de qué documento oficial del MEN se copió —con su versión, que se lee "
+    "del documento y no del nombre del archivo (ADR-033)—. <b>El cuadro de arriba es el ciclo "
+    "C6</b>: el documento de un DBA tiene que ser de su misma área (RI-20), y el modelo "
+    "relacional lo vuelve estructura. El código del DBA es <code>ÁREA-GG-NN</code>, sin "
+    "tildes: <code>MAT-08-01</code> (RI-21). "
+    "EVIDENCIA es <b>entidad débil</b> "
     "—se identifica por la llave de su DBA más su <b>llave parcial</b> "
     "<code>numero_evidencia</code> (subrayado punteado)— y por eso <i>comprende</i> es "
     "una <b>relación identificadora</b> (rombo doble). "

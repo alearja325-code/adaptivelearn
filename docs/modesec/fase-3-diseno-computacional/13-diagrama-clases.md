@@ -15,7 +15,7 @@ las clases»*. Las dos mitades de cada clase tienen, por eso, una fuente cada un
 - **Métodos:** cada uno sale de uno o más casos de uso de `12-casos-de-uso.md`, y lo dice.
   Todo caso de uso aporta al menos un método.
 
-Dos diagramas: el **dominio** (17 clases, 10 enumeraciones, 20 asociaciones) y los **servicios** (13 clases de control e interfaces), que son los objetos que aparecen en los diagramas de secuencia.
+Dos diagramas: el **dominio** (20 clases, 12 enumeraciones, 24 asociaciones) y los **servicios** (13 clases de control e interfaces), que son los objetos que aparecen en los diagramas de secuencia.
 
 ## 1. Decisiones de diseño
 
@@ -50,7 +50,7 @@ Dos diagramas: el **dominio** (17 clases, 10 enumeraciones, 20 asociaciones) y l
 | `proveedor` | Proveedor |
 | `password_hash` | string [0..1] |
 | `proveedor_id` | string [0..1] |
-| `email_verificado` | bool |
+| `estado_verificacion` | EstadoVerificacion |
 | `codigo_verificacion` | string [0..1] |
 | `codigo_expira_en` | Fecha [0..1] |
 | `codigo_ultimo_envio` | Fecha [0..1] |
@@ -111,15 +111,45 @@ Dos diagramas: el **dominio** (17 clases, 10 enumeraciones, 20 asociaciones) y l
 |---|---|
 | `inscripciones(): Inscripcion [*]` | CU-21 |
 
+### Area
+
+*Tabla `area` · entidad AREA del MER.* Catálogo (ADR-036): MAT, LEN, CN o CS. De solo lectura.
+
+| Atributo | Tipo |
+|---|---|
+| `codigo_area` | string |
+| `nombre` | string |
+
+### Grado
+
+*Tabla `grado` · entidad GRADO del MER.* Catálogo (ADR-036): 1° a 11°, con su nivel de la Ley 115. De solo lectura.
+
+| Atributo | Tipo |
+|---|---|
+| `numero` | int |
+| `nombre` | string |
+| `nivel` | NivelEducativo |
+
+### DocumentoOficial
+
+*Tabla `documento_oficial` · entidad DOCUMENTO_OFICIAL del MER.* El PDF del MEN del que se copiaron los DBA de un área (ADR-036, ADR-033).
+
+| Atributo | Tipo |
+|---|---|
+| `id_documento` | int |
+| `titulo` | string |
+| `version` | string |
+| `anio` | int |
+| `paginas` | int |
+| `url_oficial` | string |
+
 ### DBA
 
-*Tabla `dba` · entidad DBA del MER.* Dato del MEN, de solo lectura.
+*Tabla `dba` · entidad DBA del MER.* Dato del MEN, de solo lectura. Su área y su grado son asociaciones (ADR-036); codigo_dba tiene el formato ÁREA-GG-NN (RI-21).
 
 | Atributo | Tipo |
 |---|---|
 | `codigo_dba` | string |
-| `area` | string |
-| `grado` | string |
 | `enunciado` | string |
 | `ejemplo` | string [0..1] |
 
@@ -303,6 +333,10 @@ todas y ninguna más.
 |---|---|---|---|---|---|
 | Credencial | *accede como* | Docente | 1 | 0..1 | asociacion |
 | Credencial | *accede como* | Estudiante | 1 | 0..1 | asociacion |
+| DBA | *pertenece a* | Area | 1..* | 1 | asociacion |
+| DBA | *corresponde a* | Grado | 1..* | 1 | asociacion |
+| DBA | *se copia de* | DocumentoOficial | 1..* | 1 | asociacion |
+| DocumentoOficial | *es de* | Area | 1..* | 1 | asociacion |
 | DBA | *comprende* | Evidencia | 1 | 1..* | composicion |
 | Evidencia | *se dictamina* | EvidenciaDictamen | 1 | 0..1 | composicion |
 | Docente | *crea* | Experiencia | 1 | 0..* | asociacion |
@@ -329,6 +363,8 @@ Generalizaciones: Docente → Usuario; Estudiante → Usuario.
 | Enumeración | Valores | Origen |
 |---|---|---|
 | Proveedor | correo, google, microsoft | ENUM de `credencial.proveedor` |
+| EstadoVerificacion | procesando, verificado | ENUM de `credencial.estado_verificacion` |
+| NivelEducativo | basica_primaria, basica_secundaria, media | ENUM de `grado.nivel` |
 | EstadoExperiencia | Borrador, Publicada | ENUM de `experiencia.estado` |
 | Formato | single_choice, matching, ordering | ENUM de `item.formato` |
 | Origen | ia, editado_docente, creado_docente | ENUM de `item.origen` |
@@ -372,7 +408,7 @@ Generalizaciones: Docente → Usuario; Estudiante → Usuario.
 
 | Operación | Casos de uso |
 |---|---|
-| `dbas(area: string, grado: string, texto: string): DBA [*]` | CU-31 |
+| `dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]` | CU-31 |
 | `dba(codigo_dba: string): DBA` | CU-11, CU-31 |
 
 ### GeneradorBanco «servicio»
