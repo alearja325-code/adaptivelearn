@@ -1821,3 +1821,93 @@ Con la cascada, un docente que elimina una experiencia con estudiantes
 pierde esos datos sin vuelta atrás: el modal ya lo dice con números.
 
 **Reemplaza a:** ADR-030, en su punto 4.
+
+---
+
+## ADR-036 — El catálogo curricular se normaliza: Área, Grado y Documento oficial como entidades, con códigos sin tildes
+
+**Fecha:** 2026-10-26
+**Estado:** aceptada
+
+**Contexto:** en la revisión del 2026-10-22
+(`fase-3-diseno-computacional/21-revision-docente-2026-10-22.md`), el
+docente del curso pidió *"tabla para grados y área y codificar"*. En el
+MER final (`16`), el área y el grado son textos sueltos dentro de cada
+DBA (`area`, `grado`), y el código del DBA es el identificador que dejó
+la normalización de la V2: `matemáticas_1_dba_1`, con tilde. Nada impide
+escribir mal un área, no hay dónde guardar de qué documento oficial
+salió cada DBA (y ADR-033 mostró que eso importa: Ciencias Sociales se
+citaba con la versión equivocada), y una tilde en una llave es fuente de
+errores entre sistemas.
+
+**Decisión:**
+
+1. **ÁREA** — `codigo_area` (PK) y `nombre`. Las 4 de ADR-033:
+
+   | Código | Nombre |
+   |---|---|
+   | `MAT` | Matemáticas |
+   | `LEN` | Lenguaje |
+   | `CN` | Ciencias Naturales |
+   | `CS` | Ciencias Sociales |
+
+2. **GRADO** — `numero` (PK, 1 a 11), `nombre` ("Primero" a "Undécimo")
+   y `nivel`: **básica primaria** (1° a 5°), **básica secundaria** (6° a
+   9°) o **media** (10° y 11°), según los niveles de la educación formal
+   de la Ley 115 de 1994. Sin Transición (ADR-033).
+3. **DOCUMENTO_OFICIAL** — el PDF del MEN del que se copiaron los DBA de
+   un área: título, versión, año, número de páginas y dirección oficial.
+   Uno por área en esta versión, con los datos verificados en ADR-033
+   (Matemáticas V.2, Lenguaje V.2, Ciencias Naturales V.1, Ciencias
+   Sociales V.1; los cuatro de 2016). Recomendación del 2026-10-24,
+   aceptada por Alejandro: no la pidió el docente, pero es la que deja
+   trazable que nada se inventó.
+4. **DBA** deja de tener `area` y `grado` como texto: **pertenece a** un
+   Área, **corresponde a** un Grado y **se copia de** un Documento
+   oficial. El documento de un DBA tiene que ser de su misma área.
+5. **Código del DBA:** `ÁREA-GG-NN`, con ceros a la izquierda y sin
+   tildes: `MAT-01-01`, `CS-11-05`. Se arma desde el área, el grado y el
+   número de cada DBA. **El código es único por diseño; los datos de hoy
+   no lo cumplen:** la normalización de la V2 asignó al grado anterior el
+   primer DBA de algunas páginas, y 13 identificadores viejos quedaron
+   repetidos (por ejemplo, hay dos `matemáticas_2_dba_1`: el segundo es el
+   DBA 1 de 3°). Se corrige en la auditoría (pendientes, A12), no
+   relajando el modelo. *(Corrección del mismo día: una primera versión
+   de este punto decía que la equivalencia con el identificador viejo
+   era "directa".)*
+
+**Consecuencia reconocida:** el MER pasa de 15 a 18 entidades. Que el
+documento de un DBA sea de su misma área forma un ciclo nuevo
+(DBA → Área ← Documento oficial ← DBA), que tiene que declararse y
+cerrarse con una regla, como los otros cinco. Los datos de
+`data/curriculo-men/` **no se tocan a mano**: las tablas se llenan desde
+ellos, y la auditoría (pendientes A12) sigue pendiente.
+
+**Reemplaza a:** ninguna. Responde a la revisión del docente del
+2026-10-22.
+
+---
+
+## ADR-037 — La verificación del correo se guarda como un estado, no como sí/no
+
+**Fecha:** 2026-10-26
+**Estado:** aceptada
+
+**Contexto:** el docente pidió, en la misma revisión, *"cambiar email a
+estado_verificado, estado_procesando"*. Hoy CREDENCIAL (ADR-034) guarda
+`email_verificado` como verdadero/falso.
+
+**Decisión:** `email_verificado` se reemplaza por
+**`estado_verificacion`**, con dos valores: **`procesando`** (se envió el
+código y todavía no se confirma) y **`verificado`**. Quien entra con
+Google o Microsoft queda `verificado` desde que se crea su credencial:
+el proveedor ya lo verificó (RF-01-02).
+
+**Consecuencia reconocida:** un estado admite crecer (por ejemplo, un
+`vencido`) sin cambiar el tipo del campo. La otra parte de la misma
+nota del docente —quitar `codigo_expira_en` y `codigo_ultimo_envio`—
+**no se decide aquí**: sin esos campos, el vencimiento del código y la
+espera de 30 segundos para reenviarlo (RF-01-03) necesitan otro lugar, y
+se le preguntó al docente qué prefiere.
+
+**Reemplaza a:** ninguna. Modifica un atributo de la entidad de ADR-034.

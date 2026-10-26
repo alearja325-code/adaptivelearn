@@ -363,6 +363,22 @@ conserva el XML dañado, a propósito: es el estado original).
   "ejemplo" no se extrajo en ninguno**; ningún registro con confianza de
   extracción "alta"; conteos a comprobar (Ciencias Naturales 2° tiene 3).
 
+**Hallazgo del 2026-10-26 — la auditoría pasa a ser BLOQUEANTE para
+cargar el catálogo:** hay 342 DBA pero solo **329 identificadores
+distintos**. 13 pares de DBA *distintos* comparten identificador
+(`matemáticas_2_dba_1`, `lenguaje_1_dba_1`, etc.). En cada par, uno es
+del grado correcto y el otro es **del grado siguiente**: la extracción
+de la V2 asignó al grado anterior el primer DBA de algunas páginas.
+Contrastado con el encabezado de página de los PDF oficiales: **10
+confirmados** (Matemáticas 2°→3° ×2, 6°→7°, 9°→10°; Lenguaje 1°→2°,
+6°→7°, 7°→8°; Ciencias Naturales 1°→2° ×2, 9°→10°); **3 pares sin
+determinar** (Ciencias Naturales 3°, 5° y 7°: ese PDF tiene otro diseño
+de encabezado). Consecuencias: el docente vería en un grado DBA de
+otro, a otros grados les faltan, y los conteos por grado de arriba no
+son confiables. El modelo exige código único y está bien: el error es
+de los datos. El MER (`16`) decía que `codigo_dba` se "verificó contra
+el JSON"; el encargo 01 lo corrige.
+
 **Recomendación para el modelo (punto 3 de abajo):** tres tablas de
 referencia, no dos — **Área**, **Grado** (con su nivel educativo:
 básica primaria 1°-5°, básica secundaria 6°-9°, media 10°-11°, Ley 115
@@ -392,6 +408,22 @@ Planteado por Alejandro al decidir el repositorio nuevo. Se hace
    confirmar con el docente: que Área y Grado sean entidades propias,
    en vez de atributos de texto dentro del DBA. Va a la lista "Entrada
    a Fase III".
+
+### A14. Revisión del docente del 2026-10-22 — EN CURSO
+
+Notas sobre la columna vertebral (acceso y catálogo). Triaje en
+`fase-3-diseno-computacional/21-revision-docente-2026-10-22.md`:
+- **R1** Área, Grado (+ Documento oficial) y códigos → ADR-036.
+- **R3** estado de verificación del correo → ADR-037.
+- R1 y R3 → **encargo a Claude Code en la nube**:
+  `docs/encargos/01-mer-catalogo-y-credencial.md`, rama
+  `encargo-01-catalogo-curricular`, entrega por pull request.
+- **R2** (sin "usuario" genérico) y **R5** (correo del sistema) → Fase
+  IV, al alinear el backend.
+- **R4** (quitar los campos del código) → espera respuesta del docente
+  (P2). **P1**: ¿también quitar CREDENCIAL?
+- Se agregó `CLAUDE.md` en la raíz: instrucciones para cualquier sesión
+  de Claude Code en este repositorio.
 
 ### A13. Fase III del compañero, revisada y unida — 2026-10-26
 
