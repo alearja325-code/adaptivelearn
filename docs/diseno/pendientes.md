@@ -422,7 +422,10 @@ Planteado por Alejandro al decidir el repositorio nuevo. Se hace
   frontend (ventanas 014 a 019 y 026).
 - **Grupo B (DSE-2):** su actividad es programar y socializar los
   módulos más importantes; coincide con esta fase. Guías de
-  socialización por módulo, en preparación.
+  socialización en `docs/cursos/dse-2-203453/socializacion/`: cómo
+  usarlas (`00`) y **una de muestra, Acceso (`01`)**, para que Alejandro
+  la revise antes de hacer las otras cinco. Falta el enunciado exacto
+  de la actividad del grupo B (rúbrica).
 
 ### A14. Revisión del docente del 2026-10-22 — EN CURSO
 
