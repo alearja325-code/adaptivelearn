@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1438 728" width="1438" height="728">
+<defs>
+  <marker id="lleno" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10 z" fill="#111111"/></marker>
+  <marker id="abierta" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="abierta_gris" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#555555" stroke-width="1.4"/></marker>
+  <marker id="herencia" viewBox="0 0 18 16" refX="17" refY="8" markerWidth="18" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L17,8 L0,16 z" fill="#FFFFFF" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="rombo" viewBox="0 0 22 12" refX="1" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M1,6 L11,1 L21,6 L11,11 z" fill="#111111" stroke="#111111" stroke-width="1"/></marker>
+</defs>
+<rect x="0" y="0" width="1438" height="728" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de secuencia 8 · Eliminar una experiencia (borrado en cascada)</text>
+<text x="1406.0" y="40.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Casos de uso: CU-15</text>
+<rect x="81.0" y="304.0" width="1228.5" height="350.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<path d="M81.0,304 L115.864,304 L115.864,316 L108.864,324 L81.0,324 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.2"/>
+<text x="87.0" y="319.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">alt</text>
+<text x="123.9" y="319.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[confirma]</text>
+<line x1="81.0" y1="588" x2="1309.46345" y2="588" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
+<text x="89.0" y="603.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[cancela]</text>
+<circle cx="145.0" cy="78" r="8" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="86" x2="145.0" y2="102" stroke="#111111" stroke-width="1.5"/><line x1="133.0" y1="92" x2="157.0" y2="92" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="135.0" y2="114" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="155.0" y2="114" stroke="#111111" stroke-width="1.5"/>
+<text x="145.0" y="130.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Docente</text>
+<rect x="367.5" y="70.0" width="190.6" height="46.0" rx="0" ry="0" fill="#FFF4DC" stroke="#C08A1E" stroke-width="1.5"/>
+<text x="462.8" y="87.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#555555">«IGU»</text>
+<text x="462.8" y="105.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Ventanas 006, 025 y 024</text>
+<rect x="649.2" y="70.0" width="175.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="736.7" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">:ServicioExperiencias</text>
+<rect x="870.2" y="70.0" width="176.9" height="46.0" rx="0" ry="0" fill="#ECEEF1" stroke="#111111" stroke-width="1.5"/>
+<text x="958.6" y="87.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#555555">«persistencia»</text>
+<text x="958.6" y="105.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Base de datos (MySQL)</text>
+<line x1="145.0" y1="136" x2="145.0" y2="688" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="462.7846" y1="116" x2="462.7846" y2="688" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="736.6798000000001" y1="116" x2="736.6798000000001" y2="688" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="958.6348" y1="116" x2="958.6348" y2="688" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<polyline points="145.0,194.0 462.8,194.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="303.9" y="187.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">1: «Eliminar experiencia»</text>
+<polyline points="462.8,226.0 736.7,226.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="599.7" y="219.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">2: consultar(id)</text>
+<polyline points="736.7,258.0 462.8,258.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="599.7" y="251.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">cuántos inscritos y cuántas respuestas</text>
+<polyline points="462.8,290.0 145.0,290.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="303.9" y="283.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">confirmación con lo que se pierde (ventana 025)</text>
+<polyline points="462.8,358.0 736.7,358.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="599.7" y="351.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">3: eliminar(id)</text>
+<polyline points="736.7,390.0 958.6,390.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="847.7" y="383.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">4: DELETE de la experiencia</text>
+<path d="M974.6348,402 L1285.46345,402 L1295.46345,412 L1295.46345,472 L974.6348,472 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.1"/>
+<text x="984.6" y="418.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">ON DELETE CASCADE: evidencias incluidas, ítems,</text>
+<text x="984.6" y="433.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">opciones, inscripciones, presentaciones, respuestas</text>
+<text x="984.6" y="448.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">y resultados. Docentes, estudiantes y currículo no</text>
+<text x="984.6" y="463.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">se tocan (V-11).</text>
+<polyline points="958.6,510.0 736.7,510.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="847.7" y="503.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">hecho</text>
+<polyline points="736.7,542.0 462.8,542.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="599.7" y="535.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">eliminada</text>
+<polyline points="462.8,574.0 145.0,574.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="303.9" y="567.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">vuelve a su lista</text>
+<polyline points="462.8,642.0 145.0,642.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="303.9" y="635.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">nada cambia</text>
+<text x="32.0" y="712.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Flecha llena: mensaje (si es una llamada, es una operación del diagrama de clases). Punteada: respuesta o «create». Recuadros alt / opt / loop: alternativas, opcional y repetición, con su condición entre corchetes.</text>
+</svg>

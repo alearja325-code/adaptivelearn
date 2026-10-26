@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1465 910" width="1465" height="910">
+<defs>
+  <marker id="lleno" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10 z" fill="#111111"/></marker>
+  <marker id="abierta" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="abierta_gris" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#555555" stroke-width="1.4"/></marker>
+  <marker id="herencia" viewBox="0 0 18 16" refX="17" refY="8" markerWidth="18" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L17,8 L0,16 z" fill="#FFFFFF" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="rombo" viewBox="0 0 22 12" refX="1" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M1,6 L11,1 L21,6 L11,11 z" fill="#111111" stroke="#111111" stroke-width="1"/></marker>
+</defs>
+<rect x="0" y="0" width="1465" height="910" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de secuencia 4 · Publicar una experiencia</text>
+<text x="1433.0" y="40.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Casos de uso: CU-13</text>
+<rect x="922.0" y="272.0" width="339.1" height="66.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<path d="M921.9996000000001,272 L964.0636000000001,272 L964.0636000000001,284 L957.0636000000001,292 L921.9996000000001,292 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.2"/>
+<text x="928.0" y="287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">loop</text>
+<text x="972.1" y="287.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[por cada evidencia incluida]</text>
+<rect x="81.0" y="420.0" width="1223.9" height="416.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<path d="M81.0,420 L115.864,420 L115.864,432 L108.864,440 L81.0,440 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.2"/>
+<text x="87.0" y="435.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">alt</text>
+<text x="123.9" y="435.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[a alguna evidencia le faltan ítems activos]</text>
+<line x1="81.0" y1="488" x2="1304.9157500000001" y2="488" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
+<text x="89.0" y="503.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[todas tienen al menos 6 activos]</text>
+<circle cx="145.0" cy="78" r="8" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="86" x2="145.0" y2="102" stroke="#111111" stroke-width="1.5"/><line x1="133.0" y1="92" x2="157.0" y2="92" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="135.0" y2="114" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="155.0" y2="114" stroke="#111111" stroke-width="1.5"/>
+<text x="145.0" y="130.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Docente</text>
+<rect x="390.7" y="70.0" width="157.5" height="46.0" rx="0" ry="0" fill="#FFF4DC" stroke="#C08A1E" stroke-width="1.5"/>
+<text x="469.4" y="87.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#555555">«IGU»</text>
+<text x="469.4" y="105.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Ventanas 011 y 012</text>
+<rect x="638.1" y="70.0" width="175.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="725.6" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">:ServicioExperiencias</text>
+<rect x="921.0" y="70.0" width="130.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="986.0" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">e : Experiencia</text>
+<rect x="1097.0" y="70.0" width="200.3" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1197.1" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">ee : ExperienciaEvidencia</text>
+<line x1="145.0" y1="136" x2="145.0" y2="870" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="469.44460000000004" y1="116" x2="469.44460000000004" y2="870" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="725.6242000000001" y1="116" x2="725.6242000000001" y2="870" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="985.9996000000001" y1="116" x2="985.9996000000001" y2="870" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="1197.1256" y1="116" x2="1197.1256" y2="870" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<polyline points="145.0,194.0 469.4,194.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="307.2" y="187.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">1: abre la experiencia</text>
+<polyline points="469.4,226.0 725.6,226.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="597.5" y="219.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">2: consultar(id)</text>
+<polyline points="725.6,258.0 986.0,258.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="855.8" y="251.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">3: puedePublicarse()</text>
+<polyline points="986.0,326.0 1197.1,326.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="1091.6" y="319.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">4: faltantes()</text>
+<polyline points="986.0,374.0 725.6,374.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="855.8" y="367.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">true solo si a ninguna le faltan ítems</text>
+<polyline points="725.6,406.0 469.4,406.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="597.5" y="399.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">la experiencia, y si se puede publicar</text>
+<polyline points="469.4,474.0 145.0,474.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="307.2" y="467.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Publicar» deshabilitado, con cuántos faltan</text>
+<polyline points="145.0,542.0 469.4,542.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="307.2" y="535.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">5: «Publicar»</text>
+<polyline points="469.4,574.0 145.0,574.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="307.2" y="567.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">confirmación: no se deshace; el banco se congela</text>
+<polyline points="145.0,606.0 469.4,606.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="307.2" y="599.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">6: confirma</text>
+<polyline points="469.4,638.0 725.6,638.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="597.5" y="631.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">7: publicar(id)</text>
+<polyline points="725.6,670.0 986.0,670.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="855.8" y="663.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">8: puedePublicarse()</text>
+<polyline points="725.6,702.0 986.0,702.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="855.8" y="695.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">9: publicar(ahora)</text>
+<path d="M1001.9996000000001,714 L1280.9157500000001,714 L1290.9157500000001,724 L1290.9157500000001,754 L1001.9996000000001,754 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.1"/>
+<text x="1012.0" y="730.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">estado = Publicada · fecha_publicacion = ahora</text>
+<text x="1012.0" y="745.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">(RI-16)</text>
+<polyline points="725.6,792.0 469.4,792.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="597.5" y="785.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">publicada</text>
+<polyline points="469.4,824.0 145.0,824.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="307.2" y="817.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">estado Publicada; el código ya se puede ver</text>
+<text x="32.0" y="894.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Flecha llena: mensaje (si es una llamada, es una operación del diagrama de clases). Punteada: respuesta o «create». Recuadros alt / opt / loop: alternativas, opcional y repetición, con su condición entre corchetes.</text>
+</svg>

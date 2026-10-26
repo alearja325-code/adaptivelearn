@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 950" width="1320" height="950">
+<defs>
+  <marker id="lleno" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10 z" fill="#111111"/></marker>
+  <marker id="abierta" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="abierta_gris" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#555555" stroke-width="1.4"/></marker>
+  <marker id="herencia" viewBox="0 0 18 16" refX="17" refY="8" markerWidth="18" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L17,8 L0,16 z" fill="#FFFFFF" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="rombo" viewBox="0 0 22 12" refX="1" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M1,6 L11,1 L21,6 L11,11 z" fill="#111111" stroke="#111111" stroke-width="1"/></marker>
+</defs>
+<rect x="0" y="0" width="1320" height="950" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de secuencia 2 · Iniciar sesión</text>
+<text x="1288.0" y="40.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Casos de uso: CU-06</text>
+<rect x="326.6" y="274.0" width="683.1" height="570.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<path d="M326.5862000000001,274 L361.4502000000001,274 L361.4502000000001,286 L354.4502000000001,294 L326.5862000000001,294 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.2"/>
+<text x="332.6" y="289.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">alt</text>
+<text x="369.5" y="289.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[no existe]</text>
+<line x1="326.5862000000001" y1="342" x2="1009.686" y2="342" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
+<text x="334.6" y="357.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[es de Google o Microsoft]</text>
+<line x1="326.5862000000001" y1="410" x2="1009.686" y2="410" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
+<text x="334.6" y="425.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[es de correo y contraseña]</text>
+<rect x="336.6" y="510.0" width="663.1" height="318.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<path d="M336.5862000000001,510 L371.4502000000001,510 L371.4502000000001,522 L364.4502000000001,530 L336.5862000000001,530 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.2"/>
+<text x="342.6" y="525.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">alt</text>
+<text x="379.5" y="525.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[bloqueada, o contraseña incorrecta]</text>
+<line x1="336.5862000000001" y1="610" x2="999.686" y2="610" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
+<text x="344.6" y="625.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[contraseña correcta]</text>
+<rect x="346.6" y="678.0" width="370.6" height="134.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<path d="M346.5862000000001,678 L381.4502000000001,678 L381.4502000000001,690 L374.4502000000001,698 L346.5862000000001,698 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.2"/>
+<text x="352.6" y="693.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">alt</text>
+<text x="389.5" y="693.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[todavía sin rol: registro sin terminar]</text>
+<line x1="346.5862000000001" y1="746" x2="717.214" y2="746" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
+<text x="354.6" y="761.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[con rol]</text>
+<circle cx="145.0" cy="78" r="8" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="86" x2="145.0" y2="102" stroke="#111111" stroke-width="1.5"/><line x1="133.0" y1="92" x2="157.0" y2="92" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="135.0" y2="114" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="155.0" y2="114" stroke="#111111" stroke-width="1.5"/>
+<text x="145.0" y="130.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Usuario</text>
+<rect x="329.6" y="70.0" width="130.0" height="46.0" rx="0" ry="0" fill="#FFF4DC" stroke="#C08A1E" stroke-width="1.5"/>
+<text x="394.6" y="87.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#555555">«IGU»</text>
+<text x="394.6" y="105.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Ventana 014</text>
+<rect x="602.2" y="70.0" width="134.1" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="669.2" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">:ServicioAcceso</text>
+<rect x="878.7" y="70.0" width="130.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="943.7" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c : Credencial</text>
+<line x1="145.0" y1="136" x2="145.0" y2="910" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="394.5862000000001" y1="116" x2="394.5862000000001" y2="910" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="669.214" y1="116" x2="669.214" y2="910" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="943.686" y1="116" x2="943.686" y2="910" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<polyline points="145.0,194.0 394.6,194.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="269.8" y="187.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">1: escribe correo y contraseña</text>
+<polyline points="394.6,226.0 669.2,226.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="531.9" y="219.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">2: iniciarSesion(correo, contrasena)</text>
+<polyline points="669.2,246.0 709.2,246.0 709.2,266.0 671.2,266.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="717.2" y="260.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">3: busca la credencial del correo</text>
+<polyline points="669.2,328.0 394.6,328.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="531.9" y="321.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">error genérico (RF-01-07)</text>
+<polyline points="669.2,396.0 394.6,396.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="531.9" y="389.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">aviso: con qué método entrar (RF-01-04)</text>
+<polyline points="669.2,464.0 943.7,464.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="806.5" y="457.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">4: estaBloqueada(ahora)</text>
+<polyline points="669.2,496.0 943.7,496.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="806.5" y="489.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">5: verificarContrasena(texto)</text>
+<polyline points="669.2,564.0 943.7,564.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="806.5" y="557.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">6: registrarFallo(ahora)</text>
+<polyline points="669.2,596.0 394.6,596.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="531.9" y="589.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">error genérico: no dice qué falló</text>
+<polyline points="669.2,664.0 943.7,664.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="806.5" y="657.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">7: tieneRol()</text>
+<polyline points="669.2,732.0 394.6,732.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="531.9" y="725.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">continúa en completar perfil (CU-04)</text>
+<polyline points="669.2,800.0 394.6,800.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="531.9" y="793.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">sesión del rol</text>
+<polyline points="394.6,880.0 145.0,880.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="269.8" y="873.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">el mensaje, o el Dashboard de su rol</text>
+<text x="32.0" y="934.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Flecha llena: mensaje (si es una llamada, es una operación del diagrama de clases). Punteada: respuesta o «create». Recuadros alt / opt / loop: alternativas, opcional y repetición, con su condición entre corchetes.</text>
+</svg>

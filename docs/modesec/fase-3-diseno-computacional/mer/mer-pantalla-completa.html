@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MER · AdaptiveLearn</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #ffffff; font-family: "Segoe UI", system-ui, sans-serif;
+               user-select: none; -webkit-user-select: none; }
+  #lienzo { position: fixed; inset: 0; cursor: grab; touch-action: none; }
+  #lienzo.arrastrando { cursor: grabbing; }
+  #capa { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  #mer { display: block; }
+  #ayuda { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); background: rgba(30,30,30,.82); color: #fff;
+           padding: 8px 16px; border-radius: 8px; font-size: 13px; transition: opacity .6s; pointer-events: none; white-space: nowrap; }
+  #zoom { position: fixed; right: 14px; top: 12px; background: rgba(30,30,30,.7); color: #fff; padding: 4px 10px;
+          border-radius: 6px; font-size: 12px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="lienzo"><div id="capa">
+<svg id="mer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3500 1990" width="3500" height="1990">
+<defs>
+  <marker id="lleno" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10 z" fill="#111111"/></marker>
+  <marker id="abierta" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="abierta_gris" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L12,5 L0,10" fill="none" stroke="#555555" stroke-width="1.4"/></marker>
+  <marker id="herencia" viewBox="0 0 18 16" refX="17" refY="8" markerWidth="18" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M0,0 L17,8 L0,16 z" fill="#FFFFFF" stroke="#111111" stroke-width="1.4"/></marker>
+  <marker id="rombo" viewBox="0 0 22 12" refX="1" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M1,6 L11,1 L21,6 L11,11 z" fill="#111111" stroke="#111111" stroke-width="1"/></marker>
+</defs>
+<rect x="0" y="0" width="3500" height="1990" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="1750.0" y="62.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#1C2E4A">DIAGRAMA ENTIDAD - RELACIÓN — versión final</text>
+<text x="1750.0" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#555555">ADAPTIVELEARN · FASE III · 15 ENTIDADES + REPORTE (DERIVADO) · 18 RELACIONES + 2 DERIVADAS · REVISIÓN DEL DOCENTE (2026-09-01) ATENDIDA</text>
+<rect x="60" y="740" width="320" height="284" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/><path d="M 60 770 L 60 745 Q 60 740 65 740 L 375 740 Q 380 740 380 745 L 380 770 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="220.0" y="760.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2E1F4D">CREDENCIAL</text>
+<line x1="114" y1="770" x2="114" y2="1024" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="68.0" y="791.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="122" y="791" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_credencial</text>
+<text x="68.0" y="811.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="122" y="811" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_docente</text>
+<text x="68.0" y="831.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="122" y="831" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_estudiante</text>
+<text x="122" y="851" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correo<tspan font-size="8.5" font-weight="400" fill="#666666"> (U)</tspan></text>
+<text x="122" y="871" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">proveedor<tspan font-size="8.5" font-weight="400" fill="#666666"> (correo/google/microsoft)</tspan></text>
+<text x="122" y="891" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">password_hash</text>
+<text x="122" y="911" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">proveedor_id</text>
+<text x="122" y="931" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">email_verificado</text>
+<text x="122" y="951" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_verificacion</text>
+<text x="122" y="971" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_expira_en</text>
+<text x="122" y="991" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_ultimo_envio</text>
+<text x="122" y="1011" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">creado_en</text>
+<rect x="1260" y="200" width="320" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/><path d="M 1260 230 L 1260 205 Q 1260 200 1265 200 L 1575 200 Q 1580 200 1580 205 L 1580 230 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="1420.0" y="220.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4A3A16">DBA</text>
+<line x1="1314" y1="230" x2="1314" y2="344" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="1268.0" y="251.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1322" y="251" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1322" y="271" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">area</text>
+<text x="1322" y="291" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grado</text>
+<text x="1322" y="311" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="1322" y="331" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">ejemplo</text>
+<rect x="1875" y="195" width="330" height="114" rx="7" ry="7" fill="none" stroke="#A98B4E" stroke-width="1.8"/>
+<rect x="1880" y="200" width="320" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#A98B4E" stroke-width="1.8"/><path d="M 1880 230 L 1880 205 Q 1880 200 1885 200 L 2195 200 Q 2200 200 2200 205 L 2200 230 Z" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.8"/>
+<text x="2040.0" y="220.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4A3A16">EVIDENCIA</text>
+<line x1="1934" y1="230" x2="1934" y2="304" stroke="#A98B4E" stroke-width="0.8" opacity="0.55"/>
+<text x="1888.0" y="251.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#A98B4E">PK,FK</text>
+<text x="1942" y="251" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1888.0" y="271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#A98B4E">PK</text>
+<text x="1942" y="271" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1942" y="291" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<rect x="2495" y="195" width="330" height="174" rx="7" ry="7" fill="none" stroke="#C0637B" stroke-width="1.8"/>
+<rect x="2500" y="200" width="320" height="164" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/><path d="M 2500 230 L 2500 205 Q 2500 200 2505 200 L 2815 200 Q 2820 200 2820 205 L 2820 230 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="2660.0" y="220.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4D1E29">EVIDENCIA_DICTAMEN</text>
+<line x1="2554" y1="230" x2="2554" y2="364" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="2508.0" y="251.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="2562" y="251" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="2508.0" y="271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="2562" y="271" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="2562" y="291" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">aplica_formato_cerrado</text>
+<text x="2562" y="311" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">formato<tspan font-size="8.5" font-weight="400" fill="#666666"> (single_choice/matching/ordering)</tspan></text>
+<text x="2562" y="331" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">justificacion</text>
+<text x="2562" y="351" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_dictamen</text>
+<rect x="640" y="540" width="320" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/><path d="M 640 570 L 640 545 Q 640 540 645 540 L 955 540 Q 960 540 960 545 L 960 570 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="800.0" y="560.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2E1F4D">DOCENTE</text>
+<line x1="694" y1="570" x2="694" y2="664" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="648.0" y="591.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="702" y="591" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_docente</text>
+<text x="702" y="611" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombres</text>
+<text x="702" y="631" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">apellidos</text>
+<text x="702" y="651" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">avatar_url</text>
+<rect x="1260" y="540" width="320" height="244" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/><path d="M 1260 570 L 1260 545 Q 1260 540 1265 540 L 1575 540 Q 1580 540 1580 545 L 1580 570 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="1420.0" y="560.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2E1F4D">EXPERIENCIA</text>
+<line x1="1314" y1="570" x2="1314" y2="784" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="1268.0" y="591.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="1322" y="591" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="1268.0" y="611.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1322" y="611" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_docente</text>
+<text x="1268.0" y="631.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="1322" y="631" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_dba</text>
+<text x="1322" y="651" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombre</text>
+<text x="1322" y="671" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado<tspan font-size="8.5" font-weight="400" fill="#666666"> (Borrador/Publicada)</tspan></text>
+<text x="1322" y="691" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_creacion</text>
+<text x="1322" y="711" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_publicacion</text>
+<text x="1322" y="731" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_invitacion<tspan font-size="8.5" font-weight="400" fill="#666666"> (U)</tspan></text>
+<text x="1322" y="751" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">servicio_ia<tspan font-size="8.5" font-weight="400" fill="#666666"> (gemini/deepseek)</tspan></text>
+<text x="1322" y="771" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">modelo_ia</text>
+<rect x="1880" y="540" width="320" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/><path d="M 1880 570 L 1880 545 Q 1880 540 1885 540 L 2195 540 Q 2200 540 2200 545 L 2200 570 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="2040.0" y="560.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4D3708">EXPERIENCIA_EVIDENCIA</text>
+<line x1="1934" y1="570" x2="1934" y2="644" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="1888.0" y="591.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1942" y="591" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_experiencia</text>
+<text x="1888.0" y="611.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1942" y="611" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1888.0" y="631.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="1942" y="631" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<rect x="2500" y="540" width="320" height="204" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/><path d="M 2500 570 L 2500 545 Q 2500 540 2505 540 L 2815 540 Q 2820 540 2820 545 L 2820 570 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="2660.0" y="560.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2E1F4D">ITEM</text>
+<line x1="2554" y1="570" x2="2554" y2="744" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="2508.0" y="591.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="2562" y="591" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="2508.0" y="611.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="2562" y="611" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_experiencia</text>
+<text x="2508.0" y="631.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="2562" y="631" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">codigo_dba</text>
+<text x="2508.0" y="651.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="2562" y="651" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">numero_evidencia</text>
+<text x="2562" y="671" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">enunciado</text>
+<text x="2562" y="691" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">formato<tspan font-size="8.5" font-weight="400" fill="#666666"> (single_choice/matching/ordering)</tspan></text>
+<text x="2562" y="711" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">origen<tspan font-size="8.5" font-weight="400" fill="#666666"> (ia/editado_docente/creado_docente)</tspan></text>
+<text x="2562" y="731" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">excluido</text>
+<rect x="3120" y="540" width="320" height="184" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/><path d="M 3120 570 L 3120 545 Q 3120 540 3125 540 L 3435 540 Q 3440 540 3440 545 L 3440 570 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="3280.0" y="560.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2E1F4D">OPCION</text>
+<line x1="3174" y1="570" x2="3174" y2="724" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="3128.0" y="591.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="3182" y="591" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="3128.0" y="611.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="3182" y="611" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_item</text>
+<text x="3182" y="631" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">texto</text>
+<text x="3182" y="651" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden</text>
+<text x="3182" y="671" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">es_correcta</text>
+<text x="3182" y="691" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">grupo<tspan font-size="8.5" font-weight="400" fill="#666666"> (izquierda/derecha)</tspan></text>
+<text x="3182" y="711" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">hipotesis_error</text>
+<rect x="1400" y="930" width="300" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,4"/><path d="M 1400 960 L 1400 935 Q 1400 930 1405 930 L 1695 930 Q 1700 930 1700 935 L 1700 960 Z" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.8" stroke-dasharray="6,4"/>
+<text x="1550.0" y="950.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#333333">REPORTE</text>
+<line x1="1454" y1="960" x2="1454" y2="1034" stroke="#8A8A8A" stroke-width="0.8" opacity="0.55"/>
+<text x="1408.0" y="981.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A8A8A">FK</text>
+<text x="1462" y="981" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_experiencia</text>
+<text x="1462" y="1001" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado_general<tspan font-size="8.5" font-weight="400" fill="#666666"> (calculado, no se guarda)</tspan></text>
+<text x="1462" y="1021" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado_por_evidencia<tspan font-size="8.5" font-weight="400" fill="#666666"> (calculado, no se guarda)</tspan></text>
+<rect x="640" y="1160" width="320" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/><path d="M 640 1190 L 640 1165 Q 640 1160 645 1160 L 955 1160 Q 960 1160 960 1165 L 960 1190 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="800.0" y="1180.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2E1F4D">ESTUDIANTE</text>
+<line x1="694" y1="1190" x2="694" y2="1284" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="648.0" y="1211.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="702" y="1211" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_estudiante</text>
+<text x="702" y="1231" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">nombres</text>
+<text x="702" y="1251" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">apellidos</text>
+<text x="702" y="1271" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">avatar_url</text>
+<rect x="1260" y="1160" width="320" height="144" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/><path d="M 1260 1190 L 1260 1165 Q 1260 1160 1265 1160 L 1575 1160 Q 1580 1160 1580 1165 L 1580 1190 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="1420.0" y="1180.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4D3708">INSCRIPCION</text>
+<line x1="1314" y1="1190" x2="1314" y2="1304" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="1268.0" y="1211.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">PK</text>
+<text x="1322" y="1211" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="1268.0" y="1231.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1322" y="1231" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_estudiante</text>
+<text x="1268.0" y="1251.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">FK</text>
+<text x="1322" y="1251" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_experiencia</text>
+<text x="1322" y="1271" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_union</text>
+<text x="1322" y="1291" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">progreso<tspan font-size="8.5" font-weight="400" fill="#666666"> (calculado, no se guarda)</tspan></text>
+<rect x="1875" y="1155" width="330" height="174" rx="7" ry="7" fill="none" stroke="#C0637B" stroke-width="1.8"/>
+<rect x="1880" y="1160" width="320" height="164" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/><path d="M 1880 1190 L 1880 1165 Q 1880 1160 1885 1160 L 2195 1160 Q 2200 1160 2200 1165 L 2200 1190 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="2040.0" y="1180.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4D1E29">RESULTADO</text>
+<line x1="1934" y1="1190" x2="1934" y2="1324" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="1888.0" y="1211.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1942" y="1211" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="1888.0" y="1231.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">FK</text>
+<text x="1942" y="1231" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_experiencia</text>
+<text x="1888.0" y="1251.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1942" y="1251" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">codigo_dba</text>
+<text x="1888.0" y="1271.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="1942" y="1271" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">numero_evidencia</text>
+<text x="1942" y="1291" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">estado<tspan font-size="8.5" font-weight="400" fill="#666666"> (muestra/no_muestra/no_concluyente) (derivado · se guarda)</tspan></text>
+<text x="1942" y="1311" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_calculo</text>
+<rect x="3120" y="1160" width="320" height="104" rx="5" ry="5" fill="#FFFFFF" stroke="#C9922F" stroke-width="1.8"/><path d="M 3120 1190 L 3120 1165 Q 3120 1160 3125 1160 L 3435 1160 Q 3440 1160 3440 1165 L 3440 1190 Z" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.8"/>
+<text x="3280.0" y="1180.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4D3708">RESPUESTA_OPCION</text>
+<line x1="3174" y1="1190" x2="3174" y2="1264" stroke="#C9922F" stroke-width="0.8" opacity="0.55"/>
+<text x="3128.0" y="1211.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="3182" y="1211" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="3128.0" y="1231.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C9922F">PK,FK</text>
+<text x="3182" y="1231" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_opcion</text>
+<text x="3182" y="1251" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">valor_dado</text>
+<rect x="2495" y="1495" width="330" height="134" rx="7" ry="7" fill="none" stroke="#C0637B" stroke-width="1.8"/>
+<rect x="2500" y="1500" width="320" height="124" rx="5" ry="5" fill="#FFFFFF" stroke="#C0637B" stroke-width="1.8"/><path d="M 2500 1530 L 2500 1505 Q 2500 1500 2505 1500 L 2815 1500 Q 2820 1500 2820 1505 L 2820 1530 Z" fill="#FADCE0" stroke="#C0637B" stroke-width="1.8"/>
+<text x="2660.0" y="1520.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4D1E29">PRESENTACION</text>
+<line x1="2554" y1="1530" x2="2554" y2="1624" stroke="#C0637B" stroke-width="0.8" opacity="0.55"/>
+<text x="2508.0" y="1551.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="2562" y="1551" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_inscripcion</text>
+<text x="2508.0" y="1571.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#C0637B">PK,FK</text>
+<text x="2562" y="1571" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_item</text>
+<text x="2562" y="1591" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">orden_presentacion</text>
+<text x="2562" y="1611" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_presentacion</text>
+<rect x="3120" y="1500" width="320" height="164" rx="5" ry="5" fill="#FFFFFF" stroke="#7E63B8" stroke-width="1.8"/><path d="M 3120 1530 L 3120 1505 Q 3120 1500 3125 1500 L 3435 1500 Q 3440 1500 3440 1505 L 3440 1530 Z" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.8"/>
+<text x="3280.0" y="1520.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2E1F4D">RESPUESTA</text>
+<line x1="3174" y1="1530" x2="3174" y2="1664" stroke="#7E63B8" stroke-width="0.8" opacity="0.55"/>
+<text x="3128.0" y="1551.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">PK</text>
+<text x="3182" y="1551" font-family="Helvetica" font-size="11.5" font-weight="700" fill="#111111">id_respuesta</text>
+<text x="3128.0" y="1571.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="3182" y="1571" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_inscripcion</text>
+<text x="3128.0" y="1591.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#7E63B8">FK</text>
+<text x="3182" y="1591" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">id_item</text>
+<text x="3182" y="1611" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">certeza<tspan font-size="8.5" font-weight="400" fill="#666666"> (CRI 0-5)</tspan></text>
+<text x="3182" y="1631" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">fecha_respuesta</text>
+<text x="3182" y="1651" font-family="Helvetica" font-size="11.5" font-weight="400" fill="#111111">correcta<tspan font-size="8.5" font-weight="400" fill="#666666"> (derivado · se guarda)</tspan></text>
+<polyline points="220.0,740.0 220.0,600.0 426.0,600.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="594.0,600.0 640.0,600.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="594.0,600.0 640.0,600.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="510.0,567 594.0,600 510.0,633 426.0,600" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="510.0" y="604.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">ACCEDE COMO</text>
+<text x="229.0" y="722.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,1)</text>
+<text x="628.0" y="591.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="220.0,1024.0 220.0,1222.0 426.0,1222.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="594.0,1222.0 640.0,1222.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="594.0,1222.0 640.0,1222.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="510.0,1189 594.0,1222 510.0,1255 426.0,1222" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="510.0" y="1226.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">ACCEDE COMO</text>
+<text x="229.0" y="1046.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,1)</text>
+<text x="628.0" y="1213.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="1580.0,250.0 1646.0,250.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1580.0,250.0 1646.0,250.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polyline points="1814.0,250.0 1880.0,250.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1814.0,250.0 1880.0,250.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="1730.0,211 1822.0,250 1730.0,289 1638.0,250" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="1730.0,217 1814.0,250 1730.0,283 1646.0,250" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1730.0" y="254.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">COMPRENDE</text>
+<text x="1592.0" y="241.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,N)</text>
+<text x="1868.0" y="241.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="2200.0,250.0 2266.0,250.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="2434.0,250.0 2500.0,250.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2434.0,250.0 2500.0,250.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2350.0,211 2442.0,250 2350.0,289 2258.0,250" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="2350.0,217 2434.0,250 2350.0,283 2266.0,250" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2350.0" y="254.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">SE DICTAMINA</text>
+<text x="2212.0" y="241.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,1)</text>
+<text x="2488.0" y="241.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="960.0,590.0 1026.0,590.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="1194.0,590.0 1260.0,590.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1194.0,590.0 1260.0,590.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="1110.0,557 1194.0,590 1110.0,623 1026.0,590" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1110.0" y="594.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">CREA</text>
+<text x="972.0" y="581.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="1248.0" y="581.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="1420.0,540.0 1420.0,475.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1420.0,540.0 1420.0,475.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polyline points="1420.0,409.0 1420.0,344.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polygon points="1420,409.0 1504,442.0 1420,475.0 1336,442.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1420.0" y="446.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">SE ANCLA A</text>
+<text x="1429.0" y="522.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<text x="1429.0" y="366.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<polyline points="1580.0,590.0 1646.0,590.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1580.0,590.0 1646.0,590.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polyline points="1814.0,590.0 1880.0,590.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1814.0,590.0 1880.0,590.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="1730.0,557 1814.0,590 1730.0,623 1646.0,590" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1730.0" y="594.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">INCLUYE</text>
+<text x="1592.0" y="581.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,N)</text>
+<text x="1868.0" y="581.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="2040.0,304.0 2040.0,389.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="2040.0,455.0 2040.0,540.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2040.0,455.0 2040.0,540.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2040,389.0 2124,422.0 2040,455.0 1956,422.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2040.0" y="426.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">SOBRE</text>
+<text x="2049.0" y="326.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="2049.0" y="522.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="2200.0,590.0 2266.0,590.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2200.0,590.0 2266.0,590.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polyline points="2434.0,590.0 2500.0,590.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2434.0,590.0 2500.0,590.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2350.0,557 2434.0,590 2350.0,623 2266.0,590" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2350.0" y="594.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">GENERA</text>
+<text x="2212.0" y="581.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(12,N)</text>
+<text x="2488.0" y="581.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="2820.0,590.0 2886.0,590.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2820.0,590.0 2886.0,590.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polyline points="3054.0,590.0 3120.0,590.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="3054.0,590.0 3120.0,590.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2970.0,557 3054.0,590 2970.0,623 2886.0,590" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2970.0" y="594.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">OFRECE</text>
+<text x="2832.0" y="581.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(2,N)</text>
+<text x="3108.0" y="581.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="960.0,1210.0 1026.0,1210.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="1194.0,1210.0 1260.0,1210.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1194.0,1210.0 1260.0,1210.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="1110.0,1177 1194.0,1210 1110.0,1243 1026.0,1210" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1110.0" y="1214.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">REALIZA</text>
+<text x="972.0" y="1201.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="1248.0" y="1201.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="1330.0,1160.0 1330.0,1115.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1330.0,1160.0 1330.0,1115.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polyline points="1330.0,1049.0 1330.0,784.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polygon points="1330,1049 1414,1082 1330,1115 1246,1082" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1330.0" y="1086.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">PERTENECE A</text>
+<text x="1339.0" y="1142.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<text x="1339.0" y="806.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<polyline points="1420.0,1304.0 1420.0,1580.0 1956.0,1580.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="2124.0,1580.0 2500.0,1580.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2124.0,1580.0 2500.0,1580.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2040,1541 2132,1580 2040,1619 1948,1580" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="2040,1547 2124,1580 2040,1613 1956,1580" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2040.0" y="1584.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">ATIENDE</text>
+<text x="1429.0" y="1326.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="2488.0" y="1571.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="2660.0,744.0 2660.0,1087.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="2660.0,1153.0 2660.0,1500.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2660.0,1153.0 2660.0,1500.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2660,1081 2752,1120 2660,1159 2568,1120" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="2660,1087 2744,1120 2660,1153 2576,1120" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2660.0" y="1124.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">SE PRESENTA</text>
+<text x="2669.0" y="766.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="2669.0" y="1482.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="2820.0,1550.0 2886.0,1550.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="3054.0,1550.0 3120.0,1550.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="3054.0,1550.0 3120.0,1550.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2970.0,1517 3054.0,1550 2970.0,1583 2886.0,1550" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2970.0" y="1554.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">REGISTRA</text>
+<text x="2832.0" y="1541.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,1)</text>
+<text x="3108.0" y="1541.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="3280.0,1500.0 3280.0,1415.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="3280.0,1500.0 3280.0,1415.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polyline points="3280.0,1349.0 3280.0,1264.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="3280.0,1349.0 3280.0,1264.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="3280,1349.0 3364,1382.0 3280,1415.0 3196,1382.0" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="3280.0" y="1386.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">SELECCIONA</text>
+<text x="3289.0" y="1482.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,N)</text>
+<text x="3289.0" y="1286.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="3280.0,1160.0 3280.0,724.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<text x="3289.0" y="1142.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<text x="3289.0" y="746.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="3292.0" y="946.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#666666">«selecciona» N:M,</text>
+<text x="3292.0" y="961.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#666666">materializada</text>
+<polyline points="1580.0,1210.0 1646.0,1210.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="1814.0,1210.0 1880.0,1210.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="1814.0,1210.0 1880.0,1210.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="1730.0,1171 1822.0,1210 1730.0,1249 1638.0,1210" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="1730.0,1177 1814.0,1210 1730.0,1243 1646.0,1210" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="1730.0" y="1214.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">ARROJA</text>
+<text x="1592.0" y="1201.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="1868.0" y="1201.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="2100.0,644.0 2100.0,867.0" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<polyline points="2100.0,933.0 2100.0,1160.0" fill="none" stroke="#6B7280" stroke-width="5.2"/>
+<polyline points="2100.0,933.0 2100.0,1160.0" fill="none" stroke="#F3F5F8" stroke-width="2.0"/>
+<polygon points="2100,861 2192,900 2100,939 2008,900" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/>
+<polygon points="2100,867 2184,900 2100,933 2016,900" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="2100.0" y="904.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1F4D1F">MIDE</text>
+<text x="2109.0" y="666.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<text x="2109.0" y="1142.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="1940.0,1160.0 1940.0,1104.0" fill="none" stroke="#8A8A8A" stroke-width="1.5" stroke-dasharray="6,4"/>
+<polyline points="1940.0,1038.0 1940.0,982.0 1700.0,982.0" fill="none" stroke="#8A8A8A" stroke-width="1.5" stroke-dasharray="6,4"/>
+<polygon points="1940,1038.0 2024,1071.0 1940,1104.0 1856,1071.0" fill="#FFFFFF" stroke="#8A8A8A" stroke-width="1.6" stroke-dasharray="5,4"/>
+<text x="1940.0" y="1075.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#555555">SE AGREGA EN</text>
+<text x="1949.0" y="1142.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<text x="1712.0" y="973.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(0,N)</text>
+<polyline points="1520.0,784.0 1520.0,824.0" fill="none" stroke="#8A8A8A" stroke-width="1.5" stroke-dasharray="6,4"/>
+<polyline points="1520.0,890.0 1520.0,930.0" fill="none" stroke="#8A8A8A" stroke-width="1.5" stroke-dasharray="6,4"/>
+<polygon points="1520,824.0 1604,857.0 1520,890.0 1436,857.0" fill="#FFFFFF" stroke="#8A8A8A" stroke-width="1.6" stroke-dasharray="5,4"/>
+<text x="1520.0" y="861.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#555555">RESUME</text>
+<text x="1529.0" y="806.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<text x="1529.0" y="912.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<polyline points="403.0,600.0 403.0,1222.0" fill="none" stroke="#B4536B" stroke-width="1.4" stroke-dasharray="5,4"/>
+<text x="412.0" y="692.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#B4536B">{xor}</text>
+<text x="412.0" y="709.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#B4536B">un solo rol</text>
+<text x="412.0" y="724.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#B4536B">(RI-12)</text>
+<rect x="120" y="1745" width="3260" height="200" rx="10" ry="10" fill="#FFFFFF" stroke="#E3E7ED"/>
+<text x="150.0" y="1775.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2E4A">LEYENDA</text>
+<rect x="150" y="1795" width="34" height="22" rx="4" ry="4" fill="#E7DEF7" stroke="#7E63B8" stroke-width="1.6"/>
+<text x="196.0" y="1811.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Entidad propia</text>
+<rect x="341.6476" y="1795" width="34" height="22" rx="4" ry="4" fill="#FDF0D5" stroke="#C9922F" stroke-width="1.6"/>
+<text x="387.6" y="1811.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Entidad asociativa (resuelve M:N)</text>
+<rect x="643.7846" y="1795" width="34" height="22" rx="4" ry="4" fill="#F5EFE0" stroke="#A98B4E" stroke-width="1.6"/>
+<text x="689.8" y="1811.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Dato externo del MEN, referenciado</text>
+<rect x="956.174" y="1791" width="42" height="30" rx="5" ry="5" fill="none" stroke="#C0637B" stroke-width="1.6"/>
+<rect x="960.174" y="1795" width="34" height="22" rx="4" ry="4" fill="#FADCE0" stroke="#C0637B" stroke-width="1.6"/>
+<text x="1006.2" y="1811.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Entidad débil (doble borde)</text>
+<rect x="1223.2168" y="1795" width="34" height="22" rx="4" ry="4" fill="#ECECEC" stroke="#8A8A8A" stroke-width="1.6" stroke-dasharray="5,4"/>
+<text x="1269.2" y="1811.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Vista derivada: no persiste</text>
+<polygon points="150,1857 182,1845 214,1857 182,1869" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="226.0" y="1861.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Relación</text>
+<polygon points="344,1857 382,1841 420,1857 382,1873" fill="#FFFFFF" stroke="#5F9E5F" stroke-width="1.6"/><polygon points="350,1857 382,1846 414,1857 382,1868" fill="#DDF0DD" stroke="#5F9E5F" stroke-width="1.6"/>
+<text x="432.0" y="1861.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Relación identificadora (rombo doble)</text>
+<line x1="750" y1="1857" x2="810" y2="1857" stroke="#6B7280" stroke-width="5.2"/><line x1="750" y1="1857" x2="810" y2="1857" stroke="#FFFFFF" stroke-width="2"/>
+<text x="822.0" y="1861.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Línea doble: participación obligatoria</text>
+<polygon points="1130,1857 1162,1845 1194,1857 1162,1869" fill="#FFFFFF" stroke="#8A8A8A" stroke-width="1.6" stroke-dasharray="5,4"/>
+<text x="1206.0" y="1861.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">Relación derivada (punteada): se calcula, no se guarda</text>
+<text x="150.0" y="1903.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">PK clave primaria · FK clave foránea · (U) valor único · ( ) dominio o dato derivado · (mín, máx) junto a cada entidad: cuántas veces participa un ejemplar suyo · {xor}: relaciones excluyentes</text>
+<text x="150.0" y="1927.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">Vista de conjunto, en la notación de la revisión del docente: muestra las llaves (PK y FK) para leer cómo se enlaza todo. El MER formal, en notación Chen estricta y sin llaves foráneas (hallazgo H-8), son las siete vistas de 16-modelo-entidad-relacion.md.</text>
+</svg>
+
+</div></div>
+<div id="zoom">100%</div>
+<div id="ayuda">Rueda: acercar o alejar · Arrastrar: mover · Doble clic: acercar o ajustar · 0: ajustar a la pantalla · F11: salir de pantalla completa</div>
+<script>
+  const lienzo = document.getElementById('lienzo'), capa = document.getElementById('capa');
+  const W = 3500, H = 1990;
+  let s = 1, x = 0, y = 0, ajuste = 1;
+  function pintar() {
+    capa.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+    document.getElementById('zoom').textContent = Math.round(s * 100) + '%';
+  }
+  function ajustar() {
+    const vw = lienzo.clientWidth, vh = lienzo.clientHeight;
+    ajuste = Math.min(vw / W, vh / H) * 0.97;   // un margen: nada pegado al borde
+    s = ajuste; x = (vw - W * s) / 2; y = (vh - H * s) / 2; pintar();
+  }
+  function zoomEn(px, py, nuevo) {
+    nuevo = Math.min(Math.max(nuevo, ajuste * 0.8), 4);
+    x = px - (px - x) * (nuevo / s); y = py - (py - y) * (nuevo / s); s = nuevo; pintar();
+  }
+  lienzo.addEventListener('wheel', (e) => { e.preventDefault(); zoomEn(e.clientX, e.clientY, s * Math.exp(-e.deltaY * 0.0015)); }, { passive: false });
+  let arrastre = null;
+  lienzo.addEventListener('pointerdown', (e) => { e.preventDefault(); arrastre = { px: e.clientX, py: e.clientY, x, y }; lienzo.classList.add('arrastrando'); lienzo.setPointerCapture(e.pointerId); });
+  lienzo.addEventListener('pointermove', (e) => { if (!arrastre) return; x = arrastre.x + e.clientX - arrastre.px; y = arrastre.y + e.clientY - arrastre.py; pintar(); });
+  lienzo.addEventListener('pointerup', () => { arrastre = null; lienzo.classList.remove('arrastrando'); });
+  lienzo.addEventListener('dblclick', (e) => { if (s > ajuste * 1.05) ajustar(); else zoomEn(e.clientX, e.clientY, Math.max(1, ajuste * 2.5)); });
+  addEventListener('keydown', (e) => {
+    if (e.key === '0') ajustar();
+    if (e.key === '+' || e.key === '=') zoomEn(innerWidth / 2, innerHeight / 2, s * 1.25);
+    if (e.key === '-') zoomEn(innerWidth / 2, innerHeight / 2, s / 1.25);
+  });
+  // reajusta cuando la ventana pasa a pantalla completa o cambia de tamano
+  new ResizeObserver(ajustar).observe(lienzo);
+  ajustar();
+  setTimeout(() => (document.getElementById('ayuda').style.opacity = 0), 7000);
+</script>
+</body>
+</html>
