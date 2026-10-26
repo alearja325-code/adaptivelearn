@@ -1,0 +1,110 @@
+======================================================================
+Servidor: MySQL 8.4.11
+sql_mode: ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+======================================================================
+A. El motor acepta el esquema de producción
+======================================================================
+   OK   mr_mysql.sql se ejecuta completo sin errores
+   OK   15 tablas creadas (el MR declara 15)
+   OK   19 llaves foráneas (el MR declara 19)
+   OK   10 restricciones CHECK registradas (el MR declara 10)
+
+======================================================================
+B. La misma batería de pruebas que verificar_mr.py
+======================================================================
+   OK   la semilla (23 filas válidas) entra sin errores
+   OK   [rechaza] correo repetido entre los dos roles (RI-3, RF-01-04)
+            ↳ ERROR 1062 (23000) at line 4: Duplicate entry 'luis@gmail.com' for key 'credencial.uq_credencial_1'
+   OK   [rechaza] correo repetido escrito con otras mayúsculas (RF-01-04)
+            ↳ ERROR 1062 (23000) at line 4: Duplicate entry 'ANA@Colegio.co' for key 'credencial.uq_credencial_1'
+   OK   [rechaza] una credencial que da acceso como docente Y como estudiante (RI-12)
+            ↳ ERROR 3819 (HY000) at line 4: Check constraint 'ck_credencial_1' is violated.
+   OK   [rechaza] dos credenciales para el mismo docente (relación 1:1)
+            ↳ ERROR 1062 (23000) at line 3: Duplicate entry '1' for key 'credencial.uq_credencial_2'
+   OK   [rechaza] cuenta de correo sin contraseña (RI-15)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_credencial_2' is violated.
+   OK   [rechaza] cuenta de Google con contraseña guardada (RI-15)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_credencial_2' is violated.
+   OK   [rechaza] cuenta de Google con el correo sin verificar (RI-15)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_credencial_2' is violated.
+   OK   [rechaza] la misma cuenta de Google abriendo una segunda credencial (RF-01-04)
+            ↳ ERROR 1062 (23000) at line 3: Duplicate entry 'google-g-111' for key 'credencial.uq_credencial_4'
+   OK   [rechaza] proveedor fuera de alcance: Apple (RF-01-02)
+            ↳ ERROR 1265 (01000) at line 3: Data truncated for column 'proveedor' at row 1
+   OK   [rechaza] docente con nombres vacíos (RF-01-05)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_docente_1' is violated.
+   OK   [rechaza] borrar un docente que tiene credencial y experiencias (RESTRICT)
+            ↳ ERROR 1451 (23000) at line 3: Cannot delete or update a parent row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`credencial`, CONS
+   OK   [acepta]  credencial recién creada, sin rol elegido todavía (ventanas 014-017)
+   OK   [rechaza] código de invitación repetido (RI-3)
+            ↳ ERROR 1062 (23000) at line 3: Duplicate entry 'ABC234' for key 'experiencia.uq_experiencia_1'
+   OK   [rechaza] código de invitación repetido en minúsculas (RI-3)
+            ↳ ERROR 1062 (23000) at line 3: Duplicate entry 'abc234' for key 'experiencia.uq_experiencia_1'
+   OK   [rechaza] código de invitación con carácter ambiguo 'O' (08-spec §2.3)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_experiencia_2' is violated.
+   OK   [rechaza] código de invitación de 5 caracteres
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_experiencia_2' is violated.
+   OK   [rechaza] estado de experiencia inventado
+            ↳ ERROR 1265 (01000) at line 3: Data truncated for column 'estado' at row 1
+   OK   [rechaza] experiencia Publicada sin fecha de publicación (RI-16)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_experiencia_1' is violated.
+   OK   [rechaza] experiencia en Borrador con fecha de publicación (RI-16)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_experiencia_1' is violated.
+   OK   [rechaza] experiencia sin el servicio de IA que generó su banco (RI-17, RF-03-02)
+            ↳ ERROR 1048 (23000) at line 3: Column 'servicio_ia' cannot be null
+   OK   [rechaza] servicio de IA fuera de ADR-030
+            ↳ ERROR 1265 (01000) at line 3: Data truncated for column 'servicio_ia' at row 1
+   OK   [rechaza] una experiencia incluye una evidencia de OTRO DBA (RI-18, ciclo C1)
+            ↳ ERROR 1452 (23000) at line 5: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`experiencia_evidencia
+   OK   [rechaza] ítem sobre una evidencia que su experiencia NO incluye (H-4)
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`item`, CONSTRAINT `fk
+   OK   [rechaza] formato de ítem inventado (ADR-006)
+            ↳ ERROR 1265 (01000) at line 3: Data truncated for column 'formato' at row 1
+   OK   [rechaza] origen de ítem inventado
+            ↳ ERROR 1265 (01000) at line 3: Data truncated for column 'origen' at row 1
+   OK   [acepta]  ítem creado por el docente: no se le atribuye a la IA (RF-03-07)
+   OK   [acepta]  ítem editado por el docente: su servicio sigue siendo el de la experiencia (RF-03-05)
+   OK   [rechaza] dictamen que admite formato cerrado sin decir cuál (RI-19)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_evidencia_dictamen_1' is violated.
+   OK   [rechaza] dictamen que no admite formato cerrado y aun así fija uno (RI-19)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_evidencia_dictamen_1' is violated.
+   OK   [acepta]  dictamen que no admite formato cerrado, sin formato (RF-06-02)
+   OK   [rechaza] número de evidencia igual a 0
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_evidencia_1' is violated.
+   OK   [rechaza] borrar una evidencia oficial que una experiencia usa (RESTRICT)
+            ↳ ERROR 1451 (23000) at line 3: Cannot delete or update a parent row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`experiencia_evide
+   OK   [rechaza] el mismo estudiante inscrito dos veces en la misma experiencia (RI-1)
+            ↳ ERROR 1062 (23000) at line 3: Duplicate entry '1-1' for key 'inscripcion.uq_inscripcion_1'
+   OK   [rechaza] presentar a la inscripción de la experiencia 1 un ítem de la experiencia 2, declarando la 1 (RI-13)
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`presentacion`, CONSTR
+   OK   [rechaza] lo mismo, declarando la 2 (RI-13: ninguna combinación pasa)
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`presentacion`, CONSTR
+   OK   [rechaza] orden de presentación igual a 0 (RI-8)
+            ↳ ERROR 3819 (HY000) at line 4: Check constraint 'ck_presentacion_1' is violated.
+   OK   [rechaza] dos presentaciones con el mismo orden en una inscripción (RI-8)
+            ↳ ERROR 1062 (23000) at line 4: Duplicate entry '1-1' for key 'presentacion.uq_presentacion_1'
+   OK   [acepta]  una presentación SIN respuesta: «se le mostró y no respondió» (H-3, ADR-031)
+   OK   [rechaza] respuesta a un ítem que no se le presentó (H-3)
+            ↳ ERROR 1452 (23000) at line 4: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`respuesta`, CONSTRAIN
+   OK   [rechaza] segunda respuesta a la misma presentación
+            ↳ ERROR 1062 (23000) at line 3: Duplicate entry '1-1' for key 'respuesta.uq_respuesta_1'
+   OK   [rechaza] certeza fuera de la escala CRI 0-5 (ADR-008)
+            ↳ ERROR 3819 (HY000) at line 5: Check constraint 'ck_respuesta_1' is violated.
+   OK   [rechaza] la respuesta al ítem 1 elige una opción del ítem 2, declarando el ítem 1 (RI-6, ciclo C4)
+            ↳ ERROR 1452 (23000) at line 4: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`respuesta_opcion`, CO
+   OK   [rechaza] lo mismo, declarando el ítem 2 (RI-6: ninguna combinación pasa)
+            ↳ ERROR 1452 (23000) at line 4: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`respuesta_opcion`, CO
+   OK   [rechaza] estado de resultado inventado (ADR-022)
+            ↳ ERROR 1265 (01000) at line 4: Data truncated for column 'estado' at row 1
+   OK   [rechaza] resultado cuya experiencia no es la de su inscripción (RI-13)
+            ↳ ERROR 1452 (23000) at line 4: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`resultado`, CONSTRAIN
+   OK   [rechaza] resultado sobre una evidencia que esa experiencia no incluye
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`resultado`, CONSTRAIN
+   OK   [queda]   eliminar una experiencia arrastra todo lo suyo y nada más (RF-02-07)
+   OK   [queda]   salir de una experiencia borra lo respondido y deja el banco (RF-04-12)
+   OK   [queda]   «descartar» un ítem no borra nada (RF-03-06, ADR-015)
+
+(base de prueba `adaptivelearn_verificacion_mr` borrada)
+======================================================================
+RESULTADO: 54 comprobaciones contra MySQL 8.4.11, todas correctas.
+======================================================================

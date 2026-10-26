@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="892" viewBox="0 0 1640 892" font-family="Helvetica">
+<rect x="0" y="0" width="1640" height="892" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<text x="40" y="44" font-family="Helvetica" font-size="13" letter-spacing="1.5" fill="#888888">VISTA 1 · ACCESO Y CUENTAS</text>
+<rect x="150.0" y="110.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="240" y="145" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">DOCENTE</text>
+<path d="M 166.0 170.0 C 166.0 200.0, 116.0 180.0, 116.0 290" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="116.0" y1="290" x2="116.0" y2="464" stroke="#888888" stroke-width="1"/>
+<line x1="116.0" y1="290" x2="174.75" y2="290" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="290" rx="65.25" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="240" y="294" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id_docente (PK)</text>
+<line x1="116.0" y1="348" x2="185.0" y2="348" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="348" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="240" y="352" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombres</text>
+<line x1="116.0" y1="406" x2="185.0" y2="406" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="406" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="240" y="410" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">apellidos</text>
+<line x1="116.0" y1="464" x2="185.0" y2="464" stroke="#888888" stroke-width="1"/>
+<ellipse cx="240" cy="464" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="240" y="468" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">avatar_url</text>
+<rect x="750.0" y="110.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="840" y="145" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">CREDENCIAL</text>
+<path d="M 766.0 170.0 C 766.0 200.0, 716.0 180.0, 716.0 290" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="716.0" y1="290" x2="716.0" y2="812" stroke="#888888" stroke-width="1"/>
+<line x1="716.0" y1="290" x2="764.1" y2="290" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="290" rx="75.9" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="840" y="294" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id_credencial (PK)</text>
+<line x1="716.0" y1="348" x2="785.0" y2="348" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="348" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="352" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">correo (U)</text>
+<line x1="716.0" y1="406" x2="785.0" y2="406" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="406" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="410" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">proveedor</text>
+<line x1="716.0" y1="464" x2="781.85" y2="464" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="464" rx="58.15" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="468" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">password_hash</text>
+<line x1="716.0" y1="522" x2="785.0" y2="522" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="522" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="526" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">proveedor_id</text>
+<line x1="716.0" y1="580" x2="771.2" y2="580" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="580" rx="68.8" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="584" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">email_verificado</text>
+<line x1="716.0" y1="638" x2="760.55" y2="638" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="638" rx="79.45" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="642" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_verificacion</text>
+<line x1="716.0" y1="696" x2="771.2" y2="696" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="696" rx="68.8" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="700" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_expira_en</text>
+<line x1="716.0" y1="754" x2="760.55" y2="754" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="754" rx="79.45" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="758" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">codigo_ultimo_envio</text>
+<line x1="716.0" y1="812" x2="785.0" y2="812" stroke="#888888" stroke-width="1"/>
+<ellipse cx="840" cy="812" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="840" y="816" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">creado_en</text>
+<rect x="1350.0" y="110.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="1440" y="145" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">ESTUDIANTE</text>
+<path d="M 1366.0 170.0 C 1366.0 200.0, 1316.0 180.0, 1316.0 290" fill="none" stroke="#888888" stroke-width="1"/>
+<line x1="1316.0" y1="290" x2="1316.0" y2="464" stroke="#888888" stroke-width="1"/>
+<line x1="1316.0" y1="290" x2="1364.1" y2="290" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="290" rx="75.9" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
+<text x="1440" y="294" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">id_estudiante (PK)</text>
+<line x1="1316.0" y1="348" x2="1385.0" y2="348" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="348" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1440" y="352" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">nombres</text>
+<line x1="1316.0" y1="406" x2="1385.0" y2="406" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="406" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1440" y="410" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">apellidos</text>
+<line x1="1316.0" y1="464" x2="1385.0" y2="464" stroke="#888888" stroke-width="1"/>
+<ellipse cx="1440" cy="464" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="1440" y="468" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">avatar_url</text>
+<polygon points="540,105.0 605.0,140 540,175.0 475.0,140" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="540" y="144" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">accede como</text>
+<text x="540" y="195.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#555555">1:1</text>
+<polygon points="1140,105.0 1205.0,140 1140,175.0 1075.0,140" fill="#DCE8FA" stroke="#3B7DD8" stroke-width="1.5"/>
+<text x="1140" y="144" text-anchor="middle" font-family="Helvetica" font-size="13" fill="#1C3A5E">accede como</text>
+<text x="1140" y="195.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#555555">1:1</text>
+<line x1="750.0" y1="140" x2="605.0" y2="140" stroke="#555555" stroke-width="1.2"/>
+<text x="677.5" y="131.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">(0,1)</text>
+<line x1="330.0" y1="142.0" x2="475.0" y2="142.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="330.0" y1="138.0" x2="475.0" y2="138.0" stroke="#555555" stroke-width="1.2"/>
+<text x="402.5" y="131.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<line x1="930.0" y1="140" x2="1075.0" y2="140" stroke="#555555" stroke-width="1.2"/>
+<text x="1002.5" y="131.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">(0,1)</text>
+<line x1="1350.0" y1="138.0" x2="1205.0" y2="138.0" stroke="#555555" stroke-width="1.2"/>
+<line x1="1350.0" y1="142.0" x2="1205.0" y2="142.0" stroke="#555555" stroke-width="1.2"/>
+<text x="1277.5" y="131.0" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#111111">(1,1)</text>
+<line x1="540" y1="104" x2="540" y2="82" stroke="#B4536B" stroke-width="1.4" stroke-dasharray="5,4"/>
+<line x1="540" y1="82" x2="1140" y2="82" stroke="#B4536B" stroke-width="1.4" stroke-dasharray="5,4"/>
+<line x1="1140" y1="82" x2="1140" y2="104" stroke="#B4536B" stroke-width="1.4" stroke-dasharray="5,4"/>
+<text x="840" y="74" text-anchor="middle" font-family="Helvetica" font-size="13" font-weight="700" fill="#B4536B">{xor} — excluyentes: una credencial, un solo rol (RI-12)</text>
+</svg>

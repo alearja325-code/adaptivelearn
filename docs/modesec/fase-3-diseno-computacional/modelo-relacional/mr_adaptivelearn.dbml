@@ -1,0 +1,200 @@
+// Modelo Relacional — AdaptiveLearn
+// GENERADO por modelo-relacional/generar.py — no editar a mano.
+// Fuente: datos_mr.py · Base: MER final de la Fase III (2026-10-21)
+// Pegar en https://dbdiagram.io para el diagrama.
+
+Table credencial {
+  id_credencial "int unsigned" [pk, not null, increment]
+  id_docente "int unsigned"
+  id_estudiante "int unsigned"
+  correo varchar(254) [not null, unique]
+  proveedor varchar [not null]
+  password_hash varchar(255)
+  proveedor_id varchar(255)
+  email_verificado boolean [not null]
+  codigo_verificacion char(6)
+  codigo_expira_en datetime
+  codigo_ultimo_envio datetime
+  intentos_codigo "tinyint unsigned" [not null]
+  intentos_login "tinyint unsigned" [not null]
+  bloqueado_hasta datetime
+  creado_en datetime [not null]
+  actualizado_en datetime [not null]
+  indexes {
+    (proveedor, proveedor_id) [unique]
+  }
+}
+
+Table docente {
+  id_docente "int unsigned" [pk, not null, increment]
+  nombres varchar(120) [not null]
+  apellidos varchar(120) [not null]
+  avatar_url varchar(500)
+}
+
+Table estudiante {
+  id_estudiante "int unsigned" [pk, not null, increment]
+  nombres varchar(120) [not null]
+  apellidos varchar(120) [not null]
+  avatar_url varchar(500)
+}
+
+Table experiencia {
+  id_experiencia "int unsigned" [pk, not null, increment]
+  id_docente "int unsigned" [not null]
+  codigo_dba varchar(40) [not null]
+  nombre varchar(160) [not null]
+  estado varchar [not null]
+  fecha_creacion datetime [not null]
+  fecha_publicacion datetime
+  codigo_invitacion char(6) [not null, unique]
+  servicio_ia varchar [not null]
+  modelo_ia varchar(80) [not null]
+  indexes {
+    (id_experiencia, codigo_dba) [unique]
+  }
+}
+
+Table dba {
+  codigo_dba varchar(40) [pk, not null]
+  area varchar(40) [not null]
+  grado varchar(4) [not null]
+  enunciado text [not null]
+  ejemplo text
+}
+
+Table evidencia {
+  codigo_dba varchar(40) [not null]
+  numero_evidencia "tinyint unsigned" [not null]
+  enunciado text [not null]
+  indexes {
+    (codigo_dba, numero_evidencia) [pk]
+  }
+}
+
+Table evidencia_dictamen {
+  codigo_dba varchar(40) [not null]
+  numero_evidencia "tinyint unsigned" [not null]
+  aplica_formato_cerrado boolean [not null]
+  formato varchar
+  justificacion text
+  fecha_dictamen datetime [not null]
+  indexes {
+    (codigo_dba, numero_evidencia) [pk]
+  }
+}
+
+Table experiencia_evidencia {
+  id_experiencia "int unsigned" [not null]
+  codigo_dba varchar(40) [not null]
+  numero_evidencia "tinyint unsigned" [not null]
+  indexes {
+    (id_experiencia, codigo_dba, numero_evidencia) [pk]
+  }
+}
+
+Table inscripcion {
+  id_inscripcion "int unsigned" [pk, not null, increment]
+  id_estudiante "int unsigned" [not null]
+  id_experiencia "int unsigned" [not null]
+  fecha_union datetime [not null]
+  indexes {
+    (id_estudiante, id_experiencia) [unique]
+    (id_inscripcion, id_experiencia) [unique]
+  }
+}
+
+Table item {
+  id_item "int unsigned" [pk, not null, increment]
+  id_experiencia "int unsigned" [not null]
+  codigo_dba varchar(40) [not null]
+  numero_evidencia "tinyint unsigned" [not null]
+  enunciado text [not null]
+  formato varchar [not null]
+  origen varchar [not null]
+  excluido boolean [not null]
+  indexes {
+    (id_item, id_experiencia) [unique]
+  }
+}
+
+Table opcion {
+  id_opcion "int unsigned" [pk, not null, increment]
+  id_item "int unsigned" [not null]
+  texto text [not null]
+  orden "tinyint unsigned"
+  es_correcta boolean
+  grupo varchar
+  hipotesis_error text
+  indexes {
+    (id_opcion, id_item) [unique]
+  }
+}
+
+Table presentacion {
+  id_inscripcion "int unsigned" [not null]
+  id_item "int unsigned" [not null]
+  id_experiencia "int unsigned" [not null]
+  orden_presentacion "tinyint unsigned" [not null]
+  fecha_presentacion datetime [not null]
+  indexes {
+    (id_inscripcion, id_item) [pk]
+    (id_inscripcion, orden_presentacion) [unique]
+  }
+}
+
+Table respuesta {
+  id_respuesta "int unsigned" [pk, not null, increment]
+  id_inscripcion "int unsigned" [not null]
+  id_item "int unsigned" [not null]
+  certeza "tinyint unsigned" [not null]
+  fecha_respuesta datetime [not null]
+  correcta boolean [not null]
+  indexes {
+    (id_inscripcion, id_item) [unique]
+    (id_respuesta, id_item) [unique]
+  }
+}
+
+Table respuesta_opcion {
+  id_respuesta "int unsigned" [not null]
+  id_opcion "int unsigned" [not null]
+  id_item "int unsigned" [not null]
+  valor_dado "tinyint unsigned"
+  indexes {
+    (id_respuesta, id_opcion) [pk]
+  }
+}
+
+Table resultado {
+  id_inscripcion "int unsigned" [not null]
+  id_experiencia "int unsigned" [not null]
+  codigo_dba varchar(40) [not null]
+  numero_evidencia "tinyint unsigned" [not null]
+  estado varchar [not null]
+  fecha_calculo datetime [not null]
+  indexes {
+    (id_inscripcion, codigo_dba, numero_evidencia) [pk]
+  }
+}
+
+// ---- referencias ----
+Ref: credencial.id_docente > docente.id_docente [delete: restrict, update: restrict]
+Ref: credencial.id_estudiante > estudiante.id_estudiante [delete: restrict, update: restrict]
+Ref: experiencia.id_docente > docente.id_docente [delete: restrict, update: cascade]
+Ref: experiencia.codigo_dba > dba.codigo_dba [delete: restrict, update: cascade]
+Ref: evidencia.codigo_dba > dba.codigo_dba [delete: cascade, update: cascade]
+Ref: evidencia_dictamen.(codigo_dba, numero_evidencia) > evidencia.(codigo_dba, numero_evidencia) [delete: cascade, update: cascade]
+Ref: experiencia_evidencia.(id_experiencia, codigo_dba) > experiencia.(id_experiencia, codigo_dba) [delete: cascade, update: cascade]
+Ref: experiencia_evidencia.(codigo_dba, numero_evidencia) > evidencia.(codigo_dba, numero_evidencia) [delete: restrict, update: cascade]
+Ref: inscripcion.id_estudiante > estudiante.id_estudiante [delete: restrict, update: cascade]
+Ref: inscripcion.id_experiencia > experiencia.id_experiencia [delete: cascade, update: cascade]
+Ref: item.(id_experiencia, codigo_dba, numero_evidencia) > experiencia_evidencia.(id_experiencia, codigo_dba, numero_evidencia) [delete: cascade, update: cascade]
+Ref: opcion.id_item > item.id_item [delete: cascade, update: cascade]
+Ref: presentacion.(id_inscripcion, id_experiencia) > inscripcion.(id_inscripcion, id_experiencia) [delete: cascade, update: cascade]
+Ref: presentacion.(id_item, id_experiencia) > item.(id_item, id_experiencia) [delete: cascade, update: cascade]
+Ref: respuesta.(id_inscripcion, id_item) > presentacion.(id_inscripcion, id_item) [delete: cascade, update: cascade]
+Ref: respuesta_opcion.(id_respuesta, id_item) > respuesta.(id_respuesta, id_item) [delete: cascade, update: cascade]
+Ref: respuesta_opcion.(id_opcion, id_item) > opcion.(id_opcion, id_item) [delete: cascade, update: cascade]
+Ref: resultado.(id_inscripcion, id_experiencia) > inscripcion.(id_inscripcion, id_experiencia) [delete: cascade, update: cascade]
+Ref: resultado.(id_experiencia, codigo_dba, numero_evidencia) > experiencia_evidencia.(id_experiencia, codigo_dba, numero_evidencia) [delete: cascade, update: cascade]

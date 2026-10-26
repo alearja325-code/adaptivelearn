@@ -22,8 +22,8 @@ redactado por IA.
 |---|---|
 | Diseño educativo (MODESEC, Fase I) | Completo — 8 documentos |
 | Diseño multimedial (Fase II) | Completo — 27 ventanas en 24 especificaciones, mapa de navegación, guión técnico, índice de recursos |
-| Diseño computacional (Fase III) | En curso, en el orden de MODESEC: proceso de desarrollo (`10`) y análisis de requerimientos (`11`, 58 requerimientos). El MER, el MR y el diccionario previos son un **borrador anterior al cierre de la Fase II** y se rehacen |
-| Backend | Iniciado (NestJS + MySQL): solo el acceso |
+| Diseño computacional (Fase III) | Completo, en el orden de MODESEC: proceso de desarrollo (`10`), requerimientos (`11`), casos de uso, clases, objetos y secuencias (`12` a `15`), MER, MR y diccionario de datos (`16` a `18`), y como anexo el catálogo de endpoints (`20`). Índice y cómo se comprueba: `19-entrega-fase-3.md`. El borrador anterior al cierre de la Fase II se conserva como insumo |
+| Backend | Iniciado (NestJS + MySQL): solo el acceso (I1). Lo que falta, endpoint por endpoint y por incremento: `20-catalogo-endpoints.md` |
 | Frontend | Sin empezar; su diseño está completo en la Fase II |
 | Datos del currículo del MEN | Disponibles, **pendientes de auditoría** |
 
@@ -79,6 +79,21 @@ cd docs/modesec/fase-3-diseno-computacional/requerimientos && python3 requerimie
 Los dos últimos, además, **generan** sus documentos (`28`, `29` y
 `11`): el mapa, el guión y los requerimientos no se editan a mano, para
 que no puedan contradecir a su fuente.
+
+Del resto de la Fase III (`12` a `18` y `20`), todo lo que es tabla o
+diagrama también se genera, y estos verificadores comprueban que el MER,
+el modelo relacional, el UML, los endpoints y el backend no se aparten:
+
+```bash
+cd docs/modesec/fase-3-diseno-computacional
+cd mer && python3 _verificar_mer.py && python3 _verificar_vistas.py && python3 _verificar_mapa.py && cd ..
+cd modelo-relacional && python3 _verificar_mr_mer.py && python3 verificar_mr.py && cd ..
+cd uml && python3 _verificar_uml.py && cd ..
+cd api && python3 _verificar_api.py && cd ..
+```
+
+La cadena completa —regenerar cada documento y sus PDF, y probar el
+esquema contra MySQL— está en `19-entrega-fase-3.md`, sección 3.
 
 Requisito: Python 3 con `lxml` (`pip install lxml`), y Graphviz para
 regenerar el mapa de navegación.

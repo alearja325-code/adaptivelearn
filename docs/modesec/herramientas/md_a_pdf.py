@@ -18,17 +18,30 @@ Inter, la misma que fija `03-tokens-diseno.md` para todo el sistema.
 Colores tomados de `tokens.json`: #111111 tinta principal, #555555
 secundario, #888888 atenuado, #E7E7E7 bordes, #F5F3EE superficie.
 
-Uso:  python3 md_a_pdf.py
+DIAGRAMAS
+Una imagen sola en su linea -- ![pie](ruta.svg) -- va en su propia hoja A4
+apaisada: los diagramas son mas anchos que altos, y al ancho de una hoja
+vertical sus rotulos no se leen. El SVG entra como vector, asi que se
+amplia sin perder nitidez. Las laminas que ni asi se leen (el MER entero)
+van ademas en un PDF aparte de formato A1.
+
+Uso:  python3 md_a_pdf.py      (en Windows: python md_a_pdf.py)
 """
 import html
 import os
+import pathlib
 import re
 import subprocess
 import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.join(AQUI, "..")
-CHROME = "/usr/bin/google-chrome"
+# Chrome en Linux, como se escribio; en Windows sirven Chrome o Edge, que
+# imprimen igual (los dos son Chromium). Se usa el primero que exista.
+NAVEGADORES = ["/usr/bin/google-chrome",
+               r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+               r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"]
+CHROME = next((n for n in NAVEGADORES if os.path.exists(n)), NAVEGADORES[0])
 
 
 # ===================================================== Markdown -> HTML
@@ -49,8 +62,12 @@ def en_linea(t):
     t = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', t)
     # <br> escrito a mano dentro de celdas de tabla
     t = t.replace("&lt;br&gt;", "<br>")
+    # Un identificador largo (ServicioExperiencias.codigoInvitacion,
+    # /auth/recuperar-contrasena/verificar) que no cabe se corta despues de
+    # un punto o una barra, no a mitad de palabra.
     for i, frag in enumerate(fragmentos):
-        t = t.replace(f"\x00{i}\x00", f"<code>{html.escape(frag)}</code>")
+        cod = html.escape(frag).replace(".", ".<wbr>").replace("/", "/<wbr>")
+        t = t.replace(f"\x00{i}\x00", f"<code>{cod}</code>")
     return t
 
 
@@ -73,12 +90,30 @@ def celdas(fila):
     return [p.strip() for p in partes]
 
 
-def convertir(md):
+def convertir(md, base="."):
+    """`base`: la carpeta del .md, de la que cuelgan las rutas de sus imagenes."""
     lineas = md.split("\n")
     out, i = [], 0
     clase_tabla = None
     while i < len(lineas):
         l = lineas[i]
+
+        # diagrama: ![pie](ruta), solo en su linea. Va en su hoja apaisada
+        # (pagina con nombre `lamina`). Si el archivo no existe, se detiene:
+        # un PDF al que le falta una figura no se entrega.
+        m = re.match(r"^\s*!\[([^\]]*)\]\(([^)\s]+)\)\s*$", l)
+        if m:
+            ruta = os.path.join(base, m.group(2))
+            if not os.path.exists(ruta):
+                raise FileNotFoundError(f"la imagen no existe: {m.group(2)}")
+            src = pathlib.Path(ruta).resolve().as_uri()
+            # un titulo que va justo antes del diagrama se lleva a su hoja:
+            # si no, queda solo en una hoja vertical entre dos apaisadas
+            titulo = out.pop() if out and re.match(r"^<h[2-6]>", out[-1]) else ""
+            out.append(f'<figure class="lamina">{titulo}<figcaption>{en_linea(m.group(1))}'
+                       f'</figcaption><img src="{src}" alt="{html.escape(m.group(1))}"></figure>')
+            i += 1
+            continue
 
         # bloque de codigo
         if l.startswith("```"):
@@ -176,7 +211,7 @@ def convertir(md):
         if l.strip():
             cuerpo = []
             while i < len(lineas) and lineas[i].strip() and \
-                    not re.match(r"^(#{1,6}\s|```|\s*---+\s*$|>|\s*([-*]|\d+\.)\s)",
+                    not re.match(r"^(#{1,6}\s|```|\s*---+\s*$|>|\s*([-*]|\d+\.)\s|\s*!\[)",
                                  lineas[i]) and \
                     not lineas[i].strip().startswith("|"):
                 cuerpo.append(lineas[i].rstrip("\n"))
@@ -199,7 +234,7 @@ def convertir(md):
 CSS = """
 @page { size: %(tam)s; margin: 18mm 16mm 16mm 16mm; }
 * { box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; font-size: %(base)s;
+body { font-family: 'Inter', 'Segoe UI', sans-serif; font-size: %(base)s;
        line-height: 1.6; color: #111111; margin: 0;
        -webkit-font-smoothing: antialiased; }
 
@@ -243,7 +278,7 @@ ul, ol { margin: 0 0 10px 0; padding-left: 20px; }
 li { margin-bottom: 4px; }
 li > ul, li > ol { margin-top: 4px; }
 
-code { font-family: 'DejaVu Sans Mono', monospace; font-size: 0.87em;
+code { font-family: 'DejaVu Sans Mono', Consolas, monospace; font-size: 0.87em;
        background: #F5F3EE; padding: 1px 4px; border-radius: 3px;
        color: #111111; word-break: break-word; }
 pre { background: #FAFAF8; border: 1px solid #E7E7E7; border-radius: 6px;
@@ -275,10 +310,22 @@ table.campos th:nth-child(4), table.campos td:nth-child(4),
 table.campos th:nth-child(6), table.campos td:nth-child(6) {
      white-space: nowrap; }
 table.fks td:nth-child(3) { white-space: nowrap; }
+/* catalogo de endpoints: los casos de uso, uno por linea y enteros */
+table.endpoints td:nth-child(3) { white-space: nowrap; }
+table.endpoints code { word-break: normal; }
 table.fks td:first-child code { word-break: normal; }
 /* Un identificador corto en la primera columna (RNF-01, RF-12) no
    debe partirse en dos lineas. */
 td:first-child > strong { white-space: nowrap; }
+
+/* ---------------- diagramas: una hoja apaisada cada uno ---------------- */
+@page lamina { size: A4 landscape; margin: 12mm 14mm 16mm 14mm; }
+figure.lamina { page: lamina; height: 178mm; margin: 0; display: flex;
+       flex-direction: column; break-before: page; break-after: page; }
+figure.lamina > h2, figure.lamina > h3, figure.lamina > h4 { margin: 0 0 6px 0; }
+figure.lamina figcaption { font-size: 8pt; font-weight: 700; color: #888888;
+       text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 6px 0; }
+figure.lamina img { flex: 1; min-height: 0; width: 100%%; object-fit: contain; }
 """
 
 PAGINA = """<!DOCTYPE html>
@@ -301,8 +348,8 @@ PORTADA = """<section class="portada">
 </section>"""
 
 
-def construir(md, titulo, sub, kicker, fase, fecha, apaisado=False):
-    cuerpo = convertir(md)
+def construir(md, titulo, sub, kicker, fase, fecha, apaisado=False, base="."):
+    cuerpo = convertir(md, base)
     # el H1 del Markdown ya esta en la portada: se retira del cuerpo
     cuerpo = re.sub(r"^<h1>.*?</h1>\s*", "", cuerpo, count=1, flags=re.S)
     css = CSS % {
@@ -323,7 +370,7 @@ def construir(md, titulo, sub, kicker, fase, fecha, apaisado=False):
 INTER = os.path.expanduser("~/.local/share/fonts/inter/Inter-Regular.otf")
 
 
-def numerar(ruta, titulo):
+def numerar(ruta, titulo, con_portada=True):
     """Pone pie de pagina: titulo a la izquierda, 'n / total' a la derecha.
 
     Lo hace PyMuPDF y no Chrome a proposito: el pie que Chrome trae de
@@ -340,8 +387,9 @@ def numerar(ruta, titulo):
     total = len(doc)
     gris = (0x88 / 255, 0x88 / 255, 0x88 / 255)     # #888888, token Muted
     usar_inter = os.path.exists(INTER)
+    salto = 1 if con_portada else 0
     for n, pagina in enumerate(doc, start=1):
-        if n == 1:
+        if n <= salto:
             continue
         ancho, alto = pagina.rect.width, pagina.rect.height
         y = alto - 28
@@ -349,7 +397,7 @@ def numerar(ruta, titulo):
         if usar_inter:
             args.update(fontfile=INTER, fontname="Inter")
         pagina.insert_text((45, y), titulo, **args)
-        etiqueta = f"{n - 1} / {total - 1}"
+        etiqueta = f"{n - salto} / {total - salto}"
         ancho_txt = len(etiqueta) * 4.0
         pagina.insert_text((ancho - 45 - ancho_txt, y), etiqueta, **args)
     doc.saveIncr() if doc.can_save_incrementally() else doc.save(
@@ -357,169 +405,161 @@ def numerar(ruta, titulo):
     doc.close()
 
 
-def a_pdf(html_txt, destino, titulo):
+def a_pdf(html_txt, destino, titulo, con_portada=True):
     tmp = destino.replace(".pdf", ".__tmp__.html")
     with open(tmp, "w", encoding="utf-8") as fh:
         fh.write(html_txt)
     r = subprocess.run(
         [CHROME, "--headless", "--disable-gpu", "--no-sandbox",
          "--no-pdf-header-footer", "--virtual-time-budget=12000",
-         f"--print-to-pdf={destino}", f"file://{os.path.abspath(tmp)}"],
+         # as_uri() arma file:///C:/... en Windows y file:///home/... en Linux
+         f"--print-to-pdf={destino}", pathlib.Path(tmp).resolve().as_uri()],
         capture_output=True, text=True, timeout=180)
     os.remove(tmp)
     if not os.path.exists(destino):
         raise RuntimeError(f"Chrome no genero el PDF:\n{r.stderr[-700:]}")
-    numerar(destino, titulo)
+    numerar(destino, titulo, con_portada)
     return os.path.getsize(destino)
 
 
-# ======================================================= PDF de diagramas
-CSS_DIAGRAMAS = """
-@page { size: A4 landscape; margin: 14mm; }
+# ======================================================== laminas grandes
+CSS_LAMINAS = """
+@page { size: %(hoja)s; margin: 14mm; }
 * { box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; color: #111111; margin: 0;
-       font-size: 9.5pt; line-height: 1.55; }
-.figura { height: 182mm; display: flex; flex-direction: column;
+body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #111111; margin: 0; }
+.figura { height: %(alto)s; display: flex; flex-direction: column;
           page-break-after: always; }
 .figura:last-child { page-break-after: auto; }
-.figura .rotulo { font-size: 8pt; font-weight: 700; color: #888888;
-       text-transform: uppercase; letter-spacing: 0.1em;
-       margin: 0 0 6px 0; }
-.lienzo { flex: 1; display: flex; align-items: center;
-          justify-content: center; min-height: 0; }
-.lienzo svg { max-width: 100%; max-height: 100%; height: auto;
-              width: auto; }
-.pie { font-size: 8.5pt; color: #333333; line-height: 1.5;
-       border-top: 1px solid #E7E7E7; padding-top: 8px; margin-top: 8px; }
-.pie b { color: #111111; }
-.pie code { font-family: 'DejaVu Sans Mono', monospace; font-size: 0.87em;
-       background: #F5F3EE; padding: 1px 3px; border-radius: 3px; }
+.figura .rotulo { font-size: 11pt; font-weight: 700; color: #888888;
+       text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 8px 0; }
+.figura img { flex: 1; min-height: 0; width: 100%%; object-fit: contain; }
 """
 
 
-def pdf_diagramas(origen, destino, fecha, solo_mapa=False):
-    """Arma el PDF de los diagramas Chen: una figura por pagina.
+def pdf_laminas(laminas, destino, titulo_doc, hoja="841mm 594mm", alto="560mm"):
+    """Las laminas que en A4 no se leen, una por hoja de formato grande (A1
+    apaisado por defecto) y sin portada: se imprimen en plotter o se ven con
+    zoom. Toma los SVG ya generados y verificados, no los vuelve a dibujar --
+    reusarlos es lo que garantiza que el PDF muestre lo que se comprobo.
 
-    Toma los SVG ya generados y verificados por `diagrama/`, no los
-    vuelve a dibujar -- reusarlos es lo que garantiza que el PDF muestre
-    exactamente lo que `_verificar_mapa.py` comprobo.
+    Reemplaza a `pdf_diagramas`, que leia las figuras de un HTML de vistas
+    con la estructura de la quinta revision del MER, que ya no existe.
     """
-    crudo = open(origen, encoding="utf-8").read()
-    bloques = re.findall(
-        r'<div class="bloque">(.*?)<p class="caption">(.*?)</p>\s*</div>',
-        crudo, re.S)
-    if not bloques:
-        raise RuntimeError("no se encontraron figuras en " + origen)
-
-    titulos = ["Leyenda de notación", "Mapa completo",
-               "Vista 1 · Currículo oficial", "Vista 2 · Autoría de la experiencia",
-               "Vista 3 · Banco de diagnóstico", "Vista 4 · Inscripción y entrega",
-               "Vista 5 · Captura de la respuesta", "Vista 6 · Conclusión y reporte"]
-
-    # El mapa completo mide 4200x3196: reducido a una hoja A4 sus rotulos
-    # quedan ilegibles. Va en su propio PDF de formato grande (`solo_mapa`),
-    # y se saca de aqui para no entregar una figura que no se puede leer.
-    if solo_mapa:
-        bloques = [bloques[1]]
-        titulos = ["Mapa completo"]
-    else:
-        bloques = [b for i, b in enumerate(bloques) if i != 1]
-        titulos = [x for i, x in enumerate(titulos) if i != 1]
-
-    if solo_mapa:
-        hoja, alto_fig, titulo_doc = "594mm 420mm", "372mm", "Mapa completo del MER"
-        partes = []          # una sola lamina: sin portada, se imprime y se cuelga
-    else:
-        hoja, alto_fig, titulo_doc = "A4 landscape", "182mm", "Diagramas del MER"
-        partes = [PORTADA % {
-            "kicker": "Diseño Computacional · Anexo gráfico",
-            "titulo": "Diagramas del MER",
-            "sub": "Notación Chen. Leyenda y las seis vistas por ciclo de vida del "
-                   "sistema. El mapa completo va aparte, en formato grande, porque "
-                   "reducido a una hoja A4 sus rótulos no se leen.",
-            "fase": "Fase III", "fecha": fecha}]
-
-    for i, (svg, pie) in enumerate(bloques):
-        rotulo = titulos[i] if i < len(titulos) else f"Figura {i + 1}"
-        partes.append(
-            f'<section class="figura"><p class="rotulo">{rotulo}</p>'
-            f'<div class="lienzo">{svg.strip()}</div>'
-            f'<div class="pie">{pie.strip()}</div></section>')
-
-    css = (CSS % {"tam": hoja, "base": "9.5pt", "tabla": "8pt",
-                  "alto_portada": alto_fig} + CSS_DIAGRAMAS
-           + f"\n@page {{ size: {hoja}; }}\n.figura {{ height: {alto_fig}; }}\n")
-    doc = PAGINA % {"titulo": titulo_doc, "css": css,
-                    "portada": "", "cuerpo": "\n".join(partes)}
-    return a_pdf(doc, destino, titulo_doc)
+    partes = []
+    for ruta, rotulo in laminas:
+        if not os.path.exists(ruta):
+            raise FileNotFoundError(f"la lamina no existe: {ruta}")
+        src = pathlib.Path(ruta).resolve().as_uri()
+        partes.append(f'<section class="figura"><p class="rotulo">{html.escape(rotulo)}</p>'
+                      f'<img src="{src}" alt="{html.escape(rotulo)}"></section>')
+    css = CSS_LAMINAS % {"hoja": hoja, "alto": alto}
+    doc = PAGINA % {"titulo": titulo_doc, "css": css, "portada": "",
+                    "cuerpo": "\n".join(partes)}
+    return a_pdf(doc, destino, titulo_doc, con_portada=False)
 
 
 # =============================================================== catalogo
 F3 = os.path.join(RAIZ, "fase-3-diseno-computacional")
 SALIDA = os.path.join(F3, "entrega-pdf")
+KICKER = "Diseño Computacional"
 
 DOCUMENTOS = [
-    dict(md=os.path.join(F3, "00-ENTREGA.md"),
-         pdf="0-Entrega-Fase-III-indice.pdf",
+    dict(md="19-entrega-fase-3.md", pdf="00-Entrega-Fase-III-indice.pdf",
          titulo="Entrega — Fase III",
-         sub="Índice de la entrega, trazabilidad de los doce hallazgos de la "
-             "revisión docente, y los vacíos que el modelo declara sin resolver.",
-         kicker="Diseño Computacional", fase="Fase III"),
-    dict(md=os.path.join(F3, "01-modelo-entidad-relacion.md"),
-         pdf="1-Modelo-Entidad-Relacion.pdf",
+         sub="Índice de la fase: qué pide MODESEC, en qué documento está, cómo se comprueba "
+             "y qué queda abierto, declarado.",
+         kicker=KICKER + " · Índice"),
+    dict(md="10-proceso-desarrollo.md", pdf="10-Proceso-de-desarrollo.pdf",
+         titulo="Descripción del proceso de desarrollo",
+         sub="Ciclo de vida incremental en cuatro incrementos, y la descripción funcional del "
+             "sistema: actores, subsistemas, lo que no hace y lo que condiciona el diseño.",
+         kicker=KICKER + " · Sub-etapa 1"),
+    dict(md="11-analisis-requerimientos.md", pdf="11-Analisis-de-requerimientos.pdf",
+         titulo="Análisis de requerimientos",
+         sub="Cincuenta y ocho requerimientos —44 funcionales y 14 no funcionales—, por "
+             "subsistema, con su fuente y la trazabilidad de cada ventana de la Fase II.",
+         kicker=KICKER + " · Sub-etapa 2"),
+    dict(md="12-casos-de-uso.md", pdf="12-Casos-de-uso.pdf",
+         titulo="Diagrama de casos de uso",
+         sub="Treinta y un casos de uso en siete diagramas, cada uno con su flujo, sus "
+             "alternos y su prueba de aceptación. Cubren los 44 requerimientos funcionales.",
+         kicker=KICKER + " · Sub-etapa 3"),
+    dict(md="13-diagrama-clases.md", pdf="13-Diagrama-de-clases.pdf",
+         titulo="Diagrama de clases",
+         sub="Las clases del dominio, con los atributos del modelo relacional, y las de "
+             "servicio, con cada método trazado al caso de uso del que sale.",
+         kicker=KICKER + " · Sub-etapa 4"),
+    dict(md="14-diagrama-objetos.md", pdf="14-Diagrama-de-objetos.pdf",
+         titulo="Diagrama de objetos",
+         sub="Una fotografía del sistema en un momento dado, que se carga en el esquema real "
+             "sin violar ninguna restricción.",
+         kicker=KICKER + " · Sub-etapa 5"),
+    dict(md="15-diagramas-secuencia.md", pdf="15-Diagramas-de-secuencia.pdf",
+         titulo="Diagramas de secuencia",
+         sub="Los ocho flujos con más decisiones, del actor a la interfaz, a los servicios y "
+             "a las clases del dominio.",
+         kicker=KICKER + " · Sub-etapa 6"),
+    dict(md="16-modelo-entidad-relacion.md", pdf="16-Modelo-Entidad-Relacion.pdf",
          titulo="Modelo Entidad-Relación",
-         sub="Quinta revisión. Catorce entidades y dieciocho relaciones, en "
-             "notación Chen, con la trazabilidad de cada atributo a su fuente.",
-         kicker="Diseño Computacional · Entregable 1", fase="Fase III"),
-    dict(md=os.path.join(F3, "04-modelo-relacional.md"),
-         pdf="2-Modelo-Relacional.pdf",
+         sub="Notación Chen estricta: entidades, relaciones con su (mín, máx), los ciclos del "
+             "modelo y qué regla cierra cada uno, la matriz CRUD y la respuesta a cada "
+             "hallazgo de la revisión docente. La lámina completa va aparte, en A1.",
+         kicker=KICKER + " · Sub-etapa 7 · Base de datos"),
+    dict(md="17-modelo-relacional.md", pdf="17-Modelo-Relacional.pdf",
          titulo="Modelo Relacional",
-         sub="Catorce tablas derivadas del MER por el algoritmo formal de mapeo: "
-             "llaves, acciones referenciales, normalización y mecanismo de cada "
-             "restricción de integridad.",
-         kicker="Diseño Computacional · Entregable 2", fase="Fase III"),
-    dict(md=os.path.join(F3, "06-diccionario-datos.md"),
-         pdf="3-Diccionario-de-Datos.pdf",
+         sub="Las tablas derivadas del MER: llaves, acciones referenciales, normalización y "
+             "el mecanismo de cada restricción de integridad, probado contra MySQL 8.4.",
+         kicker=KICKER + " · Sub-etapa 7 · Base de datos"),
+    dict(md="18-diccionario-datos.md", pdf="18-Diccionario-de-Datos.pdf",
          titulo="Diccionario de Datos",
-         sub="Setenta y dos columnas con su tipo, tamaño, dominio, valor por "
-             "defecto y la fuente de la que sale cada una. Motor objetivo: "
-             "MariaDB 10.11.",
-         kicker="Diseño Computacional · Entregable 3", fase="Fase III",
-         apaisado=True),
-    dict(md=os.path.join(F3, "05-triaje-revision-docente.md"),
-         pdf="4-Triaje-de-la-revision-docente.pdf",
-         titulo="Triaje de la revisión docente",
-         sub="Los doce hallazgos del 1 de septiembre, clasificados en los que se "
-             "aceptan, los que se disuelven y los que quedaron obsoletos — cada "
-             "uno con su razón escrita.",
-         kicker="Diseño Computacional · Anexo", fase="Fase III"),
+         sub="Cada columna con su tipo, nulidad, llave, dominio, valor por defecto y la fuente "
+             "de la que sale. Motor objetivo: MySQL 8.",
+         kicker=KICKER + " · Sub-etapa 7 · Base de datos", apaisado=True),
+    dict(md="20-catalogo-endpoints.md", pdf="20-Catalogo-de-endpoints.pdf",
+         titulo="Catálogo de endpoints",
+         sub="El puente hacia la construcción: cada endpoint por incremento, con su caso de "
+             "uso, la operación que lo resuelve, las entidades que toca y quién puede llamarlo.",
+         kicker=KICKER + " · Anexo"),
 ]
 
-FECHA = "19 de septiembre de 2026"
+# El MER entero: en A4 sus rotulos no se leen.
+LAMINAS = dict(pdf="16-MER-laminas-A1.pdf", titulo="Modelo Entidad-Relación · láminas",
+               figuras=[("mer/mer-cajas.svg", "Vista de conjunto del MER"),
+                        ("mer/mapa-chen.svg", "Mapa completo del MER, notación Chen")])
+
+FECHA = "22 de octubre de 2026"
 
 if __name__ == "__main__":
     os.makedirs(SALIDA, exist_ok=True)
     fallas = []
+    print(f"Navegador: {CHROME}")
     print("=" * 64)
     for d in DOCUMENTOS:
-        nombre = os.path.basename(d["md"])
-        if not os.path.exists(d["md"]):
-            fallas.append(f"no existe: {nombre}")
-            print(f"  FALTA   {nombre}")
+        origen = os.path.join(F3, d["md"])
+        if not os.path.exists(origen):
+            fallas.append(f"no existe: {d['md']}")
+            print(f"  FALTA   {d['md']}")
             continue
-        md = open(d["md"], encoding="utf-8").read()
-        doc = construir(md, d["titulo"], d["sub"], d["kicker"], d["fase"],
-                        FECHA, d.get("apaisado", False))
         destino = os.path.join(SALIDA, d["pdf"])
         try:
+            md = open(origen, encoding="utf-8").read()
+            doc = construir(md, d["titulo"], d["sub"], d["kicker"], "Fase III",
+                            FECHA, d.get("apaisado", False), base=F3)
             kb = a_pdf(doc, destino, d["titulo"]) // 1024
             orient = "apaisado" if d.get("apaisado") else "vertical"
             print(f"  OK      {d['pdf']}  ({kb} KB, {orient})")
         except Exception as e:
             fallas.append(f"{d['pdf']}: {e}")
             print(f"  ERROR   {d['pdf']}: {e}")
+    try:
+        kb = pdf_laminas([(os.path.join(F3, r), t) for r, t in LAMINAS["figuras"]],
+                         os.path.join(SALIDA, LAMINAS["pdf"]), LAMINAS["titulo"]) // 1024
+        print(f"  OK      {LAMINAS['pdf']}  ({kb} KB, A1 apaisado)")
+    except Exception as e:
+        fallas.append(f"{LAMINAS['pdf']}: {e}")
+        print(f"  ERROR   {LAMINAS['pdf']}: {e}")
     print("=" * 64)
     if fallas:
         print(f"{len(fallas)} problema(s)")
         sys.exit(1)
-    print(f"{len(DOCUMENTOS)} PDF generados en fase-3-diseno-computacional/entrega-pdf/")
+    print(f"{len(DOCUMENTOS) + 1} PDF generados en fase-3-diseno-computacional/entrega-pdf/")
