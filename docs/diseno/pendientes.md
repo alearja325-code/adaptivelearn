@@ -366,10 +366,13 @@ se tocó; solo sirve para decir qué cambió). Resultado, en
 - **Verificador** (`_verificar_catalogo.py`, con poppler y no con el lector
   que armó el catálogo): todo correcto, con 2 observaciones explicadas
   como dudosas, y atrapa los 7 errores que se le introducen a propósito.
-- **Queda dudoso, para que decida el equipo:** `CS-08-08`, cuyo enunciado
-  el PDF oficial imprime sin espacios; `MAT-04-02`, con una llamada a nota
-  al pie; `MAT-11-09` y `MAT-11-10`, en una página sin encabezado de grado
-  (p. 86; se toma 11° por la página anterior y la numeración).
+- **Dudosos, decididos por el equipo al revisar el PR #2 (2026-10-26):**
+  `CS-08-08`, cuyo enunciado el PDF oficial imprime sin espacios, se
+  separa en palabras; en `MAT-04-02` se quita el «1» de la llamada a nota
+  al pie. Las dos quedan como correcciones declaradas en
+  `construir_catalogo.py`, con su página. `MAT-11-09` y `MAT-11-10`
+  siguen marcados: la p. 86 no tiene encabezado de grado, pero son de 11°
+  (la p. 85 dice "Grado 11º" y trae los DBA 7 y 8; la 86 sigue con 9 y 10).
 - **Sigue pendiente de esta sección:** el **ejemplo** de cada DBA (QA-011)
   y qué hacer con los que son imagen (punto 2 de abajo); el censo de
   formato cerrado (QA-014). El catálogo nuevo todavía no se carga en la

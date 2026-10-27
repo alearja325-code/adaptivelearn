@@ -386,8 +386,10 @@ def leer_area(codigo, archivo):
 # ------------------------------------------------------------ correcciones
 # Donde la CAPA DE TEXTO del PDF no dice lo que la página IMPRESA muestra, y
 # ningún programa puede saberlo solo. Cada una se verificó mirando la página
-# renderizada. Solo tocan espacios, saltos de línea o una ligadura que el PDF
-# dibuja pero no declara como texto: nunca una palabra.
+# renderizada. Solo tocan espacios, saltos de línea, una ligadura que el PDF
+# dibuja pero no declara como texto, o una llamada a nota al pie: nunca una
+# palabra. (Las dos últimas, CS-08-08 y MAT-04-02, las decidió el equipo el
+# 2026-10-26 al revisar el PR #2: antes estaban como dudosas.)
 # (codigo_dba, campo, texto como sale del PDF, texto corregido, página, razón)
 CORRECCIONES = [
     ("CS-06-05", "evidencia 1", "geográ cos", "geográficos", 31,
@@ -398,18 +400,16 @@ CORRECCIONES = [
      "la página muestra «+ b», como «a + b» en la línea anterior; la capa de texto no trae ese espacio"),
     ("MAT-09-06", "evidencia 1", "bidimen-sionales", "bidimensionales", 69,
      "guion de partición al final de la línea (la palabra se corta en dos renglones)"),
+    ("CS-08-08", "enunciado", "Comprendelaimportanciadelasasociaciones,",
+     "Comprende la importancia de las asociaciones,", 41,
+     "el PDF oficial imprime esas palabras sin espacios (se ve así en la página): solo se agregan los espacios"),
+    ("MAT-04-02", "enunciado", "(fraccionarios)1", "(fraccionarios)", 30,
+     "el «1» es la llamada en superíndice a una nota al pie de la misma página, no parte del enunciado"),
 ]
 
 # Lo que no se puede resolver con certeza: se deja como está en el PDF y se
 # marca. El informe lo explica uno por uno.
-DUDOSOS = {
-    "CS-08-08": "el enunciado está impreso sin espacios en el PDF oficial "
-                "(«Comprendelaimportanciadelasasociaciones,», p. 41). Se copia así; la lectura "
-                "obvia es «Comprende la importancia de las asociaciones,». Decide el equipo.",
-    "MAT-04-02": "el enunciado tiene una llamada a nota al pie en superíndice después de "
-                 "«(fraccionarios)»; queda como «(fraccionarios)1». La nota está en la misma "
-                 "página (p. 30) y no se copia: el catálogo no tiene campo para notas.",
-}
+DUDOSOS = {}
 
 
 def corregir(registro):

@@ -217,7 +217,7 @@ def diccionario():
     w("| Campo | Qué falta | Dónde está declarado |")
     w("|---|---|---|")
     w("| `evidencia_dictamen.aplica_formato_cerrado` | El tipo está cerrado; **los valores no**: dependen del censo QA-014, que no ha corrido. Hasta entonces RI-5 no se puede evaluar contra datos reales. | **V-6**, MER |")
-    w("| `dba.codigo_dba` | El formato `ÁREA-GG-NN` está cerrado (RI-21), pero **los datos de hoy no lo cumplen como llave**: `curriculo_men_normalizado.json` tiene 342 DBA y solo 329 códigos distintos, porque la normalización de la V2 asignó al grado anterior el primer DBA de algunas páginas. Cargarlo completo falla por llave duplicada en 13, y eso es lo correcto: se corrige en los datos, no en el modelo. | **Pendientes, A12** · ADR-036 |")
+    w("| `dba.codigo_dba` | El formato `ÁREA-GG-NN` está cerrado (RI-21), y los datos lo cumplen como llave desde el catálogo corregido (`data/curriculo-men/catalogo/catalogo_dba.json`, 343 DBA, encargo 02). El JSON viejo, `curriculo_men_normalizado.json`, tenía 342 DBA y solo 329 códigos distintos; cargarlo falla por llave duplicada en 13, y eso es lo correcto: se corrigió en los datos, no en el modelo. | **Pendientes, A12** · ADR-036 |")
     w("| `dba.ejemplo` | Admite `NULL` porque el campo todavía no existe en la normalización del currículo. No es opcionalidad de diseño, es un dato que falta. | **QA-011** |")
     w("")
     w("**Cerrados desde el borrador anterior** (para no perder el rastro):")

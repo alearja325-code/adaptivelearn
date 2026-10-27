@@ -931,7 +931,7 @@
    "area": "Matemáticas",
    "grado": 4,
    "numero": 2,
-   "enunciado": "Describe y justifica diferentes estrategias para representar, operar y hacer estimaciones con números naturales y números racionales (fraccionarios)1, expresados como fracción o como decimal",
+   "enunciado": "Describe y justifica diferentes estrategias para representar, operar y hacer estimaciones con números naturales y números racionales (fraccionarios), expresados como fracción o como decimal",
    "evidencias": [
     "Utiliza el sistema de numeración decimal para representar, comparar y operar con números mayores o iguales a 10.000.",
     "Describe y desarrolla estrategias para calcular sumas y restas basadas en descomposiciones aditivas y multiplicativas.",
@@ -952,9 +952,7 @@
     31
    ],
    "encabezado_pagina": "Matemáticas•Grado4º",
-   "dudoso": [
-    "el enunciado tiene una llamada a nota al pie en superíndice después de «(fraccionarios)»; queda como «(fraccionarios)1». La nota está en la misma página (p. 30) y no se copia: el catálogo no tiene campo para notas."
-   ],
+   "dudoso": [],
    "id_anterior": "matemáticas_4_dba_2"
   },
   {
@@ -8935,7 +8933,7 @@
    "area": "Ciencias Sociales",
    "grado": 8,
    "numero": 8,
-   "enunciado": "Comprendelaimportanciadelasasociaciones, los gremios, los movimientos y organizaciones sindicales en la defensa de los derechos colectivos.",
+   "enunciado": "Comprende la importancia de las asociaciones, los gremios, los movimientos y organizaciones sindicales en la defensa de los derechos colectivos.",
    "evidencias": [
     "Describe el surgimiento de los movimientos sociales (campesinos, estudiantiles y obreros) acaecidos durante el siglo XX en Colombia.",
     "Explica algunas herramientas y procedimientos alternativos (diálogo, conciliación, arbitraje, mediación,..) con los se cuenta para resolver un conflicto social o laboral.",
@@ -8954,9 +8952,7 @@
     41
    ],
    "encabezado_pagina": "CienciasSociales•Grado8º",
-   "dudoso": [
-    "el enunciado está impreso sin espacios en el PDF oficial («Comprendelaimportanciadelasasociaciones,», p. 41). Se copia así; la lectura obvia es «Comprende la importancia de las asociaciones,». Decide el equipo."
-   ],
+   "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_8"
   },
   {

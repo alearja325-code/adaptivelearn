@@ -96,14 +96,15 @@ FICHA = {
         "*pertenece a* un ÁREA, *corresponde a* un GRADO y *se copia de* un DOCUMENTO_OFICIAL. "
         "**`codigo_dba` tiene el formato `ÁREA-GG-NN`**, con ceros a la izquierda y sin tildes "
         "(`MAT-01-01`, `CS-11-05`, RI-21): se arma con el código del área, el grado y el `numero` "
-        "de cada registro de `curriculo_men_normalizado.json`. Equivale al identificador viejo "
+        "de cada DBA. Equivale al identificador viejo "
         "así: `matemáticas_1_dba_1` → `MAT-01-01`, `ciencias_naturales_2_dba_3` → `CN-02-03`. "
-        "**El formato sale del JSON, pero sus datos tienen un defecto conocido:** hay 342 DBA y "
-        "solo 329 identificadores distintos, porque la normalización de la V2 asignó al grado "
-        "anterior el primer DBA de algunas páginas (hay dos `matemáticas_2_dba_1`; el segundo es "
-        "el DBA 1 de 3°). Con el código nuevo chocan los mismos 13. `codigo_dba` **sigue siendo "
-        "llave única**: el defecto se corrige en la auditoría del currículo (pendientes, A12), no "
-        "relajando el modelo. `ejemplo` se usa como contexto al generar el banco (ADR-011) y "
+        "**Los DBA se cargan de `data/curriculo-men/catalogo/catalogo_dba.json`**, no de "
+        "`curriculo_men_normalizado.json`: ese JSON viejo tenía 342 DBA y solo 329 identificadores "
+        "distintos, porque la normalización de la V2 asignó al grado anterior el primer DBA de "
+        "algunas páginas. El catálogo corregido (encargo 02, 2026-10-26; pendientes, A12) tiene "
+        "343 DBA, cada uno en el grado del encabezado de su página y con código único. "
+        "`codigo_dba` es llave única: el defecto se corrigió en los datos, no relajando el "
+        "modelo. `ejemplo` se usa como contexto al generar el banco (ADR-011) y "
         "todavía falta en la normalización (QA-011).",
         "Glosario «DBA» · ADR-005, ADR-011, ADR-036 · RF-06-01"),
     "EVIDENCIA": (

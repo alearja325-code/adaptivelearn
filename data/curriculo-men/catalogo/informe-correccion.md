@@ -88,7 +88,7 @@ diferencia está en el anexo.
 |---|---|---|---|
 | `MAT-01-06` | 11 | — | el JSON tenía 3, el PDF tiene 4 |
 | `MAT-01-09` | 13 | solo espacios (palabras pegadas o separadas) | — |
-| `MAT-04-02` | 30 | solo espacios (palabras pegadas o separadas) | el JSON tenía 2, el PDF tiene 5 |
+| `MAT-04-02` | 30 | palabras distintas | el JSON tenía 2, el PDF tiene 5 |
 | `MAT-04-04` | 32 | solo espacios (palabras pegadas o separadas) | el JSON tenía 4, el PDF tiene 5 |
 | `MAT-04-05` | 33 | — | el JSON tenía 1, el PDF tiene 4 |
 | `MAT-05-06` | 40 | — | el JSON tenía 5, el PDF tiene 6 |
@@ -156,7 +156,7 @@ diferencia está en el anexo.
 | `CS-08-04` | 39 | — | tenía texto de más (basura de la página) |
 | `CS-08-06` | 40 | — | tenía texto de más (basura de la página) |
 | `CS-08-07` | 41 | — | palabras distintas |
-| `CS-08-08` | 41 | solo espacios (palabras pegadas o separadas) | palabras distintas |
+| `CS-08-08` | 41 | — | palabras distintas |
 | `CS-09-04` | 43 | — | tenía texto de más (basura de la página) |
 | `CS-09-06` | 44 | — | tenía texto de más (basura de la página) |
 | `CS-10-04` | 47 | — | tenía texto de más (basura de la página) |
@@ -174,18 +174,18 @@ comprueba cada una.
 | DBA | Dónde | El PDF trae | Se copia | Página | Por qué |
 |---|---|---|---|---|---|
 | `MAT-02-01` | evidencia 2 | «? +b = c.» | «? + b = c.» | 15 | la página muestra «+ b», como «a + b» en la línea anterior; la capa de texto no trae ese espacio |
+| `MAT-04-02` | enunciado | «(fraccionarios)1» | «(fraccionarios)» | 30 | el «1» es la llamada en superíndice a una nota al pie de la misma página, no parte del enunciado |
 | `MAT-09-06` | evidencia 1 | «bidimen-sionales» | «bidimensionales» | 69 | guion de partición al final de la línea (la palabra se corta en dos renglones) |
 | `CS-06-05` | evidencia 1 | «geográ cos» | «geográficos» | 31 | la ligadura «fi» está dibujada pero el PDF no la declara como texto: queda un hueco |
 | `CS-07-07` | enunciado | «Co mprende» | «Comprende» | 36 | hueco de diagramación dentro de la palabra, sin carácter de espacio |
+| `CS-08-08` | enunciado | «Comprendelaimportanciadelasasociaciones,» | «Comprende la importancia de las asociaciones,» | 41 | el PDF oficial imprime esas palabras sin espacios (se ve así en la página): solo se agregan los espacios |
 
 ## 4. Qué quedó dudoso
 
 No se adivinó. Cada uno está marcado en el registro (campo `dudoso`):
 
-- **`MAT-04-02`** (p. 30): el enunciado tiene una llamada a nota al pie en superíndice después de «(fraccionarios)»; queda como «(fraccionarios)1». La nota está en la misma página (p. 30) y no se copia: el catálogo no tiene campo para notas.
 - **`MAT-11-09`** (p. 86): la página no tiene encabezado de grado: se toma el de la página anterior y la numeración que sigue
 - **`MAT-11-10`** (p. 86): la página no tiene encabezado de grado: se toma el de la página anterior y la numeración que sigue
-- **`CS-08-08`** (p. 41): el enunciado está impreso sin espacios en el PDF oficial («Comprendelaimportanciadelasasociaciones,», p. 41). Se copia así; la lectura obvia es «Comprende la importancia de las asociaciones,». Decide el equipo.
 
 Además, cosas del propio PDF que se copiaron tal cual y conviene que el equipo conozca:
 
@@ -271,7 +271,7 @@ texto; el resto, en el catálogo.
 
 - `MAT-01-06` evidencias: el JSON tenía 3, el PDF tiene 4.
 - `MAT-01-09` enunciado: solo espacios: «…Reconoceelsignoigualcomounaequivalencia entre ex…» → «…Reconoce el signo igual como una equivalencia en…»
-- `MAT-04-02` enunciado: solo espacios: «…les (fraccionarios)1 , expresados como fracción o como decim…» → «…les (fraccionarios)1, expresados como fracción o como decima…»
+- `MAT-04-02` enunciado: «…ales (fraccionarios)1 , expresados como fr…» → «…ales (fraccionarios), expresados como fr…»
 - `MAT-04-02` evidencias: el JSON tenía 2, el PDF tiene 5.
 - `MAT-04-04` enunciado: solo espacios: «…Caracterizaycomparaatributosmediblesdelos objetos (…» → «…Caracteriza y compara atributos medibles de los obj…»
 - `MAT-04-04` evidencias: el JSON tenía 4, el PDF tiene 5.
@@ -360,7 +360,6 @@ texto; el resto, en el catálogo.
 - `CS-08-07` evidencia 2: «…uación actual, desde concretos, de la vu…» → «…uación actual, desde casos concretos, de la vu…»
 - `CS-08-07` evidencia 3: «…os relacionados con exclusión, la discri…» → «…os relacionados con la exclusión, la discri…» · «…n y la intolerancia a diferencia, que ha…» → «…n y la intolerancia a la diferencia, que ha…» · (y más)
 - `CS-08-07` evidencia 4: «… y constitucionales Colombia y en el mun…» → «… y constitucionales en Colombia y en el mun…»
-- `CS-08-08` enunciado: solo espacios: «…Comprende la importancia de las asociaciones, los…» → «…Comprendelaimportanciadelasasociaciones, los grem…»
 - `CS-08-08` evidencia 2: «…tas y procedimientos la alternativos (diálo…» → «…tas y procedimientos alternativos (diálo…» · «…uenta para resolver casos conflicto social o …» → «…uenta para resolver un conflicto social o …»
 - `CS-08-08` evidencia 3: «…el magisterio,...), la como todo conflicto …» → «…el magisterio,...), como todo conflicto …» · «…al o laboral, puede la resolverse mediante …» → «…al o laboral, puede resolverse mediante …» · (y más)
 - `CS-08-08` evidencia 4: «…cia de un desarrollo con social, económico y…» → «…cia de un desarrollo social, económico y…» · «…na lógica orientada bienestar colectivo.…» → «…na lógica orientada al bienestar colectivo.…» · (y más)

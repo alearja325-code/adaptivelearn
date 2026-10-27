@@ -172,10 +172,10 @@ dato podría quedar viejo.
   ascii_bin`. ADR-036 pide códigos sin tildes; con ASCII, el motor ni siquiera puede guardar
   una tilde, y con el cotejamiento binario `mat` no es igual a `MAT`. El resto de la base sigue
   en `utf8mb4_unicode_ci`.
-- **Defecto conocido de los datos, no del modelo.** `curriculo_men_normalizado.json` tiene 342
-  DBA y solo 329 códigos distintos (16 §4, DBA). `codigo_dba` sigue siendo llave primaria:
-  cargar hoy el JSON completo **fallaría por llave duplicada** en esos 13, y eso es lo correcto.
-  Se corrige en la auditoría del currículo (pendientes, A12).
+- **De dónde se cargan los DBA.** De `data/curriculo-men/catalogo/catalogo_dba.json` (343 DBA,
+  códigos únicos, verificado contra los PDF; encargo 02, pendientes A12), **no** de
+  `curriculo_men_normalizado.json`: ese tenía 342 DBA y solo 329 códigos distintos (16 §4, DBA),
+  y cargarlo fallaría por llave duplicada en 13, que es lo correcto: `codigo_dba` es llave primaria.
 
 ## 6. Análisis de normalización
 
