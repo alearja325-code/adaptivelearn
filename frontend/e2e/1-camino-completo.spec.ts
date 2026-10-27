@@ -86,7 +86,7 @@ test('el camino completo, hasta el aviso del Paso 3', async ({ page }) => {
   // expandir CS-08-08 y ver sus evidencias (pedidas al expandir)
   const card = lista.locator('li[data-codigo="CS-08-08"]');
   await card.getByRole('button', { name: 'Ver CS-08-08' }).click();
-  await expect(card.getByText('Evidencias')).toBeVisible();
+  await expect(card.getByText('Evidencias', { exact: true })).toBeVisible();
   await expect(card.locator('ul li').first()).toBeVisible();
   // sin dictamen (QA-014): ninguna tachada; sin ejemplo (QA-011): sin infoblock
   await expect(card.getByText('— no aplica a formato cerrado')).toHaveCount(0);
