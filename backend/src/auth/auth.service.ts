@@ -2,299 +2,357 @@ import {
   BadRequestException,
   ConflictException,
   ForbiddenException,
+  HttpException,
+  HttpStatus,
+  Inject,
   Injectable,
+  Logger,
+  ServiceUnavailableException,
   UnauthorizedException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource, IsNull } from 'typeorm';
-import { randomInt } from 'node:crypto';
 import * as bcrypt from 'bcrypt';
-import { UserService, mensajeOtroProveedor } from '../user/user.service.js';
-import { User, type Rol } from '../user/entities/user.entity.js';
-import { DocentesService } from '../docentes/docentes.service.js';
-import { EstudiantesService } from '../estudiantes/estudiantes.service.js';
+import { UserService, mensajeCorreoRegistrado } from '../user/user.service.js';
+import { User } from '../user/entities/user.entity.js';
+import { Docente } from '../user/entities/docente.entity.js';
+import { Estudiante } from '../user/entities/estudiante.entity.js';
+import { CorreoService } from '../correo/correo.service.js';
+import { CodigoService, type ResultadoCodigo } from './codigo.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import { RegisterDto } from './dto/register.dto.js';
 import { VerificarCorreoDto } from './dto/verificar-correo.dto.js';
 import { ReenviarCodigoDto } from './dto/reenviar-codigo.dto.js';
 import { ElegirRolDto } from './dto/elegir-rol.dto.js';
+import { EditarPerfilDto } from './dto/editar-perfil.dto.js';
 import { SolicitarRecuperacionDto } from './dto/solicitar-recuperacion.dto.js';
 import { VerificarRecuperacionDto } from './dto/verificar-recuperacion.dto.js';
 import { NuevaContrasenaDto } from './dto/nueva-contrasena.dto.js';
-import { JwtPayload } from './interfaces/jwt-payload.interface.js';
-import { RecuperacionPayload } from './interfaces/recuperacion-payload.interface.js';
+import { JwtPayload, RecuperacionPayload } from './interfaces/jwt-payload.interface.js';
+import { AuthResponse } from './interfaces/auth-response.interface.js';
+import {
+  NOMBRE_PROVEEDOR,
+  VERIFICADORES,
+  type ProveedorExterno,
+  type Verificadores,
+} from './proveedores/proveedor-identidad.js';
+import { borrarFoto, guardarFoto, type ArchivoSubido } from './foto.js';
 
-const CREDENCIALES_INCORRECTAS = 'Correo o contraseña incorrectos.'; // spec 17, 2.6
-const CODIGO_INCORRECTO = 'Código incorrecto. Revisa que esté bien escrito.'; // spec 18, 2.4
-
-const MINUTOS_VALIDEZ_CODIGO = 10;
-const SEGUNDOS_COOLDOWN_REENVIO = 30; // spec 18, 2.5
-const MAX_INTENTOS_CODIGO = 5;
+// Guía: «Credenciales inválidas». Ventana 014: el mismo mensaje genérico,
+// sin decir qué dato falló (RF-01-07).
+const CREDENCIALES_INVALIDAS = 'Credenciales inválidas';
 const MAX_INTENTOS_LOGIN = 5;
 const MINUTOS_BLOQUEO_LOGIN = 15;
-const SEGUNDOS_VALIDEZ_TOKEN_RECUPERACION = 15 * 60;
+const SEGUNDOS_TOKEN_RECUPERACION = 15 * 60;
 
-// crypto y no Math.random: Math.random no es impredecible, y este código
-// es lo único que protege la recuperación de contraseña.
-function generarCodigoVerificacion(): string {
-  return randomInt(0, 1_000_000).toString().padStart(6, '0');
-}
+// Ventana 015: qué responder a cada resultado de un código
+const MENSAJE_CODIGO: Record<Exclude<ResultadoCodigo, 'ok'>, string> = {
+  incorrecto: 'Código incorrecto. Revisa que esté bien escrito.',
+  vencido: 'El código venció. Pide uno nuevo.',
+  inexistente: 'El código venció. Pide uno nuevo.',
+  agotado: 'Demasiados intentos con este código. Pide uno nuevo.',
+};
 
-function puedeReenviar(user: User): boolean {
-  return (
-    !user.codigoUltimoEnvio ||
-    Date.now() - user.codigoUltimoEnvio.getTime() >= SEGUNDOS_COOLDOWN_REENVIO * 1000
-  );
+function errorDeCodigo(resultado: Exclude<ResultadoCodigo, 'ok'>): HttpException {
+  return resultado === 'agotado'
+    ? new HttpException(MENSAJE_CODIGO.agotado, HttpStatus.TOO_MANY_REQUESTS)
+    : new BadRequestException(MENSAJE_CODIGO[resultado]);
 }
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+  private readonly carpetaFotos: string;
+
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-    private readonly docentesService: DocentesService,
-    private readonly estudiantesService: EstudiantesService,
+    private readonly codigoService: CodigoService,
+    private readonly correoService: CorreoService,
+    @Inject(VERIFICADORES) private readonly verificadores: Verificadores,
     @InjectDataSource() private readonly dataSource: DataSource,
-  ) {}
+    configService: ConfigService,
+  ) {
+    this.carpetaFotos = configService.get<string>('UPLOADS_DIR') || 'uploads';
+  }
 
   /**
    * Registrar un nuevo usuario
-   * Crea el usuario y retorna un token JWT (igual que la guía).
-   * Además envía el código de verificación de correo (spec 18).
+   * Crea el usuario y retorna un token JWT (guía). Además envía el código
+   * para verificar el correo (RF-01-03, nota R5).
    */
-  async register(registerDto: RegisterDto) {
-    const user = await this.userService.create(registerDto);
-
-    await this.enviarNuevoCodigo(user);
-
-    const token = await this.generateToken(user.id, user.email, user.role);
-
-    return { user, token };
+  async register(registerDto: RegisterDto): Promise<AuthResponse> {
+    // Crear el usuario usando el servicio de usuarios
+    const user: User = await this.userService.create(registerDto);
+    await this.enviarCodigo(user, 'verificar_correo');
+    return await this.buildAuthResponse(user);
   }
 
   /**
    * Login de usuario
-   * Valida credenciales y retorna un token JWT
+   * Valida credenciales y retorna un token JWT. Si la cuenta no eligió rol,
+   * el token es de rol 'user' y la pantalla retoma el registro (ADR-035).
    */
-  async login(loginDto: LoginDto) {
+  async login(loginDto: LoginDto): Promise<AuthResponse> {
     const { email, password } = loginDto;
 
-    // Buscar usuario por email (incluye password)
-    const user = await this.userService.findOneByEmail(email);
+    // Buscar usuario por email (incluye password); puede ser null
+    const user: User | null = await this.userService.findOneByEmail(email);
 
+    // Verificar si el usuario existe
     if (!user) {
-      throw new UnauthorizedException(CREDENCIALES_INCORRECTAS);
+      throw new UnauthorizedException(CREDENCIALES_INVALIDAS);
     }
 
-    // Cuenta creada con Google/Microsoft: no tiene contraseña (spec 17, 2.6)
+    // Cuenta de Google o Microsoft: no tiene contraseña (RF-01-04)
     if (user.proveedor !== 'correo') {
-      throw new UnauthorizedException(mensajeOtroProveedor(user.proveedor));
+      throw new ConflictException(
+        `Esta cuenta entra con ${NOMBRE_PROVEEDOR[user.proveedor]}. Continúa con ese botón.`,
+      );
     }
 
-    // Bloqueo temporal tras varios intentos fallidos. Mismo mensaje
+    // Bloqueo de 15 minutos tras 5 intentos fallidos. Mismo mensaje
     // genérico: uno distinto confirmaría que la cuenta existe.
     if (user.bloqueadoHasta && user.bloqueadoHasta.getTime() > Date.now()) {
-      throw new UnauthorizedException(CREDENCIALES_INCORRECTAS);
+      throw new UnauthorizedException(CREDENCIALES_INVALIDAS);
     }
 
     // Comparar contraseñas
-    const isPasswordValid =
+    const isPasswordValid: boolean =
       user.password !== null && (await bcrypt.compare(password, user.password));
 
     if (!isPasswordValid) {
       await this.registrarLoginFallido(user);
-      throw new UnauthorizedException(CREDENCIALES_INCORRECTAS);
+      throw new UnauthorizedException(CREDENCIALES_INVALIDAS);
     }
 
-    if (user.intentosLogin > 0) {
+    if (user.intentosLogin > 0 || user.bloqueadoHasta) {
       await this.userService.actualizarIntentosLogin(user.id, 0, null);
     }
 
-    // Generar el token JWT
-    const token = await this.generateToken(user.id, user.email, user.role);
-
-    return { user, token };
+    return await this.buildAuthResponse(user);
   }
 
   /**
-   * Generar token JWT
-   * Crea un token con el payload especificado
+   * Generar token JWT con el payload del usuario
    */
-  private async generateToken(userId: number, email: string, role: Rol | null): Promise<string> {
+  private async generateToken(user: User): Promise<string> {
     const payload: JwtPayload = {
-      sub: userId,
-      email,
-      role,
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+      idDocente: user.idDocente,
+      idEstudiante: user.idEstudiante,
     };
-
     // Firmar y retornar el token
     return await this.jwtService.signAsync(payload);
   }
 
-  // ------------------------------------------------------------------
-  // Agregado por las specs de MODESEC (fuera de la guía)
-  // ------------------------------------------------------------------
-
   /**
-   * Spec 18, flujo 1 — verificar el correo con la sesión ya iniciada.
+   * Construir la respuesta de register/login (sin la contraseña)
    */
-  async verificarCorreo(sesion: User, dto: VerificarCorreoDto) {
-    const user = await this.userService.findOneByEmail(sesion.email);
+  private async buildAuthResponse(user: User): Promise<AuthResponse> {
+    const token: string = await this.generateToken(user);
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+      },
+      token,
+    };
+  }
 
-    // 400 y no 401: la sesión es válida, lo incorrecto es el código escrito.
-    if (!user || !(await this.validarCodigo(user, dto.codigo))) {
-      throw new BadRequestException(CODIGO_INCORRECTO);
+  // ------------------------------------------------------------------
+  // El resto del acceso de AdaptiveLearn (`20` §3, E-02 a E-12)
+  // ------------------------------------------------------------------
+
+  /** E-02 — verificar el correo con el código (CU-03, ventana 015). */
+  async verificarCorreo(sesion: User, dto: VerificarCorreoDto): Promise<{ user: User }> {
+    if (sesion.estadoVerificacion === 'verificado') {
+      throw new ConflictException('El correo ya está verificado.');
     }
-
-    await this.userService.marcarCorreoVerificado(user.id);
-
-    return { user: await this.userService.findOne(user.id) };
+    const resultado = await this.codigoService.verificar(sesion.id, 'verificar_correo', dto.codigo);
+    if (resultado !== 'ok') {
+      throw errorDeCodigo(resultado);
+    }
+    await this.userService.marcarVerificado(sesion.id);
+    return { user: await this.userService.findOne(sesion.id) };
   }
 
   /**
-   * Spec 18, sección 2.5 — "Reenviar". La cuenta regresiva de 30 s de la
-   * pantalla se vuelve a exigir acá, porque este endpoint se puede llamar
-   * directo. Responde igual exista o no la cuenta (anti-enumeración).
+   * E-03 — reenviar el código (CU-03 1a). La espera de 30 s de la pantalla
+   * se vuelve a exigir acá, porque la ruta se puede llamar directo. Responde
+   * igual exista o no la cuenta (RNF-07).
    */
-  async reenviarCodigo(dto: ReenviarCodigoDto) {
-    const user = await this.userService.findOneByEmail(dto.email);
-
-    if (user && user.proveedor === 'correo' && puedeReenviar(user)) {
-      await this.enviarNuevoCodigo(user);
+  async reenviarCodigo(dto: ReenviarCodigoDto): Promise<{ ok: true }> {
+    const user: User | null = await this.userService.findOneByEmail(dto.email);
+    if (user && user.proveedor === 'correo' && user.estadoVerificacion === 'procesando') {
+      await this.enviarCodigo(user, 'verificar_correo', true);
     }
-
     return { ok: true };
   }
 
-  /**
-   * Spec 20 — "Elige tu rol". Crea la fila en docente o estudiante (nunca
-   * las 2) y devuelve un token nuevo con el rol ya incluido. Exige correo
-   * verificado (spec 18) y perfil completo (spec 19).
-   */
-  async elegirRol(sesion: User, dto: ElegirRolDto) {
-    if (sesion.role !== null) {
-      throw new ConflictException('Esta cuenta ya tiene un rol asignado.');
+  /** E-04 y E-05 — entrar con Google o Microsoft (CU-02). */
+  async entrarConProveedor(proveedor: ProveedorExterno, token: string): Promise<AuthResponse> {
+    const verificador = this.verificadores[proveedor];
+    if (!verificador.configurado) {
+      throw new ServiceUnavailableException(
+        `El acceso con ${NOMBRE_PROVEEDOR[proveedor]} no está configurado en este servidor.`,
+      );
     }
-    if (!sesion.emailVerificado) {
+
+    let identidad;
+    try {
+      identidad = await verificador.verificar(token);
+    } catch {
+      throw new UnauthorizedException(`${NOMBRE_PROVEEDOR[proveedor]} no aceptó el inicio de sesión.`);
+    }
+
+    // Cuenta ya creada con este proveedor: entra (o retoma su registro)
+    const existente = await this.userService.findByProveedor(proveedor, identidad.proveedorId);
+    if (existente) {
+      return await this.buildAuthResponse(existente);
+    }
+
+    // El correo ya tiene cuenta con otro método: se avisa, no se vincula (RF-01-04)
+    const mismoCorreo = await this.userService.findOneByEmail(identidad.correo);
+    if (mismoCorreo) {
+      throw new ConflictException(mensajeCorreoRegistrado(mismoCorreo.proveedor));
+    }
+
+    const nueva = await this.userService.createExterna(
+      proveedor,
+      identidad.proveedorId,
+      identidad.correo,
+      identidad.nombre,
+    );
+    return await this.buildAuthResponse(nueva);
+  }
+
+  /**
+   * E-06 — completar el perfil y elegir el rol (CU-04, CU-05). Crea el
+   * docente o el estudiante con su perfil y lo asocia a la credencial, en
+   * una transacción. El UPDATE es condicional (solo si aún no hay rol): dos
+   * peticiones simultáneas no pueden asignar dos roles (RI-12).
+   */
+  async elegirRol(sesion: User, dto: ElegirRolDto, foto?: ArchivoSubido): Promise<AuthResponse> {
+    if (sesion.tieneRol()) {
+      throw new ConflictException('Esta cuenta ya tiene un rol: el rol no se cambia.');
+    }
+    if (sesion.estadoVerificacion !== 'verificado') {
       throw new ForbiddenException('Primero verifica tu correo.');
     }
-    if (!sesion.nombres || !sesion.apellidos) {
-      throw new BadRequestException('Falta completar el perfil antes de elegir un rol.');
+
+    const avatarUrl = foto ? await guardarFoto(foto, this.carpetaFotos) : null;
+    const perfil = { nombres: dto.nombres, apellidos: dto.apellidos, avatarUrl };
+
+    try {
+      await this.dataSource.transaction(async (manager) => {
+        const enlace =
+          dto.role === 'docente'
+            ? { idDocente: (await manager.save(manager.create(Docente, perfil))).id }
+            : { idEstudiante: (await manager.save(manager.create(Estudiante, perfil))).id };
+
+        const result = await manager.update(
+          User,
+          { id: sesion.id, idDocente: IsNull(), idEstudiante: IsNull() },
+          enlace,
+        );
+        if (!result.affected) {
+          throw new ConflictException('Esta cuenta ya tiene un rol: el rol no se cambia.');
+        }
+      });
+    } catch (error) {
+      await borrarFoto(avatarUrl, this.carpetaFotos);
+      throw error;
     }
 
-    const datos = {
-      nombre: `${sesion.nombres} ${sesion.apellidos}`,
-      correo: sesion.email,
-      avatarUrl: sesion.avatarUrl,
-    };
-
-    // Transacción: crear la fila y enlazarla a la credencial pasan juntas o
-    // ninguna. El UPDATE es condicional (solo si aún no hay rol), así 2
-    // peticiones simultáneas no pueden asignar 2 roles.
-    await this.dataSource.transaction(async (manager) => {
-      const enlace =
-        dto.role === 'docente'
-          ? { idDocente: (await this.docentesService.crear(manager, datos)).id }
-          : { idEstudiante: (await this.estudiantesService.crear(manager, datos)).id };
-
-      const result = await manager.update(
-        User,
-        { id: sesion.id, idDocente: IsNull(), idEstudiante: IsNull() },
-        enlace,
-      );
-
-      if (!result.affected) {
-        throw new ConflictException('Esta cuenta ya tiene un rol asignado.');
-      }
-    });
-
-    const user = await this.userService.findOne(sesion.id);
-    const token = await this.generateToken(user.id, user.email, user.role);
-
-    return { user, token };
+    return await this.buildAuthResponse(await this.userService.findOne(sesion.id));
   }
 
   /**
-   * Spec 21 — pedir el código de recuperación. Responde EXACTAMENTE igual
-   * si la cuenta no existe, si es solo de Google/Microsoft o si existe con
-   * contraseña: ninguno de esos casos debe poder distinguirse desde afuera.
+   * E-08 — pedir el código de recuperación (CU-07). Responde EXACTAMENTE
+   * igual si la cuenta no existe, si es de Google o Microsoft o si existe
+   * con contraseña: ninguno de esos casos se distingue desde afuera (RNF-07).
    */
-  async solicitarRecuperacion(dto: SolicitarRecuperacionDto) {
-    const user = await this.userService.findOneByEmail(dto.email);
-
-    if (user && user.proveedor === 'correo' && puedeReenviar(user)) {
-      await this.enviarNuevoCodigo(user);
+  async solicitarRecuperacion(dto: SolicitarRecuperacionDto): Promise<{ ok: true }> {
+    const user: User | null = await this.userService.findOneByEmail(dto.email);
+    if (user && user.proveedor === 'correo') {
+      await this.enviarCodigo(user, 'recuperar_contrasena', true);
     }
-
     return { ok: true };
   }
 
   /**
-   * Spec 18, flujo 2 — verificar el código de recuperación. Devuelve un
-   * token corto que solo sirve para POST /auth/nueva-contrasena.
+   * E-09 — verificar el código de recuperación. Devuelve un token corto que
+   * solo sirve para POST /auth/nueva-contrasena. Si el correo no existe, el
+   * mensaje es el mismo que con un código incorrecto.
    */
-  async verificarRecuperacion(dto: VerificarRecuperacionDto) {
-    const user = await this.userService.findOneByEmail(dto.email);
-
-    if (!user || user.proveedor !== 'correo' || !(await this.validarCodigo(user, dto.codigo))) {
-      throw new UnauthorizedException(CODIGO_INCORRECTO);
+  async verificarRecuperacion(dto: VerificarRecuperacionDto): Promise<{ token: string }> {
+    const user: User | null = await this.userService.findOneByEmail(dto.email);
+    if (!user || user.proveedor !== 'correo') {
+      throw new BadRequestException(MENSAJE_CODIGO.incorrecto);
+    }
+    const resultado = await this.codigoService.verificar(user.id, 'recuperar_contrasena', dto.codigo);
+    if (resultado !== 'ok') {
+      throw errorDeCodigo(resultado);
     }
 
-    await this.userService.marcarCorreoVerificado(user.id);
+    // Recibir el código prueba que el correo es suyo
+    await this.userService.marcarVerificado(user.id);
 
     const payload: RecuperacionPayload = { sub: user.id, proposito: 'nueva-contrasena' };
     const token = await this.jwtService.signAsync(payload, {
-      expiresIn: SEGUNDOS_VALIDEZ_TOKEN_RECUPERACION,
+      expiresIn: SEGUNDOS_TOKEN_RECUPERACION,
     });
-
     return { token };
   }
 
   /**
-   * Spec 22 — guardar la contraseña nueva. No abre sesión: la persona vuelve
-   * a "Iniciar sesión" (spec 17, 2.6, mensaje de confirmación).
+   * E-10 — guardar la contraseña nueva. No abre sesión: la persona vuelve a
+   * iniciar sesión (CU-07 paso 5).
    */
-  async nuevaContrasena(userId: number, dto: NuevaContrasenaDto) {
-    const user = await this.userService.findOne(userId).catch(() => null);
-
+  async nuevaContrasena(idCredencial: number, dto: NuevaContrasenaDto): Promise<void> {
+    const user: User | null = await this.userService.findById(idCredencial);
     if (!user) {
       throw new UnauthorizedException('Token de recuperación inválido o vencido.');
     }
-
-    const passwordHash = await bcrypt.hash(dto.password, 10);
-    await this.userService.actualizarPassword(user.id, passwordHash);
-
-    return { ok: true };
+    await this.userService.actualizarPassword(user.id, dto.password);
   }
 
   /**
-   * Un código es válido si existe, no venció y no se agotaron los intentos.
-   * Cada intento equivocado cuenta: con 5 como máximo, adivinar 1 código
-   * entre 1.000.000 deja de ser viable.
+   * E-12 — editar el propio perfil (CU-09). Sin :id en la ruta: solo se
+   * edita el perfil de quien tiene la sesión. Si la foto nueva no es válida,
+   * responde 400 y la anterior no cambia.
    */
-  private async validarCodigo(user: User, codigo: string): Promise<boolean> {
-    const vigente =
-      user.codigoVerificacion !== null &&
-      user.codigoExpiraEn !== null &&
-      user.codigoExpiraEn.getTime() > Date.now() &&
-      user.intentosCodigo < MAX_INTENTOS_CODIGO;
-
-    if (!vigente) {
-      return false;
+  async editarPerfil(sesion: User, dto: EditarPerfilDto, foto?: ArchivoSubido): Promise<{ user: User }> {
+    const fila = sesion.docente ?? sesion.estudiante;
+    if (!fila) {
+      throw new ForbiddenException('Todavía no tienes un perfil: termina tu registro.');
     }
 
-    if (user.codigoVerificacion === codigo) {
-      return true;
-    }
+    const avatarUrl = foto ? await guardarFoto(foto, this.carpetaFotos) : undefined;
+    const cambios = {
+      ...(dto.nombres !== undefined && { nombres: dto.nombres }),
+      ...(dto.apellidos !== undefined && { apellidos: dto.apellidos }),
+      ...(avatarUrl && { avatarUrl }),
+    };
 
-    await this.userService.registrarIntentoCodigoFallido(user.id);
-    return false;
+    if (Object.keys(cambios).length > 0) {
+      const entidad = sesion.docente ? Docente : Estudiante;
+      await this.dataSource.getRepository(entidad).update({ id: fila.id }, cambios);
+      // La foto se reemplaza, no se acumula (ventana 026)
+      if (avatarUrl) await borrarFoto(fila.avatarUrl, this.carpetaFotos);
+    }
+    return { user: await this.userService.findOne(sesion.id) };
   }
 
   private async registrarLoginFallido(user: User): Promise<void> {
-    const intentos = user.intentosLogin + 1;
-
+    const intentos: number = user.intentosLogin + 1;
     if (intentos >= MAX_INTENTOS_LOGIN) {
       const hasta = new Date(Date.now() + MINUTOS_BLOQUEO_LOGIN * 60_000);
       await this.userService.actualizarIntentosLogin(user.id, 0, hasta);
@@ -303,14 +361,19 @@ export class AuthService {
     }
   }
 
-  private async enviarNuevoCodigo(user: User): Promise<void> {
-    const codigo = generarCodigoVerificacion();
-    const expiraEn = new Date(Date.now() + MINUTOS_VALIDEZ_CODIGO * 60_000);
-
-    await this.userService.guardarCodigoVerificacion(user.id, codigo, expiraEn);
-
-    // Modo desarrollo (decidido el 2026-09-17): sin envío real de correo;
-    // el código se imprime en la terminal del servidor.
-    console.log(`[DEV] Código de verificación para ${user.email}: ${codigo}`);
+  private async enviarCodigo(
+    user: User,
+    proposito: 'verificar_correo' | 'recuperar_contrasena',
+    respetarEspera = false,
+  ): Promise<void> {
+    const codigo = await this.codigoService.emitir(user.id, proposito, { respetarEspera });
+    if (!codigo) return;
+    // Si el servidor de correo falla, la cuenta ya existe y el código
+    // también: la persona puede pedir otro con «Reenviar» (ventana 015).
+    try {
+      await this.correoService.enviarCodigo(user.email, codigo, proposito);
+    } catch (error) {
+      this.logger.error(`No se pudo enviar el código a ${user.email}: ${String(error)}`);
+    }
   }
 }

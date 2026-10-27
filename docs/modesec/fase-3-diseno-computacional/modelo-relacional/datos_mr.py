@@ -38,6 +38,19 @@ Cambios del 2026-10-26 (revision del docente del 2026-10-22, R1 y R3):
   * `credencial.estado_verificacion` (procesando | verificado) reemplaza a
     `email_verificado` (ADR-037), y RI-15 se reescribe con el estado.
 
+Cambios del 2026-10-27 (encargo 03; ADR-039, ADR-040, nota R4):
+  * tabla `codigo_verificacion` (ADR-039): el codigo deja la credencial.
+    PK (id_credencial, proposito): a lo sumo un codigo por credencial y
+    proposito. Se guarda un HMAC-SHA256 del codigo, no el codigo (decision
+    de esta sesion, declarada en `17`). `credencial` pierde
+    codigo_verificacion, codigo_expira_en, codigo_ultimo_envio e
+    intentos_codigo;
+  * `credencial.es_admin` (ADR-040): la marca de administrador de la guia
+    del docente, falsa por defecto, que solo se pone por SQL;
+  * `credencial.nombre_completo`: el `fullName` que la guia pide al
+    registrarse, guardado mientras no hay rol. Columna solo del MR,
+    justificada en `_verificar_mr_mer.py` (decision de esta sesion).
+
 MOTOR OBJETIVO: MySQL 8 (RNF-14: "NestJS y MySQL"). El DDL generado no usa
 nada que MariaDB 10.11 no tenga, para que el backend de I1, que hoy corre
 sobre MariaDB, lo acepte igual. La columna `sqlite` es el equivalente para
@@ -115,29 +128,25 @@ TABLAS = [
                "verificó el proveedor (RI-15). Reemplaza al antiguo sí/no "
                "`email_verificado`.",
                "ADR-037 · RF-01-03 · 18-spec-auth-verifica-correo.md"),
-             c("codigo_verificacion", "CHAR(6)", "TEXT", True, "",
-               "6 dígitos", "NULL",
-               "Último código enviado, sea de registro o de recuperación de "
-               "contraseña (la misma ventana 015 sirve a los dos).",
-               "RF-01-03 · RF-01-08"),
-             c("codigo_expira_en", FECHA, "TEXT", True, "",
-               "", "NULL", "Hasta cuándo vale ese código.",
-               "RF-01-03 · backend I1 (10 minutos)"),
-             c("codigo_ultimo_envio", FECHA, "TEXT", True, "",
+             c("es_admin", "BOOLEAN", "INTEGER", False, "",
+               "0 | 1", "0",
+               "Marca de administrador de la guía del docente: da acceso a `/users`. "
+               "Falsa por defecto; solo se pone por SQL, ninguna ruta la asigna. No es "
+               "un rol del producto: ninguna pantalla la usa.",
+               "ADR-040 · guía JWT del docente v2, prueba 4"),
+             c("nombre_completo", "VARCHAR(240)", "TEXT", True, "",
                "", "NULL",
-               "Cuándo se envió el último código: el reenvío se habilita 30 s después.",
-               "RF-01-03"),
-             c("intentos_codigo", "TINYINT UNSIGNED", "INTEGER", False, "",
-               ">= 0", "0",
-               "Intentos fallidos con el código vigente. Sin límite, un código de 6 "
-               "dígitos se puede probar por fuerza bruta mientras vale.",
-               "backend I1, sql/002 · RNF-07"),
+               "El nombre que la persona escribió al registrarse (`fullName` de la "
+               "guía). Sirve para mostrarla y para proponer nombres y apellidos al "
+               "completar el perfil; los nombres oficiales viven en `docente` o "
+               "`estudiante` (ventana 016).",
+               "ADR-040 · guía JWT del docente v2, §2 · 19-spec-auth-completa-perfil.md"),
              c("intentos_login", "TINYINT UNSIGNED", "INTEGER", False, "",
                ">= 0", "0", "Intentos de inicio de sesión fallidos seguidos.",
-               "backend I1, sql/002"),
+               "RF-01-07 · backend I1, sql/002 · encargo 03"),
              c("bloqueado_hasta", FECHA, "TEXT", True, "",
-               "", "NULL", "Si se superó el límite de intentos, hasta cuándo no se "
-               "admite iniciar sesión.", "backend I1, sql/002"),
+               "", "NULL", "Si se superó el límite de intentos (5), hasta cuándo no se "
+               "admite iniciar sesión (15 minutos).", "RF-01-07 · backend I1, sql/002"),
              c("creado_en", FECHA, "TEXT", False, "",
                "", "CURRENT_TIMESTAMP", "Cuándo se creó la cuenta.",
                "MER · Credencial · backend I1"),
@@ -145,6 +154,38 @@ TABLAS = [
                "", "CURRENT_TIMESTAMP",
                "Última modificación. En MySQL se actualiza sola (ON UPDATE).",
                "backend I1, sql/002"),
+         ]),
+    # --------------------------------------------------------------- 1b
+    dict(tabla="codigo_verificacion", entidad="Codigo_Verificacion", clase="propia debil",
+         desc="El código de 6 dígitos que se envía por correo para verificar la "
+              "cuenta (ventana 015) o para recuperar la contraseña (ventana 018). "
+              "Entidad débil de la credencial: a lo sumo uno por credencial y "
+              "propósito; uno nuevo reemplaza al anterior. El vencimiento (10 min) "
+              "y la espera para reenviar (30 s) se calculan desde `creado_en`. "
+              "La tarea nocturna borra los vencidos (ADR-039).",
+         campos=[
+             c("id_credencial", ID, "INTEGER", False, "PK,FK",
+               "", "", "Credencial que lo recibió. Relación identificadora «recibe».",
+               "MER · relación «recibe» · ADR-039"),
+             c("proposito", "ENUM('verificar_correo','recuperar_contrasena')", "TEXT",
+               False, "PK", "verificar_correo | recuperar_contrasena", "",
+               "Para qué es el código. Llave parcial: un código vigente por propósito.",
+               "ADR-039 · RF-01-03 · RF-01-08"),
+             c("codigo_hash", f"CHAR(64) {CODIGO}", "TEXT", False, "",
+               "64 caracteres hexadecimales", "",
+               "HMAC-SHA256 del código, en hexadecimal. El código nunca se guarda "
+               "legible: quien lea la tabla no puede usarlo (RNF-08).",
+               "ADR-039 · RNF-08"),
+             c("creado_en", FECHA, "TEXT", False, "",
+               "", "CURRENT_TIMESTAMP",
+               "Cuándo se envió. Vence a los 10 minutos y se puede reenviar a los "
+               "30 segundos: los dos se calculan desde aquí, no se guardan.",
+               "ADR-039 · nota R4 · RF-01-03"),
+             c("intentos", "TINYINT UNSIGNED", "INTEGER", False, "",
+               "0 a 5", "0",
+               "Intentos fallidos con este código. Al quinto, el código deja de "
+               "servir y hay que pedir otro (fuerza bruta: RNF-07).",
+               "ADR-039 · RNF-07"),
          ]),
     # ---------------------------------------------------------------- 2
     dict(tabla="docente", entidad="Docente", clase="propia",
@@ -555,9 +596,15 @@ TABLAS = [
 #
 # Politica de borrado (cierra V-11): eliminar una experiencia (RF-02-07) o
 # salir de una (RF-04-12) borra en cascada todo lo que depende de ella; las
-# raices que ningun flujo borra (credencial, docente, estudiante, DBA,
-# evidencia) quedan en RESTRICT, como seguro.
+# raices que ningun flujo borra (docente, estudiante, DBA, evidencia)
+# quedan en RESTRICT, como seguro. Una credencial si se borra: la tarea
+# nocturna borra las que quedaron sin terminar (ADR-039), y el
+# administrador de la guia puede borrar un usuario (ADR-040); sus codigos
+# se van con ella.
 FKS = [
+    ("codigo_verificacion", ["id_credencial"], "credencial", ["id_credencial"], "CASCADE",
+     "Entidad débil: un código no existe sin su credencial. Borrar la credencial "
+     "(tarea nocturna, ADR-039) borra sus códigos."),
     ("credencial", ["id_docente"], "docente", ["id_docente"], "RESTRICT",
      "Raíz: ningún flujo borra un docente. Sin ON UPDATE CASCADE: MySQL no admite "
      "un CHECK sobre una columna con acción referencial, y aquí lo hay (RI-12).",
@@ -679,6 +726,13 @@ CHECKS = [
      "AND estado_verificacion = 'verificado')",
      "contraseña solo con correo; identificador externo y correo verificado solo "
      "con Google o Microsoft", "RI-15 · RF-01-01 · RF-01-02"),
+    ("codigo_verificacion", "intentos <= 5",
+     "a lo sumo 5 intentos fallidos por código", "ADR-039 · RNF-07"),
+    ("codigo_verificacion",
+     {"sqlite": "length(codigo_hash) = 64 AND codigo_hash NOT GLOB '*[^0-9a-f]*'",
+      "mysql": "codigo_hash REGEXP '^[0-9a-f]{64}$'"},
+     "el hash es hexadecimal de 64 caracteres: un código de 6 dígitos sin hash "
+     "no cabe", "ADR-039 · RNF-08"),
     ("docente", "TRIM(nombres) <> '' AND TRIM(apellidos) <> ''",
      "nombres y apellidos no vacíos", "RF-01-05"),
     ("estudiante", "TRIM(nombres) <> '' AND TRIM(apellidos) <> ''",

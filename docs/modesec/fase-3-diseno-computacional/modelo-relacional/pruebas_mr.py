@@ -57,6 +57,16 @@ def cred_correo(i, correo, **kw):
     return ins("credencial", **base)
 
 
+H64 = "a" * 64                    # un HMAC-SHA256 en hexadecimal (ADR-039)
+
+
+def codigo(cred, proposito="verificar_correo", **kw):
+    base = dict(id_credencial=cred, proposito=proposito, codigo_hash=H64,
+                creado_en=F)
+    base.update(kw)
+    return ins("codigo_verificacion", **base)
+
+
 def dba(codigo, area="MAT", grado=8, documento=1):
     return ins("dba", codigo_dba=codigo, codigo_area=area, numero_grado=grado,
                id_documento=documento, enunciado="Enunciado oficial", ejemplo=None)
@@ -147,7 +157,7 @@ SEMILLA = [
 ]
 
 # Lo que se cuenta en las pruebas QUEDA
-CONTEOS = ["docente", "credencial", "estudiante", "area", "grado", "documento_oficial",
+CONTEOS = ["docente", "credencial", "codigo_verificacion", "estudiante", "area", "grado", "documento_oficial",
            "dba", "evidencia",
            "experiencia", "experiencia_evidencia", "item", "opcion",
            "inscripcion", "presentacion", "respuesta", "respuesta_opcion",
@@ -188,6 +198,30 @@ PRUEBAS = [
     ("PASA", "credencial de correo sin estado dicho: nace «procesando» (ADR-037)",
      [ins("credencial", id_credencial=3, correo="nueva@x.co", proveedor="correo",
           password_hash="$argon2id$hash")]),
+    ("QUEDA", "credencial sin decir si es administrador: nace sin serlo (ADR-040)",
+     [ins("credencial", id_credencial=3, correo="nueva@x.co", proveedor="correo",
+          password_hash="$argon2id$hash"),
+      "DELETE FROM credencial WHERE id_credencial = 3 AND es_admin = 0;"],
+     dict(credencial=2)),
+
+    # ------------------------------------------------ códigos (ADR-039, nota R4)
+    ("PASA", "una credencial con un código de cada propósito (ADR-039)",
+     [codigo(1), codigo(1, "recuperar_contrasena")]),
+    ("FALLA", "dos códigos vigentes con el mismo propósito para una credencial (ADR-039)",
+     [codigo(1), codigo(1, codigo_hash="b" * 64)]),
+    ("FALLA", "propósito de código inventado (ADR-039)",
+     [codigo(1, "cambiar_correo")]),
+    ("FALLA", "código de una credencial que no existe",
+     [codigo(99)]),
+    ("FALLA", "sexto intento fallido con el mismo código (ADR-039, RNF-07)",
+     [codigo(1, intentos=6)]),
+    ("FALLA", "código guardado legible, sin hash (ADR-039, RNF-08)",
+     [codigo(1, codigo_hash="123456")]),
+    ("QUEDA", "borrar una credencial sin terminar se lleva sus códigos (tarea nocturna, ADR-039)",
+     [cred_correo(3, "a-medias@x.co", estado_verificacion="procesando"),
+      codigo(3), codigo(1),
+      "DELETE FROM credencial WHERE id_credencial = 3;"],
+     dict(credencial=2, codigo_verificacion=1, docente=1, estudiante=2)),
 
     # ------------------------------------------------ catálogo (ADR-036, RI-20, RI-21)
     ("FALLA", "un DBA sin área (ADR-036)",
@@ -342,6 +376,12 @@ MOTIVO_MYSQL = {
     "cuenta de Google con contraseña guardada (RI-15)": "ck_credencial_2",
     "cuenta de Google con el correo todavía «procesando» (RI-15, ADR-037)": "ck_credencial_2",
     "estado de verificación inventado (ADR-037)": "column 'estado_verificacion'",
+    "dos códigos vigentes con el mismo propósito para una credencial (ADR-039)":
+        "codigo_verificacion.PRIMARY",
+    "propósito de código inventado (ADR-039)": "column 'proposito'",
+    "código de una credencial que no existe": "fk_codigo_verificacion_1",
+    "sexto intento fallido con el mismo código (ADR-039, RNF-07)": "ck_codigo_verificacion_1",
+    "código guardado legible, sin hash (ADR-039, RNF-08)": "ck_codigo_verificacion_2",
     "un DBA sin área (ADR-036)": "'codigo_area' cannot be null",
     "un DBA de un área que no existe (ADR-036)": "fk_dba_1",
     "un DBA de Matemáticas copiado del documento de Lenguaje (RI-20, ciclo C6)": "fk_dba_3",

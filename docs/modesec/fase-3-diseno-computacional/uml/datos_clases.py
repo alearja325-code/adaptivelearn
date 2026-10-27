@@ -33,21 +33,31 @@ CLASES = [
     clase("Credencial", "CREDENCIAL", "credencial",
           [("id_credencial", "int"), ("correo", "string"), ("proveedor", "Proveedor"),
            ("password_hash", "string [0..1]"), ("proveedor_id", "string [0..1]"),
-           ("estado_verificacion", "EstadoVerificacion"), ("codigo_verificacion", "string [0..1]"),
-           ("codigo_expira_en", "Fecha [0..1]"), ("codigo_ultimo_envio", "Fecha [0..1]"),
-           ("intentos_codigo", "int"), ("intentos_login", "int"),
+           ("estado_verificacion", "EstadoVerificacion"), ("es_admin", "bool"),
+           ("nombre_completo", "string [0..1]"), ("intentos_login", "int"),
            ("bloqueado_hasta", "Fecha [0..1]"), ("creado_en", "Fecha"),
            ("actualizado_en", "Fecha")],
           [m("verificarContrasena(texto: string): bool", ["CU-06"]),
-           m("emitirCodigo(ahora: Fecha): string", ["CU-01", "CU-03", "CU-07"]),
-           m("puedeReenviar(ahora: Fecha): bool", ["CU-03"]),
-           m("verificarCodigo(codigo: string, ahora: Fecha): bool", ["CU-03"]),
+           m("emitirCodigo(para: PropositoCodigo, ahora: Fecha): string",
+             ["CU-01", "CU-03", "CU-07"]),
            m("cambiarContrasena(nueva: string)", ["CU-07"]),
-           m("registrarFallo(ahora: Fecha)", ["CU-03", "CU-06"]),
+           m("registrarFallo(ahora: Fecha)", ["CU-06"]),
            m("estaBloqueada(ahora: Fecha): bool", ["CU-06"]),
            m("tieneRol(): bool", ["CU-02", "CU-06"]),
            m("asignarRol(usuario: Usuario)", ["CU-05"])],
-          desc="La cuenta de acceso. Existe desde que la persona se registra, antes de tener rol."),
+          desc="La cuenta de acceso. Existe desde que la persona se registra, antes de tener rol. "
+               "es_admin es la marca de la guía del docente para /users (ADR-040)."),
+    # ADR-039: el codigo deja la credencial. Vencimiento (10 min) y espera
+    # para reenviar (30 s) se calculan desde creado_en: no son atributos.
+    clase("CodigoVerificacion", "CODIGO_VERIFICACION", "codigo_verificacion",
+          [("proposito", "PropositoCodigo"), ("codigo_hash", "string"), ("creado_en", "Fecha"),
+           ("intentos", "int")],
+          [m("vencido(ahora: Fecha): bool", ["CU-03", "CU-07"]),
+           m("puedeReenviar(ahora: Fecha): bool", ["CU-03"]),
+           m("verificar(codigo: string, ahora: Fecha): bool", ["CU-03", "CU-07"]),
+           m("registrarFallo()", ["CU-03", "CU-07"])],
+          desc="El código de 6 dígitos, con hash. A lo sumo uno por credencial y propósito "
+               "(ADR-039)."),
     clase("Usuario", None, None,
           [("nombres", "string"), ("apellidos", "string"), ("avatar_url", "string [0..1]")],
           [m("nombreCompleto(): string", ["CU-09", "CU-28"]),
@@ -158,11 +168,13 @@ CLASES = [
 ]
 
 # ------------------------------------------------------------- enumeraciones
-# Las 9 primeras deben coincidir valor por valor con los ENUM del MR; las 3
+# Las 10 primeras deben coincidir valor por valor con los ENUM del MR; las 3
 # ultimas son de valores calculados, que no se guardan.
 ENUMERACIONES = [
     ("Proveedor", ["correo", "google", "microsoft"], ("credencial", "proveedor")),
     ("EstadoVerificacion", ["procesando", "verificado"], ("credencial", "estado_verificacion")),
+    ("PropositoCodigo", ["verificar_correo", "recuperar_contrasena"],
+     ("codigo_verificacion", "proposito")),
     ("NivelEducativo", ["basica_primaria", "basica_secundaria", "media"], ("grado", "nivel")),
     ("EstadoExperiencia", ["Borrador", "Publicada"], ("experiencia", "estado")),
     ("Formato", ["single_choice", "matching", "ordering"], ("item", "formato")),
@@ -183,6 +195,7 @@ ENUMERACIONES = [
 ASOCIACIONES = [
     ("Credencial", "Docente", "accede como", "1", "0..1", "asociacion"),
     ("Credencial", "Estudiante", "accede como", "1", "0..1", "asociacion"),
+    ("Credencial", "CodigoVerificacion", "recibe", "1", "0..2", "composicion"),
     ("DBA", "Area", "pertenece a", "1..*", "1", "asociacion"),
     ("DBA", "Grado", "corresponde a", "1..*", "1", "asociacion"),
     ("DBA", "DocumentoOficial", "se copia de", "1..*", "1", "asociacion"),
@@ -236,7 +249,9 @@ SERVICIOS = [
           estereotipo="servicio"),
     clase("Catalogo", None, None, [],
           [m("dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]", ["CU-31"]),
-           m("dba(codigo_dba: string): DBA", ["CU-11", "CU-31"])],
+           m("dba(codigo_dba: string): DBA", ["CU-11", "CU-31"]),
+           m("areas(): Area [*]", ["CU-11", "CU-31"]),
+           m("grados(): Grado [*]", ["CU-31"])],
           estereotipo="servicio"),
     clase("GeneradorBanco", None, None,
           [("principal", "ServicioGeneracion"), ("respaldo", "ServicioGeneracion")],

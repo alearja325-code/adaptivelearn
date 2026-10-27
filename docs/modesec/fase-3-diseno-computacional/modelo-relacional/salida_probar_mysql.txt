@@ -5,9 +5,9 @@ sql_mode: ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ER
 A. El motor acepta el esquema de producción
 ======================================================================
    OK   mr_mysql.sql se ejecuta completo sin errores
-   OK   18 tablas creadas (el MR declara 18)
-   OK   23 llaves foráneas (el MR declara 23)
-   OK   14 restricciones CHECK registradas (el MR declara 14)
+   OK   19 tablas creadas (el MR declara 19)
+   OK   24 llaves foráneas (el MR declara 24)
+   OK   16 restricciones CHECK registradas (el MR declara 16)
 
 ======================================================================
 B. La misma batería de pruebas que verificar_mr.py
@@ -39,6 +39,19 @@ B. La misma batería de pruebas que verificar_mr.py
             ↳ ERROR 1451 (23000) at line 3: Cannot delete or update a parent row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`credencial`, CONS
    OK   [acepta]  credencial recién creada, sin rol elegido todavía (ventanas 014-017)
    OK   [acepta]  credencial de correo sin estado dicho: nace «procesando» (ADR-037)
+   OK   [queda]   credencial sin decir si es administrador: nace sin serlo (ADR-040)
+   OK   [acepta]  una credencial con un código de cada propósito (ADR-039)
+   OK   [rechaza] dos códigos vigentes con el mismo propósito para una credencial (ADR-039)
+            ↳ ERROR 1062 (23000) at line 4: Duplicate entry '1-verificar_correo' for key 'codigo_verificacion.PRIMARY'
+   OK   [rechaza] propósito de código inventado (ADR-039)
+            ↳ ERROR 1265 (01000) at line 3: Data truncated for column 'proposito' at row 1
+   OK   [rechaza] código de una credencial que no existe
+            ↳ ERROR 1452 (23000) at line 3: Cannot add or update a child row: a foreign key constraint fails (`adaptivelearn_verificacion_mr`.`codigo_verificacion`,
+   OK   [rechaza] sexto intento fallido con el mismo código (ADR-039, RNF-07)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_codigo_verificacion_1' is violated.
+   OK   [rechaza] código guardado legible, sin hash (ADR-039, RNF-08)
+            ↳ ERROR 3819 (HY000) at line 3: Check constraint 'ck_codigo_verificacion_2' is violated.
+   OK   [queda]   borrar una credencial sin terminar se lleva sus códigos (tarea nocturna, ADR-039)
    OK   [rechaza] un DBA sin área (ADR-036)
             ↳ ERROR 1048 (23000) at line 3: Column 'codigo_area' cannot be null
    OK   [rechaza] un DBA de un área que no existe (ADR-036)
@@ -140,5 +153,5 @@ B. La misma batería de pruebas que verificar_mr.py
 
 (base de prueba `adaptivelearn_verificacion_mr` borrada)
 ======================================================================
-RESULTADO: 72 comprobaciones contra MySQL 8.0.46-0ubuntu0.24.04.4, todas correctas.
+RESULTADO: 80 comprobaciones contra MySQL 8.0.46-0ubuntu0.24.04.4, todas correctas.
 ======================================================================

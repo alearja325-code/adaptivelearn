@@ -1,0 +1,226 @@
+Servidor: http://localhost:3000 · 2026-10-27T05:21:36.565Z
+
+### 1. Registrar un nuevo usuario
+POST /auth/register
+{
+  "email": "usuario@example.com",
+  "password": "Password123",
+  "fullName": "Juan Pérez"
+}
+→ 201 Created   (esperado: 201) OK
+{
+  "user": {
+    "id": 1,
+    "email": "usuario@example.com",
+    "fullName": "Juan Pérez",
+    "role": "user"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
+}
+
+### 2. Iniciar sesión
+POST /auth/login
+{
+  "email": "usuario@example.com",
+  "password": "Password123"
+}
+→ 200 OK   (esperado: 200) OK
+{
+  "user": {
+    "id": 1,
+    "email": "usuario@example.com",
+    "fullName": "Juan Pérez",
+    "role": "user"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
+}
+
+### 3. Obtener perfil (ruta protegida)
+GET /auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+→ 200 OK   (esperado: 200) OK
+{
+  "user": {
+    "id": 1,
+    "email": "usuario@example.com",
+    "proveedor": "correo",
+    "estadoVerificacion": "procesando",
+    "idDocente": null,
+    "idEstudiante": null,
+    "createdAt": "2026-10-27T05:21:36.000Z",
+    "updatedAt": "2026-10-27T05:21:36.000Z",
+    "role": "user",
+    "perfil": null,
+    "fullName": "Juan Pérez"
+  }
+}
+
+### 4. Convertir un usuario en administrador
+UPDATE credencial SET es_admin = 1 WHERE correo = 'usuario@example.com';
+→ 1 fila
+
+### 4. (después) Iniciar sesión otra vez
+POST /auth/login
+{
+  "email": "usuario@example.com",
+  "password": "Password123"
+}
+→ 200 OK   (esperado: 200) OK
+{
+  "user": {
+    "id": 1,
+    "email": "usuario@example.com",
+    "fullName": "Juan Pérez",
+    "role": "admin"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
+}
+
+### 5. Crear usuario (requiere admin)
+POST /users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+{
+  "email": "otro@example.com",
+  "password": "Password456",
+  "fullName": "María García"
+}
+→ 201 Created   (esperado: 201) OK
+{
+  "id": 2,
+  "email": "otro@example.com",
+  "proveedor": "correo",
+  "estadoVerificacion": "procesando",
+  "idDocente": null,
+  "idEstudiante": null,
+  "createdAt": "2026-10-27T05:21:36.000Z",
+  "updatedAt": "2026-10-27T05:21:36.000Z",
+  "role": "user",
+  "perfil": null,
+  "fullName": "María García"
+}
+
+### 6. Listar todos los usuarios (requiere admin)
+GET /users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+→ 200 OK   (esperado: 200) OK
+[
+  {
+    "id": 1,
+    "email": "usuario@example.com",
+    "proveedor": "correo",
+    "estadoVerificacion": "procesando",
+    "idDocente": null,
+    "idEstudiante": null,
+    "createdAt": "2026-10-27T05:21:36.000Z",
+    "updatedAt": "2026-10-27T05:21:36.000Z",
+    "role": "admin",
+    "perfil": null,
+    "fullName": "Juan Pérez"
+  },
+  {
+    "id": 2,
+    "email": "otro@example.com",
+    "proveedor": "correo",
+    "estadoVerificacion": "procesando",
+    "idDocente": null,
+    "idEstudiante": null,
+    "createdAt": "2026-10-27T05:21:36.000Z",
+    "updatedAt": "2026-10-27T05:21:36.000Z",
+    "role": "user",
+    "perfil": null,
+    "fullName": "María García"
+  }
+]
+
+## Tabla de respuestas esperadas
+
+### Sin token
+GET /users
+→ 401 Unauthorized   (esperado: 401) OK
+{
+  "message": "Unauthorized",
+  "statusCode": 401
+}
+
+### Token vencido o inválido
+GET /auth/profile
+Authorization: Bearer eyJ.no.valido…
+→ 401 Unauthorized   (esperado: 401) OK
+{
+  "message": "Unauthorized",
+  "statusCode": 401
+}
+
+### (login del usuario normal)
+POST /auth/login
+{
+  "email": "otro@example.com",
+  "password": "Password456"
+}
+→ 200 OK   (esperado: 200) OK
+{
+  "user": {
+    "id": 2,
+    "email": "otro@example.com",
+    "fullName": "María García",
+    "role": "user"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
+}
+
+### Token válido pero rol user en /users
+GET /users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+→ 403 Forbidden   (esperado: 403) OK
+{
+  "message": "No tienes permisos para este recurso",
+  "error": "Forbidden",
+  "statusCode": 403
+}
+
+### Email ya registrado
+POST /auth/register
+{
+  "email": "otro@example.com",
+  "password": "Password456",
+  "fullName": "Otra"
+}
+→ 409 Conflict   (esperado: 409) OK
+{
+  "message": "El email ya está registrado. Inicia sesión.",
+  "error": "Conflict",
+  "statusCode": 409
+}
+
+### Datos inválidos en el body
+POST /auth/register
+{
+  "email": "no-es-un-correo",
+  "password": "password123"
+}
+→ 400 Bad Request   (esperado: 400) OK
+{
+  "message": [
+    "El email debe ser válido",
+    "Mínimo 8 caracteres, con una mayúscula y un número."
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}
+
+### Usuario con ese ID no existe (admin)
+GET /users/999
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+→ 404 Not Found   (esperado: 404) OK
+{
+  "message": "Usuario con ID 999 no encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}
+
+### Borrar un usuario (admin)
+DELETE /users/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+→ 204 No Content   (esperado: 204) OK
+
+Resultado: todas las respuestas son las esperadas

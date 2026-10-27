@@ -1,32 +1,32 @@
 # 20. Catálogo de endpoints
 
 **Metodología:** MODESEC — Fase III, Diseño Computacional. Anexo: no es una sub-etapa de
-MODESEC. **Fecha:** 2026-10-22. **Archivo generado** por `api/generar_api.py`; no se edita a mano.
+MODESEC. **Fecha:** 2026-10-22, actualizado el 2026-10-27 (encargo 03). **Archivo generado** por `api/generar_api.py`; no se edita a mano.
 
 MODESEC cierra el diseño computacional con el modelado de la base de datos; no pide
 describir lo que el frontend le pide al backend. Este anexo lo describe porque es lo primero
 que hace falta para construir (Fase IV). Cada endpoint dice qué caso de uso atiende
 (`12`), qué operación del diagrama de clases lo resuelve (`13`), en qué diagrama de
 secuencia se ve (`15`), qué entidades crea, lee, modifica o borra —las mismas de la matriz
-CRUD de `16` §7—, quién puede llamarlo y si ya existe en el backend del incremento I1.
+CRUD de `16` §7—, quién puede llamarlo y si ya existe en el backend.
 
 Es, casi literalmente, la lista de tareas de cada incremento: cada endpoint lleva un número,
-de E-01 a E-35, para repartirlo.
+de E-01 a E-37, para repartirlo.
 
 ## 1. En cifras
 
-| Incremento | Subsistemas | Endpoints | Hechos en I1 | Por ajustar | Faltan | Opcionales |
+| Incremento | Subsistemas | Endpoints | Hechos | Por ajustar | Faltan | Opcionales |
 |---|---|---|---|---|---|---|
-| **I1 — Acceso** | SUB-01 | 13 | 8 | 2 | 2 | 1 |
-| **I2 — Experiencia y banco** | SUB-02, SUB-03, SUB-06 | 13 | 0 | 0 | 13 | 0 |
+| **I1 — Acceso** | SUB-01 | 13 | 12 | 0 | 0 | 1 |
+| **I2 — Experiencia y banco** | SUB-02, SUB-03, SUB-06 | 15 | 4 | 0 | 11 | 0 |
 | **I3 — Diagnóstico** | SUB-04 | 6 | 0 | 0 | 6 | 0 |
 | **I4 — Reporte y seguimiento** | SUB-05 | 3 | 0 | 0 | 3 | 0 |
-| **Total** | | **35** | **8** | **2** | **24** | **1** |
+| **Total** | | **37** | **16** | **0** | **20** | **1** |
 
-De los 35, 10 ya existen en el backend I1
-(`backend/` del repositorio): lo dice su código, revisado el 2026-10-26.
-2 de ellos funcionan, pero el diseño les pide algo distinto. Los
-incrementos I2, I3 e I4 están por construir.
+De los 37, 16 ya existen en el backend
+(`backend/` del repositorio): lo dice su código, revisado el 2026-10-27, al cerrar el
+encargo 03. 0 de ellos funcionan, pero el diseño les pide algo distinto.
+Incrementos empezados: **I1**, el acceso completo (encargo 03); **I2**, solo el catálogo curricular, SUB-06 (encargo 03). Lo demás está por construir.
 
 ## 2. Convenciones
 
@@ -39,9 +39,9 @@ lo llama un Estudiante, y el verificador lo comprueba.
 | Acceso | Quién |
 |---|---|
 | **Público** | Sin token. |
-| **Token de registro** | El que entrega el registro (CU-01), o la primera entrada con Google o Microsoft (CU-02). Identifica una credencial que todavía no tiene rol: sirve para verificar el correo y para elegir el rol; no abre ninguna pantalla del producto. |
-| **Token de recuperación** | El que entrega la verificación del código de recuperación. Solo sirve para fijar la contraseña nueva; no abre sesión (I1 ya lo prueba: 401). |
-| **Sesión** | Docente o estudiante con sesión iniciada. |
+| **Token de registro** | El token de una credencial que todavía no tiene rol: lo entregan el registro (CU-01), el inicio de sesión de un registro a medias (ADR-035) o la primera entrada con Google o Microsoft (CU-02). Es el mismo JWT de la guía, con `role: null`: sirve para verificar el correo, elegir el rol y ver el propio perfil (`GET /auth/profile`, prueba 3 de la guía); no abre ninguna pantalla del producto. |
+| **Token de recuperación** | El que entrega la verificación del código de recuperación. Solo sirve para fijar la contraseña nueva; no abre sesión (401 en cualquier otra ruta). |
+| **Sesión** | Docente o estudiante con sesión iniciada. `GET /auth/profile` admite también el token de registro (ADR-040). |
 | **Docente** | Sesión con rol docente. |
 | **Docente dueño** | Sesión del docente dueño de la experiencia; para un ítem o una inscripción, el de la experiencia a la que pertenecen. |
 | **Estudiante** | Sesión con rol estudiante. |
@@ -53,24 +53,24 @@ lo llama un Estudiante, y el verificador lo comprueba.
 |---|---|
 | `400` | Los datos no cumplen una regla: formato, campo vacío, contraseña débil, ítem inválido. |
 | `401` | Sin token, token vencido o de otro tipo; o credenciales incorrectas, con un mensaje que no dice qué falló (RF-01-07). |
-| `403` | El token es válido, pero de otro rol o de quien no es el dueño. Así lo hace I1 («Modificar perfil ajeno → 403»). |
+| `403` | El token es válido, pero de otro rol o de quien no es el dueño (la guía del docente: «/users con usuario normal → 403»). |
 | `404` | No existe. |
 | `409` | El estado no lo permite: correo ya registrado, rol ya elegido, banco congelado, experiencia ya publicada, pregunta ya respondida. |
+| `413` | La foto pesa más de 5 MB (RF-01-05): el límite lo pone la subida del archivo. |
 | `429` | Demasiados intentos fallidos. |
 | `503` | Fallaron el servicio de IA principal y el de respaldo; no se guardó nada. |
 
-Un endpoint que no es del dueño responde `403`, no `404`, como ya lo hace I1. Los mensajes
+Un endpoint que no es del dueño responde `403`, no `404`, como en la guía del docente. Los mensajes
 de error van en español y nunca afirman certeza sobre el aprendizaje (RNF-02, RNF-04).
 
 ### 2.3 Nombres
 
 Las rutas y los campos nuevos van en español, con los nombres del MER y del MR
 (`experiencias`, `inscripciones`, `codigo_dba`, `certeza`): un mismo dato no cambia de
-nombre entre la base, el backend y este catálogo. Las cuatro rutas que I1 heredó de la guía
-del curso en inglés —`/auth/register`, `/auth/login`, `/auth/profile`, `/users/:id`—, y sus
-campos `email`, `password` y `role`, se dejan como están: ya los usan el backend I1 y su
-colección de pruebas. Unificarlas es una decisión del equipo; si se toma, se hace en un solo
-cambio y se corrige aquí.
+nombre entre la base, el backend y este catálogo. Las rutas que vienen de la guía del curso
+en inglés —`/auth/register`, `/auth/login`, `/auth/profile`, `/users`, `/example`—, y sus
+campos `email`, `password`, `fullName` y `role`, se dejan como están: la guía manda en la
+forma (ADR-040) y sus pruebas los usan.
 
 En **Toca**, las entidades son las del MER (`16`): REPORTE no es una tabla, se calcula al
 abrirlo (ADR-022).
@@ -80,138 +80,142 @@ abrirlo (ADR-022).
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-01** | `POST /auth/register` | CU-01 | `ServicioAcceso.registrar` | Público | Hecho en I1 |
-| **E-02** | `POST /auth/verificar-correo` | CU-03 | `ServicioAcceso.verificarCorreo` | Token de registro | Hecho en I1 |
-| **E-03** | `POST /auth/reenviar-codigo` | CU-03 | `ServicioAcceso.reenviarCodigo` | Público | Hecho en I1 |
-| **E-04** | `POST /auth/google` | CU-02 | `ServicioAcceso.entrarConProveedor` | Público | Falta |
-| **E-05** | `POST /auth/microsoft` | CU-02 | `ServicioAcceso.entrarConProveedor` | Público | Falta |
-| **E-06** | `POST /auth/elegir-rol` | CU-04<br>CU-05 | `ServicioAcceso.elegirRol` | Token de registro | Por ajustar |
-| **E-07** | `POST /auth/login` | CU-06 | `ServicioAcceso.iniciarSesion` | Público | Hecho en I1 |
-| **E-08** | `POST /auth/recuperar-contrasena` | CU-07 | `ServicioAcceso.solicitarRecuperacion` | Público | Hecho en I1 |
-| **E-09** | `POST /auth/recuperar-contrasena/verificar` | CU-07<br>CU-03 | `ServicioAcceso.verificarCorreo` | Público | Hecho en I1 |
-| **E-10** | `POST /auth/nueva-contrasena` | CU-07 | `ServicioAcceso.restablecerContrasena` | Token de recuperación | Hecho en I1 |
-| **E-11** | `GET /auth/profile` | CU-09 | `ServicioAcceso.perfil` | Sesión | Hecho en I1 |
-| **E-12** | `PATCH /users/:id` | CU-09 | `ServicioAcceso.editarPerfil` | Sesión | Por ajustar |
+| **E-01** | `POST /auth/register` | CU-01 | `ServicioAcceso.registrar` | Público | Hecho |
+| **E-02** | `POST /auth/verificar-correo` | CU-03 | `ServicioAcceso.verificarCorreo` | Token de registro | Hecho |
+| **E-03** | `POST /auth/reenviar-codigo` | CU-03 | `ServicioAcceso.reenviarCodigo` | Público | Hecho |
+| **E-04** | `POST /auth/google` | CU-02 | `ServicioAcceso.entrarConProveedor` | Público | Hecho |
+| **E-05** | `POST /auth/microsoft` | CU-02 | `ServicioAcceso.entrarConProveedor` | Público | Hecho |
+| **E-06** | `POST /auth/elegir-rol` | CU-04<br>CU-05 | `ServicioAcceso.elegirRol` | Token de registro | Hecho |
+| **E-07** | `POST /auth/login` | CU-06 | `ServicioAcceso.iniciarSesion` | Público | Hecho |
+| **E-08** | `POST /auth/recuperar-contrasena` | CU-07 | `ServicioAcceso.solicitarRecuperacion` | Público | Hecho |
+| **E-09** | `POST /auth/recuperar-contrasena/verificar` | CU-07<br>CU-03 | `ServicioAcceso.verificarCorreo` | Público | Hecho |
+| **E-10** | `POST /auth/nueva-contrasena` | CU-07 | `ServicioAcceso.restablecerContrasena` | Token de recuperación | Hecho |
+| **E-11** | `GET /auth/profile` | CU-09 | `ServicioAcceso.perfil` | Sesión | Hecho |
+| **E-12** | `PATCH /auth/profile` | CU-09 | `ServicioAcceso.editarPerfil` | Sesión | Hecho |
 | **E-13** | `POST /auth/cerrar-sesion` | CU-08 | `ServicioAcceso.cerrarSesion` | Sesión | Opcional |
 
 #### E-01 · `POST /auth/register`
 
-CU-01 Registrarse con correo y contraseña. Operación: `ServicioAcceso.registrar(correo: string, contrasena: string)`; se ve en `15` §1. **Hecho en I1.**
+CU-01 Registrarse con correo y contraseña. Operación: `ServicioAcceso.registrar(correo: string, contrasena: string)`; se ve en `15` §1. **Hecho.**
 
 - **Quién:** Público.
-- **Recibe:** `email`, `password` (nombres de campo de I1).
-- **Responde:** 201: token de registro. El código de 6 dígitos sale al correo; en desarrollo, I1 lo imprime en la terminal del servidor.
-- **Toca:** CREDENCIAL (crea, lee).
+- **Recibe:** `email`, `password` y `fullName` opcional (nombres de campo de la guía).
+- **Responde:** 201: `{ user, token }` —el formato de la guía—, con `role: null` y `estadoVerificacion: procesando`; el token es de registro. El código de 6 dígitos sale al correo por SMTP; sin correo configurado, el servidor lo escribe en su consola (R5).
+- **Toca:** CREDENCIAL (crea, lee); CODIGO_VERIFICACION (crea).
 - **Reglas y errores:**
   - `400` contraseña sin 8 caracteres, una mayúscula y un número (RF-01-01).
   - `409` el correo ya tiene cuenta; si es de Google o Microsoft, el mensaje dice qué método usar y no vincula (RF-01-04, RI-3).
-- **Nota:** I1 acepta además `fullName`, que viene de la guía. En el diseño los nombres se piden en Completar perfil (CU-04) y se guardan al elegir el rol.
+- **Nota:** `fullName` viene de la guía: se guarda en `credencial.nombre_completo` y la pantalla lo puede usar para proponer nombres y apellidos en Completar perfil (CU-04); los nombres oficiales se guardan al elegir el rol.
 
 #### E-02 · `POST /auth/verificar-correo`
 
-CU-03 Verificar correo con código. Operación: `ServicioAcceso.verificarCorreo(correo: string, codigo: string)`; se ve en `15` §1. **Hecho en I1.**
+CU-03 Verificar correo con código. Operación: `ServicioAcceso.verificarCorreo(correo: string, codigo: string)`; se ve en `15` §1. **Hecho.**
 
 - **Quién:** Token de registro.
 - **Recibe:** `codigo`; la credencial la identifica el token de registro.
-- **Responde:** 200: correo verificado; sigue Completar perfil (CU-04).
-- **Toca:** CREDENCIAL (lee, modifica).
+- **Responde:** 200: correo verificado (`estadoVerificacion: verificado`); el código se borra; sigue Completar perfil (CU-04).
+- **Toca:** CREDENCIAL (lee, modifica); CODIGO_VERIFICACION (lee, modifica, borra).
 - **Reglas y errores:**
-  - `400` código incorrecto: se cuenta un intento fallido (CU-03 3a).
-  - `400` código vencido: hay que pedir otro (CU-03 3b).
-  - `429` demasiados intentos fallidos (`intentos_codigo`).
+  - `400` código incorrecto: se cuenta un intento fallido en el código (CU-03 3a).
+  - `400` código vencido: pasaron 10 minutos desde su `creado_en`; hay que pedir otro (CU-03 3b, ADR-039).
+  - `429` el código ya tuvo 5 intentos fallidos: deja de servir y hay que pedir otro (ADR-039, RNF-07).
 
 #### E-03 · `POST /auth/reenviar-codigo`
 
-CU-03 Verificar correo con código. Operación: `ServicioAcceso.reenviarCodigo(correo: string)`. **Hecho en I1.**
+CU-03 Verificar correo con código. Operación: `ServicioAcceso.reenviarCodigo(correo: string)`. **Hecho.**
 
 - **Quién:** Público.
 - **Recibe:** `email`.
-- **Responde:** 201 siempre, `{ ok: true }`, exista o no la cuenta. Solo si existe, es de correo y ya pasaron 30 s desde el último envío, genera un código nuevo que reemplaza al anterior (CU-03 1a).
-- **Toca:** CREDENCIAL (lee, modifica).
+- **Responde:** 201 siempre, `{ ok: true }`, exista o no la cuenta. Solo si existe, es de correo, está `procesando` y ya pasaron 30 s desde el `creado_en` del código anterior, genera uno nuevo que lo reemplaza (CU-03 1a, ADR-039).
+- **Toca:** CREDENCIAL (lee); CODIGO_VERIFICACION (crea, lee, modifica, borra).
 - **Reglas y errores:**
   - `400` el correo no tiene formato de correo.
   - Pedirlo antes de 30 s responde igual y no reenvía: un 429 delataría que la cuenta existe (RNF-07).
-- **Nota:** Sirve a los dos flujos, registro y recuperación, como la ventana 015 (CU-03). Así lo hace I1.
+- **Nota:** Reenvía el código de verificar el correo; el de recuperación se reenvía pidiendo otra vez `POST /auth/recuperar-contrasena`, con la misma espera de 30 s.
 
 #### E-04 · `POST /auth/google`
 
-CU-02 Entrar con Google o Microsoft. Operación: `ServicioAcceso.entrarConProveedor(token: string): Sesion`. **Falta.**
+CU-02 Entrar con Google o Microsoft. Operación: `ServicioAcceso.entrarConProveedor(token: string): Sesion`. **Hecho.**
 
 - **Quién:** Público.
-- **Recibe:** `token` que entregó Google.
-- **Responde:** 200: sesión, si la cuenta ya tiene rol. Si es nueva, crea la credencial con el correo ya verificado y responde token de registro con nombres, apellidos y foto para prellenar el perfil (CU-02 3a).
+- **Recibe:** `token`: el ID token (JWT) que entregó Google al frontend.
+- **Responde:** 200: `{ user, token }`. Si la cuenta ya tiene rol, sesión del rol. Si es nueva, crea la credencial con el correo ya verificado y responde token de registro, con el nombre que dio Google en `fullName` para prellenar el perfil (CU-02 3a).
 - **Toca:** CREDENCIAL (crea, lee); DOCENTE (lee); ESTUDIANTE (lee).
 - **Reglas y errores:**
-  - `401` Google rechaza el token, o la persona canceló (CU-02 2a).
+  - `401` Google rechaza el token: firma, emisor, audiencia o vencimiento (CU-02 2a).
   - `409` el correo ya está registrado con otro método: dice cuál; no crea ni vincula (RF-01-04, CU-02 3b).
+  - `503` Google no está configurado en el servidor (`GOOGLE_CLIENT_ID` vacío).
+- **Nota:** El backend verifica el token con las llaves públicas de Google (JWKS). El equipo todavía no tiene el identificador de cliente: sin él, responde 503 «no configurado». Probado con un proveedor simulado.
 
 #### E-05 · `POST /auth/microsoft`
 
-CU-02 Entrar con Google o Microsoft. Operación: `ServicioAcceso.entrarConProveedor(token: string): Sesion`. **Falta.**
+CU-02 Entrar con Google o Microsoft. Operación: `ServicioAcceso.entrarConProveedor(token: string): Sesion`. **Hecho.**
 
 - **Quién:** Público.
-- **Recibe:** `token` que entregó Microsoft.
+- **Recibe:** `token`: el ID token (JWT) que entregó Microsoft al frontend.
 - **Responde:** Igual que `POST /auth/google`.
 - **Toca:** CREDENCIAL (crea, lee); DOCENTE (lee); ESTUDIANTE (lee).
 - **Reglas y errores:**
-  - `401` Microsoft rechaza el token, o la persona canceló (CU-02 2a).
+  - `401` Microsoft rechaza el token (CU-02 2a).
   - `409` el correo ya está registrado con otro método (RF-01-04).
-- **Nota:** Sin Apple: exige cuenta de desarrollador de pago (RF-01-02).
+  - `503` Microsoft no está configurado en el servidor (`MICROSOFT_CLIENT_ID` vacío).
+- **Nota:** Sin Apple: exige cuenta de desarrollador de pago (RF-01-02). Igual que Google: sin configuración responde 503, y se probó con un proveedor simulado.
 
 #### E-06 · `POST /auth/elegir-rol`
 
-CU-04 Completar perfil · CU-05 Elegir rol. Operación: `ServicioAcceso.elegirRol(rol: string, perfil: Perfil): Sesion`; se ve en `15` §1. **Por ajustar.**
+CU-04 Completar perfil · CU-05 Elegir rol. Operación: `ServicioAcceso.elegirRol(rol: string, perfil: Perfil): Sesion`; se ve en `15` §1. **Hecho.**
 
 - **Quién:** Token de registro.
 - **Recibe:** `role` (docente o estudiante), `nombres`, `apellidos` y `foto` opcional, en multipart/form-data.
-- **Responde:** 201: sesión del rol. En una sola operación crea el docente o el estudiante con su perfil y lo asocia a la credencial (CU-05 paso 3).
+- **Responde:** 201: `{ user, token }` con la sesión del rol: el token lleva el rol y el `idDocente` o el `idEstudiante` (nota R2). En una sola transacción crea el docente o el estudiante con su perfil y lo asocia a la credencial (CU-05 paso 3).
 - **Toca:** CREDENCIAL (lee, modifica); DOCENTE (crea); ESTUDIANTE (crea).
 - **Reglas y errores:**
-  - `400` nombres o apellidos vacíos; foto que no es JPG ni PNG, o de más de 5 MB (CU-04 2a).
+  - `400` nombres o apellidos vacíos, o foto que no es JPG ni PNG —se mira el contenido del archivo, no su nombre— (CU-04 2a).
+  - `413` foto de más de 5 MB (RF-01-05).
   - `403` el correo de la credencial no está verificado (precondición de CU-04).
-  - `409` la credencial ya tiene rol: el rol no se cambia (RF-01-06, RI-12). I1 ya lo prueba.
-- **Qué ajustar:** En I1 recibe solo `role`, y el perfil se completa antes con `PATCH /users/:id`. En el diseño la cuenta nace con su perfil al elegir el rol: CU-04 dice que «estos datos se guardan al elegir el rol» (RF-01-05), y nombres, apellidos y foto viven en DOCENTE o ESTUDIANTE, que no existen antes del rol.
+  - `409` la credencial ya tiene rol: el rol no se cambia (RF-01-06, RI-12).
+- **Nota:** Completar perfil (CU-04) y elegir el rol (CU-05) son una sola petición: CU-04 dice que «estos datos se guardan al elegir el rol» (RF-01-05), y nombres, apellidos y foto viven en DOCENTE o ESTUDIANTE, que no existen antes del rol.
 
 #### E-07 · `POST /auth/login`
 
-CU-06 Iniciar sesión. Operación: `ServicioAcceso.iniciarSesion(correo: string, contrasena: string): Sesion`; se ve en `15` §2. **Hecho en I1.**
+CU-06 Iniciar sesión. Operación: `ServicioAcceso.iniciarSesion(correo: string, contrasena: string): Sesion`; se ve en `15` §2. **Hecho.**
 
 - **Quién:** Público.
 - **Recibe:** `email`, `password`.
-- **Responde:** 201 (el de NestJS por defecto, como en I1): token de sesión y rol. Si la credencial todavía no tiene rol, token de registro para seguir en Completar perfil (CU-06 3a, decisión por confirmar).
+- **Responde:** 200, como pide la guía: `{ user, token }`, con el rol y el `idDocente` o el `idEstudiante` en el token. Si la credencial todavía no tiene rol, el mismo formato con `role: null` (token de registro): la pantalla sigue en verificar el correo o en Completar perfil, según `estadoVerificacion` (CU-06 3a, ADR-035).
 - **Toca:** CREDENCIAL (lee, modifica); DOCENTE (lee); ESTUDIANTE (lee).
 - **Reglas y errores:**
   - `401` correo o contraseña incorrectos, sin decir cuál (RF-01-07); se cuenta un intento fallido (`intentos_login`).
   - `409` la cuenta es de Google o Microsoft: dice qué método usar (RF-01-04, CU-06 2c).
-  - `429` entrada bloqueada por intentos fallidos (`bloqueado_hasta`).
+  - Tras 5 intentos fallidos la entrada se bloquea 15 minutos (`bloqueado_hasta`); mientras tanto responde el mismo 401 genérico, porque un mensaje distinto confirmaría que la cuenta existe (RF-01-07).
 
 #### E-08 · `POST /auth/recuperar-contrasena`
 
-CU-07 Recuperar contraseña. Operación: `ServicioAcceso.solicitarRecuperacion(correo: string)`. **Hecho en I1.**
+CU-07 Recuperar contraseña. Operación: `ServicioAcceso.solicitarRecuperacion(correo: string)`. **Hecho.**
 
 - **Quién:** Público.
 - **Recibe:** `email`.
-- **Responde:** 202 siempre, exista o no la cuenta; si existe, envía el código (RNF-07). I1 ya responde igual en los dos casos.
-- **Toca:** CREDENCIAL (lee, modifica).
+- **Responde:** 202 siempre, `{ ok: true }`, exista o no la cuenta; si existe y es de correo, envía el código de propósito `recuperar_contrasena` (RNF-07).
+- **Toca:** CREDENCIAL (lee); CODIGO_VERIFICACION (crea, lee, modifica, borra).
 - **Reglas y errores:**
   - `400` el correo no tiene formato de correo (CU-07 paso 2).
   - Pedirlo otra vez antes de 30 s responde igual, 202, y no reenvía: un 429 delataría que la cuenta existe (RNF-07).
 
 #### E-09 · `POST /auth/recuperar-contrasena/verificar`
 
-CU-07 Recuperar contraseña · CU-03 Verificar correo con código. Operación: `ServicioAcceso.verificarCorreo(correo: string, codigo: string)`. **Hecho en I1.**
+CU-07 Recuperar contraseña · CU-03 Verificar correo con código. Operación: `ServicioAcceso.verificarCorreo(correo: string, codigo: string)`. **Hecho.**
 
 - **Quién:** Público.
 - **Recibe:** `email`, `codigo`.
-- **Responde:** 200: token de recuperación.
-- **Toca:** CREDENCIAL (lee, modifica).
+- **Responde:** 200: `{ token }`, el token de recuperación (15 minutos); el código se borra.
+- **Toca:** CREDENCIAL (lee); CODIGO_VERIFICACION (lee, modifica, borra).
 - **Reglas y errores:**
-  - `400` código incorrecto o vencido (CU-03 3a, 3b).
-  - `429` demasiados intentos fallidos.
+  - `400` código incorrecto o vencido, con el mismo mensaje si el correo no existe: no revela si hay cuenta (CU-03 3a, 3b, RNF-07).
+  - `429` el código ya tuvo 5 intentos fallidos: hay que pedir otro (ADR-039).
 
 #### E-10 · `POST /auth/nueva-contrasena`
 
-CU-07 Recuperar contraseña. Operación: `ServicioAcceso.restablecerContrasena(correo: string, codigo: string, nueva: string)`. **Hecho en I1.**
+CU-07 Recuperar contraseña. Operación: `ServicioAcceso.restablecerContrasena(correo: string, codigo: string, nueva: string)`. **Hecho.**
 
 - **Quién:** Token de recuperación.
 - **Recibe:** `password` nueva, con el token de recuperación.
@@ -224,28 +228,30 @@ CU-07 Recuperar contraseña. Operación: `ServicioAcceso.restablecerContrasena(c
 
 #### E-11 · `GET /auth/profile`
 
-CU-09 Editar mi perfil. Operación: `ServicioAcceso.perfil(): Perfil`. **Hecho en I1.**
+CU-09 Editar mi perfil. Operación: `ServicioAcceso.perfil(): Perfil`. **Hecho.**
 
 - **Quién:** Sesión.
 - **Recibe:** nada.
-- **Responde:** 200: correo, rol, nombres, apellidos y foto: lo que muestra el bloque de perfil del menú lateral (CU-09 paso 1).
+- **Responde:** 200: `{ user }` —el formato de la guía, prueba 3—: id, correo, `fullName`, rol, estado de verificación, y si hay rol, nombres, apellidos y foto: lo que muestra el bloque de perfil del menú lateral (CU-09 paso 1).
 - **Toca:** CREDENCIAL (lee); DOCENTE (lee); ESTUDIANTE (lee).
 - **Reglas y errores:**
-  - `401` sin token, o con uno de registro o de recuperación.
+  - `401` sin token, con uno vencido o con uno de recuperación.
+- **Nota:** Admite también el token de registro, con `role: null`: la prueba 3 de la guía consulta el perfil con el token que entrega el registro (ADR-040).
 
-#### E-12 · `PATCH /users/:id`
+#### E-12 · `PATCH /auth/profile`
 
-CU-09 Editar mi perfil. Operación: `ServicioAcceso.editarPerfil(perfil: Perfil)`. **Por ajustar.**
+CU-09 Editar mi perfil. Operación: `ServicioAcceso.editarPerfil(perfil: Perfil)`. **Hecho.**
 
 - **Quién:** Sesión.
 - **Recibe:** `nombres`, `apellidos` y `foto` opcional, en multipart/form-data.
-- **Responde:** 200: el perfil guardado.
+- **Responde:** 200: `{ user }`, con el perfil guardado.
 - **Toca:** DOCENTE (lee, modifica); ESTUDIANTE (lee, modifica).
 - **Reglas y errores:**
-  - `400` nombres o apellidos vacíos, o foto inválida: la foto no cambia (CU-09 3a).
+  - `400` nombres o apellidos vacíos, o foto que no es JPG ni PNG: la foto no cambia (CU-09 3a).
+  - `413` foto de más de 5 MB: la foto no cambia.
   - `400` intenta cambiar el correo o el rol, que no se editan (CU-09 paso 2).
-  - `403` el perfil no es el propio. I1 ya lo prueba.
-- **Qué ajustar:** En I1 sirve para completar el perfil **antes** de elegir el rol. En el diseño eso pasa en `POST /auth/elegir-rol`, y esta ruta queda solo para Editar mi perfil (CU-09), sobre la fila de DOCENTE o ESTUDIANTE; además recibe la foto.
+  - `403` la credencial todavía no tiene rol: no hay perfil que editar.
+- **Nota:** Antes era `PATCH /users/:id`. En la guía del docente v2, `/users` es solo del administrador (ADR-040), así que Editar mi perfil pasa a `/auth/profile`, la misma ruta que lo consulta: sin `:id`, nadie puede apuntar al perfil de otro.
 
 #### E-13 · `POST /auth/cerrar-sesion`
 
@@ -264,12 +270,14 @@ CU-08 Cerrar sesión. Operación: `ServicioAcceso.cerrarSesion()`. **Opcional.**
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-14** | `GET /catalogo/dbas` | CU-31 | `Catalogo.dbas` | Docente | Falta |
-| **E-15** | `GET /catalogo/dbas/:codigo` | CU-31<br>CU-11 | `Catalogo.dba` | Docente | Falta |
+| **E-14** | `GET /catalogo/dbas` | CU-31 | `Catalogo.dbas` | Docente | Hecho |
+| **E-15** | `GET /catalogo/dbas/:codigo` | CU-31<br>CU-11 | `Catalogo.dba` | Docente | Hecho |
+| **E-16** | `GET /catalogo/areas` | CU-31<br>CU-11 | `Catalogo.areas` | Docente | Hecho |
+| **E-17** | `GET /catalogo/grados` | CU-31 | `Catalogo.grados` | Docente | Hecho |
 
 #### E-14 · `GET /catalogo/dbas`
 
-CU-31 Consultar catálogo curricular. Operación: `Catalogo.dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]`; se ve en `15` §3. **Falta.**
+CU-31 Consultar catálogo curricular. Operación: `Catalogo.dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]`; se ve en `15` §3. **Hecho.**
 
 - **Quién:** Docente.
 - **Recibe:** `codigo_area` (`MAT`, `LEN`, `CN` o `CS`), `numero_grado` (1 a 11) y `q` (texto), en la consulta.
@@ -277,11 +285,11 @@ CU-31 Consultar catálogo curricular. Operación: `Catalogo.dbas(codigo_area: st
 - **Toca:** DBA (lee); AREA (lee); GRADO (lee).
 - **Reglas y errores:**
   - `400` falta el área, o no es una de las 4 (CU-11 paso 1); o el grado no está entre 1 y 11.
-- **Nota:** Las 4 áreas son fijas (CU-11 paso 1, ADR-033): la pantalla las tiene, con los mismos códigos de la tabla `area` (ADR-036), y no se piden al backend.
+- **Nota:** Los códigos de área y de grado se piden a `GET /catalogo/areas` y `GET /catalogo/grados` (E-16, E-17), no se escriben en la pantalla.
 
 #### E-15 · `GET /catalogo/dbas/:codigo`
 
-CU-31 Consultar catálogo curricular · CU-11 Crear experiencia. Operación: `Catalogo.dba(codigo_dba: string): DBA`. **Falta.**
+CU-31 Consultar catálogo curricular · CU-11 Crear experiencia. Operación: `Catalogo.dba(codigo_dba: string): DBA`. **Hecho.**
 
 - **Quién:** Docente.
 - **Recibe:** nada (`:codigo` es el código `ÁREA-GG-NN`, ej. `MAT-08-01`).
@@ -289,20 +297,41 @@ CU-31 Consultar catálogo curricular · CU-11 Crear experiencia. Operación: `Ca
 - **Toca:** DBA (lee); AREA (lee); GRADO (lee); DOCUMENTO_OFICIAL (lee); EVIDENCIA (lee); EVIDENCIA_DICTAMEN (lee).
 - **Reglas y errores:**
   - `404` no existe ese DBA.
+- **Nota:** Mientras no termine el censo QA-014, `evidencia_dictamen` está vacía: cada evidencia sale con `admiteFormatoCerrado: null` (sin dictaminar, V-6).
+
+#### E-16 · `GET /catalogo/areas`
+
+CU-31 Consultar catálogo curricular · CU-11 Crear experiencia. Operación: `Catalogo.areas(): Area [*]`. **Hecho.**
+
+- **Quién:** Docente.
+- **Recibe:** nada.
+- **Responde:** 200: las 4 áreas de ADR-033, cada una con su código (`MAT`, `LEN`, `CN`, `CS`) y su nombre: las tarjetas del Paso 1 de crear experiencia (CU-11 paso 1).
+- **Toca:** AREA (lee).
+- **Nota:** Nueva (encargo 03). Antes las áreas se daban por fijas en la pantalla; leerlas de la tabla `area` (ADR-036) evita escribir los códigos dos veces.
+
+#### E-17 · `GET /catalogo/grados`
+
+CU-31 Consultar catálogo curricular. Operación: `Catalogo.grados(): Grado [*]`. **Hecho.**
+
+- **Quién:** Docente.
+- **Recibe:** nada.
+- **Responde:** 200: los 11 grados, cada uno con su número, su nombre y su nivel (Ley 115): el filtro por grado del Paso 2 (CU-31 paso 2).
+- **Toca:** GRADO (lee).
+- **Nota:** Nueva (encargo 03), por la misma razón que `GET /catalogo/areas`.
 
 ### 4.2 SUB-02 · Gestión de experiencias
 
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-16** | `GET /experiencias` | CU-10 | `ServicioExperiencias.listar` | Docente | Falta |
-| **E-17** | `POST /experiencias` | CU-11<br>CU-16 | `ServicioExperiencias.crear` | Docente | Falta |
-| **E-18** | `GET /experiencias/:id` | CU-12<br>CU-13<br>CU-15 | `ServicioExperiencias.consultar` | Docente dueño | Falta |
-| **E-19** | `POST /experiencias/:id/publicar` | CU-13 | `ServicioExperiencias.publicar` | Docente dueño | Falta |
-| **E-20** | `GET /experiencias/:id/codigo` | CU-14 | `ServicioExperiencias.codigoInvitacion` | Docente dueño | Falta |
-| **E-21** | `DELETE /experiencias/:id` | CU-15 | `ServicioExperiencias.eliminar` | Docente dueño | Falta |
+| **E-18** | `GET /experiencias` | CU-10 | `ServicioExperiencias.listar` | Docente | Falta |
+| **E-19** | `POST /experiencias` | CU-11<br>CU-16 | `ServicioExperiencias.crear` | Docente | Falta |
+| **E-20** | `GET /experiencias/:id` | CU-12<br>CU-13<br>CU-15 | `ServicioExperiencias.consultar` | Docente dueño | Falta |
+| **E-21** | `POST /experiencias/:id/publicar` | CU-13 | `ServicioExperiencias.publicar` | Docente dueño | Falta |
+| **E-22** | `GET /experiencias/:id/codigo` | CU-14 | `ServicioExperiencias.codigoInvitacion` | Docente dueño | Falta |
+| **E-23** | `DELETE /experiencias/:id` | CU-15 | `ServicioExperiencias.eliminar` | Docente dueño | Falta |
 
-#### E-16 · `GET /experiencias`
+#### E-18 · `GET /experiencias`
 
 CU-10 Consultar mis experiencias. Operación: `ServicioExperiencias.listar(docente: Docente): Experiencia [*]`. **Falta.**
 
@@ -311,7 +340,7 @@ CU-10 Consultar mis experiencias. Operación: `ServicioExperiencias.listar(docen
 - **Responde:** 200: solo las experiencias del docente, cada una con estado, nombre, área, grado y número de estudiantes (CU-10 paso 1).
 - **Toca:** EXPERIENCIA (lee); DBA (lee); AREA (lee); GRADO (lee); INSCRIPCION (lee).
 
-#### E-17 · `POST /experiencias`
+#### E-19 · `POST /experiencias`
 
 CU-11 Crear experiencia · CU-16 Generar banco con IA. Operación: `ServicioExperiencias.crear(docente: Docente, codigo_dba: string, nombre: string): Experiencia`; se ve en `15` §3. **Falta.**
 
@@ -326,7 +355,7 @@ CU-11 Crear experiencia · CU-16 Generar banco con IA. Operación: `ServicioExpe
   - `404` no existe el DBA.
 - **Nota:** Puede tardar minutos: ver la generación asíncrona en «Adicionales que conviene agregar».
 
-#### E-18 · `GET /experiencias/:id`
+#### E-20 · `GET /experiencias/:id`
 
 CU-12 Consultar experiencia · CU-13 Publicar experiencia · CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.consultar(id: int): Experiencia`; se ve en `15` §4 y §8. **Falta.**
 
@@ -338,7 +367,7 @@ CU-12 Consultar experiencia · CU-13 Publicar experiencia · CU-15 Eliminar expe
   - `403` la experiencia no es del docente.
   - `404` no existe.
 
-#### E-19 · `POST /experiencias/:id/publicar`
+#### E-21 · `POST /experiencias/:id/publicar`
 
 CU-13 Publicar experiencia. Operación: `ServicioExperiencias.publicar(id: int)`; se ve en `15` §4. **Falta.**
 
@@ -350,7 +379,7 @@ CU-13 Publicar experiencia. Operación: `ServicioExperiencias.publicar(id: int)`
   - `409` ya está Publicada: publicar no se deshace (ADR-026).
   - `409` alguna evidencia tiene menos de 6 ítems activos; dice cuántos faltan (RF-02-05, RI-14).
 
-#### E-20 · `GET /experiencias/:id/codigo`
+#### E-22 · `GET /experiencias/:id/codigo`
 
 CU-14 Compartir código de invitación. Operación: `ServicioExperiencias.codigoInvitacion(id: int): string`. **Falta.**
 
@@ -361,7 +390,7 @@ CU-14 Compartir código de invitación. Operación: `ServicioExperiencias.codigo
 - **Reglas y errores:**
   - `409` la experiencia está en Borrador: el código existe, pero no se muestra (RF-02-06, CU-14 1a).
 
-#### E-21 · `DELETE /experiencias/:id`
+#### E-23 · `DELETE /experiencias/:id`
 
 CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.eliminar(id: int)`; se ve en `15` §8. **Falta.**
 
@@ -378,13 +407,13 @@ CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.eliminar(id: int)`
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-22** | `GET /experiencias/:id/banco` | CU-17 | `ServicioBanco.banco` | Docente dueño | Falta |
-| **E-23** | `PATCH /items/:id` | CU-18 | `ServicioBanco.editarItem` | Docente dueño | Falta |
-| **E-24** | `POST /items/:id/descartar` | CU-19 | `ServicioBanco.descartar` | Docente dueño | Falta |
-| **E-25** | `POST /items/:id/reincluir` | CU-19 | `ServicioBanco.reincluir` | Docente dueño | Falta |
-| **E-26** | `POST /experiencias/:id/evidencias/:n/items` | CU-20 | `ServicioBanco.agregarItem` | Docente dueño | Falta |
+| **E-24** | `GET /experiencias/:id/banco` | CU-17 | `ServicioBanco.banco` | Docente dueño | Falta |
+| **E-25** | `PATCH /items/:id` | CU-18 | `ServicioBanco.editarItem` | Docente dueño | Falta |
+| **E-26** | `POST /items/:id/descartar` | CU-19 | `ServicioBanco.descartar` | Docente dueño | Falta |
+| **E-27** | `POST /items/:id/reincluir` | CU-19 | `ServicioBanco.reincluir` | Docente dueño | Falta |
+| **E-28** | `POST /experiencias/:id/evidencias/:n/items` | CU-20 | `ServicioBanco.agregarItem` | Docente dueño | Falta |
 
-#### E-22 · `GET /experiencias/:id/banco`
+#### E-24 · `GET /experiencias/:id/banco`
 
 CU-17 Revisar banco. Operación: `ServicioBanco.banco(id_experiencia: int): ExperienciaEvidencia [*]`. **Falta.**
 
@@ -395,7 +424,7 @@ CU-17 Revisar banco. Operación: `ServicioBanco.banco(id_experiencia: int): Expe
 - **Reglas y errores:**
   - Con la experiencia Publicada responde igual, marcada de solo lectura (CU-17 4a).
 
-#### E-23 · `PATCH /items/:id`
+#### E-25 · `PATCH /items/:id`
 
 CU-18 Editar ítem. Operación: `ServicioBanco.editarItem(id_item: int, enunciado: string, opciones: Opcion [*])`. **Falta.**
 
@@ -407,7 +436,7 @@ CU-18 Editar ítem. Operación: `ServicioBanco.editarItem(id_item: int, enunciad
   - `400` ítem inválido: algo vacío, menos opciones que el mínimo del formato, dos correctas en selección única, orden incompleto o repetido (CU-18 paso 3, RI-4).
   - `409` la experiencia está Publicada: el banco es de solo lectura (RF-03-08, ADR-026).
 
-#### E-24 · `POST /items/:id/descartar`
+#### E-26 · `POST /items/:id/descartar`
 
 CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.descartar(id_item: int)`. **Falta.**
 
@@ -418,7 +447,7 @@ CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.descartar(id_item:
 - **Reglas y errores:**
   - `409` la experiencia está Publicada: el banco es de solo lectura (RF-03-08, ADR-026).
 
-#### E-25 · `POST /items/:id/reincluir`
+#### E-27 · `POST /items/:id/reincluir`
 
 CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.reincluir(id_item: int)`. **Falta.**
 
@@ -429,7 +458,7 @@ CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.reincluir(id_item:
 - **Reglas y errores:**
   - `409` la experiencia está Publicada: el banco es de solo lectura (RF-03-08, ADR-026).
 
-#### E-26 · `POST /experiencias/:id/evidencias/:n/items`
+#### E-28 · `POST /experiencias/:id/evidencias/:n/items`
 
 CU-20 Agregar pregunta propia. Operación: `ServicioBanco.agregarItem(id_experiencia: int, numero_evidencia: int): Item`. **Falta.**
 
@@ -448,14 +477,14 @@ CU-20 Agregar pregunta propia. Operación: `ServicioBanco.agregarItem(id_experie
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-27** | `GET /inscripciones` | CU-21 | `ServicioDiagnostico.misInscripciones` | Estudiante | Falta |
-| **E-28** | `POST /inscripciones` | CU-22 | `ServicioDiagnostico.unirse` | Estudiante | Falta |
-| **E-29** | `GET /inscripciones/:id` | CU-23<br>CU-26 | `ServicioDiagnostico.consultar` | Estudiante dueño | Falta |
-| **E-30** | `POST /inscripciones/:id/presentaciones` | CU-23 | `ServicioDiagnostico.siguientePregunta` | Estudiante dueño | Falta |
-| **E-31** | `POST /inscripciones/:id/respuestas` | CU-24<br>CU-25 | `ServicioDiagnostico.responder` | Estudiante dueño | Falta |
-| **E-32** | `DELETE /inscripciones/:id` | CU-26 | `ServicioDiagnostico.salir` | Estudiante dueño | Falta |
+| **E-29** | `GET /inscripciones` | CU-21 | `ServicioDiagnostico.misInscripciones` | Estudiante | Falta |
+| **E-30** | `POST /inscripciones` | CU-22 | `ServicioDiagnostico.unirse` | Estudiante | Falta |
+| **E-31** | `GET /inscripciones/:id` | CU-23<br>CU-26 | `ServicioDiagnostico.consultar` | Estudiante dueño | Falta |
+| **E-32** | `POST /inscripciones/:id/presentaciones` | CU-23 | `ServicioDiagnostico.siguientePregunta` | Estudiante dueño | Falta |
+| **E-33** | `POST /inscripciones/:id/respuestas` | CU-24<br>CU-25 | `ServicioDiagnostico.responder` | Estudiante dueño | Falta |
+| **E-34** | `DELETE /inscripciones/:id` | CU-26 | `ServicioDiagnostico.salir` | Estudiante dueño | Falta |
 
-#### E-27 · `GET /inscripciones`
+#### E-29 · `GET /inscripciones`
 
 CU-21 Consultar mis experiencias (estudiante). Operación: `ServicioDiagnostico.misInscripciones(estudiante: Estudiante): Inscripcion [*]`. **Falta.**
 
@@ -466,7 +495,7 @@ CU-21 Consultar mis experiencias (estudiante). Operación: `ServicioDiagnostico.
 - **Reglas y errores:**
   - El progreso se calcula, no se guarda: `progreso` es un atributo calculado del MER.
 
-#### E-28 · `POST /inscripciones`
+#### E-30 · `POST /inscripciones`
 
 CU-22 Unirse con código. Operación: `ServicioDiagnostico.unirse(estudiante: Estudiante, codigo: string): Inscripcion`; se ve en `15` §5. **Falta.**
 
@@ -477,7 +506,7 @@ CU-22 Unirse con código. Operación: `ServicioDiagnostico.unirse(estudiante: Es
 - **Reglas y errores:**
   - `404` no hay una experiencia Publicada con ese código: el mismo mensaje para un código que no existe y para uno en Borrador (CU-22 2a, RI-7).
 
-#### E-29 · `GET /inscripciones/:id`
+#### E-31 · `GET /inscripciones/:id`
 
 CU-23 Tomar el diagnóstico · CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.consultar(id_inscripcion: int): Inscripcion`. **Falta.**
 
@@ -489,7 +518,7 @@ CU-23 Tomar el diagnóstico · CU-26 Salir de la experiencia. Operación: `Servi
   - `403` la inscripción no es del estudiante.
   - No incluye resultados ni aciertos (RF-04-08, ADR-028).
 
-#### E-30 · `POST /inscripciones/:id/presentaciones`
+#### E-32 · `POST /inscripciones/:id/presentaciones`
 
 CU-23 Tomar el diagnóstico. Operación: `ServicioDiagnostico.siguientePregunta(id_inscripcion: int): Presentacion [0..1]`; se ve en `15` §6. **Falta.**
 
@@ -503,7 +532,7 @@ CU-23 Tomar el diagnóstico. Operación: `ServicioDiagnostico.siguientePregunta(
   - Nunca envía `es_correcta` ni `hipotesis_error` de las opciones, ni el número de pregunta, ni cuántas faltan (RF-04-08).
   - `409` la experiencia ya está completada (CU-23 1a).
 
-#### E-31 · `POST /inscripciones/:id/respuestas`
+#### E-33 · `POST /inscripciones/:id/respuestas`
 
 CU-24 Responder ítem · CU-25 Aplicar la regla adaptativa. Operación: `ServicioDiagnostico.responder(id_inscripcion: int, id_item: int, seleccion: RespuestaOpcion [*], certeza: int)`; se ve en `15` §6. **Falta.**
 
@@ -517,7 +546,7 @@ CU-24 Responder ítem · CU-25 Aplicar la regla adaptativa. Operación: `Servici
   - `409` el ítem no es la pregunta pendiente, o ya se respondió: una respuesta no se cambia (RNF-10).
   - Aplica la regla adaptativa (CU-25: mínimo 4, tope 6, señal fuerte con certeza de 3 a 5) y, si concluye, guarda el resultado de la evidencia como fotografía (RNF-11).
 
-#### E-32 · `DELETE /inscripciones/:id`
+#### E-34 · `DELETE /inscripciones/:id`
 
 CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.salir(id_inscripcion: int)`. **Falta.**
 
@@ -534,11 +563,11 @@ CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.salir(id_inscrip
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-33** | `GET /experiencias/:id/reporte` | CU-27<br>CU-30 | `ServicioReporte.reporte` | Docente dueño | Falta |
-| **E-34** | `GET /experiencias/:id/estudiantes` | CU-28 | `ServicioReporte.estudiantesPorEstado` | Docente dueño | Falta |
-| **E-35** | `GET /inscripciones/:id/historial` | CU-29 | `ServicioReporte.historial` | Docente dueño | Falta |
+| **E-35** | `GET /experiencias/:id/reporte` | CU-27<br>CU-30 | `ServicioReporte.reporte` | Docente dueño | Falta |
+| **E-36** | `GET /experiencias/:id/estudiantes` | CU-28 | `ServicioReporte.estudiantesPorEstado` | Docente dueño | Falta |
+| **E-37** | `GET /inscripciones/:id/historial` | CU-29 | `ServicioReporte.historial` | Docente dueño | Falta |
 
-#### E-33 · `GET /experiencias/:id/reporte`
+#### E-35 · `GET /experiencias/:id/reporte`
 
 CU-27 Consultar el reporte · CU-30 Calcular estado general. Operación: `ServicioReporte.reporte(id_experiencia: int): Reporte`; se ve en `15` §7. **Falta.**
 
@@ -550,7 +579,7 @@ CU-27 Consultar el reporte · CU-30 Calcular estado general. Operación: `Servic
   - Se calcula al abrirlo, no se guarda (ADR-022).
   - Ningún texto afirma certeza (RNF-04).
 
-#### E-34 · `GET /experiencias/:id/estudiantes`
+#### E-36 · `GET /experiencias/:id/estudiantes`
 
 CU-28 Consultar estudiantes por estado. Operación: `ServicioReporte.estudiantesPorEstado(id_experiencia: int): Estudiante [*]`. **Falta.**
 
@@ -561,7 +590,7 @@ CU-28 Consultar estudiantes por estado. Operación: `ServicioReporte.estudiantes
 - **Reglas y errores:**
   - Sin el correo del estudiante (ADR-029, RNF-05).
 
-#### E-35 · `GET /inscripciones/:id/historial`
+#### E-37 · `GET /inscripciones/:id/historial`
 
 CU-29 Consultar historial de un estudiante. Operación: `ServicioReporte.historial(id_inscripcion: int): Presentacion [*]`. **Falta.**
 
@@ -572,19 +601,22 @@ CU-29 Consultar historial de un estudiante. Operación: `ServicioReporte.histori
 - **Reglas y errores:**
   - `403` solo el docente dueño de la experiencia de esa inscripción; el estudiante nunca (ADR-028).
 
-## 7. En el backend I1, pero no del producto
+## 7. En el backend por la guía del docente, pero no del producto
 
-El backend I1 trae también rutas que vienen de la guía del curso (JWT). AdaptiveLearn
-no tiene rol de administrador (`10` §2.2), así que no son del producto: se quitan antes de
-entregarlo, o se dejan solo en desarrollo.
+La guía del curso (JWT en NestJS, versión 2) pide estas rutas, y sus pruebas las usan
+(ADR-040). `/users` es solo para la credencial marcada como administrador —la marca
+`es_admin` se pone únicamente por SQL—. El producto no tiene pantallas de administrador: no
+son casos de uso y ninguna pantalla las llama.
 
 | Ruta | Qué es |
 |---|---|
-| `POST /users` | Crear usuario |
-| `GET /users` | Listar usuarios |
-| `GET /users/:id` | Ver un usuario por su id |
-| `GET /example/protected` | Ruta protegida de ejemplo |
-| `GET /example/docente` | Ruta de ejemplo con rol docente |
+| `POST /users` | Crear usuario (solo administrador) |
+| `GET /users` | Listar usuarios (solo administrador) |
+| `GET /users/:id` | Ver un usuario por su id (solo administrador) |
+| `PATCH /users/:id` | Editar correo, contraseña o nombre de un usuario (solo administrador) |
+| `DELETE /users/:id` | Borrar un usuario: 204 (solo administrador) |
+| `GET /example/protected` | Ruta protegida de ejemplo: cualquier sesión |
+| `GET /example/admin` | Ruta de ejemplo solo para administrador |
 
 ## 8. Adicionales que conviene agregar
 
@@ -613,7 +645,7 @@ haga.
 | Cambiar el rol | RF-01-06, RI-12 |
 | Borrar un ítem: descartar no borra | CU-19, RF-03-06 |
 | Modificar o borrar una presentación, una respuesta o un resultado | RNF-10, RNF-11, ADR-021 |
-| Administrar usuarios: listar, crear o borrar cuentas | no hay rol administrador (`10` §2.2) |
+| Que una pantalla del producto administre usuarios (`/users`), o que una ruta asigne la marca de administrador | ADR-040: `/users` es de la guía y la marca solo se pone por SQL |
 
 ## 10. Operaciones de servicio sin ruta propia
 
@@ -625,9 +657,13 @@ Toda operación de una clase «servicio» del diagrama de clases tiene su endpoi
 ## 11. Decisiones de este catálogo
 
 - **La foto viaja con el perfil**, en multipart/form-data, en `POST /auth/elegir-rol` y en
-  `PATCH /users/:id`. CU-04 dice que el perfil se guarda al elegir el rol, y una ruta aparte
+  `PATCH /auth/profile`. CU-04 dice que el perfil se guarda al elegir el rol, y una ruta aparte
   para subir la foto no tendría ni operación ni caso de uso propios.
-- **Las 4 áreas no tienen endpoint:** son fijas (CU-11 paso 1).
+- **Editar mi perfil es `PATCH /auth/profile`** (encargo 03): en la guía v2, `/users/:id` es
+  del administrador. Sin `:id` en la ruta, nadie puede apuntar al perfil de otro.
+- **Las áreas y los grados tienen endpoint** (encargo 03): `GET /catalogo/areas` y
+  `GET /catalogo/grados` leen las tablas de ADR-036, para no escribir los códigos dos veces.
+  `Catalogo` ganó las operaciones `areas()` y `grados()` (`13`).
 - **La siguiente pregunta es `POST`, no `GET`:** cada llamada puede crear una presentación.
   Un `GET` que escribe se repetiría solo con cualquier recarga o caché.
 - **El diagrama de clases ganó tres operaciones** que la IGU necesita y no estaban:
@@ -650,7 +686,8 @@ Toda operación de una clase «servicio» del diagrama de clases tiene su endpoi
   `PATCH` modifica. Ningún endpoint modifica un hecho (RNF-10, RNF-11) ni borra lo que
   ningún flujo borra.
 - **Acceso e incremento:** quien llama es el actor del caso de uso, y cada endpoint cae en
-  un solo incremento. Solo I1 tiene endpoints hechos.
+  un solo incremento. Solo los incrementos empezados tienen endpoints hechos, y el estado
+  de cada endpoint es el del código: se leen los controladores de `backend/src/`.
 - **Rutas:** ninguna repetida, ninguna de la sección «Lo que no se debe agregar», y las
   nuevas en español.
 

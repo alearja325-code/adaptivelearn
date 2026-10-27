@@ -58,7 +58,8 @@ RX, RY = 84, 33            # medio ancho y medio alto de un rombo
 # ------------------------------------------------- contenido de cada caja
 ENT = {e[0]: e for e in ENTIDADES}
 TABLA = {"AREA": "area", "GRADO": "grado", "DOCUMENTO_OFICIAL": "documento_oficial",
-         "CREDENCIAL": "credencial", "DOCENTE": "docente", "ESTUDIANTE": "estudiante",
+         "CREDENCIAL": "credencial", "CODIGO_VERIFICACION": "codigo_verificacion",
+         "DOCENTE": "docente", "ESTUDIANTE": "estudiante",
          "EXPERIENCIA": "experiencia", "DBA": "dba", "EVIDENCIA": "evidencia",
          "EVIDENCIA_DICTAMEN": "evidencia_dictamen",
          "EXPERIENCIA_EVIDENCIA": "experiencia_evidencia", "INSCRIPCION": "inscripcion",
@@ -125,13 +126,15 @@ def alto(nombre):
 # el rombo y, a cada lado, lugar para un (min,max).
 # 2026-10-26 (ADR-036): una fila nueva arriba (F0) para DOCUMENTO_OFICIAL y
 # GRADO; AREA va a la izquierda del DBA. Todo lo demas baja DY.
+# 2026-10-27 (ADR-039): CODIGO_VERIFICACION arriba de CREDENCIAL, en su
+# carril; «recibe» sube por x = XC + 60, a la izquierda de «accede como».
 DY = 340
 XC, C1, C2, C3, C4, C5 = 60, 640, 1260, 1880, 2500, 3120
 F0 = 200
 F1, F2, F3, F4 = 200 + DY, 540 + DY, 1160 + DY, 1500 + DY
 POS = {
     "DOCUMENTO_OFICIAL": (C1, F0), "GRADO": (C3, F0), "AREA": (C1, F1),
-    "CREDENCIAL": (XC, 740 + DY),
+    "CREDENCIAL": (XC, 740 + DY), "CODIGO_VERIFICACION": (XC, F1),
     "DBA": (C2, F1), "EVIDENCIA": (C3, F1), "EVIDENCIA_DICTAMEN": (C4, F1),
     "DOCENTE": (C1, F2), "EXPERIENCIA": (C2, F2), "EXPERIENCIA_EVIDENCIA": (C3, F2),
     "ITEM": (C4, F2), "OPCION": (C5, F2),
@@ -175,6 +178,7 @@ def recorridos():
                            [(xa + RX, yd), (B["DOCENTE"][0], yd)])
     R["accede_estudiante"] = ([(XC + 160, B["CREDENCIAL"][3]), (XC + 160, ye), (xa - RX, ye)], (xa, ye),
                               [(xa + RX, ye), (B["ESTUDIANTE"][0], ye)])
+    R["recibe"] = v("CREDENCIAL", "CODIGO_VERIFICACION", XC + 60)
     # catalogo (ADR-036). Las dos que salen por arriba del DBA hacen una L
     # hasta la fila F0, cada una por su lado: hacia el documento y hacia el grado.
     y0 = F0 + 50

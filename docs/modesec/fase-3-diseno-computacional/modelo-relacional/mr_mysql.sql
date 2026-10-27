@@ -33,10 +33,8 @@ CREATE TABLE credencial (
   password_hash VARCHAR(255) NULL,
   proveedor_id VARCHAR(255) NULL,
   estado_verificacion ENUM('procesando','verificado') NOT NULL DEFAULT 'procesando',
-  codigo_verificacion CHAR(6) NULL,
-  codigo_expira_en DATETIME NULL,
-  codigo_ultimo_envio DATETIME NULL,
-  intentos_codigo TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  es_admin BOOLEAN NOT NULL DEFAULT 0,
+  nombre_completo VARCHAR(240) NULL,
   intentos_login TINYINT UNSIGNED NOT NULL DEFAULT 0,
   bloqueado_hasta DATETIME NULL,
   creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -50,6 +48,18 @@ CREATE TABLE credencial (
   CONSTRAINT ck_credencial_2 CHECK ((proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND estado_verificacion = 'verificado')),
   CONSTRAINT fk_credencial_1 FOREIGN KEY (id_docente) REFERENCES docente(id_docente) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT fk_credencial_2 FOREIGN KEY (id_estudiante) REFERENCES estudiante(id_estudiante) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE codigo_verificacion (
+  id_credencial INT UNSIGNED NOT NULL,
+  proposito ENUM('verificar_correo','recuperar_contrasena') NOT NULL,
+  codigo_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  intentos TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (id_credencial, proposito),
+  CONSTRAINT ck_codigo_verificacion_1 CHECK (intentos <= 5),
+  CONSTRAINT ck_codigo_verificacion_2 CHECK (codigo_hash REGEXP '^[0-9a-f]{64}$'),
+  CONSTRAINT fk_codigo_verificacion_1 FOREIGN KEY (id_credencial) REFERENCES credencial(id_credencial) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE area (

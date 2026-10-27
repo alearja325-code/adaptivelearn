@@ -10,6 +10,9 @@ edita a mano.
 DOCUMENTO_OFICIAL, código del DBA sin tildes— (ADR-036) y estado de verificación del correo
 (ADR-037). Ver la sección 10 y la tabla de cambios (13).
 
+**Actualizado el 2026-10-27** (encargo 03): entidad CODIGO_VERIFICACION, que saca el código
+de la credencial (ADR-039, nota R4), y marca de administrador en CREDENCIAL (ADR-040).
+
 MODESEC: *«En esta etapa se recomienda la utilización de bases de datos relacionales […] Si
 la opción es la primera, se deberá crear un MER (Modelo Entidad Relación), un MR (Modelo
 relacional) basado en el MER y un diccionario de datos para los metadatos»*. Este documento
@@ -33,7 +36,7 @@ exigen. Para leerlo:
 
 | Entidades | Relaciones | Atributos | Ciclos | Restricciones de integridad | Vacíos abiertos |
 |---|---|---|---|---|---|
-| **18** (+ Reporte, derivado) | **22** (+ 2 derivadas) | **71** | **6**, todos cerrados | **21** | **2** (V-6, V-9) + 1 nuevo (V-12) |
+| **19** (+ Reporte, derivado) | **23** (+ 2 derivadas) | **73** | **6**, todos cerrados | **21** | **2** (V-6, V-9) + 1 nuevo (V-12) |
 
 ## 2. Notación
 
@@ -84,7 +87,7 @@ contradecirlo. `mer/mer-pantalla-completa.html` la abre a pantalla completa, con
 
 ### Vista 1 · Acceso y cuentas
 
-Quién puede entrar, con qué credencial, y con cuál de los dos roles.
+Quién puede entrar, con qué credencial, con cuál de los dos roles, y con qué código verifica su correo o recupera su contraseña.
 
 ![Vista 1: Acceso y cuentas](mer/vista1.svg)
 
@@ -128,11 +131,19 @@ En qué se traduce todo lo anterior, por estudiante y por evidencia.
 
 ### CREDENCIAL
 
-**Tipo:** Propia. **Atributos:** `id_credencial` (PK), `correo` (U), `proveedor`, `password_hash`, `proveedor_id`, `estado_verificacion`, `codigo_verificacion`, `codigo_expira_en`, `codigo_ultimo_envio`, `creado_en`.
+**Tipo:** Propia. **Atributos:** `id_credencial` (PK), `correo` (U), `proveedor`, `password_hash`, `proveedor_id`, `estado_verificacion`, `es_admin`, `creado_en`.
 
-**Nueva en esta versión (cierra V-8).** La cuenta de acceso: con qué correo y qué método se entra, la verificación del correo y a qué rol da acceso. Existe desde «Crear cuenta», *antes* de que exista el docente o el estudiante: hace falta para guardar el código de verificación (RF-01-03), y el docente o el estudiante se crea recién al elegir el rol (RF-01-05, RF-01-06). El correo vive aquí y no en Docente/Estudiante: es el correo de la cuenta, y así su unicidad vale **entre los dos roles** (RF-01-04), cosa que dos UNIQUE separados no garantizan. Accede como docente **o** como estudiante, nunca como los dos ({xor}, RI-12). Es la tabla que el incremento I1 ya construyó (`backend/sql/001_esquema_auth.sql`). **Cambia el 2026-10-26 (ADR-037):** el sí/no `email_verificado` pasa a **`estado_verificacion`**, con dos valores: `procesando` (se envió el código y no se ha confirmado) y `verificado`. Una credencial de Google o Microsoft nace `verificado` (RI-15). `codigo_expira_en` y `codigo_ultimo_envio` siguen: quitarlos (nota R4 del docente) espera su respuesta a la pregunta P2 (`21-revision-docente-2026-10-22.md`).
+**Nueva en esta versión (cierra V-8).** La cuenta de acceso: con qué correo y qué método se entra, la verificación del correo y a qué rol da acceso. Existe desde «Crear cuenta», *antes* de que exista el docente o el estudiante: hace falta para guardar el código de verificación (RF-01-03), y el docente o el estudiante se crea recién al elegir el rol (RF-01-05, RF-01-06). El correo vive aquí y no en Docente/Estudiante: es el correo de la cuenta, y así su unicidad vale **entre los dos roles** (RF-01-04), cosa que dos UNIQUE separados no garantizan. Accede como docente **o** como estudiante, nunca como los dos ({xor}, RI-12). Es la tabla del backend (`backend/sql/001_esquema.sql`, generado de este modelo). **Cambia el 2026-10-26 (ADR-037):** el sí/no `email_verificado` pasa a **`estado_verificacion`**, con dos valores: `procesando` (se envió el código y no se ha confirmado) y `verificado`. Una credencial de Google o Microsoft nace `verificado` (RI-15). **Cambia el 2026-10-27 (ADR-039, nota R4):** el código de verificación sale a su propia entidad, CODIGO_VERIFICACION; la credencial pierde `codigo_verificacion`, `codigo_expira_en` y `codigo_ultimo_envio`. **Y gana `es_admin` (ADR-040):** la marca de administrador que la guía del docente usa para `/users`; falsa por defecto, solo se pone por SQL y no es un rol del producto.
 
-*Fuente: Ventanas 014 a 019 · RF-01-01 a RF-01-09 · backend I1 · ADR-037.*
+*Fuente: Ventanas 014 a 019 · RF-01-01 a RF-01-09 · backend I1 · ADR-037 · ADR-039 · ADR-040.*
+
+### CODIGO_VERIFICACION
+
+**Tipo:** Débil. **Atributos:** `proposito` (llave parcial), `codigo_hash`, `creado_en`, `intentos`.
+
+**Nueva el 2026-10-27 (ADR-039, nota R4 del docente).** El código de 6 dígitos que se envía por correo para verificar la cuenta (ventana 015) o para recuperar la contraseña (ventana 018). **Débil:** se identifica por la credencial que lo *recibe* más su llave parcial `proposito` (`verificar_correo` o `recuperar_contrasena`); por eso una credencial tiene **a lo sumo un código por propósito**, (0,2), y pedir otro reemplaza al anterior. Se guarda con hash (`codigo_hash`), nunca legible (RNF-08). **El vencimiento (10 minutos) y la espera para reenviar (30 segundos) no se guardan: se calculan desde `creado_en`.** `intentos` cuenta los fallos con ese código; al quinto deja de servir (RNF-07). Una tarea nocturna borra los códigos vencidos (ADR-039); no es un caso de uso.
+
+*Fuente: ADR-039 · nota R4 (`21-revision-docente-2026-10-22.md`) · ventanas 015 y 018 · RF-01-03, RF-01-08 · RNF-07, RNF-08.*
 
 ### DOCENTE
 
@@ -284,6 +295,7 @@ No persiste: se calcula sobre Resultado, por experiencia, cada vez que se abre. 
 |---|---|---|---|---|---|---|---|---|
 | CREDENCIAL | accede como {xor} | DOCENTE | 1:1 | (0,1) | (1,1) | — | 1 | RF-01-06 · 20-spec-auth-elige-rol · RI-12 |
 | CREDENCIAL | accede como {xor} | ESTUDIANTE | 1:1 | (0,1) | (1,1) | — | 1 | RF-01-06 · RI-12 |
+| CREDENCIAL | recibe | CODIGO_VERIFICACION | 1:N | (0,2) | (1,1) | sí | 1 | ADR-039 · RF-01-03, RF-01-08 |
 | DBA | pertenece a | AREA | N:1 | (1,1) | (1,N) | — | 2 | ADR-036 |
 | DBA | corresponde a | GRADO | N:1 | (1,1) | (1,N) | — | 2 | ADR-036 |
 | DBA | se copia de | DOCUMENTO_OFICIAL | N:1 | (1,1) | (1,N) | — | 2 | ADR-036 · ADR-033 |
@@ -317,7 +329,8 @@ nota: **(12,N)** en *genera*, porque la IA genera 12 ítems por evidencia y ning
 catálogo se carga completo y uno de ellos sin ningún DBA no tendría nada que ofrecer; y
 **(0,1)** de CREDENCIAL en las dos *accede como*, porque mientras el registro está en curso la
 credencial todavía no tiene rol. Las dos *accede como* llevan **{xor}**: una credencial da
-acceso a un solo rol (RI-12).
+acceso a un solo rol (RI-12). Y **(0,2)** de CREDENCIAL en *recibe*: a lo sumo un código por
+propósito, y hay dos propósitos (ADR-039).
 
 ## 6. Ciclos del modelo, y qué cierra cada uno
 
@@ -327,9 +340,9 @@ ejemplo—, el diagrama no lo puede decir y hace falta una regla que lo cierre. 
 argumento del hallazgo H-4: *«un ciclo que hay que restringir con una regla externa suele
 indicar que falta una entidad»*. Por eso aquí no se deja ninguno sin revisar:
 
-El grafo de las 18 entidades persistentes tiene 23 aristas —*selecciona*
+El grafo de las 19 entidades persistentes tiene 24 aristas —*selecciona*
 cuenta dos, porque pasa por Respuesta_Opción—, así que tiene exactamente
-**23 − 18 + 1 = 6 ciclos independientes**: cualquier otro ciclo
+**24 − 19 + 1 = 6 ciclos independientes**: cualquier otro ciclo
 es combinación de estos. `mer/_verificar_mer.py` comprueba que sean esos, que cada uno
 exista en el grafo y que ninguno sea combinación de los otros.
 
@@ -359,6 +372,7 @@ relacional. Fuente: `uml/datos_crud.py`; la comprueba `uml/_verificar_uml.py`, b
 | Entidad | Crea | Lee | Modifica | Borra |
 |---|---|---|---|---|
 | CREDENCIAL | CU-01, CU-02 | CU-01, CU-02, CU-03, CU-04, CU-06, CU-07, CU-09 | CU-03, CU-05, CU-06, CU-07 | — |
+| CODIGO_VERIFICACION | CU-01, CU-03, CU-07 | CU-03, CU-07 | CU-03, CU-07 | CU-03, CU-07 |
 | DOCENTE | CU-05 | CU-02, CU-06, CU-09, CU-21 | CU-09 | — |
 | ESTUDIANTE | CU-05 | CU-02, CU-06, CU-09, CU-28 | CU-09 | — |
 | EXPERIENCIA | CU-11 | CU-10, CU-12, CU-13, CU-14, CU-15, CU-17, CU-21, CU-22 | CU-13 | CU-15 |
@@ -382,9 +396,14 @@ Lo que se lee de la matriz:
 
 - **Presentación, Respuesta, Respuesta_Opción y Resultado nunca se modifican.** Son hechos
   (se mostró, se respondió) y fotografías (lo que se concluyó): RNF-10, RNF-11, ADR-021.
-- **Solo tres cosas se borran directamente:** una experiencia (CU-15), una inscripción
-  (CU-26) y una opción mientras el ítem está en Borrador (CU-18). Todo lo demás cae en
-  cascada, y la cascada nunca alcanza una cuenta ni el currículo (cierra V-11).
+- **Solo cuatro cosas se borran directamente:** una experiencia (CU-15), una inscripción
+  (CU-26), una opción mientras el ítem está en Borrador (CU-18) y un código de verificación
+  ya usado o agotado (CU-03, CU-07; ADR-039). Todo lo demás cae en cascada, y la cascada
+  desde una experiencia nunca alcanza una cuenta ni el currículo (cierra V-11).
+- **Fuera de los casos de uso:** una tarea nocturna (ADR-039) borra los códigos vencidos y
+  las credenciales que llevan más de 7 días sin terminar el registro (sin rol); no la inicia
+  ningún actor, por eso no está en la matriz. El administrador de la guía del docente
+  (`/users`, ADR-040) tampoco es un caso de uso del producto.
 - **Lo que ningún caso de uso crea** es lo que viene de fuera —el currículo del MEN y
   nuestro dictamen, que el equipo carga— o lo que se calcula: el Reporte.
 - **CU-08** (cerrar sesión) es el único caso de uso que no toca datos: termina la sesión del
@@ -431,7 +450,7 @@ Los dos describen el mismo mundo, y `uml/_verificar_uml.py` comprueba que no se 
 | En el MER | En el diagrama de clases (`13`) | Por qué así |
 |---|---|---|
 | Cada entidad persistente | Una clase con el mismo nombre, y los mismos atributos menos las llaves foráneas | En objetos, una llave foránea es una asociación, no un atributo. Verificado columna por columna |
-| Cada una de las 24 relaciones | Una asociación con el mismo nombre y las mismas entidades | Verificado una por una |
+| Cada una de las 25 relaciones | Una asociación con el mismo nombre y las mismas entidades | Verificado una por una |
 | RESPUESTA_OPCION, entidad asociativa | RespuestaOpcion, **clase asociación** de *selecciona* | Es la misma idea en las dos notaciones |
 | REPORTE, derivado | Reporte «calculada» | No persiste en ninguno de los dos |
 | `progreso` de INSCRIPCION, calculado | El método `Inscripcion.progreso()` | Lo que se calcula es comportamiento |
@@ -477,10 +496,10 @@ El docente revisó el acceso y el catálogo curricular. Sus notas y su triaje es
 | # | Nota | Dónde quedó |
 |---|---|---|
 | **R1** | «Tabla para grados y área, y codificar» | **Aplicada (ADR-036).** Entidades ÁREA y GRADO, y además DOCUMENTO_OFICIAL (recomendación del equipo). El DBA pierde `area` y `grado` como texto y su código pasa a `ÁREA-GG-NN`, sin tildes (RI-21). El ciclo nuevo, C6, se cierra con RI-20. |
-| **R2** | `id_usuario` → `id_estudiante` e `id_docente` | **No es de este modelo:** el MER no tiene «usuario». Se aplica al backend en la Fase IV. |
+| **R2** | `id_usuario` → `id_estudiante` e `id_docente` | **No es de este modelo:** el MER no tiene «usuario». Aplicada en el backend (encargo 03, ADR-040): la sesión lleva el rol y el `id_docente` o el `id_estudiante`. |
 | **R3** | `email` → `estado_verificado` / `estado_procesando` | **Aplicada (ADR-037).** CREDENCIAL guarda `estado_verificacion` (`procesando` o `verificado`) en vez del sí/no; RI-15 se reescribe con el estado. |
-| **R4** | Quitar `codigo_expira_en` y `codigo_ultimo_envio` | **Pendiente** de la respuesta del docente a la pregunta P2: sin esos datos, el vencimiento del código y la espera de 30 s para reenviarlo (RF-01-03) necesitan otro lugar. Siguen en CREDENCIAL. |
-| **R5** | Correo del sistema `adaptivelearn@` | **No es de este modelo:** es configuración del backend (Fase IV). |
+| **R4** | Quitar `codigo_expira_en` y `codigo_ultimo_envio` | **Aplicada (ADR-039), a confirmar con el docente (pregunta P2).** Salen de CREDENCIAL, con `codigo_verificacion`; el código pasa a la entidad débil CODIGO_VERIFICACION y el vencimiento y la espera para reenviar se calculan desde su `creado_en`. Una tarea nocturna limpia lo vencido. |
+| **R5** | Correo del sistema `adaptivelearn@` | **No es de este modelo:** es configuración del backend; aplicada en el encargo 03 (envío por SMTP configurado en `.env`). |
 
 
 ## 11. Restricciones de integridad
@@ -558,6 +577,8 @@ la condición que impide usar esta versión con estudiantes reales).
 | 13 | **Reporte** pasa al centro del mapa, entre las cuatro entidades de las que depende. | Legibilidad |
 | 14 | *(2026-10-26)* Entran **ÁREA, GRADO y DOCUMENTO_OFICIAL**; el DBA pierde `area` y `grado` como texto y gana *pertenece a*, *corresponde a* y *se copia de*; el documento *es de* un área. Código del DBA `ÁREA-GG-NN`, sin tildes (RI-21). Ciclo nuevo C6, cerrado por RI-20. Las tres van a la Vista 2. | ADR-036 · revisión del docente del 2026-10-22 (R1) |
 | 15 | *(2026-10-26)* **Credencial:** `email_verificado` (sí/no) pasa a `estado_verificacion` (`procesando` / `verificado`); RI-15 se reescribe con el estado. | ADR-037 · revisión del docente del 2026-10-22 (R3) |
+| 16 | *(2026-10-27)* Entra **CODIGO_VERIFICACION**, débil, con su relación identificadora *recibe* (Vista 1). **Credencial** pierde `codigo_verificacion`, `codigo_expira_en` y `codigo_ultimo_envio`: el vencimiento y la espera para reenviar se calculan desde `creado_en` del código. El grafo gana un nodo y una arista: siguen siendo 6 ciclos. | ADR-039 · revisión del docente del 2026-10-22 (R4) |
+| 17 | *(2026-10-27)* **Credencial** gana `es_admin`, la marca de administrador de la guía del docente, que solo se pone por SQL. | ADR-040 |
 
 
 ## 14. Verificación

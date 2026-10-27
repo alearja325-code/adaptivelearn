@@ -16,11 +16,17 @@ CAP = {}
 # ------------------------------------------------------------------ VISTA 1
 v = Lienzo()
 v.ent("DOCENTE", 240, 140, first_row=290)
-v.ent("CREDENCIAL", 840, 140, first_row=290)
+# La columna de atributos de CREDENCIAL se corre a la izquierda: debajo de
+# ella baja «recibe» hasta CODIGO_VERIFICACION (ADR-039), cuyos atributos
+# cuelgan a la derecha.
+v.ent("CREDENCIAL", 840, 140, dx=-200, side="left", first_row=290)
 v.ent("ESTUDIANTE", 1440, 140, first_row=290)
+v.ent("CODIGO_VERIFICACION", 840, 560, dx=200, side="right", first_row=690)
 v.rel("accede_docente", 540, 140).rel("accede_estudiante", 1140, 140)
+v.rel("recibe", 840, 350, razon_lado="izq")
 v.conecta("CREDENCIAL", "accede_docente", "DOCENTE")
 v.conecta("CREDENCIAL", "accede_estudiante", "ESTUDIANTE")
+v.conecta("CREDENCIAL", "recibe", "CODIGO_VERIFICACION")
 # {xor}: las dos relaciones son excluyentes (RI-12). Arco punteado por encima
 # de CREDENCIAL, de rombo a rombo.
 for x1, y1, x2, y2 in ((540, 104, 540, 82), (540, 82, 1140, 82), (1140, 82, 1140, 104)):
@@ -45,7 +51,15 @@ CAP[1] = ("<b>CREDENCIAL es la entidad que cierra el vacío V-8.</b> La Fase II 
     "de elegir rol— todavía no accede como ninguno; DOCENTE y ESTUDIANTE son (1,1), "
     "porque cada uno tiene exactamente una credencial. "
     "<code>nombres</code> y <code>apellidos</code> reemplazan al antiguo <code>nombre</code> "
-    "(ventanas 016 y 026).")
+    "(ventanas 016 y 026). "
+    "<b>CODIGO_VERIFICACION es nueva</b> (ADR-039, nota R4 del docente): el código de 6 "
+    "dígitos deja la credencial. Es <b>entidad débil</b> —se identifica por su credencial "
+    "más su <b>llave parcial</b> <code>proposito</code> (verificar el correo o recuperar "
+    "la contraseña)—, y por eso <i>recibe</i> es identificadora y una credencial tiene "
+    "<b>a lo sumo un código por propósito</b>: (0,2). El vencimiento (10 minutos) y la "
+    "espera para reenviar (30 segundos) <b>se calculan</b> desde <code>creado_en</code>; "
+    "no se guardan. <code>es_admin</code> es la marca de administrador de la guía del "
+    "docente (ADR-040): falsa por defecto, solo se pone por SQL; no es un rol del producto.")
 
 # ------------------------------------------------------------------ VISTA 2
 # El catalogo normalizado (ADR-036) forma un cuadro con ÁREA arriba: es el

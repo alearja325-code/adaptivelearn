@@ -41,6 +41,17 @@ Cambios del 2026-10-26, por la revision del docente del 2026-10-22
   * CREDENCIAL: `email_verificado` (si/no) pasa a `estado_verificacion`,
     con los valores procesando / verificado (ADR-037).
 
+Cambios del 2026-10-27 (encargo 03):
+
+  * CODIGO_VERIFICACION (nueva, debil, ADR-039 y nota R4): el codigo de 6
+    digitos sale de CREDENCIAL a su propia entidad, con su proposito
+    (verificar_correo / recuperar_contrasena), creado_en e intentos. El
+    vencimiento (10 min) y la espera para reenviar (30 s) se calculan desde
+    creado_en. CREDENCIAL pierde codigo_verificacion, codigo_expira_en y
+    codigo_ultimo_envio. Relacion identificadora nueva: «recibe».
+  * CREDENCIAL gana `es_admin`, la marca de administrador de la guia del
+    docente: falsa por defecto, solo se pone por SQL (ADR-040).
+
 Cada relacion declara en que VISTA vive. Regla dura, verificada por codigo
 en _verificar_vistas.py: cada relacion aparece en exactamente una vista;
 cada entidad, en al menos una.
@@ -68,15 +79,25 @@ cada entidad, en al menos una.
 # tres debiles no la necesitan, porque las identifica la combinacion de sus
 # duenas.
 
-# Lo que el ACCESO necesita como dato (ventanas 014-019). Los contadores de
-# intentos, el bloqueo y actualizado_en son endurecimiento del backend de I1
-# (sql/002): viven en el modelo relacional como columnas justificadas, no
-# aqui -- el MER no dibuja mecanismos de seguridad.
+# Lo que el ACCESO necesita como dato (ventanas 014-019). El contador de
+# intentos de inicio de sesion, el bloqueo y actualizado_en son
+# endurecimiento del backend (RF-01-07): viven en el modelo relacional como
+# columnas justificadas, no aqui -- el MER no dibuja mecanismos de
+# seguridad. es_admin es la marca de administrador de la guia del docente
+# (ADR-040): no es un rol del producto; solo se pone por SQL.
 CREDENCIAL = ("CREDENCIAL", "propia", [
     ("id_credencial", "PK"), ("correo (U)", ""), ("proveedor", ""),
     ("password_hash", ""), ("proveedor_id", ""), ("estado_verificacion", ""),
-    ("codigo_verificacion", ""), ("codigo_expira_en", ""),
-    ("codigo_ultimo_envio", ""), ("creado_en", ""),
+    ("es_admin", ""), ("creado_en", ""),
+])
+# ADR-039 (nota R4 del docente): el codigo de verificacion deja la
+# credencial. Debil: su identidad es la credencial que lo recibe mas su
+# proposito (llave parcial), y asi una credencial tiene a lo sumo un codigo
+# vigente por proposito. Se guarda el codigo con hash, no el codigo. El
+# vencimiento (10 min) y la espera para reenviar (30 s) se calculan desde
+# creado_en (RF-01-03); intentos cuenta los fallos con ESE codigo (maximo 5).
+CODIGO_VERIFICACION = ("CODIGO_VERIFICACION", "debil", [
+    ("proposito", "PD"), ("codigo_hash", ""), ("creado_en", ""), ("intentos", ""),
 ])
 DOCENTE = ("DOCENTE", "propia", [
     ("id_docente", "PK"), ("nombres", ""), ("apellidos", ""), ("avatar_url", ""),
@@ -163,7 +184,7 @@ REPORTE = ("REPORTE", "derivada", [
     ("estado_general", "C"), ("estado_por_evidencia", "C"),
 ])
 
-ENTIDADES = [CREDENCIAL, DOCENTE, ESTUDIANTE, EXPERIENCIA, AREA, GRADO,
+ENTIDADES = [CREDENCIAL, CODIGO_VERIFICACION, DOCENTE, ESTUDIANTE, EXPERIENCIA, AREA, GRADO,
              DOCUMENTO_OFICIAL, DBA, EVIDENCIA,
              EVIDENCIA_DICTAMEN, EXPERIENCIA_EVIDENCIA, INSCRIPCION, ITEM,
              OPCION, PRESENTACION, RESPUESTA, RESPUESTA_OPCION, RESULTADO,
@@ -190,6 +211,11 @@ RELACIONES = [
     dict(id="accede_estudiante", nombre="accede como", a="CREDENCIAL", b="ESTUDIANTE",
          card_a="1", card_b="1", part_a="(0,1)", part_b="(1,1)",
          total_a=False, total_b=True,  ident=False, vista=1, xor="rol"),
+    # (0,2): a lo sumo un codigo vigente por proposito, y hay dos propositos
+    # (ADR-039). Un codigo es siempre de una credencial: identificadora.
+    dict(nombre="recibe", a="CREDENCIAL", b="CODIGO_VERIFICACION",
+         card_a="1", card_b="N", part_a="(0,2)", part_b="(1,1)",
+         total_a=False, total_b=True,  ident=True,  vista=1),
 
     # Catalogo normalizado (ADR-036). Del lado del DBA las tres son (1,1):
     # todo DBA es de un area, de un grado y de un documento. Del otro lado,
@@ -282,8 +308,8 @@ RELACIONES = [
 
 # ------------------------------------------------------------------ ciclos
 # El grafo del MER (entidades persistentes; «selecciona» cuenta como dos
-# aristas, porque pasa por RESPUESTA_OPCION) tiene 23 aristas y 18 nodos:
-# 23 - 18 + 1 = 6 ciclos independientes. Son estos, y cada uno dice si exige
+# aristas, porque pasa por RESPUESTA_OPCION) tiene 24 aristas y 19 nodos:
+# 24 - 19 + 1 = 6 ciclos independientes. Son estos, y cada uno dice si exige
 # una regla para cerrarse y quien la hace cumplir. Un ciclo sin regla es
 # exactamente lo que el docente señalo en H-4. _verificar_mer.py comprueba
 # que sean 6, que cada uno exista en el grafo y que sean independientes.
@@ -322,7 +348,7 @@ CICLOS = [
 
 # ------------------------------------------------------------------ vistas
 VISTAS = {
-    1: ("Acceso y cuentas", "Quién puede entrar, con qué credencial, y con cuál de los dos roles."),
+    1: ("Acceso y cuentas", "Quién puede entrar, con qué credencial, con cuál de los dos roles, y con qué código verifica su correo o recupera su contraseña."),
     2: ("Currículo oficial", "Qué nos entrega el MEN —cada DBA con su área, su grado y el documento del que se copió—, y cuál es el único juicio nuestro sobre ese material."),
     3: ("Autoría de la experiencia", "Quién crea una experiencia, a qué DBA la ancla, y qué evidencias de ese DBA diagnostica."),
     4: ("Banco de diagnóstico", "El contenido que se genera, se edita o se agrega para cada evidencia incluida."),
@@ -334,7 +360,7 @@ VISTAS = {
 
 # Entidades DEBILES: no tienen identidad propia fuera de su padre. Se dibujan
 # con doble borde, y sus relaciones identificadoras con rombo doble.
-DEBILES = {"EVIDENCIA", "EVIDENCIA_DICTAMEN", "PRESENTACION", "RESULTADO"}
+DEBILES = {"CODIGO_VERIFICACION", "EVIDENCIA", "EVIDENCIA_DICTAMEN", "PRESENTACION", "RESULTADO"}
 
 # Conteos que el resto de los documentos cita: se calculan, no se escriben.
 N_ENTIDADES = len([e for e in ENTIDADES if e[1] != "derivada"])

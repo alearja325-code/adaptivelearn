@@ -8,6 +8,9 @@ que es exactamente lo que paso entre el MER y el MR antes del
   mr_adaptivelearn.dbml        para dibujar el MR en dbdiagram.io
   mr_esquema.sql               SQLite: lo usa verificar_mr.py
   mr_mysql.sql                 MySQL 8 (y MariaDB 10.11): el esquema real
+  backend/sql/001_esquema.sql  el mismo esquema, solo con las tablas que el
+                               backend usa hoy (TABLAS_BACKEND): asi la base
+                               del backend no puede apartarse del MR
 
 Uso:  python generar.py
 """
@@ -20,6 +23,15 @@ from datos_mr import (TABLAS, FKS, UNICOS, CHECKS, campos_de, pk_de,   # noqa
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 FASE3 = os.path.join(AQUI, "..")
+RAIZ = os.path.normpath(os.path.join(FASE3, "..", "..", ".."))
+SQL_BACKEND = os.path.join(RAIZ, "backend", "sql", "001_esquema.sql")
+
+# Las tablas de la etapa del backend del encargo 03: el acceso y el catalogo
+# curricular, hasta el Paso 3 de crear experiencia (sin crear la
+# experiencia). Tiene que ser cerrada: toda FK de una de ellas apunta a otra.
+TABLAS_BACKEND = ["credencial", "codigo_verificacion", "docente", "estudiante",
+                  "area", "grado", "documento_oficial", "dba", "evidencia",
+                  "evidencia_dictamen"]
 
 CLASES = {
     "propia": "Propia",
@@ -379,11 +391,22 @@ def sql():
 
 
 # ============================================================== SQL MySQL
-def sql_mysql():
+def sql_mysql(tablas=None):
+    """El DDL de MySQL. Con `tablas`, solo esas (en orden de creacion)."""
     L = []
     w = L.append
-    w("-- Esquema de produccion — AdaptiveLearn")
-    w("-- GENERADO por modelo-relacional/generar.py — no editar a mano.")
+    if tablas is None:
+        w("-- Esquema de produccion — AdaptiveLearn")
+        w("-- GENERADO por modelo-relacional/generar.py — no editar a mano.")
+    else:
+        fuera = {fk[2] for t in tablas for fk in fks_de(t)} - set(tablas)
+        if fuera:
+            raise ValueError(f"TABLAS_BACKEND no es cerrada: falta {sorted(fuera)}")
+        w("-- Esquema del backend — AdaptiveLearn")
+        w("-- GENERADO por docs/modesec/fase-3-diseno-computacional/modelo-relacional/")
+        w("-- generar.py desde datos_mr.py — no editar a mano: cambiar el MR y regenerar.")
+        w("-- Es mr_mysql.sql, solo con las tablas que el backend usa hoy (encargo 03):")
+        w("-- " + ", ".join(tablas) + ".")
     w("-- Dialecto: MySQL 8.0.16 o posterior (RNF-14). Tambien corre en")
     w("-- MariaDB 10.11: no usa nada que ese motor no tenga.")
     w("-- Ejecutar dentro de una base de datos VACIA, ya seleccionada con USE.")
@@ -392,6 +415,8 @@ def sql_mysql():
     w("")
     por_nombre = {t["tabla"]: t for t in TABLAS}
     for nombre in orden_creacion():
+        if tablas is not None and nombre not in tablas:
+            continue
         t = por_nombre[nombre]
         w(f"CREATE TABLE {nombre} (")
         lineas = []
@@ -430,6 +455,7 @@ if __name__ == "__main__":
         (os.path.join(AQUI, "mr_adaptivelearn.dbml"), dbml()),
         (os.path.join(AQUI, "mr_esquema.sql"), sql()),
         (os.path.join(AQUI, "mr_mysql.sql"), sql_mysql()),
+        (SQL_BACKEND, sql_mysql(TABLAS_BACKEND)),
     ]
     for ruta, contenido in salidas:
         with open(ruta, "w", encoding="utf-8", newline="\n") as fh:

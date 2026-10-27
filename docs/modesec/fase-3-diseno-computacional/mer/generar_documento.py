@@ -40,13 +40,28 @@ FICHA = {
         "(RF-01-05, RF-01-06). El correo vive aquí y no en Docente/Estudiante: es el correo de la "
         "cuenta, y así su unicidad vale **entre los dos roles** (RF-01-04), cosa que dos UNIQUE "
         "separados no garantizan. Accede como docente **o** como estudiante, nunca como los dos "
-        "({xor}, RI-12). Es la tabla que el incremento I1 ya construyó (`backend/sql/001_esquema_auth.sql`). "
+        "({xor}, RI-12). Es la tabla del backend (`backend/sql/001_esquema.sql`, generado de este modelo). "
         "**Cambia el 2026-10-26 (ADR-037):** el sí/no `email_verificado` pasa a "
         "**`estado_verificacion`**, con dos valores: `procesando` (se envió el código y no se ha "
         "confirmado) y `verificado`. Una credencial de Google o Microsoft nace `verificado` (RI-15). "
-        "`codigo_expira_en` y `codigo_ultimo_envio` siguen: quitarlos (nota R4 del docente) espera "
-        "su respuesta a la pregunta P2 (`21-revision-docente-2026-10-22.md`).",
-        "Ventanas 014 a 019 · RF-01-01 a RF-01-09 · backend I1 · ADR-037"),
+        "**Cambia el 2026-10-27 (ADR-039, nota R4):** el código de verificación sale a su propia "
+        "entidad, CODIGO_VERIFICACION; la credencial pierde `codigo_verificacion`, "
+        "`codigo_expira_en` y `codigo_ultimo_envio`. **Y gana `es_admin` (ADR-040):** la marca de "
+        "administrador que la guía del docente usa para `/users`; falsa por defecto, solo se pone "
+        "por SQL y no es un rol del producto.",
+        "Ventanas 014 a 019 · RF-01-01 a RF-01-09 · backend I1 · ADR-037 · ADR-039 · ADR-040"),
+    "CODIGO_VERIFICACION": (
+        "**Nueva el 2026-10-27 (ADR-039, nota R4 del docente).** El código de 6 dígitos que se "
+        "envía por correo para verificar la cuenta (ventana 015) o para recuperar la contraseña "
+        "(ventana 018). **Débil:** se identifica por la credencial que lo *recibe* más su llave "
+        "parcial `proposito` (`verificar_correo` o `recuperar_contrasena`); por eso una credencial "
+        "tiene **a lo sumo un código por propósito**, (0,2), y pedir otro reemplaza al anterior. "
+        "Se guarda con hash (`codigo_hash`), nunca legible (RNF-08). **El vencimiento (10 minutos) y "
+        "la espera para reenviar (30 segundos) no se guardan: se calculan desde `creado_en`.** "
+        "`intentos` cuenta los fallos con ese código; al quinto deja de servir (RNF-07). Una tarea "
+        "nocturna borra los códigos vencidos (ADR-039); no es un caso de uso.",
+        "ADR-039 · nota R4 (`21-revision-docente-2026-10-22.md`) · ventanas 015 y 018 · "
+        "RF-01-03, RF-01-08 · RNF-07, RNF-08"),
     "DOCENTE": (
         "Quien crea y publica experiencias. Separado de Estudiante como entidad propia (decisión "
         "del borrador, que se mantiene): la relación de cada uno con Experiencia es distinta "
@@ -189,6 +204,7 @@ FICHA = {
 
 FUENTE_REL = {
     "accede_docente": "RF-01-06 · 20-spec-auth-elige-rol · RI-12", "accede_estudiante": "RF-01-06 · RI-12",
+    "recibe": "ADR-039 · RF-01-03, RF-01-08",
     "pertenece_area": "ADR-036", "corresponde a": "ADR-036", "se copia de": "ADR-036 · ADR-033",
     "es de": "ADR-036 · RI-20",
     "comprende": "modelo conceptual (rango no confiable: QA-013)", "se dictamina": "H-6",
@@ -220,6 +236,9 @@ def documento():
     w("(`21-revision-docente-2026-10-22.md`): catálogo curricular normalizado —ÁREA, GRADO y")
     w("DOCUMENTO_OFICIAL, código del DBA sin tildes— (ADR-036) y estado de verificación del correo")
     w("(ADR-037). Ver la sección 10 y la tabla de cambios (13).")
+    w("")
+    w("**Actualizado el 2026-10-27** (encargo 03): entidad CODIGO_VERIFICACION, que saca el código")
+    w("de la credencial (ADR-039, nota R4), y marca de administrador en CREDENCIAL (ADR-040).")
     w("")
     w("MODESEC: *«En esta etapa se recomienda la utilización de bases de datos relacionales […] Si")
     w("la opción es la primera, se deberá crear un MER (Modelo Entidad Relación), un MR (Modelo")
@@ -341,7 +360,8 @@ def documento():
     w("catálogo se carga completo y uno de ellos sin ningún DBA no tendría nada que ofrecer; y")
     w("**(0,1)** de CREDENCIAL en las dos *accede como*, porque mientras el registro está en curso la")
     w("credencial todavía no tiene rol. Las dos *accede como* llevan **{xor}**: una credencial da")
-    w("acceso a un solo rol (RI-12).")
+    w("acceso a un solo rol (RI-12). Y **(0,2)** de CREDENCIAL en *recibe*: a lo sumo un código por")
+    w("propósito, y hay dos propósitos (ADR-039).")
     w("")
     ciclos(w)
     crud(w)
@@ -414,9 +434,14 @@ def crud(w):
     w("")
     w("- **Presentación, Respuesta, Respuesta_Opción y Resultado nunca se modifican.** Son hechos")
     w("  (se mostró, se respondió) y fotografías (lo que se concluyó): RNF-10, RNF-11, ADR-021.")
-    w("- **Solo tres cosas se borran directamente:** una experiencia (CU-15), una inscripción")
-    w("  (CU-26) y una opción mientras el ítem está en Borrador (CU-18). Todo lo demás cae en")
-    w("  cascada, y la cascada nunca alcanza una cuenta ni el currículo (cierra V-11).")
+    w("- **Solo cuatro cosas se borran directamente:** una experiencia (CU-15), una inscripción")
+    w("  (CU-26), una opción mientras el ítem está en Borrador (CU-18) y un código de verificación")
+    w("  ya usado o agotado (CU-03, CU-07; ADR-039). Todo lo demás cae en cascada, y la cascada")
+    w("  desde una experiencia nunca alcanza una cuenta ni el currículo (cierra V-11).")
+    w("- **Fuera de los casos de uso:** una tarea nocturna (ADR-039) borra los códigos vencidos y")
+    w("  las credenciales que llevan más de 7 días sin terminar el registro (sin rol); no la inicia")
+    w("  ningún actor, por eso no está en la matriz. El administrador de la guía del docente")
+    w("  (`/users`, ADR-040) tampoco es un caso de uso del producto.")
     w("- **Lo que ningún caso de uso crea** es lo que viene de fuera —el currículo del MEN y")
     w("  nuestro dictamen, que el equipo carga— o lo que se calcula: el Reporte.")
     w("- **CU-08** (cerrar sesión) es el único caso de uso que no toca datos: termina la sesión del")
@@ -513,10 +538,10 @@ El docente revisó el acceso y el catálogo curricular. Sus notas y su triaje es
 | # | Nota | Dónde quedó |
 |---|---|---|
 | **R1** | «Tabla para grados y área, y codificar» | **Aplicada (ADR-036).** Entidades ÁREA y GRADO, y además DOCUMENTO_OFICIAL (recomendación del equipo). El DBA pierde `area` y `grado` como texto y su código pasa a `ÁREA-GG-NN`, sin tildes (RI-21). El ciclo nuevo, C6, se cierra con RI-20. |
-| **R2** | `id_usuario` → `id_estudiante` e `id_docente` | **No es de este modelo:** el MER no tiene «usuario». Se aplica al backend en la Fase IV. |
+| **R2** | `id_usuario` → `id_estudiante` e `id_docente` | **No es de este modelo:** el MER no tiene «usuario». Aplicada en el backend (encargo 03, ADR-040): la sesión lleva el rol y el `id_docente` o el `id_estudiante`. |
 | **R3** | `email` → `estado_verificado` / `estado_procesando` | **Aplicada (ADR-037).** CREDENCIAL guarda `estado_verificacion` (`procesando` o `verificado`) en vez del sí/no; RI-15 se reescribe con el estado. |
-| **R4** | Quitar `codigo_expira_en` y `codigo_ultimo_envio` | **Pendiente** de la respuesta del docente a la pregunta P2: sin esos datos, el vencimiento del código y la espera de 30 s para reenviarlo (RF-01-03) necesitan otro lugar. Siguen en CREDENCIAL. |
-| **R5** | Correo del sistema `adaptivelearn@` | **No es de este modelo:** es configuración del backend (Fase IV). |
+| **R4** | Quitar `codigo_expira_en` y `codigo_ultimo_envio` | **Aplicada (ADR-039), a confirmar con el docente (pregunta P2).** Salen de CREDENCIAL, con `codigo_verificacion`; el código pasa a la entidad débil CODIGO_VERIFICACION y el vencimiento y la espera para reenviar se calculan desde su `creado_en`. Una tarea nocturna limpia lo vencido. |
+| **R5** | Correo del sistema `adaptivelearn@` | **No es de este modelo:** es configuración del backend; aplicada en el encargo 03 (envío por SMTP configurado en `.env`). |
 """
 
 RESTRICCIONES = """
@@ -597,6 +622,8 @@ CAMBIOS = """
 | 13 | **Reporte** pasa al centro del mapa, entre las cuatro entidades de las que depende. | Legibilidad |
 | 14 | *(2026-10-26)* Entran **ÁREA, GRADO y DOCUMENTO_OFICIAL**; el DBA pierde `area` y `grado` como texto y gana *pertenece a*, *corresponde a* y *se copia de*; el documento *es de* un área. Código del DBA `ÁREA-GG-NN`, sin tildes (RI-21). Ciclo nuevo C6, cerrado por RI-20. Las tres van a la Vista 2. | ADR-036 · revisión del docente del 2026-10-22 (R1) |
 | 15 | *(2026-10-26)* **Credencial:** `email_verificado` (sí/no) pasa a `estado_verificacion` (`procesando` / `verificado`); RI-15 se reescribe con el estado. | ADR-037 · revisión del docente del 2026-10-22 (R3) |
+| 16 | *(2026-10-27)* Entra **CODIGO_VERIFICACION**, débil, con su relación identificadora *recibe* (Vista 1). **Credencial** pierde `codigo_verificacion`, `codigo_expira_en` y `codigo_ultimo_envio`: el vencimiento y la espera para reenviar se calculan desde `creado_en` del código. El grafo gana un nodo y una arista: siguen siendo 6 ciclos. | ADR-039 · revisión del docente del 2026-10-22 (R4) |
+| 17 | *(2026-10-27)* **Credencial** gana `es_admin`, la marca de administrador de la guía del docente, que solo se pone por SQL. | ADR-040 |
 """
 
 VERIFICACION = """

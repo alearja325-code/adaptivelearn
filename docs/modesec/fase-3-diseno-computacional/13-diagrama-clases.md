@@ -15,7 +15,7 @@ las clases»*. Las dos mitades de cada clase tienen, por eso, una fuente cada un
 - **Métodos:** cada uno sale de uno o más casos de uso de `12-casos-de-uso.md`, y lo dice.
   Todo caso de uso aporta al menos un método.
 
-Dos diagramas: el **dominio** (20 clases, 12 enumeraciones, 24 asociaciones) y los **servicios** (13 clases de control e interfaces), que son los objetos que aparecen en los diagramas de secuencia.
+Dos diagramas: el **dominio** (21 clases, 13 enumeraciones, 25 asociaciones) y los **servicios** (13 clases de control e interfaces), que son los objetos que aparecen en los diagramas de secuencia.
 
 ## 1. Decisiones de diseño
 
@@ -41,7 +41,7 @@ Dos diagramas: el **dominio** (20 clases, 12 enumeraciones, 24 asociaciones) y l
 
 ### Credencial
 
-*Tabla `credencial` · entidad CREDENCIAL del MER.* La cuenta de acceso. Existe desde que la persona se registra, antes de tener rol.
+*Tabla `credencial` · entidad CREDENCIAL del MER.* La cuenta de acceso. Existe desde que la persona se registra, antes de tener rol. es_admin es la marca de la guía del docente para /users (ADR-040).
 
 | Atributo | Tipo |
 |---|---|
@@ -51,10 +51,8 @@ Dos diagramas: el **dominio** (20 clases, 12 enumeraciones, 24 asociaciones) y l
 | `password_hash` | string [0..1] |
 | `proveedor_id` | string [0..1] |
 | `estado_verificacion` | EstadoVerificacion |
-| `codigo_verificacion` | string [0..1] |
-| `codigo_expira_en` | Fecha [0..1] |
-| `codigo_ultimo_envio` | Fecha [0..1] |
-| `intentos_codigo` | int |
+| `es_admin` | bool |
+| `nombre_completo` | string [0..1] |
 | `intentos_login` | int |
 | `bloqueado_hasta` | Fecha [0..1] |
 | `creado_en` | Fecha |
@@ -63,14 +61,30 @@ Dos diagramas: el **dominio** (20 clases, 12 enumeraciones, 24 asociaciones) y l
 | Método | Casos de uso |
 |---|---|
 | `verificarContrasena(texto: string): bool` | CU-06 |
-| `emitirCodigo(ahora: Fecha): string` | CU-01, CU-03, CU-07 |
-| `puedeReenviar(ahora: Fecha): bool` | CU-03 |
-| `verificarCodigo(codigo: string, ahora: Fecha): bool` | CU-03 |
+| `emitirCodigo(para: PropositoCodigo, ahora: Fecha): string` | CU-01, CU-03, CU-07 |
 | `cambiarContrasena(nueva: string)` | CU-07 |
-| `registrarFallo(ahora: Fecha)` | CU-03, CU-06 |
+| `registrarFallo(ahora: Fecha)` | CU-06 |
 | `estaBloqueada(ahora: Fecha): bool` | CU-06 |
 | `tieneRol(): bool` | CU-02, CU-06 |
 | `asignarRol(usuario: Usuario)` | CU-05 |
+
+### CodigoVerificacion
+
+*Tabla `codigo_verificacion` · entidad CODIGO_VERIFICACION del MER.* El código de 6 dígitos, con hash. A lo sumo uno por credencial y propósito (ADR-039).
+
+| Atributo | Tipo |
+|---|---|
+| `proposito` | PropositoCodigo |
+| `codigo_hash` | string |
+| `creado_en` | Fecha |
+| `intentos` | int |
+
+| Método | Casos de uso |
+|---|---|
+| `vencido(ahora: Fecha): bool` | CU-03, CU-07 |
+| `puedeReenviar(ahora: Fecha): bool` | CU-03 |
+| `verificar(codigo: string, ahora: Fecha): bool` | CU-03, CU-07 |
+| `registrarFallo()` | CU-03, CU-07 |
 
 ### Usuario {abstracta}
 
@@ -333,6 +347,7 @@ todas y ninguna más.
 |---|---|---|---|---|---|
 | Credencial | *accede como* | Docente | 1 | 0..1 | asociacion |
 | Credencial | *accede como* | Estudiante | 1 | 0..1 | asociacion |
+| Credencial | *recibe* | CodigoVerificacion | 1 | 0..2 | composicion |
 | DBA | *pertenece a* | Area | 1..* | 1 | asociacion |
 | DBA | *corresponde a* | Grado | 1..* | 1 | asociacion |
 | DBA | *se copia de* | DocumentoOficial | 1..* | 1 | asociacion |
@@ -364,6 +379,7 @@ Generalizaciones: Docente → Usuario; Estudiante → Usuario.
 |---|---|---|
 | Proveedor | correo, google, microsoft | ENUM de `credencial.proveedor` |
 | EstadoVerificacion | procesando, verificado | ENUM de `credencial.estado_verificacion` |
+| PropositoCodigo | verificar_correo, recuperar_contrasena | ENUM de `codigo_verificacion.proposito` |
 | NivelEducativo | basica_primaria, basica_secundaria, media | ENUM de `grado.nivel` |
 | EstadoExperiencia | Borrador, Publicada | ENUM de `experiencia.estado` |
 | Formato | single_choice, matching, ordering | ENUM de `item.formato` |
@@ -410,6 +426,8 @@ Generalizaciones: Docente → Usuario; Estudiante → Usuario.
 |---|---|
 | `dbas(codigo_area: string, numero_grado: int, texto: string): DBA [*]` | CU-31 |
 | `dba(codigo_dba: string): DBA` | CU-11, CU-31 |
+| `areas(): Area [*]` | CU-11, CU-31 |
+| `grados(): Grado [*]` | CU-31 |
 
 ### GeneradorBanco «servicio»
 

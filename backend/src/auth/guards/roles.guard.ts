@@ -1,27 +1,46 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { ROLES_KEY } from '../decorators/roles.decorator.js';
+import { User, type Rol } from '../../user/entities/user.entity.js';
 
 /**
  * Guard para verificar roles de usuario
+ * Debe usarse DESPUÉS de JwtAuthGuard: @UseGuards(JwtAuthGuard, RolesGuard)
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
+  constructor(private readonly reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
-    // Obtener roles requeridos del decorador @Roles()
-    const requiredRoles = this.reflector.getAllAndOverride<string[]>('roles', [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    // Obtener roles requeridos del decorador @Roles() (método o clase)
+    const requiredRoles: Rol[] | undefined = this.reflector.getAllAndOverride<Rol[] | undefined>(
+      ROLES_KEY,
+      [context.getHandler(), context.getClass()],
+    );
 
-    if (!requiredRoles) {
+    // Si la ruta no exige roles, se permite el acceso
+    if (!requiredRoles || requiredRoles.length === 0) {
       return true;
     }
 
-    const { user } = context.switchToHttp().getRequest();
-    
+    const { user } = context.switchToHttp().getRequest<{ user?: User }>();
+
+    // Sin usuario: falta JwtAuthGuard o el token no se envió
+    if (!user) {
+      throw new UnauthorizedException('Debes iniciar sesión');
+    }
+
     // Verificar si el usuario tiene alguno de los roles requeridos
-    return requiredRoles.some((role) => user.role === role);
+    if (!requiredRoles.includes(user.role)) {
+      throw new ForbiddenException('No tienes permisos para este recurso');
+    }
+
+    return true;
   }
 }

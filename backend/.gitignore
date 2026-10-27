@@ -8,6 +8,7 @@
 # env / secrets — nunca se suben al repo
 .env
 .env.*
+!.env.example
 .db-password.txt
 
 # IDE

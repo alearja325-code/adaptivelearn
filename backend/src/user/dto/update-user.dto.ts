@@ -1,22 +1,8 @@
-import { IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateUserDto } from './create-user.dto.js';
 
-// Guía: PartialType(CreateUserDto) + isActive + role. Acá solo los datos de
-// "Completa tu perfil" (spec 19). Sin `role`: el rol no se cambia nunca
-// (spec 20). Sin `isActive`: ninguna spec define desactivar cuentas. Sin
-// email/password: la contraseña tiene su propio flujo (specs 21-22).
-export class UpdateUserDto {
-  @IsString()
-  @IsNotEmpty({ message: 'Nombres no puede estar vacío' })
-  @IsOptional()
-  nombres?: string;
-
-  @IsString()
-  @IsNotEmpty({ message: 'Apellidos no puede estar vacío' })
-  @IsOptional()
-  apellidos?: string;
-
-  // Por ahora una URL; la subida real de archivo (JPG/PNG ≤5MB) queda pendiente.
-  @IsUrl({}, { message: 'El avatar debe ser una URL válida' })
-  @IsOptional()
-  avatarUrl?: string;
-}
+// PartialType hace que todas las propiedades de CreateUserDto sean opcionales.
+// Guía: además isActive y role. Acá ninguno de los dos: no hay cuentas
+// desactivadas en el modelo, y ni el rol ni la marca de administrador se
+// asignan por la API (RF-01-06, ADR-040: la marca solo se pone por SQL).
+export class UpdateUserDto extends PartialType(CreateUserDto) {}

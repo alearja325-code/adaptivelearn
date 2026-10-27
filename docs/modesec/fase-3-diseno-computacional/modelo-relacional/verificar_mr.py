@@ -15,7 +15,9 @@ Tres bloques, en orden de fuerza creciente:
      prueba en positivo (lo raro pero valido) y la politica de borrado.
   C. DBML contra SQL. Los dos artefactos describen lo mismo y podrian
      divergir; hoy salen del mismo generador, asi que esto comprueba que
-     el generador no se contradiga a si mismo.
+     el generador no se contradiga a si mismo. Y que el esquema del backend
+     (`backend/sql/001_esquema.sql`) sea el que el MR genera hoy: si alguien
+     lo edita a mano, o cambia el MR sin regenerar, esto falla.
 
 Uso:  python verificar_mr.py
 """
@@ -167,6 +169,13 @@ if not any("columnas difieren" in f for f in fallas):
     chk(True, "todas las tablas tienen las mismas columnas en DBML y SQL")
 
 con.close()
+
+import generar                                                # noqa: E402
+txt_backend = (open(generar.SQL_BACKEND, encoding="utf-8").read()
+               if os.path.exists(generar.SQL_BACKEND) else "")
+chk(txt_backend == generar.sql_mysql(generar.TABLAS_BACKEND),
+    "backend/sql/001_esquema.sql es el que el MR genera hoy "
+    f"({len(generar.TABLAS_BACKEND)} tablas; si no, correr generar.py)")
 
 # ------------------------------------------------------------------- --
 print()

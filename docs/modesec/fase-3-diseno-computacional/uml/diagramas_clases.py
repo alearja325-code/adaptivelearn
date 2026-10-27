@@ -8,6 +8,9 @@ ya leyo el MER encuentra cada cosa en el mismo lugar.
 La columna de identidad pone a Usuario ENTRE sus dos subclases (Docente
 arriba, Estudiante abajo): las dos generalizaciones quedan verticales y
 cortas, y Credencial llega a cada subclase sin cruzar nada.
+
+2026-10-27 (ADR-039): CodigoVerificacion cuelga bajo Credencial, debajo de
+la fila del estudiante; las enumeraciones bajan 70 px para dejarle lugar.
 """
 from lienzo import Lienzo, NEGRO, GRIS, GRIS_CLARO
 from cajas_uml import caja_clase, caja_enum, medir_clase, medir_enum
@@ -19,7 +22,7 @@ from datos_clases import (POR_NOMBRE, ASOCIACIONES, GENERALIZACIONES, ENUMERACIO
 POS = {
     # catalogo (ADR-036), en el hueco de arriba a la izquierda, junto al DBA
     "DocumentoOficial": (40, 90, 250), "Area": (560, 90, 220), "Grado": (560, 230, 220),
-    "Credencial": (40, 482, None),
+    "Credencial": (40, 482, None), "CodigoVerificacion": (40, 1010, None),
     "Docente": (532, 384, 240), "Usuario": (440, 610, None), "Estudiante": (532, 900, 240),
     "DBA": (940, 90, 300), "Evidencia": (1400, 90, 220), "EvidenciaDictamen": (1700, 90, 250),
     "Experiencia": (940, 380, 320), "ExperienciaEvidencia": (1400, 380, 200),
@@ -29,7 +32,7 @@ POS = {
     "Presentacion": (1820, 900, None), "Respuesta": (2380, 900, 230),
     "RespuestaOpcion": (2660, 664, 190),
 }
-ANCHO, ALTO = 2900, 1500
+ANCHO, ALTO = 2900, 1570
 
 
 def rutas(B):
@@ -40,6 +43,8 @@ def rutas(B):
     return {
         ("Credencial", "Docente"): [(300, B["Credencial"][1]), (300, yD), (B["Docente"][0], yD)],
         ("Credencial", "Estudiante"): [(300, B["Credencial"][3]), (300, yE), (B["Estudiante"][0], yE)],
+        ("Credencial", "CodigoVerificacion"): [(120, B["Credencial"][3]),
+                                               (120, B["CodigoVerificacion"][1])],
         ("DBA", "Area"): [(B["DBA"][0], 120), (B["Area"][2], 120)],
         ("DBA", "Grado"): [(960, B["DBA"][3]), (960, 270), (B["Grado"][2], 270)],
         ("DBA", "DocumentoOficial"): [(1015, B["DBA"][3]), (1015, 345), (165, 345),
@@ -126,8 +131,8 @@ def dibujar_dominio():
     L.linea([(mx, my), (B[nombre_ca][0], my)], color=NEGRO, sw=1.2, dash="4,4",
             permitidos={nombre_ca}, desc="clase asociación")
     # enumeraciones, en una fila
-    x, y = 40, 1190
-    L.texto(40, y - 16, "Enumeraciones — las 9 primeras son los ENUM del modelo relacional, valor por "
+    x, y = 40, 1260
+    L.texto(40, y - 16, "Enumeraciones — las 10 primeras son los ENUM del modelo relacional, valor por "
             "valor; las 3 últimas son de valores calculados, que no se guardan.", tam=12, color=GRIS)
     for nombre, valores, _ in ENUMERACIONES:
         w, h = medir_enum(nombre, valores)

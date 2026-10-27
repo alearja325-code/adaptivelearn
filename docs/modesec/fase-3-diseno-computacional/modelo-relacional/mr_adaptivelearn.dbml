@@ -12,16 +12,25 @@ Table credencial {
   password_hash varchar(255)
   proveedor_id varchar(255)
   estado_verificacion varchar [not null]
-  codigo_verificacion char(6)
-  codigo_expira_en datetime
-  codigo_ultimo_envio datetime
-  intentos_codigo "tinyint unsigned" [not null]
+  es_admin boolean [not null]
+  nombre_completo varchar(240)
   intentos_login "tinyint unsigned" [not null]
   bloqueado_hasta datetime
   creado_en datetime [not null]
   actualizado_en datetime [not null]
   indexes {
     (proveedor, proveedor_id) [unique]
+  }
+}
+
+Table codigo_verificacion {
+  id_credencial "int unsigned" [not null]
+  proposito varchar [not null]
+  codigo_hash char(64) [not null]
+  creado_en datetime [not null]
+  intentos "tinyint unsigned" [not null]
+  indexes {
+    (id_credencial, proposito) [pk]
   }
 }
 
@@ -205,6 +214,7 @@ Table resultado {
 }
 
 // ---- referencias ----
+Ref: codigo_verificacion.id_credencial > credencial.id_credencial [delete: cascade, update: cascade]
 Ref: credencial.id_docente > docente.id_docente [delete: restrict, update: restrict]
 Ref: credencial.id_estudiante > estudiante.id_estudiante [delete: restrict, update: restrict]
 Ref: experiencia.id_docente > docente.id_docente [delete: restrict, update: cascade]

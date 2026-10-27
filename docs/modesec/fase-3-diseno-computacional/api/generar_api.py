@@ -13,7 +13,7 @@ import calculos as K
 from calculos import A, CU, ENDPOINTS, nombre
 
 SALIDA = os.path.join(K.AQUI, "..", "20-catalogo-endpoints.md")
-FECHA = "2026-10-22"
+FECHA = "2026-10-22, actualizado el 2026-10-27 (encargo 03)"
 GENERADO = "**Archivo generado** por `api/generar_api.py`; no se edita a mano."
 VERBO = {"C": "crea", "R": "lee", "U": "modifica", "D": "borra"}
 
@@ -88,7 +88,7 @@ def documento():
     w("que hace falta para construir (Fase IV). Cada endpoint dice qué caso de uso atiende")
     w("(`12`), qué operación del diagrama de clases lo resuelve (`13`), en qué diagrama de")
     w("secuencia se ve (`15`), qué entidades crea, lee, modifica o borra —las mismas de la matriz")
-    w("CRUD de `16` §7—, quién puede llamarlo y si ya existe en el backend del incremento I1.")
+    w("CRUD de `16` §7—, quién puede llamarlo y si ya existe en el backend.")
     w("")
     w("Es, casi literalmente, la lista de tareas de cada incremento: cada endpoint lleva un número,")
     w(f"de E-01 a E-{len(ENDPOINTS):02d}, para repartirlo.")
@@ -97,7 +97,7 @@ def documento():
     # -------------------------------------------------------------- 1
     w("## 1. En cifras")
     w("")
-    w("| Incremento | Subsistemas | Endpoints | Hechos en I1 | Por ajustar | Faltan | Opcionales |")
+    w("| Incremento | Subsistemas | Endpoints | Hechos | Por ajustar | Faltan | Opcionales |")
     w("|---|---|---|---|---|---|---|")
     for inc, titulo in A.INCREMENTOS.items():
         eps = [e for e in ENDPOINTS if K.incremento(e) == inc]
@@ -108,10 +108,11 @@ def documento():
     w(f"| **Total** | | **{len(ENDPOINTS)}** | **{tot['hecho']}** | **{tot['ajustar']}** | "
       f"**{tot['falta']}** | **{tot['opcional']}** |")
     w("")
-    w(f"De los {len(ENDPOINTS)}, {tot['hecho'] + tot['ajustar']} ya existen en el backend I1")
-    w("(`backend/` del repositorio): lo dice su código, revisado el 2026-10-26.")
-    w(f"{tot['ajustar']} de ellos funcionan, pero el diseño les pide algo distinto. Los")
-    w("incrementos I2, I3 e I4 están por construir.")
+    w(f"De los {len(ENDPOINTS)}, {tot['hecho'] + tot['ajustar']} ya existen en el backend")
+    w("(`backend/` del repositorio): lo dice su código, revisado el 2026-10-27, al cerrar el")
+    w(f"encargo 03. {tot['ajustar']} de ellos funcionan, pero el diseño les pide algo distinto.")
+    w("Incrementos empezados: " + "; ".join(f"**{k}**, {v}" for k, v in A.EMPEZADOS.items())
+      + ". Lo demás está por construir.")
     w("")
 
     # -------------------------------------------------------------- 2
@@ -135,18 +136,17 @@ def documento():
     for cod, txt in A.ERRORES:
         w(f"| `{cod}` | {txt} |")
     w("")
-    w("Un endpoint que no es del dueño responde `403`, no `404`, como ya lo hace I1. Los mensajes")
+    w("Un endpoint que no es del dueño responde `403`, no `404`, como en la guía del docente. Los mensajes")
     w("de error van en español y nunca afirman certeza sobre el aprendizaje (RNF-02, RNF-04).")
     w("")
     w("### 2.3 Nombres")
     w("")
     w("Las rutas y los campos nuevos van en español, con los nombres del MER y del MR")
     w("(`experiencias`, `inscripciones`, `codigo_dba`, `certeza`): un mismo dato no cambia de")
-    w("nombre entre la base, el backend y este catálogo. Las cuatro rutas que I1 heredó de la guía")
-    w("del curso en inglés —`/auth/register`, `/auth/login`, `/auth/profile`, `/users/:id`—, y sus")
-    w("campos `email`, `password` y `role`, se dejan como están: ya los usan el backend I1 y su")
-    w("colección de pruebas. Unificarlas es una decisión del equipo; si se toma, se hace en un solo")
-    w("cambio y se corrige aquí.")
+    w("nombre entre la base, el backend y este catálogo. Las rutas que vienen de la guía del curso")
+    w("en inglés —`/auth/register`, `/auth/login`, `/auth/profile`, `/users`, `/example`—, y sus")
+    w("campos `email`, `password`, `fullName` y `role`, se dejan como están: la guía manda en la")
+    w("forma (ADR-040) y sus pruebas los usan.")
     w("")
     w("En **Toca**, las entidades son las del MER (`16`): REPORTE no es una tabla, se calcula al")
     w("abrirlo (ADR-022).")
@@ -174,11 +174,12 @@ def documento():
         n += 1
 
     # -------------------------------------------------------------- 7
-    w(f"## {n}. En el backend I1, pero no del producto")
+    w(f"## {n}. En el backend por la guía del docente, pero no del producto")
     w("")
-    w("El backend I1 trae también rutas que vienen de la guía del curso (JWT). AdaptiveLearn")
-    w("no tiene rol de administrador (`10` §2.2), así que no son del producto: se quitan antes de")
-    w("entregarlo, o se dejan solo en desarrollo.")
+    w("La guía del curso (JWT en NestJS, versión 2) pide estas rutas, y sus pruebas las usan")
+    w("(ADR-040). `/users` es solo para la credencial marcada como administrador —la marca")
+    w("`es_admin` se pone únicamente por SQL—. El producto no tiene pantallas de administrador: no")
+    w("son casos de uso y ninguna pantalla las llama.")
     w("")
     w("| Ruta | Qué es |")
     w("|---|---|")
@@ -227,9 +228,13 @@ def documento():
     w(f"## {n}. Decisiones de este catálogo")
     w("")
     w("- **La foto viaja con el perfil**, en multipart/form-data, en `POST /auth/elegir-rol` y en")
-    w("  `PATCH /users/:id`. CU-04 dice que el perfil se guarda al elegir el rol, y una ruta aparte")
+    w("  `PATCH /auth/profile`. CU-04 dice que el perfil se guarda al elegir el rol, y una ruta aparte")
     w("  para subir la foto no tendría ni operación ni caso de uso propios.")
-    w("- **Las 4 áreas no tienen endpoint:** son fijas (CU-11 paso 1).")
+    w("- **Editar mi perfil es `PATCH /auth/profile`** (encargo 03): en la guía v2, `/users/:id` es")
+    w("  del administrador. Sin `:id` en la ruta, nadie puede apuntar al perfil de otro.")
+    w("- **Las áreas y los grados tienen endpoint** (encargo 03): `GET /catalogo/areas` y")
+    w("  `GET /catalogo/grados` leen las tablas de ADR-036, para no escribir los códigos dos veces.")
+    w("  `Catalogo` ganó las operaciones `areas()` y `grados()` (`13`).")
     w("- **La siguiente pregunta es `POST`, no `GET`:** cada llamada puede crear una presentación.")
     w("  Un `GET` que escribe se repetiría solo con cualquier recarga o caché.")
     w("- **El diagrama de clases ganó tres operaciones** que la IGU necesita y no estaban:")
@@ -255,7 +260,8 @@ def documento():
     w("  `PATCH` modifica. Ningún endpoint modifica un hecho (RNF-10, RNF-11) ni borra lo que")
     w("  ningún flujo borra.")
     w("- **Acceso e incremento:** quien llama es el actor del caso de uso, y cada endpoint cae en")
-    w("  un solo incremento. Solo I1 tiene endpoints hechos.")
+    w("  un solo incremento. Solo los incrementos empezados tienen endpoints hechos, y el estado")
+    w("  de cada endpoint es el del código: se leen los controladores de `backend/src/`.")
     w("- **Rutas:** ninguna repetida, ninguna de la sección «Lo que no se debe agregar», y las")
     w("  nuevas en español.")
     w("")
