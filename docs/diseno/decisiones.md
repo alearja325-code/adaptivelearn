@@ -2054,5 +2054,31 @@ y el propio docente pidió no usar un usuario genérico (nota R2,
 solo para cumplir la guía; el producto no tiene un rol de administrador
 con pantallas. El MER gana un atributo en CREDENCIAL.
 
+**Aplicación (PR #3, encargo 03, unido el 2026-10-27):** Alejandro
+aceptó las 9 decisiones que el encargo tomó por su cuenta, después de la
+revisión local (las 6 pruebas de la guía, 18 pruebas unitarias y 40 de
+punta a punta, todas contra MySQL):
+1. Una cuenta que todavía no eligió docente o estudiante tiene el rol
+   `user`, el valor por defecto de la guía (así la prueba 1 sale igual).
+2. Editar el propio perfil (E-12) es `PATCH /auth/profile`; `/users/:id`
+   sigue siendo solo de administrador.
+3. El código de verificación se guarda como huella HMAC, con la misma
+   clave secreta del JWT.
+4. `credencial.nombre_completo` guarda el `fullName` que la guía pide al
+   registrarse, mientras la persona no tiene rol; los nombres del
+   dominio siguen en DOCENTE y ESTUDIANTE.
+5. Una cuenta bloqueada por 5 intentos fallidos responde el mismo error
+   genérico que una contraseña incorrecta, para no confirmar que existe.
+   (Consecuencia: quien está bloqueado no ve que lo está; dura 15 min.)
+6. Títulos, versión, año, páginas y direcciones de los 4 documentos
+   oficiales, tomados de ADR-033 y de los PDF.
+7. La tarea nocturna nunca borra la cuenta de un administrador.
+8. El catálogo (E-14 a E-17) es del incremento I2, que queda "empezado".
+9. Una foto de más de 5 MB responde 413 (archivo demasiado grande).
+
+La única diferencia visible con las pruebas de la guía sigue siendo la
+contraseña: la de la guía (`password123`) no cumple RF-01-01 y responde
+400; se prueba con `Password123`.
+
 **Reemplaza a:** ninguna. Corrige el borrador del encargo 03, que
 mandaba quitar `/users` y `/example`.
