@@ -2010,3 +2010,49 @@ punto de partida razonable, revisable. Si el docente responde algo
 distinto a P2, esta decisión se ajusta.
 
 **Reemplaza a:** ninguna. Modifica CREDENCIAL (ADR-034, ADR-037).
+
+---
+
+## ADR-040 — El acceso sigue la guía del docente como base, adaptada al modelo de AdaptiveLearn
+
+**Fecha:** 2026-10-26
+**Estado:** aceptada
+
+**Contexto:** el acceso es lo que el curso DSE-2 evalúa con su guía
+"Implementación de JWT en NestJS con MySQL". El backend de septiembre la
+siguió sección por sección con la primera versión
+(`docs/cursos/dse-2-203453/backend-auth-informe-guia.md`). El docente
+envió una **versión nueva** (`docs/cursos/dse-2-203453/guia-docente/`):
+serializador que nunca envía la contraseña (`@Exclude`), rutas `/users`
+solo para administrador (que se marca únicamente por SQL), borrar
+usuario, 6 pruebas en la sección 7 y una tabla de respuestas esperadas.
+La guía es una plantilla genérica (una tabla `users` con rol), mientras
+que AdaptiveLearn separa Docente y Estudiante y no tiene administrador,
+y el propio docente pidió no usar un usuario genérico (nota R2,
+2026-10-22).
+
+**Decisión:**
+
+1. **Se sigue la guía v2 en todo lo que evalúa:** estructura de
+   carpetas, nombres de módulos, archivos y rutas (`/auth/register`,
+   `/auth/login`, `/auth/profile`, `/users`, `/example`), guards,
+   decoradores, `ValidationPipe` y serializador globales, y las
+   respuestas esperadas (401, 403, 409, 400, 404; login 200; borrar
+   204). **Las 6 pruebas de su sección 7 tienen que funcionar.**
+2. **`/users` queda solo para administrador**, como dice la guía. Para
+   eso, la credencial tiene una **marca de administrador** (falsa por
+   defecto) que **solo se pone por SQL**: ninguna ruta la asigna. Las
+   pantallas del producto no usan `/users`.
+3. **Debajo de la estructura de la guía, el modelo es el de
+   AdaptiveLearn:** credencial + docente / estudiante (ADR-034), la sesión
+   lleva el rol y el `id_docente` o `id_estudiante` (nota R2), el estado
+   de verificación (ADR-037) y los códigos en su tabla (ADR-039).
+4. **Cada diferencia con la guía se declara con su razón**, en el
+   informe de comparación, como ya se hizo en septiembre.
+
+**Consecuencia reconocida:** la marca de administrador entra al modelo
+solo para cumplir la guía; el producto no tiene un rol de administrador
+con pantallas. El MER gana un atributo en CREDENCIAL.
+
+**Reemplaza a:** ninguna. Corrige el borrador del encargo 03, que
+mandaba quitar `/users` y `/example`.

@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía JWT en NestJS con MySQL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .table-of-contents {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .table-of-contents h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+        }
+
+        .table-of-contents li {
+            padding: 8px 0;
+        }
+
+        .table-of-contents a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding-left: 10px;
+        }
+
+        .table-of-contents a:hover {
+            color: #667eea;
+            padding-left: 20px;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .code-block {
+            position: relative;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .code-language {
+            font-weight: bold;
+            color: #4fd1c5;
+        }
+
+        .copy-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+
+        .copy-button:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .copy-button.copied {
+            background: #48bb78;
+        }
+
+        pre {
+            margin: 0;
+            background: #1a202c;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .note strong {
+            color: #856404;
+        }
+
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning strong {
+            color: #721c24;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success strong {
+            color: #155724;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Syntax highlighting colors */
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .comment { color: #5c6370; font-style: italic; }
+        .function { color: #61afef; }
+        .number { color: #d19a66; }
+        .operator { color: #56b6c2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Guía Didáctica Completa</h1>
+            <p>Implementación de JWT en NestJS con MySQL</p>
+        </header>
+
+        <div class="content">
+            <div class="table-of-contents">
+                <h2>📋 Tabla de Contenidos</h2>
+                <ul>
+                    <li><a href="#seccion-1">1. Configuración Inicial del Proyecto</a></li>
+                    <li><a href="#seccion-2">2. Configuración de la Base de Datos MySQL</a></li>
+                    <li><a href="#seccion-3">3. Módulo de Usuarios (User)</a></li>
+                    <li><a href="#seccion-4">4. Módulo de Autenticación (Auth)</a></li>
+                    <li><a href="#seccion-5">5. DTOs y Validaciones</a></li>
+                    <li><a href="#seccion-6">6. Guards y Decoradores</a></li>
+                    <li><a href="#seccion-7">7. Pruebas con Ejemplos</a></li>
+                </ul>
+            </div>
+
+            <!-- SECCIÓN 1 -->
+            <section id="seccion-1" class="section">
+                <h2><span class="step-number">1</span>Configuración Inicial del Proyecto</h2>
+                
+                <h3>Paso 1: Crear el proyecto NestJS</h3>
+                <p>Primero, instalaremos NestJS CLI globalmente y crearemos un nuevo proyecto.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Instalar NestJS CLI globalmente
+npm i -g @nestjs/cli
+
+# Crear nuevo proyecto
+nest new jwt-auth-project
+
+# Entrar al directorio
+cd jwt-auth-project</code></pre>
+                </div>
+
+                <h3>Paso 2: Instalar dependencias necesarias</h3>
+                <p>Instalaremos todas las dependencias requeridas para JWT, MySQL, validaciones y más.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Dependencias para JWT
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt
+
+# Dependencias para MySQL y TypeORM
+npm install @nestjs/typeorm typeorm mysql2
+
+# Dependencias para validación y transformación
+npm install class-validator class-transformer
+
+# Dependencias para variables de entorno
+npm install @nestjs/config
+
+# Dependencias para encriptación de contraseñas
+npm install bcrypt
+npm install -D @types/bcrypt @types/passport-jwt</code></pre>
+                </div>
+
+                <div class="success">
+                    <strong>✅ ¡Perfecto!</strong> Ya tienes todas las dependencias instaladas para comenzar.
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2 -->
+            <section id="seccion-2" class="section">
+                <h2><span class="step-number">2</span>Configuración de la Base de Datos MySQL</h2>
+                
+                <h3>Paso 1: Crear archivo de configuración .env</h3>
+                <p>Este archivo contendrá todas las variables de entorno sensibles.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">.env</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Configuración de la base de datos
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=tu_password
+DB_DATABASE=jwt_auth_db
+
+# Configuración de JWT
+JWT_SECRET=tu_secreto_super_seguro_cambialo_en_produccion
+JWT_EXPIRATION=1h</code></pre>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Importante:</strong> Nunca subas el archivo .env a tu repositorio. Agrégalo a .gitignore.
+                </div>
+
+                <h3>Paso 2: Configurar app.module.ts</h3>
+                <p>Configuraremos el módulo principal de la aplicación con TypeORM y las variables de entorno.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/app.module.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+
+@Module({
+  imports: [
+    // Configuración de variables de entorno
+    // isGlobal: true hace que ConfigModule esté disponible en toda la app
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+
+    // Configuración de TypeORM con MySQL
+    // useFactory permite inyectar ConfigService para leer variables de entorno
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'mysql',
+        host: configService.get('DB_HOST'),
+        port: +configService.get('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_DATABASE'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true, // ⚠️ Solo en desarrollo
+      }),
+      inject: [ConfigService],
+    }),
+
+    // Módulos de la aplicación
+    UserModule,
+    AuthModule,
+  ],
+})
+export class AppModule {}</code></pre>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Nota:</strong> synchronize: true solo debe usarse en desarrollo. En producción, utiliza migraciones.
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3 -->
+            <section id="seccion-3" class="section">
+                <h2><span class="step-number">3</span>Módulo de Usuarios (User)</h2>
+                
+                <h3>Paso 1: Generar el módulo User</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Generar módulo, controlador y servicio
+nest g module user
+nest g controller user --no-spec
+nest g service user --no-spec</code></pre>
+                </div>
+
+                <h3>Paso 2: Crear la entidad User</h3>
+                <p>La entidad define la estructura de la tabla en la base de datos.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/entities/user.entity.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { 
+  Entity, 
+  Column, 
+  PrimaryGeneratedColumn, 
+  CreateDateColumn, 
+  UpdateDateColumn 
+} from 'typeorm';
+
+// Decorador @Entity define que esta clase es una entidad de base de datos
+@Entity('users')
+export class User {
+  // Clave primaria auto-incremental
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  // Columna de email única y no nula
+  @Column({ unique: true, nullable: false })
+  email: string;
+
+  // Columna de contraseña (se guardará encriptada)
+  // select: false evita que se devuelva por defecto en las consultas
+  @Column({ nullable: false, select: false })
+  password: string;
+
+  // Nombre completo del usuario
+  @Column({ nullable: false })
+  fullName: string;
+
+  // Estado activo del usuario
+  @Column({ default: true })
+  isActive: boolean;
+
+  // Rol del usuario (por defecto 'user')
+  @Column({ default: 'user' })
+  role: string;
+
+  // Fecha de creación automática
+  @CreateDateColumn()
+  createdAt: Date;
+
+  // Fecha de actualización automática
+  @UpdateDateColumn()
+  updatedAt: Date;
+}</code></pre>
+                </div>
+
+                <h3>Paso 3: Crear DTOs para User</h3>
+                <p>Los DTOs (Data Transfer Objects) definen la estructura de los datos que se envían y reciben.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/dto/create-user.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+
+export class CreateUserDto {
+  // Validación de email con formato correcto
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+
+  // Validación de contraseña con mínimo 6 caracteres
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @MinLength(6, { message: 'La contraseña debe tener al menos 6 caracteres' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+
+  // Validación de nombre completo
+  @IsString({ message: 'El nombre completo debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'El nombre completo es obligatorio' })
+  fullName: string;
+}</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/dto/update-user.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { PartialType } from '@nestjs/mapped-types';
+import { CreateUserDto } from './create-user.dto';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
+
+// PartialType hace que todas las propiedades de CreateUserDto sean opcionales
+export class UpdateUserDto extends PartialType(CreateUserDto) {
+  // Campo opcional para actualizar el estado activo
+  @IsBoolean({ message: 'isActive debe ser un valor booleano' })
+  @IsOptional()
+  isActive?: boolean;
+
+  // Campo opcional para actualizar el rol
+  @IsString({ message: 'El rol debe ser una cadena de texto' })
+  @IsOptional()
+  role?: string;
+}</code></pre>
+                </div>
+
+                <h3>Paso 4: Implementar el servicio User</h3>
+                <p>El servicio contiene la lógica de negocio para gestionar usuarios.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/user.service.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { 
+  Injectable, 
+  ConflictException, 
+  NotFoundException 
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { User } from './entities/user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+
+@Injectable()
+export class UserService {
+  constructor(
+    // Inyección del repositorio de User
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {}
+
+  /**
+   * Crear un nuevo usuario
+   * Encripta la contraseña antes de guardarla
+   */
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    // Verificar si el email ya existe
+    const existingUser = await this.userRepository.findOne({
+      where: { email: createUserDto.email },
+    });
+
+    if (existingUser) {
+      throw new ConflictException('El email ya está registrado');
+    }
+
+    // Encriptar la contraseña
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+
+    // Crear nueva instancia de usuario
+    const user = this.userRepository.create({
+      ...createUserDto,
+      password: hashedPassword,
+    });
+
+    // Guardar en la base de datos
+    return await this.userRepository.save(user);
+  }
+
+  /**
+   * Obtener todos los usuarios
+   * No incluye las contraseñas
+   */
+  async findAll(): Promise<User[]> {
+    return await this.userRepository.find();
+  }
+
+  /**
+   * Obtener un usuario por ID
+   */
+  async findOne(id: number): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    
+    if (!user) {
+      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+    }
+    
+    return user;
+  }
+
+  /**
+   * Buscar usuario por email
+   * Incluye la contraseña (para autenticación)
+   */
+  async findOneByEmail(email: string): Promise<User> {
+    return await this.userRepository.findOne({
+      where: { email },
+      select: ['id', 'email', 'password', 'fullName', 'role', 'isActive'],
+    });
+  }
+
+  /**
+   * Actualizar un usuario
+   */
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    const user = await this.findOne(id);
+
+    // Si se actualiza la contraseña, encriptarla
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
+    }
+
+    // Actualizar los campos
+    Object.assign(user, updateUserDto);
+
+    return await this.userRepository.save(user);
+  }
+
+  /**
+   * Eliminar un usuario (soft delete)
+   */
+  async remove(id: number): Promise<void> {
+    const user = await this.findOne(id);
+    await this.userRepository.remove(user);
+  }
+}</code></pre>
+                </div>
+
+                <h3>Paso 5: Implementar el controlador User</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/user.controller.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+
+@Controller('users')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  /**
+   * POST /users
+   * Crear un nuevo usuario
+   */
+  @Post()
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
+  }
+
+  /**
+   * GET /users
+   * Obtener todos los usuarios
+   */
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
+  /**
+   * GET /users/:id
+   * Obtener un usuario por ID
+   */
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.findOne(id);
+  }
+
+  /**
+   * PATCH /users/:id
+   * Actualizar un usuario
+   */
+  @Patch(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.userService.update(id, updateUserDto);
+  }
+
+  /**
+   * DELETE /users/:id
+   * Eliminar un usuario
+   */
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.remove(id);
+  }
+}</code></pre>
+                </div>
+
+                <h3>Paso 6: Configurar el módulo User</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/user.module.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
+import { User } from './entities/user.entity';
+
+@Module({
+  // Importar el repositorio de User
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UserController],
+  providers: [UserService],
+  // Exportar el servicio para usarlo en otros módulos (como Auth)
+  exports: [UserService],
+})
+export class UserModule {}</code></pre>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4 -->
+            <section id="seccion-4" class="section">
+                <h2><span class="step-number">4</span>Módulo de Autenticación (Auth)</h2>
+                
+                <h3>Paso 1: Generar el módulo Auth</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Generar módulo, controlador y servicio
+nest g module auth
+nest g controller auth --no-spec
+nest g service auth --no-spec</code></pre>
+                </div>
+
+                <h3>Paso 2: Crear DTOs para Auth</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/dto/login.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+
+export class LoginDto {
+  // Validación de email
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+
+  // Validación de contraseña
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+}</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/dto/register.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+
+export class RegisterDto {
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @MinLength(6, { message: 'La contraseña debe tener al menos 6 caracteres' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+
+  @IsString({ message: 'El nombre completo debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'El nombre completo es obligatorio' })
+  fullName: string;
+}</code></pre>
+                </div>
+
+                <h3>Paso 3: Crear interfaces para JWT</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/interfaces/jwt-payload.interface.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>// Interfaz que define la estructura del payload del JWT
+export interface JwtPayload {
+  sub: number;      // ID del usuario
+  email: string;    // Email del usuario
+  role: string;     // Rol del usuario
+}</code></pre>
+                </div>
+
+                <h3>Paso 4: Implementar JWT Strategy</h3>
+                <p>La estrategia JWT valida el token en cada petición protegida.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/strategies/jwt.strategy.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { UserService } from '../../user/user.service';
+import { JwtPayload } from '../interfaces/jwt-payload.interface';
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(
+    private readonly userService: UserService,
+    private readonly configService: ConfigService,
+  ) {
+    super({
+      // Extraer el token del header Authorization como Bearer token
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      // No ignorar la expiración del token
+      ignoreExpiration: false,
+      // Secreto para verificar el token
+      secretOrKey: configService.get('JWT_SECRET'),
+    });
+  }
+
+  /**
+   * Método que se ejecuta automáticamente después de validar el token
+   * El payload ya viene decodificado por Passport
+   */
+  async validate(payload: JwtPayload) {
+    const { sub: id } = payload;
+
+    // Buscar el usuario en la base de datos
+    const user = await this.userService.findOne(id);
+
+    // Verificar si el usuario está activo
+    if (!user.isActive) {
+      throw new UnauthorizedException('Usuario inactivo');
+    }
+
+    // Retornar el usuario (se agregará a request.user)
+    return user;
+  }
+}</code></pre>
+                </div>
+
+                <h3>Paso 5: Implementar el servicio Auth</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/auth.service.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { UserService } from '../user/user.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { JwtPayload } from './interfaces/jwt-payload.interface';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
+
+  /**
+   * Registrar un nuevo usuario
+   * Crea el usuario y retorna un token JWT
+   */
+  async register(registerDto: RegisterDto) {
+    // Crear el usuario usando el servicio de usuarios
+    const user = await this.userService.create(registerDto);
+
+    // Generar el token JWT
+    const token = await this.generateToken(user.id, user.email, user.role);
+
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+      },
+      token,
+    };
+  }
+
+  /**
+   * Login de usuario
+   * Valida credenciales y retorna un token JWT
+   */
+  async login(loginDto: LoginDto) {
+    const { email, password } = loginDto;
+
+    // Buscar usuario por email (incluye password)
+    const user = await this.userService.findOneByEmail(email);
+
+    // Verificar si el usuario existe
+    if (!user) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+
+    // Verificar si el usuario está activo
+    if (!user.isActive) {
+      throw new UnauthorizedException('Usuario inactivo');
+    }
+
+    // Comparar contraseñas
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+
+    // Generar el token JWT
+    const token = await this.generateToken(user.id, user.email, user.role);
+
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+      },
+      token,
+    };
+  }
+
+  /**
+   * Generar token JWT
+   * Crea un token con el payload especificado
+   */
+  private async generateToken(
+    userId: number,
+    email: string,
+    role: string,
+  ): Promise<string> {
+    const payload: JwtPayload = {
+      sub: userId,
+      email,
+      role,
+    };
+
+    // Firmar y retornar el token
+    return await this.jwtService.signAsync(payload);
+  }
+
+  /**
+   * Validar token y retornar información del usuario
+   */
+  async validateToken(token: string) {
+    try {
+      const payload = await this.jwtService.verifyAsync(token);
+      const user = await this.userService.findOne(payload.sub);
+      return user;
+    } catch (error) {
+      throw new UnauthorizedException('Token inválido');
+    }
+  }
+}</code></pre>
+                </div>
+
+                <h3>Paso 6: Implementar el controlador Auth</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/auth.controller.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Controller, Post, Body, Get, UseGuards, Request } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  /**
+   * POST /auth/register
+   * Registrar un nuevo usuario
+   */
+  @Post('register')
+  async register(@Body() registerDto: RegisterDto) {
+    return await this.authService.register(registerDto);
+  }
+
+  /**
+   * POST /auth/login
+   * Iniciar sesión
+   */
+  @Post('login')
+  async login(@Body() loginDto: LoginDto) {
+    return await this.authService.login(loginDto);
+  }
+
+  /**
+   * GET /auth/profile
+   * Obtener perfil del usuario autenticado
+   * Ruta protegida con JWT
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@Request() req) {
+    // req.user contiene la información del usuario autenticado
+    return {
+      user: req.user,
+    };
+  }
+}</code></pre>
+                </div>
+
+                <h3>Paso 7: Configurar el módulo Auth</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/auth.module.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { UserModule } from '../user/user.module';
+import { JwtStrategy } from './strategies/jwt.strategy';
+
+@Module({
+  imports: [
+    // Importar UserModule para acceder a UserService
+    UserModule,
+    
+    // Configurar Passport
+    PassportModule,
+    
+    // Configurar JWT
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get('JWT_SECRET'),
+        signOptions: {
+          expiresIn: configService.get('JWT_EXPIRATION'),
+        },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
+})
+export class AuthModule {}</code></pre>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5 -->
+            <section id="seccion-5" class="section">
+                <h2><span class="step-number">5</span>DTOs y Validaciones</h2>
+                
+                <h3>Configurar ValidationPipe global</h3>
+                <p>Para que las validaciones funcionen automáticamente en toda la aplicación.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/main.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  // Configurar ValidationPipe globalmente
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // Elimina propiedades no definidas en el DTO
+      forbidNonWhitelisted: true, // Lanza error si hay propiedades no permitidas
+      transform: true, // Transforma los datos al tipo definido en el DTO
+    }),
+  );
+
+  // Habilitar CORS (opcional, para desarrollo con frontend)
+  app.enableCors();
+
+  await app.listen(3000);
+  console.log('🚀 Servidor corriendo en http://localhost:3000');
+}
+bootstrap();</code></pre>
+                </div>
+
+                <div class="success">
+                    <strong>✅ Validaciones configuradas:</strong> Ahora todos los DTOs serán validados automáticamente.
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6 -->
+            <section id="seccion-6" class="section">
+                <h2><span class="step-number">6</span>Guards y Decoradores</h2>
+                
+                <h3>Paso 1: Crear el JWT Guard</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/guards/jwt-auth.guard.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
+/**
+ * Guard que protege rutas usando JWT
+ * Extiende de AuthGuard('jwt') que usa la estrategia JWT
+ */
+@Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {}</code></pre>
+                </div>
+
+                <h3>Paso 2: Crear decorador personalizado para obtener usuario</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/decorators/get-user.decorator.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+
+/**
+ * Decorador personalizado para extraer el usuario del request
+ * Uso: @GetUser() user: User
+ */
+export const GetUser = createParamDecorator(
+  (data: unknown, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest();
+    return request.user;
+  },
+);</code></pre>
+                </div>
+
+                <h3>Paso 3: Crear guard para roles</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/guards/roles.guard.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+
+/**
+ * Guard para verificar roles de usuario
+ */
+@Injectable()
+export class RolesGuard implements CanActivate {
+  constructor(private reflector: Reflector) {}
+
+  canActivate(context: ExecutionContext): boolean {
+    // Obtener roles requeridos del decorador @Roles()
+    const requiredRoles = this.reflector.getAllAndOverride<string[]>('roles', [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+
+    if (!requiredRoles) {
+      return true;
+    }
+
+    const { user } = context.switchToHttp().getRequest();
+    
+    // Verificar si el usuario tiene alguno de los roles requeridos
+    return requiredRoles.some((role) => user.role === role);
+  }
+}</code></pre>
+                </div>
+
+                <h3>Paso 4: Crear decorador de roles</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/decorators/roles.decorator.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { SetMetadata } from '@nestjs/common';
+
+/**
+ * Decorador para especificar roles requeridos
+ * Uso: @Roles('admin', 'moderator')
+ */
+export const Roles = (...roles: string[]) => SetMetadata('roles', roles);</code></pre>
+                </div>
+
+                <h3>Ejemplo de uso de Guards y Decoradores</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - Ejemplo en un controlador</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Controller, Get, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { RolesGuard } from './auth/guards/roles.guard';
+import { Roles } from './auth/decorators/roles.decorator';
+import { GetUser } from './auth/decorators/get-user.decorator';
+import { User } from './user/entities/user.entity';
+
+@Controller('example')
+export class ExampleController {
+  // Ruta protegida solo con autenticación
+  @UseGuards(JwtAuthGuard)
+  @Get('protected')
+  protectedRoute(@GetUser() user: User) {
+    return {
+      message: 'Esta ruta está protegida',
+      user: user,
+    };
+  }
+
+  // Ruta protegida solo para administradores
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  @Get('admin')
+  adminRoute(@GetUser() user: User) {
+    return {
+      message: 'Esta ruta es solo para administradores',
+      user: user,
+    };
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 7 -->
+            <section id="seccion-7" class="section">
+                <h2><span class="step-number">7</span>Pruebas con Ejemplos</h2>
+                
+                <h3>1. Registrar un nuevo usuario</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "usuario@example.com",
+  "password": "password123",
+  "fullName": "Juan Pérez"
+}</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Respuesta esperada</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>{
+  "user": {
+    "id": 1,
+    "email": "usuario@example.com",
+    "fullName": "Juan Pérez",
+    "role": "user"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}</code></pre>
+                </div>
+
+                <h3>2. Iniciar sesión</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "usuario@example.com",
+  "password": "password123"
+}</code></pre>
+                </div>
+
+                <h3>3. Obtener perfil (ruta protegida)</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>GET http://localhost:3000/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</code></pre>
+                </div>
+
+                <h3>4. Crear usuario (desde módulo User)</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "otro@example.com",
+  "password": "password456",
+  "fullName": "María García"
+}</code></pre>
+                </div>
+
+                <h3>5. Listar todos los usuarios</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>GET http://localhost:3000/users</code></pre>
+                </div>
+
+                <h3>Probar con cURL</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash - Registro</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "password123",
+    "fullName": "Usuario Test"
+  }'</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash - Login</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "password123"
+  }'</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash - Perfil (con token)</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>curl -X GET http://localhost:3000/auth/profile \
+  -H "Authorization: Bearer TU_TOKEN_AQUI"</code></pre>
+                </div>
+
+                <div class="success">
+                    <strong>✅ ¡Implementación completa!</strong> Ya tienes un sistema de autenticación JWT totalmente funcional con NestJS y MySQL.
+                </div>
+
+                <div class="note">
+                    <strong>💡 Próximos pasos recomendados:</strong>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Implementar refresh tokens</li>
+                        <li>Agregar límite de intentos de login</li>
+                        <li>Implementar recuperación de contraseña</li>
+                        <li>Agregar verificación de email</li>
+                        <li>Implementar logout con blacklist de tokens</li>
+                        <li>Configurar migraciones de TypeORM para producción</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECCIÓN BONUS: Estructura del proyecto -->
+            <section class="section">
+                <h2>📁 Estructura Final del Proyecto</h2>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Estructura de carpetas</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>jwt-auth-project/
+├── src/
+│   ├── auth/
+│   │   ├── decorators/
+│   │   │   ├── get-user.decorator.ts
+│   │   │   └── roles.decorator.ts
+│   │   ├── dto/
+│   │   │   ├── login.dto.ts
+│   │   │   └── register.dto.ts
+│   │   ├── guards/
+│   │   │   ├── jwt-auth.guard.ts
+│   │   │   └── roles.guard.ts
+│   │   ├── interfaces/
+│   │   │   └── jwt-payload.interface.ts
+│   │   ├── strategies/
+│   │   │   └── jwt.strategy.ts
+│   │   ├── auth.controller.ts
+│   │   ├── auth.module.ts
+│   │   └── auth.service.ts
+│   ├── user/
+│   │   ├── dto/
+│   │   │   ├── create-user.dto.ts
+│   │   │   └── update-user.dto.ts
+│   │   ├── entities/
+│   │   │   └── user.entity.ts
+│   │   ├── user.controller.ts
+│   │   ├── user.module.ts
+│   │   └── user.service.ts
+│   ├── app.module.ts
+│   └── main.ts
+├── .env
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── nest-cli.json</code></pre>
+                </div>
+            </section>
+
+        </div>
+
+        <footer>
+            <p>🚀 Guía creada para aprender NestJS con JWT y MySQL</p>
+            <p>© 2025 - Tutorial de autenticación con NestJS</p>
+        </footer>
+    </div>
+
+    <script>
+        // Función para copiar código al portapapeles
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            
+            // Crear un elemento temporal para copiar
+            const textarea = document.createElement('textarea');
+            textarea.value = code;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                
+                // Cambiar el texto del botón
+                const originalText = button.textContent;
+                button.textContent = '✓ Copiado!';
+                button.classList.add('copied');
+                
+                // Restaurar el texto después de 2 segundos
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.error('Error al copiar:', err);
+                button.textContent = '✗ Error';
+                
+                setTimeout(() => {
+                    button.textContent = 'Copiar';
+                }, 2000);
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Scroll suave para los enlaces del índice
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

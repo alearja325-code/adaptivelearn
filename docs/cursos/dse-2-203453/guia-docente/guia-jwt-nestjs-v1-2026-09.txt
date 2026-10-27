@@ -1,0 +1,811 @@
+
+    Guía JWT en NestJS con MySQL
+🔐 Guía Didáctica Completa
+Implementación de JWT en NestJS con MySQL
+## 📋 Tabla de Contenidos
+1. Configuración Inicial del Proyecto
+2. Configuración de la Base de Datos MySQL
+3. Módulo de Usuarios (User)
+4. Módulo de Autenticación (Auth)
+5. DTOs y Validaciones
+6. Guards y Decoradores
+7. Pruebas con Ejemplos
+## 1Configuración Inicial del Proyecto
+### Paso 1: Crear el proyecto NestJS
+Primero, instalaremos NestJS CLI globalmente y crearemos un nuevo proyecto.
+                        Bash
+# Instalar NestJS CLI globalmente
+npm i -g @nestjs/cli
+# Crear nuevo proyecto
+nest new jwt-auth-project
+# Entrar al directorio
+cd jwt-auth-project
+### Paso 2: Instalar dependencias necesarias
+Instalaremos todas las dependencias requeridas para JWT, MySQL, validaciones y más.
+                        Bash
+# Dependencias para JWT
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt
+# Dependencias para MySQL y TypeORM
+npm install @nestjs/typeorm typeorm mysql2
+# Dependencias para validación y transformación
+npm install class-validator class-transformer
+# Dependencias para variables de entorno
+npm install @nestjs/config
+# Dependencias para encriptación de contraseñas
+npm install bcrypt
+npm install -D @types/bcrypt @types/passport-jwt
+                    ✅ ¡Perfecto! Ya tienes todas las dependencias instaladas para comenzar.
+## 2Configuración de la Base de Datos MySQL
+### Paso 1: Crear archivo de configuración .env
+Este archivo contendrá todas las variables de entorno sensibles.
+                        .env
+# Configuración de la base de datos
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=tu_password
+DB_DATABASE=jwt_auth_db
+# Configuración de JWT
+JWT_SECRET=tu_secreto_super_seguro_cambialo_en_produccion
+JWT_EXPIRATION=1h
+                    ⚠️ Importante: Nunca subas el archivo .env a tu repositorio. Agrégalo a .gitignore.
+### Paso 2: Configurar app.module.ts
+Configuraremos el módulo principal de la aplicación con TypeORM y las variables de entorno.
+                        TypeScript - src/app.module.ts
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+@Module({
+  imports: [
+    // Configuración de variables de entorno
+    // isGlobal: true hace que ConfigModule esté disponible en toda la app
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    // Configuración de TypeORM con MySQL
+    // useFactory permite inyectar ConfigService para leer variables de entorno
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'mysql',
+        host: configService.get('DB_HOST'),
+        port: +configService.get('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_DATABASE'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true, // ⚠️ Solo en desarrollo
+      }),
+      inject: [ConfigService],
+    }),
+    // Módulos de la aplicación
+    UserModule,
+    AuthModule,
+  ],
+})
+export class AppModule {}
+                    💡 Nota: synchronize: true solo debe usarse en desarrollo. En producción, utiliza migraciones.
+## 3Módulo de Usuarios (User)
+### Paso 1: Generar el módulo User
+                        Bash
+# Generar módulo, controlador y servicio
+nest g module user
+nest g controller user --no-spec
+nest g service user --no-spec
+### Paso 2: Crear la entidad User
+La entidad define la estructura de la tabla en la base de datos.
+                        TypeScript - src/user/entities/user.entity.ts
+import { 
+  Entity, 
+  Column, 
+  PrimaryGeneratedColumn, 
+  CreateDateColumn, 
+  UpdateDateColumn 
+} from 'typeorm';
+// Decorador @Entity define que esta clase es una entidad de base de datos
+@Entity('users')
+export class User {
+  // Clave primaria auto-incremental
+  @PrimaryGeneratedColumn()
+  id: number;
+  // Columna de email única y no nula
+  @Column({ unique: true, nullable: false })
+  email: string;
+  // Columna de contraseña (se guardará encriptada)
+  // select: false evita que se devuelva por defecto en las consultas
+  @Column({ nullable: false, select: false })
+  password: string;
+  // Nombre completo del usuario
+  @Column({ nullable: false })
+  fullName: string;
+  // Estado activo del usuario
+  @Column({ default: true })
+  isActive: boolean;
+  // Rol del usuario (por defecto 'user')
+  @Column({ default: 'user' })
+  role: string;
+  // Fecha de creación automática
+  @CreateDateColumn()
+  createdAt: Date;
+  // Fecha de actualización automática
+  @UpdateDateColumn()
+  updatedAt: Date;
+}
+### Paso 3: Crear DTOs para User
+Los DTOs (Data Transfer Objects) definen la estructura de los datos que se envían y reciben.
+                        TypeScript - src/user/dto/create-user.dto.ts
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+export class CreateUserDto {
+  // Validación de email con formato correcto
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+  // Validación de contraseña con mínimo 6 caracteres
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @MinLength(6, { message: 'La contraseña debe tener al menos 6 caracteres' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+  // Validación de nombre completo
+  @IsString({ message: 'El nombre completo debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'El nombre completo es obligatorio' })
+  fullName: string;
+}
+                        TypeScript - src/user/dto/update-user.dto.ts
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateUserDto } from './create-user.dto';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
+// PartialType hace que todas las propiedades de CreateUserDto sean opcionales
+export class UpdateUserDto extends PartialType(CreateUserDto) {
+  // Campo opcional para actualizar el estado activo
+  @IsBoolean({ message: 'isActive debe ser un valor booleano' })
+  @IsOptional()
+  isActive?: boolean;
+  // Campo opcional para actualizar el rol
+  @IsString({ message: 'El rol debe ser una cadena de texto' })
+  @IsOptional()
+  role?: string;
+}
+### Paso 4: Implementar el servicio User
+El servicio contiene la lógica de negocio para gestionar usuarios.
+                        TypeScript - src/user/user.service.ts
+import { 
+  Injectable, 
+  ConflictException, 
+  NotFoundException 
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { User } from './entities/user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+@Injectable()
+export class UserService {
+  constructor(
+    // Inyección del repositorio de User
+    @InjectRepository(User)
+    private readonly userRepository: Repository,
+  ) {}
+  /**
+   * Crear un nuevo usuario
+   * Encripta la contraseña antes de guardarla
+   */
+  async create(createUserDto: CreateUserDto): Promise {
+    // Verificar si el email ya existe
+    const existingUser = await this.userRepository.findOne({
+      where: { email: createUserDto.email },
+    });
+    if (existingUser) {
+      throw new ConflictException('El email ya está registrado');
+    }
+    // Encriptar la contraseña
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    // Crear nueva instancia de usuario
+    const user = this.userRepository.create({
+      ...createUserDto,
+      password: hashedPassword,
+    });
+    // Guardar en la base de datos
+    return await this.userRepository.save(user);
+  }
+  /**
+   * Obtener todos los usuarios
+   * No incluye las contraseñas
+   */
+  async findAll(): Promise {
+    return await this.userRepository.find();
+  }
+  /**
+   * Obtener un usuario por ID
+   */
+  async findOne(id: number): Promise {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+    }
+    return user;
+  }
+  /**
+   * Buscar usuario por email
+   * Incluye la contraseña (para autenticación)
+   */
+  async findOneByEmail(email: string): Promise {
+    return await this.userRepository.findOne({
+      where: { email },
+      select: ['id', 'email', 'password', 'fullName', 'role', 'isActive'],
+    });
+  }
+  /**
+   * Actualizar un usuario
+   */
+  async update(id: number, updateUserDto: UpdateUserDto): Promise {
+    const user = await this.findOne(id);
+    // Si se actualiza la contraseña, encriptarla
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
+    }
+    // Actualizar los campos
+    Object.assign(user, updateUserDto);
+    return await this.userRepository.save(user);
+  }
+  /**
+   * Eliminar un usuario (soft delete)
+   */
+  async remove(id: number): Promise {
+    const user = await this.findOne(id);
+    await this.userRepository.remove(user);
+  }
+}
+### Paso 5: Implementar el controlador User
+                        TypeScript - src/user/user.controller.ts
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+@Controller('users')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+  /**
+   * POST /users
+   * Crear un nuevo usuario
+   */
+  @Post()
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
+  }
+  /**
+   * GET /users
+   * Obtener todos los usuarios
+   */
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+  /**
+   * GET /users/:id
+   * Obtener un usuario por ID
+   */
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.findOne(id);
+  }
+  /**
+   * PATCH /users/:id
+   * Actualizar un usuario
+   */
+  @Patch(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.userService.update(id, updateUserDto);
+  }
+  /**
+   * DELETE /users/:id
+   * Eliminar un usuario
+   */
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.remove(id);
+  }
+}
+### Paso 6: Configurar el módulo User
+                        TypeScript - src/user/user.module.ts
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
+import { User } from './entities/user.entity';
+@Module({
+  // Importar el repositorio de User
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UserController],
+  providers: [UserService],
+  // Exportar el servicio para usarlo en otros módulos (como Auth)
+  exports: [UserService],
+})
+export class UserModule {}
+## 4Módulo de Autenticación (Auth)
+### Paso 1: Generar el módulo Auth
+                        Bash
+# Generar módulo, controlador y servicio
+nest g module auth
+nest g controller auth --no-spec
+nest g service auth --no-spec
+### Paso 2: Crear DTOs para Auth
+                        TypeScript - src/auth/dto/login.dto.ts
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+export class LoginDto {
+  // Validación de email
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+  // Validación de contraseña
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+}
+                        TypeScript - src/auth/dto/register.dto.ts
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+export class RegisterDto {
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @MinLength(6, { message: 'La contraseña debe tener al menos 6 caracteres' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+  @IsString({ message: 'El nombre completo debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'El nombre completo es obligatorio' })
+  fullName: string;
+}
+### Paso 3: Crear interfaces para JWT
+                        TypeScript - src/auth/interfaces/jwt-payload.interface.ts
+// Interfaz que define la estructura del payload del JWT
+export interface JwtPayload {
+  sub: number;      // ID del usuario
+  email: string;    // Email del usuario
+  role: string;     // Rol del usuario
+}
+### Paso 4: Implementar JWT Strategy
+La estrategia JWT valida el token en cada petición protegida.
+                        TypeScript - src/auth/strategies/jwt.strategy.ts
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { UserService } from '../../user/user.service';
+import { JwtPayload } from '../interfaces/jwt-payload.interface';
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(
+    private readonly userService: UserService,
+    private readonly configService: ConfigService,
+  ) {
+    super({
+      // Extraer el token del header Authorization como Bearer token
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      // No ignorar la expiración del token
+      ignoreExpiration: false,
+      // Secreto para verificar el token
+      secretOrKey: configService.get('JWT_SECRET'),
+    });
+  }
+  /**
+   * Método que se ejecuta automáticamente después de validar el token
+   * El payload ya viene decodificado por Passport
+   */
+  async validate(payload: JwtPayload) {
+    const { sub: id } = payload;
+    // Buscar el usuario en la base de datos
+    const user = await this.userService.findOne(id);
+    // Verificar si el usuario está activo
+    if (!user.isActive) {
+      throw new UnauthorizedException('Usuario inactivo');
+    }
+    // Retornar el usuario (se agregará a request.user)
+    return user;
+  }
+}
+### Paso 5: Implementar el servicio Auth
+                        TypeScript - src/auth/auth.service.ts
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { UserService } from '../user/user.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { JwtPayload } from './interfaces/jwt-payload.interface';
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
+  /**
+   * Registrar un nuevo usuario
+   * Crea el usuario y retorna un token JWT
+   */
+  async register(registerDto: RegisterDto) {
+    // Crear el usuario usando el servicio de usuarios
+    const user = await this.userService.create(registerDto);
+    // Generar el token JWT
+    const token = await this.generateToken(user.id, user.email, user.role);
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+      },
+      token,
+    };
+  }
+  /**
+   * Login de usuario
+   * Valida credenciales y retorna un token JWT
+   */
+  async login(loginDto: LoginDto) {
+    const { email, password } = loginDto;
+    // Buscar usuario por email (incluye password)
+    const user = await this.userService.findOneByEmail(email);
+    // Verificar si el usuario existe
+    if (!user) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+    // Verificar si el usuario está activo
+    if (!user.isActive) {
+      throw new UnauthorizedException('Usuario inactivo');
+    }
+    // Comparar contraseñas
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+    // Generar el token JWT
+    const token = await this.generateToken(user.id, user.email, user.role);
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+      },
+      token,
+    };
+  }
+  /**
+   * Generar token JWT
+   * Crea un token con el payload especificado
+   */
+  private async generateToken(
+    userId: number,
+    email: string,
+    role: string,
+  ): Promise {
+    const payload: JwtPayload = {
+      sub: userId,
+      email,
+      role,
+    };
+    // Firmar y retornar el token
+    return await this.jwtService.signAsync(payload);
+  }
+  /**
+   * Validar token y retornar información del usuario
+   */
+  async validateToken(token: string) {
+    try {
+      const payload = await this.jwtService.verifyAsync(token);
+      const user = await this.userService.findOne(payload.sub);
+      return user;
+    } catch (error) {
+      throw new UnauthorizedException('Token inválido');
+    }
+  }
+}
+### Paso 6: Implementar el controlador Auth
+                        TypeScript - src/auth/auth.controller.ts
+import { Controller, Post, Body, Get, UseGuards, Request } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+  /**
+   * POST /auth/register
+   * Registrar un nuevo usuario
+   */
+  @Post('register')
+  async register(@Body() registerDto: RegisterDto) {
+    return await this.authService.register(registerDto);
+  }
+  /**
+   * POST /auth/login
+   * Iniciar sesión
+   */
+  @Post('login')
+  async login(@Body() loginDto: LoginDto) {
+    return await this.authService.login(loginDto);
+  }
+  /**
+   * GET /auth/profile
+   * Obtener perfil del usuario autenticado
+   * Ruta protegida con JWT
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@Request() req) {
+    // req.user contiene la información del usuario autenticado
+    return {
+      user: req.user,
+    };
+  }
+}
+### Paso 7: Configurar el módulo Auth
+                        TypeScript - src/auth/auth.module.ts
+import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { UserModule } from '../user/user.module';
+import { JwtStrategy } from './strategies/jwt.strategy';
+@Module({
+  imports: [
+    // Importar UserModule para acceder a UserService
+    UserModule,
+    // Configurar Passport
+    PassportModule,
+    // Configurar JWT
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get('JWT_SECRET'),
+        signOptions: {
+          expiresIn: configService.get('JWT_EXPIRATION'),
+        },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
+})
+export class AuthModule {}
+## 5DTOs y Validaciones
+### Configurar ValidationPipe global
+Para que las validaciones funcionen automáticamente en toda la aplicación.
+                        TypeScript - src/main.ts
+import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
+import { AppModule } from './app.module';
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  // Configurar ValidationPipe globalmente
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // Elimina propiedades no definidas en el DTO
+      forbidNonWhitelisted: true, // Lanza error si hay propiedades no permitidas
+      transform: true, // Transforma los datos al tipo definido en el DTO
+    }),
+  );
+  // Habilitar CORS (opcional, para desarrollo con frontend)
+  app.enableCors();
+  await app.listen(3000);
+  console.log('🚀 Servidor corriendo en http://localhost:3000');
+}
+bootstrap();
+                    ✅ Validaciones configuradas: Ahora todos los DTOs serán validados automáticamente.
+## 6Guards y Decoradores
+### Paso 1: Crear el JWT Guard
+                        TypeScript - src/auth/guards/jwt-auth.guard.ts
+import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+/**
+ * Guard que protege rutas usando JWT
+ * Extiende de AuthGuard('jwt') que usa la estrategia JWT
+ */
+@Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {}
+### Paso 2: Crear decorador personalizado para obtener usuario
+                        TypeScript - src/auth/decorators/get-user.decorator.ts
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+/**
+ * Decorador personalizado para extraer el usuario del request
+ * Uso: @GetUser() user: User
+ */
+export const GetUser = createParamDecorator(
+  (data: unknown, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest();
+    return request.user;
+  },
+);
+### Paso 3: Crear guard para roles
+                        TypeScript - src/auth/guards/roles.guard.ts
+import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+/**
+ * Guard para verificar roles de usuario
+ */
+@Injectable()
+export class RolesGuard implements CanActivate {
+  constructor(private reflector: Reflector) {}
+  canActivate(context: ExecutionContext): boolean {
+    // Obtener roles requeridos del decorador @Roles()
+    const requiredRoles = this.reflector.getAllAndOverride('roles', [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (!requiredRoles) {
+      return true;
+    }
+    const { user } = context.switchToHttp().getRequest();
+    // Verificar si el usuario tiene alguno de los roles requeridos
+    return requiredRoles.some((role) => user.role === role);
+  }
+}
+### Paso 4: Crear decorador de roles
+                        TypeScript - src/auth/decorators/roles.decorator.ts
+import { SetMetadata } from '@nestjs/common';
+/**
+ * Decorador para especificar roles requeridos
+ * Uso: @Roles('admin', 'moderator')
+ */
+export const Roles = (...roles: string[]) => SetMetadata('roles', roles);
+### Ejemplo de uso de Guards y Decoradores
+                        TypeScript - Ejemplo en un controlador
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { RolesGuard } from './auth/guards/roles.guard';
+import { Roles } from './auth/decorators/roles.decorator';
+import { GetUser } from './auth/decorators/get-user.decorator';
+import { User } from './user/entities/user.entity';
+@Controller('example')
+export class ExampleController {
+  // Ruta protegida solo con autenticación
+  @UseGuards(JwtAuthGuard)
+  @Get('protected')
+  protectedRoute(@GetUser() user: User) {
+    return {
+      message: 'Esta ruta está protegida',
+      user: user,
+    };
+  }
+  // Ruta protegida solo para administradores
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  @Get('admin')
+  adminRoute(@GetUser() user: User) {
+    return {
+      message: 'Esta ruta es solo para administradores',
+      user: user,
+    };
+  }
+}
+## 7Pruebas con Ejemplos
+### 1. Registrar un nuevo usuario
+                        HTTP Request
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+{
+  "email": "usuario@example.com",
+  "password": "password123",
+  "fullName": "Juan Pérez"
+}
+                        Respuesta esperada
+{
+  "user": {
+    "id": 1,
+    "email": "usuario@example.com",
+    "fullName": "Juan Pérez",
+    "role": "user"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+### 2. Iniciar sesión
+                        HTTP Request
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+{
+  "email": "usuario@example.com",
+  "password": "password123"
+}
+### 3. Obtener perfil (ruta protegida)
+                        HTTP Request
+GET http://localhost:3000/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+### 4. Crear usuario (desde módulo User)
+                        HTTP Request
+POST http://localhost:3000/users
+Content-Type: application/json
+{
+  "email": "otro@example.com",
+  "password": "password456",
+  "fullName": "María García"
+}
+### 5. Listar todos los usuarios
+                        HTTP Request
+GET http://localhost:3000/users
+### Probar con cURL
+                        Bash - Registro
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "password123",
+    "fullName": "Usuario Test"
+  }'
+                        Bash - Login
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "password123"
+  }'
+                        Bash - Perfil (con token)
+curl -X GET http://localhost:3000/auth/profile \
+  -H "Authorization: Bearer TU_TOKEN_AQUI"
+                    ✅ ¡Implementación completa! Ya tienes un sistema de autenticación JWT totalmente funcional con NestJS y MySQL.
+                    💡 Próximos pasos recomendados:
+Implementar refresh tokens
+Agregar límite de intentos de login
+Implementar recuperación de contraseña
+Agregar verificación de email
+Implementar logout con blacklist de tokens
+Configurar migraciones de TypeORM para producción
+## 📁 Estructura Final del Proyecto
+                        Estructura de carpetas
+jwt-auth-project/
+├── src/
+│   ├── auth/
+│   │   ├── decorators/
+│   │   │   ├── get-user.decorator.ts
+│   │   │   └── roles.decorator.ts
+│   │   ├── dto/
+│   │   │   ├── login.dto.ts
+│   │   │   └── register.dto.ts
+│   │   ├── guards/
+│   │   │   ├── jwt-auth.guard.ts
+│   │   │   └── roles.guard.ts
+│   │   ├── interfaces/
+│   │   │   └── jwt-payload.interface.ts
+│   │   ├── strategies/
+│   │   │   └── jwt.strategy.ts
+│   │   ├── auth.controller.ts
+│   │   ├── auth.module.ts
+│   │   └── auth.service.ts
+│   ├── user/
+│   │   ├── dto/
+│   │   │   ├── create-user.dto.ts
+│   │   │   └── update-user.dto.ts
+│   │   ├── entities/
+│   │   │   └── user.entity.ts
+│   │   ├── user.controller.ts
+│   │   ├── user.module.ts
+│   │   └── user.service.ts
+│   ├── app.module.ts
+│   └── main.ts
+├── .env
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── nest-cli.json
+🚀 Guía creada para aprender NestJS con JWT y MySQL
+© 2025 - Tutorial de autenticación con NestJS

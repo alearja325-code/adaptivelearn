@@ -423,10 +423,12 @@ revisa en local antes de unirlo:
 2. **03 — Backend hasta el catálogo:** correcciones del docente R2, R4
    (ADR-039), R5 (envío real de correos: hoy el backend no envía
    ninguno), base de datos hasta el catálogo, rutas de consulta.
-   **EN ESPERA:** el acceso debe seguir la guía del docente (el backend
-   actual la sigue sección por sección, y sus pruebas usan `/users`), y
-   hay una guía actualizada que el equipo todavía no tiene. Se reescribe
-   partiendo de esa guía.
+   *(Estuvo en espera unas horas: el acceso debe seguir la guía del
+   docente.)* **Reescrito el 2026-10-26 sobre la guía v2**
+   (`docs/cursos/dse-2-203453/guia-docente/`, ADR-040): la guía manda en
+   la forma —sus 6 pruebas deben funcionar, `/users` solo para
+   administrador marcado por SQL— y AdaptiveLearn en el fondo. **Listo
+   para lanzar cuando el 02 esté unido.**
 3. **04 — Frontend hasta el Paso 3:** se escribe cuando el 03 esté
    unido.
 

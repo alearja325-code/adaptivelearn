@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía JWT en NestJS con MySQL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .table-of-contents {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .table-of-contents h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+        }
+
+        .table-of-contents li {
+            padding: 8px 0;
+        }
+
+        .table-of-contents a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding-left: 10px;
+        }
+
+        .table-of-contents a:hover {
+            color: #667eea;
+            padding-left: 20px;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .code-block {
+            position: relative;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .code-language {
+            font-weight: bold;
+            color: #4fd1c5;
+        }
+
+        .copy-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+
+        .copy-button:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .copy-button.copied {
+            background: #48bb78;
+        }
+
+        pre {
+            margin: 0;
+            background: #1a202c;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .note strong {
+            color: #856404;
+        }
+
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning strong {
+            color: #721c24;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success strong {
+            color: #155724;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Syntax highlighting colors */
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .comment { color: #5c6370; font-style: italic; }
+        .function { color: #61afef; }
+        .number { color: #d19a66; }
+        .operator { color: #56b6c2; }
+    </style>
+<style>
+        :not(pre) > code {
+            background: #edf2f7;
+            color: #553c9a;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.88em;
+        }
+        .fix-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+        .fix-table th, .fix-table td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; vertical-align: top; }
+        .fix-table th { background: #667eea; color: white; }
+        .fix-table tr:nth-child(even) td { background: #f8f9fa; }
+        .table-wrap { overflow-x: auto; }
+        .file-explain {
+            background: #f3f0ff;
+            border-left: 4px solid #764ba2;
+            padding: 15px 20px;
+            margin: -5px 0 25px;
+            border-radius: 0 0 8px 8px;
+        }
+        .file-explain h4 { color: #553c9a; margin-bottom: 8px; font-size: 1.05em; }
+        .file-explain p { margin-bottom: 8px; text-align: left; }
+        .file-explain ul { margin-left: 20px; }
+        .file-explain li { margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Guía Didáctica Completa</h1>
+            <p>Implementación de JWT en NestJS con MySQL (versión corregida)</p>
+        </header>
+
+        <div class="content">
+            <div class="table-of-contents">
+                <h2>📋 Tabla de Contenidos</h2>
+                <ul>
+                    <li><a href="#seccion-1">1. Configuración Inicial del Proyecto</a></li>
+                    <li><a href="#seccion-2">2. Configuración de la Base de Datos MySQL</a></li>
+                    <li><a href="#seccion-3">3. Módulo de Usuarios (User)</a></li>
+                    <li><a href="#seccion-4">4. Módulo de Autenticación (Auth)</a></li>
+                    <li><a href="#seccion-5">5. DTOs, Validaciones y Serialización</a></li>
+                    <li><a href="#seccion-6">6. Roles y Protección de Rutas</a></li>
+                    <li><a href="#seccion-7">7. Pruebas con Ejemplos</a></li>
+                </ul>
+            </div>
+
+            <!-- SECCIÓN 1 -->
+            <section id="seccion-1" class="section">
+                <h2><span class="step-number">1</span>Configuración Inicial del Proyecto</h2>
+
+                <h3>Paso 1: Crear el proyecto NestJS</h3>
+                <p>Primero, instalaremos NestJS CLI globalmente y crearemos un nuevo proyecto. Al crear el proyecto se activa por defecto el <strong>modo estricto de TypeScript</strong> (<code>strict: true</code>), por lo que todos los códigos de esta guía declaran explícitamente los tipos que devuelven y manejan los valores <code>null</code>/<code>undefined</code>.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Instalar NestJS CLI globalmente
+npm i -g @nestjs/cli
+
+# Crear nuevo proyecto
+nest new jwt-auth-project
+
+# Entrar al directorio
+cd jwt-auth-project</code></pre>
+                </div>
+
+                <h3>Paso 2: Instalar dependencias necesarias</h3>
+                <p>Instalaremos todas las dependencias requeridas para JWT, MySQL, validaciones y más.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Dependencias para JWT
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt
+
+# Dependencias para MySQL y TypeORM
+npm install @nestjs/typeorm typeorm mysql2
+
+# Dependencias para validación y transformación
+npm install class-validator class-transformer
+
+# PartialType (usado en UpdateUserDto)
+npm install @nestjs/mapped-types
+
+# Dependencias para variables de entorno
+npm install @nestjs/config
+
+# Dependencias para encriptación de contraseñas
+npm install bcrypt
+npm install -D @types/bcrypt @types/passport-jwt</code></pre>
+                </div>
+
+                <div class="success">
+                    <strong>✅ ¡Perfecto!</strong> Ya tienes todas las dependencias instaladas para comenzar.
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2 -->
+            <section id="seccion-2" class="section">
+                <h2><span class="step-number">2</span>Configuración de la Base de Datos MySQL</h2>
+
+                <h3>Paso 1: Crear archivo de configuración .env</h3>
+                <p>Este archivo contendrá todas las variables de entorno sensibles. Créalo en la raíz del proyecto (al mismo nivel que <code>package.json</code>).</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">.env</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Configuración de la base de datos
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=tu_password
+DB_DATABASE=jwt_auth_db
+
+# Configuración de JWT
+JWT_SECRET=tu_secreto_super_seguro_cambialo_en_produccion
+# Tiempo de expiración en segundos (3600 = 1 hora)
+JWT_EXPIRATION=3600</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>.env</code>?</h4>
+                    <p>Guarda los valores de configuración que cambian según el entorno (desarrollo, pruebas, producción) y los datos sensibles, para no escribirlos dentro del código.</p>
+                    <ul>
+                        <li><code>DB_*</code>: datos de conexión a MySQL (servidor, puerto, usuario, contraseña y nombre de la base de datos).</li>
+                        <li><code>JWT_SECRET</code>: clave con la que se firman y verifican los tokens. Si alguien la conoce, puede fabricar tokens válidos.</li>
+                        <li><code>JWT_EXPIRATION</code>: tiempo de vida del token en segundos.</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Importante:</strong> Nunca subas el archivo .env a tu repositorio. Agrégalo a .gitignore. La base de datos <code>jwt_auth_db</code> debe existir antes de arrancar: <code>CREATE DATABASE jwt_auth_db;</code>
+                </div>
+
+                <h3>Paso 2: Configurar app.module.ts</h3>
+                <p>Configuraremos el módulo principal de la aplicación con TypeORM y las variables de entorno.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/app.module.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+
+@Module({
+  imports: [
+    // Configuración de variables de entorno
+    // isGlobal: true hace que ConfigService esté disponible en toda la app
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+
+    // Configuración de TypeORM con MySQL
+    // useFactory permite inyectar ConfigService para leer variables de entorno
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService): TypeOrmModuleOptions =&gt; ({
+        type: 'mysql',
+        // getOrThrow lanza un error claro si la variable no existe en .env
+        host: configService.getOrThrow&lt;string&gt;('DB_HOST'),
+        port: Number(configService.getOrThrow&lt;string&gt;('DB_PORT')),
+        username: configService.getOrThrow&lt;string&gt;('DB_USERNAME'),
+        password: configService.get&lt;string&gt;('DB_PASSWORD', ''),
+        database: configService.getOrThrow&lt;string&gt;('DB_DATABASE'),
+        // Carga automáticamente las entidades registradas con forFeature()
+        autoLoadEntities: true,
+        synchronize: true, // ⚠️ Solo en desarrollo
+      }),
+    }),
+
+    // Módulos de la aplicación
+    UserModule,
+    AuthModule,
+  ],
+})
+export class AppModule {}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>app.module.ts</code>?</h4>
+                    <p>Es el módulo raíz: el punto donde NestJS arma toda la aplicación. Carga la configuración, abre la conexión con MySQL y registra los módulos de usuarios y autenticación.</p>
+                    <ul>
+                        <li><code>ConfigModule.forRoot</code>: lee el archivo <code>.env</code>; con <code>isGlobal: true</code>, <code>ConfigService</code> queda disponible en todos los módulos sin volver a importarlo.</li>
+                        <li><code>TypeOrmModule.forRootAsync</code>: crea la conexión a la base de datos. Es asíncrono porque primero necesita <code>ConfigService</code> para leer las variables.</li>
+                        <li><code>getOrThrow&lt;string&gt;()</code>: devuelve la variable como <code>string</code>; si no existe en el <code>.env</code>, la aplicación se detiene al arrancar con un mensaje claro.</li>
+                        <li><code>autoLoadEntities</code>: registra automáticamente las entidades declaradas con <code>forFeature()</code> en cada módulo.</li>
+                        <li><code>synchronize: true</code>: crea y modifica las tablas a partir de las entidades. Solo para desarrollo; en producción se usan migraciones.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3 -->
+            <section id="seccion-3" class="section">
+                <h2><span class="step-number">3</span>Módulo de Usuarios (User)</h2>
+
+                <h3>Paso 1: Generar el módulo User</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Generar módulo, controlador y servicio
+nest g module user
+nest g controller user --no-spec
+nest g service user --no-spec</code></pre>
+                </div>
+
+                <h3>Paso 2: Crear la entidad User</h3>
+                <p>La entidad define la estructura de la tabla en la base de datos.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/entities/user.entity.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Exclude } from 'class-transformer';
+
+// Decorador @Entity define que esta clase es una entidad de base de datos
+@Entity('users')
+export class User {
+  // Clave primaria auto-incremental
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  // Columna de email única y no nula
+  @Column({ unique: true, nullable: false })
+  email: string;
+
+  // Columna de contraseña (se guardará encriptada)
+  // select: false evita que se lea por defecto en las consultas
+  // @Exclude() evita que se envíe en las respuestas HTTP (ver sección 5)
+  @Exclude()
+  @Column({ nullable: false, select: false })
+  password: string;
+
+  // Nombre completo del usuario
+  @Column({ nullable: false })
+  fullName: string;
+
+  // Estado activo del usuario
+  @Column({ default: true })
+  isActive: boolean;
+
+  // Rol del usuario (por defecto 'user')
+  @Column({ default: 'user' })
+  role: string;
+
+  // Fecha de creación automática
+  @CreateDateColumn()
+  createdAt: Date;
+
+  // Fecha de actualización automática
+  @UpdateDateColumn()
+  updatedAt: Date;
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>user.entity.ts</code>?</h4>
+                    <p>Define la tabla <code>users</code> de la base de datos. Cada propiedad de la clase es una columna y TypeORM se encarga de traducir entre objetos y filas.</p>
+                    <ul>
+                        <li><code>@PrimaryGeneratedColumn()</code>: identificador numérico que MySQL incrementa solo.</li>
+                        <li><code>@Column({ unique: true })</code> en <code>email</code>: impide dos usuarios con el mismo correo.</li>
+                        <li><code>select: false</code> en <code>password</code>: la contraseña no se lee en las consultas normales; solo cuando se pide expresamente (en el login).</li>
+                        <li><code>@Exclude()</code>: aunque la contraseña esté cargada en el objeto, nunca se envía en las respuestas HTTP.</li>
+                        <li><code>@CreateDateColumn</code> / <code>@UpdateDateColumn</code>: fechas que TypeORM rellena automáticamente.</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ ¿Por qué <code>@Exclude()</code>?</strong> <code>select: false</code> solo afecta a las consultas de lectura. Cuando se crea un usuario, <code>save()</code> devuelve el objeto completo, <strong>incluido el hash de la contraseña</strong>. Sin <code>@Exclude()</code>, <code>POST /users</code> respondería con ese hash.
+                </div>
+
+                <h3>Paso 3: Crear DTOs para User</h3>
+                <p>Los DTOs (Data Transfer Objects) definen la estructura de los datos que se envían y reciben.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/dto/create-user.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+
+export class CreateUserDto {
+  // Validación de email con formato correcto
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+
+  // Validación de contraseña con mínimo 6 caracteres
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @MinLength(6, { message: 'La contraseña debe tener al menos 6 caracteres' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+
+  // Validación de nombre completo
+  @IsString({ message: 'El nombre completo debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'El nombre completo es obligatorio' })
+  fullName: string;
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>create-user.dto.ts</code>?</h4>
+                    <p>Describe los datos que debe enviar el cliente para crear un usuario y las reglas que deben cumplir. Si algún dato no cumple, NestJS responde <code>400 Bad Request</code> antes de llegar al servicio.</p>
+                    <ul>
+                        <li><code>@IsEmail</code>: el correo debe tener un formato válido.</li>
+                        <li><code>@MinLength(6)</code>: la contraseña debe tener al menos 6 caracteres.</li>
+                        <li><code>@IsNotEmpty</code> / <code>@IsString</code>: los campos son obligatorios y de tipo texto.</li>
+                        <li>El parámetro <code>message</code> personaliza el mensaje de error que recibe el cliente.</li>
+                    </ul>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/dto/update-user.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { PartialType } from '@nestjs/mapped-types';
+import { IsBoolean, IsIn, IsOptional } from 'class-validator';
+import { CreateUserDto } from './create-user.dto';
+
+// PartialType hace que todas las propiedades de CreateUserDto sean opcionales
+export class UpdateUserDto extends PartialType(CreateUserDto) {
+  // Campo opcional para actualizar el estado activo
+  @IsBoolean({ message: 'isActive debe ser un valor booleano' })
+  @IsOptional()
+  isActive?: boolean;
+
+  // Campo opcional para actualizar el rol (solo valores permitidos)
+  @IsIn(['user', 'admin'], { message: 'El rol debe ser "user" o "admin"' })
+  @IsOptional()
+  role?: string;
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>update-user.dto.ts</code>?</h4>
+                    <p>Describe los datos que se pueden modificar de un usuario. Todos son opcionales: se envía solo lo que se quiere cambiar.</p>
+                    <ul>
+                        <li><code>PartialType(CreateUserDto)</code>: copia las propiedades y validaciones de <code>CreateUserDto</code> pero las vuelve opcionales.</li>
+                        <li><code>isActive</code>: permite activar o desactivar una cuenta.</li>
+                        <li><code>@IsIn(['user', 'admin'])</code>: el rol solo puede tomar uno de los valores permitidos.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 4: Implementar el servicio User</h3>
+                <p>El servicio contiene la lógica de negocio para gestionar usuarios. Cada método declara el tipo exacto que devuelve su promesa. Observa que las búsquedas que pueden no encontrar resultados devuelven <code>Promise&lt;User | null&gt;</code>.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/user.service.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import {
+  Injectable,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { User } from './entities/user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+
+@Injectable()
+export class UserService {
+  // Número de rondas de encriptación de bcrypt
+  private readonly saltRounds = 10;
+
+  constructor(
+    // Inyección del repositorio de User
+    @InjectRepository(User)
+    private readonly userRepository: Repository&lt;User&gt;,
+  ) {}
+
+  /**
+   * Crear un nuevo usuario
+   * Encripta la contraseña antes de guardarla
+   */
+  async create(createUserDto: CreateUserDto): Promise&lt;User&gt; {
+    // Verificar si el email ya existe
+    const emailTaken: boolean = await this.userRepository.existsBy({
+      email: createUserDto.email,
+    });
+
+    if (emailTaken) {
+      throw new ConflictException('El email ya está registrado');
+    }
+
+    // Encriptar la contraseña
+    const hashedPassword: string = await bcrypt.hash(
+      createUserDto.password,
+      this.saltRounds,
+    );
+
+    // Crear nueva instancia de usuario
+    const user: User = this.userRepository.create({
+      ...createUserDto,
+      password: hashedPassword,
+    });
+
+    // Guardar en la base de datos
+    return await this.userRepository.save(user);
+  }
+
+  /**
+   * Obtener todos los usuarios
+   * No incluye las contraseñas (select: false en la entidad)
+   */
+  async findAll(): Promise&lt;User[]&gt; {
+    return await this.userRepository.find();
+  }
+
+  /**
+   * Obtener un usuario por ID
+   * Lanza 404 si no existe (para uso en controladores)
+   */
+  async findOne(id: number): Promise&lt;User&gt; {
+    const user: User | null = await this.userRepository.findOneBy({ id });
+
+    if (!user) {
+      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+    }
+
+    return user;
+  }
+
+  /**
+   * Buscar un usuario por ID sin lanzar excepción
+   * Devuelve null si no existe (lo usa la estrategia JWT)
+   */
+  async findById(id: number): Promise&lt;User | null&gt; {
+    return await this.userRepository.findOneBy({ id });
+  }
+
+  /**
+   * Buscar usuario por email
+   * Incluye la contraseña (solo para autenticación)
+   * Devuelve null si el email no está registrado
+   */
+  async findOneByEmail(email: string): Promise&lt;User | null&gt; {
+    return await this.userRepository.findOne({
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        password: true,
+        fullName: true,
+        role: true,
+        isActive: true,
+      },
+    });
+  }
+
+  /**
+   * Actualizar un usuario
+   */
+  async update(id: number, updateUserDto: UpdateUserDto): Promise&lt;User&gt; {
+    const user: User = await this.findOne(id);
+
+    // Si se cambia el email, verificar que no pertenezca a otro usuario
+    if (updateUserDto.email &amp;&amp; updateUserDto.email !== user.email) {
+      const emailTaken: boolean = await this.userRepository.existsBy({
+        email: updateUserDto.email,
+      });
+      if (emailTaken) {
+        throw new ConflictException('El email ya está registrado');
+      }
+    }
+
+    // Copia de los cambios para no modificar el DTO recibido
+    const changes: UpdateUserDto = { ...updateUserDto };
+
+    // Si se actualiza la contraseña, encriptarla
+    if (changes.password) {
+      changes.password = await bcrypt.hash(changes.password, this.saltRounds);
+    }
+
+    // Combinar los cambios con la entidad existente
+    this.userRepository.merge(user, changes);
+
+    return await this.userRepository.save(user);
+  }
+
+  /**
+   * Eliminar un usuario (borrado físico del registro)
+   */
+  async remove(id: number): Promise&lt;void&gt; {
+    const user: User = await this.findOne(id);
+    await this.userRepository.remove(user);
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>user.service.ts</code>?</h4>
+                    <p>Contiene la lógica de negocio de los usuarios: es la única capa que habla con la base de datos a través del repositorio. Cada método declara el tipo que devuelve su promesa.</p>
+                    <ul>
+                        <li><code>create()</code> → <code>Promise&lt;User&gt;</code>: verifica que el email no exista, encripta la contraseña con bcrypt y guarda el usuario.</li>
+                        <li><code>findAll()</code> → <code>Promise&lt;User[]&gt;</code>: lista todos los usuarios (sin contraseñas).</li>
+                        <li><code>findOne()</code> → <code>Promise&lt;User&gt;</code>: busca por ID y lanza <code>404</code> si no existe; lo usan los controladores.</li>
+                        <li><code>findById()</code> → <code>Promise&lt;User | null&gt;</code>: busca por ID sin lanzar error; lo usa la autenticación, que decide qué responder.</li>
+                        <li><code>findOneByEmail()</code> → <code>Promise&lt;User | null&gt;</code>: busca por email incluyendo la contraseña, necesaria para comparar en el login.</li>
+                        <li><code>update()</code> → <code>Promise&lt;User&gt;</code>: revisa que el nuevo email no esté ocupado, encripta la contraseña si cambia y combina los cambios con <code>merge()</code>.</li>
+                        <li><code>remove()</code> → <code>Promise&lt;void&gt;</code>: elimina el registro de la base de datos.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 5: Implementar el controlador User</h3>
+                <p>Por ahora el controlador queda <strong>sin proteger</strong> para poder probar el CRUD. En la <a href="#seccion-6">sección 6</a> lo protegeremos con JWT y roles, porque cualquiera podría cambiar su rol a <code>admin</code> con <code>PATCH /users/:id</code>.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/user.controller.ts (versión inicial)</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+
+@Controller('users')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  /**
+   * POST /users
+   * Crear un nuevo usuario
+   */
+  @Post()
+  create(@Body() createUserDto: CreateUserDto): Promise&lt;User&gt; {
+    return this.userService.create(createUserDto);
+  }
+
+  /**
+   * GET /users
+   * Obtener todos los usuarios
+   */
+  @Get()
+  findAll(): Promise&lt;User[]&gt; {
+    return this.userService.findAll();
+  }
+
+  /**
+   * GET /users/:id
+   * Obtener un usuario por ID
+   */
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number): Promise&lt;User&gt; {
+    return this.userService.findOne(id);
+  }
+
+  /**
+   * PATCH /users/:id
+   * Actualizar un usuario
+   */
+  @Patch(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise&lt;User&gt; {
+    return this.userService.update(id, updateUserDto);
+  }
+
+  /**
+   * DELETE /users/:id
+   * Eliminar un usuario (responde 204 No Content)
+   */
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id', ParseIntPipe) id: number): Promise&lt;void&gt; {
+    return this.userService.remove(id);
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>user.controller.ts</code>?</h4>
+                    <p>Recibe las peticiones HTTP en la ruta <code>/users</code> y las delega al servicio. No contiene lógica de negocio: solo conecta URL, datos de entrada y servicio.</p>
+                    <ul>
+                        <li><code>@Post</code>, <code>@Get</code>, <code>@Patch</code>, <code>@Delete</code>: definen el método HTTP de cada ruta.</li>
+                        <li><code>@Body()</code>: toma el cuerpo de la petición y lo valida contra el DTO.</li>
+                        <li><code>ParseIntPipe</code>: convierte el <code>:id</code> de la URL a número y responde <code>400</code> si no lo es.</li>
+                        <li><code>@HttpCode(HttpStatus.NO_CONTENT)</code>: el borrado responde <code>204</code>, sin cuerpo.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 6: Configurar el módulo User</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/user.module.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
+import { User } from './entities/user.entity';
+
+@Module({
+  // Importar el repositorio de User
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UserController],
+  providers: [UserService],
+  // Exportar el servicio para usarlo en otros módulos (como Auth)
+  exports: [UserService],
+})
+export class UserModule {}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>user.module.ts</code>?</h4>
+                    <p>Agrupa todo lo relacionado con usuarios (entidad, servicio y controlador) en una unidad que NestJS puede cargar.</p>
+                    <ul>
+                        <li><code>TypeOrmModule.forFeature([User])</code>: crea el repositorio de <code>User</code> que se inyecta en el servicio.</li>
+                        <li><code>exports: [UserService]</code>: permite que otros módulos (como Auth) usen el servicio de usuarios.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4 -->
+            <section id="seccion-4" class="section">
+                <h2><span class="step-number">4</span>Módulo de Autenticación (Auth)</h2>
+
+                <h3>Paso 1: Generar el módulo Auth</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code># Generar módulo, controlador y servicio
+nest g module auth
+nest g controller auth --no-spec
+nest g service auth --no-spec</code></pre>
+                </div>
+
+                <h3>Paso 2: Crear DTOs para Auth</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/dto/login.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+
+export class LoginDto {
+  // Validación de email
+  @IsEmail({}, { message: 'El email debe ser válido' })
+  @IsNotEmpty({ message: 'El email es obligatorio' })
+  email: string;
+
+  // Validación de contraseña
+  @IsString({ message: 'La contraseña debe ser una cadena de texto' })
+  @IsNotEmpty({ message: 'La contraseña es obligatoria' })
+  password: string;
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>login.dto.ts</code>?</h4>
+                    <p>Define y valida los datos del inicio de sesión: email y contraseña. Aquí no se exige longitud mínima porque solo se compara con la contraseña guardada.</p>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/dto/register.dto.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { CreateUserDto } from '../../user/dto/create-user.dto';
+
+// El registro pide los mismos datos que la creación de usuario:
+// se reutilizan las validaciones de CreateUserDto
+export class RegisterDto extends CreateUserDto {}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>register.dto.ts</code>?</h4>
+                    <p>Define los datos del registro. Como son los mismos que para crear un usuario, hereda de <code>CreateUserDto</code> y reutiliza todas sus validaciones sin repetir código.</p>
+                </div>
+
+                <h3>Paso 3: Crear interfaces para JWT</h3>
+                <p>Definimos el contenido del token y el tipo de la respuesta de <code>register</code> y <code>login</code>, para que los métodos del servicio declaren qué devuelven.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/interfaces/jwt-payload.interface.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>// Interfaz que define la estructura del payload del JWT
+export interface JwtPayload {
+  sub: number;      // ID del usuario
+  email: string;    // Email del usuario
+  role: string;     // Rol del usuario
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>jwt-payload.interface.ts</code>?</h4>
+                    <p>Define qué información viaja dentro del token. Se usa al firmar el token y al leerlo en la estrategia.</p>
+                    <ul>
+                        <li><code>sub</code> (<em>subject</em>): ID del usuario; es el nombre estándar en JWT.</li>
+                        <li>El payload se puede decodificar sin la clave secreta, por eso nunca se incluyen datos sensibles como la contraseña.</li>
+                    </ul>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/interfaces/auth-response.interface.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>// Datos públicos del usuario que se devuelven al autenticarse
+export interface AuthUser {
+  id: number;
+  email: string;
+  fullName: string;
+  role: string;
+}
+
+// Respuesta de los endpoints /auth/register y /auth/login
+export interface AuthResponse {
+  user: AuthUser;
+  token: string;
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>auth-response.interface.ts</code>?</h4>
+                    <p>Define la forma de la respuesta de <code>/auth/register</code> y <code>/auth/login</code>: los datos públicos del usuario y el token. Permite que los métodos del servicio declaren <code>Promise&lt;AuthResponse&gt;</code>.</p>
+                </div>
+
+                <h3>Paso 4: Implementar JWT Strategy</h3>
+                <p>La estrategia JWT valida el token en cada petición protegida.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/strategies/jwt.strategy.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { UserService } from '../../user/user.service';
+import { User } from '../../user/entities/user.entity';
+import { JwtPayload } from '../interfaces/jwt-payload.interface';
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+  constructor(
+    configService: ConfigService,
+    private readonly userService: UserService,
+  ) {
+    super({
+      // Extraer el token del header Authorization como Bearer token
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      // No ignorar la expiración del token
+      ignoreExpiration: false,
+      // Secreto para verificar el token
+      // getOrThrow devuelve string (nunca undefined), como exige passport-jwt
+      secretOrKey: configService.getOrThrow&lt;string&gt;('JWT_SECRET'),
+    });
+  }
+
+  /**
+   * Método que se ejecuta automáticamente después de validar el token
+   * El payload ya viene decodificado y verificado por Passport
+   * Lo que retorna se asigna a request.user
+   */
+  async validate(payload: JwtPayload): Promise&lt;User&gt; {
+    const user: User | null = await this.userService.findById(payload.sub);
+
+    // El token es válido pero el usuario fue eliminado
+    if (!user) {
+      throw new UnauthorizedException('Token inválido');
+    }
+
+    // Verificar si el usuario está activo
+    if (!user.isActive) {
+      throw new UnauthorizedException('Usuario inactivo');
+    }
+
+    return user;
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>jwt.strategy.ts</code>?</h4>
+                    <p>Le dice a Passport cómo validar un token JWT. Se ejecuta automáticamente en cada ruta protegida con <code>JwtAuthGuard</code>.</p>
+                    <ul>
+                        <li><code>jwtFromRequest</code>: busca el token en el header <code>Authorization: Bearer &lt;token&gt;</code>.</li>
+                        <li><code>ignoreExpiration: false</code>: rechaza los tokens vencidos con <code>401</code>.</li>
+                        <li><code>secretOrKey</code>: clave para verificar la firma; se lee con <code>getOrThrow&lt;string&gt;()</code> porque passport-jwt no acepta <code>undefined</code>.</li>
+                        <li><code>validate()</code> → <code>Promise&lt;User&gt;</code>: recibe el payload ya verificado, busca al usuario y comprueba que exista y esté activo; si no, responde <code>401</code>.</li>
+                        <li>Lo que devuelve <code>validate()</code> queda disponible como <code>request.user</code>.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 5: Implementar el servicio Auth</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/auth.service.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { UserService } from '../user/user.service';
+import { User } from '../user/entities/user.entity';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { AuthResponse } from './interfaces/auth-response.interface';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
+
+  /**
+   * Registrar un nuevo usuario
+   * Crea el usuario y retorna un token JWT
+   */
+  async register(registerDto: RegisterDto): Promise&lt;AuthResponse&gt; {
+    // Crear el usuario usando el servicio de usuarios
+    const user: User = await this.userService.create(registerDto);
+
+    return await this.buildAuthResponse(user);
+  }
+
+  /**
+   * Login de usuario
+   * Valida credenciales y retorna un token JWT
+   */
+  async login(loginDto: LoginDto): Promise&lt;AuthResponse&gt; {
+    const { email, password } = loginDto;
+
+    // Buscar usuario por email (incluye password); puede ser null
+    const user: User | null = await this.userService.findOneByEmail(email);
+
+    // Verificar si el usuario existe
+    if (!user) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+
+    // Comparar contraseñas
+    const isPasswordValid: boolean = await bcrypt.compare(
+      password,
+      user.password,
+    );
+
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Credenciales inválidas');
+    }
+
+    // Verificar si el usuario está activo (después de validar la contraseña,
+    // para no revelar el estado de cuentas ajenas)
+    if (!user.isActive) {
+      throw new UnauthorizedException('Usuario inactivo');
+    }
+
+    return await this.buildAuthResponse(user);
+  }
+
+  /**
+   * Validar un token manualmente y retornar el usuario
+   * (útil, por ejemplo, para WebSockets)
+   */
+  async validateToken(token: string): Promise&lt;User&gt; {
+    let payload: JwtPayload;
+
+    try {
+      payload = await this.jwtService.verifyAsync&lt;JwtPayload&gt;(token);
+    } catch {
+      throw new UnauthorizedException('Token inválido o expirado');
+    }
+
+    const user: User | null = await this.userService.findById(payload.sub);
+
+    if (!user || !user.isActive) {
+      throw new UnauthorizedException('Token inválido');
+    }
+
+    return user;
+  }
+
+  /**
+   * Generar token JWT con el payload del usuario
+   */
+  private async generateToken(user: User): Promise&lt;string&gt; {
+    const payload: JwtPayload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    };
+
+    // Firmar y retornar el token
+    return await this.jwtService.signAsync(payload);
+  }
+
+  /**
+   * Construir la respuesta de register/login (sin la contraseña)
+   */
+  private async buildAuthResponse(user: User): Promise&lt;AuthResponse&gt; {
+    const token: string = await this.generateToken(user);
+
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        role: user.role,
+      },
+      token,
+    };
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>auth.service.ts</code>?</h4>
+                    <p>Contiene la lógica de autenticación: registrar, iniciar sesión y generar tokens.</p>
+                    <ul>
+                        <li><code>register()</code> → <code>Promise&lt;AuthResponse&gt;</code>: crea el usuario con <code>UserService</code> y le entrega un token.</li>
+                        <li><code>login()</code> → <code>Promise&lt;AuthResponse&gt;</code>: busca el usuario, compara la contraseña con <code>bcrypt.compare</code> y, si todo es correcto, genera el token. Ante cualquier fallo responde «Credenciales inválidas» sin decir qué dato falló.</li>
+                        <li><code>validateToken()</code> → <code>Promise&lt;User&gt;</code>: verifica un token manualmente, útil fuera de HTTP (por ejemplo, WebSockets).</li>
+                        <li><code>generateToken()</code>: arma el payload y lo firma con <code>signAsync</code>.</li>
+                        <li><code>buildAuthResponse()</code>: construye la respuesta sin la contraseña; evita repetir código entre registro y login.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 6: Crear el JWT Guard y el decorador GetUser</h3>
+                <p>El controlador de Auth los necesita, por eso se crean <strong>antes</strong> que el controlador.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/guards/jwt-auth.guard.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
+/**
+ * Guard que protege rutas usando JWT
+ * Extiende de AuthGuard('jwt') que usa la estrategia JwtStrategy
+ */
+@Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>jwt-auth.guard.ts</code>?</h4>
+                    <p>Es el «portero» de las rutas protegidas. Al ponerlo con <code>@UseGuards(JwtAuthGuard)</code>, NestJS ejecuta la estrategia JWT antes de entrar al método; si el token falta o no es válido, responde <code>401</code>.</p>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/decorators/get-user.decorator.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { User } from '../../user/entities/user.entity';
+
+/**
+ * Decorador personalizado para extraer el usuario del request
+ * (el usuario lo asigna JwtStrategy.validate())
+ * Uso: @GetUser() user: User
+ */
+export const GetUser = createParamDecorator(
+  (data: unknown, ctx: ExecutionContext): User =&gt; {
+    const request = ctx.switchToHttp().getRequest&lt;{ user: User }&gt;();
+    return request.user;
+  },
+);</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>get-user.decorator.ts</code>?</h4>
+                    <p>Crea el decorador <code>@GetUser()</code>, que entrega directamente el usuario autenticado como parámetro del método, ya tipado como <code>User</code>, en lugar de leer <code>request.user</code> a mano.</p>
+                </div>
+
+                <h3>Paso 7: Implementar el controlador Auth</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/auth.controller.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  UseGuards,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { GetUser } from './decorators/get-user.decorator';
+import { AuthResponse } from './interfaces/auth-response.interface';
+import { User } from '../user/entities/user.entity';
+
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  /**
+   * POST /auth/register
+   * Registrar un nuevo usuario (responde 201 Created)
+   */
+  @Post('register')
+  register(@Body() registerDto: RegisterDto): Promise&lt;AuthResponse&gt; {
+    return this.authService.register(registerDto);
+  }
+
+  /**
+   * POST /auth/login
+   * Iniciar sesión (responde 200 OK, no se crea ningún recurso)
+   */
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  login(@Body() loginDto: LoginDto): Promise&lt;AuthResponse&gt; {
+    return this.authService.login(loginDto);
+  }
+
+  /**
+   * GET /auth/profile
+   * Obtener perfil del usuario autenticado
+   * Ruta protegida con JWT
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@GetUser() user: User): { user: User } {
+    return { user };
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>auth.controller.ts</code>?</h4>
+                    <p>Expone las rutas de autenticación en <code>/auth</code>.</p>
+                    <ul>
+                        <li><code>POST /auth/register</code>: registra y responde <code>201</code> con el usuario y el token.</li>
+                        <li><code>POST /auth/login</code>: inicia sesión; <code>@HttpCode(HttpStatus.OK)</code> hace que responda <code>200</code>, porque no se crea ningún recurso.</li>
+                        <li><code>GET /auth/profile</code>: ruta protegida que devuelve el usuario dueño del token.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 8: Configurar el módulo Auth</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/auth.module.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Module } from '@nestjs/common';
+import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { ConfigService } from '@nestjs/config';
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { UserModule } from '../user/user.module';
+import { JwtStrategy } from './strategies/jwt.strategy';
+
+@Module({
+  imports: [
+    // Importar UserModule para acceder a UserService
+    UserModule,
+
+    // Configurar Passport con 'jwt' como estrategia por defecto
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+
+    // Configurar JWT leyendo el secreto y la expiración del .env
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService): JwtModuleOptions =&gt; ({
+        secret: configService.getOrThrow&lt;string&gt;('JWT_SECRET'),
+        signOptions: {
+          // Segundos; las variables de entorno siempre llegan como string
+          expiresIn: Number(configService.getOrThrow&lt;string&gt;('JWT_EXPIRATION')),
+        },
+      }),
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
+})
+export class AuthModule {}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>auth.module.ts</code>?</h4>
+                    <p>Une todas las piezas de la autenticación y configura la librería JWT.</p>
+                    <ul>
+                        <li><code>UserModule</code>: se importa para usar <code>UserService</code>.</li>
+                        <li><code>PassportModule</code>: activa Passport, con <code>jwt</code> como estrategia por defecto.</li>
+                        <li><code>JwtModule.registerAsync</code>: configura el secreto y la expiración leyéndolos del <code>.env</code>. <code>expiresIn</code> se convierte con <code>Number()</code> porque las variables de entorno siempre llegan como texto.</li>
+                        <li><code>providers</code>: registra <code>AuthService</code> y <code>JwtStrategy</code> para que NestJS pueda inyectarlos.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5 -->
+            <section id="seccion-5" class="section">
+                <h2><span class="step-number">5</span>DTOs, Validaciones y Serialización</h2>
+
+                <h3>Configurar ValidationPipe y ClassSerializerInterceptor globales</h3>
+                <p><code>ValidationPipe</code> hace que las validaciones de los DTOs funcionen automáticamente; <code>ClassSerializerInterceptor</code> aplica <code>@Exclude()</code> para que la contraseña nunca salga en las respuestas.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/main.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { NestFactory, Reflector } from '@nestjs/core';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import { AppModule } from './app.module';
+
+async function bootstrap(): Promise&lt;void&gt; {
+  const app = await NestFactory.create(AppModule);
+
+  // Configurar ValidationPipe globalmente
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // Elimina propiedades no definidas en el DTO
+      forbidNonWhitelisted: true, // Lanza error si hay propiedades no permitidas
+      transform: true, // Transforma los datos al tipo definido en el DTO
+    }),
+  );
+
+  // Aplicar @Exclude() de class-transformer en todas las respuestas
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+
+  // Habilitar CORS (opcional, para desarrollo con frontend)
+  app.enableCors();
+
+  const port: number = Number(process.env.PORT ?? 3000);
+  await app.listen(port);
+  console.log(`🚀 Servidor corriendo en http://localhost:${port}`);
+}
+void bootstrap();</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>main.ts</code>?</h4>
+                    <p>Es el punto de entrada: crea la aplicación, aplica la configuración global y la pone a escuchar peticiones.</p>
+                    <ul>
+                        <li><code>ValidationPipe</code>: valida automáticamente todos los DTOs. <code>whitelist</code> elimina campos no declarados, <code>forbidNonWhitelisted</code> rechaza la petición si llegan campos extra y <code>transform</code> convierte los datos a los tipos del DTO.</li>
+                        <li><code>ClassSerializerInterceptor</code>: aplica <code>@Exclude()</code> en todas las respuestas, así la contraseña nunca sale de la API.</li>
+                        <li><code>enableCors()</code>: permite que un frontend en otro dominio o puerto consuma la API.</li>
+                        <li><code>process.env.PORT ?? 3000</code>: usa el puerto definido en el entorno o 3000 por defecto.</li>
+                    </ul>
+                </div>
+
+                <div class="success">
+                    <strong>✅ Validaciones configuradas:</strong> Ahora todos los DTOs serán validados automáticamente y la contraseña queda excluida de las respuestas.
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6 -->
+            <section id="seccion-6" class="section">
+                <h2><span class="step-number">6</span>Roles y Protección de Rutas</h2>
+
+                <p>El <code>JwtAuthGuard</code> y el decorador <code>@GetUser()</code> ya se crearon en la sección 4. Ahora añadimos control de acceso por roles.</p>
+
+                <h3>Paso 1: Crear decorador de roles</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/decorators/roles.decorator.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { CustomDecorator, SetMetadata } from '@nestjs/common';
+
+// Clave compartida entre el decorador y el guard (evita errores de escritura)
+export const ROLES_KEY = 'roles';
+
+/**
+ * Decorador para especificar roles requeridos
+ * Uso: @Roles('admin', 'moderator')
+ */
+export const Roles = (...roles: string[]): CustomDecorator&lt;string&gt; =&gt;
+  SetMetadata(ROLES_KEY, roles);</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>roles.decorator.ts</code>?</h4>
+                    <p>Crea el decorador <code>@Roles()</code>, que guarda como metadato qué roles pueden acceder a una ruta o controlador. Por sí solo no bloquea nada: quien lee ese metadato es <code>RolesGuard</code>.</p>
+                    <ul>
+                        <li><code>ROLES_KEY</code>: nombre del metadato, compartido con el guard para evitar errores de escritura.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 2: Crear guard para roles</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/auth/guards/roles.guard.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { ROLES_KEY } from '../decorators/roles.decorator';
+import { User } from '../../user/entities/user.entity';
+
+/**
+ * Guard para verificar roles de usuario
+ * Debe usarse DESPUÉS de JwtAuthGuard: @UseGuards(JwtAuthGuard, RolesGuard)
+ */
+@Injectable()
+export class RolesGuard implements CanActivate {
+  constructor(private readonly reflector: Reflector) {}
+
+  canActivate(context: ExecutionContext): boolean {
+    // Obtener roles requeridos del decorador @Roles() (método o clase)
+    const requiredRoles: string[] | undefined =
+      this.reflector.getAllAndOverride&lt;string[] | undefined&gt;(ROLES_KEY, [
+        context.getHandler(),
+        context.getClass(),
+      ]);
+
+    // Si la ruta no exige roles, se permite el acceso
+    if (!requiredRoles || requiredRoles.length === 0) {
+      return true;
+    }
+
+    const { user } = context.switchToHttp().getRequest&lt;{ user?: User }&gt;();
+
+    // Sin usuario: falta JwtAuthGuard o el token no se envió
+    if (!user) {
+      throw new UnauthorizedException('Debes iniciar sesión');
+    }
+
+    // Verificar si el usuario tiene alguno de los roles requeridos
+    if (!requiredRoles.includes(user.role)) {
+      throw new ForbiddenException('No tienes permisos para este recurso');
+    }
+
+    return true;
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>roles.guard.ts</code>?</h4>
+                    <p>Decide si el usuario autenticado tiene el rol necesario. Se usa siempre después de <code>JwtAuthGuard</code>, que es el que coloca al usuario en la petición.</p>
+                    <ul>
+                        <li><code>Reflector</code>: lee los roles definidos con <code>@Roles()</code> en el método o en la clase.</li>
+                        <li>Si la ruta no exige roles, deja pasar.</li>
+                        <li>Sin usuario responde <code>401</code>; con un rol no permitido responde <code>403 Forbidden</code>.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 3: Proteger el controlador User</h3>
+                <p>Reemplaza la versión inicial del controlador: ahora todas las rutas de <code>/users</code> exigen token y rol <code>admin</code>. Los usuarios normales se registran con <code>POST /auth/register</code>.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/user/user.controller.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+  HttpCode,
+  HttpStatus,
+  UseGuards,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+
+// Los guards y el rol aplican a todas las rutas del controlador
+@Controller('users')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('admin')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  @Post()
+  create(@Body() createUserDto: CreateUserDto): Promise&lt;User&gt; {
+    return this.userService.create(createUserDto);
+  }
+
+  @Get()
+  findAll(): Promise&lt;User[]&gt; {
+    return this.userService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number): Promise&lt;User&gt; {
+    return this.userService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise&lt;User&gt; {
+    return this.userService.update(id, updateUserDto);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id', ParseIntPipe) id: number): Promise&lt;void&gt; {
+    return this.userService.remove(id);
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>user.controller.ts (protegido)</code>?</h4>
+                    <p>Es el mismo controlador de la sección 3, ahora protegido. Al poner los decoradores sobre la clase, aplican a todas sus rutas.</p>
+                    <ul>
+                        <li><code>@UseGuards(JwtAuthGuard, RolesGuard)</code>: primero valida el token y después el rol, en ese orden.</li>
+                        <li><code>@Roles('admin')</code>: solo los administradores pueden crear, listar, editar o eliminar usuarios. Así nadie puede darse a sí mismo el rol <code>admin</code>.</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 4: Ejemplo de uso de Guards y Decoradores</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript - src/example/example.controller.ts</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>import { Controller, Get, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { GetUser } from '../auth/decorators/get-user.decorator';
+import { User } from '../user/entities/user.entity';
+
+interface ExampleResponse {
+  message: string;
+  user: User;
+}
+
+@Controller('example')
+export class ExampleController {
+  // Ruta protegida solo con autenticación
+  @UseGuards(JwtAuthGuard)
+  @Get('protected')
+  protectedRoute(@GetUser() user: User): ExampleResponse {
+    return {
+      message: 'Esta ruta está protegida',
+      user,
+    };
+  }
+
+  // Ruta protegida solo para administradores
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  @Get('admin')
+  adminRoute(@GetUser() user: User): ExampleResponse {
+    return {
+      message: 'Esta ruta es solo para administradores',
+      user,
+    };
+  }
+}</code></pre>
+                </div>
+
+                <div class="file-explain">
+                    <h4>📄 ¿Qué hace <code>example.controller.ts</code>?</h4>
+                    <p>Muestra los dos niveles de protección que se pueden combinar en cualquier controlador.</p>
+                    <ul>
+                        <li><code>GET /example/protected</code>: basta con estar autenticado.</li>
+                        <li><code>GET /example/admin</code>: además del token, exige rol <code>admin</code>.</li>
+                        <li>Para que estas rutas existan, el controlador debe registrarse en un módulo: añade <code>controllers: [ExampleController]</code> en <code>AppModule</code> e impórtalo desde <code>./example/example.controller</code>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 7 -->
+            <section id="seccion-7" class="section">
+                <h2><span class="step-number">7</span>Pruebas con Ejemplos</h2>
+
+                <h3>1. Registrar un nuevo usuario</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "usuario@example.com",
+  "password": "password123",
+  "fullName": "Juan Pérez"
+}</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Respuesta esperada (201 Created)</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>{
+  "user": {
+    "id": 1,
+    "email": "usuario@example.com",
+    "fullName": "Juan Pérez",
+    "role": "user"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}</code></pre>
+                </div>
+
+                <h3>2. Iniciar sesión</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request (responde 200 OK)</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "usuario@example.com",
+  "password": "password123"
+}</code></pre>
+                </div>
+
+                <h3>3. Obtener perfil (ruta protegida)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>GET http://localhost:3000/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</code></pre>
+                </div>
+
+                <h3>4. Convertir un usuario en administrador</h3>
+                <p>Las rutas de <code>/users</code> exigen rol <code>admin</code>, y nadie puede asignárselo a sí mismo desde la API. El primer administrador se crea directamente en MySQL; después <strong>vuelve a hacer login</strong> para obtener un token con el nuevo rol.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">SQL</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>UPDATE users SET role = 'admin' WHERE email = 'usuario@example.com';</code></pre>
+                </div>
+
+                <h3>5. Crear usuario (desde módulo User, requiere admin)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer TOKEN_DE_ADMIN
+
+{
+  "email": "otro@example.com",
+  "password": "password456",
+  "fullName": "María García"
+}</code></pre>
+                </div>
+
+                <h3>6. Listar todos los usuarios (requiere admin)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">HTTP Request</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>GET http://localhost:3000/users
+Authorization: Bearer TOKEN_DE_ADMIN</code></pre>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="fix-table">
+                        <tr><th>Situación</th><th>Respuesta</th></tr>
+                        <tr><td>Sin token o token expirado</td><td><code>401 Unauthorized</code></td></tr>
+                        <tr><td>Token válido pero rol <code>user</code> en <code>/users</code></td><td><code>403 Forbidden</code></td></tr>
+                        <tr><td>Email ya registrado</td><td><code>409 Conflict</code></td></tr>
+                        <tr><td>Datos inválidos en el body</td><td><code>400 Bad Request</code></td></tr>
+                        <tr><td>Usuario con ese ID no existe (admin)</td><td><code>404 Not Found</code></td></tr>
+                    </table>
+                </div>
+
+                <h3>Probar con cURL</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash - Registro</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "password123",
+    "fullName": "Usuario Test"
+  }'</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash - Login</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "password123"
+  }'</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Bash - Perfil (con token)</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>curl -X GET http://localhost:3000/auth/profile \
+  -H "Authorization: Bearer TU_TOKEN_AQUI"</code></pre>
+                </div>
+
+                <div class="success">
+                    <strong>✅ ¡Implementación completa!</strong> Ya tienes un sistema de autenticación JWT funcional con NestJS y MySQL.
+                </div>
+            </section>
+
+            <!-- SECCIÓN BONUS: Estructura del proyecto -->
+            <section class="section">
+                <h2>📁 Estructura Final del Proyecto</h2>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Estructura de carpetas</span>
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><code>jwt-auth-project/
+├── src/
+│   ├── auth/
+│   │   ├── decorators/
+│   │   │   ├── get-user.decorator.ts
+│   │   │   └── roles.decorator.ts
+│   │   ├── dto/
+│   │   │   ├── login.dto.ts
+│   │   │   └── register.dto.ts
+│   │   ├── guards/
+│   │   │   ├── jwt-auth.guard.ts
+│   │   │   └── roles.guard.ts
+│   │   ├── interfaces/
+│   │   │   ├── auth-response.interface.ts
+│   │   │   └── jwt-payload.interface.ts
+│   │   ├── strategies/
+│   │   │   └── jwt.strategy.ts
+│   │   ├── auth.controller.ts
+│   │   ├── auth.module.ts
+│   │   └── auth.service.ts
+│   ├── example/
+│   │   └── example.controller.ts
+│   ├── user/
+│   │   ├── dto/
+│   │   │   ├── create-user.dto.ts
+│   │   │   └── update-user.dto.ts
+│   │   ├── entities/
+│   │   │   └── user.entity.ts
+│   │   ├── user.controller.ts
+│   │   ├── user.module.ts
+│   │   └── user.service.ts
+│   ├── app.module.ts
+│   └── main.ts
+├── .env
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── nest-cli.json</code></pre>
+                </div>
+            </section>
+
+        </div>
+
+        <footer>
+            <p>🚀 Guía creada para aprender NestJS con JWT y MySQL</p>
+            <p>© 2026 - Tutorial de autenticación con NestJS</p>
+        </footer>
+    </div>
+
+    <script>
+        // Función para copiar código al portapapeles
+        function showCopied(button, ok) {
+            button.textContent = ok ? '✓ Copiado!' : '✗ Error';
+            if (ok) button.classList.add('copied');
+            setTimeout(() => {
+                button.textContent = 'Copiar';
+                button.classList.remove('copied');
+            }, 2000);
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            let ok = false;
+            try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+            document.body.removeChild(textarea);
+            return ok;
+        }
+
+        function copyCode(button) {
+            const code = button.closest('.code-block').querySelector('code').textContent;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(code)
+                    .then(() => showCopied(button, true))
+                    .catch(() => showCopied(button, fallbackCopy(code)));
+            } else {
+                showCopied(button, fallbackCopy(code));
+            }
+        }
+
+        // Scroll suave para los enlaces del índice
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
