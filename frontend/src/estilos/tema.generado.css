@@ -1,0 +1,134 @@
+/* GENERADO por scripts/generar-tema.mjs desde
+ * docs/modesec/fase-2-diseno-multimedial/tokens.json y 03-tokens-diseno.md.
+ * No editar a mano: cambiar tokens.json y correr `npm run tema`. */
+
+@theme {
+  /* Sin los valores por defecto de Tailwind: solo los del sistema de diseño */
+  --color-*: initial;
+  --spacing-*: initial;
+  --radius-*: initial;
+  --text-*: initial;
+  --font-weight-*: initial;
+  --leading-*: initial;
+  --tracking-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --blur-*: initial;
+  --breakpoint-*: initial;
+  --container-*: initial;
+  --font-*: initial;
+  --ease-*: initial;
+  --perspective-*: initial;
+  --aspect-*: initial;
+  --spacing: initial;
+
+  /* Colores (tokens.json, "colores") */
+  --color-canvas: #F7F6F3;
+  --color-surface-0: #FFFFFF;
+  --color-surface-1: #FAFAF8;
+  --color-surface-2: #F5F3EE;
+  --color-border: #E7E7E7;
+  --color-primary-ink: #111111;
+  --color-strong: #222222;
+  --color-secondary: #555555;
+  --color-muted: #888888;
+  --color-disabled: #BDBDBD;
+  --color-estado-muestra: #29578E;
+  --color-estado-no-muestra: #7A391F;
+  --color-estado-no-concluyente: #52514E;
+  --color-informativo: #6D28D9;
+  --color-error: #991B1B;
+
+  /* Medidas en px: espaciado, alturas de control, íconos, anchos de layout e interlineados */
+  --spacing-0: 0px;
+  --spacing-1: 1px;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-26: 26px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-104: 104px;
+  --spacing-112: 112px;
+  --spacing-128: 128px;
+  --spacing-200: 200px;
+  --spacing-280: 280px;
+  --spacing-412: 412px;
+  --spacing-480: 480px;
+  --spacing-852: 852px;
+  --spacing-912: 912px;
+  /* Alto máximo del modal de Crear experiencia: en Figma 852, en producción
+     "alto de pantalla menos 48" (tokens.json, anchos_layout_px.852) */
+  --spacing-alto-modal: calc(100vh - 48px);
+
+  /* Radios (tokens.json, "radios_px") */
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-24: 24px;
+  --radius-999: 999px;
+
+  /* Tipografía (tokens.json, "tipografia"); fuente web de 03-tokens-diseno.md */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Arial,
+sans-serif;
+  --text-h1: 32px;
+  --text-h1--line-height: 40px;
+  --text-h1--font-weight: 700;
+  --text-h2: 24px;
+  --text-h2--line-height: 32px;
+  --text-h2--font-weight: 700;
+  --text-h3: 20px;
+  --text-h3--line-height: 28px;
+  --text-h3--font-weight: 500;
+  --text-h4: 18px;
+  --text-h4--line-height: 26px;
+  --text-h4--font-weight: 700;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-body--font-weight: 400;
+  --text-boton: 16px;
+  --text-boton--line-height: 22px;
+  --text-boton--font-weight: 500;
+  --text-caption: 13px;
+  --text-caption--line-height: 20px;
+  --text-caption--font-weight: 400;
+  --text-badge: 12px;
+  --text-badge--line-height: 16px;
+  --text-badge--font-weight: 700;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+}
+
+/* Grosores de borde (tokens.json, "grosores_borde_px"): borde-1, borde-1_5, … */
+@utility borde-1 {
+  border-style: solid;
+  border-width: 1px;
+}
+@utility borde-1_5 {
+  border-style: solid;
+  border-width: 1.5px;
+}
+@utility borde-2 {
+  border-style: solid;
+  border-width: 2px;
+}
+@utility borde-2_5 {
+  border-style: solid;
+  border-width: 2.5px;
+}

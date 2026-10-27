@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+@import './tema.generado.css';
+
+/* La fuente y el fondo de toda la aplicación (03-tokens-diseno.md) */
+@layer base {
+  body {
+    @apply bg-canvas font-sans text-primary-ink;
+  }
+}

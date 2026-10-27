@@ -90,7 +90,7 @@ docs/cursos/            entregables de los cursos DSE-1 y DSE-2
 docs/encargos/          encargos escritos para sesiones de Claude Code
 data/curriculo-men/     PDF oficiales de los DBA y su normalización
 backend/                NestJS + MySQL (hoy: el acceso y el catálogo curricular, encargo 03)
-frontend/               vacío todavía; se programa con React + Vite + TypeScript + Tailwind (ADR-038)
+frontend/               React + Vite + TypeScript + Tailwind (ADR-038); hoy: del acceso al Paso 3 de crear experiencia, encargo 04
 ```
 
 ## Mensajes de commit
