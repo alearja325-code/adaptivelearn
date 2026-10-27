@@ -473,6 +473,21 @@ revisa en local antes de unirlo:
    sistema: llegó el código y la cuenta quedó `verificado`.
 3. **04 — Frontend hasta el Paso 3:**
    `docs/encargos/04-frontend-hasta-paso-3.md`, escrito el 2026-10-27.
+   **Hecho el 2026-10-27, en revisión** (rama
+   `encargo-04-frontend-hasta-paso-3`): `frontend/` con las ventanas
+   014-019, 001, 026 y 002-004, conectadas al backend real, sin crear la
+   experiencia. Tema de Tailwind generado de `tokens.json` y
+   `npm run verificar:estilos`; 36 pruebas unitarias y 9 de punta a punta
+   contra MySQL, con 34 capturas en `frontend/capturas/`; las pruebas
+   atrapan los dos errores puestos a propósito (§6.4). Sin cambios en el
+   backend. **Por confirmar:** las decisiones propias que lista el pull
+   request (entre ellas, el token en `sessionStorage` y los textos que
+   las specs no traen). **Quedó para después:** probar Google y Microsoft
+   con credenciales reales (además, registrar `<origen>/oauth/retorno`
+   como dirección de retorno); que el backend verifique el `nonce` de
+   esos proveedores; y el vacío de la spec 015 "Volver", que cierra la
+   cuenta a medias y deja el correo ocupado (409) si se vuelve a
+   registrar.
 
 ### A15. Fase IV (Producción) — EMPEZADA 2026-10-26
 

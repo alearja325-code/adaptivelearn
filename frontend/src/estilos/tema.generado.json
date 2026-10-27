@@ -1,0 +1,82 @@
+{
+  "_nota": "GENERADO por scripts/generar-tema.mjs — lo usa verificar-estilos.mjs",
+  "colores": [
+    "canvas",
+    "surface-0",
+    "surface-1",
+    "surface-2",
+    "border",
+    "primary-ink",
+    "strong",
+    "secondary",
+    "muted",
+    "disabled",
+    "estado-muestra",
+    "estado-no-muestra",
+    "estado-no-concluyente",
+    "informativo",
+    "error"
+  ],
+  "espaciados": [
+    "0",
+    "1",
+    "2",
+    "4",
+    "8",
+    "12",
+    "14",
+    "16",
+    "20",
+    "22",
+    "24",
+    "26",
+    "28",
+    "32",
+    "40",
+    "44",
+    "48",
+    "56",
+    "64",
+    "80",
+    "96",
+    "104",
+    "112",
+    "128",
+    "200",
+    "280",
+    "412",
+    "480",
+    "852",
+    "912",
+    "alto-modal"
+  ],
+  "radios": [
+    "4",
+    "8",
+    "12",
+    "16",
+    "24",
+    "999"
+  ],
+  "grosores": [
+    "1",
+    "1_5",
+    "2",
+    "2_5"
+  ],
+  "textos": [
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "body",
+    "boton",
+    "caption",
+    "badge"
+  ],
+  "pesos": [
+    "bold",
+    "medium",
+    "regular"
+  ]
+}
