@@ -3,51 +3,48 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserService } from '../../user/user.service.js';
+import { User } from '../../user/entities/user.entity.js';
 import { JwtPayload } from '../interfaces/jwt-payload.interface.js';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(
+    configService: ConfigService,
     private readonly userService: UserService,
-    private readonly configService: ConfigService,
   ) {
     super({
       // Extraer el token del header Authorization como Bearer token
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       // No ignorar la expiración del token
       ignoreExpiration: false,
-      // Secreto para verificar el token. Guía: get(). Con los tipos actuales
-      // de passport-jwt, get() no compila (puede ser undefined); getOrThrow
-      // además impide arrancar el servidor si falta JWT_SECRET en el .env.
-      secretOrKey: configService.getOrThrow('JWT_SECRET'),
+      // Secreto para verificar el token
+      // getOrThrow devuelve string (nunca undefined), como exige passport-jwt
+      secretOrKey: configService.getOrThrow<string>('JWT_SECRET'),
     });
   }
 
   /**
    * Método que se ejecuta automáticamente después de validar el token
-   * El payload ya viene decodificado por Passport
+   * El payload ya viene decodificado y verificado por Passport
+   * Lo que retorna se asigna a request.user
    */
-  async validate(payload: JwtPayload & { proposito?: string }) {
-    // El token de recuperación (spec 22) está firmado con el mismo secreto,
-    // pero no es una sesión: no debe abrir rutas protegidas.
+  async validate(payload: JwtPayload & { proposito?: string }): Promise<User> {
+    // El token de recuperación está firmado con el mismo secreto, pero no
+    // es una sesión: no debe abrir rutas protegidas.
     if (payload.proposito) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Token inválido');
     }
 
-    const { sub: id } = payload;
+    const user: User | null = await this.userService.findById(payload.sub);
 
-    // Buscar el usuario en la base de datos. Guía: findOne lanza 404 si no
-    // existe; para un token inválido la respuesta correcta es 401.
-    const user = await this.userService.findOne(id).catch(() => null);
-
+    // El token es válido pero el usuario fue eliminado
     if (!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Token inválido');
     }
 
-    // Guía: acá revisa isActive. Ninguna spec define desactivar cuentas,
-    // así que ese campo no existe en este modelo.
+    // Guía: aquí revisa isActive. El modelo no tiene cuentas desactivadas
+    // (ningún requerimiento lo pide), así que esa columna no existe.
 
-    // Retornar el usuario (se agregará a request.user)
     return user;
   }
 }

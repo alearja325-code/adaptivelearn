@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
 
-// Spec 18, flujo 2 (recuperar contraseña) — sin sesión, por eso lleva el email.
+// Ventana 015, flujo de recuperación: sin sesión, por eso lleva el email.
 export class VerificarRecuperacionDto {
   @IsEmail({}, { message: 'El email debe ser válido' })
   @IsNotEmpty({ message: 'El email es obligatorio' })

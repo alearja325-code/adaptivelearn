@@ -13,19 +13,24 @@ modelo relacional, asi que no puede contradecirlo.
   * todo caso de uso toca al menos una entidad (o dice por que no);
   * Presentacion, Respuesta, Respuesta_Opcion y Resultado nunca se
     modifican: son hechos y fotografias (RNF-10, RNF-11, ADR-021);
-  * solo se borra lo que un flujo borra (experiencia, inscripcion, opcion).
+  * solo se borra lo que un flujo borra (experiencia, inscripcion, opcion,
+    y el codigo de verificacion ya usado: ADR-039).
+
+La tarea nocturna de ADR-039 (borra codigos vencidos y credenciales que
+llevan mas de 7 dias sin terminar el registro) no es un caso de uso: no la
+inicia ningun actor. Se declara en `16` y en `17`, no en esta matriz.
 """
 
 C, R, U, D = "C", "R", "U", "D"
 
 CRUD = {
-    "CU-01": {"CREDENCIAL": "CR"},
+    "CU-01": {"CREDENCIAL": "CR", "CODIGO_VERIFICACION": "C"},
     "CU-02": {"CREDENCIAL": "CR", "DOCENTE": "R", "ESTUDIANTE": "R"},
-    "CU-03": {"CREDENCIAL": "RU"},
+    "CU-03": {"CREDENCIAL": "RU", "CODIGO_VERIFICACION": "CRUD"},
     "CU-04": {"CREDENCIAL": "R"},
     "CU-05": {"DOCENTE": "C", "ESTUDIANTE": "C", "CREDENCIAL": "U"},
     "CU-06": {"CREDENCIAL": "RU", "DOCENTE": "R", "ESTUDIANTE": "R"},
-    "CU-07": {"CREDENCIAL": "RU"},
+    "CU-07": {"CREDENCIAL": "RU", "CODIGO_VERIFICACION": "CRUD"},
     "CU-08": {},
     "CU-09": {"DOCENTE": "RU", "ESTUDIANTE": "RU", "CREDENCIAL": "R"},
     "CU-10": {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "INSCRIPCION": "R"},
@@ -76,6 +81,7 @@ INMUTABLES = {"PRESENTACION": "RNF-10", "RESPUESTA": "RNF-10", "RESPUESTA_OPCION
               "RESULTADO": "RNF-11 · ADR-021"}
 # Lo unico que un flujo borra directamente.
 BORRABLES = {"EXPERIENCIA": "CU-15", "INSCRIPCION": "CU-26",
+             "CODIGO_VERIFICACION": "CU-03, CU-07 (el código ya usado se borra: ADR-039)",
              "OPCION": "CU-18 (quitar una opción mientras el ítem está en Borrador)"}
 
 

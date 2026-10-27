@@ -8,6 +8,10 @@
 `grado` y `documento_oficial`, código del DBA `ÁREA-GG-NN` (ADR-036) y
 `credencial.estado_verificacion` (ADR-037). Ver la sección 5.6 y la tabla de cambios (10).
 
+**Actualizado el 2026-10-27** (encargo 03): tabla `codigo_verificacion` (ADR-039, nota R4
+del docente) y, en `credencial`, la marca `es_admin` (ADR-040) y `nombre_completo`. Ver la
+sección 5.7 y la tabla de cambios (10).
+
 MODESEC pide *«un MR (Modelo relacional) basado en el MER»*. La base es
 `16-modelo-entidad-relacion.md`; `modelo-relacional/_verificar_mr_mer.py` comprueba en cada
 corrida que este modelo no se aparte de él, entidad por entidad y atributo por atributo.
@@ -21,7 +25,7 @@ no se ejecutó: queda como prueba pendiente al integrar.
 
 | Tablas | Columnas | Llaves foráneas | UNIQUE | CHECK |
 |---|---|---|---|---|
-| 18 | 104 | 23 | 17 | 14 |
+| 19 | 107 | 24 | 17 | 16 |
 
 Una tabla por entidad del MER; Reporte no tiene tabla (sección 5). Los tipos, tamaños y
 dominios de cada columna están en `18-diccionario-datos.md`.
@@ -30,7 +34,8 @@ dominios de cada columna están en `18-diccionario-datos.md`.
 
 Llave primaria <u>subrayada</u>; llave foránea en *cursiva*, con la tabla a la que apunta.
 
-- **credencial**(<u>id_credencial</u>, *id_docente* → docente, *id_estudiante* → estudiante, correo, proveedor, password_hash, proveedor_id, estado_verificacion, codigo_verificacion, codigo_expira_en, codigo_ultimo_envio, intentos_codigo, intentos_login, bloqueado_hasta, creado_en, actualizado_en)
+- **credencial**(<u>id_credencial</u>, *id_docente* → docente, *id_estudiante* → estudiante, correo, proveedor, password_hash, proveedor_id, estado_verificacion, es_admin, nombre_completo, intentos_login, bloqueado_hasta, creado_en, actualizado_en)
+- **codigo_verificacion**(*<u>id_credencial</u>* → credencial, <u>proposito</u>, codigo_hash, creado_en, intentos)
 - **docente**(<u>id_docente</u>, nombres, apellidos, avatar_url)
 - **estudiante**(<u>id_estudiante</u>, nombres, apellidos, avatar_url)
 - **experiencia**(<u>id_experiencia</u>, *id_docente* → docente, *codigo_dba* → dba, nombre, estado, fecha_creacion, fecha_publicacion, codigo_invitacion, servicio_ia, modelo_ia)
@@ -66,12 +71,15 @@ Diagrama del esquema: pegar `modelo-relacional/mr_adaptivelearn.dbml` en dbdiagr
 **Esto cierra el vacío V-11** que el análisis de requerimientos dejó abierto en RF-02-07
 (eliminar una experiencia) y RF-04-12 (salir de una): borrar una experiencia o una
 inscripción borra **en cascada** todo lo que depende de ella. Las raíces que ningún flujo
-borra —credencial, docente, estudiante, el catálogo (área, grado, documento, DBA) y evidencia—
-quedan en `RESTRICT`, como seguro. `ON UPDATE CASCADE` en todas, salvo las de `credencial` y
-las del catálogo hacia `area`, `grado` y `documento_oficial` (abajo).
+borra —docente, estudiante, el catálogo (área, grado, documento, DBA) y evidencia— quedan en
+`RESTRICT`, como seguro. Una **credencial** sí se puede borrar —la tarea nocturna borra las
+que quedaron sin terminar (ADR-039) y el administrador de la guía puede borrar un usuario
+(ADR-040)—, y sus códigos se van con ella (`CASCADE`). `ON UPDATE CASCADE` en todas, salvo
+las de `credencial` y las del catálogo hacia `area`, `grado` y `documento_oficial` (abajo).
 
 | Tabla | Columnas | Referencia | ON DELETE | ON UPDATE | Por qué |
 |---|---|---|---|---|---|
+| codigo_verificacion | `id_credencial` | `credencial(id_credencial)` | CASCADE | CASCADE | Entidad débil: un código no existe sin su credencial. Borrar la credencial (tarea nocturna, ADR-039) borra sus códigos. |
 | credencial | `id_docente` | `docente(id_docente)` | RESTRICT | RESTRICT | Raíz: ningún flujo borra un docente. Sin ON UPDATE CASCADE: MySQL no admite un CHECK sobre una columna con acción referencial, y aquí lo hay (RI-12). |
 | credencial | `id_estudiante` | `estudiante(id_estudiante)` | RESTRICT | RESTRICT | Igual que la anterior. |
 | experiencia | `id_docente` | `docente(id_docente)` | RESTRICT | CASCADE | Raíz: ningún flujo del sistema borra un docente. |
@@ -177,6 +185,34 @@ dato podría quedar viejo.
   `curriculo_men_normalizado.json`: ese tenía 342 DBA y solo 329 códigos distintos (16 §4, DBA),
   y cargarlo fallaría por llave duplicada en 13, que es lo correcto: `codigo_dba` es llave primaria.
 
+### 5.7 El código de verificación en su tabla (ADR-039) y la marca de administrador (ADR-040)
+
+- **Por qué una tabla.** El docente pidió quitar `codigo_expira_en` y `codigo_ultimo_envio`
+  de la credencial (nota R4). `codigo_verificacion` guarda el código, su propósito, cuándo se
+  creó y cuántos intentos lleva. **El vencimiento (10 min) y la espera para reenviar (30 s) se
+  calculan** desde `creado_en`: `creado_en + 10 min` y `creado_en + 30 s`. Su llave primaria,
+  `(id_credencial, proposito)`, hace que haya **a lo sumo un código por credencial y
+  propósito**: pedir otro reemplaza la fila. La tarea nocturna borra los vencidos.
+- **Decisión de esta sesión, para que el equipo la confirme:** no se guarda el código sino
+  su **HMAC-SHA256** (64 caracteres hexadecimales), con una clave que solo conoce el servidor.
+  Quien lea la tabla no puede usar los códigos (RNF-08). No se usa bcrypt, como en la
+  contraseña, porque un código vive 10 minutos y tiene 5 intentos: lo que lo protege es el
+  límite, no la lentitud del hash. Un CHECK exige el formato del hash: un código de 6 dígitos
+  sin hash no cabe.
+- **`intentos` como atributo, no como columna de seguridad.** ADR-039 lo pone en la entidad:
+  *«cuántos intentos lleva»*. Un CHECK lo limita a 5; al quinto fallo el código deja de
+  servir y hay que pedir otro, que lo reemplaza. Un código acertado se borra. Los intentos de
+  **inicio de sesión** (`intentos_login`,
+  `bloqueado_hasta`) siguen siendo columnas solo del MR (RF-01-07).
+- **`es_admin`** (ADR-040) es la marca que la guía del docente usa para `/users`. Falsa por
+  defecto; **solo se pone por SQL** (`UPDATE credencial SET es_admin = 1 WHERE correo = …`,
+  como la prueba 4 de la guía). Ninguna ruta la asigna y ninguna pantalla del producto la usa.
+- **`nombre_completo`** — decisión de esta sesión, para que el equipo la confirme: la guía
+  pide `fullName` al registrarse y lo devuelve en cada respuesta, pero en AdaptiveLearn los
+  nombres viven en `docente` o `estudiante`, que todavía no existen al registrarse. Se guarda
+  aquí, opcional, mientras la persona no elige rol, y sirve para proponer nombres y apellidos
+  al completar el perfil. No es atributo del MER: está justificada en `_verificar_mr_mer.py`.
+
 ## 6. Análisis de normalización
 
 **Todas las tablas están en tercera forma normal, con tres excepciones deliberadas y
@@ -226,6 +262,8 @@ triggers, para que cada regla de negocio viva en un solo lugar y se pueda probar
 
 - `credencial`: `id_docente IS NULL OR id_estudiante IS NULL` — una credencial accede como un solo rol. *RI-12 · 20-spec-auth-elige-rol.md*
 - `credencial`: `(proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND estado_verificacion = 'verificado')` — contraseña solo con correo; identificador externo y correo verificado solo con Google o Microsoft. *RI-15 · RF-01-01 · RF-01-02*
+- `codigo_verificacion`: `intentos <= 5` — a lo sumo 5 intentos fallidos por código. *ADR-039 · RNF-07*
+- `codigo_verificacion`: `codigo_hash REGEXP '^[0-9a-f]{64}$'` — el hash es hexadecimal de 64 caracteres: un código de 6 dígitos sin hash no cabe. *ADR-039 · RNF-08*
 - `docente`: `TRIM(nombres) <> '' AND TRIM(apellidos) <> ''` — nombres y apellidos no vacíos. *RF-01-05*
 - `estudiante`: `TRIM(nombres) <> '' AND TRIM(apellidos) <> ''` — nombres y apellidos no vacíos. *RF-01-05*
 - `experiencia`: `(estado = 'Borrador' AND fecha_publicacion IS NULL) OR (estado = 'Publicada' AND fecha_publicacion IS NOT NULL)` — fecha de publicación solo si está Publicada. *RI-16 · RF-02-05*
@@ -296,19 +334,21 @@ python probar_mysql.py --cnf RUTA_DEL_ARCHIVO_DE_OPCIONES --mysql RUTA_DE_mysql
 
 | Script | Qué comprueba |
 |---|---|
-| `generar.py` | Escribe el diccionario (18), el DBML y los dos SQL desde la fuente. |
+| `generar.py` | Escribe el diccionario (18), el DBML y los dos SQL desde la fuente; y el esquema del backend, `backend/sql/001_esquema.sql`, con las 10 tablas que el backend usa hoy (encargo 03). |
 | `_verificar_mr_mer.py` | Que cada entidad del MER tenga su tabla y cada atributo su columna, con las mismas llaves primarias; que toda FK apunte a una PK o a un UNIQUE; que toda columna que el MER no declara tenga su justificación escrita (`EXTRA_JUSTIFICADAS`). |
-| `verificar_mr.py` | Contra SQLite en memoria: que el esquema cargue, la batería de pruebas de `pruebas_mr.py`, y que el DBML y el SQL describan lo mismo. **80 comprobaciones.** |
+| `verificar_mr.py` | Contra SQLite en memoria: que el esquema cargue, la batería de pruebas de `pruebas_mr.py`, que el DBML y el SQL describan lo mismo, y que `backend/sql/001_esquema.sql` sea el que el MR genera hoy. **89 comprobaciones.** |
 | `probar_mysql.py` | La **misma batería** contra un MySQL real: crea una base de prueba, carga `mr_mysql.sql` tal cual, corre cada prueba dentro de una transacción que se deshace, y borra la base al terminar. |
 
 **La batería** (`pruebas_mr.py`) tiene tres clases de prueba: datos que rompen una regla y el
-motor *debe rechazar* (57), datos raros pero válidos que *debe aceptar* (7), y borrados tras
-los que se cuenta qué *queda* en cada tabla (3: eliminar una experiencia, salir de una,
-descartar un ítem). En MySQL, además, cada rechazo tiene que venir **de la restricción que la
+motor *debe rechazar* (62), datos raros pero válidos que *debe aceptar* (8), y borrados tras
+los que se cuenta qué *queda* en cada tabla (5: eliminar una experiencia, salir de una,
+descartar un ítem, borrar una credencial sin terminar con sus códigos, la marca de
+administrador por defecto). En MySQL, además, cada rechazo tiene que venir **de la restricción que la
 prueba nombra** (`MOTIVO_MYSQL`): rechazar por otra razón cuenta como falla.
 
-**Resultado del 2026-10-26, contra MySQL 8.0.46** (modo estricto por defecto), con el catálogo
-normalizado y el estado de verificación: 72 comprobaciones, todas correctas. La salida
+**Resultado del 2026-10-27, contra MySQL 8.0.46** (modo estricto por defecto), con el catálogo
+normalizado, el estado de verificación y la tabla de códigos: 80 comprobaciones, todas
+correctas. La salida
 completa está en `modelo-relacional/salida_probar_mysql.txt`. La versión anterior del esquema
 se había probado el 2026-10-22 contra MySQL 8.4.11; esta todavía no se corrió en 8.4 ni en
 MariaDB.
@@ -336,5 +376,7 @@ su restricción.
 | CHECK escritos como expresiones SQL reales, con nombre (antes eran prosa). | — |
 | Motor objetivo MySQL 8 (antes MariaDB 10.11), con un DDL propio y probado. | RNF-14 |
 | *(2026-10-26)* Tablas nuevas `area`, `grado` y `documento_oficial`; `dba` pierde `area` y `grado` como texto y gana `codigo_area`, `numero_grado` e `id_documento`, con una FK compuesta que cierra el ciclo C6 (RI-20). `codigo_dba` pasa a `ÁREA-GG-NN`, con su CHECK (RI-21), en ASCII binario en todas las tablas que lo usan (5.6). | ADR-036 · revisión del docente del 2026-10-22 (R1) |
-| *(2026-10-26)* `credencial`: `email_verificado` pasa a `estado_verificacion` (`procesando` / `verificado`, por defecto `procesando`); el CHECK de RI-15 usa el estado. `codigo_expira_en` y `codigo_ultimo_envio` siguen, a la espera de la pregunta P2. | ADR-037 · revisión del docente del 2026-10-22 (R3, R4) |
+| *(2026-10-26)* `credencial`: `email_verificado` pasa a `estado_verificacion` (`procesando` / `verificado`, por defecto `procesando`); el CHECK de RI-15 usa el estado. | ADR-037 · revisión del docente del 2026-10-22 (R3) |
+| *(2026-10-27)* Tabla nueva `codigo_verificacion` (PK `(id_credencial, proposito)`, código con HMAC, `creado_en`, `intentos` ≤ 5; FK a `credencial` en CASCADE). `credencial` pierde `codigo_verificacion`, `codigo_expira_en`, `codigo_ultimo_envio` e `intentos_codigo`: el vencimiento y la espera para reenviar se calculan (5.7). | ADR-039 · revisión del docente del 2026-10-22 (R4) |
+| *(2026-10-27)* `credencial`: `es_admin` (falsa por defecto; solo por SQL) y `nombre_completo` (el `fullName` de la guía, opcional). | ADR-040 · guía JWT del docente v2 |
 

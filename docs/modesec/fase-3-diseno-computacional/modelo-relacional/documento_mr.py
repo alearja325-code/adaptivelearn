@@ -18,7 +18,7 @@ from collections import Counter                                                 
 
 N_PRUEBA = Counter(p[0] for p in PRUEBAS)
 # lo que cuentan los dos verificadores: bloques A y C fijos, mas semilla y bateria
-N_SQLITE = 9 + 1 + len(PRUEBAS) + 3
+N_SQLITE = 9 + 1 + len(PRUEBAS) + 4
 N_MYSQL = 4 + 1 + len(PRUEBAS)
 
 SALIDA = os.path.join(AQUI, "..", "17-modelo-relacional.md")
@@ -54,6 +54,10 @@ def documento():
     w("**Actualizado el 2026-10-26** por la revisión del docente del 2026-10-22: tablas `area`,")
     w("`grado` y `documento_oficial`, código del DBA `ÁREA-GG-NN` (ADR-036) y")
     w("`credencial.estado_verificacion` (ADR-037). Ver la sección 5.6 y la tabla de cambios (10).")
+    w("")
+    w("**Actualizado el 2026-10-27** (encargo 03): tabla `codigo_verificacion` (ADR-039, nota R4")
+    w("del docente) y, en `credencial`, la marca `es_admin` (ADR-040) y `nombre_completo`. Ver la")
+    w("sección 5.7 y la tabla de cambios (10).")
     w("")
     w("MODESEC pide *«un MR (Modelo relacional) basado en el MER»*. La base es")
     w("`16-modelo-entidad-relacion.md`; `modelo-relacional/_verificar_mr_mer.py` comprueba en cada")
@@ -97,9 +101,11 @@ def documento():
     w("**Esto cierra el vacío V-11** que el análisis de requerimientos dejó abierto en RF-02-07")
     w("(eliminar una experiencia) y RF-04-12 (salir de una): borrar una experiencia o una")
     w("inscripción borra **en cascada** todo lo que depende de ella. Las raíces que ningún flujo")
-    w("borra —credencial, docente, estudiante, el catálogo (área, grado, documento, DBA) y evidencia—")
-    w("quedan en `RESTRICT`, como seguro. `ON UPDATE CASCADE` en todas, salvo las de `credencial` y")
-    w("las del catálogo hacia `area`, `grado` y `documento_oficial` (abajo).")
+    w("borra —docente, estudiante, el catálogo (área, grado, documento, DBA) y evidencia— quedan en")
+    w("`RESTRICT`, como seguro. Una **credencial** sí se puede borrar —la tarea nocturna borra las")
+    w("que quedaron sin terminar (ADR-039) y el administrador de la guía puede borrar un usuario")
+    w("(ADR-040)—, y sus códigos se van con ella (`CASCADE`). `ON UPDATE CASCADE` en todas, salvo")
+    w("las de `credencial` y las del catálogo hacia `area`, `grado` y `documento_oficial` (abajo).")
     w("")
     w("| Tabla | Columnas | Referencia | ON DELETE | ON UPDATE | Por qué |")
     w("|---|---|---|---|---|---|")
@@ -186,6 +192,34 @@ def documento():
     w("  códigos únicos, verificado contra los PDF; encargo 02, pendientes A12), **no** de")
     w("  `curriculo_men_normalizado.json`: ese tenía 342 DBA y solo 329 códigos distintos (16 §4, DBA),")
     w("  y cargarlo fallaría por llave duplicada en 13, que es lo correcto: `codigo_dba` es llave primaria.")
+    w("")
+    w("### 5.7 El código de verificación en su tabla (ADR-039) y la marca de administrador (ADR-040)")
+    w("")
+    w("- **Por qué una tabla.** El docente pidió quitar `codigo_expira_en` y `codigo_ultimo_envio`")
+    w("  de la credencial (nota R4). `codigo_verificacion` guarda el código, su propósito, cuándo se")
+    w("  creó y cuántos intentos lleva. **El vencimiento (10 min) y la espera para reenviar (30 s) se")
+    w("  calculan** desde `creado_en`: `creado_en + 10 min` y `creado_en + 30 s`. Su llave primaria,")
+    w("  `(id_credencial, proposito)`, hace que haya **a lo sumo un código por credencial y")
+    w("  propósito**: pedir otro reemplaza la fila. La tarea nocturna borra los vencidos.")
+    w("- **Decisión de esta sesión, para que el equipo la confirme:** no se guarda el código sino")
+    w("  su **HMAC-SHA256** (64 caracteres hexadecimales), con una clave que solo conoce el servidor.")
+    w("  Quien lea la tabla no puede usar los códigos (RNF-08). No se usa bcrypt, como en la")
+    w("  contraseña, porque un código vive 10 minutos y tiene 5 intentos: lo que lo protege es el")
+    w("  límite, no la lentitud del hash. Un CHECK exige el formato del hash: un código de 6 dígitos")
+    w("  sin hash no cabe.")
+    w("- **`intentos` como atributo, no como columna de seguridad.** ADR-039 lo pone en la entidad:")
+    w("  *«cuántos intentos lleva»*. Un CHECK lo limita a 5; al quinto fallo el código deja de")
+    w("  servir y hay que pedir otro, que lo reemplaza. Un código acertado se borra. Los intentos de")
+    w("  **inicio de sesión** (`intentos_login`,")
+    w("  `bloqueado_hasta`) siguen siendo columnas solo del MR (RF-01-07).")
+    w("- **`es_admin`** (ADR-040) es la marca que la guía del docente usa para `/users`. Falsa por")
+    w("  defecto; **solo se pone por SQL** (`UPDATE credencial SET es_admin = 1 WHERE correo = …`,")
+    w("  como la prueba 4 de la guía). Ninguna ruta la asigna y ninguna pantalla del producto la usa.")
+    w("- **`nombre_completo`** — decisión de esta sesión, para que el equipo la confirme: la guía")
+    w("  pide `fullName` al registrarse y lo devuelve en cada respuesta, pero en AdaptiveLearn los")
+    w("  nombres viven en `docente` o `estudiante`, que todavía no existen al registrarse. Se guarda")
+    w("  aquí, opcional, mientras la persona no elige rol, y sirve para proponer nombres y apellidos")
+    w("  al completar el perfil. No es atributo del MER: está justificada en `_verificar_mr_mer.py`.")
     w("")
     w("## 6. Análisis de normalización")
     w("")
@@ -278,19 +312,21 @@ python probar_mysql.py --cnf RUTA_DEL_ARCHIVO_DE_OPCIONES --mysql RUTA_DE_mysql
 
 | Script | Qué comprueba |
 |---|---|
-| `generar.py` | Escribe el diccionario (18), el DBML y los dos SQL desde la fuente. |
+| `generar.py` | Escribe el diccionario (18), el DBML y los dos SQL desde la fuente; y el esquema del backend, `backend/sql/001_esquema.sql`, con las 10 tablas que el backend usa hoy (encargo 03). |
 | `_verificar_mr_mer.py` | Que cada entidad del MER tenga su tabla y cada atributo su columna, con las mismas llaves primarias; que toda FK apunte a una PK o a un UNIQUE; que toda columna que el MER no declara tenga su justificación escrita (`EXTRA_JUSTIFICADAS`). |
-| `verificar_mr.py` | Contra SQLite en memoria: que el esquema cargue, la batería de pruebas de `pruebas_mr.py`, y que el DBML y el SQL describan lo mismo. **{N_SQLITE} comprobaciones.** |
+| `verificar_mr.py` | Contra SQLite en memoria: que el esquema cargue, la batería de pruebas de `pruebas_mr.py`, que el DBML y el SQL describan lo mismo, y que `backend/sql/001_esquema.sql` sea el que el MR genera hoy. **{N_SQLITE} comprobaciones.** |
 | `probar_mysql.py` | La **misma batería** contra un MySQL real: crea una base de prueba, carga `mr_mysql.sql` tal cual, corre cada prueba dentro de una transacción que se deshace, y borra la base al terminar. |
 
 **La batería** (`pruebas_mr.py`) tiene tres clases de prueba: datos que rompen una regla y el
 motor *debe rechazar* ({N_FALLA}), datos raros pero válidos que *debe aceptar* ({N_PASA}), y borrados tras
 los que se cuenta qué *queda* en cada tabla ({N_QUEDA}: eliminar una experiencia, salir de una,
-descartar un ítem). En MySQL, además, cada rechazo tiene que venir **de la restricción que la
+descartar un ítem, borrar una credencial sin terminar con sus códigos, la marca de
+administrador por defecto). En MySQL, además, cada rechazo tiene que venir **de la restricción que la
 prueba nombra** (`MOTIVO_MYSQL`): rechazar por otra razón cuenta como falla.
 
-**Resultado del 2026-10-26, contra MySQL 8.0.46** (modo estricto por defecto), con el catálogo
-normalizado y el estado de verificación: {N_MYSQL} comprobaciones, todas correctas. La salida
+**Resultado del 2026-10-27, contra MySQL 8.0.46** (modo estricto por defecto), con el catálogo
+normalizado, el estado de verificación y la tabla de códigos: {N_MYSQL} comprobaciones, todas
+correctas. La salida
 completa está en `modelo-relacional/salida_probar_mysql.txt`. La versión anterior del esquema
 se había probado el 2026-10-22 contra MySQL 8.4.11; esta todavía no se corrió en 8.4 ni en
 MariaDB.
@@ -319,7 +355,9 @@ CAMBIOS = """
 | CHECK escritos como expresiones SQL reales, con nombre (antes eran prosa). | — |
 | Motor objetivo MySQL 8 (antes MariaDB 10.11), con un DDL propio y probado. | RNF-14 |
 | *(2026-10-26)* Tablas nuevas `area`, `grado` y `documento_oficial`; `dba` pierde `area` y `grado` como texto y gana `codigo_area`, `numero_grado` e `id_documento`, con una FK compuesta que cierra el ciclo C6 (RI-20). `codigo_dba` pasa a `ÁREA-GG-NN`, con su CHECK (RI-21), en ASCII binario en todas las tablas que lo usan (5.6). | ADR-036 · revisión del docente del 2026-10-22 (R1) |
-| *(2026-10-26)* `credencial`: `email_verificado` pasa a `estado_verificacion` (`procesando` / `verificado`, por defecto `procesando`); el CHECK de RI-15 usa el estado. `codigo_expira_en` y `codigo_ultimo_envio` siguen, a la espera de la pregunta P2. | ADR-037 · revisión del docente del 2026-10-22 (R3, R4) |
+| *(2026-10-26)* `credencial`: `email_verificado` pasa a `estado_verificacion` (`procesando` / `verificado`, por defecto `procesando`); el CHECK de RI-15 usa el estado. | ADR-037 · revisión del docente del 2026-10-22 (R3) |
+| *(2026-10-27)* Tabla nueva `codigo_verificacion` (PK `(id_credencial, proposito)`, código con HMAC, `creado_en`, `intentos` ≤ 5; FK a `credencial` en CASCADE). `credencial` pierde `codigo_verificacion`, `codigo_expira_en`, `codigo_ultimo_envio` e `intentos_codigo`: el vencimiento y la espera para reenviar se calculan (5.7). | ADR-039 · revisión del docente del 2026-10-22 (R4) |
+| *(2026-10-27)* `credencial`: `es_admin` (falsa por defecto; solo por SQL) y `nombre_completo` (el `fullName` de la guía, opcional). | ADR-040 · guía JWT del docente v2 |
 """
 
 if __name__ == "__main__":

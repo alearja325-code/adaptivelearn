@@ -1,13 +1,13 @@
 {
   "info": {
-    "_postman_id": "d31b86ec-6426-4682-8b71-ab561e9d6979",
-    "name": "Backend Auth — Sección 7 de la guía JWT NestJS (AdaptiveLearn V3)",
-    "description": "Pruebas de la sección 7 (y ejemplos de la sección 6) de la guía del docente.\n\nAntes de correr: 1) levantar el backend (npm run start:dev) y 2) vaciar la base con sql/reset-datos-prueba.sql, para que el registro no choque con un correo ya existente y los ids empiecen en 1.\n\nCorrer las pruebas en orden: la 1 y la 2 guardan el token que usan las demás. Detalle y justificación de cada diferencia: backend-auth-informe-guia.md.",
+    "_postman_id": "f2b0a60b-409a-5acd-a863-0df73c4d9459",
+    "name": "AdaptiveLearn — guía JWT v2 (sección 7) y acceso hasta el catálogo",
+    "description": "Pruebas de la sección 7 de la guía del docente, versión 2, y las rutas propias de AdaptiveLearn (encargo 03).\n\nAntes de correr: 1) preparar la base (npm run db:preparar) y levantar el backend (npm run start:dev); 2) vaciar las cuentas con sql/borrar-cuentas.sql, para que los ids empiecen en 1 como en la guía.\n\nCorrer en orden. La prueba 4 de la guía es una sentencia SQL: está en la descripción de esa petición. En «Acceso», el código de 6 dígitos se copia de la consola del servidor (o del correo) a la variable `codigo`.\n\nCada diferencia con la guía y su razón: backend-auth-informe-guia.md. Las mismas pruebas, sin Postman: node scripts/pruebas-guia-seccion-7.mjs.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Sección 7 — Pruebas con ejemplos",
+      "name": "Sección 7 de la guía v2 — las 6 pruebas",
       "item": [
         {
           "name": "1. Registrar un nuevo usuario",
@@ -18,7 +18,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Responde 201', () => pm.response.to.have.status(201));",
-                  "pm.test('Devuelve user y token', () => { const j = pm.response.json(); pm.expect(j.user.email).to.eql('usuario@example.com'); pm.expect(j.user.fullName).to.eql('Juan Pérez'); pm.expect(j.token).to.be.a('string'); });",
+                  "pm.test('user y token, con el formato de la guía', () => { const j = pm.response.json(); pm.expect(j.user).to.eql({ id: 1, email: 'usuario@example.com', fullName: 'Juan Pérez', role: 'user' }); pm.expect(j.token).to.be.a('string'); });",
                   "pm.test('No expone la contraseña', () => pm.expect(pm.response.text()).to.not.include('password'));",
                   "pm.collectionVariables.set('token', pm.response.json().token);"
                 ]
@@ -43,7 +43,7 @@
                 "register"
               ]
             },
-            "description": "Guía, sección 7, prueba 1. Diferencia justificada: la contraseña de la guía (password123) no cumple la spec 17 (mínimo 8, una mayúscula y un número); se usa Password123. Respuesta: igual a la guía, con role null (el rol se elige después, spec 20) y el campo agregado emailVerificado.",
+            "description": "Guía v2, sección 7, prueba 1. Esperado (201): { user: { id: 1, email, fullName: \"Juan Pérez\", role: \"user\" }, token }. Única diferencia: la contraseña lleva mayúscula (Password123), por la regla de RF-01-01; con la de la guía, password123, responde 400 (informe, D-04).",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"password\": \"Password123\",\n  \"fullName\": \"Juan Pérez\"\n}",
@@ -64,8 +64,8 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test('Responde 201', () => pm.response.to.have.status(201));",
-                  "pm.test('Devuelve user y token', () => { const j = pm.response.json(); pm.expect(j.user.email).to.eql('usuario@example.com'); pm.expect(j.token).to.be.a('string'); });",
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('user y token', () => { const j = pm.response.json(); pm.expect(j.user.email).to.eql('usuario@example.com'); pm.expect(j.user.role).to.eql('user'); pm.expect(j.token).to.be.a('string'); });",
                   "pm.collectionVariables.set('token', pm.response.json().token);"
                 ]
               }
@@ -89,7 +89,7 @@
                 "login"
               ]
             },
-            "description": "Guía, sección 7, prueba 2. Mismo body que la guía salvo la contraseña (ver prueba 1).",
+            "description": "Guía v2, prueba 2: responde 200.",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"password\": \"Password123\"\n}",
@@ -111,7 +111,8 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Responde 200', () => pm.response.to.have.status(200));",
-                  "pm.test('Devuelve el usuario autenticado', () => pm.expect(pm.response.json().user.email).to.eql('usuario@example.com'));"
+                  "pm.test('Devuelve el usuario del token', () => { const j = pm.response.json(); pm.expect(j.user.email).to.eql('usuario@example.com'); pm.expect(j.user.role).to.eql('user'); });",
+                  "pm.test('No expone la contraseña', () => pm.expect(pm.response.text()).to.not.include('password'));"
                 ]
               }
             }
@@ -134,12 +135,58 @@
                 "profile"
               ]
             },
-            "description": "Guía, sección 7, prueba 3. Usa el token guardado por la prueba 2 (variable {{token}})."
+            "description": "Guía v2, prueba 3: { user }, sin contraseña."
           },
           "response": []
         },
         {
-          "name": "4. Crear usuario (desde módulo User)",
+          "name": "4. Convertir en administrador (SQL) y volver a iniciar sesión",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Ahora es admin', () => pm.expect(pm.response.json().user.role).to.eql('admin'));",
+                  "pm.collectionVariables.set('tokenAdmin', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Guía v2, prueba 4. ANTES de enviar esta petición, correr en MySQL:\n\nUPDATE credencial SET es_admin = 1 WHERE correo = 'usuario@example.com';\n\n(La guía: UPDATE users SET role = 'admin'. Aquí la marca de administrador es la columna es_admin de credencial, ADR-040; solo se pone por SQL.) Después, esta petición inicia sesión otra vez para tener el token de admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"password\": \"Password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. Crear usuario (requiere admin)",
           "event": [
             {
               "listen": "test",
@@ -147,7 +194,8 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Responde 201', () => pm.response.to.have.status(201));",
-                  "pm.test('Devuelve el usuario creado', () => pm.expect(pm.response.json().email).to.eql('otro@example.com'));"
+                  "pm.test('Usuario creado', () => { const j = pm.response.json(); pm.expect(j.email).to.eql('otro@example.com'); pm.expect(j.fullName).to.eql('María García'); pm.expect(j.role).to.eql('user'); pm.collectionVariables.set('idOtro', j.id); });",
+                  "pm.test('No expone la contraseña', () => pm.expect(pm.response.text()).to.not.include('password'));"
                 ]
               }
             }
@@ -161,7 +209,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{token}}"
+                "value": "Bearer {{tokenAdmin}}"
               }
             ],
             "url": {
@@ -173,7 +221,7 @@
                 "users"
               ]
             },
-            "description": "Guía, sección 7, prueba 4. Diferencia justificada: en la guía /users no tiene ninguna protección (cualquiera podría crear, listar o modificar cuentas sin iniciar sesión); acá exige el token (header Authorization). Contraseña Password456 por la spec 17.",
+            "description": "Guía v2, prueba 5 (Password456 en vez de password456: D-04).",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"otro@example.com\",\n  \"password\": \"Password456\",\n  \"fullName\": \"María García\"\n}",
@@ -187,7 +235,7 @@
           "response": []
         },
         {
-          "name": "5. Listar todos los usuarios",
+          "name": "6. Listar todos los usuarios (requiere admin)",
           "event": [
             {
               "listen": "test",
@@ -195,8 +243,8 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Responde 200', () => pm.response.to.have.status(200));",
-                  "pm.test('Lista a los 2 usuarios', () => pm.expect(pm.response.json().length).to.be.at.least(2));",
-                  "pm.test('No expone contraseñas', () => pm.expect(pm.response.text()).to.not.include('password'));"
+                  "pm.test('Los dos usuarios', () => pm.expect(pm.response.json().map(u => u.email)).to.include.members(['usuario@example.com', 'otro@example.com']));",
+                  "pm.test('No expone la contraseña', () => pm.expect(pm.response.text()).to.not.include('password'));"
                 ]
               }
             }
@@ -206,7 +254,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{token}}"
+                "value": "Bearer {{tokenAdmin}}"
               }
             ],
             "url": {
@@ -218,17 +266,283 @@
                 "users"
               ]
             },
-            "description": "Guía, sección 7, prueba 5. Exige token, igual que la prueba 4."
+            "description": "Guía v2, prueba 6."
           },
           "response": []
         }
       ]
     },
     {
-      "name": "Sección 6 — Ejemplo de Guards y Decoradores",
+      "name": "Sección 7 — tabla de respuestas esperadas, y sección 6",
       "item": [
         {
-          "name": "Ruta protegida solo con autenticación",
+          "name": "Sin token → 401",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 401', () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Tabla de la guía: sin token o token expirado → 401."
+          },
+          "response": []
+        },
+        {
+          "name": "Login del usuario normal",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set('tokenOtro', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Prepara la fila siguiente.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"otro@example.com\",\n  \"password\": \"Password456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Rol user en /users → 403",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOtro}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Tabla de la guía: token válido pero rol user en /users → 403."
+          },
+          "response": []
+        },
+        {
+          "name": "Email ya registrado → 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Tabla de la guía.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"otro@example.com\",\n  \"password\": \"Password456\",\n  \"fullName\": \"Otra\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Datos inválidos → 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Tabla de la guía. También es lo que pasa con la contraseña de la guía, password123 (D-04).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"no-es-un-correo\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Usuario que no existe (admin) → 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenAdmin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "999"
+              ]
+            },
+            "description": "Tabla de la guía."
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar un usuario (admin) → 204",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 204', () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenAdmin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{idOtro}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{idOtro}}"
+              ]
+            },
+            "description": "Guía v2, sección 3: DELETE responde 204."
+          },
+          "response": []
+        },
+        {
+          "name": "Sección 6: /example/protected",
           "event": [
             {
               "listen": "test",
@@ -258,12 +572,723 @@
                 "protected"
               ]
             },
-            "description": "Guía, sección 6, ExampleController.protectedRoute."
+            "description": "Cualquier sesión."
           },
           "response": []
         },
         {
-          "name": "Ruta solo para docentes (RolesGuard)",
+          "name": "Sección 6: /example/admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenAdmin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/example/admin",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "example",
+                "admin"
+              ]
+            },
+            "description": "Solo administrador."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Acceso de AdaptiveLearn (E-01 a E-12)",
+      "item": [
+        {
+          "name": "E-01 Registrar al docente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 201', () => pm.response.to.have.status(201));",
+                  "pm.collectionVariables.set('tokenDocente', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Crea docente@example.com. El código de 6 dígitos llega al correo; sin MAIL_HOST, aparece en la consola del servidor: copiarlo en la variable de colección `codigo`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"docente@example.com\",\n  \"password\": \"Password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-03 Reenviar el código",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 201', () => pm.response.to.have.status(201));",
+                  "pm.test('ok', () => pm.expect(pm.response.json()).to.eql({ ok: true }));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/reenviar-codigo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reenviar-codigo"
+              ]
+            },
+            "description": "Responde 201 { ok: true } siempre (RNF-07). Antes de 30 s desde el último código, no envía otro.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"docente@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-02 Verificar el correo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('verificado', () => pm.expect(pm.response.json().user.estadoVerificacion).to.eql('verificado'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/verificar-correo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "verificar-correo"
+              ]
+            },
+            "description": "Usa la variable `codigo` (de la consola del servidor o del correo).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": \"{{codigo}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-06 Completar el perfil y elegir el rol",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Sesión de docente con su id (R2)', () => { const j = pm.response.json(); pm.expect(j.user.role).to.eql('docente'); const p = JSON.parse(atob(j.token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))); pm.expect(p.idDocente).to.be.a('number'); });",
+                  "pm.collectionVariables.set('tokenDocente', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/elegir-rol",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "elegir-rol"
+              ]
+            },
+            "description": "multipart/form-data: role, nombres, apellidos y, opcional, foto (JPG o PNG, hasta 5 MB). Una sola vez: el rol no se cambia.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "role",
+                  "value": "docente",
+                  "type": "text"
+                },
+                {
+                  "key": "nombres",
+                  "value": "Ana María",
+                  "type": "text"
+                },
+                {
+                  "key": "apellidos",
+                  "value": "Pérez",
+                  "type": "text"
+                },
+                {
+                  "key": "foto",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-11 Ver el propio perfil",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('perfil', () => pm.expect(pm.response.json().user.perfil.nombres).to.eql('Ana María'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            },
+            "description": "Con perfil y rol."
+          },
+          "response": []
+        },
+        {
+          "name": "E-12 Editar el propio perfil",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('apellidos nuevos', () => pm.expect(pm.response.json().user.perfil.apellidos).to.eql('Pérez Gómez'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            },
+            "description": "Solo el perfil de quien tiene la sesión (no es PATCH /users/:id, que es de admin). El correo y el rol no se editan: enviarlos responde 400.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "apellidos",
+                  "value": "Pérez Gómez",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-08 Pedir el código de recuperación",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 202', () => pm.response.to.have.status(202));",
+                  "pm.test('ok', () => pm.expect(pm.response.json()).to.eql({ ok: true }));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/recuperar-contrasena",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "recuperar-contrasena"
+              ]
+            },
+            "description": "Responde 202 { ok: true } exista o no la cuenta (RNF-07). Copiar el código nuevo en la variable `codigo`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"docente@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-09 Verificar el código de recuperación",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set('tokenRecuperacion', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/recuperar-contrasena/verificar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "recuperar-contrasena",
+                "verificar"
+              ]
+            },
+            "description": "Entrega un token de 15 minutos que solo sirve para E-10.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"docente@example.com\",\n  \"codigo\": \"{{codigo}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-10 Fijar la contraseña nueva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 204', () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenRecuperacion}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/nueva-contrasena",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "nueva-contrasena"
+              ]
+            },
+            "description": "Con el token de recuperación: 204. No abre sesión.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"NuevaClave9\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-04 Entrar con Google (sin configurar → 503)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 503', () => pm.response.to.have.status(503));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/google",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "google"
+              ]
+            },
+            "description": "Sin GOOGLE_CLIENT_ID en .env responde 503 «no configurado». Con él, `token` es el ID token que entrega Google al frontend.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxIn0.c2lu\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E-05 Entrar con Microsoft (sin configurar → 503)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 503', () => pm.response.to.have.status(503));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/microsoft",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "microsoft"
+              ]
+            },
+            "description": "Igual que Google, con MICROSOFT_CLIENT_ID.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxIn0.c2lu\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Catálogo curricular (E-14 a E-17)",
+      "item": [
+        {
+          "name": "E-16 Áreas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('4 áreas', () => pm.expect(pm.response.json()).to.have.length(4));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/catalogo/areas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "catalogo",
+                "areas"
+              ]
+            },
+            "description": "Las 4 áreas (ADR-033). Solo docente."
+          },
+          "response": []
+        },
+        {
+          "name": "E-17 Grados",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('11 grados', () => pm.expect(pm.response.json()).to.have.length(11));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/catalogo/grados",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "catalogo",
+                "grados"
+              ]
+            },
+            "description": "Los 11 grados con su nivel (Ley 115)."
+          },
+          "response": []
+        },
+        {
+          "name": "E-14 DBA de Matemáticas, grado 8",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Solo MAT de 8°', () => pm.response.json().forEach(d => pm.expect(d.codigo).to.match(/^MAT-08-/)));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/catalogo/dbas?codigo_area=MAT&numero_grado=8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "catalogo",
+                "dbas"
+              ],
+              "query": [
+                {
+                  "key": "codigo_area",
+                  "value": "MAT"
+                },
+                {
+                  "key": "numero_grado",
+                  "value": "8"
+                }
+              ]
+            },
+            "description": "Filtros: codigo_area (obligatorio), numero_grado y q (texto)."
+          },
+          "response": []
+        },
+        {
+          "name": "E-15 Un DBA con sus evidencias",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('documento y evidencias', () => { const j = pm.response.json(); pm.expect(j.documento.version).to.eql('V.2'); pm.expect(j.evidencias[0].numero).to.eql(1); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenDocente}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/catalogo/dbas/MAT-08-01",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "catalogo",
+                "dbas",
+                "MAT-08-01"
+              ]
+            },
+            "description": "Con su documento oficial y sus evidencias en orden."
+          },
+          "response": []
+        },
+        {
+          "name": "Catálogo con una sesión que no es de docente → 403",
           "event": [
             {
               "listen": "test",
@@ -284,16 +1309,16 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/example/docente",
+              "raw": "{{baseUrl}}/catalogo/areas",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "example",
-                "docente"
+                "catalogo",
+                "areas"
               ]
             },
-            "description": "Guía, sección 6, ExampleController.adminRoute. La guía usa @Roles('admin'); este modelo solo tiene docente y estudiante (spec 20). El usuario recién registrado aún no tiene rol, así que RolesGuard lo rechaza (403)."
+            "description": "Solo la sesión de un docente: aquí, la del administrador de la prueba 4."
           },
           "response": []
         }
@@ -307,6 +1332,30 @@
     },
     {
       "key": "token",
+      "value": ""
+    },
+    {
+      "key": "tokenAdmin",
+      "value": ""
+    },
+    {
+      "key": "tokenOtro",
+      "value": ""
+    },
+    {
+      "key": "idOtro",
+      "value": ""
+    },
+    {
+      "key": "tokenDocente",
+      "value": ""
+    },
+    {
+      "key": "codigo",
+      "value": ""
+    },
+    {
+      "key": "tokenRecuperacion",
       "value": ""
     }
   ]

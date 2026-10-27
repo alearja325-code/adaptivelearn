@@ -12,9 +12,9 @@ Cuatro bloques:
      GET solo lee, DELETE borra, PATCH modifica; nadie modifica un hecho ni
      borra lo que ningun flujo borra.
   C. Acceso e incremento: quien llama es el actor del caso de uso; cada
-     endpoint cae en un solo incremento; solo I1 tiene endpoints hechos, y
-     el estado de cada uno es el del codigo real: se leen los controladores
-     de `backend/src/` del repositorio.
+     endpoint cae en un solo incremento; solo los incrementos de EMPEZADOS
+     tienen endpoints hechos, y el estado de cada uno es el del codigo real:
+     se leen los controladores de `backend/src/` del repositorio.
   D. Rutas: ninguna repetida, ninguna de las que no se deben agregar, y las
      nuevas en espanol.
 
@@ -145,8 +145,9 @@ chk(not mixtos, f"cada endpoint cae en un solo incremento {mixtos}")
 chk(set(A.INCREMENTOS) == {v[1] for v in CU.SUBSISTEMAS.values()},
     "los incrementos son los de los subsistemas (I1 a I4)")
 chk(all(e["estado"] in A.ESTADOS for e in ENDPOINTS), "todo estado está definido")
-chk(all(K.incremento(e) == "I1" for e in ENDPOINTS if e["estado"] in ("hecho", "ajustar")),
-    "solo hay endpoints hechos en I1, el único incremento empezado")
+chk(set(A.EMPEZADOS) <= set(A.INCREMENTOS), "los incrementos empezados existen")
+chk(all(K.incremento(e) in A.EMPEZADOS for e in ENDPOINTS if e["estado"] in ("hecho", "ajustar")),
+    f"solo hay endpoints hechos en los incrementos empezados ({', '.join(A.EMPEZADOS)})")
 chk(all(e["nota"] for e in ENDPOINTS if e["estado"] in ("ajustar", "opcional")),
     "todo endpoint por ajustar u opcional dice por qué")
 # Las rutas que existen de verdad: los controladores de NestJS del backend I1.

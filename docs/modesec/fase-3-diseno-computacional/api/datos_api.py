@@ -14,13 +14,27 @@ mano, porque se calcula:
   * en que diagrama de secuencia aparece cada endpoint (de `datos_secuencias`);
   * que se borra en cascada con cada DELETE (de las llaves foraneas del MR).
 
-Estado de cada endpoint frente al backend del incremento I1 (`backend/` del
-repositorio, comprobado el 2026-10-26 contra su codigo: `auth.controller.ts`,
-`user/user.controller.ts` y `example.controller.ts`):
-  hecho     existe en I1 y hace lo que dice el diseno
-  ajustar   existe en I1, pero el diseno le pide algo distinto (dice que)
+Estado de cada endpoint frente al backend (`backend/` del repositorio,
+comprobado el 2026-10-27 contra su codigo, al cerrar el encargo 03: los
+`*.controller.ts` de `auth/`, `user/`, `example/` y `catalogo/`):
+  hecho     existe en el backend y hace lo que dice el diseno
+  ajustar   existe, pero el diseno le pide algo distinto (dice que)
   falta     no existe todavia
   opcional  el diseno no lo necesita; se puede hacer
+
+Cambios del 2026-10-27 (encargo 03, ADR-039, ADR-040):
+  * el acceso sigue la forma de la guia del docente v2 (ADR-040): login
+    responde 200, el registro y el login devuelven `{ user, token }`, y
+    `GET /auth/profile` acepta tambien el token de una credencial sin rol
+    (lo exige la prueba 3 de la guia);
+  * Editar mi perfil (CU-09) pasa de `PATCH /users/:id` a `PATCH /auth/profile`:
+    en la guia, `/users` es solo del administrador;
+  * `/users` (de administrador) y `/example/*` son rutas de la guia, no del
+    producto (AJENOS_I1); la regla que prohibia `/users` se reescribe;
+  * nuevas `GET /catalogo/areas` y `GET /catalogo/grados` (Paso 1 y filtro del
+    Paso 2 de crear experiencia), E-16 y E-17;
+  * el catalogo (SUB-06, del incremento I2) se construye antes que el resto
+    de I2: EMPEZADOS dice que incrementos tienen endpoints hechos.
 """
 
 
@@ -36,13 +50,17 @@ def ep(metodo, ruta, sub, cus, op, acceso, crud, estado, recibe, responde,
 ACCESOS = {
     "publico": ("Público", "Sin token."),
     "registro": ("Token de registro",
-                 "El que entrega el registro (CU-01), o la primera entrada con Google o Microsoft "
-                 "(CU-02). Identifica una credencial que todavía no tiene rol: sirve para verificar "
-                 "el correo y para elegir el rol; no abre ninguna pantalla del producto."),
+                 "El token de una credencial que todavía no tiene rol: lo entregan el registro "
+                 "(CU-01), el inicio de sesión de un registro a medias (ADR-035) o la primera "
+                 "entrada con Google o Microsoft (CU-02). Es el mismo JWT de la guía, con "
+                 "`role: null`: sirve para verificar el correo, elegir el rol y ver el propio "
+                 "perfil (`GET /auth/profile`, prueba 3 de la guía); no abre ninguna pantalla del "
+                 "producto."),
     "recuperacion": ("Token de recuperación",
                      "El que entrega la verificación del código de recuperación. Solo sirve para "
-                     "fijar la contraseña nueva; no abre sesión (I1 ya lo prueba: 401)."),
-    "sesion": ("Sesión", "Docente o estudiante con sesión iniciada."),
+                     "fijar la contraseña nueva; no abre sesión (401 en cualquier otra ruta)."),
+    "sesion": ("Sesión", "Docente o estudiante con sesión iniciada. `GET /auth/profile` admite "
+                         "también el token de registro (ADR-040)."),
     "docente": ("Docente", "Sesión con rol docente."),
     "docente_dueno": ("Docente dueño",
                       "Sesión del docente dueño de la experiencia; para un ítem o una inscripción, "
@@ -61,23 +79,30 @@ ACCESO_DE_ACTOR = {
     "Estudiante": {"estudiante", "estudiante_dueno"},
 }
 
-ESTADOS = {"hecho": "Hecho en I1", "ajustar": "Por ajustar", "falta": "Falta",
+ESTADOS = {"hecho": "Hecho", "ajustar": "Por ajustar", "falta": "Falta",
            "opcional": "Opcional"}
 
 # Los incrementos de `10-proceso-desarrollo.md` §1.1, en su orden.
 INCREMENTOS = {"I1": "Acceso", "I2": "Experiencia y banco", "I3": "Diagnóstico",
                "I4": "Reporte y seguimiento"}
 
+# Incrementos que ya tienen endpoints hechos, y por que. El catalogo (SUB-06)
+# es de I2, pero el encargo 03 lo pidio junto con el acceso: es lo que
+# necesitan los Pasos 1 y 2 de crear experiencia, y no dispara la IA.
+EMPEZADOS = {"I1": "el acceso completo (encargo 03)",
+             "I2": "solo el catálogo curricular, SUB-06 (encargo 03)"}
+
 # Codigos de error comunes. Cada endpoint dice cuales usa y por que.
 ERRORES = [
     ("400", "Los datos no cumplen una regla: formato, campo vacío, contraseña débil, ítem inválido."),
     ("401", "Sin token, token vencido o de otro tipo; o credenciales incorrectas, con un mensaje "
             "que no dice qué falló (RF-01-07)."),
-    ("403", "El token es válido, pero de otro rol o de quien no es el dueño. Así lo hace I1 "
-            "(«Modificar perfil ajeno → 403»)."),
+    ("403", "El token es válido, pero de otro rol o de quien no es el dueño (la guía del "
+            "docente: «/users con usuario normal → 403»)."),
     ("404", "No existe."),
     ("409", "El estado no lo permite: correo ya registrado, rol ya elegido, banco congelado, "
             "experiencia ya publicada, pregunta ya respondida."),
+    ("413", "La foto pesa más de 5 MB (RF-01-05): el límite lo pone la subida del archivo."),
     ("429", "Demasiados intentos fallidos."),
     ("503", "Fallaron el servicio de IA principal y el de respaldo; no se guardó nada."),
 ]
@@ -87,88 +112,105 @@ SUB_PUBLICADA = ("409", "la experiencia está Publicada: el banco es de solo lec
 # ===================================================================== I1
 ENDPOINTS = [
     ep("POST", "/auth/register", "SUB-01", ["CU-01"], "ServicioAcceso.registrar", "publico",
-       {"CREDENCIAL": "CR"}, "hecho",
-       "`email`, `password` (nombres de campo de I1)",
-       "201: token de registro. El código de 6 dígitos sale al correo; en desarrollo, I1 lo "
-       "imprime en la terminal del servidor",
+       {"CREDENCIAL": "CR", "CODIGO_VERIFICACION": "C"}, "hecho",
+       "`email`, `password` y `fullName` opcional (nombres de campo de la guía)",
+       "201: `{ user, token }` —el formato de la guía—, con `role: null` y "
+       "`estadoVerificacion: procesando`; el token es de registro. El código de 6 dígitos sale "
+       "al correo por SMTP; sin correo configurado, el servidor lo escribe en su consola (R5)",
        [("400", "contraseña sin 8 caracteres, una mayúscula y un número (RF-01-01)"),
         ("409", "el correo ya tiene cuenta; si es de Google o Microsoft, el mensaje dice qué "
                 "método usar y no vincula (RF-01-04, RI-3)")],
-       nota="I1 acepta además `fullName`, que viene de la guía. En el diseño los nombres se "
-            "piden en Completar perfil (CU-04) y se guardan al elegir el rol."),
+       nota="`fullName` viene de la guía: se guarda en `credencial.nombre_completo` y la "
+            "pantalla lo puede usar para proponer nombres y apellidos en Completar perfil (CU-04); "
+            "los nombres oficiales se guardan al elegir el rol."),
     ep("POST", "/auth/verificar-correo", "SUB-01", ["CU-03"], "ServicioAcceso.verificarCorreo",
-       "registro", {"CREDENCIAL": "RU"}, "hecho",
+       "registro", {"CREDENCIAL": "RU", "CODIGO_VERIFICACION": "RUD"}, "hecho",
        "`codigo`; la credencial la identifica el token de registro",
-       "200: correo verificado; sigue Completar perfil (CU-04)",
-       [("400", "código incorrecto: se cuenta un intento fallido (CU-03 3a)"),
-        ("400", "código vencido: hay que pedir otro (CU-03 3b)"),
-        ("429", "demasiados intentos fallidos (`intentos_codigo`)")]),
+       "200: correo verificado (`estadoVerificacion: verificado`); el código se borra; sigue "
+       "Completar perfil (CU-04)",
+       [("400", "código incorrecto: se cuenta un intento fallido en el código (CU-03 3a)"),
+        ("400", "código vencido: pasaron 10 minutos desde su `creado_en`; hay que pedir otro "
+                "(CU-03 3b, ADR-039)"),
+        ("429", "el código ya tuvo 5 intentos fallidos: deja de servir y hay que pedir otro "
+                "(ADR-039, RNF-07)")]),
     ep("POST", "/auth/reenviar-codigo", "SUB-01", ["CU-03"], "ServicioAcceso.reenviarCodigo",
-       "publico", {"CREDENCIAL": "RU"}, "hecho",
+       "publico", {"CREDENCIAL": "R", "CODIGO_VERIFICACION": "CRUD"}, "hecho",
        "`email`",
-       "201 siempre, `{ ok: true }`, exista o no la cuenta. Solo si existe, es de correo y ya "
-       "pasaron 30 s desde el último envío, genera un código nuevo que reemplaza al anterior "
-       "(CU-03 1a)",
+       "201 siempre, `{ ok: true }`, exista o no la cuenta. Solo si existe, es de correo, está "
+       "`procesando` y ya pasaron 30 s desde el `creado_en` del código anterior, genera uno "
+       "nuevo que lo reemplaza (CU-03 1a, ADR-039)",
        [("400", "el correo no tiene formato de correo"),
         ("—", "pedirlo antes de 30 s responde igual y no reenvía: un 429 delataría que la "
               "cuenta existe (RNF-07)")],
-       nota="Sirve a los dos flujos, registro y recuperación, como la ventana 015 (CU-03). Así "
-            "lo hace I1."),
+       nota="Reenvía el código de verificar el correo; el de recuperación se reenvía pidiendo "
+            "otra vez `POST /auth/recuperar-contrasena`, con la misma espera de 30 s."),
     ep("POST", "/auth/google", "SUB-01", ["CU-02"], "ServicioAcceso.entrarConProveedor", "publico",
-       {"CREDENCIAL": "CR", "DOCENTE": "R", "ESTUDIANTE": "R"}, "falta",
-       "`token` que entregó Google",
-       "200: sesión, si la cuenta ya tiene rol. Si es nueva, crea la credencial con el correo "
-       "ya verificado y responde token de registro con nombres, apellidos y foto para "
-       "prellenar el perfil (CU-02 3a)",
-       [("401", "Google rechaza el token, o la persona canceló (CU-02 2a)"),
+       {"CREDENCIAL": "CR", "DOCENTE": "R", "ESTUDIANTE": "R"}, "hecho",
+       "`token`: el ID token (JWT) que entregó Google al frontend",
+       "200: `{ user, token }`. Si la cuenta ya tiene rol, sesión del rol. Si es nueva, crea la "
+       "credencial con el correo ya verificado y responde token de registro, con el nombre que "
+       "dio Google en `fullName` para prellenar el perfil (CU-02 3a)",
+       [("401", "Google rechaza el token: firma, emisor, audiencia o vencimiento (CU-02 2a)"),
         ("409", "el correo ya está registrado con otro método: dice cuál; no crea ni vincula "
-                "(RF-01-04, CU-02 3b)")]),
+                "(RF-01-04, CU-02 3b)"),
+        ("503", "Google no está configurado en el servidor (`GOOGLE_CLIENT_ID` vacío)")],
+       nota="El backend verifica el token con las llaves públicas de Google (JWKS). El equipo "
+            "todavía no tiene el identificador de cliente: sin él, responde 503 «no "
+            "configurado». Probado con un proveedor simulado."),
     ep("POST", "/auth/microsoft", "SUB-01", ["CU-02"], "ServicioAcceso.entrarConProveedor",
-       "publico", {"CREDENCIAL": "CR", "DOCENTE": "R", "ESTUDIANTE": "R"}, "falta",
-       "`token` que entregó Microsoft",
+       "publico", {"CREDENCIAL": "CR", "DOCENTE": "R", "ESTUDIANTE": "R"}, "hecho",
+       "`token`: el ID token (JWT) que entregó Microsoft al frontend",
        "Igual que `POST /auth/google`",
-       [("401", "Microsoft rechaza el token, o la persona canceló (CU-02 2a)"),
-        ("409", "el correo ya está registrado con otro método (RF-01-04)")],
-       nota="Sin Apple: exige cuenta de desarrollador de pago (RF-01-02)."),
+       [("401", "Microsoft rechaza el token (CU-02 2a)"),
+        ("409", "el correo ya está registrado con otro método (RF-01-04)"),
+        ("503", "Microsoft no está configurado en el servidor (`MICROSOFT_CLIENT_ID` vacío)")],
+       nota="Sin Apple: exige cuenta de desarrollador de pago (RF-01-02). Igual que Google: sin "
+            "configuración responde 503, y se probó con un proveedor simulado."),
     ep("POST", "/auth/elegir-rol", "SUB-01", ["CU-04", "CU-05"], "ServicioAcceso.elegirRol",
-       "registro", {"CREDENCIAL": "RU", "DOCENTE": "C", "ESTUDIANTE": "C"}, "ajustar",
+       "registro", {"CREDENCIAL": "RU", "DOCENTE": "C", "ESTUDIANTE": "C"}, "hecho",
        "`role` (docente o estudiante), `nombres`, `apellidos` y `foto` opcional, en "
        "multipart/form-data",
-       "201: sesión del rol. En una sola operación crea el docente o el estudiante con su "
-       "perfil y lo asocia a la credencial (CU-05 paso 3)",
-       [("400", "nombres o apellidos vacíos; foto que no es JPG ni PNG, o de más de 5 MB "
-                "(CU-04 2a)"),
+       "201: `{ user, token }` con la sesión del rol: el token lleva el rol y el `idDocente` "
+       "o el `idEstudiante` (nota R2). En una sola transacción crea el docente o el "
+       "estudiante con su perfil y lo asocia a la credencial (CU-05 paso 3)",
+       [("400", "nombres o apellidos vacíos, o foto que no es JPG ni PNG —se mira el contenido "
+                "del archivo, no su nombre— (CU-04 2a)"),
+        ("413", "foto de más de 5 MB (RF-01-05)"),
         ("403", "el correo de la credencial no está verificado (precondición de CU-04)"),
-        ("409", "la credencial ya tiene rol: el rol no se cambia (RF-01-06, RI-12). I1 ya lo "
-                "prueba")],
-       nota="En I1 recibe solo `role`, y el perfil se completa antes con `PATCH /users/:id`. "
-            "En el diseño la cuenta nace con su perfil al elegir el rol: CU-04 dice que «estos "
-            "datos se guardan al elegir el rol» (RF-01-05), y nombres, apellidos y foto viven "
-            "en DOCENTE o ESTUDIANTE, que no existen antes del rol."),
+        ("409", "la credencial ya tiene rol: el rol no se cambia (RF-01-06, RI-12)")],
+       nota="Completar perfil (CU-04) y elegir el rol (CU-05) son una sola petición: CU-04 dice "
+            "que «estos datos se guardan al elegir el rol» (RF-01-05), y nombres, apellidos y "
+            "foto viven en DOCENTE o ESTUDIANTE, que no existen antes del rol."),
     ep("POST", "/auth/login", "SUB-01", ["CU-06"], "ServicioAcceso.iniciarSesion", "publico",
        {"CREDENCIAL": "RU", "DOCENTE": "R", "ESTUDIANTE": "R"}, "hecho",
        "`email`, `password`",
-       "201 (el de NestJS por defecto, como en I1): token de sesión y rol. Si la credencial "
-       "todavía no tiene rol, token de registro para seguir en Completar perfil (CU-06 3a, "
-       "decisión por confirmar)",
+       "200, como pide la guía: `{ user, token }`, con el rol y el `idDocente` o el "
+       "`idEstudiante` en el token. Si la credencial todavía no tiene rol, el mismo formato "
+       "con `role: null` (token de registro): la pantalla sigue en verificar el correo o en "
+       "Completar perfil, según `estadoVerificacion` (CU-06 3a, ADR-035)",
        [("401", "correo o contraseña incorrectos, sin decir cuál (RF-01-07); se cuenta un "
                 "intento fallido (`intentos_login`)"),
         ("409", "la cuenta es de Google o Microsoft: dice qué método usar (RF-01-04, CU-06 2c)"),
-        ("429", "entrada bloqueada por intentos fallidos (`bloqueado_hasta`)")]),
+        ("—", "tras 5 intentos fallidos la entrada se bloquea 15 minutos (`bloqueado_hasta`); "
+              "mientras tanto responde el mismo 401 genérico, porque un mensaje distinto "
+              "confirmaría que la cuenta existe (RF-01-07)")]),
     ep("POST", "/auth/recuperar-contrasena", "SUB-01", ["CU-07"],
-       "ServicioAcceso.solicitarRecuperacion", "publico", {"CREDENCIAL": "RU"}, "hecho",
+       "ServicioAcceso.solicitarRecuperacion", "publico",
+       {"CREDENCIAL": "R", "CODIGO_VERIFICACION": "CRUD"}, "hecho",
        "`email`",
-       "202 siempre, exista o no la cuenta; si existe, envía el código (RNF-07). I1 ya responde "
-       "igual en los dos casos",
+       "202 siempre, `{ ok: true }`, exista o no la cuenta; si existe y es de correo, envía el "
+       "código de propósito `recuperar_contrasena` (RNF-07)",
        [("400", "el correo no tiene formato de correo (CU-07 paso 2)"),
         ("—", "pedirlo otra vez antes de 30 s responde igual, 202, y no reenvía: un 429 "
               "delataría que la cuenta existe (RNF-07)")]),
     ep("POST", "/auth/recuperar-contrasena/verificar", "SUB-01", ["CU-07", "CU-03"],
-       "ServicioAcceso.verificarCorreo", "publico", {"CREDENCIAL": "RU"}, "hecho",
+       "ServicioAcceso.verificarCorreo", "publico",
+       {"CREDENCIAL": "R", "CODIGO_VERIFICACION": "RUD"}, "hecho",
        "`email`, `codigo`",
-       "200: token de recuperación",
-       [("400", "código incorrecto o vencido (CU-03 3a, 3b)"),
-        ("429", "demasiados intentos fallidos")]),
+       "200: `{ token }`, el token de recuperación (15 minutos); el código se borra",
+       [("400", "código incorrecto o vencido, con el mismo mensaje si el correo no existe: "
+                "no revela si hay cuenta (CU-03 3a, 3b, RNF-07)"),
+        ("429", "el código ya tuvo 5 intentos fallidos: hay que pedir otro (ADR-039)")]),
     ep("POST", "/auth/nueva-contrasena", "SUB-01", ["CU-07"],
        "ServicioAcceso.restablecerContrasena", "recuperacion", {"CREDENCIAL": "RU"}, "hecho",
        "`password` nueva, con el token de recuperación",
@@ -181,19 +223,24 @@ ENDPOINTS = [
     ep("GET", "/auth/profile", "SUB-01", ["CU-09"], "ServicioAcceso.perfil", "sesion",
        {"CREDENCIAL": "R", "DOCENTE": "R", "ESTUDIANTE": "R"}, "hecho",
        "nada",
-       "200: correo, rol, nombres, apellidos y foto: lo que muestra el bloque de perfil del "
-       "menú lateral (CU-09 paso 1)",
-       [("401", "sin token, o con uno de registro o de recuperación")]),
-    ep("PATCH", "/users/:id", "SUB-01", ["CU-09"], "ServicioAcceso.editarPerfil", "sesion",
-       {"DOCENTE": "RU", "ESTUDIANTE": "RU"}, "ajustar",
+       "200: `{ user }` —el formato de la guía, prueba 3—: id, correo, `fullName`, rol, "
+       "estado de verificación, y si hay rol, nombres, apellidos y foto: lo que muestra el "
+       "bloque de perfil del menú lateral (CU-09 paso 1)",
+       [("401", "sin token, con uno vencido o con uno de recuperación")],
+       nota="Admite también el token de registro, con `role: null`: la prueba 3 de la guía "
+            "consulta el perfil con el token que entrega el registro (ADR-040)."),
+    ep("PATCH", "/auth/profile", "SUB-01", ["CU-09"], "ServicioAcceso.editarPerfil", "sesion",
+       {"DOCENTE": "RU", "ESTUDIANTE": "RU"}, "hecho",
        "`nombres`, `apellidos` y `foto` opcional, en multipart/form-data",
-       "200: el perfil guardado",
-       [("400", "nombres o apellidos vacíos, o foto inválida: la foto no cambia (CU-09 3a)"),
+       "200: `{ user }`, con el perfil guardado",
+       [("400", "nombres o apellidos vacíos, o foto que no es JPG ni PNG: la foto no cambia "
+                "(CU-09 3a)"),
+        ("413", "foto de más de 5 MB: la foto no cambia"),
         ("400", "intenta cambiar el correo o el rol, que no se editan (CU-09 paso 2)"),
-        ("403", "el perfil no es el propio. I1 ya lo prueba")],
-       nota="En I1 sirve para completar el perfil **antes** de elegir el rol. En el diseño eso "
-            "pasa en `POST /auth/elegir-rol`, y esta ruta queda solo para Editar mi perfil "
-            "(CU-09), sobre la fila de DOCENTE o ESTUDIANTE; además recibe la foto."),
+        ("403", "la credencial todavía no tiene rol: no hay perfil que editar")],
+       nota="Antes era `PATCH /users/:id`. En la guía del docente v2, `/users` es solo del "
+            "administrador (ADR-040), así que Editar mi perfil pasa a `/auth/profile`, la misma "
+            "ruta que lo consulta: sin `:id`, nadie puede apuntar al perfil de otro."),
     ep("POST", "/auth/cerrar-sesion", "SUB-01", ["CU-08"], "ServicioAcceso.cerrarSesion", "sesion",
        {}, "opcional",
        "nada",
@@ -203,23 +250,38 @@ ENDPOINTS = [
 
     # ================================================================= I2
     ep("GET", "/catalogo/dbas", "SUB-06", ["CU-31"], "Catalogo.dbas", "docente",
-       {"DBA": "R", "AREA": "R", "GRADO": "R"}, "falta",
+       {"DBA": "R", "AREA": "R", "GRADO": "R"}, "hecho",
        "`codigo_area` (`MAT`, `LEN`, `CN` o `CS`), `numero_grado` (1 a 11) y `q` (texto), "
        "en la consulta",
        "200: los DBA del área, cada uno con su código `ÁREA-GG-NN`, su grado (número y "
        "nombre) y su enunciado",
        [("400", "falta el área, o no es una de las 4 (CU-11 paso 1); o el grado no está "
                 "entre 1 y 11")],
-       nota="Las 4 áreas son fijas (CU-11 paso 1, ADR-033): la pantalla las tiene, con los "
-            "mismos códigos de la tabla `area` (ADR-036), y no se piden al backend."),
+       nota="Los códigos de área y de grado se piden a `GET /catalogo/areas` y "
+            "`GET /catalogo/grados` (E-16, E-17), no se escriben en la pantalla."),
     ep("GET", "/catalogo/dbas/:codigo", "SUB-06", ["CU-31", "CU-11"], "Catalogo.dba", "docente",
        {"DBA": "R", "AREA": "R", "GRADO": "R", "DOCUMENTO_OFICIAL": "R", "EVIDENCIA": "R",
-        "EVIDENCIA_DICTAMEN": "R"}, "falta",
+        "EVIDENCIA_DICTAMEN": "R"}, "hecho",
        "nada (`:codigo` es el código `ÁREA-GG-NN`, ej. `MAT-08-01`)",
        "200: enunciado oficial, ejemplo, área, grado, el documento oficial del que se copió "
        "(título y versión) y las evidencias en el orden oficial, cada una marcada si admite "
        "o no formato cerrado (RF-06-02). El enunciado prellena el nombre en el Paso 3",
-       [("404", "no existe ese DBA")]),
+       [("404", "no existe ese DBA")],
+       nota="Mientras no termine el censo QA-014, `evidencia_dictamen` está vacía: cada "
+            "evidencia sale con `admiteFormatoCerrado: null` (sin dictaminar, V-6)."),
+    ep("GET", "/catalogo/areas", "SUB-06", ["CU-31", "CU-11"], "Catalogo.areas", "docente",
+       {"AREA": "R"}, "hecho",
+       "nada",
+       "200: las 4 áreas de ADR-033, cada una con su código (`MAT`, `LEN`, `CN`, `CS`) y su "
+       "nombre: las tarjetas del Paso 1 de crear experiencia (CU-11 paso 1)",
+       nota="Nueva (encargo 03). Antes las áreas se daban por fijas en la pantalla; leerlas de "
+            "la tabla `area` (ADR-036) evita escribir los códigos dos veces."),
+    ep("GET", "/catalogo/grados", "SUB-06", ["CU-31"], "Catalogo.grados", "docente",
+       {"GRADO": "R"}, "hecho",
+       "nada",
+       "200: los 11 grados, cada uno con su número, su nombre y su nivel (Ley 115): el filtro "
+       "por grado del Paso 2 (CU-31 paso 2)",
+       nota="Nueva (encargo 03), por la misma razón que `GET /catalogo/areas`."),
     ep("GET", "/experiencias", "SUB-02", ["CU-10"], "ServicioExperiencias.listar", "docente",
        {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "INSCRIPCION": "R"}, "falta",
        "`estado` (borrador o publicada) y `q`, en la consulta",
@@ -406,13 +468,16 @@ INTERNOS = {
                                 "la regla se aplica a cada respuesta.",
 }
 
-# En el backend I1 (`backend/src/`), pero no son del producto.
+# En el backend (`backend/src/`) porque los pide la guia del docente v2
+# (ADR-040), pero no son del producto: ninguna pantalla los usa.
 AJENOS_I1 = [
-    ("POST /users", "Crear usuario"),
-    ("GET /users", "Listar usuarios"),
-    ("GET /users/:id", "Ver un usuario por su id"),
-    ("GET /example/protected", "Ruta protegida de ejemplo"),
-    ("GET /example/docente", "Ruta de ejemplo con rol docente"),
+    ("POST /users", "Crear usuario (solo administrador)"),
+    ("GET /users", "Listar usuarios (solo administrador)"),
+    ("GET /users/:id", "Ver un usuario por su id (solo administrador)"),
+    ("PATCH /users/:id", "Editar correo, contraseña o nombre de un usuario (solo administrador)"),
+    ("DELETE /users/:id", "Borrar un usuario: 204 (solo administrador)"),
+    ("GET /example/protected", "Ruta protegida de ejemplo: cualquier sesión"),
+    ("GET /example/admin", "Ruta de ejemplo solo para administrador"),
 ]
 
 # Adicionales: no los pide ningun requerimiento, pero ayudan a construir,
@@ -460,6 +525,8 @@ NO_AGREGAR = [
     dict(que="Modificar o borrar una presentación, una respuesta o un resultado",
          fuente="RNF-10, RNF-11, ADR-021",
          patron=r"^(PUT|PATCH|DELETE) .*(presentaciones|respuestas|resultados)"),
-    dict(que="Administrar usuarios: listar, crear o borrar cuentas",
-         fuente="no hay rol administrador (`10` §2.2)", patron=r"^(GET|POST|DELETE) /users"),
+    dict(que="Que una pantalla del producto administre usuarios (`/users`), o que una ruta "
+             "asigne la marca de administrador",
+         fuente="ADR-040: `/users` es de la guía y la marca solo se pone por SQL",
+         patron=r"/users|admin"),
 ]

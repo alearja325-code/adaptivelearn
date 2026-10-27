@@ -34,7 +34,7 @@ comprueba en cada corrida que esta fuente no se aparte del MER.
 
 | Tablas | Columnas | Llaves foráneas | UNIQUE | CHECK |
 |---|---|---|---|---|
-| 18 | 104 | 23 | 17 | 14 |
+| 19 | 107 | 24 | 17 | 16 |
 
 Reporte no aparece: no es una tabla. Se calcula sobre `resultado` cada
 vez que el docente lo abre, sin llave ni persistencia propia — así lo
@@ -71,12 +71,10 @@ La cuenta de acceso: con qué correo y qué método se entra, la verificación d
 | `password_hash` | `VARCHAR(255)` | Sí | — | hash de contraseña | NULL | Contraseña con función de hash; nunca en texto legible (RNF-08). NULL si la cuenta entra con Google o Microsoft (RI-15).<br>*Fuente: RNF-08 · RF-01-01 · 26-spec-modal-mi-perfil.md* |
 | `proveedor_id` | `VARCHAR(255)` | Sí | — | — | NULL | Identificador de la persona en Google o Microsoft. NULL si `proveedor` es `correo` (RI-15).<br>*Fuente: RF-01-02* |
 | `estado_verificacion` | `ENUM('procesando','verificado')` | No | — | procesando \| verificado | 'procesando' | `procesando`: se envió el código y todavía no se confirma. `verificado`: se confirmó con el código. Con Google o Microsoft nace `verificado`: lo verificó el proveedor (RI-15). Reemplaza al antiguo sí/no `email_verificado`.<br>*Fuente: ADR-037 · RF-01-03 · 18-spec-auth-verifica-correo.md* |
-| `codigo_verificacion` | `CHAR(6)` | Sí | — | 6 dígitos | NULL | Último código enviado, sea de registro o de recuperación de contraseña (la misma ventana 015 sirve a los dos).<br>*Fuente: RF-01-03 · RF-01-08* |
-| `codigo_expira_en` | `DATETIME` | Sí | — | — | NULL | Hasta cuándo vale ese código.<br>*Fuente: RF-01-03 · backend I1 (10 minutos)* |
-| `codigo_ultimo_envio` | `DATETIME` | Sí | — | — | NULL | Cuándo se envió el último código: el reenvío se habilita 30 s después.<br>*Fuente: RF-01-03* |
-| `intentos_codigo` | `TINYINT UNSIGNED` | No | — | >= 0 | 0 | Intentos fallidos con el código vigente. Sin límite, un código de 6 dígitos se puede probar por fuerza bruta mientras vale.<br>*Fuente: backend I1, sql/002 · RNF-07* |
-| `intentos_login` | `TINYINT UNSIGNED` | No | — | >= 0 | 0 | Intentos de inicio de sesión fallidos seguidos.<br>*Fuente: backend I1, sql/002* |
-| `bloqueado_hasta` | `DATETIME` | Sí | — | — | NULL | Si se superó el límite de intentos, hasta cuándo no se admite iniciar sesión.<br>*Fuente: backend I1, sql/002* |
+| `es_admin` | `BOOLEAN` | No | — | 0 \| 1 | 0 | Marca de administrador de la guía del docente: da acceso a `/users`. Falsa por defecto; solo se pone por SQL, ninguna ruta la asigna. No es un rol del producto: ninguna pantalla la usa.<br>*Fuente: ADR-040 · guía JWT del docente v2, prueba 4* |
+| `nombre_completo` | `VARCHAR(240)` | Sí | — | — | NULL | El nombre que la persona escribió al registrarse (`fullName` de la guía). Sirve para mostrarla y para proponer nombres y apellidos al completar el perfil; los nombres oficiales viven en `docente` o `estudiante` (ventana 016).<br>*Fuente: ADR-040 · guía JWT del docente v2, §2 · 19-spec-auth-completa-perfil.md* |
+| `intentos_login` | `TINYINT UNSIGNED` | No | — | >= 0 | 0 | Intentos de inicio de sesión fallidos seguidos.<br>*Fuente: RF-01-07 · backend I1, sql/002 · encargo 03* |
+| `bloqueado_hasta` | `DATETIME` | Sí | — | — | NULL | Si se superó el límite de intentos (5), hasta cuándo no se admite iniciar sesión (15 minutos).<br>*Fuente: RF-01-07 · backend I1, sql/002* |
 | `creado_en` | `DATETIME` | No | — | — | CURRENT_TIMESTAMP | Cuándo se creó la cuenta.<br>*Fuente: MER · Credencial · backend I1* |
 | `actualizado_en` | `DATETIME` | No | — | — | CURRENT_TIMESTAMP | Última modificación. En MySQL se actualiza sola (ON UPDATE).<br>*Fuente: backend I1, sql/002* |
 
@@ -100,7 +98,34 @@ La cuenta de acceso: con qué correo y qué método se entra, la verificación d
 - `id_docente IS NULL OR id_estudiante IS NULL` — una credencial accede como un solo rol. *RI-12 · 20-spec-auth-elige-rol.md*
 - `(proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND estado_verificacion = 'verificado')` — contraseña solo con correo; identificador externo y correo verificado solo con Google o Microsoft. *RI-15 · RF-01-01 · RF-01-02*
 
-## 2. `docente`
+## 2. `codigo_verificacion`
+
+**Entidad del MER:** Codigo_Verificacion · **Clasificación:** Propia, débil
+
+El código de 6 dígitos que se envía por correo para verificar la cuenta (ventana 015) o para recuperar la contraseña (ventana 018). Entidad débil de la credencial: a lo sumo uno por credencial y propósito; uno nuevo reemplaza al anterior. El vencimiento (10 min) y la espera para reenviar (30 s) se calculan desde `creado_en`. La tarea nocturna borra los vencidos (ADR-039).
+
+<!-- tabla:campos -->
+| Campo | Tipo (MySQL) | Nulo | Llave | Dominio | Defecto | Descripción y fuente |
+|---|---|---|---|---|---|---|
+| `id_credencial` | `INT UNSIGNED` | No | PK,FK | — | — | Credencial que lo recibió. Relación identificadora «recibe».<br>*Fuente: MER · relación «recibe» · ADR-039* |
+| `proposito` | `ENUM('verificar_correo','recuperar_contrasena')` | No | PK | verificar_correo \| recuperar_contrasena | — | Para qué es el código. Llave parcial: un código vigente por propósito.<br>*Fuente: ADR-039 · RF-01-03 · RF-01-08* |
+| `codigo_hash` | `CHAR(64) CHARACTER SET ascii COLLATE ascii_bin` | No | — | 64 caracteres hexadecimales | — | HMAC-SHA256 del código, en hexadecimal. El código nunca se guarda legible: quien lea la tabla no puede usarlo (RNF-08).<br>*Fuente: ADR-039 · RNF-08* |
+| `creado_en` | `DATETIME` | No | — | — | CURRENT_TIMESTAMP | Cuándo se envió. Vence a los 10 minutos y se puede reenviar a los 30 segundos: los dos se calculan desde aquí, no se guardan.<br>*Fuente: ADR-039 · nota R4 · RF-01-03* |
+| `intentos` | `TINYINT UNSIGNED` | No | — | 0 a 5 | 0 | Intentos fallidos con este código. Al quinto, el código deja de servir y hay que pedir otro (fuerza bruta: RNF-07).<br>*Fuente: ADR-039 · RNF-07* |
+
+**Llaves foráneas**
+
+<!-- tabla:fks -->
+| Columnas | Referencia | ON DELETE | ON UPDATE | Por qué esa acción |
+|---|---|---|---|---|
+| `id_credencial` | `credencial(id_credencial)` | `CASCADE` | `CASCADE` | Entidad débil: un código no existe sin su credencial. Borrar la credencial (tarea nocturna, ADR-039) borra sus códigos. |
+
+**Restricciones de dominio (CHECK)**
+
+- `intentos <= 5` — a lo sumo 5 intentos fallidos por código. *ADR-039 · RNF-07*
+- `codigo_hash REGEXP '^[0-9a-f]{64}$'` — el hash es hexadecimal de 64 caracteres: un código de 6 dígitos sin hash no cabe. *ADR-039 · RNF-08*
+
+## 3. `docente`
 
 **Entidad del MER:** Docente · **Clasificación:** Propia
 
@@ -118,7 +143,7 @@ Quien crea y publica experiencias. Se crea al elegir el rol Docente (ventana 017
 
 - `TRIM(nombres) <> '' AND TRIM(apellidos) <> ''` — nombres y apellidos no vacíos. *RF-01-05*
 
-## 3. `estudiante`
+## 4. `estudiante`
 
 **Entidad del MER:** Estudiante · **Clasificación:** Propia
 
@@ -136,7 +161,7 @@ Quien se une a una experiencia y responde el diagnóstico. Solo los datos mínim
 
 - `TRIM(nombres) <> '' AND TRIM(apellidos) <> ''` — nombres y apellidos no vacíos. *RF-01-05*
 
-## 4. `experiencia`
+## 5. `experiencia`
 
 **Entidad del MER:** Experiencia · **Clasificación:** Propia
 
@@ -174,7 +199,7 @@ Un diagnóstico anclado a un único DBA, creado por un docente. Se guarda solo s
 - `(estado = 'Borrador' AND fecha_publicacion IS NULL) OR (estado = 'Publicada' AND fecha_publicacion IS NOT NULL)` — fecha de publicación solo si está Publicada. *RI-16 · RF-02-05*
 - `codigo_invitacion REGEXP '^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$'` — 6 caracteres de letras y números, sin 0 O 1 I L. *RI-3 · RF-02-06*
 
-## 5. `area`
+## 6. `area`
 
 **Entidad del MER:** Área · **Clasificación:** Externa (MEN)
 
@@ -194,7 +219,7 @@ Un diagnóstico anclado a un único DBA, creado por un docente. Se guarda solo s
 
 - `codigo_area REGEXP '^[A-Z]{2,3}$'` — 2 o 3 letras mayúsculas, sin tildes (en MySQL la columna es ASCII binaria: una tilde no cabe y el REGEXP distingue mayúsculas). *ADR-036*
 
-## 6. `grado`
+## 7. `grado`
 
 **Entidad del MER:** Grado · **Clasificación:** Externa (MEN)
 
@@ -215,7 +240,7 @@ Grado de la educación básica y media, de 1° a 11°. Sin Transición (ADR-033)
 
 - `(numero BETWEEN 1 AND 5 AND nivel = 'basica_primaria') OR (numero BETWEEN 6 AND 9 AND nivel = 'basica_secundaria') OR (numero BETWEEN 10 AND 11 AND nivel = 'media')` — grados 1 a 11, sin Transición, y el nivel que les da la Ley 115. *ADR-036 · ADR-033 · Ley 115 de 1994*
 
-## 7. `documento_oficial`
+## 8. `documento_oficial`
 
 **Entidad del MER:** Documento_Oficial · **Clasificación:** Externa (MEN)
 
@@ -248,7 +273,7 @@ El PDF del MEN del que se copiaron los DBA de un área. Uno por área en esta ve
 
 - `paginas > 0 AND TRIM(titulo) <> '' AND TRIM(version) <> ''` — título y versión no vacíos; al menos una página. *ADR-036*
 
-## 8. `dba`
+## 9. `dba`
 
 **Entidad del MER:** DBA · **Clasificación:** Externa (MEN)
 
@@ -277,7 +302,7 @@ Derecho Básico de Aprendizaje oficial del MEN. Dato externo, de solo lectura pa
 
 - `codigo_dba = CONCAT(codigo_area, '-', LPAD(numero_grado, 2, '0'), '-', RIGHT(codigo_dba, 2)) AND RIGHT(codigo_dba, 2) REGEXP '^[0-9]{2}$' AND RIGHT(codigo_dba, 2) <> '00'` — el código es ÁREA-GG-NN, con el área y el grado de la fila y un número de dos cifras desde 01. *RI-21 · ADR-036*
 
-## 9. `evidencia`
+## 10. `evidencia`
 
 **Entidad del MER:** Evidencia · **Clasificación:** Externa (MEN), débil
 
@@ -301,7 +326,7 @@ Evidencia de aprendizaje de un DBA. Entidad débil: no tiene identidad fuera de 
 
 - `numero_evidencia > 0` — posición dentro del DBA. *MER*
 
-## 10. `evidencia_dictamen`
+## 11. `evidencia_dictamen`
 
 **Entidad del MER:** Evidencia_Dictamen · **Clasificación:** Propia, débil
 
@@ -328,7 +353,7 @@ Nuestro juicio sobre una evidencia del MEN: si admite formato cerrado, y cuál. 
 
 - `(aplica_formato_cerrado = 1 AND formato IS NOT NULL) OR (aplica_formato_cerrado = 0 AND formato IS NULL)` — si admite formato cerrado dice cuál; si no, no tiene formato. *RI-19 · RF-03-01*
 
-## 11. `experiencia_evidencia`
+## 12. `experiencia_evidencia`
 
 **Entidad del MER:** Experiencia_Evidencia · **Clasificación:** Asociativa
 
@@ -349,7 +374,7 @@ Las evidencias que diagnostica esta experiencia: una fila por evidencia incluida
 | `id_experiencia, codigo_dba` | `experiencia(id_experiencia, codigo_dba)` | `CASCADE` | `CASCADE` | Compuesta con codigo_dba: la evidencia incluida tiene que ser del DBA al que se ancla la experiencia (RI-18, ciclo C1 del MER). Eliminar la experiencia elimina sus evidencias incluidas (V-11). |
 | `codigo_dba, numero_evidencia` | `evidencia(codigo_dba, numero_evidencia)` | `RESTRICT` | `CASCADE` | Hacia el currículo del MEN: no se borra una evidencia oficial en uso. |
 
-## 12. `inscripcion`
+## 13. `inscripcion`
 
 **Entidad del MER:** Inscripción · **Clasificación:** Asociativa
 
@@ -376,7 +401,7 @@ Un estudiante unido a una experiencia con su código. Llave propia (no compuesta
 - `UNIQUE(id_estudiante, id_experiencia)` — RI-1
 - `UNIQUE(id_inscripcion, id_experiencia)` — destino de FK: habilita la comprobación estructural de RI-13
 
-## 13. `item`
+## 14. `item`
 
 **Entidad del MER:** Ítem · **Clasificación:** Propia
 
@@ -405,7 +430,7 @@ Pregunta del banco de diagnóstico. La IA genera 12 por evidencia al crear la ex
 
 - `UNIQUE(id_item, id_experiencia)` — destino de FK: habilita la comprobación estructural de RI-13
 
-## 14. `opcion`
+## 15. `opcion`
 
 **Entidad del MER:** Opción · **Clasificación:** Propia
 
@@ -433,7 +458,7 @@ Opción de respuesta de un ítem. Qué columnas aplican depende del formato del 
 
 - `UNIQUE(id_opcion, id_item)` — destino de FK: habilita la comprobación estructural de RI-6
 
-## 15. `presentacion`
+## 16. `presentacion`
 
 **Entidad del MER:** Presentación · **Clasificación:** Propia, débil
 
@@ -464,7 +489,7 @@ El hecho de HABER MOSTRADO un ítem a un estudiante — distinto del de haberlo 
 
 - `orden_presentacion > 0` — orden desde 1. *RI-8*
 
-## 16. `respuesta`
+## 17. `respuesta`
 
 **Entidad del MER:** Respuesta · **Clasificación:** Asociativa
 
@@ -496,7 +521,7 @@ Lo que el estudiante respondió a un ítem que se le presentó, con su certeza. 
 
 - `certeza BETWEEN 0 AND 5` — escala CRI. *ADR-008 punto 2*
 
-## 17. `respuesta_opcion`
+## 18. `respuesta_opcion`
 
 **Entidad del MER:** Respuesta_Opción · **Clasificación:** Asociativa
 
@@ -518,7 +543,7 @@ Qué opción u opciones eligió el estudiante — no solo si acertó. Sin esta t
 | `id_respuesta, id_item` | `respuesta(id_respuesta, id_item)` | `CASCADE` | `CASCADE` | Sin la respuesta, la selección no tiene sentido. Compuesta con id_item: fija de qué ítem es la respuesta (RI-6). |
 | `id_opcion, id_item` | `opcion(id_opcion, id_item)` | `CASCADE` | `CASCADE` | Compuesta con id_item: la opción elegida es del ítem que se presentó (RI-6, ciclo C4). CASCADE y no RESTRICT: una opción solo se borra editando un ítem en Borrador, cuando todavía no hay respuestas (ADR-026, RI-10), o al eliminar la experiencia entera, que debe poder hacerse (RF-02-07). |
 
-## 18. `resultado`
+## 19. `resultado`
 
 **Entidad del MER:** Resultado · **Clasificación:** Propia, débil
 

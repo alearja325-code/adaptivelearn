@@ -44,9 +44,9 @@ pendientes del backend.
 | # | Nota | Interpretación | Decisión | Dónde se aplica |
 |---|---|---|---|---|
 | **R1** | Tabla para grados y área, y codificar | Área y Grado como entidades, con código; y un código limpio para el DBA (hoy `matemáticas_1_dba_1`, con tilde) | **Aceptada** — ADR-036. Se agrega además **Documento oficial** (recomendación del equipo) | MER, MR, diccionario |
-| **R2** | id_usuario → id_estudiante e id_docente | Que el sistema no trabaje con un "usuario" genérico, sino con docente y estudiante | **Aceptada para el backend**: quitar la entidad `User` de la guía y las rutas `/users`; identificar por `id_docente` / `id_estudiante`. El MER ya no tiene "usuario". **Pregunta P1** sobre CREDENCIAL | Backend (Fase IV) |
+| **R2** | id_usuario → id_estudiante e id_docente | Que el sistema no trabaje con un "usuario" genérico, sino con docente y estudiante | **Aceptada para el backend**: identificar por `id_docente` / `id_estudiante`. El MER ya no tiene "usuario". *(La idea inicial de quitar `User` y `/users` la reemplazó ADR-040: la guía v2 los evalúa; ver «Estado».)* **Pregunta P1** sobre CREDENCIAL | Backend (Fase IV) |
 | **R3** | email → estado_verificado / estado_procesando | Reemplazar el sí/no de correo verificado por un estado | **Aceptada** — ADR-037: `estado_verificacion` con `procesando` / `verificado` | MER, MR, backend |
-| **R4** | Quitar `codigo_expira_en` y `codigo_ultimo_envio` | Que la credencial no cargue esos datos | **Pendiente — pregunta P2.** El vencimiento del código y la espera de 30 s para reenviarlo (RF-01-03) necesitan otro lugar | MER, MR, backend |
+| **R4** | Quitar `codigo_expira_en` y `codigo_ultimo_envio` | Que la credencial no cargue esos datos | **Aceptada — ADR-039**, a confirmar con el docente (P2): los códigos en su propia tabla; vencimiento y espera se calculan | MER, MR, backend |
 | **R5** | Correo del sistema adaptivelearn@ | Una cuenta de correo propia del proyecto como remitente de los códigos | **Aceptada.** No es del modelo de datos: es configuración. La cuenta la crea el equipo; su clave va solo en `backend/.env` | Backend (Fase IV) |
 
 ## Preguntas para el docente
@@ -63,7 +63,14 @@ pendientes del backend.
 
 ## Estado
 
-- R1 y R3 → encargo a la sesión de Claude Code en la nube:
-  `docs/encargos/01-mer-catalogo-y-credencial.md`.
-- R2 y R5 → Fase IV, al alinear el backend del acceso.
-- R4 → espera la respuesta a P2.
+*(Actualizado el 2026-10-27, al cerrar el encargo 03.)*
+
+| # | Estado | Dónde se ve |
+|---|---|---|
+| **R1** | **Aplicada** en el MER, el MR y el diccionario (encargo 01, pull request #1). Desde el encargo 03, también en el backend: tablas `area`, `grado` y `documento_oficial` cargadas, y las rutas `/catalogo/*` | `16`, `17`, `backend/sql/` |
+| **R2** | **Aplicada en el backend** (encargo 03, ADR-040). La sesión (JWT) lleva el rol (`docente`, `estudiante` o `admin`) y el `idDocente` o el `idEstudiante`. La clase `User` de la guía se queda, pero sobre la tabla `credencial`: la guía v2 la evalúa, con `/users` solo para administrador | `backend/src/auth/interfaces/jwt-payload.interface.ts`, informe de la guía (D-03, D-11) |
+| **R3** | **Aplicada** en el modelo (encargo 01) y en el backend (encargo 03): `estado_verificacion` `procesando` / `verificado` | `17`, `backend/src/user/entities/user.entity.ts` |
+| **R4** | **Aplicada (ADR-039), a confirmar con el docente:** P2 sigue sin respuesta. `codigo_expira_en`, `codigo_ultimo_envio` y `codigo_verificacion` salieron de la credencial; los códigos viven en la tabla `codigo_verificacion`, el vencimiento (10 min) y la espera (30 s) se calculan, y una tarea nocturna limpia lo vencido | `16` §4, `17` §5.7, `backend/src/auth/codigo.service.ts`, `backend/src/limpieza/` |
+| **R5** | **Aplicada en el backend** (encargo 03): los códigos se envían por SMTP con `adaptivelearn.sistema@gmail.com`, configurado en `.env`. **Falta** que el equipo ponga la contraseña de aplicación en su `.env` y pruebe un envío real; sin ella, el código sale en la consola del servidor | `backend/src/correo/`, `backend/README.md` |
+
+Quedan abiertas las preguntas **P1** y **P2**.

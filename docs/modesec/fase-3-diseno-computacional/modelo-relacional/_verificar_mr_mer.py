@@ -118,16 +118,19 @@ EXTRA_JUSTIFICADAS = {
         "compuestas y obliga a que la opcion elegida sea del item que se "
         "presento (RI-6, ciclo C4 del MER). Sin ella, una respuesta podia "
         "elegir una opcion de otro item, y el motor lo aceptaba.",
-    ("credencial", "intentos_codigo"):
-        "endurecimiento del backend de I1 (sql/002): sin limite de "
-        "intentos, un codigo de 6 digitos se adivina por fuerza bruta. "
-        "El MER no dibuja mecanismos de seguridad; los deja al MR.",
     ("credencial", "intentos_login"):
-        "endurecimiento del backend de I1 (sql/002), igual que el anterior.",
+        "endurecimiento del backend (RF-01-07): sin limite de intentos, una "
+        "contrasena se adivina por fuerza bruta. El MER no dibuja mecanismos "
+        "de seguridad; los deja al MR. (Los intentos del CODIGO si son "
+        "atributo del MER: ADR-039 los puso en CODIGO_VERIFICACION.)",
     ("credencial", "bloqueado_hasta"):
         "endurecimiento del backend de I1 (sql/002), igual que el anterior.",
     ("credencial", "actualizado_en"):
         "marca tecnica del backend de I1 (sql/002); no es un dato del dominio.",
+    ("credencial", "nombre_completo"):
+        "el fullName que la guia del docente pide al registrarse (ADR-040), "
+        "guardado mientras la persona no tiene rol: los nombres del dominio "
+        "viven en DOCENTE o ESTUDIANTE (ventana 016). Decision del encargo 03.",
 }
 
 for tabla, cols_mer in sorted(attrs_mer.items()):

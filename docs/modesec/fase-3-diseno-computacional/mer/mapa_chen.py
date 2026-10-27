@@ -23,6 +23,12 @@ Dos cambios de trazado de esta version:
 normalizado. DOCUMENTO_OFICIAL y GRADO van en ella; AREA, a la izquierda del
 DBA. Todo lo demas baja una fila (700 px). El ciclo C6 queda como un
 triangulo: DBA -- AREA -- DOCUMENTO_OFICIAL -- DBA.
+
+2026-10-27 (ADR-039): CODIGO_VERIFICACION arriba en el carril de acceso,
+en la fila F1. «recibe» sube desde CREDENCIAL por una vertical corrida 80 px
+a la izquierda del eje del carril; los dos rombos «accede como» se corren
+30 px a la derecha, para que esa vertical pase lejos de ellos. La razon 1:1
+del rombo de DOCENTE pasa arriba.
 """
 import generador as g
 from vistas_chen import Lienzo
@@ -49,6 +55,8 @@ def ent(nombre, cx, cy, lado="right", **kw):
 
 # -------------------------------------------------- carril de acceso (x0)
 ent("CREDENCIAL", X0, FM, lado="left")
+XCOD = X0 - 80                                       # vertical de «recibe»
+ent("CODIGO_VERIFICACION", XCOD, F1)
 
 # --------------------------- fila 0 - catalogo normalizado (ADR-036)
 ent("DOCUMENTO_OFICIAL",  C1, F0)
@@ -89,8 +97,10 @@ XR = (C2 + C3) // 2                                  # 2310
 ent("REPORTE", XR, FM, lado="left", dashed=True)
 
 # ------------------------------------------------------------ relaciones
-m.rel("accede_docente",    X0, F2, razon_lado="izq")
-m.rel("accede_estudiante", X0, F3, razon_lado="izq")
+XAC = X0 + 30                                        # rombos «accede como»
+m.rel("accede_docente",    XAC, F2, razon_lado="arriba")
+m.rel("recibe",            XCOD, F1 + 500, razon_lado="izq")
+m.rel("accede_estudiante", XAC, F3, razon_lado="izq")
 m.rel("es de",        C1,   F0 + 350, razon_lado="izq")
 m.rel("corresponde a", C2,  F0 + 350, razon_lado="izq")
 m.rel("pertenece_area", 1490, F1)
@@ -114,8 +124,9 @@ m.rel("resume",       XR,   FM - 180, razon_lado="izq")
 m.rel("se agrega en", XR,   FM + 180, razon_lado="izq")
 
 # ------------------------------------------------------------- conexiones
-m.conecta("CREDENCIAL", "accede_docente", "DOCENTE")
-m.conecta("CREDENCIAL", "accede_estudiante", "ESTUDIANTE")
+m.conecta("CREDENCIAL", "accede_docente", "DOCENTE", off_a=XAC - X0)
+m.conecta("CREDENCIAL", "accede_estudiante", "ESTUDIANTE", off_a=XAC - X0)
+m.conecta("CREDENCIAL", "recibe", "CODIGO_VERIFICACION", off_a=XCOD - X0)
 # {xor}: punteado vertical que une las dos «accede como» (RI-12), a la derecha
 # de CREDENCIAL, de una linea de relacion a la otra
 m.body += (f'<line x1="600" y1="{F2}" x2="600" y2="{F3}" stroke="#B4536B" stroke-width="1.4" '
@@ -178,7 +189,7 @@ CAPTION = (
     "ninguna línea. "
     "<b>CREDENCIAL ocupa un carril propio a la izquierda</b>, entre DOCENTE y "
     "ESTUDIANTE: una misma credencial accede como uno de los dos, nunca como ambos "
-    "(RI-12). "
+    "(RI-12). Arriba de ella, en el mismo carril, su CODIGO_VERIFICACION (ADR-039). "
     "<b>El catálogo normalizado ocupa la fila de arriba</b> (ADR-036): ÁREA, GRADO y "
     "DOCUMENTO_OFICIAL; el triángulo DBA – ÁREA – DOCUMENTO_OFICIAL es el ciclo C6 (RI-20). "
     "<b>REPORTE va al centro y con borde punteado</b>: no persiste, se calcula sobre "

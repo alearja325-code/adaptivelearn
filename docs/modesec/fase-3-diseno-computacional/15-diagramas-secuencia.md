@@ -36,7 +36,7 @@ Por qué la cuenta con rol se crea al final: entre «Crear cuenta» y «Elegir r
 
 ![Registrarse con correo y contraseña](uml/svg/secuencia-1-registro.svg)
 
-Operaciones del diagrama de clases que usa: `ServicioAcceso.registrar()`, `Credencial.emitirCodigo()`, `ServicioCorreo.enviarCodigo()`, `ServicioAcceso.verificarCorreo()`, `Credencial.verificarCodigo()`, `ServicioAcceso.elegirRol()`, `Credencial.asignarRol()`.
+Operaciones del diagrama de clases que usa: `ServicioAcceso.registrar()`, `Credencial.emitirCodigo()`, `ServicioCorreo.enviarCodigo()`, `ServicioAcceso.verificarCorreo()`, `CodigoVerificacion.verificar()`, `ServicioAcceso.elegirRol()`, `Credencial.asignarRol()`.
 
 ## 2. Iniciar sesión
 

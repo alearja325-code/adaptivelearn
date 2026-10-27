@@ -13,10 +13,8 @@ CREATE TABLE credencial (
   password_hash TEXT,
   proveedor_id TEXT,
   estado_verificacion TEXT NOT NULL DEFAULT 'procesando',
-  codigo_verificacion TEXT,
-  codigo_expira_en TEXT,
-  codigo_ultimo_envio TEXT,
-  intentos_codigo INTEGER NOT NULL DEFAULT 0,
+  es_admin INTEGER NOT NULL DEFAULT 0,
+  nombre_completo TEXT,
   intentos_login INTEGER NOT NULL DEFAULT 0,
   bloqueado_hasta TEXT,
   creado_en TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -30,6 +28,19 @@ CREATE TABLE credencial (
   CHECK ((proveedor = 'correo' AND password_hash IS NOT NULL AND proveedor_id IS NULL) OR (proveedor <> 'correo' AND password_hash IS NULL AND proveedor_id IS NOT NULL AND estado_verificacion = 'verificado')),
   FOREIGN KEY (id_docente) REFERENCES docente(id_docente) ON DELETE RESTRICT ON UPDATE RESTRICT,
   FOREIGN KEY (id_estudiante) REFERENCES estudiante(id_estudiante) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
+
+CREATE TABLE codigo_verificacion (
+  id_credencial INTEGER NOT NULL,
+  proposito TEXT NOT NULL,
+  codigo_hash TEXT NOT NULL,
+  creado_en TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  intentos INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (id_credencial, proposito),
+  CHECK (proposito IN ('verificar_correo','recuperar_contrasena')),
+  CHECK (intentos <= 5),
+  CHECK (length(codigo_hash) = 64 AND codigo_hash NOT GLOB '*[^0-9a-f]*'),
+  FOREIGN KEY (id_credencial) REFERENCES credencial(id_credencial) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE docente (

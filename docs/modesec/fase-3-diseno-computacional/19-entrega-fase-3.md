@@ -1,6 +1,6 @@
 # 19. Entrega de la Fase III — Diseño Computacional
 
-**Metodología:** MODESEC (Caro y Toscano, TISE 2009). **Fecha:** 2026-10-26.
+**Metodología:** MODESEC (Caro y Toscano, TISE 2009). **Fecha:** 2026-10-26; actualizado el 2026-10-27 (encargo 03: ADR-039, ADR-040).
 
 MODESEC: *«La fase del diseño computacional comprende la descripción de los elementos que
 permitirán que el sistema funcione a cabalidad con los procesos que fueron definidos en el
@@ -28,7 +28,7 @@ decir una cosa en un diagrama y otra en un documento.
 
 El `20` es el puente hacia la construcción: cada endpoint que el frontend le pedirá al backend,
 por incremento, con el caso de uso que atiende, la operación del diagrama de clases que lo
-resuelve, las entidades que toca y quién puede llamarlo. Numerados de E-01 a E-35, para
+resuelve, las entidades que toca y quién puede llamarlo. Numerados de E-01 a E-37, para
 repartirlos como tareas.
 
 **En PDF:** `entrega-pdf/`, uno por documento —de `00-Entrega-Fase-III-indice.pdf` (este) a
@@ -45,14 +45,14 @@ una página, con índice).
 |---|---|
 | Requerimientos (de `11`) | 58: 44 funcionales y 14 no funcionales |
 | Casos de uso | 31, en 7 diagramas; cubren los 44 requerimientos funcionales |
-| Clases | 20 del dominio, 12 enumeraciones, 13 de servicio e interfaces |
+| Clases | 21 del dominio, 13 enumeraciones, 13 de servicio e interfaces |
 | Diagrama de objetos | 34 objetos y 42 enlaces, en 2 vistas del mismo momento |
 | Diagramas de secuencia | 8 |
-| MER | 18 entidades (+ Reporte, derivado), 22 relaciones (+ 2 derivadas), 71 atributos —en Chen estricta, sin llaves foráneas—, 6 ciclos (todos cerrados), 21 restricciones de integridad; (mín, máx) en cada extremo y matriz CRUD |
+| MER | 19 entidades (+ Reporte, derivado), 23 relaciones (+ 2 derivadas), 73 atributos —en Chen estricta, sin llaves foráneas—, 6 ciclos (todos cerrados), 21 restricciones de integridad; (mín, máx) en cada extremo y matriz CRUD |
 | Revisión del docente (2026-09-01) | 12 hallazgos: 11 resueltos y H-5 en parte (decisión por confirmar). Cuenta uno por uno en `16` §10 |
-| Revisión del docente (2026-10-22) | 5 notas: R1 (área, grado y código, ADR-036) y R3 (estado de verificación, ADR-037) aplicadas en el MER, el MR y el diccionario el 2026-10-26; R2 y R5 son del backend (Fase IV); R4 espera la pregunta P2. Triaje en `21`; cuenta en `16` §10 |
-| MR | 18 tablas, 104 columnas, 23 llaves foráneas, 17 UNIQUE, 14 CHECK |
-| Endpoints (anexo `20`) | 35, en los 4 incrementos: 10 ya existen en el backend I1 (2 de ellos por ajustar), 24 faltan y 1 es opcional |
+| Revisión del docente (2026-10-22) | 5 notas: R1 (área, grado y código, ADR-036) y R3 (estado de verificación, ADR-037) aplicadas en el MER, el MR y el diccionario el 2026-10-26; R4 (códigos en su tabla, ADR-039) aplicada el 2026-10-27, a confirmar con el docente (P2); R2 (la sesión lleva el rol y el id) y R5 (envío real de correos) aplicadas en el backend el 2026-10-27 (encargo 03). Triaje en `21`; cuenta en `16` §10 |
+| MR | 19 tablas, 107 columnas, 24 llaves foráneas, 17 UNIQUE, 16 CHECK. El backend usa 10 de ellas: su esquema, `backend/sql/001_esquema.sql`, lo genera el MR |
+| Endpoints (anexo `20`) | 37, en los 4 incrementos: 16 ya existen en el backend (el acceso de I1 y el catálogo de I2), 20 faltan y 1 es opcional |
 
 ## 3. Cómo se comprueba
 
@@ -75,8 +75,8 @@ se edita, se regenera.
 | `mer/_verificar_vistas.py`, `mer/_verificar_mapa.py` | Cada relación en exactamente una vista; ninguna línea atraviesa una caja ni tacha un rótulo. |
 | `modelo-relacional/_verificar_mr_mer.py` | El MR no se aparta del MER. |
 | `mer/_verificar_mer.py` | Coherencia interna del MER: línea doble ⇔ mínimo ≥ 1, y los 6 ciclos del modelo declarados, reales e independientes. |
-| `modelo-relacional/verificar_mr.py` | El esquema hace cumplir lo que dice: 67 pruebas de violación, aceptación y borrado, en SQLite. |
-| `modelo-relacional/probar_mysql.py` | Las mismas 67 pruebas contra MySQL real; cada rechazo, por la restricción exacta. Corrido el 2026-10-26 contra MySQL 8.0.46: todo correcto (`salida_probar_mysql.txt`). La versión anterior del esquema se había corrido contra MySQL 8.4.11. |
+| `modelo-relacional/verificar_mr.py` | El esquema hace cumplir lo que dice: 75 pruebas de violación, aceptación y borrado, en SQLite; y `backend/sql/001_esquema.sql` es el que el MR genera hoy. |
+| `modelo-relacional/probar_mysql.py` | Las mismas 75 pruebas contra MySQL real; cada rechazo, por la restricción exacta. Corrido el 2026-10-27 contra MySQL 8.0.46: todo correcto (`salida_probar_mysql.txt`). La versión anterior del esquema se había corrido contra MySQL 8.4.11. |
 | `uml/_verificar_uml.py` | Casos de uso ↔ requerimientos; clases ↔ MR y MER; el diagrama de objetos **se carga en el esquema** sin violar nada; la regla adaptativa da lo que el diagrama muestra; toda operación de una secuencia existe en su clase; la matriz CRUD es coherente con los borrados en cascada del MR. |
 | `api/_verificar_api.py` | Todo caso de uso tiene endpoint; cada endpoint usa una operación de servicio que existe y toca lo que dice la matriz CRUD, ni más ni menos; quien lo llama es el actor de su caso de uso; toda llamada de la IGU en las secuencias es un endpoint; ninguna ruta hace lo que una decisión prohíbe; y el estado de cada endpoint (hecho o por hacer) es el del código real: lee los controladores de `backend/src/`. |
 
@@ -92,11 +92,11 @@ se edita, se regenera.
 | **V-10** | Una excepción de contraste en la interfaz: diferida. | `11` §5 |
 | **RNF-13** | El tiempo límite de la generación del banco: se mide al construir I2. | `11` |
 | **RNF-06** | La autorización del acudiente: mientras falte, el sistema no se usa con estudiantes reales. | `11` |
-| **MariaDB y MySQL 8.4** | `mr_mysql.sql` no usa nada que MariaDB 10.11 no tenga, pero no se ha ejecutado en MariaDB; y la versión del 2026-10-26 (catálogo normalizado) se probó en MySQL 8.0.46, no en 8.4. Probarlo al integrar con el backend de I1. | `17` |
+| **MariaDB y MySQL 8.4** | `mr_mysql.sql` no usa nada que MariaDB 10.11 no tenga, pero no se ha ejecutado en MariaDB; y la versión del 2026-10-27 (catálogo normalizado y tabla de códigos) se probó en MySQL 8.0.46, no en 8.4. Probarlo al integrar con el backend de I1. | `17` |
 | **R4 / P2** (revisión del 2026-10-22) | Si se quitan `codigo_expira_en` y `codigo_ultimo_envio` de la credencial, dónde viven el vencimiento del código y la espera para reenviarlo. Espera la respuesta del docente. | `21` |
 | **Datos del catálogo** (A12) | `curriculo_men_normalizado.json` repite 13 de sus 342 identificadores de DBA, y con el código nuevo chocan los mismos 13: cargarlo completo falla por llave duplicada, como debe. Se corrige en la auditoría del currículo. **Corregido el 2026-10-26** (encargo 02): `data/curriculo-men/catalogo/catalogo_dba.json`, 343 DBA con códigos únicos. | `16` §4 (DBA), `18` |
-| **Backend I1 frente al MER** | El backend todavía guarda `email_verificado` y no tiene las tablas del catálogo: alinearlo con ADR-036 y ADR-037 es trabajo de la Fase IV. | `21` |
-| **Backend I1** | Ajustar dos rutas: que `POST /auth/elegir-rol` reciba también el perfil (E-06) y que `PATCH /users/:id` quede solo para editar el perfil (E-12). Quitar del producto las rutas de la guía (`POST /users`, `GET /users`, `GET /users/:id`, `/example/*`). | `20` §3, §7 |
+| **Backend frente al MER** | **Cerrado el 2026-10-27** (encargo 03): el backend usa el esquema que genera el MR (`backend/sql/001_esquema.sql`), con `estado_verificacion`, la tabla de códigos y el catálogo normalizado. | `21`, `backend/README.md` |
+| **Rutas del backend** | **Cerrado el 2026-10-27** (encargo 03): `POST /auth/elegir-rol` recibe el perfil (E-06) y editar el perfil es `PATCH /auth/profile` (E-12). Las rutas de la guía (`/users`, `/example/*`) se quedan, solo para administrador, porque la guía v2 las evalúa (ADR-040). | `20` §3, §7 |
 | **Decisiones confirmadas el 2026-10-26** (ADR-034, ADR-035) | Retomar un registro a medias al iniciar sesión (CU-06 3a); tratar un ítem generado inválido como falla del servicio (CU-16 4a); sacar `Item.estado_revision` aunque el triaje del 2026-09-04 lo había aceptado (H-5, por ADR-026); guardar el servicio y el modelo de IA una vez en la experiencia (RI-17), cuando el punto 4 de ADR-030 dice que los guarda cada ítem. | `12` §7, `16` §10 y §13 |
 
 ## 5. Notas sobre las fuentes

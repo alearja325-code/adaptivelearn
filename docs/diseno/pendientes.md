@@ -458,8 +458,14 @@ revisa en local antes de unirlo:
    docente.)* **Reescrito el 2026-10-26 sobre la guía v2**
    (`docs/cursos/dse-2-203453/guia-docente/`, ADR-040): la guía manda en
    la forma —sus 6 pruebas deben funcionar, `/users` solo para
-   administrador marcado por SQL— y AdaptiveLearn en el fondo. **Listo
-   para lanzar cuando el 02 esté unido.**
+   administrador marcado por SQL— y AdaptiveLearn en el fondo.
+   **Hecho el 2026-10-27, en revisión** (rama
+   `encargo-03-backend-hasta-catalogo`): las 6 pruebas de la guía pasan
+   contra MySQL 8.0.46; esquema del backend generado del MR; catálogo
+   cargado (343 DBA, 1282 evidencias); 18 pruebas unitarias y 40 de punta
+   a punta. **Quedó para después:** credenciales reales de Google y
+   Microsoft, la contraseña de aplicación del correo, y regenerar los PDF
+   de la Fase III (en la nube no hay Chrome ni Edge).
 3. **04 — Frontend hasta el Paso 3:** se escribe cuando el 03 esté
    unido.
 
@@ -498,10 +504,17 @@ Notas sobre la columna vertebral (acceso y catálogo). Triaje en
   grados, 4 documentos) no están cargados en ningún script: se cargan
   en la Fase IV, con el catálogo, después de la auditoría A12; (b) la
   `guia-para-explicar-el-mer.md` está atrasada (solo tiene un aviso).
-- **R2** (sin "usuario" genérico) y **R5** (correo del sistema) → Fase
-  IV, al alinear el backend.
-- **R4** (quitar los campos del código) → espera respuesta del docente
-  (P2). **P1**: ¿también quitar CREDENCIAL?
+- **R2** (sin "usuario" genérico) y **R5** (correo del sistema) →
+  **aplicadas en el backend** (encargo 03, 2026-10-27): la sesión lleva
+  el rol y el `id_docente` o `id_estudiante`; los códigos salen por SMTP
+  (falta la contraseña de aplicación en cada `.env`).
+- **R4** (quitar los campos del código) → **aplicada con ADR-039**
+  (encargo 03): tabla `codigo_verificacion` en el MER, el MR y el
+  backend, y la tarea nocturna. **A confirmar con el docente: P2 sigue
+  sin respuesta.** **P1**: ¿también quitar CREDENCIAL? (sin respuesta).
+- **R3** también en el backend desde el encargo 03. Y los datos de
+  referencia que quedaron pendientes en el encargo 01 (4 áreas, 11
+  grados, 4 documentos) ya los carga `backend/sql/002_datos_referencia.sql`.
 - Se agregó `CLAUDE.md` en la raíz: instrucciones para cualquier sesión
   de Claude Code en este repositorio.
 

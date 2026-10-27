@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1765 1261" width="1765" height="1261">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2185 1345" width="2185" height="1345">
 <defs>
   <marker id="lleno" viewBox="0 0 12 10" refX="11.5" refY="5" markerWidth="12" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
     <path d="M0,0 L12,5 L0,10 z" fill="#111111"/></marker>
@@ -11,14 +11,14 @@
   <marker id="rombo" viewBox="0 0 22 12" refX="1" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
     <path d="M1,6 L11,1 L21,6 L11,11 z" fill="#111111" stroke="#111111" stroke-width="1"/></marker>
 </defs>
-<rect x="0" y="0" width="1765" height="1261" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
+<rect x="0" y="0" width="2185" height="1345" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
 <text x="32.0" y="40.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333333">Diagrama de secuencia 1 · Registrarse con correo y contraseña</text>
-<text x="1733.0" y="40.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Casos de uso: CU-01, CU-03, CU-04, CU-05</text>
-<rect x="81.0" y="308.0" width="1611.7" height="312.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
+<text x="2153.0" y="40.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">Casos de uso: CU-01, CU-03, CU-04, CU-05</text>
+<rect x="81.0" y="308.0" width="2031.0" height="362.0" rx="0" ry="0" fill="none" stroke="#555555" stroke-width="1.2"/>
 <path d="M81.0,308 L115.864,308 L115.864,320 L108.864,328 L81.0,328 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.2"/>
 <text x="87.0" y="323.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">alt</text>
 <text x="123.9" y="323.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[el correo ya está registrado]</text>
-<line x1="81.0" y1="408" x2="1692.6738" y2="408" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
+<line x1="81.0" y1="408" x2="2112.033" y2="408" stroke="#555555" stroke-width="1.1" stroke-dasharray="6,4"/>
 <text x="89.0" y="423.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">[el correo está libre]</text>
 <circle cx="145.0" cy="78" r="8" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="86" x2="145.0" y2="102" stroke="#111111" stroke-width="1.5"/><line x1="133.0" y1="92" x2="157.0" y2="92" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="135.0" y2="114" stroke="#111111" stroke-width="1.5"/><line x1="145.0" y1="102" x2="155.0" y2="114" stroke="#111111" stroke-width="1.5"/>
 <text x="145.0" y="130.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Visitante</text>
@@ -27,19 +27,22 @@
 <text x="471.0" y="105.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">Ventanas 014 a 017</text>
 <rect x="848.0" y="70.0" width="134.1" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
 <text x="915.1" y="98.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">:ServicioAcceso</text>
-<rect x="1561.6" y="70.0" width="134.1" height="46.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5" stroke-dasharray="6,4"/>
-<text x="1628.7" y="87.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#555555">«interfaz externa»</text>
-<text x="1628.7" y="105.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">:ServicioCorreo</text>
-<rect x="1209.6" y="457.0" width="130.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="1274.6" y="485.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c : Credencial</text>
-<rect x="1385.6" y="1029.0" width="130.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
-<text x="1450.6" y="1057.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">d : Docente</text>
-<line x1="145.0" y1="136" x2="145.0" y2="1221" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
-<line x1="471.04299999999995" y1="116" x2="471.04299999999995" y2="1221" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
-<line x1="915.0785999999999" y1="116" x2="915.0785999999999" y2="1221" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
-<line x1="1274.6198" y1="503.0" x2="1274.6198" y2="1221" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
-<line x1="1450.6198" y1="1075.0" x2="1450.6198" y2="1221" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
-<line x1="1628.6738" y1="116" x2="1628.6738" y2="1221" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<rect x="1981.0" y="70.0" width="134.1" height="46.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="2048.0" y="87.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#555555">«interfaz externa»</text>
+<text x="2048.0" y="105.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111">:ServicioCorreo</text>
+<rect x="1245.1" y="457.0" width="130.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1310.1" y="485.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">c : Credencial</text>
+<rect x="1582.1" y="539.0" width="176.9" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1670.6" y="567.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">k : CodigoVerificacion</text>
+<rect x="1805.0" y="1113.0" width="130.0" height="46.0" rx="0" ry="0" fill="#DCE8FA" stroke="#111111" stroke-width="1.5"/>
+<text x="1870.0" y="1141.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#111111" text-decoration="underline">d : Docente</text>
+<line x1="145.0" y1="136" x2="145.0" y2="1305" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="471.04299999999995" y1="116" x2="471.04299999999995" y2="1305" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="915.0785999999999" y1="116" x2="915.0785999999999" y2="1305" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="1310.0965999999999" y1="503.0" x2="1310.0965999999999" y2="1305" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="1670.5529999999999" y1="585.0" x2="1670.5529999999999" y2="1305" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="1869.9789999999998" y1="1159.0" x2="1869.9789999999998" y2="1305" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
+<line x1="2048.033" y1="116" x2="2048.033" y2="1305" stroke="#888888" stroke-width="1.2" stroke-dasharray="5,5"/>
 <polyline points="145.0,194.0 471.0,194.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
 <text x="308.0" y="187.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">1: escribe correo y contraseña; «Crear cuenta»</text>
 <polyline points="471.0,214.0 511.0,214.0 511.0,234.0 473.0,234.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
@@ -52,48 +55,52 @@
 <text x="693.1" y="355.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">aviso: ya existe, o con qué método entrar (RF-01-04)</text>
 <polyline points="471.0,394.0 145.0,394.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
 <text x="308.0" y="387.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">muestra el aviso; no se crea nada</text>
-<polyline points="915.1,480.0 1209.6,480.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="1062.3" y="473.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">5: «create» (correo, hash de la contraseña)</text>
-<polyline points="915.1,512.0 1274.6,512.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="1094.8" y="505.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">6: emitirCodigo(ahora)</text>
-<polyline points="1274.6,544.0 915.1,544.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="1094.8" y="537.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">código de 6 dígitos</text>
-<polyline points="915.1,576.0 1628.7,576.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="1271.9" y="569.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">7: enviarCodigo(correo, codigo)</text>
-<polyline points="915.1,608.0 471.0,608.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="693.1" y="601.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">código enviado</text>
-<polyline points="471.0,656.0 145.0,656.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="308.0" y="649.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Verifica tu correo» (ventana 015)</text>
-<polyline points="145.0,688.0 471.0,688.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="308.0" y="681.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">8: escribe el código</text>
-<polyline points="471.0,720.0 915.1,720.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="693.1" y="713.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">9: verificarCorreo(correo, codigo)</text>
-<polyline points="915.1,752.0 1274.6,752.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="1094.8" y="745.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">10: verificarCodigo(codigo, ahora)</text>
-<polyline points="1274.6,784.0 915.1,784.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="1094.8" y="777.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">true: estado_verificacion = verificado</text>
-<polyline points="471.0,816.0 145.0,816.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="308.0" y="809.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Completa tu perfil» (ventana 016)</text>
-<polyline points="145.0,848.0 471.0,848.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="308.0" y="841.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">11: nombres, apellidos y foto opcional</text>
-<path d="M487.04299999999995,860 L762.6402499999999,860 L772.6402499999999,870 L772.6402499999999,900 L487.04299999999995,900 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.1"/>
-<text x="497.0" y="876.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">El perfil queda en la IGU: la cuenta todavía no</text>
-<text x="497.0" y="891.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">existe (RF-01-05).</text>
-<polyline points="471.0,938.0 145.0,938.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="308.0" y="931.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Elige tu rol» (ventana 017): no se podrá cambiar</text>
-<polyline points="145.0,970.0 471.0,970.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="308.0" y="963.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">12: elige Docente y confirma</text>
-<polyline points="471.0,1002.0 915.1,1002.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="693.1" y="995.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">13: elegirRol(rol, perfil)</text>
-<polyline points="915.1,1052.0 1385.6,1052.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="1150.3" y="1045.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">14: «create» (nombres, apellidos, avatar_url)</text>
-<polyline points="915.1,1084.0 1274.6,1084.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
-<text x="1094.8" y="1077.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">15: asignarRol(usuario)</text>
-<path d="M931.0785999999999,1096 L1216.37725,1096 L1226.37725,1106 L1226.37725,1121 L931.0785999999999,1121 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.1"/>
-<text x="941.1" y="1112.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">Las dos escrituras van en una sola transacción.</text>
-<polyline points="915.1,1159.0 471.0,1159.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="693.1" y="1152.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">sesión del docente</text>
-<polyline points="471.0,1191.0 145.0,1191.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
-<text x="308.0" y="1184.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">Dashboard del docente</text>
-<text x="32.0" y="1245.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Flecha llena: mensaje (si es una llamada, es una operación del diagrama de clases). Punteada: respuesta o «create». Recuadros alt / opt / loop: alternativas, opcional y repetición, con su condición entre corchetes.</text>
+<polyline points="915.1,480.0 1245.1,480.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="1080.1" y="473.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">5: «create» (correo, hash de la contraseña)</text>
+<polyline points="915.1,512.0 1310.1,512.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="1112.6" y="505.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">6: emitirCodigo(verificar_correo, ahora)</text>
+<polyline points="1310.1,562.0 1582.1,562.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="1446.1" y="555.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">7: «create» (propósito, hash del código)</text>
+<polyline points="1310.1,594.0 915.1,594.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="1112.6" y="587.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">código de 6 dígitos: se guarda solo su hash (ADR-039)</text>
+<polyline points="915.1,626.0 2048.0,626.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="1481.6" y="619.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">8: enviarCodigo(correo, codigo)</text>
+<polyline points="915.1,658.0 471.0,658.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="693.1" y="651.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">código enviado</text>
+<polyline points="471.0,706.0 145.0,706.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="308.0" y="699.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Verifica tu correo» (ventana 015)</text>
+<polyline points="145.0,738.0 471.0,738.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="308.0" y="731.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">9: escribe el código</text>
+<polyline points="471.0,770.0 915.1,770.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="693.1" y="763.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">10: verificarCorreo(correo, codigo)</text>
+<polyline points="915.1,802.0 1670.6,802.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="1292.8" y="795.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">11: verificar(codigo, ahora)</text>
+<polyline points="1670.6,834.0 915.1,834.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="1292.8" y="827.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">true: no venció (10 min desde creado_en) y quedan intentos</text>
+<polyline points="915.1,854.0 955.1,854.0 955.1,874.0 917.1,874.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="963.1" y="868.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">12: estado_verificacion = verificado; borra el código</text>
+<polyline points="471.0,900.0 145.0,900.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="308.0" y="893.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Completa tu perfil» (ventana 016)</text>
+<polyline points="145.0,932.0 471.0,932.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="308.0" y="925.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">13: nombres, apellidos y foto opcional</text>
+<path d="M487.04299999999995,944 L762.6402499999999,944 L772.6402499999999,954 L772.6402499999999,984 L487.04299999999995,984 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.1"/>
+<text x="497.0" y="960.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">El perfil queda en la IGU: la cuenta todavía no</text>
+<text x="497.0" y="975.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">existe (RF-01-05).</text>
+<polyline points="471.0,1022.0 145.0,1022.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="308.0" y="1015.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">«Elige tu rol» (ventana 017): no se podrá cambiar</text>
+<polyline points="145.0,1054.0 471.0,1054.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="308.0" y="1047.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">14: elige Docente y confirma</text>
+<polyline points="471.0,1086.0 915.1,1086.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="693.1" y="1079.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">15: elegirRol(rol, perfil)</text>
+<polyline points="915.1,1136.0 1805.0,1136.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="1360.0" y="1129.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">16: «create» (nombres, apellidos, avatar_url)</text>
+<polyline points="915.1,1168.0 1310.1,1168.0" fill="none" stroke="#111111" stroke-width="1.3" marker-end="url(#lleno)"/>
+<text x="1112.6" y="1161.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">17: asignarRol(usuario)</text>
+<path d="M931.0785999999999,1180 L1216.37725,1180 L1226.37725,1190 L1226.37725,1205 L931.0785999999999,1205 Z" fill="#FFFBEA" stroke="#888888" stroke-width="1.1"/>
+<text x="941.1" y="1196.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5A4A1A">Las dos escrituras van en una sola transacción.</text>
+<polyline points="915.1,1243.0 471.0,1243.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="693.1" y="1236.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">sesión del docente</text>
+<polyline points="471.0,1275.0 145.0,1275.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#abierta)"/>
+<text x="308.0" y="1268.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555" font-style="italic">Dashboard del docente</text>
+<text x="32.0" y="1329.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#888888">Flecha llena: mensaje (si es una llamada, es una operación del diagrama de clases). Punteada: respuesta o «create». Recuadros alt / opt / loop: alternativas, opcional y repetición, con su condición entre corchetes.</text>
 </svg>
