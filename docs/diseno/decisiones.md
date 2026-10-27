@@ -1883,6 +1883,17 @@ cerrarse con una regla, como los otros cinco. Los datos de
 `data/curriculo-men/` **no se tocan a mano**: las tablas se llenan desde
 ellos, y la auditoría (pendientes A12) sigue pendiente.
 
+**Aplicación (2026-10-26, pull request #1, encargo 01):** lo construyó
+una sesión de Claude Code en la nube. Tomó cuatro decisiones menores,
+declaradas en el pull request y aceptadas por Alejandro al unirlo:
+(1) los códigos se guardan solo en letras básicas (sin tildes) y
+distinguiendo mayúsculas, para que "mat" o "MÁT" no cuenten como "MAT";
+(2) la columna del grado en el DBA se llama `numero_grado`, para no
+confundirla con el número del DBA; (3) la relación documento–área se
+llama "es de"; (4) **RI-21** —el código del DBA coincide con el área y el
+grado de su misma fila— hace cumplir el punto 5 de esta decisión, y
+**RI-20** cierra el ciclo del punto 4.
+
 **Reemplaza a:** ninguna. Responde a la revisión del docente del
 2026-10-22.
 

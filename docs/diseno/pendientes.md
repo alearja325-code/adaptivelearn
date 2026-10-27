@@ -434,8 +434,16 @@ Notas sobre la columna vertebral (acceso y catálogo). Triaje en
 - **R1** Área, Grado (+ Documento oficial) y códigos → ADR-036.
 - **R3** estado de verificación del correo → ADR-037.
 - R1 y R3 → **encargo a Claude Code en la nube**:
-  `docs/encargos/01-mer-catalogo-y-credencial.md`, rama
-  `encargo-01-catalogo-curricular`, entrega por pull request.
+  `docs/encargos/01-mer-catalogo-y-credencial.md`. **HECHO y unido
+  (pull request #1, 2026-10-26):** Área, Grado y Documento oficial,
+  código `ÁREA-GG-NN`, ciclo C6 (RI-20), RI-21, `estado_verificacion`.
+  Revisado en local: no debilitó verificadores (rechazos de 41 a 57),
+  todo pasa (MER 20, MR 80, UML 130, API 33), Ciencias Sociales V.1.
+  PDF regenerados en local (en la nube no había Chrome).
+  **Quedó para después:** (a) los datos de referencia (4 áreas, 11
+  grados, 4 documentos) no están cargados en ningún script: se cargan
+  en la Fase IV, con el catálogo, después de la auditoría A12; (b) la
+  `guia-para-explicar-el-mer.md` está atrasada (solo tiene un aviso).
 - **R2** (sin "usuario" genérico) y **R5** (correo del sistema) → Fase
   IV, al alinear el backend.
 - **R4** (quitar los campos del código) → espera respuesta del docente
