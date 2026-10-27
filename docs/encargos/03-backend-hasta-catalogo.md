@@ -1,5 +1,14 @@
 # Encargo 03 — Backend: acceso corregido y base de datos hasta el catálogo
 
+> **⛔ EN ESPERA — NO EJECUTAR (2026-10-26).** El backend del acceso
+> sigue la *guía del docente* sección por sección
+> (`docs/cursos/dse-2-203453/backend-auth-informe-guia.md`), y dos de las
+> cinco pruebas de su sección 7 usan las rutas `/users`, que este encargo
+> manda quitar. Además, el docente envió una **guía actualizada** que el
+> equipo todavía no tiene en el repositorio. Este encargo se reescribe
+> **partiendo de esa guía**: seguir su estructura, aplicar las notas del
+> docente y declarar cada diferencia con su razón.
+
 **Para:** una sesión de Claude Code sobre este repositorio.
 **Escrito:** 2026-10-26, desde la sesión local de Alejandro. **Antes de
 empezar, lee `CLAUDE.md`, `docs/diseno/pendientes.md` (A14 y A16) y

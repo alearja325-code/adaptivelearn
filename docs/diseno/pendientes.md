@@ -423,6 +423,10 @@ revisa en local antes de unirlo:
 2. **03 — Backend hasta el catálogo:** correcciones del docente R2, R4
    (ADR-039), R5 (envío real de correos: hoy el backend no envía
    ninguno), base de datos hasta el catálogo, rutas de consulta.
+   **EN ESPERA:** el acceso debe seguir la guía del docente (el backend
+   actual la sigue sección por sección, y sus pruebas usan `/users`), y
+   hay una guía actualizada que el equipo todavía no tiene. Se reescribe
+   partiendo de esa guía.
 3. **04 — Frontend hasta el Paso 3:** se escribe cuando el 03 esté
    unido.
 
