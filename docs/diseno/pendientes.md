@@ -4,7 +4,7 @@
 > sin resolver) y de `decisiones.md` (lo ya decidido): esto es **trabajo
 > por hacer**, con su estado real y qué lo bloquea.
 >
-> Última actualización: 2026-10-26.
+> Última actualización: 2026-10-27.
 
 **Checklist fijo, desde ADR-024 (2026-08-29):** cada vez que se cierre
 una ADR nueva que le otorgue o le retire una capacidad al docente o al
@@ -346,6 +346,34 @@ Respaldo de los 8 docx previo a la edición:
 conserva el XML dañado, a propósito: es el estado original).
 
 ### A12. Currículo del MEN — anotado 2026-10-24, EN CURSO
+
+**Hecho el 2026-10-27 (encargo 02): catálogo corregido y verificado contra
+los PDF.** `data/curriculo-men/catalogo/catalogo_dba.json`, armado por
+`construir_catalogo.py` leyendo los cuatro PDF oficiales (el JSON viejo no
+se tocó; solo sirve para decir qué cambió). Resultado, en
+`catalogo/informe-correccion.md`:
+- **343 DBA y 1282 evidencias** según el PDF (el JSON tenía 342 y 1254):
+  Matemáticas 119, Lenguaje 88, Ciencias Naturales 54, Ciencias Sociales
+  82. Códigos `ÁREA-GG-NN` únicos, numeración sin huecos.
+- **37 DBA estaban en el grado equivocado**, no solo los 13 que daban
+  identificador repetido: en otros 24 el número no chocaba y el error no
+  se veía. Cada cambio, con la página y el encabezado que lo prueban. Los
+  3 pares de Ciencias Naturales que quedaban sin determinar (3°, 5° y 7°)
+  también se resolvieron por el encabezado.
+- **Faltaba un DBA** (`MAT-06-05`, p. 47), y en 17 DBA faltaban
+  evidencias o venían pegadas. Muchos textos traían basura de la página
+  (marcas de corte, pie, ejemplo pegado) o palabras pegadas o perdidas.
+- **Verificador** (`_verificar_catalogo.py`, con poppler y no con el lector
+  que armó el catálogo): todo correcto, con 2 observaciones explicadas
+  como dudosas, y atrapa los 7 errores que se le introducen a propósito.
+- **Queda dudoso, para que decida el equipo:** `CS-08-08`, cuyo enunciado
+  el PDF oficial imprime sin espacios; `MAT-04-02`, con una llamada a nota
+  al pie; `MAT-11-09` y `MAT-11-10`, en una página sin encabezado de grado
+  (p. 86; se toma 11° por la página anterior y la numeración).
+- **Sigue pendiente de esta sección:** el **ejemplo** de cada DBA (QA-011)
+  y qué hacer con los que son imagen (punto 2 de abajo); el censo de
+  formato cerrado (QA-014). El catálogo nuevo todavía no se carga en la
+  base: es el encargo 03.
 
 **Hecho el 2026-10-24:**
 - **Alcance decidido (ADR-033):** 4 áreas, 1° a 11°, versiones oficiales
