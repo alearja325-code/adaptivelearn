@@ -1971,3 +1971,42 @@ probarlo y explicarlo. Las versiones exactas se fijan al crear el
 proyecto (la estable vigente) y quedan en `frontend/package.json`.
 
 **Reemplaza a:** ninguna.
+
+---
+
+## ADR-039 — Los códigos de verificación van en su propia tabla, y una tarea nocturna limpia lo que quedó sin terminar
+
+**Fecha:** 2026-10-26
+**Estado:** aceptada; **a confirmar con el docente** (pregunta P2 de la
+revisión del 2026-10-22, sin respuesta)
+
+**Contexto:** el docente pidió quitar `codigo_expira_en` y
+`codigo_ultimo_envio` de la credencial (nota R4). Esos campos sostienen
+dos reglas de la ventana 015 (RF-01-03): el código vence a los 10
+minutos y solo se reenvía cada 30 segundos. Alejandro recuerda que el
+docente habló, además, de que el sistema revise cada cierto tiempo —por
+ejemplo, de noche— qué cuentas quedaron sin verificar el correo. Esa es
+una práctica común: una **tarea programada** que limpia lo vencido.
+Alejandro pidió interpretar al docente como lo haría un ingeniero.
+
+**Decisión:**
+
+1. **CODIGO_VERIFICACION**, entidad nueva: el código de 6 dígitos, para
+   qué es (verificar el correo o recuperar la contraseña), cuándo se
+   creó y cuántos intentos lleva, ligado a su credencial. Una credencial
+   tiene a lo sumo un código vigente por propósito.
+2. **CREDENCIAL deja de tener** `codigo_verificacion`, `codigo_expira_en`
+   y `codigo_ultimo_envio`. El vencimiento (10 min) y la espera para
+   reenviar (30 s) **se calculan** desde la hora de creación del código;
+   no se guardan.
+3. **Una tarea nocturna** (por defecto, a las 3:00 a. m.) borra los
+   códigos vencidos y las credenciales que llevan **más de 7 días** en
+   `procesando` sin haber elegido rol. La hora y los días son ajustes de
+   configuración, no del modelo.
+
+**Consecuencia reconocida:** el MER gana una entidad (19). Los 7 días y
+la hora son una elección de ingeniería sin un dato que la respalde: un
+punto de partida razonable, revisable. Si el docente responde algo
+distinto a P2, esta decisión se ajusta.
+
+**Reemplaza a:** ninguna. Modifica CREDENCIAL (ADR-034, ADR-037).

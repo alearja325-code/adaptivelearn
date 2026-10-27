@@ -409,6 +409,23 @@ Planteado por Alejandro al decidir el repositorio nuevo. Se hace
    en vez de atributos de texto dentro del DBA. Va a la lista "Entrada
    a Fase III".
 
+### A16. Etapa actual: del acceso al último paso de crear una experiencia — 2026-10-26
+
+**Alcance fijado por Alejandro:** se construye todo, backend y frontend,
+**desde el acceso hasta el Paso 3 de "Crear experiencia"**, **sin
+crearla** (crearla dispara la IA: es la etapa siguiente). Se para ahí.
+
+El trabajo pesado lo hace Claude Code en la nube, con encargos en
+`docs/encargos/`, uno detrás del otro, cada uno por pull request que se
+revisa en local antes de unirlo:
+
+1. **02 — Corregir el catálogo curricular** (prerrequisito del Paso 2).
+2. **03 — Backend hasta el catálogo:** correcciones del docente R2, R4
+   (ADR-039), R5 (envío real de correos: hoy el backend no envía
+   ninguno), base de datos hasta el catálogo, rutas de consulta.
+3. **04 — Frontend hasta el Paso 3:** se escribe cuando el 03 esté
+   unido.
+
 ### A15. Fase IV (Producción) — EMPEZADA 2026-10-26
 
 - **Selección de herramienta** hecha:
