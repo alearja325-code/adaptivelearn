@@ -466,8 +466,13 @@ revisa en local antes de unirlo:
    a punta. **Quedó para después:** credenciales reales de Google y
    Microsoft, la contraseña de aplicación del correo, y regenerar los PDF
    de la Fase III (en la nube no hay Chrome ni Edge).
-3. **04 — Frontend hasta el Paso 3:** se escribe cuando el 03 esté
-   unido.
+   **Unido el 2026-10-27** (pull request #3), revisado en local: las 6
+   pruebas de la guía, 18 unitarias y 40 de punta a punta pasan contra
+   el MySQL local; las 9 decisiones propias, aceptadas en ADR-040. El
+   envío real de correos (R5) se probó en local con la cuenta del
+   sistema: llegó el código y la cuenta quedó `verificado`.
+3. **04 — Frontend hasta el Paso 3:**
+   `docs/encargos/04-frontend-hasta-paso-3.md`, escrito el 2026-10-27.
 
 ### A15. Fase IV (Producción) — EMPEZADA 2026-10-26
 
