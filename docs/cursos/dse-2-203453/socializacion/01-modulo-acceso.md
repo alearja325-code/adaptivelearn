@@ -19,7 +19,7 @@ certeza quién es cada persona y qué puede ver.
 **Ana es docente de matemáticas.**
 
 1. Entra a AdaptiveLearn y elige **Crear cuenta**. Escribe su correo y
-   una contraseña (mínimo 8 caracteres, con una mayúscula y un número).
+   una contraseña (mínimo 8 caracteres, con una mayúscula, una minúscula y un número).
 2. El sistema le **envía un código de 6 números** a su correo. Ana lo
    escribe. Si no le llega, puede pedir otro cada 30 segundos.
 3. Escribe sus **nombres y apellidos**, y si quiere, sube una foto.

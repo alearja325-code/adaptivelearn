@@ -49,7 +49,8 @@ separado, ícono candado a la izquierda, ícono ojo a la derecha:
   de llegar a un intento de guardar con formato inválido. Un estado
   visual que nunca puede ocurrir no se dibuja.)*
 - **Texto de ayuda**, debajo del campo: "Mínimo 8 caracteres, con una
-  mayúscula y un número." — `13px / 20px` (Caption), peso `400`
+  mayúscula, una minúscula y un número." *(Corrección 2026-11-01: se
+  agrega la minúscula, como en 17 §2.4.)* — `13px / 20px` (Caption), peso `400`
   Regular, color `#888888`. Mismo texto y mismo criterio que
   `17-spec-auth-login-registro.md`, sección 2.4. Esta es la misma regla
   que gatilla el botón en 2.3 — el texto de ayuda ya no es solo
@@ -72,8 +73,8 @@ del proyecto para esta situación.)*
 
 Ancho Fill, alto `48px`, Radio `12px`, texto centrado `16px / 22px`
 peso `500` Medium — "Guardar":
-- **Deshabilitado** (la contraseña no cumple los 3 requisitos del texto
-  de ayuda: mínimo 8 caracteres, una mayúscula, un número): Fill
+- **Deshabilitado** (la contraseña no cumple los 4 requisitos del texto
+  de ayuda: mínimo 8 caracteres, una mayúscula, una minúscula, un número): Fill
   `#BDBDBD`, texto `#FFFFFF`.
 - **Habilitado** (cumple los 3 requisitos): Fill `#111111`, texto
   `#FFFFFF`.
@@ -105,7 +106,7 @@ inventa uno solo para este caso, mismo criterio ya documentado en
 - "Crea una nueva contraseña" (título).
 - "Se usará la próxima vez que inicies sesión." (descripción).
 - "Nueva contraseña" (placeholder del campo).
-- "Mínimo 8 caracteres, con una mayúscula y un número." (ayuda —
+- "Mínimo 8 caracteres, con una mayúscula, una minúscula y un número." (ayuda —
   también la regla que habilita el botón, ver 2.2 y 2.3).
 - "Guardar" (botón).
 - "Contraseña actualizada. Inicia sesión." (confirmación, en la

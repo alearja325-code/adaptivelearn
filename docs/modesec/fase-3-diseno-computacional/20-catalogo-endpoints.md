@@ -103,7 +103,7 @@ CU-01 Registrarse con correo y contraseña. Operación: `ServicioAcceso.registra
 - **Responde:** 201: `{ user, token }` —el formato de la guía—, con `role: null` y `estadoVerificacion: procesando`; el token es de registro. El código de 6 dígitos sale al correo por SMTP; sin correo configurado, el servidor lo escribe en su consola (R5).
 - **Toca:** CREDENCIAL (crea, lee); CODIGO_VERIFICACION (crea).
 - **Reglas y errores:**
-  - `400` contraseña sin 8 caracteres, una mayúscula y un número (RF-01-01).
+  - `400` contraseña sin 8 caracteres, una mayúscula, una minúscula y un número (RF-01-01).
   - `409` el correo ya tiene cuenta; si es de Google o Microsoft, el mensaje dice qué método usar y no vincula (RF-01-04, RI-3).
 - **Nota:** `fullName` viene de la guía: se guarda en `credencial.nombre_completo` y la pantalla lo puede usar para proponer nombres y apellidos en Completar perfil (CU-04); los nombres oficiales se guardan al elegir el rol.
 

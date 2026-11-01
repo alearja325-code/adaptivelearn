@@ -15,11 +15,12 @@ describe('el camino de una cuenta (encargo 04 §5, ADR-035)', () => {
 });
 
 describe('validaciones de los formularios', () => {
-  it('contraseña: 8 caracteres, una mayúscula y un número (RF-01-01)', () => {
+  it('contraseña: 8 caracteres, una mayúscula, una minúscula y un número (RF-01-01)', () => {
     expect(REGLA_CONTRASENA.test('Password123')).toBe(true);
     expect(REGLA_CONTRASENA.test('password123')).toBe(false);
     expect(REGLA_CONTRASENA.test('Password')).toBe(false);
     expect(REGLA_CONTRASENA.test('Pass12')).toBe(false);
+    expect(REGLA_CONTRASENA.test('PASSWORD123')).toBe(false);
   });
   it('correo: solo el formato (018 §7)', () => {
     expect(esCorreo('ana@colegio.co')).toBe(true);

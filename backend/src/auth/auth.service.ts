@@ -96,8 +96,21 @@ export class AuthService {
    * el token es de rol 'user' y la pantalla retoma el registro (ADR-035).
    */
   async login(loginDto: LoginDto): Promise<AuthResponse> {
-    const { email, password } = loginDto;
+    const user: User = await this.validateUser(loginDto.email, loginDto.password);
+    return await this.buildAuthResponse(user);
+  }
 
+  /**
+   * Validar usuario por email y contraseña (actividad "Módulo de
+   * autenticación", punto 4). Devuelve la cuenta solo si existe, entra con
+   * contraseña, está activa y la contraseña coincide; si no, lanza la
+   * excepción que corresponde.
+   *
+   * "Activa" en AdaptiveLearn es "no bloqueada": el modelo no tiene cuentas
+   * desactivadas (ningún requerimiento lo pide), pero sí el bloqueo de 15
+   * minutos tras 5 intentos fallidos (RF-01-07).
+   */
+  async validateUser(email: string, password: string): Promise<User> {
     // Buscar usuario por email (incluye password); puede ser null
     const user: User | null = await this.userService.findOneByEmail(email);
 
@@ -113,7 +126,7 @@ export class AuthService {
       );
     }
 
-    // Bloqueo de 15 minutos tras 5 intentos fallidos. Mismo mensaje
+    // Verificar que la cuenta esté activa (no bloqueada). Mismo mensaje
     // genérico: uno distinto confirmaría que la cuenta existe.
     if (user.bloqueadoHasta && user.bloqueadoHasta.getTime() > Date.now()) {
       throw new UnauthorizedException(CREDENCIALES_INVALIDAS);
@@ -132,7 +145,7 @@ export class AuthService {
       await this.userService.actualizarIntentosLogin(user.id, 0, null);
     }
 
-    return await this.buildAuthResponse(user);
+    return user;
   }
 
   /**

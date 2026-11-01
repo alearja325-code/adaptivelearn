@@ -9,7 +9,7 @@ export class CreateUserDto {
   email: string;
 
   // Guía: MinLength(6). AdaptiveLearn (RF-01-01, ventana 014): mínimo 8
-  // caracteres, una mayúscula y un número.
+  // caracteres, una mayúscula, una minúscula y un número.
   @IsString({ message: 'La contraseña debe ser una cadena de texto' })
   @Matches(PASSWORD_REGEX, { message: PASSWORD_MENSAJE })
   @IsNotEmpty({ message: 'La contraseña es obligatoria' })

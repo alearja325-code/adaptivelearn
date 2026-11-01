@@ -117,7 +117,7 @@ ENDPOINTS = [
        "201: `{ user, token }` —el formato de la guía—, con `role: null` y "
        "`estadoVerificacion: procesando`; el token es de registro. El código de 6 dígitos sale "
        "al correo por SMTP; sin correo configurado, el servidor lo escribe en su consola (R5)",
-       [("400", "contraseña sin 8 caracteres, una mayúscula y un número (RF-01-01)"),
+       [("400", "contraseña sin 8 caracteres, una mayúscula, una minúscula y un número (RF-01-01)"),
         ("409", "el correo ya tiene cuenta; si es de Google o Microsoft, el mensaje dice qué "
                 "método usar y no vincula (RF-01-04, RI-3)")],
        nota="`fullName` viene de la guía: se guarda en `credencial.nombre_completo` y la "

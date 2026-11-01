@@ -92,7 +92,7 @@ si quedó bien hecho.
 **Flujo principal**
 
 1. El visitante elige «Crear cuenta» y escribe su correo y una contraseña.
-2. El sistema habilita el botón solo cuando la contraseña tiene mínimo 8 caracteres, una mayúscula y un número.
+2. El sistema habilita el botón solo cuando la contraseña tiene mínimo 8 caracteres, una mayúscula, una minúscula y un número.
 3. El visitante confirma.
 4. El sistema comprueba que el correo no esté registrado.
 5. El sistema guarda la credencial con la contraseña cifrada (RNF-08).

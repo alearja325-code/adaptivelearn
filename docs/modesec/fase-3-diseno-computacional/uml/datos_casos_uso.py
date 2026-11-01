@@ -47,7 +47,7 @@ CASOS = [
        ["RF-01-01", "RF-01-04"], ["014", "015"],
        "El visitante no ha iniciado sesión.",
        ["El visitante elige «Crear cuenta» y escribe su correo y una contraseña.",
-        "El sistema habilita el botón solo cuando la contraseña tiene mínimo 8 caracteres, una mayúscula y un número.",
+        "El sistema habilita el botón solo cuando la contraseña tiene mínimo 8 caracteres, una mayúscula, una minúscula y un número.",
         "El visitante confirma.",
         "El sistema comprueba que el correo no esté registrado.",
         "El sistema guarda la credencial con la contraseña cifrada (RNF-08).",

@@ -23,6 +23,17 @@ export function configurarApp(app: NestExpressApplication): void {
   // Las fotos de perfil (RF-01-05) se sirven desde /uploads
   app.useStaticAssets(resolve(process.env.UPLOADS_DIR || 'uploads'), { prefix: '/uploads/' });
 
-  // Habilitar CORS (opcional, para desarrollo con frontend)
-  app.enableCors();
+  // CORS: solo la dirección del frontend puede llamar al backend desde un
+  // navegador. CORS_ORIGIN en .env (varias, separadas por comas); por defecto,
+  // el frontend de desarrollo de Vite.
+  app.enableCors({ origin: origenesPermitidos(process.env.CORS_ORIGIN) });
+}
+
+/** Direcciones que pueden llamar al backend desde un navegador (CORS). */
+export function origenesPermitidos(valor: string | undefined): string[] {
+  const lista = (valor ?? '')
+    .split(',')
+    .map((o) => o.trim().replace(/\/$/, ''))
+    .filter((o) => o.length > 0);
+  return lista.length > 0 ? lista : ['http://localhost:5173'];
 }

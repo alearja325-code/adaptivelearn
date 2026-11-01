@@ -31,7 +31,7 @@ describe('Ventana 014 — Iniciar sesión / Crear cuenta', () => {
   it('crear cuenta con una contraseña débil no llama al backend', async () => {
     const llamadas = backendFalso();
     montar('/crear-cuenta');
-    expect(screen.getByText('Mínimo 8 caracteres, con una mayúscula y un número.')).toBeInTheDocument();
+    expect(screen.getByText('Mínimo 8 caracteres, con una mayúscula, una minúscula y un número.')).toBeInTheDocument();
     await userEvent.type(screen.getByLabelText('Correo electrónico'), 'ana@colegio.co');
     await userEvent.type(screen.getByLabelText('Contraseña'), 'password123');
     await userEvent.click(screen.getByRole('button', { name: 'Crear cuenta' }));
