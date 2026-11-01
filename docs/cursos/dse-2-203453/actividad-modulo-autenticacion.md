@@ -2,6 +2,7 @@
 
 **Curso:** Diseño de Software Educativo II (DSE-2, 203453).
 **Proyecto:** AdaptiveLearn. **Fecha:** 2026-11-01.
+**Integrantes:** Alejandro Alvarez Peralta y Jose Movilla Anaya.
 **Código:** carpeta `backend/` (NestJS 12 + TypeORM + MySQL 8).
 
 Este documento recorre los 9 puntos de la actividad y dice, para cada uno,
