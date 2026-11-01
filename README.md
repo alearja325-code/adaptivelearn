@@ -23,16 +23,43 @@ redactado por IA.
 | Diseño educativo (MODESEC, Fase I) | Completo — 8 documentos |
 | Diseño multimedial (Fase II) | Completo — 27 ventanas en 24 especificaciones, mapa de navegación, guión técnico, índice de recursos |
 | Diseño computacional (Fase III) | Completo, en el orden de MODESEC: proceso de desarrollo (`10`), requerimientos (`11`), casos de uso, clases, objetos y secuencias (`12` a `15`), MER, MR y diccionario de datos (`16` a `18`), y como anexo el catálogo de endpoints (`20`). Índice y cómo se comprueba: `19-entrega-fase-3.md`. El borrador anterior al cierre de la Fase II se conserva como insumo |
-| Backend | Iniciado (NestJS + MySQL): solo el acceso (I1). Lo que falta, endpoint por endpoint y por incremento: `20-catalogo-endpoints.md` |
-| Producción (Fase IV) | Empezada: herramientas elegidas (`docs/modesec/fase-4-produccion/`) |
-| Frontend | Sin empezar: React + Vite + TypeScript + Tailwind (ADR-038); su diseño está completo en la Fase II |
-| Datos del currículo del MEN | Disponibles, **pendientes de auditoría** |
+| Producción (Fase IV) | **En curso.** Herramientas elegidas (`docs/modesec/fase-4-produccion/`) y programada la primera etapa: **del acceso hasta el Paso 3 de "Crear experiencia"** (ver abajo) |
+| Backend | NestJS + MySQL: acceso completo según la guía del docente (registro, verificación del correo con envío real, perfil, rol, inicio de sesión, recuperación de contraseña, administración de usuarios) y catálogo de DBA de solo lectura. Lo que falta, ruta por ruta: `20-catalogo-endpoints.md` |
+| Frontend | React + Vite + TypeScript + Tailwind (ADR-038): las 11 ventanas de la primera etapa, con los estilos atados al sistema de diseño |
+| Datos del currículo del MEN | **Catálogo corregido y verificado contra los PDF oficiales**: 343 DBA y 1282 evidencias (`data/curriculo-men/catalogo/`). Pendiente: el ejemplo de cada DBA |
+
+## Avance: del acceso hasta el Paso 3 de "Crear experiencia"
+
+*(Entrega del 2026-11-01.)* Lo acordado en clase para esta entrega:
+
+1. **Las correcciones del docente al modelo** (revisión del 2026-10-22,
+   R1 a R5): tablas de área, grado y documento oficial con su código;
+   docente y estudiante en vez de un usuario genérico; estado de
+   verificación del correo; los códigos en su propia tabla con una tarea
+   nocturna de limpieza; y un correo propio del sistema. Estado de cada
+   una: `docs/modesec/fase-3-diseno-computacional/21-revision-docente-2026-10-22.md`.
+   El MER, el modelo relacional y el diccionario ya las incluyen
+   (`entrega-pdf/` de la Fase III).
+2. **El sistema funcionando hasta el último paso antes de crear una
+   experiencia:** crear la cuenta, recibir el código en el correo,
+   completar el perfil, elegir el rol, entrar al Dashboard y, como
+   docente, elegir área, DBA (filtrando por grado y viendo sus
+   evidencias) y nombre. Crear la experiencia (que genera las preguntas
+   con IA) es la etapa siguiente.
+
+**Cómo se comprobó:** pruebas automáticas contra MySQL real (backend: 20
+unitarias y 43 de punta a punta, incluidas las 6 de la guía del docente;
+frontend: 36 unitarias y 9 en un navegador real que recorren el camino
+completo), y una captura de cada ventana en `frontend/capturas/`.
+
+**Cómo ejecutarlo:** `frontend/README.md`, paso a paso desde cero
+(base de datos, backend y frontend).
 
 ## Cómo está organizado
 
 ```
 docs/                        Toda la documentación
-  diseno/                    El cerebro del proyecto: 32 decisiones (ADR),
+  diseno/                    El cerebro del proyecto: 40 decisiones (ADR),
                              visión, glosario, preguntas abiertas y
                              pendientes.md (qué falta y qué recibe el MER)
   modesec/                   La metodología, fase por fase
@@ -46,7 +73,7 @@ docs/                        Toda la documentación
 data/
   curriculo-men/             PDF oficiales de los DBA y su versión normalizada
 backend/                     API en NestJS
-frontend/                    Todavía vacío
+frontend/                    Aplicación web en React
 EQUIPO.md                    Integrantes y reparto de responsabilidades
 ```
 

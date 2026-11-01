@@ -63,7 +63,7 @@ pendientes del backend.
 
 ## Estado
 
-*(Actualizado el 2026-10-27, al cerrar el encargo 03.)*
+*(Actualizado el 2026-11-01.)*
 
 | # | Estado | Dónde se ve |
 |---|---|---|
@@ -71,6 +71,6 @@ pendientes del backend.
 | **R2** | **Aplicada en el backend** (encargo 03, ADR-040). La sesión (JWT) lleva el rol (`docente`, `estudiante` o `admin`) y el `idDocente` o el `idEstudiante`. La clase `User` de la guía se queda, pero sobre la tabla `credencial`: la guía v2 la evalúa, con `/users` solo para administrador | `backend/src/auth/interfaces/jwt-payload.interface.ts`, informe de la guía (D-03, D-11) |
 | **R3** | **Aplicada** en el modelo (encargo 01) y en el backend (encargo 03): `estado_verificacion` `procesando` / `verificado` | `17`, `backend/src/user/entities/user.entity.ts` |
 | **R4** | **Aplicada (ADR-039), a confirmar con el docente:** P2 sigue sin respuesta. `codigo_expira_en`, `codigo_ultimo_envio` y `codigo_verificacion` salieron de la credencial; los códigos viven en la tabla `codigo_verificacion`, el vencimiento (10 min) y la espera (30 s) se calculan, y una tarea nocturna limpia lo vencido | `16` §4, `17` §5.7, `backend/src/auth/codigo.service.ts`, `backend/src/limpieza/` |
-| **R5** | **Aplicada en el backend** (encargo 03): los códigos se envían por SMTP con `adaptivelearn.sistema@gmail.com`, configurado en `.env`. **Falta** que el equipo ponga la contraseña de aplicación en su `.env` y pruebe un envío real; sin ella, el código sale en la consola del servidor | `backend/src/correo/`, `backend/README.md` |
+| **R5** | **Aplicada en el backend** (encargo 03): los códigos se envían por SMTP con `adaptivelearn.sistema@gmail.com`, configurado en `.env`. **Probado con un envío real el 2026-10-27:** llegó el código y la cuenta quedó `verificado`. Cada integrante pone la contraseña de aplicación en su propio `.env`; sin ella, el código sale en la consola del servidor | `backend/src/correo/`, `backend/README.md` |
 
 Quedan abiertas las preguntas **P1** y **P2**.
