@@ -108,7 +108,9 @@ Mismo patrón que 2.3, sin Label, con un ícono adicional a la derecha:
   `1.5px` color `#888888` — alterna entre "ojo" (oculto) y "ojo
   tachado" (visible). Mismo criterio de Foco/Error que 2.3.
 - **Solo en Crear cuenta** — texto de ayuda debajo del campo:
-  "Mínimo 8 caracteres, con una mayúscula y un número." — `13px /
+  "Mínimo 8 caracteres, con una mayúscula, una minúscula y un número."
+  *(Corrección 2026-11-01: se agrega la minúscula, que pide la actividad
+  del módulo de autenticación de DSE-2; ver RF-01-01.)* — `13px /
   20px` (Caption), peso `400` Regular, color `#888888`. Responde al
   vacío real que tenía la referencia: sin esto, el error de contraseña
   débil solo se descubre después de enviar el formulario.
@@ -210,7 +212,7 @@ criterio que la leyenda de Reporte, `13-spec-modal-reporte.md`, sección
 - "Correo electrónico" (placeholder del campo — sin Label separado, ver
   2.3).
 - "Contraseña" (placeholder del campo — sin Label separado, ver 2.4).
-- "Mínimo 8 caracteres, con una mayúscula y un número." (ayuda, solo
+- "Mínimo 8 caracteres, con una mayúscula, una minúscula y un número." (ayuda, solo
   Crear cuenta).
 - "¿Olvidaste tu contraseña?" (enlace, solo Iniciar sesión).
 - "Correo o contraseña incorrectos." (error, Iniciar sesión).

@@ -78,7 +78,7 @@ petición por petición, está en `salida-pruebas-guia-v2.txt`. Los tokens apare
 | `{ "user": { "id": 1, "email": "usuario@example.com", "fullName": "Juan Pérez", "role": "user" }, "token": "eyJ..." }` | `{ "user": { "id": 1, "email": "usuario@example.com", "fullName": "Juan Pérez", "role": "user" }, "token": "eyJhbGciOiJIUzI1NiIs…" }` |
 
 **Igual a la guía**, salvo la contraseña de la petición: con la de la guía, `password123`,
-el registro responde **400** «Mínimo 8 caracteres, con una mayúscula y un número.» (D-04).
+el registro responde **400** «Mínimo 8 caracteres, con una mayúscula, una minúscula y un número.» (D-04).
 Además, el servidor envía el código para verificar el correo (D-12).
 
 ### Prueba 2 — Iniciar sesión
@@ -166,7 +166,7 @@ justificado. *Agregado* = no está en la guía. *Omitido* = está en la guía pe
 | `role`: columna, `'user'` por defecto | Getter: `admin` si tiene la marca; `docente` o `estudiante` según su fila; si no, `user` | Adaptado (**D-05**) | El rol no se guarda: se deduce de las tablas, así no puede contradecirlas. `user` conserva el valor por defecto de la guía y aquí significa «registro a medias, todavía sin rol» (ADR-035). |
 | Columna `isActive` | No existe | Omitido (**D-08**) | Ningún requerimiento desactiva cuentas: sería un campo que siempre vale `true`. Por eso `JwtStrategy` no lo revisa. |
 | — | `estadoVerificacion`, `proveedor`, `idDocente`, `idEstudiante`, `perfil` en la respuesta | Agregado | R3 (ADR-037), RF-01-04 y la nota R2 del docente. La pantalla los necesita para saber dónde retomar. |
-| `CreateUserDto`: contraseña de mínimo 6 | Mínimo 8, con una mayúscula y un número | Adaptado (**D-04**) | RF-01-01 (ventana 014). Por eso los ejemplos usan `Password123` y `Password456`. |
+| `CreateUserDto`: contraseña de mínimo 6 | Mínimo 8, con una mayúscula, una minúscula y un número (la minúscula, desde el 2026-11-01, por la actividad del módulo de autenticación) | Adaptado (**D-04**) | RF-01-01 (ventana 014). Por eso los ejemplos usan `Password123` y `Password456`. |
 | `CreateUserDto`: `fullName` obligatorio | Opcional | Adaptado (**D-09**) | La ventana 014 (Crear cuenta) no pide nombre; nombres y apellidos se piden en la 016. La prueba 1 lo envía y se guarda igual. |
 | `UpdateUserDto`: `PartialType(CreateUserDto)` + `isActive` + `role` | `PartialType(CreateUserDto)`, sin `isActive` ni `role` | Adaptado (**D-10**) | El rol no se cambia (RF-01-06) y la marca de administrador solo se pone por SQL (ADR-040): ninguna ruta la asigna. Enviar `role` responde 400. |
 | `UserService`: `create`, `findAll`, `findOne`, `findById`, `findOneByEmail`, `update`, `remove` | Los mismos | Adaptado | `create` responde 409 diciendo con qué método entrar si el correo es de Google o Microsoft (RF-01-04). `update` vuelve el correo a `procesando` si cambia, porque nadie lo verificó. `remove` borra la credencial y su docente o estudiante en una transacción (sus códigos, en cascada); si el docente ya tiene experiencias, la base lo impide y responde 409. |

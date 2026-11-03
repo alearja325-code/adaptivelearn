@@ -1,10 +1,10 @@
 // Reglas que no dependen de React, para poder probarlas solas.
 import type { Usuario } from '../api/tipos';
 
-/** RF-01-01, ventana 014 §2.4: mínimo 8 caracteres, una mayúscula y un número
+/** RF-01-01, ventana 014 §2.4: mínimo 8 caracteres, una mayúscula, una minúscula y un número
  *  (la misma regla del backend: backend/src/auth/dto/password.constants.ts) */
-export const REGLA_CONTRASENA = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-export const TEXTO_REGLA_CONTRASENA = 'Mínimo 8 caracteres, con una mayúscula y un número.';
+export const REGLA_CONTRASENA = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+export const TEXTO_REGLA_CONTRASENA = 'Mínimo 8 caracteres, con una mayúscula, una minúscula y un número.';
 
 /** ¿Tiene forma de correo? (ventana 018 §7: formato, nunca existencia) */
 export function esCorreo(texto: string): boolean {

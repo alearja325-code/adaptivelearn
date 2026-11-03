@@ -28,6 +28,7 @@ const hijo = spawn(process.execPath, [join(BACKEND, 'dist', 'main.js')], {
     PORT: '3100',
     DB_DATABASE: basePruebas(),
     MAIL_HOST: '',
+    CORS_ORIGIN: 'http://localhost:5174',
     GOOGLE_CLIENT_ID: '',
     MICROSOFT_CLIENT_ID: '',
     UPLOADS_DIR: join(SALIDA, 'uploads'),

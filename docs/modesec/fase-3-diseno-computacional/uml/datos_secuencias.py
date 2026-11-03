@@ -40,7 +40,7 @@ SECUENCIAS = [
                        ("correo", ":ServicioCorreo", "ServicioCorreo", "externo")],
         pasos=[
             ("m", "visitante", "igu", "escribe correo y contraseña; «Crear cuenta»"),
-            ("s", "igu", "habilita el botón: 8+ caracteres, una mayúscula, un número"),
+            ("s", "igu", "habilita el botón: 8+ caracteres, mayúscula, minúscula y número"),
             ("m", "igu", "acc", "registrar(correo, contrasena)"),
             ("s", "acc", "busca una credencial con ese correo"),
             ("ini", "alt", "el correo ya está registrado"),

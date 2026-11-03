@@ -1,5 +1,10 @@
 # Equipo y distribución de responsabilidades
 
+**Diseño y Desarrollo de Software Educativo II (203453), periodo 2026-2:**
+Alejandro Alvarez Peralta y Jose Movilla Anaya.
+
+Lo que sigue es el registro del curso **DSE-1 (203447)**.
+
 **Proyecto:** AdaptiveLearn
 **Curso:** 203447 · Diseño y Desarrollo de Software Educativo I · Periodo 2026-2
 **Criterio que atiende este documento:** CT-03 — registro de la

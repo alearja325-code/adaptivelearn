@@ -41,7 +41,7 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Requerimiento de | Usuario |
 | Tipo | Funcional |
 | Actor | Visitante |
-| Detalle | La contraseña debe tener mínimo 8 caracteres, una mayúscula y un número; el botón se habilita solo cuando se cumple. Sin campo de confirmar contraseña: se puede mostrar u ocultar lo escrito. Sin casilla de términos: el documento no existe. |
+| Detalle | La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula y un número; el botón se habilita solo cuando se cumple. Sin campo de confirmar contraseña: se puede mostrar u ocultar lo escrito. Sin casilla de términos: el documento no existe. |
 | Precondición | El correo no está registrado. |
 | Postcondición | Se envía un código de verificación al correo y se pasa a verificarlo. |
 | Fuente | Ventana 014, Ventana 015 |

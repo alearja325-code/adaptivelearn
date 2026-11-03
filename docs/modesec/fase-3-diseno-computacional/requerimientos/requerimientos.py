@@ -48,7 +48,7 @@ F, NF, U, S = "Funcional", "No funcional", "Usuario", "Sistema"
 # ===================================================== SUB-01 Acceso y perfil
 req("RF-01-01", "SUB-01", U, F, "Visitante",
     "El sistema debe permitir crear una cuenta con correo y contraseña.",
-    "La contraseña debe tener mínimo 8 caracteres, una mayúscula y un número; el botón se habilita solo cuando se cumple. Sin campo de confirmar contraseña: se puede mostrar u ocultar lo escrito. Sin casilla de términos: el documento no existe.",
+    "La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula y un número; el botón se habilita solo cuando se cumple. Sin campo de confirmar contraseña: se puede mostrar u ocultar lo escrito. Sin casilla de términos: el documento no existe.",
     "El correo no está registrado.", "Se envía un código de verificación al correo y se pasa a verificarlo.",
     ["V-014", "V-015"], "I1")
 req("RF-01-02", "SUB-01", U, F, "Visitante",
