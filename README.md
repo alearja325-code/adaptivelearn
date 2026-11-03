@@ -1,5 +1,18 @@
 # AdaptiveLearn
 
+**Universidad de Córdoba · Licenciatura en Informática · Periodo 2026-2**
+
+| Curso | Integrantes |
+|---|---|
+| **Diseño y Desarrollo de Software Educativo II** (203453) | **Alejandro Alvarez Peralta** · **Jose Movilla Anaya** |
+| Diseño y Desarrollo de Software Educativo I (203447) | Selenis Acosta Paternina · Dagner Causil Almanza · Marinelly Pérez Salcedo · Natalia Pinto Torres · Carmen Sarmiento Villadiego · Alejandro Álvarez Peralta ([`EQUIPO.md`](EQUIPO.md)) |
+
+**Entregas de DSE-2:**
+- **Módulo de autenticación en NestJS:** [cumplimiento punto por punto](docs/cursos/dse-2-203453/actividad-modulo-autenticacion.md) · código en [`backend/`](backend/) · [comparación con la guía del docente](docs/cursos/dse-2-203453/backend-auth-informe-guia.md)
+- **Avance del proyecto:** [del acceso hasta el Paso 3 de "Crear experiencia"](#avance-del-acceso-hasta-el-paso-3-de-crear-experiencia) · [cómo ejecutarlo](frontend/README.md) · [documentos de la Fase III en PDF](docs/modesec/fase-3-diseno-computacional/entrega-pdf/)
+
+---
+
 Diagnóstico por **evidencias de aprendizaje**, anclado a los Derechos
 Básicos de Aprendizaje (DBA) del Ministerio de Educación Nacional de
 Colombia.
