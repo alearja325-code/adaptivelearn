@@ -2082,3 +2082,45 @@ contraseña: la de la guía (`password123`) no cumple RF-01-01 y responde
 
 **Reemplaza a:** ninguna. Corrige el borrador del encargo 03, que
 mandaba quitar `/users` y `/example`.
+
+---
+
+## ADR-041 — El movimiento explica, no decora: una guía común para todas las ventanas
+
+**Fecha:** 2026-11-04
+**Estado:** propuesta (la aprueba Alejandro)
+
+**Contexto:** al probar el frontend de la primera etapa, Alejandro notó
+que las pantallas "se sienten muy secas". La sección 6 de cada
+especificación de la Fase II dice **qué** cambia (un hover, una
+selección, un panel que se abre), pero ninguna dice **cómo**: ni
+duración ni curva. El frontend, que sigue las specs al pie de la letra,
+cambia todo de golpe. Ese vacío era de la Fase II: el punto 6 de MODESEC
+(animación) quedó definido ventana por ventana, sin una regla común.
+
+**Decisión:**
+
+1. **Una guía de movimiento común**, `docs/modesec/fase-2-diseno-multimedial/31-guia-de-movimiento.md`,
+   con una filosofía ("el movimiento explica, no decora"), 6 principios y
+   12 patrones (M1 a M12). Cada movimiento del sistema es uno de esos
+   patrones.
+2. **Los valores son tokens**, como los colores: 4 duraciones, 3 curvas,
+   3 distancias y una escala, en `tokens.json` (sección `movimiento`) y en
+   `03-tokens-diseno.md`. El código no puede usar otros.
+3. **Los errores no tiemblan** y **los resultados no se animan**: ni
+   sacudidas, ni barras que crecen, ni números que cuentan. Es la misma
+   línea del proyecto: nunca una nota ni un puntaje.
+4. **"Reducir movimiento" se respeta**: con esa preferencia del sistema
+   operativo quedan solo cambios de color y opacidad.
+
+**Por qué no lo demás:** una librería de animación (Framer Motion o
+similar) agrega una dependencia para lo que el CSS ya resuelve con
+transiciones cortas. Animaciones distintas en cada pantalla harían el
+sistema incoherente. Dejarlo sin movimiento es lo que se sintió seco.
+
+**Consecuencia reconocida:** donde una spec decía "sin transiciones de
+página" (001, Dashboard), queda corregida para usar el patrón M6. Las que
+dicen "sin animación compleja" siguen siendo ciertas: la guía no tiene
+animaciones complejas.
+
+**Reemplaza a:** ninguna.

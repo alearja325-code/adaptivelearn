@@ -76,7 +76,7 @@ peso `500` Medium — "Guardar":
 - **Deshabilitado** (la contraseña no cumple los 4 requisitos del texto
   de ayuda: mínimo 8 caracteres, una mayúscula, una minúscula, un número): Fill
   `#BDBDBD`, texto `#FFFFFF`.
-- **Habilitado** (cumple los 3 requisitos): Fill `#111111`, texto
+- **Habilitado** (cumple los 4 requisitos): Fill `#111111`, texto
   `#FFFFFF`.
 
 *(Sin mensaje de error de formato: sirve la misma regla exacta de
@@ -124,7 +124,7 @@ No aplica.
 
 - Foco en el campo: Stroke cambia a `#111111`.
 - Botón "Guardar": Deshabilitado → Habilitado apenas la contraseña
-  escrita cumple los 3 requisitos — validación continua, mismo
+  escrita cumple los 4 requisitos — validación continua, mismo
   criterio que las 6 cajas de "Unirse con código", no espera a que el
   campo pierda el foco.
 - Clic en el ícono de ojo: alterna el campo entre oculto y visible.
@@ -133,7 +133,7 @@ No aplica.
 ## 7. Acciones
 
 - Escribir en Nueva contraseña → el botón pasa a Habilitado en cuanto
-  el texto cumple los 3 requisitos del texto de ayuda (validación
+  el texto cumple los 4 requisitos del texto de ayuda (validación
   continua, gatilla el botón) — no hay una validación de formato
   distinta esperando a que el campo pierda el foco, la regla es una
   sola y es la misma que ya se muestra en pantalla.

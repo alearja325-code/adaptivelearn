@@ -214,7 +214,10 @@ No aplica.
 
 - Hover en botón primario: opacidad `85%`.
 - Hover en Row Card: Fill cambia de `#FFFFFF` a `#FAFAF8`.
-- Sin transiciones de página ni animación compleja en esta versión.
+- Sin animación compleja en esta versión. *(Corrección 2026-11-04,
+  ADR-041: decía también "sin transiciones de página"; ahora, al llegar
+  a esta pantalla, su contenido aparece con el patrón M6 de
+  `31-guia-de-movimiento.md`, y los hovers usan M1.)*
 
 ## 7. Acciones
 
