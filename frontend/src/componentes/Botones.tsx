@@ -2,6 +2,8 @@
 //  - Primario: 014 §2.6 (CTA); Deshabilitado/Habilitado de 015 §2.3, 016 §2.5,
 //    017 §2.3, 018 §2.3, 019 §2.3; hover opacidad 85% (014 §6).
 //  - Ghost "Volver": 006 §2.6 y 017 §2.3; hover Fill #FAFAF8 (006 §6).
+//  - En el pie de un modal, Ghost y Primario van en una rejilla de 2 columnas
+//    iguales (corrección 2026-11-04: mitad y mitad en todo el sistema).
 import { X } from 'lucide-react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 

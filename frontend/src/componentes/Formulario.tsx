@@ -55,10 +55,20 @@ const COLOR: Record<TipoMensaje, string> = {
   informativo: 'text-informativo',
 };
 
-export function Mensaje({ texto, tipo = 'error' }: { texto: string | null; tipo?: TipoMensaje }) {
+/** alineacion 'izquierda': 014 §2.6 (corrección 2026-11-04); el resto, centrado */
+export function Mensaje({
+  texto,
+  tipo = 'error',
+  alineacion = 'centro',
+}: {
+  texto: string | null;
+  tipo?: TipoMensaje;
+  alineacion?: 'centro' | 'izquierda';
+}) {
   if (!texto) return null;
+  const alinear = alineacion === 'izquierda' ? 'text-left' : 'text-center';
   return (
-    <p role={tipo === 'error' ? 'alert' : 'status'} className={`w-full text-center text-caption font-regular ${COLOR[tipo]}`}>
+    <p role={tipo === 'error' ? 'alert' : 'status'} className={`w-full ${alinear} text-caption font-regular ${COLOR[tipo]}`}>
       {texto}
     </p>
   );

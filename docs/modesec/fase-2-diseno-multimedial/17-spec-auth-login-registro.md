@@ -138,7 +138,9 @@ siempre.
 - **Crear cuenta**: "Crear cuenta".
 
 **Mensaje de error general** (condicional, aparece encima del botón si
-falla): `13px / 20px` Caption, color `#991B1B`, centrado:
+falla): `13px / 20px` Caption, color `#991B1B`, **alineado a la izquierda**,
+como los campos y el texto de ayuda de la contraseña *(corrección
+2026-11-04, Alejandro: antes, centrado)*:
 - Iniciar sesión, credenciales incorrectas: "Correo o contraseña
   incorrectos." — deliberadamente genérico: no dice cuál de los dos
   falló, práctica estándar para no confirmarle a un desconocido que un
@@ -155,8 +157,8 @@ falla): `13px / 20px` Caption, color `#991B1B`, centrado:
   solo texto, sin enlace propio.
 
 **Mensaje de confirmación** (condicional, solo variante Iniciar sesión,
-al llegar desde "Nueva contraseña" con éxito): mismo lugar y tamaño que
-los mensajes de arriba, pero en `#555555` (Secondary) — no es un error:
+al llegar desde "Nueva contraseña" con éxito): mismo lugar, tamaño y
+alineación que los mensajes de arriba, pero en `#555555` (Secondary) — no es un error:
 "Contraseña actualizada. Inicia sesión." Ver
 `22-spec-auth-nueva-contrasena.md`, sección 2.4, para el criterio
 completo de por qué no usa un color de "éxito" — no existe uno en la

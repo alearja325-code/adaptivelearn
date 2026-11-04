@@ -60,7 +60,7 @@ export function V017Rol() {
       </div>
       <div className="flex w-full flex-col gap-8">
         <Mensaje texto={error} />
-        <div className="flex w-full gap-12">
+        <div className="grid w-full grid-cols-2 gap-12">
           <BotonGhost onClick={() => navegar('/completar-perfil')}>Volver</BotonGhost>
           <BotonPrimario disabled={!rol || enviando} onClick={continuar}>
             Continuar

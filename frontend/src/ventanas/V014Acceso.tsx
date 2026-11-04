@@ -150,7 +150,7 @@ export function V014Acceso({ variante }: { variante: Variante }) {
         </div>
 
         <div className="flex w-full flex-col gap-8">
-          <Mensaje texto={mensaje?.texto ?? null} tipo={mensaje?.tipo} />
+          <Mensaje texto={mensaje?.texto ?? null} tipo={mensaje?.tipo} alineacion="izquierda" />
           <BotonPrimario type="submit" disabled={enviando}>
             {t.boton}
           </BotonPrimario>

@@ -79,7 +79,7 @@ export function Paso2Dba({ area, elegido, onElegir, onVolver, onContinuar }: Pro
       {/* §2.6 Footer fijo, con divisor encima */}
       <div className="flex flex-col">
         <div className="h-1 w-full bg-border" />
-        <div className="mt-24 flex gap-12">
+        <div className="mt-24 grid grid-cols-2 gap-12">
           <BotonGhost onClick={onVolver}>Volver</BotonGhost>
           <BotonPrimario disabled={!elegido} onClick={onContinuar}>
             Continuar
