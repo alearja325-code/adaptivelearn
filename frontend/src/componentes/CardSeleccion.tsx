@@ -23,7 +23,7 @@ export function CardSeleccion({ icono: Icono, etiqueta, seleccionada, onElegir }
       role="radio"
       aria-checked={seleccionada}
       onClick={onElegir}
-      className={`flex h-112 w-200 shrink-0 cursor-pointer flex-col items-center justify-center gap-8 rounded-16 p-16 ${caja}`}
+      className={`flex h-112 w-200 shrink-0 cursor-pointer flex-col items-center justify-center gap-8 rounded-16 p-16 transition ${caja}`}
     >
       <Icono
         size={24}

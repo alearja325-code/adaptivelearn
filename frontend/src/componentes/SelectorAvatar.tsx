@@ -52,7 +52,7 @@ export function SelectorAvatar({ archivo, urlActual = null, onElegir }: Props) {
         ) : (
           <ImageUp size={32} strokeWidth={1.5} className="text-muted" aria-hidden />
         )}
-        <span className="absolute inset-0 hidden items-center justify-center rounded-999 bg-primary-ink/60 group-hover:flex">
+        <span className="absolute inset-0 flex items-center justify-center rounded-999 bg-primary-ink/60 opacity-0 transition group-hover:opacity-100">
           <Camera size={24} strokeWidth={1.5} className="text-surface-0" aria-hidden />
         </span>
       </button>

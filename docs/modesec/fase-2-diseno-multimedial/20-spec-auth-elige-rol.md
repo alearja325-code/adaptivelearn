@@ -64,12 +64,17 @@ Auto Layout Horizontal, Gap `16px`. 2 cards:
 
 Mismo patrón que el footer de
 `06-spec-crear-experiencia-paso2.md`, sección 2.5:
-- **Botón "Volver"** (Ghost — sin Fill, sin Stroke, ancho Hug): alto
+*(Corrección 2026-11-04, Alejandro: en todo el sistema, los dos botones
+de acción de un modal se reparten la fila en **dos mitades iguales**,
+como en el Figma. Antes: el secundario ancho Hug y el principal ocupaba
+el resto.)*
+- **Botón "Volver"** (Ghost — sin Fill, sin Stroke, **ancho Fill: la mitad de la fila**,
+  texto centrado): alto
   `48px`, Padding izq/der `24px`, texto `16px / 22px` peso `500`
   Medium, color `#555555`. Vuelve a "Completa tu perfil"
   (`19-spec-auth-completa-perfil.md`) sin perder lo ya escrito ahí
   (nombre, apellido, avatar quedan como estaban).
-- **Botón "Continuar"** (ancho Fill, ocupa el resto): alto `48px`,
+- **Botón "Continuar"** (**ancho Fill: la otra mitad**): alto `48px`,
   Radio `12px`, texto centrado `16px / 22px` peso `500` Medium.
   - **Deshabilitado** (ninguna card seleccionada): Fill `#BDBDBD`,
     texto `#FFFFFF`.

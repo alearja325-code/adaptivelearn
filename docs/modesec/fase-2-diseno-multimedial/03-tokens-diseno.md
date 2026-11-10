@@ -303,3 +303,20 @@ distinta, porque la tarea es distinta.
   aparte, nunca caja/fondo/padding propios.
 - **Grupos vacíos se omiten** — un separador solo aparece si al menos
   un elemento cae en ese grupo.
+
+## Movimiento (agregado 2026-11-04, ADR-041)
+
+Hasta esta fecha el sistema solo definía **qué** cambia en cada ventana
+(sección 6 de cada spec), no **cómo**. La filosofía, los principios y los
+13 patrones están en `31-guia-de-movimiento.md`. Aquí, solo los valores
+(los mismos de `tokens.json`, sección `movimiento`):
+
+- **Duraciones:** `rapida` 120 ms (color, borde, opacidad) · `media`
+  200 ms (tamaño o lugar) · `lenta` 280 ms (un modal o una pantalla que
+  entra) · `giro` 800 ms (una vuelta del spinner, lineal).
+- **Curvas:** `entrada` `cubic-bezier(0.2, 0, 0, 1)` (lo que aparece) ·
+  `estandar` `cubic-bezier(0.4, 0, 0.2, 1)` (lo que cambia). No hay curva
+  de salida: lo que se va, se va al instante.
+- **Distancias:** `minima` `4px` · `corta` `8px` · `paso` `16px` (de la
+  escala de espaciado; no son medidas nuevas).
+- **Escala del modal al abrir:** `0.98` → `1`. Es la única del sistema.

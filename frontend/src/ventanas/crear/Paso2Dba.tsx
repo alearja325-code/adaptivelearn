@@ -3,7 +3,7 @@
 // Backend: E-17 GET /catalogo/grados, E-14 GET /catalogo/dbas (filtros
 // codigo_area, numero_grado y q), E-15 GET /catalogo/dbas/:codigo (al expandir
 // una card, no todos de una vez: encargo 04 §4.4).
-import { ChevronDown, ChevronRight, Search } from 'lucide-react';
+import { ChevronRight, Search } from 'lucide-react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { api, ErrorApi } from '../../api/cliente';
 import type { Area, DbaDetalle, DbaResumen, Grado } from '../../api/tipos';
@@ -79,7 +79,7 @@ export function Paso2Dba({ area, elegido, onElegir, onVolver, onContinuar }: Pro
       {/* §2.6 Footer fijo, con divisor encima */}
       <div className="flex flex-col">
         <div className="h-1 w-full bg-border" />
-        <div className="mt-24 flex gap-12">
+        <div className="mt-24 grid grid-cols-2 gap-12">
           <BotonGhost onClick={onVolver}>Volver</BotonGhost>
           <BotonPrimario disabled={!elegido} onClick={onContinuar}>
             Continuar
@@ -116,7 +116,6 @@ function SelectGrado({ valor, onCambio }: { valor: number | null; onCambio: (g: 
     return () => document.removeEventListener('mousedown', fuera);
   }, [abierto]);
 
-  const Chevron = abierto ? ChevronDown : ChevronRight;
   return (
     <div ref={caja} className="relative w-104 shrink-0">
       <button
@@ -130,13 +129,19 @@ function SelectGrado({ valor, onCambio }: { valor: number | null; onCambio: (g: 
         <span className={`flex-1 text-center text-boton font-medium ${valor === null ? 'text-muted' : 'text-primary-ink'}`}>
           {valor === null ? 'Grado' : `${valor}°`}
         </span>
-        <Chevron size={16} strokeWidth={1.5} className="shrink-0 text-muted" aria-hidden />
+        {/* M13: el chevron gira de › a ⌄ */}
+        <ChevronRight
+          size={16}
+          strokeWidth={1.5}
+          className={`shrink-0 text-muted transition-transform duracion-media ${abierto ? 'rotate-90' : ''}`}
+          aria-hidden
+        />
       </button>
       {abierto && (
         <ul
           role="listbox"
           aria-label="Grados"
-          className="absolute left-0 top-full z-10 mt-4 max-h-alto-modal w-104 overflow-y-auto rounded-12 borde-1 border-border bg-surface-0"
+          className="absolute left-0 top-full z-10 mt-4 max-h-alto-modal w-104 animate-mensaje overflow-y-auto rounded-12 borde-1 border-border bg-surface-0"
         >
           {grados.map((g) => (
             <li key={g.numero} role="option" aria-selected={valor === g.numero}>
@@ -146,7 +151,7 @@ function SelectGrado({ valor, onCambio }: { valor: number | null; onCambio: (g: 
                   onCambio(valor === g.numero ? null : g.numero);
                   setAbierto(false);
                 }}
-                className={`flex h-40 w-full cursor-pointer items-center px-16 text-boton text-primary-ink ${
+                className={`flex h-40 w-full cursor-pointer items-center px-16 text-boton text-primary-ink transition ${
                   valor === g.numero ? 'bg-surface-2 font-bold' : 'font-medium hover:bg-surface-1'
                 }`}
               >
@@ -185,10 +190,9 @@ function CardDba({ dba, seleccionado, onElegir }: { dba: DbaResumen; seleccionad
     }
   }
 
-  const Chevron = abierta ? ChevronDown : ChevronRight;
   return (
     <li
-      className={`flex shrink-0 flex-col gap-16 rounded-16 borde-1 border-border p-16 ${seleccionado ? 'bg-surface-0' : 'bg-surface-0 hover:bg-surface-1'}`}
+      className={`flex shrink-0 flex-col gap-16 rounded-16 borde-1 border-border p-16 transition ${seleccionado ? 'bg-surface-0' : 'bg-surface-0 hover:bg-surface-1'}`}
       data-codigo={dba.codigo}
     >
       <div className="flex items-center gap-12">
@@ -201,7 +205,7 @@ function CardDba({ dba, seleccionado, onElegir }: { dba: DbaResumen; seleccionad
           className="flex min-w-0 flex-1 cursor-pointer items-center gap-12 text-left"
         >
           <span
-            className={`flex size-20 shrink-0 items-center justify-center rounded-999 ${
+            className={`flex size-20 shrink-0 items-center justify-center rounded-999 transition ${
               seleccionado ? 'bg-primary-ink' : 'borde-1_5 border-border'
             }`}
             aria-hidden
@@ -220,12 +224,19 @@ function CardDba({ dba, seleccionado, onElegir }: { dba: DbaResumen; seleccionad
           onClick={alternar}
           className="shrink-0 cursor-pointer"
         >
-          <Chevron size={16} strokeWidth={1.5} className="text-muted" aria-hidden />
+          {/* M8: el chevron gira de › a ⌄ */}
+          <ChevronRight
+            size={16}
+            strokeWidth={1.5}
+            className={`text-muted transition-transform duracion-media ${abierta ? 'rotate-90' : ''}`}
+            aria-hidden
+          />
         </button>
       </div>
 
+      {/* M8: al expandir, el cuerpo aparece; al colapsar, se va al instante */}
       {abierta && (
-        <>
+        <div className="flex animate-mensaje flex-col gap-16">
           <div className="h-1 w-full bg-border" />
           <InfoBlock etiqueta="Enunciado">
             <p className="text-body font-regular text-primary-ink">{dba.enunciado}</p>
@@ -254,7 +265,7 @@ function CardDba({ dba, seleccionado, onElegir }: { dba: DbaResumen; seleccionad
               <p className="text-body font-regular text-primary-ink">{detalle.ejemplo}</p>
             </InfoBlock>
           )}
-        </>
+        </div>
       )}
     </li>
   );

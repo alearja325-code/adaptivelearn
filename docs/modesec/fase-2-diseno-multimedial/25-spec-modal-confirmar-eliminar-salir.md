@@ -87,9 +87,13 @@ un mecanismo técnico, solo advierte la consecuencia visible.)*
 ### 2.3 Fila de acciones (footer)
 
 Mismo patrón que `15-spec-modal-confirmar-publicar.md`, sección 2.3:
-- **Botón "Cancelar"** (Ghost, ancho Hug): alto `48px`, Padding izq/der
+*(Corrección 2026-11-04, Alejandro: en todo el sistema, los dos botones
+de acción de un modal se reparten la fila en **dos mitades iguales**,
+como en el Figma. Antes: el secundario ancho Hug y el principal ocupaba
+el resto.)*
+- **Botón "Cancelar"** (Ghost, **ancho Fill: la mitad de la fila**, texto centrado): alto `48px`, Padding izq/der
   `24px`, texto `16px / 22px` peso `500` Medium, color `#555555`.
-- **Botón de confirmación** (ancho Fill): alto `48px`, Radio `12px`,
+- **Botón de confirmación** (**ancho Fill: la otra mitad**): alto `48px`, Radio `12px`,
   texto centrado `16px / 22px` peso `500` Medium, color `#FFFFFF`. **Fill
   `#991B1B` (Error) — primer uso de este color como fondo de botón en
   el sistema** (hasta ahora solo se usaba en texto/borde de validación,

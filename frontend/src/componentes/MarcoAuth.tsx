@@ -7,7 +7,8 @@ import type { ReactNode } from 'react';
 export function MarcoAuth({ children }: { children: ReactNode }) {
   return (
     <main className="flex min-h-screen items-center justify-center bg-canvas p-24 font-sans">
-      <section className="flex w-480 flex-col items-center gap-24 rounded-24 borde-1 border-border bg-surface-0 p-32">
+      {/* M6: cada pantalla de acceso llega con un fundido corto */}
+      <section className="flex w-480 animate-aparecer flex-col items-center gap-24 rounded-24 borde-1 border-border bg-surface-0 p-32">
         {children}
       </section>
     </main>

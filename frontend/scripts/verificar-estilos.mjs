@@ -7,7 +7,9 @@
 //   4. una clase de Tailwind cuyo valor no existe en el tema generado desde
 //      tokens.json (p-5, bg-red-500, rounded-full, text-sm, border-3…);
 //   5. un ícono de Lucide con un tamaño o un grosor que tokens.json no tiene;
-//   6. una opacidad que ninguna spec usa (solo 60% y 85%: 016 §2.2 y 014 §6).
+//   6. una opacidad que ninguna spec usa (solo 60% y 85%: 016 §2.2 y 014 §6);
+//   7. una duración, curva o animación que no sale de tokens.json "movimiento"
+//      (duration-300, ease-in-out, animate-bounce…; 31-guia-de-movimiento.md).
 // No revisa src/marcas/ (logos de terceros con sus colores de marca, 014 §2.8)
 // ni el tema generado. Uso: npm run verificar:estilos
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -21,7 +23,8 @@ const tokens = JSON.parse(
   readFileSync(join(AQUI, '..', '..', 'docs', 'modesec', 'fase-2-diseno-multimedial', 'tokens.json'), 'utf8'),
 );
 
-const OPACIDADES = new Set(['60', '85']);
+// 0 y 100: mostrar y ocultar con transición (M1, 31-guia-de-movimiento.md)
+const OPACIDADES = new Set(['0', '60', '85', '100']);
 const ICONOS = new Set(tokens.iconos_px.map(String));
 const GROSORES = new Set(tokens.grosores_borde_px.map(String));
 
@@ -32,6 +35,9 @@ const TEXTOS = new Set(tema.textos);
 const PESOS = new Set(tema.pesos);
 const BORDES = new Set(tema.grosores);
 const COLOR_CLAVE = new Set(['transparent', 'current', 'inherit']);
+const CURVAS = new Set(tema.curvas);
+const DURACIONES = new Set(tema.duraciones);
+const ANIMACIONES = new Set(tema.animaciones);
 
 // Prefijo de utilidad → qué valores admite (palabras clave + valores del tema)
 const ESPACIO_CLAVE = ['auto', 'full', 'screen', 'fit', 'min', 'max'];
@@ -47,6 +53,11 @@ const REGLAS = [
   [/^font$/, (v) => PESOS.has(v) || v === 'sans'],
   [/^opacity$/, (v) => OPACIDADES.has(v)],
   [/^(leading|tracking|shadow|ring|outline|blur|drop-shadow|inset-shadow)$/, (v) => v === 'none'],
+  // movimiento: solo los nombres de tokens.json (duration-300 o delay-100 no)
+  [/^(duration|delay)$/, () => false],
+  [/^duracion$/, (v) => DURACIONES.has(v)],
+  [/^ease$/, (v) => CURVAS.has(v)],
+  [/^animate$/, (v) => ANIMACIONES.has(v) || v === 'none'],
 ];
 
 const errores = [];

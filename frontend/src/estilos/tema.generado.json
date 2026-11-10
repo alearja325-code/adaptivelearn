@@ -78,5 +78,23 @@
     "bold",
     "medium",
     "regular"
+  ],
+  "curvas": [
+    "entrada",
+    "estandar"
+  ],
+  "duraciones": [
+    "rapida",
+    "media",
+    "lenta"
+  ],
+  "animaciones": [
+    "aparecer",
+    "modal",
+    "fondo",
+    "mensaje",
+    "paso-adelante",
+    "paso-atras",
+    "girar"
   ]
 }

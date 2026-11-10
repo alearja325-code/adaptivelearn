@@ -52,10 +52,10 @@ export function construirTema() {
   const pila = doc.match(/pila CSS `([^`]+)`/);
   if (!pila) throw new Error('No encontré la pila de fuentes web en 03-tokens-diseno.md');
 
-  return { colores, espaciados, radios: tokens.radios_px, grosores: tokens.grosores_borde_px, tipografia: tokens.tipografia, fuente: pila[1] };
+  return { colores, espaciados, radios: tokens.radios_px, grosores: tokens.grosores_borde_px, tipografia: tokens.tipografia, fuente: pila[1], movimiento: tokens.movimiento };
 }
 
-function css({ colores, espaciados, radios, grosores, tipografia, fuente }) {
+function css({ colores, espaciados, radios, grosores, tipografia, fuente, movimiento }) {
   const L = [];
   const w = (s) => L.push(s);
   w('/* GENERADO por scripts/generar-tema.mjs desde');
@@ -64,7 +64,7 @@ function css({ colores, espaciados, radios, grosores, tipografia, fuente }) {
   w('');
   w('@theme {');
   w('  /* Sin los valores por defecto de Tailwind: solo los del sistema de diseño */');
-  for (const ns of ['color', 'spacing', 'radius', 'text', 'font-weight', 'leading', 'tracking', 'shadow', 'inset-shadow', 'drop-shadow', 'blur', 'breakpoint', 'container', 'font', 'ease', 'perspective', 'aspect']) {
+  for (const ns of ['color', 'spacing', 'radius', 'text', 'font-weight', 'leading', 'tracking', 'shadow', 'inset-shadow', 'drop-shadow', 'blur', 'breakpoint', 'container', 'font', 'ease', 'animate', 'perspective', 'aspect']) {
     w(`  --${ns}-*: initial;`);
   }
   w('  --spacing: initial;');
@@ -91,6 +91,8 @@ function css({ colores, espaciados, radios, grosores, tipografia, fuente }) {
     w(`  --text-${n}--font-weight: ${t.peso};`);
   }
   for (const p of [...new Set(tipografia.map((t) => t.peso))].sort()) w(`  --font-weight-${NOMBRE_PESO[p]}: ${p};`);
+  w('');
+  movimientoTema(movimiento, w);
   w('}');
   w('');
   w('/* Grosores de borde (tokens.json, "grosores_borde_px"): borde-1, borde-1_5, … */');
@@ -100,7 +102,61 @@ function css({ colores, espaciados, radios, grosores, tipografia, fuente }) {
     w(`  border-width: ${g}px;`);
     w('}');
   }
+  w('');
+  movimientoFuera(movimiento, w);
   return L.join('\n') + '\n';
+}
+
+/**
+ * Movimiento (31-guia-de-movimiento.md, ADR-041; tokens.json "movimiento").
+ * Cada animación es un patrón de la guía. Solo se anima lo que llega; lo que
+ * se va, se va al instante (principio 3), así que no hay animaciones de salida.
+ */
+const ANIMACIONES = {
+  // nombre: [patrón, duración, curva, desde (transform), repetir]
+  aparecer: ['M6 llegar a una pantalla', 'lenta', 'entrada', (d) => `translateY(${d.corta}px)`],
+  modal: ['M4 abrir un modal (panel)', 'lenta', 'entrada', (d, e) => `translateY(${d.corta}px) scale(${e})`],
+  fondo: ['M4 abrir un modal (fondo)', 'media', 'estandar', () => null],
+  mensaje: ['M9, M8 y M13: un mensaje, un cuerpo o una lista que aparece', 'media', 'entrada', (d) => `translateY(-${d.minima}px)`],
+  'paso-adelante': ['M7 avanzar de paso', 'media', 'entrada', (d) => `translateX(${d.paso}px)`],
+  'paso-atras': ['M7 volver de paso', 'media', 'entrada', (d) => `translateX(-${d.paso}px)`],
+};
+
+function movimientoTema(m, w) {
+  const ms = m.duraciones_ms;
+  w('  /* Movimiento (tokens.json, "movimiento"; 31-guia-de-movimiento.md) */');
+  for (const [n, v] of Object.entries(m.curvas)) w(`  --ease-${n}: ${v};`);
+  w(`  --default-transition-duration: ${ms.rapida}ms;`);
+  w('  --default-transition-timing-function: var(--ease-estandar);');
+  for (const [n, [patron, dur, curva]] of Object.entries(ANIMACIONES)) {
+    w(`  --animate-${n}: ${n} ${ms[dur]}ms var(--ease-${curva}) both; /* ${patron} */`);
+  }
+  w(`  --animate-girar: girar ${ms.giro}ms linear infinite; /* M12 cargando */`);
+  for (const [n, [, , , desde]] of Object.entries(ANIMACIONES)) {
+    const t = desde(m.distancias_px, m.escala_modal);
+    w(`  @keyframes ${n} { from { opacity: 0;${t ? ` transform: ${t};` : ''} } to { opacity: 1;${t ? ' transform: none;' : ''} } }`);
+  }
+  w('  @keyframes girar { to { transform: rotate(360deg); } }');
+}
+
+function movimientoFuera(m, w) {
+  const ms = m.duraciones_ms;
+  w('/* Duraciones con nombre para las transiciones: duracion-rapida, -media, -lenta */');
+  for (const n of ['rapida', 'media', 'lenta']) {
+    w(`@utility duracion-${n} {`);
+    w(`  transition-duration: ${ms[n]}ms;`);
+    w('}');
+  }
+  w('');
+  w('/* Reducir movimiento (31-guia-de-movimiento.md): sin desplazamientos ni escalas;');
+  w('   quedan cambios de opacidad en "rapida". El spinner (M12) sigue girando. */');
+  w('@media (prefers-reduced-motion: reduce) {');
+  for (const n of Object.keys(ANIMACIONES)) {
+    w(`  @keyframes ${n} { from { opacity: 0; } to { opacity: 1; } }`);
+    w(`  .animate-${n} { animation-duration: ${ms.rapida}ms; }`);
+  }
+  w('  .transition-transform { transition-duration: 0ms; }');
+  w('}');
 }
 
 const tema = construirTema();
@@ -116,6 +172,9 @@ writeFileSync(
       grosores: tema.grosores.map((g) => String(g).replace('.', '_')),
       textos: tema.tipografia.map((t) => NOMBRE_TEXTO[t.nivel]),
       pesos: [...new Set(tema.tipografia.map((t) => NOMBRE_PESO[t.peso]))],
+      curvas: Object.keys(tema.movimiento.curvas),
+      duraciones: ['rapida', 'media', 'lenta'],
+      animaciones: [...Object.keys(ANIMACIONES), 'girar'],
     },
     null,
     2,

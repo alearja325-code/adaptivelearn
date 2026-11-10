@@ -21,8 +21,10 @@ export function Modal({ etiqueta, children, onCerrar }: Props) {
   }, [onCerrar]);
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-primary-ink/60 p-24">
-      <div role="dialog" aria-modal="true" aria-label={etiqueta} className="flex max-h-full">
+    // M4 (31-guia-de-movimiento.md): el fondo aparece por opacidad y el panel sube
+    // y crece al entrar. M5: al cerrar, desaparece al instante (sin animación).
+    <div className="fixed inset-0 z-10 flex animate-fondo items-center justify-center bg-primary-ink/60 p-24">
+      <div role="dialog" aria-modal="true" aria-label={etiqueta} className="flex max-h-full animate-modal">
         {children}
       </div>
     </div>

@@ -72,7 +72,7 @@ completo), y una captura de cada ventana en `frontend/capturas/`.
 
 ```
 docs/                        Toda la documentación
-  diseno/                    El cerebro del proyecto: 40 decisiones (ADR),
+  diseno/                    El cerebro del proyecto: 41 decisiones (ADR),
                              visión, glosario, preguntas abiertas y
                              pendientes.md (qué falta y qué recibe el MER)
   modesec/                   La metodología, fase por fase

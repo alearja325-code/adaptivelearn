@@ -67,7 +67,7 @@ export function Paso3Confirmar({ dba, nombre, onNombre, onVolver }: Props) {
 
       {/* §2.5 Footer; el aviso va debajo, en el lugar del mensaje de error de §7 */}
       <div className="flex flex-col gap-8">
-        <div className="mt-24 flex gap-12">
+        <div className="mt-24 grid grid-cols-2 gap-12">
           <BotonGhost onClick={onVolver}>Volver</BotonGhost>
           <BotonPrimario disabled={texto.trim() === ''} onClick={() => setAviso(true)}>
             Crear experiencia
