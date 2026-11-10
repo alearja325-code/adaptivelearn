@@ -102,16 +102,16 @@ Ante la duda entre dos formatos, `single_choice`.
 
 En `data/curriculo-men/censo/`:
 
-- `censo_formato_cerrado.json`: por evidencia, `aplica`, `formato`,
+- **censo_formato_cerrado.json** (por crear): por evidencia, `aplica`, `formato`,
   `regla` (N1 a N5, o el formato y su señal), `justificacion` (una o dos
   frases que citan el verbo o la frase decisiva), `dudoso`, y el estado
   general del censo (`propuesto-por-ia` o `validado-por-muestreo`).
-- `informe-censo.md`: cuántas aplican por área y por grado, y con qué
+- **informe-censo.md** (por crear): cuántas aplican por área y por grado, y con qué
   formato. **Esto responde la pregunta de fondo de QA-014:** si en
   alguna área aplica una proporción baja, el diagnóstico automático
   dejaría fuera buena parte de esa área, y el informe tiene que decirlo
   claramente.
-- `muestra_validacion.md`: las 40 evidencias (más las dudosas), con el
+- **muestra_validacion.md** (por crear): las 40 evidencias (más las dudosas), con el
   dictamen y una casilla para cada validador.
 
 ## 7. Prueba de los criterios con 20 evidencias reales
