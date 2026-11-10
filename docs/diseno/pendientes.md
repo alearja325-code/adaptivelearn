@@ -489,6 +489,15 @@ revisa en local antes de unirlo:
    cuenta a medias y deja el correo ocupado (409) si se vuelve a
    registrar.
 
+4. **05 — Ejemplos de los DBA y censo de formato cerrado:**
+   `docs/encargos/05-ejemplos-y-censo.md`, escrito el 2026-11-10.
+   Prerrequisito de datos de I2. Criterios del censo aceptados ese día
+   (`docs/diseno/criterios-censo-formato-cerrado.md`, ADR-042); lo que el
+   formato cerrado no alcanza queda para otra versión (QA-017).
+5. **06 — I2, experiencia y banco:** se escribe cuando el 05 esté unido.
+   Solo con DeepSeek (ADR-043); la clave ya está en el `.env` local y se
+   comprobó que responde.
+
 ### A15. Fase IV (Producción) — EMPEZADA 2026-10-26
 
 - **Selección de herramienta** hecha:

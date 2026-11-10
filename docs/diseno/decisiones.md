@@ -1515,7 +1515,7 @@ Decisión 2 de E0.
 ## ADR-030 — El banco se genera con dos servicios de IA: uno principal y otro de respaldo; cada ítem guarda cuál lo generó
 
 **Fecha:** 2026-10-21
-**Estado:** aceptada; **punto 4 modificado por ADR-035** (el servicio y el modelo se guardan en la experiencia, no en cada ítem).
+**Estado:** aceptada; **punto 4 modificado por ADR-035** (el servicio y el modelo se guardan en la experiencia, no en cada ítem); **puntos 1 a 3 suspendidos por ADR-043** (en esta versión, solo DeepSeek, sin respaldo).
 
 **Contexto:** el diseño nunca fijó qué servicio de IA genera el banco de
 preguntas (`10-proceso-desarrollo.md` lo dejaba "sin fijar"; la versión
@@ -2129,3 +2129,80 @@ dicen "sin animación compleja" siguen siendo ciertas: la guía no tiene
 animaciones complejas.
 
 **Reemplaza a:** ninguna.
+
+---
+
+## ADR-042 — El censo de formato cerrado lo propone la IA con criterios escritos, y el equipo lo valida por muestreo
+
+**Fecha:** 2026-11-10
+**Estado:** aceptada
+
+**Contexto:** el incremento I2 necesita saber, por cada evidencia, si
+admite pregunta cerrada y con qué formato (`evidencia_dictamen`, RI-19;
+RF-03-01: "el formato de los ítems lo determina la evidencia"). Es el
+censo QA-014, pendiente desde agosto. El MER lo describe como "juicio del
+equipo", pero no hay en el equipo un juicio pedagógico experto disponible
+para 1282 evidencias. Tratarlas todas como "aplica" generaría preguntas
+cerradas para evidencias que no se pueden medir así (producir,
+argumentar, actuar), y el diagnóstico sería falso.
+
+**Decisión:**
+
+1. **Criterios escritos primero**, aprobados por Alejandro:
+   `criterios-censo-formato-cerrado.md`. Cinco reglas de "no aplica" (N1
+   producir, N2 comunicar en vivo, N3 sostener una postura propia, N4
+   actuar en el mundo, N5 una actitud) y la regla de formato de ADR-006.
+   "Argumenta" no aplica (N3); las evidencias compuestas se dictaminan por
+   su acción principal.
+2. **Una sesión de Claude en la nube aplica los criterios** a cada
+   evidencia, con su justificación, **una sola vez**. El resultado queda
+   versionado en el repositorio. No lo decide la IA que genera las
+   preguntas, en cada generación.
+3. **Queda marcado como "propuesto por IA"** hasta que dos integrantes
+   del equipo validen, por separado, una muestra al azar de 40 evidencias
+   (10 por área) más las dudosas. Con más de 6 discrepancias, se corrigen
+   los criterios y se repite.
+4. Lo que el formato cerrado no alcanza **no se fuerza ni se esconde**:
+   el Paso 2 lo muestra tachado; qué hacer con ello en otra versión es
+   QA-017.
+
+**Por qué no lo demás:** "todas aplican" falsea el diagnóstico; esperar
+un experto bloquea I2 sin fecha; que lo decida DeepSeek al generar da
+respuestas distintas para la misma evidencia y no deja nada revisable.
+
+**Consecuencia reconocida:** hasta la validación, el dictamen es un juicio
+de IA, no del equipo, y así se declara. La segunda red es la revisión del
+banco por el docente antes de publicar (ADR-026).
+
+**Reemplaza a:** ninguna. Resuelve cómo hacer QA-014.
+
+---
+
+## ADR-043 — En esta versión el banco se genera solo con DeepSeek, sin servicio de respaldo
+
+**Fecha:** 2026-11-10
+**Estado:** aceptada
+
+**Contexto:** ADR-030 decidió dos servicios de IA, Gemini y DeepSeek, uno
+principal y otro de respaldo. Al preparar I2, Alejandro decidió usar solo
+DeepSeek: es la única clave de API que el equipo tiene. Su modelo se
+configura en `.env` (`DEEPSEEK_MODEL`).
+
+**Decisión:**
+
+1. El banco se genera **solo con DeepSeek**. El servicio y el modelo que
+   respondió se siguen guardando en la experiencia (ADR-030 punto 4, con
+   ADR-035), para poder agregar otro servicio después sin cambiar el
+   modelo de datos.
+2. **Sin respaldo:** si DeepSeek falla o supera el tiempo límite, no se
+   guarda nada (ADR-027) y el docente ve el mensaje de `07-spec`: "No se
+   pudieron generar las preguntas. Intenta de nuevo."
+3. El código deja el servicio detrás de una interfaz, para que agregar
+   Gemini como respaldo sea agregar una implementación, no rehacer la
+   generación.
+
+**Consecuencia reconocida:** sin respaldo, una caída de DeepSeek deja al
+docente sin poder crear experiencias hasta que vuelva. Es aceptable en
+una versión que no se usa con estudiantes reales (ADR-029).
+
+**Reemplaza a:** ADR-030, puntos 1 a 3, mientras haya un solo servicio.

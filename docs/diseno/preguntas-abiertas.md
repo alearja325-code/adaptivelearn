@@ -286,3 +286,56 @@ Alejandro.
 **Retomar cuando:** se abra una versión de alcance que reconsidere el rol
 del estudiante, junto con QA-001 y QA-010 (mismo tipo de expansión de
 alcance).
+
+---
+
+## QA-017 — ¿Qué hacer, en una versión futura, con las evidencias que el formato cerrado no alcanza?
+
+**Estado:** abierta, para la próxima versión de alcance. **Esta versión
+no cambia:** cumple hasta donde el MEN lo permite (QA-012). El censo de
+formato cerrado (`criterios-censo-formato-cerrado.md`) dice cuáles
+evidencias quedan fuera; el Paso 2 las muestra tachadas con "no aplica a
+formato cerrado" (`06-spec` §2.4), así que el docente ve el vacío en vez
+de que se esconda.
+
+**La duda de fondo (Alejandro, 2026-11-10):** son muchas las evidencias
+que piden producir, comunicar, argumentar, actuar o una actitud (reglas
+N1 a N5 del censo). ¿Se pueden crear otras evidencias a partir de ellas,
+adaptarlas, o diagnosticarlas de otra forma?
+
+**Caminos posibles, sin decidir.** Cada uno, con lo que choca:
+
+1. **Formatos abiertos** (respuesta corta, texto, archivo), con la IA
+   proponiendo una valoración y el docente decidiendo. Choca con el costo
+   que cerró QA-012: el docente revisa cada respuesta de cada estudiante,
+   no el banco una sola vez. Y una valoración de la IA sobre un
+   estudiante roza "nunca un texto sobre un estudiante redactado por IA".
+2. **Registro de observación del docente.** Para lo que se ve en clase
+   (comunicar en vivo, actuar, actitudes: N2, N4, N5), el docente marca
+   directamente, por estudiante, uno de los estados que el sistema ya
+   usa (muestra, no muestra, no concluyente). Sin IA y sin preguntas: el
+   sistema solo guarda y agrega. Encaja con el modelo de estados actual.
+3. **Indicadores derivados del docente.** Partir una evidencia amplia en
+   indicadores más pequeños, como ya hacen muchas instituciones con sus
+   indicadores de desempeño (el Decreto 1290 de 2009 les da autonomía
+   para definir su sistema de evaluación). Es la misma idea de QA-001.
+   Condición: un indicador derivado **nunca se presenta como del MEN**;
+   va separado del contenido oficial y enlazado a la evidencia de origen,
+   como el dictamen está separado de la evidencia (H-6).
+4. **Reescribir o "adaptar" la evidencia oficial.** **No**, en ninguna
+   versión: el contenido del MEN se copia exacto. Lo que se quiera
+   adaptar entra como el camino 3.
+5. **Que la IA proponga los indicadores derivados.** Posible solo como
+   propuesta que el docente revisa y acepta. Si no, rompe el principio
+   "evidencia oficial, no invención de la IA" (QA-012).
+
+**Lo que hay que saber antes de decidir:** el censo de esta versión dice
+cuántas evidencias quedan fuera, por área y por regla. Si son pocas, el
+camino 2 basta; si son muchas en Lenguaje y Ciencias Sociales, como
+anticipa ADR-002, conviene pensar en el 1 o el 3.
+
+**Relacionado con:** QA-001 (evidencias propias del docente), QA-012
+(solo formato cerrado), QA-014 (el censo), ADR-002, ADR-006.
+
+**Surgió en:** aprobación de los criterios del censo — 2026-11-10,
+Alejandro.

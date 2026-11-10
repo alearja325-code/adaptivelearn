@@ -1,6 +1,9 @@
 # Criterios del censo de formato cerrado (QA-014)
 
-**Escrito:** 2026-11-10. **Estado:** propuesta, la aprueba Alejandro.
+**Escrito:** 2026-11-10. **Estado:** aceptados por Alejandro el
+2026-11-10, con las dos recomendaciones: "argumenta" no aplica (N3) y
+las evidencias compuestas se dictaminan por la acción principal (§4).
+ADR-042. Lo que queda fuera en esta versión: QA-017.
 **Para qué:** decidir, para cada una de las **1282 evidencias** del
 catálogo (`data/curriculo-men/catalogo/catalogo_dba.json`), si se puede
 diagnosticar con una pregunta cerrada y con cuál de los tres formatos.
@@ -92,7 +95,7 @@ Ante la duda entre dos formatos, `single_choice`.
 1. **Muestra al azar de 40 evidencias, 10 por área**, más todas las
    marcadas `dudoso`. La muestra la saca un script con semilla fija,
    para que se pueda repetir.
-2. Dos integrantes del equipo, por separado, dicen si están de acuerdo
+2. Dos integrantes del equipo (propuestos: Alejandro y Jose), por separado, dicen si están de acuerdo
    con cada dictamen (aplica o no, y formato).
 3. **Si discrepan con más de 6 de las 40 (15 %)**, los criterios se
    corrigen y el censo se vuelve a correr. Si no, el censo pasa a
