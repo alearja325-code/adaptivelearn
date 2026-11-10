@@ -2088,7 +2088,7 @@ mandaba quitar `/users` y `/example`.
 ## ADR-041 — El movimiento explica, no decora: una guía común para todas las ventanas
 
 **Fecha:** 2026-11-04
-**Estado:** propuesta (la aprueba Alejandro)
+**Estado:** aceptada (Alejandro, 2026-11-10)
 
 **Contexto:** al probar el frontend de la primera etapa, Alejandro notó
 que las pantallas "se sienten muy secas". La sección 6 de cada
@@ -2102,15 +2102,20 @@ cambia todo de golpe. Ese vacío era de la Fase II: el punto 6 de MODESEC
 
 1. **Una guía de movimiento común**, `docs/modesec/fase-2-diseno-multimedial/31-guia-de-movimiento.md`,
    con una filosofía ("el movimiento explica, no decora"), 6 principios y
-   12 patrones (M1 a M12). Cada movimiento del sistema es uno de esos
+   13 patrones (M1 a M13). Cada movimiento del sistema es uno de esos
    patrones.
-2. **Los valores son tokens**, como los colores: 4 duraciones, 3 curvas,
+2. **Los valores son tokens**, como los colores: 4 duraciones, 2 curvas,
    3 distancias y una escala, en `tokens.json` (sección `movimiento`) y en
    `03-tokens-diseno.md`. El código no puede usar otros.
 3. **Los errores no tiemblan** y **los resultados no se animan**: ni
    sacudidas, ni barras que crecen, ni números que cuentan. Es la misma
    línea del proyecto: nunca una nota ni un puntaje.
-4. **"Reducir movimiento" se respeta**: con esa preferencia del sistema
+4. **Lo que se va, se va al instante:** cerrar un modal, colapsar una
+   card o cerrar una lista no se animan. Solo se anima lo que llega, así
+   nadie espera a que algo termine de irse (ajuste del 2026-11-10, al
+   programarla: animar las salidas obligaba a retener en pantalla lo que
+   la persona ya cerró).
+5. **"Reducir movimiento" se respeta**: con esa preferencia del sistema
    operativo quedan solo cambios de color y opacidad.
 
 **Por qué no lo demás:** una librería de animación (Framer Motion o

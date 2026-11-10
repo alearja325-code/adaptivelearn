@@ -68,7 +68,7 @@ export function V001Dashboard() {
           type="button"
           aria-label="Editar mi perfil"
           onClick={() => setModal('perfil')}
-          className="flex w-full cursor-pointer flex-col items-center gap-8 rounded-12 p-12 hover:bg-surface-1"
+          className="flex w-full cursor-pointer flex-col items-center gap-8 rounded-12 p-12 transition hover:bg-surface-1"
         >
           <Avatar url={urlFoto(avatarUrl)} />
           <span className="w-full truncate text-body font-bold text-primary-ink" data-testid="nombre-sidebar">
@@ -97,7 +97,7 @@ export function V001Dashboard() {
           <button
             type="button"
             onClick={salir}
-            className="flex h-44 cursor-pointer items-center gap-12 rounded-8 px-12 text-boton font-medium text-secondary hover:bg-surface-1"
+            className="flex h-44 cursor-pointer items-center gap-12 rounded-8 px-12 text-boton font-medium text-secondary transition hover:bg-surface-1"
           >
             <LogOut size={20} strokeWidth={1.5} className="text-secondary" aria-hidden />
             Cerrar sesión
@@ -106,7 +106,7 @@ export function V001Dashboard() {
       </aside>
 
       {/* §2.3 Área de contenido */}
-      <section className="flex min-w-0 flex-1 flex-col gap-32 overflow-y-auto rounded-24 borde-1 border-border bg-surface-0 p-32">
+      <section className="flex min-w-0 flex-1 animate-aparecer flex-col gap-32 overflow-y-auto rounded-24 borde-1 border-border bg-surface-0 p-32">
         <header className="flex flex-col gap-4">
           <h1 className="text-h1 font-bold text-primary-ink">Mis experiencias</h1>
           <p className="text-body font-regular text-secondary">{t.subtitulo}</p>
@@ -114,7 +114,7 @@ export function V001Dashboard() {
 
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-12">
-            <label className="flex h-44 min-w-0 flex-1 items-center gap-8 rounded-12 borde-1 border-border bg-surface-0 px-16 focus-within:border-primary-ink">
+            <label className="flex h-44 min-w-0 flex-1 items-center gap-8 rounded-12 borde-1 border-border bg-surface-0 px-16 transition focus-within:border-primary-ink">
               <Search size={16} strokeWidth={1.5} className="shrink-0 text-muted" aria-hidden />
               <input
                 value={busqueda}
@@ -141,7 +141,7 @@ export function V001Dashboard() {
               type="button"
               aria-pressed={chip === c}
               onClick={() => setChip(c)}
-              className={`h-40 cursor-pointer rounded-8 px-16 text-boton ${
+              className={`h-40 cursor-pointer rounded-8 px-16 text-boton transition ${
                 chip === c ? 'borde-1 border-primary-ink bg-surface-2 font-bold text-primary-ink' : 'borde-1 border-border bg-surface-0 font-medium text-secondary'
               }`}
             >

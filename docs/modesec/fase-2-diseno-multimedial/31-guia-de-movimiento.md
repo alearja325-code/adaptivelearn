@@ -38,7 +38,9 @@ vino algo y a dónde fue**.
    espera a que termine una animación para seguir: puede hacer clic
    mientras ocurre.
 3. **Es tranquilo.** Sin rebotes, sin elasticidad, sin giros ni
-   sacudidas. Lo que entra, frena al llegar; lo que sale, acelera al irse.
+   sacudidas. **Lo que llega, llega suave y frena al llegar; lo que se
+   va, se va al instante:** nadie espera a que algo termine de irse para
+   seguir.
 4. **Una cosa a la vez.** Cada acción mueve un solo elemento (o un solo
    grupo). No hay listas que aparecen fila por fila ni efectos en cadena.
 5. **Los errores no castigan.** Un error **no tiembla ni parpadea**:
@@ -70,7 +72,6 @@ Solo existen estos. El código no puede usar otros (lo comprueba
 | Nombre | Valor CSS | Para qué |
 |---|---|---|
 | `entrada` | `cubic-bezier(0.2, 0, 0, 1)` | Lo que **aparece**: arranca rápido y frena suave al llegar |
-| `salida` | `cubic-bezier(0.4, 0, 1, 1)` | Lo que **se va**: arranca suave y acelera al irse |
 | `estandar` | `cubic-bezier(0.4, 0, 0.2, 1)` | Lo que **cambia sin entrar ni salir**: colores, una card que se expande |
 
 ### Distancias
@@ -99,14 +100,15 @@ antes de programarlo.
 | M2 | **Habilitar o deshabilitar un botón** | El color del fondo cambia en `rapida`, `estandar` | 002–004, 014–019, 021, 022 |
 | M3 | **Seleccionar una card u opción** | Fondo, borde y peso del texto en `rapida`, `estandar`. Sin escala ni sombra | 002, 003, 017, 021, 022 |
 | M4 | **Abrir un modal** | El fondo oscuro aparece por opacidad en `media`; el panel, en `lenta` con `entrada`, por opacidad, subiendo `corta` (8px) y creciendo de `0.98` a `1` | 002, 005, 009, 010, 012, 013, 025, 026, 027 |
-| M5 | **Cerrar un modal** | Lo contrario de M4, en `media` con `salida`. El modal se cierra en cuanto se pide: la animación no hace esperar | Las mismas |
+| M5 | **Cerrar un modal** | Desaparece al instante, en cuanto se pide (principio 3) | Las mismas |
 | M6 | **Llegar a una pantalla** | El contenido aparece por opacidad, subiendo `corta` (8px), en `lenta` con `entrada`. La pantalla de fondo no se mueve | 001, 006, 014–019, 020–023 |
 | M7 | **Cambiar de paso en un modal** | El contenido del paso que entra aparece por opacidad desde `paso` (16px) a la derecha al avanzar, o a la izquierda al volver, en `media` con `entrada`. La línea del stepper se completa en `media` | 002 → 003 → 004 |
-| M8 | **Expandir o colapsar** | El chevron gira en `media`, `estandar`. El cuerpo cambia de alto y de opacidad en `media`, `estandar` | 003 (DBA), 009 (ítem), 010 (evidencia), 011 (estudiante), 027 |
+| M8 | **Expandir o colapsar** | El chevron gira en `media`, `estandar`. Al expandir, el cuerpo aparece por opacidad, bajando `minima` (4px), en `media` con `entrada`; al colapsar, desaparece al instante (principio 3) | 003 (DBA), 009 (ítem), 010 (evidencia), 011 (estudiante), 027 |
 | M9 | **Aparece un mensaje** (error, aviso, confirmación) | Por opacidad, bajando `minima` (4px) hasta su lugar, en `media` con `entrada`. **Nunca tiembla** (principio 5) | 014, 015, 018, 019, 004, 001 (aviso de estudiante) |
 | M10 | **Cajas del código con error** | El borde pasa a rojo en `rapida`, `estandar`, las 6 a la vez. Sin sacudida | 005, 015 |
 | M11 | **Cambio de texto en un botón** | El texto nuevo reemplaza al viejo por opacidad en `rapida` | 013 ("¡Código copiado!") |
 | M12 | **Cargando** | El spinner gira una vuelta cada `giro` (800 ms), sin curva (lineal). El modal 024 entra como M4 | 024 |
+| M13 | **Abrir una lista desplegable** | La lista aparece como M9 (opacidad, bajando `minima`, `media`, `entrada`); se cierra al instante. El chevron gira como en M8 | 003 (Select de Grado) |
 
 ## Lo que no se anima
 
@@ -132,7 +134,7 @@ Con la preferencia del sistema operativo "reducir movimiento"
 
 - M4, M5, M6, M7 y M9 pierden el desplazamiento y la escala: quedan solo
   como cambio de opacidad, en `rapida`.
-- M8 cambia de alto al instante, sin transición.
+- M8 y M13 aparecen solo por opacidad, sin desplazamiento; el chevron cambia al instante.
 - M12 (el spinner) sigue girando: es la única señal de que el sistema
   está trabajando. Su modal entra sin escala.
 - M1, M2, M3, M10 y M11 no cambian: son cambios de color, que no mueven

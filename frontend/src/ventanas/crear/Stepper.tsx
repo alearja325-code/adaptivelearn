@@ -15,10 +15,10 @@ export function Stepper({ paso }: { paso: 1 | 2 | 3 }) {
         }[estado];
         return (
           <li key={n} className={`flex items-center ${n < 3 ? 'flex-1' : ''}`} aria-current={n === paso ? 'step' : undefined}>
-            <span className={`flex size-32 shrink-0 items-center justify-center rounded-999 text-badge ${circulo}`} data-estado={estado}>
+            <span className={`flex size-32 shrink-0 items-center justify-center rounded-999 text-badge transition duracion-media ${circulo}`} data-estado={estado}>
               {n}
             </span>
-            {n < 3 && <span className={`h-1 flex-1 ${n < paso ? 'bg-secondary' : 'bg-border'}`} />}
+            {n < 3 && <span className={`h-1 flex-1 transition duracion-media ${n < paso ? 'bg-secondary' : 'bg-border'}`} />}
           </li>
         );
       })}

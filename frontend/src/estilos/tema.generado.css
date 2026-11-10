@@ -19,6 +19,7 @@
   --container-*: initial;
   --font-*: initial;
   --ease-*: initial;
+  --animate-*: initial;
   --perspective-*: initial;
   --aspect-*: initial;
   --spacing: initial;
@@ -113,6 +114,26 @@ sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
+
+  /* Movimiento (tokens.json, "movimiento"; 31-guia-de-movimiento.md) */
+  --ease-entrada: cubic-bezier(0.2, 0, 0, 1);
+  --ease-estandar: cubic-bezier(0.4, 0, 0.2, 1);
+  --default-transition-duration: 120ms;
+  --default-transition-timing-function: var(--ease-estandar);
+  --animate-aparecer: aparecer 280ms var(--ease-entrada) both; /* M6 llegar a una pantalla */
+  --animate-modal: modal 280ms var(--ease-entrada) both; /* M4 abrir un modal (panel) */
+  --animate-fondo: fondo 200ms var(--ease-estandar) both; /* M4 abrir un modal (fondo) */
+  --animate-mensaje: mensaje 200ms var(--ease-entrada) both; /* M9, M8 y M13: un mensaje, un cuerpo o una lista que aparece */
+  --animate-paso-adelante: paso-adelante 200ms var(--ease-entrada) both; /* M7 avanzar de paso */
+  --animate-paso-atras: paso-atras 200ms var(--ease-entrada) both; /* M7 volver de paso */
+  --animate-girar: girar 800ms linear infinite; /* M12 cargando */
+  @keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes modal { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+  @keyframes fondo { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes mensaje { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  @keyframes paso-adelante { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+  @keyframes paso-atras { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+  @keyframes girar { to { transform: rotate(360deg); } }
 }
 
 /* Grosores de borde (tokens.json, "grosores_borde_px"): borde-1, borde-1_5, … */
@@ -131,4 +152,33 @@ sans-serif;
 @utility borde-2_5 {
   border-style: solid;
   border-width: 2.5px;
+}
+
+/* Duraciones con nombre para las transiciones: duracion-rapida, -media, -lenta */
+@utility duracion-rapida {
+  transition-duration: 120ms;
+}
+@utility duracion-media {
+  transition-duration: 200ms;
+}
+@utility duracion-lenta {
+  transition-duration: 280ms;
+}
+
+/* Reducir movimiento (31-guia-de-movimiento.md): sin desplazamientos ni escalas;
+   quedan cambios de opacidad en "rapida". El spinner (M12) sigue girando. */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+  .animate-aparecer { animation-duration: 120ms; }
+  @keyframes modal { from { opacity: 0; } to { opacity: 1; } }
+  .animate-modal { animation-duration: 120ms; }
+  @keyframes fondo { from { opacity: 0; } to { opacity: 1; } }
+  .animate-fondo { animation-duration: 120ms; }
+  @keyframes mensaje { from { opacity: 0; } to { opacity: 1; } }
+  .animate-mensaje { animation-duration: 120ms; }
+  @keyframes paso-adelante { from { opacity: 0; } to { opacity: 1; } }
+  .animate-paso-adelante { animation-duration: 120ms; }
+  @keyframes paso-atras { from { opacity: 0; } to { opacity: 1; } }
+  .animate-paso-atras { animation-duration: 120ms; }
+  .transition-transform { transition-duration: 0ms; }
 }

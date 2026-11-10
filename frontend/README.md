@@ -153,6 +153,15 @@ genera `scripts/generar-tema.mjs` desde `tokens.json`.
 Los logos de Google y Microsoft (`src/marcas/`) están exentos: llevan sus colores de marca
 (014 §2.8).
 
+## Movimiento
+
+Las animaciones siguen `docs/modesec/fase-2-diseno-multimedial/31-guia-de-movimiento.md`
+(ADR-041): el movimiento explica, no decora. Las duraciones y curvas salen de `tokens.json`
+como los colores (`duracion-rapida`, `ease-entrada`, `animate-modal`…), y
+`npm run verificar:estilos` rechaza cualquier otra (`duration-300`, `animate-bounce`). Solo
+se anima lo que llega; lo que se cierra, se va al instante. Con "reducir movimiento" activado
+en el sistema operativo, quedan solo cambios de opacidad.
+
 ## Entrar con Google o Microsoft
 
 Funciona solo si el equipo registra la aplicación en Google Cloud y en Azure. Además de

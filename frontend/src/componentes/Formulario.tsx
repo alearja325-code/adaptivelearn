@@ -17,7 +17,7 @@ export function Campo({ icono: Icono, error = false, contrasena = false, classNa
   const [visible, setVisible] = useState(false);
   const borde = error ? 'border-error' : 'border-border focus-within:border-primary-ink';
   return (
-    <label className={`flex h-44 w-full items-center gap-8 rounded-12 borde-1 bg-surface-0 px-16 ${borde} ${className}`}>
+    <label className={`flex h-44 w-full items-center gap-8 rounded-12 borde-1 bg-surface-0 px-16 transition ${borde} ${className}`}>
       {Icono && <Icono size={16} strokeWidth={1.5} className="shrink-0 text-muted" aria-hidden />}
       <input
         {...resto}
@@ -68,7 +68,8 @@ export function Mensaje({
   if (!texto) return null;
   const alinear = alineacion === 'izquierda' ? 'text-left' : 'text-center';
   return (
-    <p role={tipo === 'error' ? 'alert' : 'status'} className={`w-full ${alinear} text-caption font-regular ${COLOR[tipo]}`}>
+    // M9: aparece bajando 4px, sin temblar (31-guia-de-movimiento.md, principio 5)
+    <p key={texto} role={tipo === 'error' ? 'alert' : 'status'} className={`w-full animate-mensaje ${alinear} text-caption font-regular ${COLOR[tipo]}`}>
       {texto}
     </p>
   );

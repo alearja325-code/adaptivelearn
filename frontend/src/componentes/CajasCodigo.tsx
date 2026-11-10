@@ -51,7 +51,7 @@ export function CajasCodigo({ valor, onCambio, error }: Props) {
           onChange={(e) => escribir(i, e.target.value)}
           onKeyDown={(e) => tecla(i, e)}
           onPaste={pegar}
-          className={`size-48 rounded-12 borde-1 bg-surface-0 text-center text-h4 font-bold text-primary-ink outline-none ${borde}`}
+          className={`size-48 rounded-12 borde-1 bg-surface-0 text-center text-h4 font-bold text-primary-ink outline-none transition ${borde}`}
         />
       ))}
     </div>

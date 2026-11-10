@@ -308,14 +308,15 @@ distinta, porque la tarea es distinta.
 
 Hasta esta fecha el sistema solo definía **qué** cambia en cada ventana
 (sección 6 de cada spec), no **cómo**. La filosofía, los principios y los
-12 patrones están en `31-guia-de-movimiento.md`. Aquí, solo los valores
+13 patrones están en `31-guia-de-movimiento.md`. Aquí, solo los valores
 (los mismos de `tokens.json`, sección `movimiento`):
 
 - **Duraciones:** `rapida` 120 ms (color, borde, opacidad) · `media`
   200 ms (tamaño o lugar) · `lenta` 280 ms (un modal o una pantalla que
   entra) · `giro` 800 ms (una vuelta del spinner, lineal).
-- **Curvas:** `entrada` `cubic-bezier(0.2, 0, 0, 1)` · `salida`
-  `cubic-bezier(0.4, 0, 1, 1)` · `estandar` `cubic-bezier(0.4, 0, 0.2, 1)`.
+- **Curvas:** `entrada` `cubic-bezier(0.2, 0, 0, 1)` (lo que aparece) ·
+  `estandar` `cubic-bezier(0.4, 0, 0.2, 1)` (lo que cambia). No hay curva
+  de salida: lo que se va, se va al instante.
 - **Distancias:** `minima` `4px` · `corta` `8px` · `paso` `16px` (de la
   escala de espaciado; no son medidas nuevas).
 - **Escala del modal al abrir:** `0.98` → `1`. Es la única del sistema.
