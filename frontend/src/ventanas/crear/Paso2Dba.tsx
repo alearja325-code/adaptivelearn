@@ -17,6 +17,9 @@ import { Subencabezado } from './Subencabezado';
 // cuándo; así no sale una petición por cada letra).
 export const ESPERA_BUSQUEDA_MS = 300;
 
+// 06-spec §2.4: el ejemplo del PDF incluye una figura que esta versión no muestra
+export const AVISO_IMAGEN = 'Este ejemplo incluye una imagen que no se muestra en esta versión.';
+
 interface Props {
   area: Area;
   elegido: DbaResumen | null;
@@ -245,7 +248,7 @@ function CardDba({ dba, seleccionado, onElegir }: { dba: DbaResumen; seleccionad
             <ul className="flex flex-col gap-8">
               {(detalle?.evidencias ?? []).map((e) => (
                 <li key={e.numero} className="text-body font-regular text-primary-ink">
-                  {/* Encargo 04 §4.4: sin dictamen (null, censo QA-014) se muestra como "aplica" */}
+                  {/* Censo QA-014 (encargo 05); sin dictamen (null) se mostraría como "aplica" (encargo 04 §4.4) */}
                   {e.admiteFormatoCerrado === false ? (
                     <>
                       <span className="line-through">{e.enunciado}</span>
@@ -259,10 +262,17 @@ function CardDba({ dba, seleccionado, onElegir }: { dba: DbaResumen; seleccionad
             </ul>
             <Mensaje texto={error} />
           </InfoBlock>
-          {/* Encargo 04 §4.4: mientras el ejemplo sea null (QA-011), no se muestra */}
-          {detalle?.ejemplo && (
+          {/* §2.4: el texto del ejemplo (cada párrafo en su línea) y, si el del PDF trae una
+              figura, el aviso informativo. Decisión del encargo 05: con texto y figura se
+              muestran los dos; sin ejemplo en el PDF (null y sin figura), no hay infoblock */}
+          {(detalle?.ejemplo || detalle?.ejemploTieneImagen) && (
             <InfoBlock etiqueta="Ejemplo">
-              <p className="text-body font-regular text-primary-ink">{detalle.ejemplo}</p>
+              {detalle.ejemplo && (
+                <p className="whitespace-pre-line text-body font-regular text-primary-ink">{detalle.ejemplo}</p>
+              )}
+              {detalle.ejemploTieneImagen && (
+                <p className="text-body font-regular text-informativo">{AVISO_IMAGEN}</p>
+              )}
             </InfoBlock>
           )}
         </div>

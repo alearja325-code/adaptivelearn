@@ -119,8 +119,10 @@ FICHA = {
         "algunas páginas. El catálogo corregido (encargo 02, 2026-10-26; pendientes, A12) tiene "
         "343 DBA, cada uno en el grado del encabezado de su página y con código único. "
         "`codigo_dba` es llave única: el defecto se corrigió en los datos, no relajando el "
-        "modelo. `ejemplo` se usa como contexto al generar el banco (ADR-011) y "
-        "todavía falta en la normalización (QA-011).",
+        "modelo. `ejemplo` se usa como contexto al generar el banco (ADR-011); está en el "
+        "catálogo desde el encargo 05 (QA-011), y es nulo donde el PDF no trae ejemplo con "
+        "texto. `ejemplo_tiene_imagen` dice si el ejemplo del PDF incluye una figura que el "
+        "texto no trae: el Paso 2 lo avisa (`06-spec` §2.4), y antes no había dónde guardarlo.",
         "Glosario «DBA» · ADR-005, ADR-011, ADR-036 · RF-06-01"),
     "EVIDENCIA": (
         "Evidencia de aprendizaje de un DBA. **Débil**: sin su DBA no tiene identidad. Se "
@@ -135,7 +137,8 @@ FICHA = {
         "ítems lo determina la evidencia» (RF-03-01) y una pregunta propia «se crea con el formato "
         "de esa evidencia» (RF-03-07), y antes no había dónde guardarlo (RI-19). Débil y 1:1 con su "
         "evidencia: la identifica la evidencia misma, así que no necesita llave parcial. Sus "
-        "valores dependen del censo QA-014 (V-6, abierto).",
+        "valores los da el censo QA-014 (encargo 05): propuestos por IA con criterios escritos, "
+        "pendientes de validar por muestreo (ADR-042, V-6).",
         "H-6 · ADR-006 · RF-06-02 · RF-03-01 · RF-03-07"),
     "EXPERIENCIA_EVIDENCIA": (
         "Las evidencias que diagnostica *esta* experiencia (hallazgo H-4 del docente). Hace que Ítem "
@@ -588,13 +591,13 @@ VACIOS = """
 | V-3 | Estado de avance de la Inscripción | Resuelto por ADR-022: es `progreso`, calculado, sin columna |
 | V-4 | Marca de cálculo de Resultado | Resuelto por ADR-021 (`fecha_calculo`) |
 | V-5 | Qué es «señal fuerte»: la regla de parada | **Resuelto** por RF-04-07: certeza 3 a 5 es señal fuerte; mayoría desde la 4.ª respuesta; tope 6. Implementada y probada en `uml/regla.py` |
-| V-6 | Valores del dictamen de formato cerrado | **Abierto**: depende del censo QA-014 |
+| V-6 | Valores del dictamen de formato cerrado | **Propuesto**: el censo QA-014 (encargo 05) dictaminó las 1282 evidencias; queda validarlo por muestreo (ADR-042) |
 | V-7 | Vocabulario de `estado_revision` | **Cerrado**: el atributo sale (ADR-026) |
 | V-8 | Autenticación y credencial | **Resuelto**: entidad CREDENCIAL |
 | V-9 | Versionar el contenido del ítem | **Diferido**, y menos necesario: con ADR-026 el banco se congela al publicar y antes no hay respuestas |
 | V-10 | Una excepción de contraste (RNF-03) | No es del modelo de datos; sigue diferido en la interfaz |
 | V-11 | Qué pasa con los datos al eliminar o salir de una experiencia | **Resuelto** en el MR: borrado en cascada desde Experiencia e Inscripción (sección 7), probado contra MySQL |
-| V-12 | Un DBA sin ninguna evidencia que admita formato cerrado | **Nuevo, abierto**: el MER ya impide crear su experiencia (*incluye* es (1,N)), pero qué muestra la pantalla no está especificado. Depende de QA-014 |
+| V-12 | Un DBA sin ninguna evidencia que admita formato cerrado | **Abierto**: el MER ya impide crear su experiencia (*incluye* es (1,N)), pero qué muestra la pantalla no está especificado. El censo QA-014 dice que son 16 DBA (`data/curriculo-men/censo/informe-censo.md` §5) |
 
 Fuera de este modelo, como en el borrador: Unidad, Práctica y Verificación (ADR-007); la
 hipótesis de error como dato reportado (ADR-008); Bloom como campo activo; umbrales del

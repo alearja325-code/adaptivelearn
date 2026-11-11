@@ -2,7 +2,8 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn, type Relation } fr
 import { Evidencia } from './evidencia.entity.js';
 
 // Tabla `evidencia_dictamen`: el único juicio nuestro sobre el material del
-// MEN (RF-06-02). Vacía hasta que termine el censo QA-014 (V-6).
+// MEN (RF-06-02). La llena el censo QA-014 (encargo 05), propuesto por IA y
+// pendiente de validar por muestreo (ADR-042).
 @Entity('evidencia_dictamen')
 export class EvidenciaDictamen {
   @PrimaryColumn({ name: 'codigo_dba', type: 'varchar', length: 9 })

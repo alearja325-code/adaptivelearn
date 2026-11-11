@@ -23,6 +23,14 @@ Comprueba:
   6. (además) Todo DBA del PDF está en el catálogo, y nada más: los números
      grandes de cada página son exactamente los DBA que el catálogo pone ahí.
   7. (además) El documento y la versión de cada área son los de ADR-033.
+  8. (encargo 05) El EJEMPLO de cada DBA aparece LITERALMENTE en sus páginas.
+     Un ejemplo salta las figuras (una tabla, un rótulo) y puede seguir en la
+     otra columna o la otra página: por eso cada párrafo se busca por trozos,
+     y cada trozo tiene que ser uno o más renglones completos de la página
+     (empezar al principio de un renglón y terminar al final de uno). Así una
+     palabra cambiada, agregada o quitada parte un renglón y se detecta.
+     Además: `ejemplo_tiene_imagen` es verdadero o falso, un ejemplo con
+     texto dice sus páginas, y un DBA sin texto de ejemplo no dice ninguna.
 
 Lo que no pasa pero está explicado como dudoso en el registro (campo
 `dudoso`) se informa como observación, no como falla.
@@ -138,6 +146,49 @@ def partido(buscado, lecturas_a, lecturas_b):
     return False
 
 
+# Las viñetas de Wingdings, como las lee poppler: «q», «l», «m» o «u» al
+# comienzo del renglón, seguida de un espacio o pegada a la mayúscula que
+# empieza el texto («qPropone»). El catálogo no copia la viñeta.
+VINETAS = "qlmu"
+
+
+def renglones_sin_vineta(texto):
+    """Como renglones(), y además cada renglón que empieza con una viñeta
+    puede empezar también después de ella."""
+    juntos, cortes = "", {0}
+    for ln in texto.split("\n"):
+        if re.match(rf"[{VINETAS}](\s|[A-ZÁÉÍÓÚÑ¿¡])", ln):
+            cortes.add(len(juntos) + 1)
+        juntos += sin_espacios(ln)
+        cortes.add(len(juntos))
+    return juntos, cortes
+
+
+def en_renglones(parrafo, lecturas):
+    """¿Se puede partir el párrafo en trozos, en orden, cada uno formado por
+    renglones completos de alguna de las lecturas de sus páginas?"""
+    s = sin_espacios(parrafo)
+    textos = [renglones_sin_vineta(t) for t in lecturas]
+    i = 0
+    while i < len(s):
+        mejor = 0
+        for junto, cortes in textos:
+            for inicio in sorted(cortes):
+                # el trozo más largo que, desde el comienzo de este renglón,
+                # coincide con lo que falta y termina en un fin de renglón
+                largo = 0
+                while (i + largo < len(s) and inicio + largo < len(junto)
+                       and junto[inicio + largo] == s[i + largo]):
+                    largo += 1
+                while largo > 0 and inicio + largo not in cortes:
+                    largo -= 1
+                mejor = max(mejor, largo)
+        if mejor == 0:
+            return False
+        i += mejor
+    return True
+
+
 def correcciones_de(cod):
     return [c for c in CORRECCIONES if c[0] == cod]
 
@@ -147,6 +198,7 @@ def como_en_el_pdf(registro, campo, texto):
     texto tal como lo trae el PDF."""
     for cod, c_campo, mal, bien, *_ in correcciones_de(registro["codigo_dba"]):
         if c_campo == campo:
+            assert texto.count(bien) == 1, (cod, campo, bien)   # si no, no se sabe cuál deshacer
             texto = texto.replace(bien, mal)
     return texto
 
@@ -216,7 +268,8 @@ def verificar(catalogo):
             if not en_dos and not any(espacios(buscado) in espacios(t) for t in lecturas):
                 notas.append(f"{r['codigo_dba']} {campo}: mismas letras, distinto espaciado que poppler")
         for cod, campo, mal, bien, pagina, razon in correcciones_de(r["codigo_dba"]):
-            texto = r["enunciado"] if campo == "enunciado" else r["evidencias"][int(campo.split()[1]) - 1]
+            texto = (r[campo] if campo in ("enunciado", "ejemplo")
+                     else r["evidencias"][int(campo.split()[1]) - 1])
             chk(bien in texto and mal not in texto,
                 f"{cod} {campo}: corrección declarada aplicada («{mal}» → «{bien}»)")
             chk(any(sin_espacios(mal) in sin_espacios(t) for t in texto_pagina(archivo, pagina)),
@@ -276,6 +329,21 @@ def verificar(catalogo):
         chk((r["documento"]["archivo"], r["documento"]["version"]) == DOCUMENTOS[r["codigo_area"]],
             f"{r['codigo_dba']}: documento y versión de ADR-033")
 
+    # ------------------------------------------------------------------ 8
+    for r in dba:
+        cod = r["codigo_dba"]
+        chk(isinstance(r.get("ejemplo_tiene_imagen"), bool), f"{cod}: ejemplo_tiene_imagen es verdadero o falso")
+        chk(bool(r.get("ejemplo")) == bool(r.get("ejemplo_paginas")),
+            f"{cod}: el ejemplo dice sus páginas si y solo si tiene texto")
+        if not r.get("ejemplo"):
+            continue
+        archivo = r["documento"]["archivo"]
+        lecturas = [t for p in r["ejemplo_paginas"] for t in texto_pagina(archivo, p)]
+        texto = como_en_el_pdf(r, "ejemplo", r["ejemplo"])
+        malos = [p for p in texto.split("\n") if not en_renglones(p, lecturas)]
+        chk(not malos, f"{cod} ejemplo: aparece literal en las páginas {r['ejemplo_paginas']}"
+            + (f" (no aparece: «{malos[0][:60]}…»)" if malos else ""), r, "ejemplo:")
+
     return hechas, fallas, observaciones, notas
 
 
@@ -332,6 +400,18 @@ def errores_a_proposito(catalogo):
                 r["documento"]["version"] = "V.2"   # el error que corrigió ADR-033
     caso("Ciencias Sociales con la versión del nombre del archivo (V.2)", version,
          "documento y versión de ADR-033")
+
+    def ejemplo(lista):
+        r = por_codigo(lista, "MAT-03-01")
+        r["ejemplo"] = r["ejemplo"].replace("baloncesto", "fútbol", 1)
+    caso("una palabra cambiada en un ejemplo (MAT-03-01: «baloncesto» → «fútbol»)",
+         ejemplo, "MAT-03-01 ejemplo: aparece literal")
+
+    def ajeno(lista):
+        a, b = por_codigo(lista, "LEN-02-02"), por_codigo(lista, "LEN-01-02")
+        a["ejemplo"] = b["ejemplo"]
+    caso("el ejemplo de otro DBA (el de LEN-01-02, página 8, puesto en LEN-02-02)", ajeno,
+         "LEN-02-02 ejemplo: aparece literal")
     return casos
 
 
@@ -364,6 +444,7 @@ def main():
     casos = errores_a_proposito(catalogo)
     for nombre, copia, se_espera in casos:
         _, f, _, _ = verificar(copia)
+        f = [x for x in f if x not in fallas]       # solo las fallas que trajo el error
         ok = any(se_espera in x for x in f)
         atrapados += ok
         print(f"   {'ATRAPADO ' if ok else 'NO ATRAPADO'} {nombre}")

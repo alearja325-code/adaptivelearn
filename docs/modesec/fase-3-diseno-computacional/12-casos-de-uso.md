@@ -844,7 +844,7 @@ si quedó bien hecho.
 
 > Cargar el catálogo y el dictamen no es un caso de uso: no tiene pantalla (`10`, §2.3). Lo hace el equipo con los datos del MEN y el censo QA-014.
 
-> Vacío nuevo, V-12: un DBA en el que **ninguna** evidencia admitiera formato cerrado no podría generar banco. Qué muestra la pantalla en ese caso no está especificado; depende del censo QA-014.
+> Vacío V-12: un DBA en el que **ninguna** evidencia admite formato cerrado no puede generar banco. El censo QA-014 dice que son 16; qué muestra la pantalla en ese caso no está especificado.
 
 ## 6. Trazabilidad: requerimiento → casos de uso
 
@@ -909,7 +909,7 @@ rellenó en silencio: queda aquí, para que el equipo lo confirme o lo cambie.
 |---|---|---|
 | CU-06, alterno 3a | Una credencial sin rol (registro sin terminar) que inicia sesión retoma el registro en completar perfil. | Decisión, **confirmada** (ADR-035) |
 | CU-16, alterno 4a | Un ítem generado que no pasa la validación se trata como falla de ese servicio: se pasa al de respaldo. Mantiene el «todo o nada» de ADR-027. | Decisión, **confirmada** (ADR-035) |
-| CU-31, nota | Qué muestra la pantalla si **ninguna** evidencia de un DBA admite formato cerrado. Depende del censo QA-014. | Vacío nuevo: **V-12** |
+| CU-31, nota | Qué muestra la pantalla si **ninguna** evidencia de un DBA admite formato cerrado. Según el censo QA-014, son 16 DBA. | Vacío: **V-12** |
 | CU-15 y CU-26 | Qué pasa con los datos al eliminar o salir de una experiencia: se borran en cascada. | **Cierra V-11** (en el modelo relacional) |
 
 ## 8. Verificación

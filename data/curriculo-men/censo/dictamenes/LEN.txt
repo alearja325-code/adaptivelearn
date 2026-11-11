@@ -1,0 +1,363 @@
+# Censo de formato cerrado — Lenguaje (V.2)
+# Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
+# DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
+#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+# Lo escribió la sesión de Claude del encargo 05, evidencia por evidencia (ADR-042).
+# Escuchar: las evidencias sobre lo que el estudiante escucha (un discurso,
+# una voz, sonidos) se dictaminan N2, porque la pregunta del sistema es escrita:
+# leer un texto cambia lo que la evidencia pide. Ver el informe.
+
+# ---- 1°
+LEN-01-01 1 | SC | establece semejanzas y diferencias | «Establece semejanzas y diferencias entre los principales medios de comunicación»: elegir la diferencia correcta entre dos medios (single_choice).
+LEN-01-01 2 | SC | comprende | «Comprende los mensajes emitidos por diferentes medios de comunicación»: preguntas de comprensión sobre un mensaje dado (single_choice).
+LEN-01-01 3 | MT | distingue | «Distingue los medios de comunicación para reconocer los posibles usos»: empareja cada medio con su uso (matching).
+LEN-01-01 4 | SC | describe | «Describe los diferentes tipos de voz que se usan en los programas radiales y televisivos»: elegir cómo es la voz de quien narra un partido o da una noticia (single_choice). | dudoso: reconocer un tipo de voz sin oírla cambia la evidencia; con solo texto el ítem mide lo que el estudiante sabe de esos programas
+LEN-01-02 1 | SC | identifica | «Identifica las intenciones de los gestos y los movimientos corporales»: dado un gesto (descrito o en imagen), su intención es una (single_choice).
+LEN-01-02 2 | SC | interpreta | «Interpreta ilustraciones e imágenes en relación a sus colores, formas y tamaños»: preguntas sobre una imagen dada (single_choice); el ítem necesita la imagen.
+LEN-01-02 3 | N1 | representa … mediante imágenes | «Representa objetos, personas y lugares mediante imágenes»: dibujo propio (N1).
+LEN-01-02 4 | N2 | cualidades sonoras | «Reconoce el sentido de algunas cualidades sonoras como la entonación, las pausas y los silencios»: hay que oírlas; en una pregunta escrita no están (N2, escuchar).
+LEN-01-03 1 | N5 | escucha o lee | «Escucha o lee adivinanzas, anagramas, retahílas…»: describe una práctica habitual, no un conocimiento que se pueda preguntar (N5). | dudoso: también podría leerse como comprensión de esos textos, que sí aplica
+LEN-01-03 2 | SC | comprende | «Comprende el sentido de los textos de la tradición oral como canciones y cuentos»: con el texto escrito, el sentido tiene respuesta (single_choice).
+LEN-01-03 3 | SC | entiende | «Entiende que hay diferencias en la forma en que se escriben … acrósticos y adivinanzas»: reconocer cuál es un acróstico tiene respuesta (single_choice).
+LEN-01-03 4 | N2 | interactúa | «Interactúa con sus compañeros en dinámicas grupales que incluyen: declamación, canto»: interacción en vivo (N2).
+LEN-01-04 1 | N2 | comparte sus impresiones | «Comparte sus impresiones sobre los textos literarios»: comunicar a otros (N2); además las impresiones son propias (N3).
+LEN-01-04 2 | SC | emplea las imágenes | «Emplea las imágenes o ilustraciones de los textos literarios para comprenderlos»: preguntas sobre un texto con su ilustración (single_choice); el ítem necesita la imagen.
+LEN-01-04 3 | N1 | expresa … a través de dibujos | «Expresa sus opiniones e impresiones a través de dibujos, caricaturas, canciones»: es el caso que ADR-006 da como producción creativa (N1).
+LEN-01-04 4 | SC | identifica | «Identifica la repetición de algunos sonidos al final de los versos … y los vincula con su escritura»: elegir las palabras que riman en un verso escrito (single_choice).
+LEN-01-05 1 | SC | extrae información | «Extrae información del contexto comunicativo que le permite identificar quién lo produce y en dónde»: dada una situación, quién habla y dónde tiene respuesta (single_choice).
+LEN-01-05 2 | N2 | textos que escucha | «Comprende las temáticas tratadas en diferentes textos que escucha»: comprensión oral; en una pregunta escrita sería lectura (N2, escuchar).
+LEN-01-05 3 | N2 | discursos que escucha | «Segmenta los discursos que escucha en unidades significativas como las palabras»: segmentar lo oído (N2, escuchar).
+LEN-01-05 4 | N2 | palabras … que escucha | «Identifica los sonidos presentes en las palabras, oraciones y discursos que escucha»: conciencia de lo que se oye (N2, escuchar).
+LEN-01-06 1 | SC | comprende | «Comprende el propósito de los textos que lee, apoyándose en sus títulos, imágenes»: respuesta correcta (single_choice).
+LEN-01-06 2 | SC | explica | «Explica las semejanzas y diferencias … entre lo que dice un texto y lo que muestran las imágenes»: elegir la diferencia correcta (single_choice); el ítem necesita la imagen.
+LEN-01-06 3 | SC | lee | «Lee palabras sencillas»: leer una palabra y elegir su significado o su dibujo (single_choice).
+LEN-01-06 4 | SC | identifica | «Identifica la letra o grupo de letras que corresponden con un sonido»: respuesta única (single_choice).
+LEN-01-07 1 | N2 | en sus conversaciones | «Emplea palabras adecuadas según la situación comunicativa en sus conversaciones y diálogos»: conversación en vivo (N2).
+LEN-01-07 2 | N2 | textos orales que produce | «Expresa sus ideas con claridad … en los textos orales que produce»: hablar (N2).
+LEN-01-07 3 | N2 | pronunciación | «Practica las palabras que representan dificultades en su pronunciación y se autocorrige»: hablar (N2).
+LEN-01-07 4 | N2 | adecúa el volumen de la voz | «Adecúa el volumen de la voz teniendo en cuenta a su interlocutor»: hablar (N2).
+LEN-01-08 1 | N1 | construye textos | «Construye textos cortos para relatar, comunicar ideas»: texto propio (N1).
+LEN-01-08 2 | N1 | expresa sus ideas | «Expresa sus ideas en torno a una sola temática a partir del vocabulario que conoce»: escribir sus ideas (N1).
+LEN-01-08 3 | N1 | elabora listas | «Elabora listas de palabras parecidas y reconoce las diferencias»: la acción principal es producir la lista (N1).
+LEN-01-08 4 | N1 | escribe | «Escribe palabras sencillas»: escribir (N1).
+LEN-01-08 5 | MT | relaciona | «Relaciona los sonidos de la lengua con sus diferentes grafemas»: empareja sonidos con letras (matching).
+
+# ---- 2°
+LEN-02-01 1 | N3 | manifestar sus puntos de vista | «Utiliza los medios de comunicación masiva para informarse y manifestar sus puntos de vista»: hábito de uso y opinión propia; no hay una respuesta correcta (N3).
+LEN-02-01 2 | SC | identifica | «Identifica las diferencias y semejanzas entre los contenidos … de los diversos medios»: respuesta correcta (single_choice).
+LEN-02-01 3 | SC | contrasta | «Contrasta las características de diferentes medios … a partir de la manera como presentan la información»: elegir la diferencia correcta (single_choice).
+LEN-02-01 4 | N1 | expresa con claridad | «Expresa con claridad contenidos propios de los medios de comunicación masiva»: producir la expresión (N1).
+LEN-02-02 1 | SC | utiliza las señales | «Utiliza las señales que circulan en su entorno para informar, prevenir, prohibir»: elegir la señal que corresponde a una intención (single_choice). | dudoso: la evidencia pide usar señales para comunicar; el ítem solo ve si elige la adecuada
+LEN-02-02 2 | MT | asocia | «Asocia los dibujos de las señales y símbolos con sus posibles significados»: dos conjuntos (matching).
+LEN-02-02 3 | SC | identifica | «Identifica la función de las imágenes en textos como: manuales de instrucción, carteles»: respuesta correcta (single_choice).
+LEN-02-03 1 | SC | establece semejanzas y diferencias | «Establece semejanzas y diferencias entre los textos literarios que lee»: respuesta correcta (single_choice).
+LEN-02-03 2 | MT | relaciona | «Relaciona los personajes, tiempos, espacios y acciones»: empareja personajes con acciones o lugares de la historia (matching).
+LEN-02-03 3 | SC | reconoce | «Reconoce las principales partes de un texto literario»: respuesta correcta (single_choice).
+LEN-02-04 1 | N1 | reconstruye … y atribuye nuevos perfiles | «Reconstruye las acciones y los espacios … y atribuye nuevos perfiles a los personajes»: recontar y recrear (N1).
+LEN-02-04 2 | N1 | elabora hipótesis | «Elabora hipótesis predictivas del contenido de textos literarios»: la hipótesis propia, antes de leer, no tiene una única respuesta (N1).
+LEN-02-04 3 | OR | orden lógico de los eventos | «Reconoce el orden lógico de los eventos en una narración»: orden explícito (ordering).
+LEN-02-04 4 | N2 | lee en voz alta | «Lee en voz alta textos literarios»: hablar (N2).
+LEN-02-05 1 | SC | reconoce | «Reconoce el propósito comunicativo de su interlocutor de acuerdo con las palabras que emplea»: con las palabras escritas, el propósito tiene respuesta (single_choice).
+LEN-02-05 2 | SC | comprende | «Comprende el contenido global de un mensaje»: respuesta correcta (single_choice).
+LEN-02-05 3 | SC | comprende | «Comprende que el cambio de un sonido vocálico o consonántico … modifica su significado»: casa/cosa se pueden escribir (single_choice).
+LEN-02-05 4 | N2 | sonidos articulados … sonidos ambientales | «Distingue los sonidos articulados de la lengua de los sonidos ambientales»: hay que oírlos (N2, escuchar).
+LEN-02-06 1 | N3 | sus conocimientos previos | «Relaciona la información que proporciona el texto con sus conocimientos previos»: lo que cada estudiante ya sabe es personal; no hay una única respuesta (N3). | dudoso: no es una postura; el problema es que la respuesta depende del estudiante
+LEN-02-06 2 | N2 | lee con fluidez | «Lee con suficiente fluidez para comprender un escrito»: la fluidez se observa leyendo en voz alta (N2). | dudoso: la comprensión que nombra sí aplicaría, pero es la evidencia siguiente
+LEN-02-06 3 | SC | comprende y responde preguntas | «Comprende el tema global … y responde preguntas sobre lo que … aparece y no aparece escrito»: respuesta correcta (single_choice).
+LEN-02-06 4 | OR | ordena | «Ordena las secuencias presentadas en el texto»: orden explícito (ordering).
+LEN-02-06 5 | SC | identifica | «Identifica las sílabas que componen una palabra y da cuenta del lugar donde se ubica el acento»: respuesta única (single_choice).
+LEN-02-07 1 | N2 | participa | «Participa dentro los espacios de conversación»: conversar (N2).
+LEN-02-07 2 | N2 | respeta los turnos | «Respeta los turnos de uso de la palabra»: comportamiento en la conversación (N2; también N5).
+LEN-02-07 3 | N2 | en los diálogos | «Selecciona palabras que tienen sentido … con las ideas que quiere expresar en los diálogos»: hablar en vivo (N2).
+LEN-02-07 4 | N2 | pronunciación | «Incluye en su discurso palabras … con una pronunciación que permite a otros comprenderlas»: hablar (N2).
+LEN-02-07 5 | N2 | ritmos de voz | «Emplea distintos ritmos de voz»: hablar (N2).
+LEN-02-08 1 | SC | selecciona el tipo de texto | «Selecciona el tipo de texto que quiere escribir de acuerdo con lo que pretende comunicar»: dado un propósito, un tipo de texto es el adecuado (single_choice).
+LEN-02-08 2 | SC | elige palabras adecuadas | «Elige palabras adecuadas a una temática y a la redacción de … invitaciones, cartas»: respuesta correcta (single_choice).
+LEN-02-08 3 | N1 | escribe | «Escribe oraciones»: escribir (N1).
+LEN-02-08 4 | MT | organiza grupos de palabras | «Organiza grupos de palabras atendiendo a diversos criterios de carácter sonoro»: clasificar palabras por su sonido en grupos dados (matching).
+LEN-02-08 5 | N1 | escribe | «Escribe las letras ‘b’, ‘v’, ‘m’ … según las reglas ortográficas»: escribir; elegir la palabra bien escrita mide reconocer la ortografía, no escribirla (N1). | dudoso: la ortografía se suele evaluar eligiendo la escritura correcta; los criterios dirían que eso es reconocer
+LEN-02-08 6 | SC | realiza descomposición silábica | «Realiza descomposición silábica de palabras mediante los golpes de voz»: la división en sílabas es única (single_choice); los golpes de voz no quedan cubiertos.
+
+# ---- 3°
+LEN-03-01 1 | SC | reconoce | «Reconoce los usos de los medios de comunicación»: respuesta correcta (single_choice).
+LEN-03-01 2 | SC | compara | «Compara la información proveniente de diferentes medios»: respuesta correcta (single_choice).
+LEN-03-01 3 | SC | diferencia | «Diferencia los formatos en los que se presentan los medios»: elegir el formato de un medio (single_choice; ante la duda con matching).
+LEN-03-02 1 | SC | identifica | «Identifica diversas manifestaciones artísticas … y relaciona su contenido con el contexto en el que vive»: identificar la manifestación tiene respuesta (single_choice); relacionarla con su propio contexto no queda cubierto.
+LEN-03-02 2 | SC | interpreta | «Interpreta la información difundida en textos no verbales: caricaturas, tiras cómicas»: preguntas sobre una caricatura dada (single_choice); el ítem necesita la imagen.
+LEN-03-02 3 | SC | comprende | «Comprende que algunos escritos están compuestos por texto y gráficos»: respuesta correcta (single_choice).
+LEN-03-02 4 | N2 | analiza los sonidos | «Analiza los sonidos que se emplean en diferentes manifestaciones artísticas»: hay que oírlos (N2, escuchar). | dudoso: oír una obra no es conversar; podría leerse como N4 (percibir el entorno)
+LEN-03-03 1 | MT | diferencia entre | «Diferencia entre textos ficcionales y no ficcionales»: clasificar en dos grupos (matching).
+LEN-03-03 2 | SC | verifica las hipótesis | «Verifica las hipótesis que plantea acerca del contenido de los textos que lee»: decidir si una hipótesis dada se cumple en el texto tiene respuesta (single_choice). | dudoso: las hipótesis son las del propio estudiante; el ítem tendría que darlas
+LEN-03-03 3 | N1 | creación de textos | «Afianza su capacidad de contar historias mediante la creación de textos literarios»: texto propio (N1).
+LEN-03-03 4 | SC | identifica | «Identifica la voz que narra una historia»: respuesta correcta (single_choice).
+LEN-03-03 5 | N2 | comparte … entonación, gesticulación | «Comparte con sus compañeros los textos … retoma … la entonación, la gesticulación y el manejo escénico»: presentar en vivo (N2).
+LEN-03-04 1 | SC | comprende | «Comprende las características de un texto, cuyo propósito es narrar un hecho o expresar ideas»: respuesta correcta (single_choice).
+LEN-03-04 2 | MT | relación de correspondencia | «Establece … una relación de correspondencia entre los personajes, las acciones … y los contextos»: empareja personajes con acciones (matching).
+LEN-03-04 3 | N1 | crea personajes | «Crea personajes para sus historias»: producto propio (N1).
+LEN-03-04 4 | N1 | construye planes textuales | «Construye planes textuales»: producto propio (N1).
+LEN-03-04 5 | N2 | lee en voz alta | «Lee en voz alta los textos que escribe»: hablar (N2).
+LEN-03-05 1 | MT | asocia | «Asocia la intención comunicativa con el contexto … y el rol que desempeñan los interlocutores»: dos conjuntos (matching).
+LEN-03-05 2 | SC | infiere | «Infiere el significado de palabras desconocidas, según el contexto»: respuesta correcta (single_choice).
+LEN-03-05 3 | N2 | texto oral | «Organiza secuencialmente las ideas que comprende de un texto oral»: comprensión de lo oído (N2, escuchar).
+LEN-03-05 4 | N2 | características de su voz | «Deduce información de un emisor … a partir de las características de su voz»: hay que oír la voz (N2, escuchar).
+LEN-03-06 1 | SC | ubica | «Ubica el contenido de un texto en relación con la situación comunicativa»: respuesta correcta (single_choice).
+LEN-03-06 2 | SC | utiliza el contexto para inferir | «Utiliza el contexto para inferir información»: respuesta correcta (single_choice).
+LEN-03-06 3 | MT | discrimina … de | «Discrimina los temas principales de un texto de los menos relevantes»: clasificar temas en principales y secundarios (matching).
+LEN-03-06 4 | SC | reconoce | «Reconoce las diferencias en las estructuras de diferentes tipos de escrito»: respuesta correcta (single_choice).
+LEN-03-07 1 | N2 | participa en comunicaciones orales | «Participa en comunicaciones orales»: como en la prueba de los criterios (§2, §7), N2.
+LEN-03-07 2 | N2 | sus intervenciones | «Elige las expresiones más pertinentes para dar claridad a sus intervenciones»: sus intervenciones orales (N2).
+LEN-03-07 3 | SC | reconoce | «Reconoce los roles de quien produce y de quien interpreta un texto»: respuesta correcta (single_choice).
+LEN-03-07 4 | N2 | modulación de la voz | «Realiza cambios en la modulación de la voz … Elabora juegos de palabras»: hablar (N2); los juegos de palabras son producción (N1).
+LEN-03-08 1 | N1 | escribe | «Escribe diversos tipos de texto … para expresar sus opiniones»: texto propio (N1).
+LEN-03-08 2 | SC | selecciona las palabras | «Selecciona las palabras o expresiones más indicadas … teniendo en cuenta a quién van dirigidos»: dado el destinatario, una expresión es la indicada (single_choice).
+LEN-03-08 3 | N1 | diseña un plan | «Diseña un plan para comunicarse con otros»: producto propio (N1).
+LEN-03-08 4 | SC | segmenta palabras escritas | «Segmenta palabras escritas que contienen hiatos, diptongos y triptongos»: división única (single_choice).
+LEN-03-08 5 | SC | reconoce | «Reconoce que algunos sonidos se corresponden con diferentes grafemas (C, S, Z o K, Q)»: respuesta correcta (single_choice); tenerlo en cuenta al escribir no queda cubierto.
+
+# ---- 4°
+LEN-04-01 1 | SC | compara | «Compara la información presentada por diversos medios … sobre una misma noticia»: respuesta correcta (single_choice).
+LEN-04-01 2 | SC | reconoce | «Reconoce las relaciones de contenido de diferentes textos informativos en torno a qué ocurrió, a quiénes»: respuesta correcta (single_choice).
+LEN-04-01 3 | SC | identifica | «Identifica las diferentes estructuras … de los medios de comunicación masiva»: respuesta correcta (single_choice).
+LEN-04-01 4 | N2 | dialoga | «Dialoga sobre el contenido de los textos informativos»: conversar (N2).
+LEN-04-02 1 | N1 | emplea … en los textos que escribe | «Emplea elementos no verbales en los textos que escribe»: producción propia (N1).
+LEN-04-02 2 | SC | comprende | «Comprende el sentido de las manifestaciones no verbales presentes en canciones, afiches y conversaciones»: preguntas sobre un afiche dado (single_choice); el ítem necesita la imagen.
+LEN-04-02 3 | N1 | complementa sus escritos | «Complementa sus escritos por medio de secuencias de imágenes o dibujos»: producción propia (N1).
+LEN-04-03 1 | SC | identifica | «Identifica el contexto en que se crea una obra literaria»: respuesta correcta (single_choice); relacionarlo con lo que él sabe no queda cubierto.
+LEN-04-03 2 | SC | reconoce | «Reconoce los temas que aborda un texto literario»: respuesta correcta (single_choice).
+LEN-04-03 3 | N1 | emplea figuras literarias en la producción | «Emplea figuras literarias en la producción de textos literarios»: producción propia (N1).
+LEN-04-03 4 | N1 | produce | «Produce textos literarios»: producción propia (N1).
+LEN-04-03 5 | N2 | participa | «Participa en espacios discursivos orales»: hablar en vivo (N2).
+LEN-04-04 1 | N1 | creación de textos poéticos | «Observa la realidad como punto de partida para la creación de textos poéticos»: crear (N1); además observar el entorno (N4).
+LEN-04-04 2 | SC | reconstruye el sentido | «Reconstruye el sentido de los poemas a partir de la identificación de sus figuras literarias»: interpretar un poema dado tiene respuesta (single_choice).
+LEN-04-04 3 | N1 | escribe | «Escribe poemas»: producción propia (N1).
+LEN-04-04 4 | N2 | declama | «Declama poemas»: hablar (N2).
+LEN-04-05 1 | N2 | espacios de discusión | «Comprende los temas tratados en espacios de discusión y los incorpora en su discurso»: discusión en vivo (N2).
+LEN-04-05 2 | N2 | intercambios en discursos orales | «Establece intercambios en discursos orales»: conversar (N2).
+LEN-04-05 3 | SC | identifica | «Identifica las palabras que ordenan un discurso y enmarcan la introducción, el desarrollo y el cierre»: con el discurso escrito, los conectores tienen respuesta (single_choice).
+LEN-04-05 4 | N2 | ritmo, pausas y velocidad | «Nota el tono y el estado de ánimo del emisor a partir del ritmo, las pausas y la velocidad»: hay que oírlo (N2, escuchar).
+LEN-04-06 1 | SC | comprende | «Comprende la intención comunicativa de diferentes tipos de texto»: respuesta correcta (single_choice).
+LEN-04-06 2 | SC | infiere | «Infiere las temáticas que desarrolla un texto»: respuesta correcta (single_choice).
+LEN-04-06 3 | SC | identifica | «Identifica la estructura de los textos que lee»: respuesta correcta (single_choice).
+LEN-04-07 1 | N2 | participa | «Participa en espacios de discusión grupal, como: conversatorios, exposiciones»: hablar en vivo (N2).
+LEN-04-07 2 | N2 | discusiones | «Comprende el sentido de las discusiones para manifestar sus puntos de vista»: discusión en vivo (N2); además postura propia (N3).
+LEN-04-07 3 | N2 | conduce los temas de los discursos | «Conduce los temas de los discursos»: hablar en vivo (N2).
+LEN-04-07 4 | N2 | gestos y entonación | «Utiliza expresiones, gestos y una entonación coherentes»: hablar (N2).
+LEN-04-08 1 | SC | define la tipología | «Define la tipología textual que empleará … a partir del análisis del propósito comunicativo»: dado un propósito, una tipología es la adecuada (single_choice).
+LEN-04-08 2 | N4 | consulta fuentes | «Consulta diversos tipos de fuentes antes de redactar un texto»: una acción en el mundo, no un conocimiento (N4). | dudoso: también podría leerse como un hábito (N5)
+LEN-04-08 3 | N1 | construye un plan | «Construye un plan de escritura»: producto propio (N1).
+LEN-04-08 4 | N1 | sus producciones escritas | «Complementa el sentido de sus producciones escritas, mediante el uso … de la exclamación y la interrogación»: usar la puntuación al escribir (N1). | dudoso: la puntuación se suele evaluar eligiendo la oración bien puntuada; los criterios dirían que eso es reconocer
+LEN-04-08 5 | N1 | marca la tilde | «Marca la tilde en las palabras agudas, graves y esdrújulas»: escribir con tilde; elegir la palabra bien tildada es reconocer (N1). | dudoso: la ortografía se suele evaluar eligiendo la escritura correcta; los criterios dirían que eso es reconocer
+
+# ---- 5°
+LEN-05-01 1 | SC | caracteriza | «Caracteriza los elementos constitutivos de la comunicación»: respuesta correcta (single_choice).
+LEN-05-01 2 | SC | reconoce | «Reconoce los roles desempeñados por los sujetos que participan en las emisiones de los medios»: respuesta correcta (single_choice).
+LEN-05-01 3 | N2 | dialoga | «Dialoga con sus compañeros sobre el sentido de los mensajes»: conversar (N2).
+LEN-05-01 4 | SC | selecciona | «Selecciona la información de acuerdo con el formato en que ha sido presentada»: respuesta correcta (single_choice).
+LEN-05-02 1 | SC | infiere | «Infiere el significado del lenguaje gestual y corporal de emoticones, gestos, fotografías»: dado un emoticón o un gesto, su significado tiene respuesta (single_choice); el ítem necesita la imagen.
+LEN-05-02 2 | SC | compara | «Compara manifestaciones artísticas de acuerdo con sus características»: respuesta correcta (single_choice).
+LEN-05-02 3 | SC | identifica | «Identifica la coherencia de las imágenes en los textos representados con ellas»: respuesta correcta (single_choice); el ítem necesita la imagen.
+LEN-05-03 1 | SC | establece diferencias | «Establece diferencias entre narrador y autor»: respuesta correcta (single_choice).
+LEN-05-03 2 | SC | reconoce | «Reconoce las temáticas de los textos literarios que lee para relacionarlas con su contexto»: reconocer la temática tiene respuesta (single_choice); relacionarla con su contexto no queda cubierto.
+LEN-05-03 3 | SC | identifica | «Identifica las características de los géneros literarios»: respuesta correcta (single_choice).
+LEN-05-04 1 | N1 | expresa en sus escritos | «Expresa en sus escritos y enunciaciones la experiencia literaria»: producción propia (N1).
+LEN-05-04 2 | SC | conoce | «Conoce diferentes culturas a partir de la lectura de textos literarios»: qué rasgo de una cultura muestra un texto dado tiene respuesta (single_choice).
+LEN-05-04 3 | SC | deduce | «Deduce las semejanzas y diferencias de los géneros literarios»: respuesta correcta (single_choice).
+LEN-05-05 1 | N5 | asume una postura crítica y respetuosa | «Asume una postura crítica y respetuosa frente a los mensajes»: es el ejemplo que los criterios dan para N5 (§2, de ADR-006). Por el orden de las reglas sería N3; se sigue el ejemplo escrito.
+LEN-05-05 2 | N2 | entonaciones | «Prevé los contenidos del mensaje de un emisor a partir de sus entonaciones»: hay que oírlo (N2, escuchar).
+LEN-05-05 3 | SC | comprende la diferencia | «Comprende la diferencia de diversos espacios de expresión oral, como la mesa redonda, el panel, el foro y el debate»: conocer su estructura tiene respuesta (single_choice).
+LEN-05-06 1 | SC | reconoce | «Reconoce la función social de los textos que lee»: respuesta correcta (single_choice).
+LEN-05-06 2 | SC | aplica estrategias de comprensión | «Aplica estrategias de comprensión … para dar cuenta de las relaciones entre diversos segmentos»: la relación entre dos partes de un texto dado tiene respuesta (single_choice).
+LEN-05-06 3 | N1 | organiza de forma jerárquica | «Organiza de forma jerárquica los contenidos de un texto»: producir la organización (un esquema) es un producto propio (N1).
+LEN-05-07 1 | N2 | momentos adecuados para intervenir | «Reconoce los momentos adecuados para intervenir y para dar la palabra a los interlocutores»: comportamiento en la conversación (N2).
+LEN-05-07 2 | N2 | intercambio oral | «Construye saberes con otros a través de espacios de intercambio oral»: conversar (N2).
+LEN-05-07 3 | OR | ordena … en secuencias lógicas | «Ordena la información en secuencias lógicas»: orden explícito (ordering).
+LEN-05-07 4 | N2 | articula … y lee de manera fluida | «Articula con claridad los sonidos del discurso y lee de manera fluida»: hablar (N2).
+LEN-05-08 1 | SC | establece relaciones de coherencia | «Establece relaciones de coherencia entre los conceptos a tratar, el tipo de texto … y la intención comunicativa»: elegir el tipo de texto coherente con una intención (single_choice).
+LEN-05-08 2 | N1 | elabora planes textuales | «Elabora planes textuales»: producto propio (N1).
+LEN-05-08 3 | N1 | emplea técnicas … esquemas y mapas mentales | «Emplea técnicas para la organización de ideas como esquemas y mapas mentales»: hacer el esquema (N1).
+
+# ---- 6°
+LEN-06-01 1 | SC | reconoce | «Reconoce una visión particular de mundo de las distintas interlocuciones … en los medios»: respuesta correcta (single_choice).
+LEN-06-01 2 | SC | interpreta | «Interpreta los mensajes que circulan en los medios»: respuesta correcta (single_choice).
+LEN-06-01 3 | SC | busca información específica | «Busca información específica en los contenidos emitidos por diversos medios»: localizar un dato en un contenido dado tiene respuesta (single_choice).
+LEN-06-01 4 | N1 | sus elaboraciones textuales | «Retoma los formatos empleados por algunos medios … como modelos para sus elaboraciones textuales»: producción propia (N1).
+LEN-06-02 1 | N1 | utiliza los organizadores gráficos | «Utiliza los organizadores gráficos para procesar la información»: como en la prueba de los criterios (§7), N1, dudoso. | dudoso: así quedó en la prueba de los criterios (§7): usar el organizador es producirlo, pero puede leerse como interpretarlo
+LEN-06-02 2 | N1 | expone … mediante organizadores gráficos | «Expone sus ideas … mediante organizadores gráficos»: producto propio (N1).
+LEN-06-02 3 | SC | interpreta | «Interpreta signos no verbales presentes en … mapas de ideas, cuadros sinópticos, infografías»: preguntas sobre un organizador dado (single_choice); el ítem necesita la imagen.
+LEN-06-02 4 | SC | reconoce | «Reconoce cómo se relacionan y estructuran los símbolos … en los organizadores gráficos»: respuesta correcta (single_choice).
+LEN-06-03 1 | SC | comprende | «Comprende que las obras literarias se enmarcan en contextos culturales e históricos»: respuesta correcta (single_choice).
+LEN-06-03 2 | SC | interpreta | «Interpreta los argumentos y temáticas … para crear nuevos textos»: interpretar tiene respuesta (single_choice); crear no queda cubierto.
+LEN-06-03 3 | SC | define elementos literarios | «Define elementos literarios tales como personajes, lugar, tiempo … al interior de una obra»: identificarlos en una obra dada tiene respuesta (single_choice).
+LEN-06-03 4 | SC | reconoce | «Reconoce que elementos como el ritmo y la rima se emplean para comunicar sentimientos»: respuesta correcta (single_choice).
+LEN-06-04 1 | SC | reconoce | «Reconoce que en las obras literarias se recrea la cultura propia de diferentes regiones»: respuesta correcta (single_choice).
+LEN-06-04 2 | SC | comprende | «Comprende el sentido que tienen algunas expresiones populares»: respuesta correcta (single_choice).
+LEN-06-04 3 | MT | clasifica | «Clasifica expresiones formales y populares de la lengua»: dos grupos (matching).
+LEN-06-04 4 | N2 | recita | «Recita textos literarios … con diferentes matices de voz»: hablar (N2).
+LEN-06-05 1 | SC | reconoce | «Reconoce el componente cultural en coplas, trovas y refranes»: respuesta correcta (single_choice).
+LEN-06-05 2 | MT | distingue | «Distingue los sentidos de expresiones literales y figuradas»: clasificar expresiones en literales y figuradas (matching).
+LEN-06-05 3 | SC | comprende | «Comprende los elementos líricos y las temáticas usadas en las expresiones artísticas de su entorno»: respuesta correcta (single_choice).
+LEN-06-05 4 | SC | identifica | «Identifica la estructura de los textos de la tradición oral y las semejanzas con otro tipo de composiciones»: respuesta correcta (single_choice).
+LEN-06-05 5 | N2 | pronunciación | «Identifica los elementos líricos que acompañan la pronunciación de expresiones populares»: hay que oír cómo se pronuncian (N2, escuchar).
+LEN-06-06 1 | SC | infiere | «Infiere la intención comunicativa de los textos»: respuesta correcta (single_choice).
+LEN-06-06 2 | SC | reconoce | «Reconoce que los textos son el resultado de un grupo de párrafos … con diferente jerarquía»: respuesta correcta (single_choice).
+LEN-06-06 3 | SC | interpreta | «Interpreta la función de elementos no verbales … como uso de negrita, corchetes, comillas»: respuesta correcta (single_choice).
+LEN-06-07 1 | SC | analiza el público | «Analiza el público a quien se dirige y las exigencias propias del contexto para producir textos orales»: dado un público descrito, qué es adecuado tiene respuesta (single_choice); producir el texto oral no queda cubierto.
+LEN-06-07 2 | SC | selecciona las ideas | «Selecciona las ideas que emplea en un discurso oral»: dado un tema y un propósito, qué idea es pertinente tiene respuesta (single_choice). | dudoso: son las ideas de su propio discurso; el ítem tendría que fijar el tema
+LEN-06-07 3 | N2 | ordena su discurso | «Ordena su discurso de manera lógica para facilitar la comprensión de sus interlocutores»: su discurso oral (N2).
+LEN-06-07 4 | N2 | cualidades de la voz | «Adecúa las cualidades de la voz (volumen, tono)»: hablar (N2).
+LEN-06-08 1 | SC | elige | «Elige, entre diversos tipos de texto, aquel que mejor se adecúa al propósito comunicativo»: respuesta correcta (single_choice).
+LEN-06-08 2 | N4 | consulta diversas fuentes | «Consulta diversas fuentes para nutrir sus textos»: una acción en el mundo (N4). | dudoso: también podría leerse como un hábito (N5)
+LEN-06-08 3 | N1 | al momento de escribir | «Tiene en cuenta las concordancias gramaticales … al momento de escribir textos»: escribir; elegir la oración concordada es reconocer (N1). | dudoso: la concordancia se suele evaluar eligiendo la oración correcta; los criterios dirían que eso es reconocer
+
+# ---- 7°
+LEN-07-01 1 | N3 | expresar su punto de vista | «Recoge información con el fin de expresar su punto de vista»: postura propia (N3).
+LEN-07-01 2 | SC | selecciona la información principal | «Selecciona la información principal … y la utiliza para apoyar sus producciones»: como en la prueba de los criterios (§4, §7), aplica; el diagnóstico cubre «selecciona», no «la utiliza» (single_choice).
+LEN-07-01 3 | SC | analiza la estructura | «Analiza la estructura de la información que circula por los medios y la emplea como soporte»: la estructura de un contenido dado tiene respuesta (single_choice); emplearla no queda cubierto.
+LEN-07-02 1 | SC | comprende | «Comprende la intención comunicativa de textos que contienen segmentos verbales y no verbales»: respuesta correcta (single_choice).
+LEN-07-02 2 | SC | interpreta | «Interpreta los mensajes difundidos por medio de sistemas verbales y no verbales»: respuesta correcta (single_choice).
+LEN-07-02 3 | SC | reconoce | «Reconoce la organización de los sistemas verbales y no verbales»: respuesta correcta (single_choice).
+LEN-07-02 4 | SC | comprende | «Comprende que los gestos permiten complementar los mensajes»: respuesta correcta (single_choice).
+LEN-07-03 1 | SC | analiza | «Analiza el desarrollo de hechos históricos y conflictos sociales en historias presentes en obras literarias»: preguntas sobre una obra dada (single_choice).
+LEN-07-03 2 | SC | comprende | «Comprende la realidad que circunda a las obras literarias»: respuesta correcta (single_choice).
+LEN-07-03 3 | SC | señala las diferencias | «Señala las diferencias entre textos literarios y no literarios que tratan hechos históricos»: respuesta correcta (single_choice).
+LEN-07-04 1 | SC | reconoce | «Reconoce en los géneros literarios las visiones de mundo»: respuesta correcta (single_choice).
+LEN-07-04 2 | MT | categoriza | «Categoriza las temáticas de los textos literarios … y … establece el género al que pertenecen»: clasificar textos por género (matching).
+LEN-07-04 3 | SC | analiza … y establece el género | «Analiza las características formales de los textos literarios … y establece el género … y la época»: respuesta correcta (single_choice).
+LEN-07-05 1 | N2 | escucha los discursos orales | «Escucha los discursos orales de su entorno para deducir los propósitos comunicativos»: escuchar (N2).
+LEN-07-05 2 | N2 | discursos que escucha | «Distingue líneas temáticas en los discursos que escucha»: escuchar (N2).
+LEN-07-05 3 | N2 | discurso oral | «Anticipa la estructura con que un interlocutor puede organizar su discurso oral»: comprensión de lo oído, en el DBA de discursos orales (N2, escuchar).
+LEN-07-05 4 | N2 | sonidos … en el ambiente | «Discrimina los sonidos que hay en el ambiente»: hay que oírlos (N2, escuchar).
+LEN-07-06 1 | SC | identifica y caracteriza | «Identifica y caracteriza al posible destinatario del texto»: respuesta correcta (single_choice).
+LEN-07-06 2 | SC | identifica | «Identifica elementos como temáticas, léxico especializado y estilo»: respuesta correcta (single_choice).
+LEN-07-06 3 | SC | ubica el texto en una tipología | «Ubica el texto en una tipología particular»: respuesta correcta (single_choice).
+LEN-07-07 1 | N1 | define la estructura … de una producción oral | «Define la estructura y el contenido de una producción oral»: planear su propia producción (N1).
+LEN-07-07 2 | N2 | sus narraciones orales | «Explica las problemáticas principales de sus narraciones orales, teniendo en cuenta las impresiones de sus interlocutores»: sobre su producción oral, con sus interlocutores (N2).
+LEN-07-07 3 | N2 | narra oralmente | «Narra oralmente un acontecimiento»: hablar (N2).
+LEN-07-07 4 | N2 | articula los sonidos | «Articula los sonidos del discurso»: hablar (N2).
+LEN-07-08 1 | SC | sabe cómo emplear | «Sabe cómo emplear diversos tipos de texto atendiendo al propósito comunicativo»: dado un propósito, un tipo de texto es el adecuado (single_choice).
+LEN-07-08 2 | N1 | desarrolla en sus textos | «Desarrolla en sus textos un único tema central»: producción propia (N1).
+LEN-07-08 3 | N1 | sus textos | «Explica los conceptos principales de sus textos a partir de los párrafos en los que desarrolla su definición»: sobre su propia producción (N1).
+LEN-07-08 4 | N1 | prepara esquemas | «Prepara esquemas previos a la escritura … Usa diversos tipos de conectores»: producto propio (N1).
+
+# ---- 8°
+LEN-08-01 1 | SC | identifica | «Identifica la función social de los medios de comunicación»: respuesta correcta (single_choice).
+LEN-08-01 2 | SC | infiere | «Infiere el significado de palabras de acuerdo con el contexto»: respuesta correcta (single_choice).
+LEN-08-01 3 | SC | selecciona estrategias | «Selecciona estrategias para organizar la información que circula en los medios»: elegir la estrategia adecuada (cuadro, mapa) para un caso dado (single_choice).
+LEN-08-02 1 | N3 | valora | «Valora expresiones artísticas propias de los distintos pueblos»: valoración propia (N3).
+LEN-08-02 2 | SC | determina el contenido | «Determina el contenido expresado en diferentes manifestaciones artísticas»: respuesta correcta sobre una obra dada (single_choice); el ítem necesita la imagen o el texto de la obra.
+LEN-08-02 3 | N1 | resignifica | «Resignifica las expresiones artísticas de origen popular para explorar usos no convencionales del léxico»: creación propia (N1).
+LEN-08-02 4 | SC | reconoce | «Reconoce las características de las distintas manifestaciones artísticas … y las incorpora en sus elaboraciones»: reconocer tiene respuesta (single_choice); incorporarlas no queda cubierto.
+LEN-08-03 1 | SC | identifica | «Identifica las estrategias narrativas del autor»: respuesta correcta (single_choice).
+LEN-08-03 2 | N2 | interacciones … con las comunidades de lectores | «Construye el sentido de los textos literarios con base en las interacciones que sostiene con las comunidades de lectores»: interactuar (N2).
+LEN-08-03 3 | SC | determina | «Determina la identidad cultural presente en textos literarios y la relaciona con épocas y autores»: respuesta correcta (single_choice).
+LEN-08-03 4 | SC | distingue | «Distingue las estructuras formales de textos literarios como la presencia de diferentes narradores»: respuesta correcta (single_choice).
+LEN-08-04 1 | MT | relaciona | «Relaciona los textos que lee con producciones artísticas en las que se presentan rimas, acompañamientos musicales o imágenes»: empareja textos con producciones (matching).
+LEN-08-04 2 | SC | reconoce | «Reconoce el sentido de las imágenes poéticas»: respuesta correcta (single_choice).
+LEN-08-04 3 | SC | identifica | «Identifica elementos formales asociados a las figuras retóricas y al tipo de rima»: respuesta correcta (single_choice).
+LEN-08-04 4 | SC | comprende la diferencia | «Comprende la diferencia … entre la segmentación silábica gramatical y la segmentación silábica métrica»: respuesta correcta (single_choice).
+LEN-08-05 1 | N2 | participa | «Participa en espacios discursivos»: conversar (N2).
+LEN-08-05 2 | SC | comprende | «Comprende los contenidos de un diálogo y predice las posibles ideas»: con el diálogo transcrito, el contenido tiene respuesta (single_choice). | dudoso: el DBA es de escucha (diálogos con sus compañeros); con texto escrito el ítem mide lectura
+LEN-08-05 3 | SC | identifica | «Identifica el nivel de formalidad o informalidad que se da en un diálogo»: el registro se reconoce en las palabras (single_choice). | dudoso: el DBA es de escucha (diálogos con sus compañeros); con texto escrito el ítem mide lectura
+LEN-08-06 1 | SC | identifica y caracteriza | «Identifica y caracteriza las voces que hablan en el texto»: respuesta correcta (single_choice).
+LEN-08-06 2 | SC | elabora hipótesis | «Elabora hipótesis sobre el sentido global de un texto a partir de la relación de información explícita e implícita»: el sentido global de un texto dado tiene una lectura mejor sustentada (single_choice). | dudoso: «elabora» es señal de producción (N1); aquí la hipótesis es sobre un texto dado, no una creación
+LEN-08-06 3 | SC | identifica | «Identifica las características retóricas de las tipologías textuales»: respuesta correcta (single_choice); las notas de clase no quedan cubiertas.
+LEN-08-07 1 | N2 | expone sus puntos de vista | «Expone sus puntos de vista para apoyar o contradecir las opiniones de sus interlocutores»: debate en vivo (N2); además postura propia (N3).
+LEN-08-07 2 | N2 | textos orales que produce | «Precisa el significado de los principales conceptos tratados en los textos orales que produce»: hablar (N2).
+LEN-08-07 3 | N1 | prepara una estructura retórica | «Prepara una estructura retórica … para debates, plenarias y sustentaciones»: como en la prueba de los criterios (§7), N1 y N2.
+LEN-08-08 1 | N1 | estructura los textos que compone | «Estructura los textos que compone»: producción propia (N1).
+LEN-08-08 2 | N1 | evalúa sus propios textos | «Evalúa sus propios textos»: el objeto es su propia producción; la pregunta cerrada no la tiene (N1).
+LEN-08-08 3 | SC | evalúa … en las de otros | «Evalúa el uso adecuado de elementos gramaticales y ortográficos en las producciones propias y en las de otros»: encontrar el error en un texto dado tiene respuesta (single_choice); sus propias producciones no quedan cubiertas.
+LEN-08-08 4 | N1 | emplea … los signos de puntuación | «Emplea de forma precisa los signos de puntuación»: puntuar al escribir; elegir la oración bien puntuada es reconocer (N1). | dudoso: la puntuación se suele evaluar eligiendo la oración bien puntuada; los criterios dirían que eso es reconocer
+
+# ---- 9°
+LEN-09-01 1 | N3 | plantea su postura | «Participa en medios escolares en los que plantea su postura frente a un acontecimiento»: postura propia (N3).
+LEN-09-01 2 | SC | infiere | «Infiere significados implícitos, referentes ideológicos, sociales y culturales en los medios»: respuesta mejor sustentada sobre un contenido dado (single_choice).
+LEN-09-01 3 | N1 | elabora esquemas | «Elabora esquemas … para proponer alternativas»: producto propio (N1).
+LEN-09-02 1 | SC | identifica | «Identifica la función que cumplen diferentes símbolos y signos»: respuesta correcta (single_choice).
+LEN-09-02 2 | SC | reconoce | «Reconoce el sentido de los símbolos presentes en desfiles, carnavales»: respuesta correcta (single_choice).
+LEN-09-02 3 | N1 | los discursos que produce | «Utiliza símbolos, íconos u otras representaciones gráficas en los discursos que produce»: producción propia (N1).
+LEN-09-03 1 | SC | relaciona | «Relaciona su interpretación de una obra literaria con las visiones de mundo vigentes en una época»: la relación entre una obra dada y su época tiene una respuesta mejor sustentada (single_choice).
+LEN-09-03 2 | SC | reconoce | «Reconoce la literatura como una memoria de los pensamientos y sucesos de una región»: respuesta correcta (single_choice).
+LEN-09-03 3 | SC | identifica | «Identifica el sentido del lenguaje figurado … y expresa sus interpretaciones»: identificar el sentido tiene respuesta (single_choice); expresar sus interpretaciones no queda cubierto.
+LEN-09-03 4 | SC | reconoce | «Reconoce que la literatura puede emplear lenguaje figurado y coloquial»: respuesta correcta (single_choice).
+LEN-09-04 1 | SC | identifica | «Identifica estrategias narrativas relacionadas con … hechos históricos … en obras literarias o … cinematográficas»: respuesta correcta (single_choice).
+LEN-09-04 2 | SC | reconoce | «Reconoce las problemáticas o los hechos narrados en obras literarias y en producciones audiovisuales»: respuesta correcta (single_choice).
+LEN-09-04 3 | SC | reconoce | «Reconoce la forma como se presentan los contenidos … (prosa o verso) y en textos audiovisuales (planos, ángulos)»: respuesta correcta (single_choice).
+LEN-09-04 4 | N2 | sonidos presentes | «Reconoce los sonidos presentes en producciones audiovisuales: ruidos ambientales, música y cambios en la voz»: hay que oírlos (N2, escuchar).
+LEN-09-05 1 | N2 | respeta … en los debates | «Respeta los diferentes puntos de vista de sus compañeros y los turnos para tomar la palabra, en los debates»: comportamiento en el debate (N2; también N5).
+LEN-09-05 2 | N2 | lo que escucha | «Reconoce las posiciones de sus compañeros en un debate, a partir de … lo que escucha»: escuchar (N2).
+LEN-09-05 3 | SC | comprende la estructura | «Comprende la estructura o la organización del debate»: respuesta correcta (single_choice).
+LEN-09-05 4 | N2 | la voz de sus interlocutores | «Analiza las características de la voz de sus interlocutores»: hay que oírla (N2, escuchar).
+LEN-09-06 1 | SC | da cuenta del papel | «Da cuenta del papel que desempeñan el interlocutor y el contexto … y plantea su posición»: el papel del interlocutor en un texto dado tiene respuesta (single_choice); su posición no queda cubierta.
+LEN-09-06 2 | SC | infiere | «Infiere significados implícitos y referentes ideológicos … en los textos que lee»: respuesta mejor sustentada (single_choice).
+LEN-09-06 3 | SC | identifica | «Identifica las estructuras propias de las tipologías textuales»: respuesta correcta (single_choice).
+LEN-09-07 1 | N3 | argumenta | «Argumenta las posturas y sugerencias que plantea»: «argumenta» no aplica (N3).
+LEN-09-07 2 | N2 | su intervención | «Explica el significado de los conceptos que utiliza en sus opiniones y realiza una síntesis … de su intervención»: sobre su propia intervención oral (N2).
+LEN-09-07 3 | SC | da cuenta del orden | «Da cuenta del orden en el que se produce una conversación y de los mecanismos que median … la interacción oral»: conocer cómo se organiza una conversación tiene respuesta (single_choice).
+LEN-09-07 4 | N2 | corrige la pronunciación | «Corrige la pronunciación»: hablar (N2).
+LEN-09-07 5 | N2 | matices de voz | «Controla los matices de voz (tono, volumen, impostación)»: hablar (N2).
+LEN-09-08 1 | N1 | evalúa el rol … como enunciador | «Evalúa el rol que debe cumplir como enunciador de un texto, según el propósito elegido»: sobre su propia producción (N1).
+LEN-09-08 2 | N1 | evalúa estrategias … del tema seleccionado | «Evalúa estrategias de progresión y desarrollo del tema seleccionado»: sobre su propia producción (N1).
+LEN-09-08 3 | N1 | en los textos que escribe | «Evalúa el seguimiento de un plan textual y el uso adecuado de elementos gramaticales y ortográficos en los textos que escribe»: sobre su propia producción (N1).
+
+# ---- 10°
+LEN-10-01 1 | N3 | valora | «Valora la diversidad de visiones de mundo y posiciones ideológicas»: valoración propia (N3).
+LEN-10-01 2 | SC | analiza | «Analiza los discursos culturales, sociales e ideológicos, expresados a través de distintos medios»: respuesta mejor sustentada sobre un discurso dado (single_choice).
+LEN-10-01 3 | SC | diferenciación de la estructura | «Encuentra claves … en la diferenciación de la estructura de textos como: el discurso político, el artículo de opinión y la caricatura»: distinguir la estructura de cada tipo tiene respuesta (single_choice); comunicar sus ideas no queda cubierto.
+LEN-10-01 4 | SC | comprende | «Comprende diferentes tipos de argumentos presentes en un discurso»: identificar el tipo de un argumento dado tiene respuesta (single_choice); no pide argumentar.
+LEN-10-02 1 | N1 | produce guiones | «Produce guiones para textos audiovisuales»: producción propia (N1).
+LEN-10-02 2 | N1 | construye textos | «Construye textos verbales y no verbales»: producción propia (N1).
+LEN-10-02 3 | N1 | elabora guiones | «Elabora guiones»: producción propia (N1).
+LEN-10-03 1 | SC | comprende | «Comprende la influencia de las épocas en la estructura y configuración de los géneros literarios»: respuesta correcta (single_choice).
+LEN-10-03 2 | SC | reconoce y da cuenta | «Reconoce y da cuenta de las temáticas, los exponentes y los perfiles estilísticos … de una época»: respuesta correcta (single_choice).
+LEN-10-03 3 | SC | identifica | «Identifica las estructuras propias de cada género literario»: respuesta correcta (single_choice).
+LEN-10-04 1 | SC | conocimiento de las manifestaciones artísticas | «Amplía su visión de las corrientes literarias mediante el conocimiento de las manifestaciones artísticas de una época»: qué manifestación corresponde a una corriente tiene respuesta (single_choice). | dudoso: «amplía su visión» describe un proceso; el ítem solo ve el conocimiento de las manifestaciones
+LEN-10-04 2 | SC | determina | «Determina las principales características de los textos literarios … y los relaciona con expresiones artísticas»: como en la prueba de los criterios (§7), aplica (single_choice).
+LEN-10-04 3 | SC | reconoce | «Reconoce las diferencias formales entre las obras literarias y las artes plásticas o visuales»: respuesta correcta (single_choice).
+LEN-10-05 1 | N4 | búsqueda de información en diversas fuentes | «Profundiza en los contextos … a partir de la búsqueda de información en diversas fuentes»: una acción en el mundo (N4). | dudoso: también podría leerse como un hábito (N5)
+LEN-10-05 2 | N2 | intervenciones | «Evalúa la progresión temática, tono, estilo y vocabulario presentes en las intervenciones propias y en las de los otros»: intervenciones orales en vivo (N2).
+LEN-10-05 3 | SC | comprende | «Comprende contenidos que no se dicen explícitamente por medio de ambigüedades o dobles sentidos»: el doble sentido de un enunciado dado tiene respuesta (single_choice).
+LEN-10-05 4 | N2 | su discurso oral | «Aplica en su discurso oral la estructura de textos específicos como la ponencia o el debate»: hablar (N2).
+LEN-10-05 5 | N2 | modulaciones de voz | «Infiere datos de sus interlocutores … a partir de las modulaciones de voz»: hay que oírlas (N2, escuchar).
+LEN-10-06 1 | SC | deduce | «Deduce referentes sociales, culturales o ideológicos presentes en las voces que hablan en el texto y argumenta su posición»: deducir tiene una respuesta mejor sustentada (single_choice, criterios §4); argumentar su posición no queda cubierto.
+LEN-10-06 2 | SC | evalúa textos escritos | «Evalúa textos escritos teniendo en cuenta el plan de contenido, las relaciones de sentido y las estrategias discursivas»: en un texto dado, si cumple su plan o qué estrategia usa tiene respuesta (single_choice). | dudoso: «evalúa» puede ser una valoración propia (N3)
+LEN-10-06 3 | SC | identifica | «Identifica las estrategias organizativas sugeridas en el texto»: respuesta correcta (single_choice).
+LEN-10-07 1 | N2 | espacios de discusión | «Expresa de manera coherente y respetuosa sus posicionamientos … cuando participa en espacios de discusión»: discusión en vivo (N2); además postura propia (N3).
+LEN-10-07 2 | N2 | sus opiniones | «Demuestra apropiación en el dominio del tema al explicar … los conceptos clave que utiliza en sus opiniones»: sobre su propia producción oral (N2).
+LEN-10-07 3 | N1 | construye un texto | «Construye un texto para ser leído en voz alta»: producción propia (N1).
+LEN-10-07 4 | N2 | interviene oralmente | «Interviene oralmente empleando … la impostación, el volumen y el tono de voz»: hablar (N2).
+LEN-10-08 1 | N1 | divulga … mediante textos | «Divulga información científica … mediante textos»: producción propia (N1).
+LEN-10-08 2 | SC | identifica | «Identifica el contenido que abarca la problemática desarrollada y evalúa los mecanismos que le dan sentido global al texto»: identificar tiene respuesta (single_choice); evaluar no queda cubierto.
+LEN-10-08 3 | N1 | en los textos que produce | «Evalúa el uso adecuado de elementos gramaticales, ortográficos y sintácticos en los textos que produce»: sobre su propia producción (N1).
+
+# ---- 11°
+LEN-11-01 1 | SC | analiza | «Analiza la información difundida en los medios de comunicación institucionales y regionales»: respuesta mejor sustentada sobre una información dada (single_choice); participar no queda cubierto.
+LEN-11-01 2 | SC | infiere | «Infiere la relación de los mensajes … dentro de contextos sociales, culturales y políticos»: respuesta mejor sustentada (single_choice).
+LEN-11-01 3 | SC | contrasta | «Contrasta estilos, tonos y estrategias discursivas»: la diferencia entre dos textos dados tiene respuesta (single_choice); decidir su modo de participar no queda cubierto.
+LEN-11-01 4 | N2 | la entonación | «Comprende que la entonación revela la intención de resaltar o encubrir información»: se observa oyendo la entonación (N2, escuchar).
+LEN-11-02 1 | SC | identifica | «Identifica la intencionalidad de los anuncios publicitarios, políticos y deportivos»: respuesta correcta (single_choice).
+LEN-11-02 2 | SC | comprende | «Comprende el sentido literal y figurado de distintos símbolos»: respuesta correcta (single_choice).
+LEN-11-02 3 | MT | clasifica | «Clasifica los elementos simbólicos presentes en diferentes situaciones»: clasificar en grupos dados (matching).
+LEN-11-03 1 | SC | determina | «Determina en los textos literarios las expresiones que pueden incidir … en la construcción de ciudadanía»: respuesta mejor sustentada (single_choice).
+LEN-11-03 2 | N2 | discusión grupal | «Conjuga la lectura individual con la discusión grupal»: discutir en vivo (N2).
+LEN-11-03 3 | SC | comprende | «Comprende las temáticas, características, estilos, tonos … de las obras literarias»: respuesta correcta (single_choice).
+LEN-11-04 1 | N3 | asume una postura | «Asume una postura frente a la vigencia de las obras literarias clásicas»: postura propia (N3).
+LEN-11-04 2 | SC | analiza y compara | «Analiza obras literarias clásicas y las compara con otras que no pertenecen al canon»: respuesta correcta (single_choice).
+LEN-11-04 3 | SC | reconoce | «Reconoce que en las obras clásicas se abordan temas que vinculan a los seres humanos de diferentes épocas»: respuesta correcta (single_choice).
+LEN-11-04 4 | SC | encuentra | «Encuentra que el sentido de las obras literarias clásicas está determinado por sus recursos»: respuesta correcta (single_choice).
+LEN-11-05 1 | N2 | discursos que escucha | «Entiende las implicaciones sociales, políticas e ideológicas de los discursos que escucha»: escuchar (N2).
+LEN-11-05 2 | SC | comprende las posturas | «Comprende las posturas de un discurso sobre un tema de interés social y las relaciona con sus posturas previas»: identificar la postura de un discurso dado tiene respuesta (single_choice); relacionarla con la suya no queda cubierto.
+LEN-11-05 3 | SC | comprende | «Comprende diferentes tipos de argumentos presentes en un discurso»: identificar el tipo de un argumento dado tiene respuesta (single_choice).
+LEN-11-05 4 | N2 | la voz de sus interlocutores | «Infiere las variantes dialectales, sociales y geográficas en la voz de sus interlocutores»: hay que oírla (N2, escuchar).
+LEN-11-06 1 | SC | relaciona | «Relaciona el significado del texto con los contextos sociales, culturales y políticos … y plantea su posición»: la relación tiene una respuesta mejor sustentada (single_choice); su posición no queda cubierta.
+LEN-11-06 2 | SC | contrasta | «Contrasta textos, atendiendo a temáticas, características formales, estructura interna, léxico y estilo»: respuesta correcta (single_choice).
+LEN-11-06 3 | SC | da cuenta | «Da cuenta de la organización y de los componentes del texto»: respuesta correcta (single_choice).
+LEN-11-07 1 | N2 | enfatiza | «Enfatiza la importancia académica de un tema de su interés personal»: en el DBA de producciones orales (N2); además interés propio (N3).
+LEN-11-07 2 | N2 | sus producciones orales | «Hace referencia a los contenidos de otros textos en sus producciones orales»: hablar (N2).
+LEN-11-07 3 | N1 | construye relaciones | «Construye relaciones de contenido entre temas, categorías y conceptos»: producción propia, en el DBA de producciones orales (N1).
+LEN-11-07 4 | N1 | desarrolla un tema | «Desarrolla un tema académico … a través de la estructura de introducción, justificación, argumentación y conclusiones»: producción propia (N1).
+LEN-11-07 5 | N2 | discusiones académicas | «Evita el uso de falacias en discusiones académicas»: comportamiento en la discusión (N2).
+LEN-11-08 1 | N1 | su escrito | «Evalúa la adecuación del texto en relación con su rol como enunciatario … y la visión de mundo que proyecta en su escrito»: sobre su propia producción (N1).
+LEN-11-08 2 | SC | textos … producidos por sus compañeros | «Evalúa el seguimiento de un plan textual y el uso de la lengua en textos propios y producidos por sus compañeros»: encontrar en un texto dado dónde se aparta del plan o el error de uso tiene respuesta (single_choice); sus textos propios no quedan cubiertos.
+LEN-11-08 3 | N1 | construye párrafos | «Construye párrafos que tienen funciones específicas»: producción propia (N1).
+LEN-11-08 4 | N3 | sustentar sus puntos de vista | «Emplea diferentes tipos de argumento para sustentar sus puntos de vista»: es argumentar una postura propia (N3).

@@ -57,6 +57,11 @@
     8,
     8
    ],
+   "ejemplo": "A partir de diversos materiales (recortes de periódico, revistas, facturas, noticias, etiquetas de productos alimenticios, la cuenta de servicios públicos, fotografías, placas de vehículos, números de documentos de identidad, entre otros) reconoce los números que aparecen allí.\nIdentifica con cuáles de esos números:\nSe puede conocer la cantidad de objetos de una colección.\nPueden ordenar eventos u objetos.\nPueden hacer operaciones.\nPropone preguntas que para ser resueltas requieren calcular una suma o una resta.\n¿Se pueden sumar los números de una placa de un carro o moto? En caso afirmativo, ¿para qué sería útil ese dato? Es decir, ¿cuál es su interpretación?",
+   "ejemplo_paginas": [
+    8
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_1"
@@ -87,6 +92,12 @@
     8,
     8
    ],
+   "ejemplo": "Emplea una calculadora simple (o alguna aplicación que la simule) y explora el efecto que tiene el signo = (igual) a medida que se presiona varias veces después de digitar una suma o una resta.\nSi se presiona 5 + 2 = = = ¿Cuál sería el resultado?\n¿Cuál sería el resultado si en la calculadora se presiona 4 + 3 = = = = = =?\nDescribe las acciones que hace la calculadora. Si se digita el número 3 y luego se digita + 5 y se presiona la tecla igual diez veces, ¿cuáles números aparecerán en la calculadora cada vez que se digita un “igual”?",
+   "ejemplo_paginas": [
+    8,
+    9
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_2"
@@ -115,6 +126,11 @@
     9,
     9
    ],
+   "ejemplo": "En una bolsa hay billetes de dos denominaciones $1 y $10. Con esos billetes realiza el siguiente juego con uno o varios compañeros de clase. “Ambos piensan en un número, y sacan de la bolsa los billetes que requieran para completar la cantidad representada por dicho número. Gana el juego quien forme la cantidad usando el menor número de billetes”.\nLuego de realizar varias partidas, explica por qué el mismo número se puede obtener con diferente cantidad de billetes y explica por qué el jugador ganador logró ser exitoso.\nSe dispone de máximo 9 billetes de $10 y 30 billetes de $1. Para formar la cantidad $47, encuentra al menos 5 maneras distintas de formar la cantidad solicitada. Identifica la forma en la que se usan menos billetes y encuentra una regla para saberlo rápidamente.",
+   "ejemplo_paginas": [
+    9
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_3"
@@ -143,6 +159,11 @@
     10,
     10
    ],
+   "ejemplo": "A partir de una colección de objetos cotidianos de diferentes tamaños y pesos1, que sean comparables respecto a algún atributo, como una piña, un carro de juguete, una uva, un lápiz, una hoja de papel, una manzana, entre otros, los ordena respecto a su tamaño y su peso y discute sobre las condiciones de ubicación entre ellos. Establece diversos ordenamientos de acuerdo con alguna magnitud, por ejemplo, se toman cajas de diferentes tamaños y se llenan con materiales como plastilina, arroz y algodón de modo que en la caja más pequeña quede el mayor peso y argumenta las razones para dicho ordenamiento.",
+   "ejemplo_paginas": [
+    10
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_4"
@@ -169,6 +190,11 @@
     10,
     10
    ],
+   "ejemplo": "Se dispone de tiras o cuerdas de diferentes tamaños, como las que se presentan en la imagen.\nIdentifica:\na) Las tiras de otros colores que pueden armar la tira morada.\nb) El número de tiras que caben en\nc) La cantidad de tiras y\nque se necesitan para medir el largo de un lápiz o un clip. ¿De cuál de las dos tiras se necesitan más ?, ¿Por qué?\nd) Anticipa la cantidad de tiras amarillas que se necesitan para medir un objeto si conoce que para medirlo se requieren 3 tiras de color naranja.",
+   "ejemplo_paginas": [
+    10
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_5"
@@ -197,6 +223,11 @@
     11,
     11
    ],
+   "ejemplo": "A partir de la construcción de títeres con material reciclable y de la configuración de objetos como los que se muestran en las figuras siguientes, relaciona las formas y cuerpos geométricos y encuentra características similares y diferentes entre la forma de las figuras y los sólidos que los componen.",
+   "ejemplo_paginas": [
+    11
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_6"
@@ -225,6 +256,11 @@
     11,
     11
    ],
+   "ejemplo": "En un plano que representa el salón de clases hay una marca (estrella roja) que indica el lugar donde se ocultó un objeto. Escribe instrucciones que se darían a alguien que está en la puerta del salón para que encuentre el objeto.\nDetermina si se pueden dar otras instrucciones para llegar al mismo sitio.",
+   "ejemplo_paginas": [
+    12
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_7"
@@ -251,6 +287,11 @@
     12,
     12
    ],
+   "ejemplo": "Se tiene un dispensador para pasar agua de un recipiente a un vaso. Al servir agua en el vaso el volumen de los dos recipientes cambia, describe cuáles de las otras magnitudes cambian y explica la relación entre ambas. Elabora dibujos en diferentes momentos, cuando se llena 1,2,3 vasos etc.",
+   "ejemplo_paginas": [
+    12
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_8"
@@ -277,6 +318,11 @@
     13,
     13
    ],
+   "ejemplo": "Llena los espacios vacíos para que el resultado de la cadena azul y la cadena verde sean iguales. Indaga otras posibles soluciones.\nLlena los espacios vacíos para que el resultado de la cadena roja sea mayor que el resultado de la cadena azul e indaga si hay otras soluciones.",
+   "ejemplo_paginas": [
+    13
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_9"
@@ -305,6 +351,12 @@
     13,
     13
    ],
+   "ejemplo": "Como bienvenida al año escolar se les va a brindar a los alumnos de 1A un helado. Se les pide que informen sobre cuáles son los sabores de su preferencia. Los niños con la ayuda de la profesora hacen una consulta y presentan el siguiente gráfico con los resultados obtenidos: Escribe una frase sencilla para responder preguntas tales como: ¿cuántos niños prefieren el helado de sabor de fresa?, ¿cuántos de uva?, etc., y ¿cuántos helados se deben comprar en total?, ¿cuál es el sabor más escogido por los niños del curso 1A?",
+   "ejemplo_paginas": [
+    13,
+    14
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado1º",
    "dudoso": [],
    "id_anterior": "matemáticas_1_dba_10"
@@ -331,6 +383,11 @@
     15,
     15
    ],
+   "ejemplo": "En una sala de videojuegos se requiere tener dinero para pagar el valor de cada hora. Con base en esta situación:\nPropone una pregunta que se pueda responder con una multiplicación.\nPropone una pregunta que se pueda responder con una división.\nSi hay promoción en la sala y se hace un descuento por cada dos horas de uso del servicio, ¿se podría aplicar reiteradamente la multiplicación para conocer el valor a pagar?",
+   "ejemplo_paginas": [
+    15
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_1"
@@ -355,6 +412,12 @@
     15,
     15
    ],
+   "ejemplo": "Cuatro estudiantes deciden jugar parqués con una sola ficha y con las siguientes reglas:\na) En el primer turno se lanzará un solo dado y cada punto de este permitirá mover la ficha tres casillas.\nb) En el segundo turno se utilizarán dos dados y cada punto permitirá mover la ficha una casilla. Inicia el lanzamiento quien lidera el juego, luego quien vaya de segundo, de tercero, hasta lanzar quien esté en el último puesto.\nc) En los siguientes turnos se repite la primera regla y luego la segunda regla hasta terminar el\njuego. Se lanza en el orden que se definió en la segunda regla.\nSi al registrar (en su orden) cada lanzamiento en una tabla los resultados son:\nDetermina el jugador que lidera el juego hasta el momento. Averigua la cantidad de puntos que debe obtener Camilo en el siguiente lanzamiento para liderar el juego después del tercer turno y propone una regla adicional para que sea Juan José quien lidere el juego después de los dos primeros turnos.",
+   "ejemplo_paginas": [
+    15,
+    16
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_2"
@@ -381,6 +444,11 @@
     16,
     16
    ],
+   "ejemplo": "En la imagen se presenta la tarea que Sara hizo en el tablero. Sin embargo, por accidente un compañero borró parte de lo que Sara había hecho.\nEscribe algunos números en los espacios vacíos para lograr que se cumpla la relación.\nAny dijo que el número que se había borrado en la primera línea era 2. Argumenta si Any tiene o no la razón.\nCuando Margarita vio el tablero quiso ayudar a Sara con la segunda línea del tablero. Ella dijo que sólo podría poner dos números en el espacio borrado. Determina la validez del argumento de Margarita y explica por qué ella dice que hay dos posibilidades.\nValora la validez de la afirmación: José dijo que Mario se había equivocado en la tercera línea porque para que se cumpla la igualdad, después del 5 no podía quedar ningún número. Justifica su valoración.",
+   "ejemplo_paginas": [
+    16
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_3"
@@ -409,6 +477,11 @@
     17,
     17
    ],
+   "ejemplo": "Analiza diferentes situaciones en las que se comparan objetos según magnitudes y describe estrategias para: calcular la distancia recorrida por un auto que se mueve a cierta velocidad constante durante un intervalo de tiempo; calcula o estima la cantidad de tela que se gastaría en un vestido, la longitud de una cinta para cubrir el borde de una mesa; busca longitudes cercanas a un metro o pesos cercanos a un kilogramo e identifica otros objetos que podrían tener esa longitud o ese peso.",
+   "ejemplo_paginas": [
+    17
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_4"
@@ -435,6 +508,12 @@
     17,
     17
    ],
+   "ejemplo": "Pipe y Lupe salen al mismo tiempo de sus lugares respectivos (cuadrado azul y cuadrado verde), pasan por la zanahoria que tienen más cerca y llegan hasta donde está el conejo. En este recorrido Pipe tarda 30 minutos y Lupe tarda 35 minutos.\nSeñala la pareja de relojes correspondiente a la hora de llegada de los niños hasta el conejo y explica la respuesta.",
+   "ejemplo_paginas": [
+    17,
+    18
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_5"
@@ -461,6 +540,11 @@
     18,
     18
    ],
+   "ejemplo": "La habitación de Andrés se muestra en la siguiente imagen:\nSofía es la tía de Andrés y se encuentra en otro país, ella quiere hacerse a una idea de la habitación de su sobrino. Andrés escribe una carta a Sofía en la que describe detalladamente la habitación de Andrés y los objetos que hay en ella.\nEstudia si la descripción que hace Andrés es correcta, justifica su respuesta y propone afirmaciones que la completan.",
+   "ejemplo_paginas": [
+    18
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_6"
@@ -489,6 +573,11 @@
     19,
     19
    ],
+   "ejemplo": "Identifica desplazamientos en lugares determinados que estén en correspondencia con unas normas establecidas. Da indicaciones para llegar a determinado sitio. Para ello utiliza palabras como: vertical, horizontal, paralelo, perpendicular.\nEn la figura se muestra el mapa de un lugar; indica de manera verbal, escrita o gráfica cómo llegar de la casa a la iglesia sin perderse o desplazándose con cierta condición.",
+   "ejemplo_paginas": [
+    19
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_7"
@@ -513,6 +602,11 @@
     19,
     19
    ],
+   "ejemplo": "Ubica un número de entrada y efectúa las operaciones indicadas en la cadena numérica.\nEncuentra los valores respectivos de salida cuando los números de entrada son 1, 4 y 7.\nEncuentra los valores de entrada para que los números de salida sean 18 y 36.\nVerbaliza las propiedades que se usan cuando recorre la cadena de izquierda a derecha y de derecha a izquierda. Construye cadenas equivalentes a la cadena dada inicialmente.",
+   "ejemplo_paginas": [
+    19
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_8"
@@ -541,6 +635,11 @@
     20,
     20
    ],
+   "ejemplo": "Encuentra todas las parejas de números cuya suma es 12 y todos los resultados que se obtienen al multiplicar los números de cada pareja. Propone una tabla para presentar y relacionar los resultados. Realiza lo mismo con otros números (10, 11, etc.) y compara las parejas obtenidas. Establece procedimientos para encontrar las parejas y construye reglas para saber cuántas parejas se pueden formar según el resultado de la suma. Propone ideas sobre cuál es la pareja en la que el resultado es mayor.",
+   "ejemplo_paginas": [
+    20
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_9"
@@ -569,6 +668,12 @@
     20,
     20
    ],
+   "ejemplo": "En el colegio se realizan las elecciones a personero. La información de los resultados de las votaciones se presenta en el siguiente gráfico:\nEn el informe que se entrega, se afirma que:\na) El ganador fue el candidato 2; b) El total de votos fue de 210; c) El candidato ganador obtuvo el doble de votos que el candidato que obtuvo menos votos; d) El candidato 4 obtuvo la mitad de votos que el candidato 2. Escribe un informe en el que se compara la información textual con la presentada en la gráfica para dar argumentos sobre la veracidad de la información presentada.",
+   "ejemplo_paginas": [
+    20,
+    21
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_10"
@@ -595,6 +700,11 @@
     21,
     21
    ],
+   "ejemplo": "En el grado 2º deciden jugar al lanzamiento de aviones de papel. Acuerdan que todos lanzan los aviones desde una raya que dibujan cerca del tablero del salón y gana el estudiante que lance el avión más lejos. David afirma que él será siempre el ganador porque ya sabe lanzar aviones de papel. Determina si la afirmación del niño es verdadera o falsa y justifica su respuesta.",
+   "ejemplo_paginas": [
+    21
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado2º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_11"
@@ -623,6 +733,11 @@
     22,
     22
    ],
+   "ejemplo": "En los partidos de baloncesto, una cesta puede tener un valor de tres puntos, de dos puntos o de un punto. Propone el número de cestas que hizo cada equipo.\nEn la imagen se muestra el marcador al finalizar el primer tiempo de un partido de baloncesto. Si el partido terminó empatado en 80 puntos responde: ¿Cuántas cestas hizo el equipo LOCAL?, ¿Cuántas cestas hizo el equipo VISITANTE? ¿Cómo pudo haberse logrado los puntajes?\nSi hubo tres tiros libres para LOCAL y cinco tiros libres para VISITANTE, determina el puntaje de cada equipo sabiendo que cada tiro libre vale un solo punto.",
+   "ejemplo_paginas": [
+    22
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_1"
@@ -649,6 +764,12 @@
     22,
     22
    ],
+   "ejemplo": "El siguiente gráfico presenta la cantidad de dinero de un juego de mesa que tiene Juan para repartir por partes iguales entre sus tres hijos.\nEscribe la cantidad de dinero que Juan va a repartir.\nThomas, el hijo mayor de Juan, hizo el siguiente cálculo:\nDescribe el procedimiento realizado por Thomas y explica por qué es o no válido.\nPropone cambios al procedimiento de tal manera que sea válido, en caso de considerarlo incorrecto.",
+   "ejemplo_paginas": [
+    22,
+    23
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_2_dba_2"
@@ -677,6 +798,12 @@
     23,
     23
    ],
+   "ejemplo": "Algunos sistemas económicos usan monedas para representar fracciones de la unidad. En Estados Unidos se utiliza como unidad un dólar, y algunas monedas representan fracciones de esta unidad. La siguiente imagen presenta dos ejemplos de las monedas en este sistema, una corresponde a medio dólar y la otra a un cuarto de dólar.\nEn Colombia, las monedas que representaban fracciones de peso, desaparecieron hace ya varios años. Existían monedas con denominaciones de uno, dos, cinco, diez, veinte, veinticinco y cincuenta centavos. Construye ese tipo de monedas. En una de las caras diseña la denominación de la moneda en centavos, y en la otra, diseña la denominación de la moneda en fracción (semejante a como se denominan en Estados Unidos).\nLa moneda de un cuarto de peso, ¿a cuántos centavos equivaldría?\nLa moneda de 10 centavos ¿a cuál fracción equivaldría?\nSi 50 centavos son lo mismo que dos monedas de 20 centavos y una de 10 centavos. Es decir, 50 = 2 (20) + 1 (10)\nEn fracciones sería: medio de peso equivale a 2 monedas de quinto y una moneda de décimo. Es decir,\n1 medio = 2 quintos + 1 décimo\nMónica tiene 70 centavos en monedas, Carlos tiene dos monedas de 20 centavos, Paula tiene cinco monedas de 10 centavos. Representa estos valores usando la denominación en forma de fracción de cada moneda.\nPropone otras equivalencias para cantidades diferentes de monedas usando tanto la denominación en forma de fracción como en centavos.",
+   "ejemplo_paginas": [
+    23,
+    24
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_3"
@@ -705,6 +832,11 @@
     24,
     24
    ],
+   "ejemplo": "Determina el número de rectángulos que se pueden formar utilizando 12 palillos y en cada caso encuentra el número de cuadrados, cuyo lado es un palillo; que caben en cada rectángulo.\nSi cada uno de los rectángulos formados se imagina como tablas a las que se pone cinta alrededor, indica la cantidad de cinta que se necesita. Da la medida en términos del número de palillos. Dice en cuál de esos rectángulos se usa mas cinta y cuáles menos.",
+   "ejemplo_paginas": [
+    24
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_4"
@@ -733,6 +865,11 @@
     25,
     25
    ],
+   "ejemplo": "Se tienen que empacar frascos de 8 cm de diámetro y 15 cm de alto. El empacador dispone de cajas de base rectangular de diferentes tamaños y tiene que decidir la caja de tamaño más adecuado.\nExplica diversos procedimientos que el empacador puede seguir para tomar la decisión más adecuada.\nIdentifica las medidas de tres posibles cajas, si por peso se sugiere que en cada una vayan 50 frascos.",
+   "ejemplo_paginas": [
+    25
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_5"
@@ -759,6 +896,12 @@
     25,
     25
    ],
+   "ejemplo": "La profesora de tercero tiene sobre su mesa los cuerpos geométricos que se ven en la imagen:\nDavid y María no pudieron ver los cuerpos geométricos de la profesora pues no asistieron a clase. Ellos deben realizar la construcción de los mismos con cartulina, cinta y tijeras de tal manera que tengan la misma forma que los de la profesora.\nEnvía por escrito un mensaje preciso a David y María para que puedan realizar la construcción requerida. El mensaje no puede incluir dibujos, solo las indicaciones adecuadas de tal manera que puedan construir los cuerpos basándose en las indicaciones.\nPatricia y Román quisieron ayudar a David y María. Para ello escribieron los siguientes mensajes:\nRevisa los mensajes escritos e indica si con ellos David y María pueden construir de forma igual los cuerpos que tenía la profesora sobre la mesa y mejora los mensajes escritos.",
+   "ejemplo_paginas": [
+    25,
+    26
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_6"
@@ -787,6 +930,11 @@
     26,
     26
    ],
+   "ejemplo": "En un concurso de fotografías Tomás y Alejandro presentan un mosaico con mariposas. Escribe algunas condiciones para que se incluyan una tercera y una cuarta columna de fotografías que conserven la forma como se disponen las imágenes de las dos primeras columnas.",
+   "ejemplo_paginas": [
+    26
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_7"
@@ -813,6 +961,11 @@
     27,
     27
    ],
+   "ejemplo": "El gráfico muestra arreglos triangulares de puntos. En la primera posición se tiene 1punto, en la segunda 3 puntos, en la tercera 6 puntos, en la cuarta 10 puntos.\nRegistra (en su orden) el número de puntos en cada posición:\nExplica cómo encontrar el número de puntos en una posición cualquiera. Justifica si existe un arreglo triangular que tenga 35 puntos o 38 puntos.",
+   "ejemplo_paginas": [
+    27
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_8"
@@ -839,6 +992,11 @@
     27,
     27
    ],
+   "ejemplo": "José y Patricia tienen cada uno, una caja de dulces. No se sabe cuántos dulces hay en cada caja, pero sí que cada caja tiene la misma cantidad. José tiene un dulce extra encima de su caja. Patricia tiene tres dulces encima de su caja.\nDibuja o escribe con letras o con otros símbolos, cuántos dulces tienen entre José y Patricia. ¿Quién tiene más dulces? ¿Cuántos dulces se necesita dar a uno de ellos para que tenga la misma cantidad que el otro? Explica la respuesta y los procedimientos.",
+   "ejemplo_paginas": [
+    28
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_9"
@@ -869,6 +1027,11 @@
     28,
     28
    ],
+   "ejemplo": "A partir de la lectura de la siguiente situación, identifica la información contenida en cada representación y propone títulos coherentes con una posible pregunta de estudio.\nEl director de la escuela hizo una encuesta y solicita a los alumnos su colaboración para que le propongan títulos adecuados para la tabla y el gráfico y que además escriban un informe corto con el análisis de los resultados.",
+   "ejemplo_paginas": [
+    28
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_10"
@@ -897,6 +1060,11 @@
     29,
     29
    ],
+   "ejemplo": "Para una salida pedagógica que se realizará el día 28 de ese mes, se quiere saber si es necesario llevar impermeable. Se realiza un registro de si llueve o no durante varios días y con base en esa información se toma la decisión. Esta es la tabla que se elaboró:\nPlantea algunas ideas acerca del estado del tiempo el día de la salida, a partir de la lectura de la tabla.",
+   "ejemplo_paginas": [
+    29
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado3º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_11"
@@ -921,6 +1089,11 @@
     30,
     30
    ],
+   "ejemplo": "Las limonadas de don Diego son famosas. Tienen un sabor característico, quien las haya probado es capaz de identificarlas en cualquier parte. Aunque no se conoce la receta de don Diego, si se sabe que él utiliza para un litro de agua, seis limones y tres cucharadas de azúcar.\nTratando de imitar la receta, Carlos preparó una limonada con dos jarras de agua (de litro cada una), diez limones y seis cucharadas de azúcar. Justifica si la limonada de Carlos tendría o no el mismo sabor que la de don Diego. En caso de considerar que no, menciona las diferencias que tendrían.\nSi don Diego dispone de 18 limones, averigua la cantidad de agua y azúcar que debería utilizar si quiere preparar su limonada.\nPropone otras posibilidades de preparar limonadas con el sabor característico de don Diego variando las cantidades de los ingredientes.\nExplica qué ocurre si las personas utilizan diferentes medidas para las cucharas de azúcar.\nCompleta las instrucciones que deben darse para la preparación de otras limonadas que tengan la misma concentración que la de Don Diego.",
+   "ejemplo_paginas": [
+    30
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_3_dba_1"
@@ -951,6 +1124,11 @@
     31,
     31
    ],
+   "ejemplo": "El banco de un juego de mesa tiene los siguientes billetes y fichas para comprar tarjetas de autos:\nCada billete representa una parte del valor de la ficha circular y ésta se le entrega únicamente a quien deposite $10.000 en el banco del juego. Encuentra la cantidad de dinero que se puede canjear en el banco cuando tenga trece billetes azules, veintidós billetes rojos, dos billetes grises y seis fichas. Determina si con ese dinero es posible comprar la tarjeta de un auto cuyo precio en el juego es de 10 fichas circulares.",
+   "ejemplo_paginas": [
+    31
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_2"
@@ -977,6 +1155,11 @@
     31,
     31
    ],
+   "ejemplo": "En la siguiente imagen se muestra una balanza que está equilibrada; en un lado de la balanza se encuentran tres objetos esféricos, mientras que en el otro lado un objeto con caras cuadradas. Según la información de la imagen:\nIndica cuál de los dos objetos es más pesado.\nDescribe la relación que hay entre los pesos de los dos objetos.\nExplica si las relaciones expresadas por las balanzas de la figura siguiente concuerdan con los datos de la imagen anterior. En caso que haya algunas que no sean correctas, dibuja la posición de la balanza que esté acorde con las cantidades presentadas.",
+   "ejemplo_paginas": [
+    31
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_3"
@@ -1007,6 +1190,11 @@
     32,
     32
    ],
+   "ejemplo": "En clase de sociales le enseñan a Felipe que es conveniente seleccionar productos que, además de ser económicos, ofrezcan posibilidades de reciclaje, por el tipo de material del empaque.\n¿Qué criterios son adecuados para seleccionar entre varias marcas el mejor producto por economía y posibilidades de reciclaje?\nCompara la información brindada en los empaques de dos o más productos para tomar decisiones, cuando la información no es suficiente propone procedimientos de medida para hacer las comparaciones.",
+   "ejemplo_paginas": [
+    32
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_4"
@@ -1035,6 +1223,11 @@
     33,
     33
    ],
+   "ejemplo": "La receta de la torta de vainilla para 20 personas es\nEl azúcar, la harina y la mantequilla se venden por libras. Identifica qué cantidad de azúcar y qué cantidad de mantequilla (en libras) se requiere para hacer la torta. Propone formas más precisas para medir las cantidades de leche, de esencia de vainilla y de otros ingredientes; y establece las cantidades.\nDetermina los grados Fahrenheit a los que se debe programar el horno para hornear la torta y las cantidades de cada ingrediente que se requieren para elaborar la receta con las mismas características de sabor para 30 personas.",
+   "ejemplo_paginas": [
+    33
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_5"
@@ -1059,6 +1252,11 @@
     33,
     33
    ],
+   "ejemplo": "Construye esculturas geométricas con cubos y prismas triangulares (medios cubos) y representa de manera bidimensional la representación tridimensional.",
+   "ejemplo_paginas": [
+    33
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_6"
@@ -1087,6 +1285,11 @@
     34,
     34
    ],
+   "ejemplo": "La familia de Francisco estuvo de vacaciones en la finca de los abuelos. Para guardar un recuerdo tomaron una fotografía del lugar.\nFrancisco quiere poner la fotografía en su habitación para recordar sus vacaciones, pero debe disminuir el tamaño de la imagen. Escoge la imagen que representa una reducción de la foto, justifica y describe el procedimiento realizado para seleccionar la imagen.\nDibuja la finca del abuelo pero dos veces más grande que la que aparece en la fotografía.",
+   "ejemplo_paginas": [
+    34
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_7"
@@ -1113,6 +1316,11 @@
     35,
     35
    ],
+   "ejemplo": "Consigue una pelota pequeña y mide la altura ‘h’ (medida en centímetros) hasta la que rebota cuando se deja caer sobre una superficie dura (cemento) desde diversas alturas H, medida en centímetros (Figura 1). Realiza un registro aproximado de la altura H desde la que se suelta la pelota, así como de la altura h a la que rebota. Representa de otras formas la relación que encuentra entre la altura H (inicial) y la altura h (alcanzada en cada rebote). Escribe algunas conclusiones de esta exploración.",
+   "ejemplo_paginas": [
+    35
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_8"
@@ -1139,6 +1347,12 @@
     35,
     35
    ],
+   "ejemplo": "Explora el efecto que tiene el signo “=” (igual) sobre el resultado a medida que se presiona varias veces.\na. Describe y compara el efecto que la acción descrita tiene, si se presiona varias veces el signo igual después de digitar el símbolo de la multiplicación o el símbolo de la división.\nb.Describe las operaciones y resultados que muestra la calculadora, cuando se presiona 4 x 2 = = = = = =.\nc. Se digita la operación 3 X 4 y luego se presiona la tecla igual diez veces ¿será posible obtener un número menor que 1.000? Estima un número aproximado de veces que deberías presionar el “igual” para obtener el resultado más cercano a 1.000. Utiliza la calculadora para realizar las operaciones y verificar el resultado.\nd. Determina el mínimo número de veces que se debe presionar el signo igual después de hacer la operación 2048÷2 para obtener un número no natural.",
+   "ejemplo_paginas": [
+    35,
+    36
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_9"
@@ -1167,6 +1381,11 @@
     36,
     36
    ],
+   "ejemplo": "La siguiente información fue recolectada en un hato lechero. Con dicha información elabora un informe, para enviarlo al dueño del hato, en el que se compara la producción de leche en horas de la mañana y en horas de la tarde, así como la variación de la producción por vaca.",
+   "ejemplo_paginas": [
+    36
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_10"
@@ -1195,6 +1414,11 @@
     36,
     36
    ],
+   "ejemplo": "En las siguientes situaciones reconoce la presencia o no del azar y expone diferencias entre ellas para expresar la posibilidad de conocer, con exactitud, los resultados que se tendrán antes de la ocurrencia del evento.\na. La selección de la cancha que le corresponde a uno de los equipos cuando se inicia un partido de fútbol en el campeonato mundial.\nb. La selección del nombre del mes entrante.\nc. La selección del menú del refrigerio de la mañana.\nd. La conformación de dos equipos para jugar fútbol.",
+   "ejemplo_paginas": [
+    36
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado4º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_11"
@@ -1223,6 +1447,11 @@
     37,
     37
    ],
+   "ejemplo": "Don Marcos, el dueño de una finca productora de frutas y vegetales, ha decidido distribuir su lote para sembrar los productos que se muestran en la siguiente imagen.\nExpresa la fracción del total de la finca que representa cada una de las situaciones siguientes y justifica las respuestas y procedimientos empleados:\na) La porción de tierra que piensa utilizar Don Marcos para construir su casa.\nb) La porción de tierra que se utilizará para sembrar bananos.\nc) La porción de tierra que se utilizará para sembrar.\nd) La porción de tierra que no se utilizará para sembrar.",
+   "ejemplo_paginas": [
+    37
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_4_dba_1"
@@ -1251,6 +1480,12 @@
     37,
     37
    ],
+   "ejemplo": "Un profesor representa el producto (32 x 2) x (22 x 3)en una hoja cuadriculada de la siguiente manera:\nAl dividir de forma diferente la cuadrícula explora si es posible encontrar otra manera de representar el mismo producto.",
+   "ejemplo_paginas": [
+    37,
+    38
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_2"
@@ -1275,8 +1510,15 @@
     38,
     38
    ],
+   "ejemplo": "Camilo construyó tres cintas métricas de la misma longitud y dividió la unidad de cada una de ellas en diferentes partes. Luego representó una fracción en cada una de ellas, como se muestra a continuación.\nUtiliza las cintas de Camilo e identifica si 9 es igual, mayor o menor a 11.\n5 6",
+   "ejemplo_paginas": [
+    38
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
-   "dudoso": [],
+   "dudoso": [
+    "ejemplo: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: las fracciones 9/5 y 11/6 quedan como «9 … 11» y «5 6»"
+   ],
    "id_anterior": "matemáticas_5_dba_3"
   },
   {
@@ -1303,6 +1545,11 @@
     39,
     39
    ],
+   "ejemplo": "Con una piola de 50 cm se hacen rectángulos diferentes. El perímetro de estos rectángulos es el mismo, determina si sus áreas permanecen iguales.\nDetermina si se pueden hacer cajas de caras rectangulares de volúmenes diferentes pero en las que se necesite la misma cantidad de cartón para hacer sus moldes.",
+   "ejemplo_paginas": [
+    39
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_4"
@@ -1335,6 +1582,12 @@
     39,
     39
    ],
+   "ejemplo": "Luisa y sus amigas quieren empacar unas tarjetas que tienen diferentes formas (triángulos y cuadriláteros) en sobres rectangulares. Antes de empacar las tarjetas, les ponen un hilo decorativo en todo el borde.\nLa cantidad de papel utilizado en las tarjetas es 126cm2, o 144cm2 o 120cm2. Por ejemplo, una tarjeta en forma de triángulo rectángulo mide en sus lados perpendiculares 20 cm y 12 cm, otra en forma de cuadrado mide de lado 12 cm.\nDetermina otras dimensiones posibles para los lados de las tarjetas utilizando esas cantidades de papel. Además, la longitud de sus respectivos lados para establecer la cantidad de hilo que se emplea en cada tarjeta y discute acerca de la posibilidad de tener varias tarjetas de igual área pero diferente perímetro. Explica los procedimientos utilizados.",
+   "ejemplo_paginas": [
+    39,
+    40
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_5"
@@ -1367,6 +1620,11 @@
     40,
     40
    ],
+   "ejemplo": "La empresa Tortimax requiere un empaque para sus productos. El molde del empaque es el que se muestra en la figura y debe ser elaborado en cartón industrial. El tamaño de un pliego de este material es de 100 cm X 70 cm.\nDetermina la cantidad de moldes del empaque que puede realizarse por pliego para aprovechar al máximo el material. Describe y discute acerca del procedimiento utilizado.",
+   "ejemplo_paginas": [
+    40
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_6"
@@ -1397,6 +1655,11 @@
     41,
     41
    ],
+   "ejemplo": "Tatiana es una turista que ha venido a visitarnos. Ayuda a Tatiana a ubicarse a partir de un plano de la ciudad, municipio o barrio. Lo que prefieras:\nRealiza un mapa a escala del barrio en un papel cuadriculado.\nCrea un sistema de referencia para que Tatiana pueda conocer los mejores lugares usando los puntos cardinales (Norte, Sur, Oriente, Occidente).\nEscribe un mensaje a Tatiana para indicar cómo realizar el recorrido.\nDa instrucciones para seguir una trayectoria que permita ir de un sitio a otro. Propone otras trayectorias posibles.",
+   "ejemplo_paginas": [
+    41
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_7"
@@ -1423,6 +1686,11 @@
     41,
     41
    ],
+   "ejemplo": "Un recipiente cilíndrico recto, se llena con una llave que vierte 4 litros de agua cada 2 minutos. El cilindro tiene capacidad de 28 litros.\nDetermina cuánto tiempo tarda el recipiente cilíndrico en llenarse.\nDetermina cuántos litros hay en el recipiente a los cinco minutos después de abrir la llave. Determina qué ocurre con el nivel del agua a los 16 minutos.",
+   "ejemplo_paginas": [
+    41
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_8"
@@ -1451,6 +1719,11 @@
     42,
     42
    ],
+   "ejemplo": "Representa verbales mediante expresiones numéricas: la multiplicación entre la suma de 24 más 45, y la resta de 24 menos 12. El doble de un número; el doble de un número aumentado en 5. La mitad de un número, la tercera parte de un número. Resuelve la ecuación: el doble de un número más 3 es igual a 9, encuentra el número.",
+   "ejemplo_paginas": [
+    42
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_9"
@@ -1481,6 +1754,12 @@
     42,
     42
    ],
+   "ejemplo": "La alcaldía del municipio ha programado una serie de actividades deportivas y recreativas, y ha solicitado al colegio un informe en el que se indique las tallas de los zapatos y de los uniformes de los estudiantes de cuarto y quinto de primaria. Para dar solución a la situación, elabora una encuesta, recolecta la información y redacta un informe con los resultados obtenidos en el cual incluye tablas y gráficos y analiza la información por cursos, por género y el comportamiento general de los dos grados.",
+   "ejemplo_paginas": [
+    42,
+    43
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_10"
@@ -1509,6 +1788,11 @@
     43,
     43
    ],
+   "ejemplo": "Una campaña emprendida por el Ministerio de Salud y Protección Social para prevenir el aumento en los índices de obesidad y diabetes infantil y juvenil, sugiere que en promedio cada persona debe realizar 30 minutos diarios de una actividad física aeróbica de intensidad moderada (caminar, trotar, correr, nadar, montar en bicicleta, etc.), para evitar el sobrepeso. Se afirma que para cumplir con la campaña, cada persona debe hacer exactamente 30 minutos de ejercicio diarios. Argumenta la validez de esta afirmación.",
+   "ejemplo_paginas": [
+    43
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_11"
@@ -1537,6 +1821,12 @@
     43,
     43
    ],
+   "ejemplo": "En un día de la recreación se realizan diferentes actividades con juegos de azar. Javier y Arturo eligen el juego de la ruleta. Las reglas acordadas son:\nCada uno selecciona una ruleta (Ruleta 1 o Ruleta 2).\nAl mismo tiempo giran una vez cada ruleta.\nJavier gana si saca un número par.\nArturo gana si saca un número impar.\nSi Javier saca impar y Arturo saca par, vuelven a jugar.\nReconoce que el juego de la ruleta corresponde a una situación aleatoria, identifica los eventos, asigna la probabilidad de ocurrencia y da argumentos para decidir si el juego es o no justo estadísticamente.",
+   "ejemplo_paginas": [
+    43,
+    44
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado5º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_12"
@@ -1565,6 +1855,11 @@
     45,
     45
    ],
+   "ejemplo": "En una competencia de autos a tres vueltas, el tiempo (en minutos) de cada vuelta se registró en la siguiente tabla.\nLos competidores ganan puntos de acuerdo con las siguientes reglas:\nFinalizada la segunda vuelta se dan 10 puntos de bonificación en la clasificación general a quien vaya de líder y 5 puntos a quien vaya de segundo.\nAl ganador de la competencia le dan 20 puntos, al segundo 10 puntos y al tercero 5 puntos.\na) Escribe cómo se distribuyen los puntos al finalizar la segunda vuelta y al finalizar la carrera.\nb) Determine cuál de los autos se acercó más a un minuto y sesenta décimas de minuto en la primera vuelta.\nc) Explica por qué considera que la práctica generalizada en este tipo de carreras el tiempo por vuelta se representa con tres dígitos después de la coma y no por dos.\nCalcula la diferencia de tiempo de los tres carros A, B y C en la primera vuelta con un carro D si se sabe que en esa vuelta invierte 1,4 minutos. ¿Cuáles serían estas diferencias si por un percance mecánico demora 1,09 minutos?",
+   "ejemplo_paginas": [
+    45
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_5_dba_1"
@@ -1589,6 +1884,12 @@
     45,
     45
    ],
+   "ejemplo": "Un obrero tiene que controlar la cantidad de vapor que hay en la caldera a través de un dispositivo conectado a ella, así como muestra la figura. Por este dispositivo entra vapor que se encarga de mover el corcho. El corcho sube cuando aumenta la cantidad de vapor en la caldera y baja cuando disminuye. Cuando el nivel del vapor en la caldera es el normal el corcho marca exactamente el punto cero.\nPara indicar la ubicación del corcho se utilizan números acompañados del signo más (+) o del signo menos (-). Si el corcho está por encima del punto cero su ubicación se representa con un número acompañado del signo más. Si el corcho está por debajo de cero la ubicación del corcho se representa con un número acompañado del signo menos.\nLos desplazamientos del corcho hacia arriba se representan por números acompañados del signo “+” Los desplazamientos hacia abajo se representan por números acompañados del signo “-”.\nCalcula el desplazamiento del corcho si inicialmente está en la raya -23 y después aparece en la raya marcada con -45.\nIdentifica cuál de las dos expresiones, (-80) + 8(-15) y (-80) - 8(-15), permite calcular la raya final a la que llega el corcho si inicialmente está en la raya marcada con -80 y a partir de este punto hace 8 desplazamientos uno tras otro hacia abajo. Cada desplazamiento tiene una magnitud de 15 rayas. Da razones de su elección1.",
+   "ejemplo_paginas": [
+    45,
+    46
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_2"
@@ -1615,6 +1916,11 @@
     46,
     46
    ],
+   "ejemplo": "En la figura se muestra una secuencia de imágenes que ilustran formas de encontrar el valor de x.\nDescribe diferentes procedimientos o acciones que le permitan conocer el valor de x y pone a prueba esos procedimientos.",
+   "ejemplo_paginas": [
+    46
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_3"
@@ -1641,6 +1947,11 @@
     46,
     47
    ],
+   "ejemplo": "Se quieren forrar con papel de colores unos cuerpos geométricos como los que se muestran en la imagen.\nSelecciona de los moldes que se muestran en la figura los que se podrían utilizar para construir, con regla y compás, los forros respectivos y determina cómo calcular la cantidad de papel que se requiere para elaborar cada forro, si se conocen las medidas de las aristas de cada cuerpo.\nAunque estos tres cuerpos tuvieran igual medida en sus aristas, el volumen de los tres sería diferente. Encuentra el de mayor volumen y explica la respuesta.",
+   "ejemplo_paginas": [
+    47
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_4"
@@ -1667,6 +1978,11 @@
     47,
     47
    ],
+   "ejemplo": "Se presentan dos imágenes, una con un jugador frente al arco y la otra con 7 jugadores frente al arco para practicar sus lanzamientos. Estima la medida de los ángulos que forma cada jugador con respecto a los dos palos del arco y argumenta en qué posición existe mayor posibilidad de gol. Utiliza el transportador para medir los ángulos y compara esas medidas con las de la estimación, explica las estrategias utilizadas en ambos casos.",
+   "ejemplo_paginas": [
+    47
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": null
@@ -1697,6 +2013,11 @@
     48,
     48
    ],
+   "ejemplo": "Los productos de la industria son envasados en diferentes materiales: cartón, vidrio, plástico, metal y diferentes formas. A partir de las condiciones reales identifica las formas volumétricas que los constituyen, construye representaciones semejantes para configurar sus desarrollos geométricos y estima la cantidad de material necesario para su fabricación. Compara la información sobre volumen y peso que aparece en algunos empaques y establece relaciones entre ellas.",
+   "ejemplo_paginas": [
+    48
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_6"
@@ -1721,6 +2042,11 @@
     48,
     48
    ],
+   "ejemplo": "Elabora diseños de bisutería artesanal para crear diferentes pulseras con diversos materiales. Utiliza el plano cartesiano para identificar patrones y los expresa como parejas ordenadas y modifica estos patrones para producir nuevos modelos.",
+   "ejemplo_paginas": [
+    48
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_7"
@@ -1747,6 +2073,11 @@
     49,
     49
    ],
+   "ejemplo": "Yadira se mudará a otro apartamento y pide cotizaciones a tres empresas de transporte. Cada empresa da sus condiciones:\nRepresenta en el plano cartesiano el costo total de transporte en pesos, en términos del peso transportado. Averigua en cuál de las empresas la razón entre peso transportado y costo es la mayor. Representa gráficamente las ofertas de las tres empresas en un diagrama cartesiano. Decide cuál es la empresa que le conviene contratar a Yadira, si tiene 400 kilogramos para transportar, o si el peso es de 700 kilogramos.",
+   "ejemplo_paginas": [
+    49
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_8"
@@ -1773,6 +2104,11 @@
     50,
     50
    ],
+   "ejemplo": "Una compañía de pintura contrata empleados por días. La compañía determina que el monto que se paga por hora trabajada es de $8.000, en jornada normal (8 horas diarias), pero si se hacen horas extras, se paga la hora a $9.000 (máximo 4 diarias).\nDescribe verbal, numérica, gráfica o simbólicamente, el monto que se ha de pagar diariamente y en varios días según la cantidad de horas extras.\nCalcula el monto de contribución a Seguridad Social en función del dinero ganado. La regla de la Oficina de Seguridad Social dice: Si se trabaja 8 horas diarias, se ha de pagar $1.000 fijos, más un 5% para salud, pensiones y cesantías. Pero si se trabajan más de 8 horas, se ha de pagar $1.000, más un 4% para salud, pensiones y cesantías. Representa esos resultados en una tabla y una gráfica cartesiana, utiliza esta información para determinar el número de horas trabajadas por una persona que ganó en un día $99.000. Si una persona debe pagar $5.320 de aportes a la Seguridad Social, determina, cantidad de horas que trabajó y si trabajó horas extras.",
+   "ejemplo_paginas": [
+    50
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_9"
@@ -1803,6 +2139,11 @@
     50,
     50
    ],
+   "ejemplo": "A finales del 2012 en su informe trimestral el Ministerio de Tecnologías de la Información y las comunicaciones, MINTIC, publicó la siguiente información:\n“En cuanto a la telefonía móvil, sector que tuvo un crecimiento de 1,13%, en Colombia hay más de 48 millones de abonados, lo que quiere decir que en el país hay 104,5 líneas por cada 100 habitantes. De estos 18,86% se encuentra en la modalidad de postpago, y 81,14% es prepago” (Tomado de http://colombiatic.mintic.gov.co/602/ articles-15179_archivo_pdf.pdf).\nResponde preguntas como ¿el comportamiento del uso de la telefonía móvil en el salón es similar a lo afirmado en la noticia? Si se presentan diferencias con los datos de la noticia, ¿cuáles son las posibles razones para que esto suceda?",
+   "ejemplo_paginas": [
+    51
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_10"
@@ -1833,6 +2174,11 @@
     51,
     51
    ],
+   "ejemplo": "En un estudio reciente sobre la velocidad de descarga de fotos y videos en celulares, se sometieron a prueba dos marcas, durante una hora se usaron 10 celulares diferentes de cada marca. Si se desea comprar un celular con una buena velocidad de descarga, ¿cuál de las dos marcas seleccionaría?\nInterpreta la información representada en los gráficos, y utiliza las medidas adecuadas para realizar la comparación que le permita tomar una buena decisión y así justificar las ventajas de una marca sobre la otra.",
+   "ejemplo_paginas": [
+    51
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_11"
@@ -1861,6 +2207,11 @@
     52,
     52
    ],
+   "ejemplo": "En un el juego con dados, uno en forma de cubo (6 caras) y otro en forma de tetraedro (4 caras) participan dos jugadores. Cada uno selecciona un dado, lo lanza al aire y gana quien obtenga más veces el número 1, después de hacer 100 lanzamientos. Leidy dice que ella juega si selecciona el dado en forma de tetraedro. Justifica la selección de uno de los dados, anticipa la posibilidad de ocurrencia del evento que salga el 1, realiza el experimento, registra los resultados y compara y razona sobre las diferencias entre lo esperado y lo observado. Verifica la validez de la afirmación de Leidy.",
+   "ejemplo_paginas": [
+    52
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado6º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_12"
@@ -1887,6 +2238,11 @@
     53,
     53
    ],
+   "ejemplo": "El salario mínimo en Colombia se incrementa anualmente bien sea por común acuerdo entre centrales obreras y el gobierno, o por decreto presidencial. Consulta los incrementos en los salarios mínimos en los últimos 10 años en Colombia.\nConsulta también el costo de vida en el mismo período de tiempo. Elabora una tabla y una representación gráfica en la que se compare el poder adquisitivo de un empleado en los 10 años. ¿Cómo ha variado el poder adquisitivo de un empleado que ha devengado el salario mínimo desde hace 10 años?",
+   "ejemplo_paginas": [
+    53
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_1"
@@ -1917,6 +2273,12 @@
     53,
     53
    ],
+   "ejemplo": "Calcula el área de un rectángulo que se construye en un software de geometría dinámica o en papel milimetrado. Los lados del rectángulo podrán variar en algún dominio específico, por ejemplo de 0 a 5, tomando todos los números en el intervalo hasta con un dígito decimal. A medida que cambian los lados, el software debe proporcionar el área del rectángulo conforme se muestra en la siguiente secuencia de imágenes. Las imágenes están construidas recreando una cuadrícula de papel milimetrado en la cual se resaltan las divisiones en unidades y en décimas. A partir de estos datos determina la relación entre el área de un cuadradito pequeño (de 0.1 de lado) y el área de un cuadrado unidad (de 1 de lado).\nRepresenta los resultados como fracción y como decimal.\nEscribe los valores de las áreas de estos rectángulos de dos formas, una tomando como unidad el área de un cuadrado cuyo lado mide 1 y la otra el área de un cuadrado cuyo lado mide 0,1. En la segunda escribe los valores usando fracciones y representaciones decimales.\nEn la primera forma escribe el valor en términos de la unidad de medida pequeña.\nCompara los valores obtenidos por las dos formas y ofrece argumentos variados para justificar las equivalencias.",
+   "ejemplo_paginas": [
+    53,
+    54
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_6_dba_2"
@@ -1943,6 +2305,11 @@
     54,
     54
    ],
+   "ejemplo": "Encuentra el valor numérico de una operación, por ejemplo: 0,457 + 2,56 - 3,4 por medio de una calculadora que tiene las teclas cinco (5) y punto decimal (.) averiadas como se muestra en la figura y describe el procedimiento utilizado.\nDescribe al menos dos maneras de hacer la operación indicada y discute sobre la validez de los procedimientos.",
+   "ejemplo_paginas": [
+    54
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_3"
@@ -1969,6 +2336,11 @@
     55,
     55
    ],
+   "ejemplo": "La Institución Rural “La Esperanza” tiene 11 aulas distribuidas en un terreno de 15,18 Dm2 (decámetros cuadrados), el terreno tiene forma aproximadamente rectangular. La institución va a ser reconstruido debido a que se desea que además de las 11 aulas de 36 m2 cada una, también se aproveche el terreno sin construir para que cuente con un restaurante de 72m2, un salón de música de 45m2, un salón de artes integradas de 48m2, un auditorio de 2 Dm2, una biblioteca de 42m2, una cancha de 480 m2, y que se conserven algunas zonas verdes. Los estudiantes tendrán que recibir sus clases por algún tiempo en la sede de acción comunal en diferentes horarios.\nElabora un plano de la nueva institución a escala, en una hoja tamaño oficio, determina si 1:100 es una escala adecuada, en caso de que no lo sea, explica por qué y encuentra la escala adecuada.",
+   "ejemplo_paginas": [
+    55
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_4"
@@ -1995,6 +2367,11 @@
     55,
     55
    ],
+   "ejemplo": "Un observador visualizó el envase que se muestra en la imagen desde diferentes puntos de vista: vista frontal, vista superior y vista inferior como lo muestra la figura. Según se observa cambian las configuraciones de la forma del objeto. Describe cómo cambia la visualización del envase en cada una de las vistas.\nObserva un objeto desde diferentes puntos de vista. Representa gráficamente el objeto si se visualiza por el frente (vista frontal), por encima (vista superior) y por debajo (vista inferior). Toma las fotos respectivas a cada vista del objeto y compara las imágenes con las representaciones gráficas realizadas.",
+   "ejemplo_paginas": [
+    55
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_5"
@@ -2023,6 +2400,11 @@
     56,
     56
    ],
+   "ejemplo": "Manipula las longitudes de un par de lados paralelos de un rectángulo, con el uso de un software de geometría dinámica. Establece el factor de escala para relacionar las longitudes de los lados, los perímetros y las áreas de los dos rectángulos. Determina qué indica el registro gráfico en correspondencia con la longitud de los lados y con las áreas de los rectángulos. En caso de no tener el apoyo del software dinámico realiza la actividad organizando los datos en una tabla para identificar la relación entre la escala, el perímetro y el área.",
+   "ejemplo_paginas": [
+    56
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_6"
@@ -2049,6 +2431,11 @@
     56,
     56
    ],
+   "ejemplo": "Con base en la información gráfica encuentra el peso de cada una de las gallinas (Los pesos están expresados en libras).",
+   "ejemplo_paginas": [
+    56
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_7"
@@ -2077,6 +2464,11 @@
     57,
     57
    ],
+   "ejemplo": "Un piscicultor tiene tres estanques en los que cultivan truchas, él quiere estimar el peso aproximado de las truchas en cada estanque para saber cómo va el crecimiento. Saca al azar de cada uno de los 3 estanques 50 truchas y las pesa. La información se presenta en las siguientes tablas:\nEncuentra el peso aproximado de las truchas en cada estanque y compara el comportamiento para concluir sobre el estado de crecimiento de las truchas en cada estanque.",
+   "ejemplo_paginas": [
+    57
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_8"
@@ -2103,6 +2495,11 @@
     57,
     57
    ],
+   "ejemplo": "En la cafetería del colegio se anuncia:\n“Aproveche, diferentes formas de seleccionar su almuerzo”. Ofrecen las siguientes opciones: Sopa o fruta.\nPollo, carne o ensalada.\nArroz, papa o plátano.\nElabora un diagrama de árbol para representar las posibles elecciones de menú. Cuenta o multiplica para encontrar todas las posibles combinaciones disponibles y argumenta sobre la veracidad de la información del anuncio.",
+   "ejemplo_paginas": [
+    58
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado7º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_9"
@@ -2127,6 +2524,11 @@
     59,
     59
    ],
+   "ejemplo": "En clase de matemáticas la profesora pidió a los estudiantes que construyeran números en su representación decimal. Algunos estudiantes hicieron lo siguiente:\nMarina dijo: “Yo empecé con el cinco como entero. Para formar los decimales utilicé un dado y lo lancé 10 veces, y así formé el número con 10 dígitos después del punto”\nJulián dijo: “Yo empecé con cero, puse el punto de decimal y empecé a poner los números naturales de forma consecutiva, es decir, 0.1234567891011121314… y así sucesivamente”\nCatalina dijo: “Yo recordé algo del año pasado y lo formé dividiendo en la calculadora 1 entre 3”\nMarcela dijo: “Yo me inspiré en lo que Marina hizo, pero mi número se formaría pensando en que siempre voy a poder seguir tirando el dado, por tanto tendría infinitos dígitos decimales” Analiza la manera en que Marina, Julián, Catalina y Marcela construyeron sus números y argumenta cuáles de ellos serían racionales y cuáles no. Propone otras maneras de construir números y argumenta cuáles de ellos serían racionales y cuáles no.",
+   "ejemplo_paginas": [
+    59
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_7_dba_1"
@@ -2153,8 +2555,15 @@
     59,
     59
    ],
+   "ejemplo": "Si en la siguiente representación, el triángulo y el cuadrado representan números cualesquiera:\nAsigna valores en las casillas y y utiliza la calculadora para establecer la existencia de números que hagan verdadera la igualdad. Argumenta este hecho y escribe una consecuencia que pueda inferirse a partir de esta exploración. Construye otras representaciones con productos, cocientes y potencias y analiza lo que sucede en cada caso.",
+   "ejemplo_paginas": [
+    59
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
-   "dudoso": [],
+   "dudoso": [
+    "ejemplo: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: los símbolos del triángulo y el cuadrado faltan («en las casillas y y»)"
+   ],
    "id_anterior": "matemáticas_7_dba_2"
   },
   {
@@ -2179,6 +2588,11 @@
     60,
     60
    ],
+   "ejemplo": "En clase de matemáticas el profesor pidió a los estudiantes analizar tres expresiones y hablar acerca de sus posibles relaciones. Las tres expresiones fueron:\nx - 1\n4x+1\n5\nAl respecto Carlos y José escribieron:\nAnaliza los escritos de Carlos y José y presenta argumentos que confirmen o refuten lo que ellos han hecho. Determina si José tiene razón al dudar si aplica o no la propiedad transitiva. ¿De qué depende que la pueda aplicar o no?",
+   "ejemplo_paginas": [
+    60
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_3"
@@ -2207,6 +2621,11 @@
     60,
     60
    ],
+   "ejemplo": "En la figura se presentan cinco cajas y en la tabla se especifican las dimensiones de cada una de ellas. Completa e interpreta la tabla a partir de las dimensiones de cada caja.\nEncuentra las razones aritméticas entre los diferentes volúmenes de las cajas y la expresión general para el volumen y el área exterior total de cada una de ellas.",
+   "ejemplo_paginas": [
+    61
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_4"
@@ -2235,6 +2654,11 @@
     61,
     61
    ],
+   "ejemplo": "En un recipiente cilíndrico totalmente lleno de agua, se sumerge por completo un objeto de forma irregular, el agua desalojada se recoge en un recipiente que se ha colocado previamente como lo muestra la figura.\nCompara el volumen calculado con el volumen de la cantidad de agua derramada. Describe los procedimientos utilizados y explica los resultados y sus respectivos procedimientos.\nAsocia la forma del objeto irregular formada por una composición de figuras regulares, utiliza estas figuras para calcular el volumen del objeto irregular con una aproximación razonable.",
+   "ejemplo_paginas": [
+    61
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_5"
@@ -2263,6 +2687,11 @@
     62,
     62
    ],
+   "ejemplo": "Las grandes empresas invierten en el diseño de la imagen corporativa que los representa. Por ejemplo, en sus logotipos o iconos que los diferencian en el mercado. Las empresas buscan que los símbolos además de sencillos sean inconfundibles, para que las personas siempre los distingan entre las demás marcas. En muchos de los logotipos de las grandes marcas priman las regularidades geométricas como se muestra a continuación:\nIdentifica las figuras congruentes que hay en cada uno de los logotipos. Argumenta las congruencias encontradas en cada logotipo.",
+   "ejemplo_paginas": [
+    62
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_6"
@@ -2293,6 +2722,11 @@
     62,
     62
    ],
+   "ejemplo": "A partir de los rompecabezas que se muestran en la imagen, explica regularidades y propiedades que se presentan al variar los elementos de la construcción geométrica del teorema de Pitágoras hasta llegar a su generalización por medio de diferentes expresiones (numéricas, geométricas y algebraicas). Con el apoyo de Software verifica la generalidad del teorema de Pitágoras con triángulos, cuadrados y formas de diferentes tamaños.",
+   "ejemplo_paginas": [
+    62
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_7"
@@ -2321,6 +2755,11 @@
     63,
     63
    ],
+   "ejemplo": "Escribe una expresión que relacione el cambio que ocurre en el valor del volumen del cono circular recto cuando el radio cambia de r a r+ ∆r (∆r representa un incremento en el valor de r) y la altura permanece constante. Calcula el cambio en el volumen para algunos incrementos del radio. Representa por medio de una gráfica la relación entre volumen cuando la altura del cono y el radio de su base son iguales y la utiliza para averiguar el valor del radio para que el volumen sea igual a 20 u3 (u es la unidad de medida). Encuentra los valores enteros del volumen a partir de los valores del radio.",
+   "ejemplo_paginas": [
+    63
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_8"
@@ -2351,6 +2790,11 @@
     63,
     63
    ],
+   "ejemplo": "Encuentra valores para b, c, d, e, etc., que satisfagan las ecuaciones propuestas y argumenta cómo cambian las respuestas obtenidas si se cambia el valor de a por 6 o por 8.\nDescribe los procedimientos para obtener valores numéricos que satisfagan las ecuaciones segunda y tercera, si se desconoce el valor de a.",
+   "ejemplo_paginas": [
+    63
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_9"
@@ -2375,6 +2819,11 @@
     64,
     64
    ],
+   "ejemplo": "Una araña ubicada en una esquina quiere cazar a una mosca que está ubicada en la esquina inferior izquierda de una caja cúbica cuyo lado mide un metro. La araña usará un camino recto pasando por dos caras del cubo y atravesando una de sus aristas por un punto X como se muestra en la línea punteada de la figura. Determina la posición del punto X para que el camino seguido por la mosca sea el más corto. Encuentra el camino más corto que ha de seguir la araña para llegar hasta la mosca.\nUtiliza el teorema de Pitágoras para obtener la distancia de la línea punteada. Explora numéricamente una solución y elabora un modelo algebraico de las longitudes de las rutas posibles.",
+   "ejemplo_paginas": [
+    64
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_10"
@@ -2403,6 +2852,12 @@
     64,
     64
    ],
+   "ejemplo": "Los estadísticos que hicieron un estudio sobre la producción de café por hectárea en 510 fincas cafeteras cometieron un error, no incorporaron los datos de 60 fincas de un municipio. Ellos afirman que, como en esa población la producción de café por hectárea se encuentra entre los límites menor y mayor de las ya estudiadas, en general los resultados no varían.\nLee y compara la información presentada en cada gráfica. Encuentra las medidas de tendencia central adecuadas y analiza si hay cambios o no cuando se introduce la información faltante.",
+   "ejemplo_paginas": [
+    64,
+    65
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_11"
@@ -2431,6 +2886,11 @@
     65,
     65
    ],
+   "ejemplo": "Se realiza un estudio con estudiantes de grado octavo para indagar por la cantidad de hermanos y sus edades. En la tabla se presentan la cantidad de estudiantes por cada número de hermanos y rango de edades.\nCon base en la tabla de distribución de frecuencias determina:\nLa probabilidad de que un estudiante del curso tenga 1 o 2 hermanos.\nLa probabilidad de que en la familia de un alumno del curso haya dos hijos y él sea el menor.\nUtiliza al menos dos procedimientos diferentes para calcular esta probabilidad y justifica la igualdad de los resultados.",
+   "ejemplo_paginas": [
+    65
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado8º",
    "dudoso": [],
    "id_anterior": "matemáticas_8_dba_12"
@@ -2457,8 +2917,15 @@
     66,
     66
    ],
+   "ejemplo": "Los estudiantes de noveno inflan dos globos (como se muestran en la figura) para representar la razón entre los diámetros de dos esferas. Describa los posibles caminos que tendría en cuenta para construir esferas cuya razón entre sus diámetros sea √5.\nMónica escribió la siguiente relación en el tablero:dd\nElla mencionó que D representa al diámetro del globo mayor y d al del globo menor. Identifique si en el planteamiento de Mónica puede haber un error y cómo se representaría dicha relación.\nUsando los mismos símbolos, Fernando escribió en su cuaderno =√5 . En caso de existir un error ¿Qué error pudo haber cometido Fernando? Descríbalo.\nAlex dijo “Yo sé que raíz de dos es más o menos 2.23, así que voy a suponer que eso es 2” y luego agregó “Como el volumen de una esfera es 4 π(d)3 quiere decir que\ncuando reemplazo me da el volumen de la mayor casi ocho veces la menor”. Con ese resultado Alex sopló una vez un globo y luego ocho veces el otro globo y dijo “estos dos globos están en la razón pedida”. Discute con sus compañeros sobre la validez del proceso hecho por Alex y comenta las consideraciones que se deben tener en cuenta para mejorar el cálculo.\nPaula, al escuchar a Alex hizo el mismo proceso pero ahora usó una aproximación √5≈2,2. Karla hizo lo mismo pero ella usó √5≈2,236 ¿Qué tanto se aleja el cálculo de Paula con relación al cálculo de Karla?\nFinalmente Camila sopló, con toda su potencia, tres veces uno de los globos y dijo que esa sería la menor. Describe cómo se podría construir el globo mayor.",
+   "ejemplo_paginas": [
+    66
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
-   "dudoso": [],
+   "dudoso": [
+    "ejemplo: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: D/d y 4/3 π(d/2)³ quedan como «tablero:dd», «=√5» y «4 π(d)3»"
+   ],
    "id_anterior": "matemáticas_8_dba_1"
   },
   {
@@ -2483,6 +2950,11 @@
     66,
     66
    ],
+   "ejemplo": "La siguiente imagen muestra una representación de tres funciones diferentes:\nEncuentra los valores de x, para los cuales la gráfica de la función f(x) está entre las gráficas de las funciones g(x) y h(x). Escribe la respuesta utilizando intervalos. Sobre la gráfica de la función cuadrática g(x) dibuja las gráficas de f(x) y h(x). Compara las funciones a partir de sus diferentes representaciones.",
+   "ejemplo_paginas": [
+    67
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_2"
@@ -2507,6 +2979,11 @@
     67,
     67
    ],
+   "ejemplo": "Observa la siguiente espiral y describe la manera en que fue construida.\nCompleta la tabla al iniciar con el lado, el perímetro y el área del cuadrado más pequeño e interior de la espiral (su lado mide 1 unidad).\nLa sucesión formada por los lados de los cuadrados se conoce como sucesión de Fibonacci (1u, 1u, 2u, 3u, 5u,...) Observa la tabla y describe patrones y regularidades que allí se presentan.",
+   "ejemplo_paginas": [
+    67
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_3"
@@ -2535,6 +3012,11 @@
     68,
     68
    ],
+   "ejemplo": "Un mecánico industrial desea comprobar una estimación que ha realizado en su trabajo, en cuanto a la relación entre el volumen.\nJustifica si el mecánico al construir dos piezas metálicas como las que se muestran en la figura puede comprobar la estimación.\nConjetura y comprueba las veces que cabe el contenido del recipiente en forma de cono en el de forma de cilindro al llenarlos con diferentes materiales. Utiliza el resultado obtenido por este procedimiento para expresar el volumen del cono en términos del volumen del cilindro.",
+   "ejemplo_paginas": [
+    68
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_4"
@@ -2565,6 +3047,12 @@
     68,
     68
    ],
+   "ejemplo": "Camila observa un ave en un árbol y desea determinar la altura a la que se encuentra. Para ello utiliza un instrumento como el de la figura 1 (una escuadra isósceles y un pitillo). Además, en uno de los extremos ata un pedazo de hilo con un objeto que actúa como plomada.\nEn la figura 2, se observa la técnica que utiliza Camila para medir la altura a la que se encuentra el ave. Ella mira a través del pitillo y se aleja o se acerca del árbol hasta ubicarse en un punto donde pueda visualizar el ave. Luego, fija este lugar con una marca en el piso y mide la distancia h desde este punto hasta la base del árbol.\nIdentifica y describe las figuras geométricas que usó Camila en el proceso de medición y completa la tabla.\nNombre Lados Lados Ángulos\nJustifica el procedimiento que utilizó Camila para establecer la altura a la que se encuentra el ave como h+H y propone mejoras al instrumento para realizar mediciones más precisas.",
+   "ejemplo_paginas": [
+    68,
+    69
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_5"
@@ -2593,6 +3081,11 @@
     69,
     69
    ],
+   "ejemplo": "Describe situaciones reales que puedan representarse con las figuras que se presentan a continuación. Problematiza las situaciones y las resuelve con el apoyo del teorema de Thales.",
+   "ejemplo_paginas": [
+    69
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_6"
@@ -2617,6 +3110,11 @@
     70,
     70
    ],
+   "ejemplo": "A las motocicletas antes de salir a la venta les realizan pruebas de velocidad. A partir de la visualización del video https://www.youtube. com/watch?v=FeIqwVKdyXc, dibuja una gráfica que represente la velocidad registrada por el tacómetro cada tres segundos.\nGrafica los datos registrados en la tabla y encuentra la relación con respecto a la primera gráfica. Explica a qué se deben las diferencias o las similitudes en caso de que existan y el significado de la expresión",
+   "ejemplo_paginas": [
+    70
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_7"
@@ -2643,6 +3141,11 @@
     70,
     70
    ],
+   "ejemplo": "La figura1 muestra varios terrenos. Cada terreno será delimitado con una cerca cuyo costo por metro es de 15.000 pesos. Cada lado tiene una longitud en metros, cuyo valor desconocemos, representado por una letra: a, b, c, d, e. Se sabe que a=b; c=e; d<a y d<c. Encuentra una expresión para el precio total de la cerca de cada terreno. Indica cuál de los terrenos es más costoso y cuál es menos costoso para cercar.",
+   "ejemplo_paginas": [
+    70
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_8"
@@ -2671,6 +3174,11 @@
     71,
     71
    ],
+   "ejemplo": "Encuentra de manera sistemática el número total de rectángulos que se pueden formar en un tablero de 8 x 8 como el de la figura, considerando que los cuadrados son casos particulares de rectángulos. Tomar como referencia la tabla de rectángulos en una tabla de 3x3.\nRegistra la información en una tabla, encuentra la expresión general para hallar el número de rectángulos en un cuadrado de n x n.\nRectángulos en una tabla de 3x3",
+   "ejemplo_paginas": [
+    71
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_9"
@@ -2699,6 +3207,11 @@
     72,
     72
    ],
+   "ejemplo": "Responde la pregunta ¿cuál de los dos métodos es el más efectivo? usando los resultados obtenidos en un estudio realizado por el preparador físico de una escuela de fútbol en el que comparó los tiempos que se demoran, 60 jugadores, en realizar una actividad de resistencia física antes y después de realizar los entrenamientos alternativos. Se sabe que el preparador físico seleccionó al azar 30 estudiantes para conformar dos grupos y con cada grupo realizó un entrenamiento diferente.",
+   "ejemplo_paginas": [
+    72
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_10"
@@ -2727,6 +3240,11 @@
     73,
     73
    ],
+   "ejemplo": "Se está organizando la ejecución de las pruebas de atletismo en el colegio; para participar en éstas se han organizado 3 horarios, de 7:00 a.m a 8:00 a.m, de 9:00 a.m a 10:00 a.m y de 11:00 a.m a 12:00 m, la condición es que en cada horario solo puede realizar una prueba atlética. Se indica a los participantes que para clasificar es necesario que presenten tres de las cinco pruebas organizadas. Se desea conocer el número total de opciones que tiene un participante para seleccionar las tres pruebas que debe presentar.\nUsa métodos de conteo, sistemáticos o no y, argumenta sobre el método elegido en función de la situación planteada.",
+   "ejemplo_paginas": [
+    73
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Matemáticas•Grado9º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_11"
@@ -2753,6 +3271,11 @@
     74,
     74
    ],
+   "ejemplo": "A partir de construcciones como la de la figura elabora argumentos para mostrar que raíz cuadrada de dos no puede representarse como la división de dos enteros. Los catetos de los triángulos son números enteros.\nIdentifica que en cada nuevo elemento de la sucesión el nuevo triángulo construido es rectángulo isósceles.\nDetermina si la sucesión de figuras puede continuarse. ¿cuántos nuevos elementos puede tener hasta cubrir por completo BC?",
+   "ejemplo_paginas": [
+    74
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
    "dudoso": [],
    "id_anterior": "matemáticas_9_dba_1"
@@ -2779,8 +3302,16 @@
     74,
     74
    ],
+   "ejemplo": "A la ‘máquina’ de la figura se le introducen números, los procesa de acuerdo con una regla y arroja los resultados.\nLa máquina puede realizar los siguientes procesos:\nProceso 1: “Toma el número de entrada y lo divide entre 0,25”.\nProceso 2: “Toma el número de entrada y lo multiplica por 5”.\nProceso 3. “Toma el número de entrada y le saca raíz cuadrada”.\nDetermina los conjuntos de salida, si se toman los números de entrada en cada uno de los conjuntos dados;\nConjunto 1: 1, 1 , 1\nConjunto 2: [0, 0.5)\nConjunto 3: [5,∞)\nConjunto 4: [-1.5, -0.5]\nMargarita dijo “yo pensaba que dividir siempre daba como resultado un número más pequeño, ahora me doy cuenta que no”. Analiza la validez de la afirmación y justifica la decisión tomada.",
+   "ejemplo_paginas": [
+    74,
+    75
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
-   "dudoso": [],
+   "dudoso": [
+    "ejemplo: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: «Conjunto 1: 1, 1 , 1» (faltan los denominadores 10, 100 y 1000)"
+   ],
    "id_anterior": "matemáticas_9_dba_2"
   },
   {
@@ -2807,6 +3338,11 @@
     75,
     75
    ],
+   "ejemplo": "Al arrojar piedras a un lago de aguas tranquilas se van formando ondas circulares concéntricas, las cuales van aumentando de tamaño a medida que transcurre el tiempo. Una onda exterior tiene un radio de 80 cm y la rapidez con la que aumenta su radio es de 0,3 m/s. El aumento del tamaño de las ondas significa que aumenta el radio y por lo tanto el área de los círculos concéntricos.\nDiscute la rapidez con la cual aumenta el área del círculo formado por la onda. Completa la tabla calculando la rapidez con la que aumenta el área de las ondas, para t = 1, 2, 3, respectivamente. Compara, a partir de gráficas cartesianas, el cambio de radio, de la rapidez de cambio del radio, el cambio de las áreas y la rapidez del cambio de área.\nDiscute sobre las magnitudes que son razones de otras magnitudes, sus unidades y la solución de ecuaciones.",
+   "ejemplo_paginas": [
+    75
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
    "dudoso": [],
    "id_anterior": "matemáticas_10_dba_3"
@@ -2837,8 +3373,15 @@
     76,
     76
    ],
+   "ejemplo": "Construye un disco de radio 12 cm con diferentes colores, de tal forma que cada franja de color se encuentre a una distancia determinada con respecto al centro del disco. El primer color (azul claro) se encuentra desde el centro del disco hasta un radio de 5 cm y los demás colores tienen un ancho de un centímetro.\nRepresenta en un plano cartesiano el movimiento que realiza una marca que se hace en algunos de las franjas del disco, cuando éste se hace girar. El centro del disco de colores está en (0, 0). Determina los tiempos en los que la marca gira 30° más a partir de su posición de inicio =0° y realiza la gráfica para estas dos variables hasta una vuelta completa del disco.",
+   "ejemplo_paginas": [
+    76
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
-   "dudoso": [],
+   "dudoso": [
+    "ejemplo: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: «posición de inicio =0°» (falta la letra α)"
+   ],
    "id_anterior": "matemáticas_10_dba_4"
   },
   {
@@ -2865,6 +3408,12 @@
     76,
     76
    ],
+   "ejemplo": "Con un software de geometría dinámica y mediante la escritura de las ecuaciones diseña la imagen de la figura. Realiza su propio diseño. Realiza un vídeo (editor de videos Windows Movie Maker de office o Virtual Dub) acerca del paso a paso del diseño. En caso de no contar con un software de geometría dinámica realiza en papel milimetrado la construcción.",
+   "ejemplo_paginas": [
+    76,
+    77
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
    "dudoso": [],
    "id_anterior": "matemáticas_10_dba_5"
@@ -2891,6 +3440,11 @@
     77,
     77
    ],
+   "ejemplo": "Difusión del sarampión. La difusión del sarampión en cierta escuela está dada por la expresión,\ndonde t representa el número de días desde la aparición del sarampión, y P(t) representa el número total de estudiantes que se han contagiado hasta la fecha.\nEstima tanto el número inicial de estudiantes infectados como el número de estudiantes que se contagiarán.\nDetermina cuándo se presenta la máxima tasa de difusión del sarampión e indica cuál es esa tasa.\nNota: Se pide la “máxima tasa” de variación que es diferente al valor máximo para P(t). Una estimación geométrica es posible.",
+   "ejemplo_paginas": [
+    77
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
    "dudoso": [],
    "id_anterior": "matemáticas_10_dba_6"
@@ -2919,6 +3473,11 @@
     77,
     77
    ],
+   "ejemplo": "Al lanzar un cohete, el combustible se quema durante algunos segundos, acelerando hacia arriba. Después de consumirse el combustible, el cohete sigue ascendiendo durante un tiempo y luego comienza a caer. Una pequeña carga explosiva expulsa un paracaídas poco después que el cohete comienza a descender. El paracaídas evita que el cohete se estrelle. La gráfica muestra los datos de velocidad durante el vuelo. Utiliza la gráfica para determinar: la velocidad del cohete cuando se para el motor, el tiempo de funcionamiento del motor, el tiempo cuando alcanzó el cohete el punto más alto y su velocidad en ese momento.\nEn el momento en que el paracaídas se abrió, determina la velocidad de caída del cohete, el tiempo de caída antes de que se abriera el paracaídas, la velocidad y la aceleración máxima del cohete.",
+   "ejemplo_paginas": [
+    78
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
    "dudoso": [],
    "id_anterior": "matemáticas_10_dba_7"
@@ -2949,6 +3508,12 @@
     78,
     78
    ],
+   "ejemplo": "Con la información que se presenta tanto en la página web (http://banrep.gov.co/es/encuesta-expectativas-trimestral) como en la siguiente ficha técnica, elabora un informe crítico al estudio realizado por el Banco de la República sobre las expectativas económicas.\nhttp://banrep.gov.co/es/encuesta-expectativas-trimestral",
+   "ejemplo_paginas": [
+    78,
+    79
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
    "dudoso": [],
    "id_anterior": "matemáticas_10_dba_8"
@@ -2979,6 +3544,11 @@
     79,
     79
    ],
+   "ejemplo": "Se realizó un estudio para determinar la durabilidad de dos marcas de llantas para moto, para esto, se escogieron al azar 20 llantas de cada marca y se pusieron a prueba. Los resultados se presentan en las siguientes tablas.\nEncuentra la medida que mejor representa los datos, justifica su elección y decide cuál es la marca con mayor durabilidad.",
+   "ejemplo_paginas": [
+    79
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
    "dudoso": [],
    "id_anterior": "matemáticas_10_dba_9"
@@ -3009,8 +3579,15 @@
     79,
     79
    ],
+   "ejemplo": "En una revista médica se menciona lo siguiente: “Se ha estimado que la probabilidad de que una persona fumadora muera de una enfermedad asociada con el consumo del cigarrillo es de aproximadamente 1”.\nSe trata de describir un método posible por medio del cual se haya podido llegar a este resultado. “Afirma que el estudio se pudo realizar en una muestra aleatoria de la población de personas fumadoras en donde se calculó la probabilidad de que una persona fumadora muera de una enfermedad asociada con el consumo del cigarrillo. Concluye que lo previsible es que en esa muestra el resultado haya sido 1.”",
+   "ejemplo_paginas": [
+    80
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado10º",
-   "dudoso": [],
+   "dudoso": [
+    "ejemplo: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: «aproximadamente 1» y «haya sido 1» (falta el denominador 2 de 1/2)"
+   ],
    "id_anterior": "matemáticas_10_dba_10"
   },
   {
@@ -3035,6 +3612,11 @@
     81,
     81
    ],
+   "ejemplo": "Un profesor presenta a sus estudiantes las siguientes imágenes:\nEl profesor pregunta a sus estudiantes: ¿Cuáles aspectos en común tienen las tres representaciones? A la pregunta Federico respondió: “Las tres representan lo mismo, están hablando de los números mayores que cinco”. Sara dijo “Federico, en parte, tiene razón; pero los conjuntos no son los mismos”. Luego, el profesor agregó: “¡Muy bien Sara! Entonces si no son los mismos conjuntos, ¿cuáles serían sus diferencias?, ¿Podrías describirme esos conjuntos?”\nFinalmente, Carolina después de todo el trabajo dijo: “Yo no he podido entender una cosa, ¿Por qué no es válido que yo diga que de cinco siga el 5.1 o el 5.01?\nDiscute la veracidad de las afirmaciones de Sara y Federico. Ofrece una respuesta a la pregunta de Carolina.",
+   "ejemplo_paginas": [
+    81
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
    "dudoso": [],
    "id_anterior": "matemáticas_10_dba_1"
@@ -3059,6 +3641,12 @@
     81,
     81
    ],
+   "ejemplo": "“Ana una estudiante de undécimo decide resolver una inecuación como se muestra en la siguiente figura:\nAna argumenta que para resolver la inecuación, todo lo que está sumando al lado izquierdo se pasa a restar al lado derecho y posteriormente, realiza las operaciones. Luego, termina su ejercicio de la siguiente manera: dice que para despejar la x pasa a multiplicar el 3 a ambos lados”.\nAnaliza los procedimientos propuestos por la estudiante de la situación anterior y valida su solución. En caso de encontrar algún error, construye una nueva solución.",
+   "ejemplo_paginas": [
+    81,
+    82
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
    "dudoso": [],
    "id_anterior": "matemáticas_11_dba_2"
@@ -3087,6 +3675,11 @@
     82,
     82
    ],
+   "ejemplo": "Desde la terraza de un edificio con una altura (ho) de 40 metros, se lanza un balón verticalmente hacia arriba con una velocidad inicial (Vo) de 19m/s. La altura H que alcanza el balón en un tiempo t (en segundos) se puede calcular con la expresión.\nDiscute el significado y las unidades del número -4,9. Explica la relación entre las unidades de las magnitudes involucradas en la expresión para calcular la altura, de manera que ésta quede expresada en metros. Explica por qué la velocidad se expresa en m/s y la aceleración en m/s2. Explica el sentido de la afirmación “la expresión para H representa la gráfica de una parábola en el sistema de coordenadas H contra t, pero el movimiento de caída libre puede ser vertical cuando se suelta un objeto desde cierta altura”.",
+   "ejemplo_paginas": [
+    82
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
    "dudoso": [],
    "id_anterior": "matemáticas_11_dba_3"
@@ -3117,6 +3710,11 @@
     83,
     83
    ],
+   "ejemplo": "En una fábrica se requiere cortar láminas de acero para fabricar piezas de diferentes formas (cilindros, conos truncados, pirámides truncadas, prismas, etc). Los cortes de dichas láminas se realizan con “discos de corte” acoplados a una máquina pulidora. Para establecer la eficiencia de un mecánico industrial al hacer los cortes, se toman los datos que aparecen en la tabla (la longitud de la lámina cortada se mide con un flexómetro en mm; el tiempo se mide con un cronómetro en minutos, el procedimiento se realiza para 4 discos de la misma marca y el mismo diámetro).\nDetermina la rapidez media con la que el mecánico corta las láminas. De acuerdo con el gráfico determina la precisión de la rapidez media del mecánico para cortar las láminas.\nIdentifica y explica los factores que influyen en la precisión de la rapidez del mecánico para realizar los cortes, y propone técnicas para medir con mayor precisión la rapidez del mecánico al cortar las láminas.",
+   "ejemplo_paginas": [
+    83
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
    "dudoso": [],
    "id_anterior": "matemáticas_11_dba_4"
@@ -3143,6 +3741,11 @@
     84,
     84
    ],
+   "ejemplo": "Cuando un atleta recorre cierta distancia se puede suponer que su velocidad no es constante, que a partir del momento en que sale empieza a aumentar su velocidad hasta un pico máximo y que disminuye progresivamente hasta el final. Si se admite que la ecuación\nF(t) = 0.00192t(250– t)\nRepresenta la distancia recorrida por el atleta en metros cuando lleva t segundos.\nAverigua la distancia que ha recorrido cuando alcanza la mayor velocidad.\nUsa la derivada para construir un argumento.",
+   "ejemplo_paginas": [
+    84
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
    "dudoso": [],
    "id_anterior": "matemáticas_11_dba_5"
@@ -3169,6 +3772,11 @@
     84,
     84
    ],
+   "ejemplo": "La naturaleza tiene formas curvas que revelan regularidades geométricas muy hermosas. Algunas de ellas se perciben en las flores, las mariposas, los caracoles y otros animales o plantas como se aprecia en las siguientes imágenes.\nCon el apoyo de un software matemático o de papel milimetrado, realiza una representación aproximada de cada una de las formas que se presentan en los diferentes sistemas de coordenadas.",
+   "ejemplo_paginas": [
+    84
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
    "dudoso": [],
    "id_anterior": "matemáticas_11_dba_6"
@@ -3197,6 +3805,11 @@
     85,
     85
    ],
+   "ejemplo": "Una araña ubicada en una esquina quiere cazar a una mosca que está ubicada en la esquina inferior izquierda de una caja cúbica cuyo lado mide un metro. La araña usará un camino recto señalado en línea punteada. Encuentra el camino más corto que ha de seguir la araña para llegar hasta la mosca.",
+   "ejemplo_paginas": [
+    85
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
    "dudoso": [],
    "id_anterior": "matemáticas_11_dba_7"
@@ -3223,8 +3836,15 @@
     85,
     85
    ],
+   "ejemplo": "Un avión vuela a una altitud H cuando comienza su descenso a una pista de aeropuerto que está a una distancia L del avión, con respecto al suelo, como se muestra en la figura. Asume que la trayectoria de aterrizaje se representa con la gráfica de una función polinomial cúbica y= ax3+bx2+ cx +d, donde y(-L)=H, y(0)=0. Encuentra el valor de en x=0 y el valor de\nUtiliza los valores de en x=0 y en x=-L junto\ncon y(0)=0 y y(-L)=H para mostrar que y(x)=H 2(x)3+3(x)2",
+   "ejemplo_paginas": [
+    85
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Matemáticas•Grado11º",
-   "dudoso": [],
+   "dudoso": [
+    "ejemplo: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: faltan dy/dx y los denominadores de y(x)"
+   ],
    "id_anterior": "matemáticas_11_dba_8"
   },
   {
@@ -3253,6 +3873,11 @@
     86,
     86
    ],
+   "ejemplo": "En un artículo de ciencias se afirma que: “los antropólogos y los paleontólogos usan las longitudes de los huesos fósiles largos como el fémur y el húmero para calcular la estatura del individuo en estudio”. Diseña y lleva a cabo un estudio estadístico para comprobar si se puede demostrar que existe una relación entre la estatura y la longitud de los huesos largos entre los seres humanos.",
+   "ejemplo_paginas": [
+    86
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "",
    "dudoso": [
     "la página no tiene encabezado de grado: se toma el de la página anterior y la numeración que sigue"
@@ -3283,6 +3908,11 @@
     86,
     86
    ],
+   "ejemplo": "Los resultados de la encuesta realizada con personas entre 14 a 17 años de edad, seleccionadas al azar, se presentan en la siguiente tabla:\nPlantea una pregunta sobre la relación entre las dos variables que se presentan en la tabla, indica si las dos variables (género y preferencia) son o no independientes y da respuesta a la pregunta planteada.",
+   "ejemplo_paginas": [
+    86
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "",
    "dudoso": [
     "la página no tiene encabezado de grado: se toma el de la página anterior y la numeración que sigue"
@@ -3313,6 +3943,11 @@
     8,
     8
    ],
+   "ejemplo": "Tras escuchar u observar programas de radio y televisión:\nRepresenta el contenido del programa mediante gestos o dibujos, con la intención de que los demás compañeros adivinen temáticas o acciones específicas.\nConversa sobre el contenido del programa y explica por qué es de su agrado.",
+   "ejemplo_paginas": [
+    8
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_1"
@@ -3341,6 +3976,11 @@
     8,
     8
    ],
+   "ejemplo": "Observa detenidamente en la imagen los siguientes aspectos y comenta sus apreciaciones sobre ellos:\nLa expresión de cada uno de los personajes que aparecen en la portada.\nLa posición corporal que tiene cada personaje.\nLa posible relación que hay entre los personajes presentados.\nLas posibles palabras terribles que son mencionadas en la historia.",
+   "ejemplo_paginas": [
+    8
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_2"
@@ -3369,6 +4009,11 @@
     9,
     9
    ],
+   "ejemplo": "Indaga con personas de su comunidad por algunos cantos, cuentos, retahílas, refranes o canciones que recuerden de cuando eran pequeños. Comparte los textos con sus compañeros.\nPara complementar la actividad, puede buscar en algunos libros. Aquí se proponen algunos de la Colección Semilla.",
+   "ejemplo_paginas": [
+    9
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_3"
@@ -3397,6 +4042,11 @@
     9,
     9
    ],
+   "ejemplo": "Coleóptero\nUn paseóptero en helicóptero\na la islóptera de Cococópteros,\norganisóptero un coleóptero.\nEntran todópteros aprentandóptero\ny volandóptero van con ruidóptero, los resongópteros muelonedópteros\ntestarudópteros cascaridópteros.\nClarisa Ruiz",
+   "ejemplo_paginas": [
+    9
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_4"
@@ -3425,6 +4075,11 @@
     10,
     10
    ],
+   "ejemplo": "Durante la escucha de diferentes textos:\nAgrupa las palabras que pertenecen a una misma familia de objetos.",
+   "ejemplo_paginas": [
+    10
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_5"
@@ -3453,6 +4108,11 @@
     10,
     10
    ],
+   "ejemplo": "Para lograr una mejor comprensión de los textos que lee o que escucha de su profesor o profesora puede emplear estrategias en las que:\nEstablece relaciones entre las dos imágenes.\nComenta sobre el sentido que puede tener cada una de las historias a partir de las imágenes.\nAtribuye acciones y funciones a cada personaje.\nPronuncia las palabras de un texto sencillo a partir del reconocimiento de las letras que las componen.",
+   "ejemplo_paginas": [
+    10
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_6"
@@ -3481,6 +4141,11 @@
     11,
     11
    ],
+   "ejemplo": "En una conversación sobre temas de actualidad o problemas de su entorno como el siguiente:\nRespeta los turnos en la conversación.\nExpone con claridad lo que opina sobre el problema.\nHabla sobre la manera de cuidar a las mascotas y de ayudar a los animales callejeros.",
+   "ejemplo_paginas": [
+    11
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_7"
@@ -3511,6 +4176,11 @@
     11,
     11
    ],
+   "ejemplo": "En la producción de textos cortos como las invitaciones:\nEscribe algunas palabras sencillas en relación con la invitación como globo, años, fiesta, lugar, fecha, hora, entre otras.\nEscribe algunas oraciones sencillas como: “Te invito a mi fiesta”.\nSe interesa por completar algunos formatos como la carta de invitación.",
+   "ejemplo_paginas": [
+    11
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado1º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_8"
@@ -3539,6 +4209,11 @@
     12,
     12
    ],
+   "ejemplo": "Una misma información puede presentarse en diferentes medios de comunicación:\nElige noticias abordadas en la televisión, la radio o la prensa sobre un tema de interés como el ciclismo.\nComprende que algunos medios abordan la misma noticia con mayor especificidad o mayor generalidad, y que algunos se apoyan en sonidos e imágenes para hacerlo.",
+   "ejemplo_paginas": [
+    12
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_1_dba_1"
@@ -3565,6 +4240,11 @@
     12,
     12
    ],
+   "ejemplo": "Revisa etiquetas de ropa, busca las señales que hay en ellas y las compara con otras.\nInventa señales con otros fines, por ejemplo: no meter las manos en la lavadora mientras esté en funcionamiento, no comerse el detergente u otras precauciones que se deban tener en cuenta al momento de lavar la ropa.",
+   "ejemplo_paginas": [
+    12
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_2"
@@ -3591,6 +4271,11 @@
     13,
     13
    ],
+   "ejemplo": "En los cuentos se presentan personajes, situaciones y lugares que en algunos casos son parecidos y en otros diferentes.\nRecuerda algunos de los cuentos que conoce y dibuja los lugares y los personajes donde se desarrollan los hechos de la narración. Identifica las características comunes en ellos.\nExpone sus dibujos y conversa sobre: cómo actúan los personajes, qué acciones que realizan y de qué manera esto se relaciona con sus experiencias.\nEscucha la lectura en voz alta de los cuentos trabajados e identifica las palabras que conforman el título.",
+   "ejemplo_paginas": [
+    13
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_3"
@@ -3619,6 +4304,11 @@
     13,
     13
    ],
+   "ejemplo": "Mientras lee textos literarios como las fábulas:\nHace pausas y cambia ritmos, tonos y velocidades en la lectura.\nDialoga sobre lo que entiende de ellas.\nExpresa cuáles personajes de las fábulas le gustan más y por qué.\nOpina sobre las acciones, actitudes y decisiones de los personajes de las fábulas.",
+   "ejemplo_paginas": [
+    13
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_4"
@@ -3647,6 +4337,11 @@
     14,
     14
    ],
+   "ejemplo": "Para comprender textos orales:\nParticipa en conversaciones que recrean situaciones cotidianas en las que identifica las intenciones de su interlocutor para responder de manera adecuada.\nRepresenta situaciones en las que simula pedir un favor, solicitar una explicación para hacer una tarea o contar lo realizado el fin de semana anterior.\nEscucha al otro con actitud de respeto y evalúa la claridad de las ideas, la pronunciación y la gestualidad.",
+   "ejemplo_paginas": [
+    14
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_5"
@@ -3677,6 +4372,11 @@
     14,
     14
    ],
+   "ejemplo": "La información no siempre se presenta de forma lineal, en algunas ocasiones se acompaña de imágenes y se distribuye diferente en el texto, tal como se evidencia en la estructura de la invitación que se muestra a continuación:",
+   "ejemplo_paginas": [
+    14
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_6"
@@ -3707,6 +4407,11 @@
     15,
     15
    ],
+   "ejemplo": "Participa en una mesa redonda en la que habla sobre temas que le interesan.",
+   "ejemplo_paginas": [
+    15
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_7"
@@ -3739,6 +4444,11 @@
     15,
     15
    ],
+   "ejemplo": "Para reconocer el propósito de los textos que escribe: Cruza la columna A con la B para relacionar los tipos de texto con las situaciones presentadas. Elige uno de los tipos de textos y lo ejemplifica.",
+   "ejemplo_paginas": [
+    15
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado2º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_8"
@@ -3765,6 +4475,11 @@
     16,
     16
    ],
+   "ejemplo": "Durante la exploración de los medios de comunicación que hay en su contexto:\nComparte con sus compañeros sus conocimientos sobre las definiciones, características y funciones de los medios de comunicación.",
+   "ejemplo_paginas": [
+    16
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_2_dba_1"
@@ -3793,6 +4508,11 @@
     16,
     16
    ],
+   "ejemplo": "Conoce algunas manifestaciones artísticas y culturales colombianas, y analiza los textos, sonidos e imágenes que se producen en ellas.",
+   "ejemplo_paginas": [
+    16
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_2"
@@ -3823,6 +4543,11 @@
     17,
     17
    ],
+   "ejemplo": "Durante la comprensión de narraciones responde a preguntas como:",
+   "ejemplo_paginas": [
+    17
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_3"
@@ -3853,6 +4578,11 @@
     17,
     17
    ],
+   "ejemplo": "Escribe narraciones a partir de planes textuales como el siguiente:",
+   "ejemplo_paginas": [
+    17
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_4"
@@ -3881,6 +4611,11 @@
     18,
     18
    ],
+   "ejemplo": "Analiza el papel del emisor de una comunicación y la información que este emite:",
+   "ejemplo_paginas": [
+    18
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_5"
@@ -3909,6 +4644,11 @@
     18,
     18
    ],
+   "ejemplo": "Durante la lectura de textos como:",
+   "ejemplo_paginas": [
+    18
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_6"
@@ -3937,6 +4677,11 @@
     19,
     19
    ],
+   "ejemplo": "Prepara un diálogo atendiendo a esquemas de planeación como el siguiente:",
+   "ejemplo_paginas": [
+    19
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_7"
@@ -3967,6 +4712,11 @@
     19,
     19
    ],
+   "ejemplo": "Diseña textos que le permiten comunicar un mensaje de manera efectiva:",
+   "ejemplo_paginas": [
+    19
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado3º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_8"
@@ -3995,6 +4745,11 @@
     20,
     20
    ],
+   "ejemplo": "Una posible forma para analizar la información de diferentes medios de comunicación es la creación de un nuevo texto informativo:\nSelecciona noticias sobre un mismo tema.\nRecupera la información y las imágenes que le serán útiles para el nuevo texto.\nRedacta un nuevo texto sobre la temática consultada.",
+   "ejemplo_paginas": [
+    20
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_3_dba_1"
@@ -4021,6 +4776,11 @@
     20,
     20
    ],
+   "ejemplo": "Para la creación de una línea de tiempo ilustrada:\nIdentifica hechos, tiempos y lugares relevantes.\nOrganiza la información temporalmente.\nAgrega imágenes a cada uno de los eventos.",
+   "ejemplo_paginas": [
+    20
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_2"
@@ -4051,6 +4811,11 @@
     21,
     21
    ],
+   "ejemplo": "Para crear textos literarios:\nElige un cuento trabajado en clase.\nDistingue los personajes del narrador.\nDetermina los lugares en los que se desarrollan las acciones.\nCrea una nueva historia a partir de lo leído.\nLee su cuento en voz alta y asigna una voz a cada personaje.\nAgrega efectos sonoros con diferentes objetos con el fin de reproducir ruidos de pisadas, apertura de puertas, cantos de pájaros, entre otros.",
+   "ejemplo_paginas": [
+    21
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_3"
@@ -4079,6 +4844,11 @@
     21,
     21
    ],
+   "ejemplo": "Durante la creación de textos literarios como los caligramas\nElige un objeto o animal del entorno.\nObserva las características y las relaciona con un sentimiento o idea.\nSelecciona algunas figuras literarias que quiere usar.\nCon base en las anotaciones crea un caligrama.",
+   "ejemplo_paginas": [
+    21
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_4"
@@ -4107,6 +4877,11 @@
     22,
     22
    ],
+   "ejemplo": "En espacios de diálogo planeados:\nElige un tema.\nEscribe una lista con las principales ideas.\nParticipa en la discusión como un experto.\nExpresa ideas y respeta las de los otros.\nExpone las conclusiones de los temas tratados.",
+   "ejemplo_paginas": [
+    22
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_5"
@@ -4133,6 +4908,11 @@
     22,
     22
    ],
+   "ejemplo": "En una la historieta como la de Liniers:\nDetermina el tema, las causas y las consecuencias de lo que ocurre.\nObserva lo que sucede a los personajes en cada viñeta.\nAdiciona enunciados de lo que pueden estar diciendo los personajes.\nUsa sonidos onomatopéyicos para expresar las acciones de los personajes.\nEscucha los resultados de otros escritos para identificar en qué coinciden o difieren.",
+   "ejemplo_paginas": [
+    22
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_6"
@@ -4161,6 +4941,11 @@
     23,
     23
    ],
+   "ejemplo": "Durante el desarrollo de una tertulia:\nElige una temática como: la amistad, el cuidado de la naturaleza o el uso de Internet.\nConversa sobre la temática aportando sus ideas y opiniones.\nRespeta los turnos de habla de los demás participantes.",
+   "ejemplo_paginas": [
+    23
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_7"
@@ -4191,6 +4976,11 @@
     23,
     23
    ],
+   "ejemplo": "A partir de una situación específica, como la necesidad que tiene un guía turístico de producir textos:\nDetermina las características de los turistas que constituyen el público al que se va a dirigir.\nSelecciona la información que necesitan los turistas.\nDiseña la forma en que presentará la información.",
+   "ejemplo_paginas": [
+    23
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado4º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_8"
@@ -4219,6 +5009,11 @@
     24,
     24
    ],
+   "ejemplo": "A partir de la selección de un tema enunciado en los medios de comunicación:\nDetermina a qué categoría pertenece (deportes, política, tecnología, etc.) y analiza cómo se presenta la información.\nParticipa en un debate con otros estudiantes para compartir los análisis realizados.",
+   "ejemplo_paginas": [
+    24
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_4_dba_1"
@@ -4245,6 +5040,11 @@
     24,
     24
    ],
+   "ejemplo": "Crea convenciones a través de imágenes, tarjetas o dibujos para representar estados de ánimo, situaciones y expresiones que utiliza en su cotidianidad.\nLuego las comparte con otros estudiantes, para que hagan hipótesis a propósito de las imágenes representadas y su significado.",
+   "ejemplo_paginas": [
+    24
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_2"
@@ -4271,6 +5071,11 @@
     25,
     25
    ],
+   "ejemplo": "Determina aspectos del texto literario como:\nTemática que desarrolla.\nEspacio en el que se desarrolla.\nPosibles enseñanzas.\nVestuario y actitudes de los personajes.",
+   "ejemplo_paginas": [
+    25
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_3"
@@ -4297,6 +5102,11 @@
     25,
     25
    ],
+   "ejemplo": "Selecciona un poema y un cuento que aborden un tema semejante y luego de su lectura y análisis, determina:\nCrea una cartelera sobre los dos textos leídos y la expone junto a las de sus compañeros en una galería.",
+   "ejemplo_paginas": [
+    25
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_4"
@@ -4323,6 +5133,11 @@
     26,
     26
    ],
+   "ejemplo": "En una situación comunicativa específica como la discusión de un texto literario:\nDefine los siguientes aspectos:\nAnticipa lo que van a decir sus compañeros.\nParticipa en una tertulia literaria.",
+   "ejemplo_paginas": [
+    26
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_5"
@@ -4349,6 +5164,11 @@
     26,
     26
    ],
+   "ejemplo": "Para comprender la intención comunicativa de un texto:\nAnaliza sus contenidos y estructura con el propósito de saber lo que busca comunicar el interlocutor:",
+   "ejemplo_paginas": [
+    26
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_6"
@@ -4377,6 +5197,11 @@
     27,
     27
    ],
+   "ejemplo": "En la producción de textos orales, como la producción de un noticiero:\nTiene en cuenta criterios como:",
+   "ejemplo_paginas": [
+    27
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_7"
@@ -4403,6 +5228,11 @@
     27,
     27
    ],
+   "ejemplo": "Al empezar un proceso de escritura enmarcado en una situación comunicativa específica, se pregunta:",
+   "ejemplo_paginas": [
+    27
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado5º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_8"
@@ -4431,6 +5261,11 @@
     28,
     28
    ],
+   "ejemplo": "Indaga en periódicos, revistas, programas radiales o televisivos sobre acontecimientos importantes que están sucediendo en el mundo.\nSelecciona un tema para producir un texto al interior de un medio de comunicación como la emisora del colegio, el periódico mural del barrio, un blog, una revista u otro que tenga en su entorno.",
+   "ejemplo_paginas": [
+    28
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_5_dba_1"
@@ -4459,6 +5294,11 @@
     28,
     28
    ],
+   "ejemplo": "Para la creación de un organizador gráfico:\nExpone una temática mediante textos que relacionan imágenes y esquemas.",
+   "ejemplo_paginas": [
+    28
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_2"
@@ -4487,6 +5327,11 @@
     29,
     29
    ],
+   "ejemplo": "Comprende y produce obras literarias a partir del análisis de elementos como:",
+   "ejemplo_paginas": [
+    29
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_3"
@@ -4515,6 +5360,11 @@
     29,
     29
    ],
+   "ejemplo": "Frente a obras pertenecientes a diferentes contextos: Identifica las expresiones de su región y las compara con las de otras regiones:",
+   "ejemplo_paginas": [
+    29
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_4"
@@ -4545,6 +5395,11 @@
     30,
     30
    ],
+   "ejemplo": "Durante el análisis de refranes, trovas o dichos populares de las diferentes regiones de Colombia:\nComprende el contenido y la estructura de refranes, trovas o dichos populares.\nRecita refranes, trovas o dichos populares atendiendo a su estructura.",
+   "ejemplo_paginas": [
+    30
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_5"
@@ -4571,6 +5426,11 @@
     30,
     30
    ],
+   "ejemplo": "Realiza un análisis de la intención comunicativa, las ideas centrales y la función de los signos:",
+   "ejemplo_paginas": [
+    30
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_6"
@@ -4599,6 +5459,11 @@
     31,
     31
    ],
+   "ejemplo": "Para preparar la producción de un discurso oral:",
+   "ejemplo_paginas": [
+    31
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_7"
@@ -4625,6 +5490,11 @@
     31,
     31
    ],
+   "ejemplo": "Frente a una situación de comunicación específica como la producción de un diario de viaje:\nRecopila información sobre un viaje, o una visita, a un lugar diferente a la casa, barrio o localidad.\nEscribe todas las ideas sobre el viaje, tratando de hacer descripciones detalladas sobre el lugar, por ejemplo: la fecha, el clima, el paisaje y el vestuario de las personas.\nEscribe el texto teniendo en cuenta que el propósito comunicativo es el de narrar.\nRevisa la concordancia de las oraciones empleadas en el escrito.\nIlustra con un dibujo o una fotografía el texto sobre el viaje.",
+   "ejemplo_paginas": [
+    31
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado6º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_8"
@@ -4651,6 +5521,11 @@
     32,
     32
    ],
+   "ejemplo": "Elige una temática de actualidad y rastrea la información que encuentra sobre ella en diferentes medios de comunicación: prensa impresa o electrónica, noticieros, revistas o programas radiales.\nRelaciona la información más relevante en el siguiente formato:\nCon base en la información recolectada, escribe una carta al lector para contradecir o apoyar una de las publicaciones revisadas.",
+   "ejemplo_paginas": [
+    32
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_1"
@@ -4679,6 +5554,11 @@
     32,
     32
    ],
+   "ejemplo": "Para comprender textos que emplean sistemas verbales y no verbales de comunicación:\nReconoce el sentido que tienen elementos como:",
+   "ejemplo_paginas": [
+    32
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_6_dba_2"
@@ -4705,6 +5585,11 @@
     33,
     33
    ],
+   "ejemplo": "Durante el análisis de una obra literaria:\nLee novelas que presentan acontecimientos históricos (un ejemplo podría ser la novela El día del odio de José Antonio Osorio Lizarazo). Identifica el tema general que se presenta y señala las ideas que lo soportan.\nOrganiza esta información en un cuadro sinóptico como el que se presenta en la imagen:\nBusca información histórica relacionada con el tema para generar una discusión sobre los sucesos narrados en el texto y los acontecidos en la realidad del país durante una época específica.",
+   "ejemplo_paginas": [
+    33
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_3"
@@ -4731,6 +5616,11 @@
     33,
     33
    ],
+   "ejemplo": "Clasifica obras literarias en géneros como:",
+   "ejemplo_paginas": [
+    33
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_4"
@@ -4759,6 +5649,11 @@
     34,
     34
    ],
+   "ejemplo": "Durante la emisión de un discurso oral:\nIdentifica las características generales de un tema, por ejemplo, en una conferencia sobre las tribus urbanas, comprende el tipo de música, la vestimenta, la ideología y otros aspectos.",
+   "ejemplo_paginas": [
+    34
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_5"
@@ -4785,6 +5680,11 @@
     34,
     34
    ],
+   "ejemplo": "Establece semejanzas y diferencias entre periódicos, revistas, enciclopedias, libros de texto del colegio, cartillas y directorios, para identificar sus usos, estructuras, temáticas, contextos de circulación y expresiones empleadas.",
+   "ejemplo_paginas": [
+    34
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_6"
@@ -4813,6 +5713,11 @@
     35,
     35
    ],
+   "ejemplo": "En un espacio en el que comparte narraciones orales:\nEscucha con atención a sus compañeros para comprender los momentos de una narración y los sucesos que se relatan.",
+   "ejemplo_paginas": [
+    35
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_7"
@@ -4841,6 +5746,11 @@
     35,
     35
    ],
+   "ejemplo": "A partir de la selección de un tipo de escrito como la reseña:\nHace un plan de escritura como el siguiente y lo desarrolla en la producción del escrito:",
+   "ejemplo_paginas": [
+    35
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado7º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_8"
@@ -4867,6 +5777,11 @@
     36,
     36
    ],
+   "ejemplo": "Durante la caracterización de la información emitida en los medios de comunicación, por ejemplo, las noticias:\nCompara la información presentada por diferentes noticias.\nAnaliza el lenguaje empleado en cada medio.\nComprende el manejo que cada medio hace de dicha información.\nConsidera las implicaciones sociales que conlleva cada mensaje presentado.",
+   "ejemplo_paginas": [
+    36
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_7_dba_1"
@@ -4895,6 +5810,11 @@
     36,
     36
    ],
+   "ejemplo": "Con el objeto de relacionar algunas manifestaciones artísticas con las comunidades que las producen:\nElige una canción popular de su región y analiza sus contenidos y estructura.\nBusca canciones de otras regiones y analiza sus contenidos y estructura.\nRelaciona las dos expresiones artísticas para encontrar semejanzas y diferencias.",
+   "ejemplo_paginas": [
+    36
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_2"
@@ -4923,6 +5843,11 @@
     37,
     37
    ],
+   "ejemplo": "Durante la lectura de obras literarias:\nLee textos literarios que contienen sucesos que han ocurrido en una región (por ejemplo, la novela Leopardo al Sol de Laura Restrepo).\nConsulta sobre los temas y sucesos abordados en la obra (por ejemplo el tema del narcotráfico y el conflicto en Colombia), y los comenta con sus compañeros.",
+   "ejemplo_paginas": [
+    37
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_3"
@@ -4951,6 +5876,11 @@
     37,
     37
    ],
+   "ejemplo": "En la lectura de textos líricos:\nReconoce las diferencias entre la escritura de un poema y otros textos.",
+   "ejemplo_paginas": [
+    37
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_4"
@@ -4977,6 +5907,11 @@
     38,
     38
    ],
+   "ejemplo": "Durante una conversación informal con sus compañeros:\nEscucha lo que dicen sus compañeros y se adecúa al nivel de formalidad de la conversación.",
+   "ejemplo_paginas": [
+    38
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_5"
@@ -5003,6 +5938,11 @@
     38,
     38
    ],
+   "ejemplo": "Analiza las características propias de un texto como el narrativo: voz que narra, punto de vista de dicha voz, tipos de personajes, lugar, tiempo, orden la historia, recursos como la descripción o el diálogo, entre otras.",
+   "ejemplo_paginas": [
+    38
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_6"
@@ -5029,6 +5969,11 @@
     39,
     39
    ],
+   "ejemplo": "Durante intercambios orales como la plenaria:\nPlantea sus argumentos a partir de una planeación previa.\nConduce el tema de acuerdo con la manera como se desarrolla el discurso.\nUsa verbos de pensamiento en sus intervenciones (opinar, definir, argumentar, etc.).\nApoya o refuta las ideas de sus interlocutores respetando sus posiciones.",
+   "ejemplo_paginas": [
+    39
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_7"
@@ -5057,6 +6002,11 @@
     39,
     39
    ],
+   "ejemplo": "En la composición de un texto escrito específico, por ejemplo un artículo de opinión:\nTiene en cuenta la estructura de este tipo de texto: un buen uso de conectores, un manejo adecuado de la ortografía y acontecimientos relacionados que puedan ampliar sus argumentos y que le ayuden a presentar de una manera más convincente sus ideas.",
+   "ejemplo_paginas": [
+    39
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado8º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_8"
@@ -5083,6 +6033,11 @@
     40,
     40
    ],
+   "ejemplo": "Hace interpretaciones a partir de los titulares y las imágenes de un texto informativo.\nDefine el significado de las palabras de acuerdo con el contexto y la situación comunicativa en que se ha producido un texto.",
+   "ejemplo_paginas": [
+    40
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_8_dba_1"
@@ -5109,6 +6064,11 @@
     40,
     40
    ],
+   "ejemplo": "Crea infografías a partir de una temática específica y en su realización hace un uso efectivo de elementos verbales y no verbales.",
+   "ejemplo_paginas": [
+    40
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_2"
@@ -5137,6 +6097,11 @@
     41,
     41
    ],
+   "ejemplo": "Durante la lectura de textos literarios:\nElige cuentos de la tradición literaria para indagar sobre las costumbres, visiones de mundo, las características de los personajes principales y las diferentes versiones de varios autores.",
+   "ejemplo_paginas": [
+    41
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_3"
@@ -5165,6 +6130,11 @@
     41,
     41
    ],
+   "ejemplo": "Para comprender la relación entre la narrativa de los textos literarios y de las producciones audiovisuales: Completa una ficha técnica para analizar el contenido de dos obras de su contexto (como la película colombiana “Los colores de la montaña” y la obra literaria colombiana “La carroza de Bolívar”).",
+   "ejemplo_paginas": [
+    41
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_4"
@@ -5193,6 +6163,11 @@
     42,
     42
    ],
+   "ejemplo": "Con el objeto de comprender las opiniones de otros:\nParticipa en un debate en torno a un tema de actualidad social.\nComprende que el debate sigue una estructura: presentación de la temática por parte del moderador, características del uso de la palabra y el tiempo; desarrollo y conclusiones.\nTiene en cuenta el punto de vista de los participantes.",
+   "ejemplo_paginas": [
+    42
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_5"
@@ -5219,6 +6194,11 @@
     42,
     42
    ],
+   "ejemplo": "En la interpretación de textos:\nSelecciona un texto de actualidad social, cultural o científico y cuestiona el papel de los interlocutores, del contexto, la temática y argumenta la posición personal.",
+   "ejemplo_paginas": [
+    42
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_6"
@@ -5249,6 +6229,11 @@
     43,
     43
    ],
+   "ejemplo": "Durante la planeación de un foro sobre temas de interés actual como la promoción de la lectura y la escritura:\nCompleta un esquema en el que organiza la información recolectada en diferentes medios (periódicos, libros, internet).\nA partir del esquema de planeación, desarrolla un foro donde expone la temática y plantea su postura frente a ella.",
+   "ejemplo_paginas": [
+    43
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_7"
@@ -5275,6 +6260,11 @@
     43,
     43
    ],
+   "ejemplo": "Realiza planes textuales para la producción de cualquier tipo de escrito (por ejemplo una relatoría) que permitirán, posteriormente, evaluar el texto:\nRedacta una relatoría sobre un tema de actualidad nacional o internacional a partir de un texto que lo desarrolle.\nTiene en cuenta recomendaciones como:",
+   "ejemplo_paginas": [
+    43
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado9º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_8"
@@ -5303,6 +6293,11 @@
     44,
     44
    ],
+   "ejemplo": "Identifica en una caricatura (como la que se propone), la crítica que plantea el autor.\nBusca en otros textos como artículos de opinión, noticias y caricaturas, la manera como se aborda dicha problemática.\nA partir del trabajo anterior, escribe un ensayo académico en el que plantea su punto de vista.",
+   "ejemplo_paginas": [
+    44
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_9_dba_1"
@@ -5329,6 +6324,11 @@
     44,
     44
    ],
+   "ejemplo": "Elige un texto literario (novela, crónica u obra de teatro) para adaptar al cine.\nResume la historia en bloques, ordenando el inicio, el conflicto y la resolución.\nElabora un guion en el que detalla qué ocurrirá en cada escena haciendo uso de elementos no verbales.\nCompleta el guion con la información sobre los escenarios, los personajes, los diálogos, las acotaciones, etc.",
+   "ejemplo_paginas": [
+    44
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_2"
@@ -5355,6 +6355,11 @@
     45,
     45
    ],
+   "ejemplo": "Para reconocer la influencia de una época en las obras literarios elige un periodo específico como el Siglo de Oro Español que se dio entre el siglo XVI y el XVII, frente al que:\nIdentifica el contexto histórico, las características, las obras y los autores pertenecientes a un periodo específico.\nRelaciona los contenidos y la estructura de un texto con el momento histórico en que se produjo.\nAnaliza la relación entre el texto y el contexto actual.",
+   "ejemplo_paginas": [
+    45
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_3"
@@ -5381,6 +6386,11 @@
     45,
     45
    ],
+   "ejemplo": "Para analizar la relación entre la literatura y las artes plásticas o visuales:\nObserva una pintura como Los amantes de René Magritte.\nLee una pieza literaria que trate sobre una temática semejante como el poema “Los amantes” de Julio Cortázar.\nBusca información sobre las dos obras teniendo en cuenta su estructura y características particulares.",
+   "ejemplo_paginas": [
+    45
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_4"
@@ -5411,6 +6421,9 @@
     46,
     46
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_5"
@@ -5437,6 +6450,11 @@
     46,
     46
    ],
+   "ejemplo": "Durante la comprensión de textos:\nBusca textos de temas de interés, pueden ser artículos científicos, de opinión, trabajos de investigación, noticias, entre otros.\nAnaliza los textos elegidos a la luz de preguntas como:\nAsume una posición frente a los textos leídos y la argumenta.",
+   "ejemplo_paginas": [
+    46
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_6"
@@ -5465,6 +6483,11 @@
     47,
     47
    ],
+   "ejemplo": "Durante la producción de una ponencia:\nElabora fichas de lectura que den cuenta de la búsqueda en distintas fuentes.\nPrepara los contenidos y estructura de la ponencia teniendo en cuenta a su interlocutor.\nLee la ponencia usando diversas estrategias orales, corporales y retóricas para llamar la atención de los oyentes.",
+   "ejemplo_paginas": [
+    47
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_7"
@@ -5491,6 +6514,11 @@
     47,
     47
    ],
+   "ejemplo": "Produce textos informativos como el artículo de divulgación científica siguiendo un proceso de investigación y de escritura:",
+   "ejemplo_paginas": [
+    47
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado10º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_8"
@@ -5519,6 +6547,11 @@
     48,
     48
    ],
+   "ejemplo": "Durante la lectura de medios de comunicación:\nCompara información de los medios de comunicación a partir de criterios como: línea temática, estrategias discursivas y mediáticas, parcialidad e imparcialidad en el tratamiento de la información y punto de vista.",
+   "ejemplo_paginas": [
+    48
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_10_dba_1"
@@ -5545,6 +6578,11 @@
     48,
     48
    ],
+   "ejemplo": "Elige un género musical y selecciona un videoclip representativo para analizarlo a partir de los siguientes criterios:\nAspectos sociales, estéticos, ideológicos y culturales.\nEstructura del video (partes que lo organizan).\nRelación entre imágenes, sonidos y discursos.\nAspectos técnicos: tamaños, planos, formas, texturas y colores.\nGestos y expresiones corporales.",
+   "ejemplo_paginas": [
+    48
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_11_dba_2"
@@ -5571,6 +6609,11 @@
     49,
     49
    ],
+   "ejemplo": "Al leer obras literarias es posible establecer diálogos interdisciplinares con las ciencias sociales, las matemáticas, el arte, entre otros.\nAnaliza una obra literaria en función de:",
+   "ejemplo_paginas": [
+    49
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_11_dba_3"
@@ -5599,6 +6642,11 @@
     49,
     49
    ],
+   "ejemplo": "Para la apreciación literaria:\nSelecciona una obra literaria representativa de un movimiento literario, época o autor clásico.\nEscribe una reseña crítica en la que se desarrollen los siguientes elementos: temáticas, características formales del texto, recursos empleados y contexto de la obra.\nDiseña una estrategia mediática para promover la lectura del texto leído.",
+   "ejemplo_paginas": [
+    49
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_11_dba_4"
@@ -5627,6 +6675,11 @@
     50,
     50
    ],
+   "ejemplo": "Tanto en la vida cotidiana como en los escenarios académicos estamos expuestos a la comprensión e interpretación de diversas clases de discursos orales que son necesarios analizar con el fin de asumir puntos de vista propios. A continuación, se presentan algunas ideas a tener en cuenta para dicho análisis:\n1. Descripción de la situación comunicativa: roles y características de los participantes, definición del contexto situacional, canal y códigos empleados. 2. Asunto central referido y progresión temática. 3. Clasificación y pertinencia de las estrategias discursivas empleadas.\n4. Discriminación entre hechos y opiniones.\n5. Identificación y clasificación de posibles falacias empleadas.\n6. Evaluación de la intervención oral de los participantes con base en criterios preestablecidos.",
+   "ejemplo_paginas": [
+    50
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_11_dba_5"
@@ -5653,6 +6706,11 @@
     51,
     51
    ],
+   "ejemplo": "Al hacer un análisis comparativo de dos tipologías textuales, por ejemplo, el texto expositivo y el texto lírico, tiene en cuenta los siguientes elementos:\nIntencionalidad del autor de cada texto.\nRecursos estilísticos (tipo de lenguaje: culto, coloquial, literario, especializado; uso de lenguaje literal y figurado, interrogaciones retóricas, apoyo en esquemas e ilustraciones, etc.).\nEstructura por medio de la cual se ordena el texto.\nContextos sociales, culturales y políticos en los que se enmarca el texto.",
+   "ejemplo_paginas": [
+    51
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_11_dba_6"
@@ -5683,6 +6741,11 @@
     51,
     51
    ],
+   "ejemplo": "Escribe una relatoría a partir de un texto leído, por ejemplo, una obra literaria clásica, y comparte el análisis realizado en un conversatorio:",
+   "ejemplo_paginas": [
+    51
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_11_dba_7"
@@ -5711,6 +6774,11 @@
     52,
     52
    ],
+   "ejemplo": "Escribe un ensayo sobre un tema polémico y de interés común; teniendo en cuenta las siguientes indicaciones:",
+   "ejemplo_paginas": [
+    52
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "Lenguaje•Grado11º",
    "dudoso": [],
    "id_anterior": "lenguaje_11_dba_8"
@@ -5739,6 +6807,9 @@
     8,
     8
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_1_dba_1"
@@ -5767,6 +6838,9 @@
     8,
     8
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_1_dba_2"
@@ -5795,6 +6869,9 @@
     9,
     9
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_1_dba_3"
@@ -5823,6 +6900,9 @@
     9,
     9
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_1_dba_4"
@@ -5849,6 +6929,9 @@
     10,
     10
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_1_dba_1"
@@ -5875,6 +6958,9 @@
     10,
     10
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_1_dba_2"
@@ -5903,6 +6989,9 @@
     11,
     11
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_2_dba_3"
@@ -5927,6 +7016,9 @@
     11,
     11
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_2_dba_4"
@@ -5953,6 +7045,9 @@
     12,
     12
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_2_dba_1"
@@ -5979,6 +7074,9 @@
     12,
     12
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_3_dba_2"
@@ -6007,6 +7105,9 @@
     13,
     13
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_3_dba_3"
@@ -6033,6 +7134,9 @@
     13,
     13
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_3_dba_4"
@@ -6059,6 +7163,11 @@
     14,
     14
    ],
+   "ejemplo": "Reconoce y establece las relaciones correspondientes entre los factores bióticos y abióticos como en la imagen o en el entorno cercano y predice qué puede ocurrir si se altera alguno de ellos.",
+   "ejemplo_paginas": [
+    14
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_3_dba_5"
@@ -6087,6 +7196,11 @@
     14,
     14
    ],
+   "ejemplo": "Describe el tipo de relación que se presenta entre los organismos en cada una de las siguientes imágenes e identifica la importancia de estas relaciones para su supervivencia.",
+   "ejemplo_paginas": [
+    14
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_3_dba_6"
@@ -6115,6 +7229,9 @@
     15,
     15
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_3_dba_1"
@@ -6143,6 +7260,9 @@
     15,
     15
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_3_dba_2"
@@ -6169,6 +7289,9 @@
     16,
     16
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_4_dba_3"
@@ -6193,6 +7316,9 @@
     16,
     16
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_4_dba_4"
@@ -6221,6 +7347,11 @@
     16,
     17
    ],
+   "ejemplo": "En una actividad experimental el niño puede identificar el tipo de mezcla que se formó para cada caso, y predecir qué pasa si mezcla todos los materiales. Describe lo observado respecto a la apariencia y ubicación del material mezclado (arriba, abajo, en el medio) e indica el procedimiento que propone para separar los componentes de la mezcla agua –sal y Agua - Arena justificando su elección.",
+   "ejemplo_paginas": [
+    17
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_4_dba_5"
@@ -6247,6 +7378,9 @@
     17,
     17
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_4_dba_6"
@@ -6273,6 +7407,11 @@
     18,
     18
    ],
+   "ejemplo": "Identifica entre varios organismos (pez, serpiente, escorpión, arbusto, vaca, perro), cuál o cuáles puede vivir en un ecosistema con las siguientes condiciones: temperaturas diarias con calentamiento del suelo durante el día y un fuerte enfriamiento durante la noche; poca humedad atmosférica, precipitaciones muy escasas e irregulares entre 750 y 150 mm anuales; un río que solo lleva agua después de las precipitaciones y el resto del tiempo sus cauces permanecen secos. Explica cómo repercuten esas características físicas en la supervivencia de los organismos del ecosistema descrito.",
+   "ejemplo_paginas": [
+    18
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasNaturales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_4_dba_7"
@@ -6299,6 +7438,9 @@
     19,
     19
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_5_dba_1"
@@ -6327,6 +7469,9 @@
     19,
     19
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_4_dba_2"
@@ -6353,6 +7498,11 @@
     20,
     20
    ],
+   "ejemplo": "A partir de una situación como la siguiente:\nEn una tarde soleada, Alejandro, un estudiante de quinto grado salió a montar en bicicleta con sus amigos. En el camino Alejandro perdió el control de su bicicleta y cayó. Para no golpear su cabeza, reaccionó con prontitud poniendo sus brazos sobre el suelo con la mala fortuna de rasparse las manos y fracturarse el cúbito y el radio (huesos del brazo). De sus manos salía mucha sangre y sentía dolor.\nIndica qué órganos y sistemas del cuerpo de Alejandro interactúan mientras monta en bicicleta; igualmente cuáles fueron los tejidos y órganos que se lastimaron y qué tipo de células presenta cada uno; señala de qué manera la estructura de esas células ayuda a cumplir su función dentro del tejido y propone cuidados que debe tener con su brazo fracturado y sus raspaduras para que sus tejidos se regeneren.",
+   "ejemplo_paginas": [
+    20
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasNaturales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_5_dba_3"
@@ -6381,6 +7531,11 @@
     20,
     20
    ],
+   "ejemplo": "Explica a qué se debe el aumento del ritmo cardiaco de los jugadores de fútbol después de treinta minutos de partido, identificando las necesidades de energía en sus células, que se libera a partir de la combinación del oxígeno (proveniente del sistema respiratorio) y de los nutrientes (provenientes del sistema digestivo) que son llevados por la sangre (como parte del sistema circulatorio).",
+   "ejemplo_paginas": [
+    20
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_5_dba_4"
@@ -6405,6 +7560,9 @@
     21,
     21
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_5_dba_1"
@@ -6431,6 +7589,12 @@
     21,
     21
    ],
+   "ejemplo": "En la figura se representa una olla a presión con agua en su interior, el calor aportado permite que el agua cambie al estado gaseoso. La tabla de datos representa los valores obtenidos al realizar un seguimiento al calentamiento del agua hasta que se acciona la válvula de seguridad. A partir de esta información explica la relación de la temperatura y la presión con el comportamiento de la sustancia y representa la relación del tiempo (t) con la temperatura (T) mediante una gráfica en la que identifica el punto de ebullición.",
+   "ejemplo_paginas": [
+    21,
+    22
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_5_dba_2"
@@ -6459,6 +7623,9 @@
     22,
     22
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_6_dba_3"
@@ -6487,6 +7654,11 @@
     22,
     22
    ],
+   "ejemplo": "Realiza un experimento que permita observar el intercambio de sustancias a través de membrana celular y describe cómo influye en este proceso el medio en el que se encuentra la célula. Para ello pueden emplear los siguientes materiales: mango o pepino, agua y sal. Construye la explicación de sus resultados utilizando para tal fin un modelo o representación.",
+   "ejemplo_paginas": [
+    23
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_6_dba_4"
@@ -6513,6 +7685,11 @@
     23,
     23
    ],
+   "ejemplo": "Establece relaciones de parentesco entre organismos tales como: mono y hombre, pez y ave, maíz y gallina, hombre y cerdo, atendiendo a órdenes jerárquicos de clasificación (dominio, reino, división, clase, orden, familia, género, especie). Organiza la información obtenida en gráficos o tablas y elabora conclusiones a partir del análisis de los resultados.",
+   "ejemplo_paginas": [
+    23
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasNaturales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_6_dba_5"
@@ -6539,6 +7716,9 @@
     24,
     24
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_6_dba_1"
@@ -6565,6 +7745,9 @@
     24,
     24
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_7_dba_2"
@@ -6591,6 +7774,11 @@
     25,
     25
    ],
+   "ejemplo": "Realiza una lista de organismos de su entorno y dibuja con ellos una red trófica, identificando los organismos autótrofos y heterótrofos; además, explica la eficiencia en los procesos de transformación de materia y energía que se dan en esta red. Plantea preguntas que posibiliten ejercicios de investigación, donde establece relación entre variables como respiración y nutrición o respiración y fotosíntesis.",
+   "ejemplo_paginas": [
+    25
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_7_dba_3"
@@ -6619,6 +7807,12 @@
     25,
     25
    ],
+   "ejemplo": "A partir de casos como:\nLa minería a cielo abierto, contamina cuerpos de agua por residuos sólidos y vertimientos domésticos e industriales; en consecuencia, aumenta el contenido de los sedimentos generando inundaciones por la desviación de los cauces de los ríos, transformación del paisaje y la pérdida de cultivos.\nUn caso particular, ocurrió en Boyacá donde debido a la extracción de carbón a cielo abierto y precisamente en uno de sus páramos, entre diciembre de 2010 y enero de 2011 murieron cerca de 95.000 truchas en la Piscícola de Tasco a causa de la contaminación de las aguas donde se abastecen sus crías.\nAnaliza cómo pudieron verse afectados los ciclos del carbono, nitrógeno y agua; explica la causa de muerte de las truchas; plantea y resuelve preguntas sobre las afectaciones en otros organismos y propone acciones para recuperar este sitio.",
+   "ejemplo_paginas": [
+    25,
+    26
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasNaturales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_7_dba_4"
@@ -6647,6 +7841,9 @@
     27,
     27
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_7_dba_1"
@@ -6675,6 +7872,12 @@
     27,
     27
    ],
+   "ejemplo": "Diseña un protocolo experimental para averiguar si se produce un cambio físico o químico al mezclar sustancias tales como vinagre-tiza y agua-tiza, para analizar si se generan sustancias nuevas a partir de las propiedades de reactivos y productos. Justifica su respuesta basado en evidencias (resultados experimentales) y referentes teóricos (tipo de enlace de los productos formados).",
+   "ejemplo_paginas": [
+    27,
+    28
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_7_dba_2"
@@ -6701,6 +7904,11 @@
     28,
     28
    ],
+   "ejemplo": "Realiza experimentos para analizar las relaciones entre presión (P), temperatura (T), volumen (V) y cantidad de sustancia (n) de un gas (vapor de agua) que influyen en el comportamiento de los gases, utilizando recipientes como tarros, globos y ollas. Utiliza las leyes de los gases (Boyle, Charles, Gay-Lussac) para responder a preguntas como: ¿Cuál es la relación de las variables presión (P), temperatura (T), volumen (V) y cantidad de gas (n) con su comportamiento físico (difusión, compresión, dilatación, fluidez)?",
+   "ejemplo_paginas": [
+    28
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasNaturales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_8_dba_3"
@@ -6729,6 +7937,11 @@
     28,
     28
    ],
+   "ejemplo": "Explica a partir de la imagen, la interacción entre sistemas del cuerpo humano, al reconocer como el sistema endocrino interviene en el equilibrio homeostático del aparato excretor; predice además, lo que puede ocurrir con los músculos si se afecta el sistema circulatorio y como actúa el sistema inmune en el mantenimiento homeostático del cuerpo.",
+   "ejemplo_paginas": [
+    29
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_8_dba_4"
@@ -6757,6 +7970,11 @@
     29,
     29
    ],
+   "ejemplo": "Formula conclusiones a partir del análisis del siguiente caso:\nSe tiene un acuario con solo tres especies de organismos: peces, hidras y estrellas de mar. Luego de un tiempo se logra identificar que el número de peces se ha triplicado mientras que todas las hidras, al igual que las estrellas han quintuplicado su población. Explica las implicaciones de este aumento de la población para el acuario y para las especies que habitan en él. Predice las características de la descendencia de las especies que habitan en el acuario, identificando los organismos que tienen la posibilidad de producir descendientes en un tiempo más corto y aquellos que presentan mayor variabilidad. Además, reconoce los organismos que necesitan mayor energía para la reproducción, considerando la implicación de esta necesidad para el éxito reproductivo de la especie.",
+   "ejemplo_paginas": [
+    29
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_8_dba_5"
@@ -6783,6 +8001,9 @@
     30,
     30
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_9_dba_1"
@@ -6809,6 +8030,12 @@
     30,
     30
    ],
+   "ejemplo": "Diseña protocolos experimentales en los cuales utiliza un conjunto de sustancias para clasificar materiales como ácidos o bases y determina sus niveles de acidez y basicidad. Para ello utiliza pH-metro, papel indicador o indicadores naturales y recursos tales como (vinagre, jabón, limón, detergente, plástico, vidrio, clavos) realizando los procedimientos (disoluciones, mezclas) que considere adecuados según el propósito y evaluando el nivel de precisión de los indicadores utilizados. Durante el proceso formula conclusiones y proyecta lo que podría pasar al aplicar el protocolo a nuevas sustancias. Reconoce además, algunos límites y variables que intervienen en las conclusiones que elabora.",
+   "ejemplo_paginas": [
+    30,
+    31
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_8_dba_2"
@@ -6837,6 +8064,11 @@
     31,
     31
    ],
+   "ejemplo": "A partir de la información contenida en las etiquetas de los productos que contengan soluciones explica sus componentes (soluto-solvente) y calcula su concentración. Elabora preguntas y predice posibles respuestas con base en argumentos de tipo teórico y experimental en las cuales se realicen variaciones de cantidad de soluto – solvente o se someta la muestra a la acción de la temperatura u otras variaciones que considere necesarias.",
+   "ejemplo_paginas": [
+    31
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_9_dba_3"
@@ -6865,6 +8097,11 @@
     31,
     31
    ],
+   "ejemplo": "En los guisantes las plantas altas (T) son dominantes de las enanas (t), el color amarillo de las semillas (A) es dominante del verde (a), y la semilla lisa (L) es dominante de la rugosa (l). Explica los genotipos, los fenotipos y las proporciones de los descendientes del siguiente cruce:",
+   "ejemplo_paginas": [
+    32
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_9_dba_4"
@@ -6891,6 +8128,12 @@
     32,
     32
    ],
+   "ejemplo": "Analiza el siguiente caso:\nEn un laboratorio un técnico investiga la producción de la insulina y su relación con la información genética del ADN que codifica para el gen de la insulina. A partir de las células del páncreas, por ejemplo de un ratón, obtienen la secuencia de ADN y con ésta la del ARNm.\nUtilizando el código genético el técnico pudo encontrar que el gen para la insulina contenía las siguientes tripletas de codones, e identificar los aminoácidos que contenía la proteína de la insulina: Analizó la información anterior y la registró en un cuaderno. En un accidente del anterior registro la única información que quedó visible fue la secuencia de aminoácidos.",
+   "ejemplo_paginas": [
+    32,
+    33
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_9_dba_5"
@@ -6919,6 +8162,11 @@
     33,
     33
    ],
+   "ejemplo": "Las siguientes imágenes muestran la acción de la selección natural sobre el camuflaje de una especie de escarabajo.\nInterpreta la gráfica de la parte superior y la explica utilizando el modelo de selección natural.\nPredice a partir de la información que brindan los gráficos cuál fue la mutación que ocurrió, para cuál de las dos especies (pájaros o escarabajos) es favorable. Explica cuál es la incidencia del cambio de coloración del escarabajo en la supervivencia del ave. Predice cómo será la población de escarabajos respecto de su color luego de varias generaciones. Emite las conclusiones utilizando argumentos científicos.",
+   "ejemplo_paginas": [
+    33
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_9_dba_6"
@@ -6945,6 +8193,9 @@
     34,
     34
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_9_dba_1"
@@ -6969,6 +8220,9 @@
     34,
     34
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_10_dba_2"
@@ -6997,6 +8251,11 @@
     35,
     35
    ],
+   "ejemplo": "Realiza actividades experimentales para analizar los factores que influyen en la formación de compuestos inorgánicos. Durante el proceso utiliza cálculos para saber exactamente la cantidad de reactivo necesario para obtener una cantidad de producto o cuánto producto se obtiene de acuerdo a la cantidad de reactivo. Utiliza fórmulas y ecuaciones para representar las reacciones que elabora y las clasifica según la función química. Durante el proceso recolecta información adicional para respaldar sus explicaciones y las comunica utilizando argumentos científicos.",
+   "ejemplo_paginas": [
+    35
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasNaturales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_10_dba_3"
@@ -7023,6 +8282,12 @@
     35,
     35
    ],
+   "ejemplo": "A partir del siguiente texto:\nMarcos (2011) critica la visión reduccionista que tuvo auge hacia el año 1972 y que se concreta en el Proyecto Genoma Humano. Al respecto reprocha la frase “Si todo está en los genes, entonces conozcamos exhaustivamente los nuestros y sabremos todo lo necesario para manejar la vida humana” y agrega: “comenzamos dando la bienvenida a métodos moleculares que produjeron importantes descubrimientos, pero acabamos aceptando que todo el ámbito de lo vivo se reduce, de hecho a moléculas” (p. 46).\nExplica de qué se trata el proyecto Genoma Humano y cuál ha sido su impacto para la investigación y práctica médica. Plantea preguntas que posibiliten indagar más acerca de las posturas sobre Genoma Humano, para responderlas hace una revisión bibliográfica, identifica argumentos y explicaciones, comparando los diversos puntos de vista y participa en un debate sobre manipulación genética, previo reporte del análisis de la información obtenida.",
+   "ejemplo_paginas": [
+    35,
+    36
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_10_dba_4"
@@ -7051,6 +8316,11 @@
     37,
     37
    ],
+   "ejemplo": "Dadas las situaciones que se presentan en las fotos, explica, a partir de principios y leyes, lo que observa.",
+   "ejemplo_paginas": [
+    37
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_10_dba_1"
@@ -7077,6 +8347,9 @@
     37,
     37
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_11_dba_2"
@@ -7105,6 +8378,11 @@
     38,
     38
    ],
+   "ejemplo": "Dado el siguiente circuito:\nIdentifica los cambios de iluminación en los bombillos restantes si el bombillo (X) se elimina.",
+   "ejemplo_paginas": [
+    38
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_11_dba_3"
@@ -7131,6 +8409,11 @@
     38,
     38
    ],
+   "ejemplo": "Realiza actividades prácticas individuales o en equipo en las que busca clasificar compuestos orgánicos utilizando diferentes reactivos químicos (Benedict, Fehling, Bicarbonato de Sodio, Tollens), durante el proceso puede identificar algunos factores que influyen en que una reacción sea positiva o negativa para un grupo funcional analizado y un reactivo utilizado. Comunica detalladamente el proceso de indagación y de resultados con el uso de gráficos, tablas y ecuaciones. Adicionalmente, determina si una reacción es endotérmica o exotérmica según las evidencias y datos obtenidos.",
+   "ejemplo_paginas": [
+    38
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasNaturales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_11_dba_4"
@@ -7159,6 +8442,11 @@
     39,
     39
    ],
+   "ejemplo": "A partir de la siguiente gráfica:\nRelaciona la información anterior con los siguientes datos:\nGrafica la información de la tabla y analiza el impacto que puede tener el derretimiento de los nevados para la biodiversidad de Colombia.",
+   "ejemplo_paginas": [
+    39
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasNaturales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_naturales_11_dba_5"
@@ -7187,6 +8475,9 @@
     8,
     8
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_1"
@@ -7215,6 +8506,9 @@
     8,
     8
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_2"
@@ -7243,6 +8537,9 @@
     8,
     9
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_3"
@@ -7271,6 +8568,9 @@
     9,
     9
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_4"
@@ -7299,6 +8599,11 @@
     9,
     9
    ],
+   "ejemplo": "A partir de la conversación con adultos mayores o líderes de la comunidad, reconocidos gracias a sus conocimientos, habilidades o sabiduría ancestral (ya sea en el campo de la música, las artes, las letras, la gastronomía, el deporte...) el estudiante diferencia las costumbres y traduciones del ayer y del hoy.",
+   "ejemplo_paginas": [
+    9
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_5"
@@ -7327,6 +8632,9 @@
     10,
     10
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_6"
@@ -7355,6 +8663,9 @@
     10,
     10
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_7"
@@ -7383,6 +8694,9 @@
     11,
     11
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado1º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_1_dba_8"
@@ -7411,6 +8725,9 @@
     12,
     12
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_1"
@@ -7439,6 +8756,9 @@
     12,
     12
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_2"
@@ -7467,6 +8787,9 @@
     12,
     13
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_3"
@@ -7495,6 +8818,11 @@
     13,
     13
    ],
+   "ejemplo": "Mediante la observación de los medios de transporte de su municipio (acuáticos, terrestres y aéreos) y apoyado en la lectura de imágenes, identifica su evolución, ventajas y desventajas en relación con los recursos naturales necesarios para su funcionamiento.",
+   "ejemplo_paginas": [
+    13
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_4"
@@ -7523,6 +8851,9 @@
     13,
     13
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_5"
@@ -7551,6 +8882,12 @@
     14,
     14
    ],
+   "ejemplo": "A partir de la observación directa que realiza en su municipio y la descripción de imágenes como las que encuentra a continuación, reconoce y diferencia varios tipos de vivienda y materiales empleados en dichas construcciones, identifica los grupos étnicos que las habitan y señala las ventajas y desventajas que estas presentan.\nLos emberá de la zona de Urabá construyen sus viviendas sobre pilares, para proteger sus casas de las inundaciones de los ríos. El techo de sus casas es cónico y el piso es hecho de una corteza de árbol llamada jira.\nEn las comunidades afrocolombianas del pacífico, las casas son construidas sobre pilares, para protegerse de las inundaciones del río o del mar, y hechas de madera con techo a cuatro aguas en tejas de zinc.\nLos indígenas Wayú que habitan en La Guajira, construyen sus casas con paredes que son una mezcla de barro y madera, tienen techo a dos aguas en hojas secas de palma, y cerca de la casa construyen un pequeño kiosco que da sombra, bajo el cual, entre otras cosas, cuelgan las hamacas.\nLos indígenas de la Sierra Nevada de Santa Marta, construyen sus casas con un techo cónico de paja y paredes circulares de bahareque o madera.\nEn las grandes ciudades, las casas están muy juntas y, en su mayoría, construidas en ladrillos y cemento, y cada vez más gente vive en edificios de muchos pisos.\nCasas improvisadas hechas con plástico, pedazos de madera y latas, que se convierten en el lugar de vivienda de otro sector de la población.",
+   "ejemplo_paginas": [
+    14,
+    15
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_6"
@@ -7579,6 +8916,9 @@
     15,
     16
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_7"
@@ -7607,6 +8947,9 @@
     16,
     16
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado2º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_2_dba_8"
@@ -7635,6 +8978,9 @@
     17,
     17
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_1"
@@ -7663,6 +9009,11 @@
     17,
     17
    ],
+   "ejemplo": "Participa en la elaboración de la lista del mercado de su familia e identifica los precios de los alimentos, el lugar de origen, la disposición y distribución de estos en el supermercado, tienda, plaza o lugares donde se comercializan e intercambian.",
+   "ejemplo_paginas": [
+    17
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_2"
@@ -7691,6 +9042,9 @@
     18,
     18
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_3"
@@ -7719,6 +9073,9 @@
     18,
     18
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_4"
@@ -7747,6 +9104,9 @@
     19,
     19
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_5"
@@ -7775,6 +9135,9 @@
     19,
     19
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_6"
@@ -7803,6 +9166,9 @@
     20,
     20
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_7"
@@ -7831,6 +9197,9 @@
     20,
     20
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado3º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_3_dba_8"
@@ -7859,6 +9228,9 @@
     21,
     21
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_1"
@@ -7887,6 +9259,9 @@
     21,
     21
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_2"
@@ -7915,6 +9290,9 @@
     22,
     22
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_3"
@@ -7943,6 +9321,9 @@
     22,
     22
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_4"
@@ -7971,6 +9352,9 @@
     23,
     23
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_5"
@@ -7999,6 +9383,9 @@
     23,
     23
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_6"
@@ -8027,6 +9414,9 @@
     24,
     24
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_7"
@@ -8055,6 +9445,11 @@
     24,
     24
    ],
+   "ejemplo": "A partir del diálogo con sus padres, realiza un listado de las necesidades básicas de la familia, las jerarquiza, diferencia los costos de los servicios básicos que requieren y elabora conclusiones de lo estudiado.",
+   "ejemplo_paginas": [
+    24
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado4º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_4_dba_8"
@@ -8083,6 +9478,9 @@
     25,
     25
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_1"
@@ -8111,6 +9509,9 @@
     25,
     25
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_2"
@@ -8139,6 +9540,9 @@
     26,
     26
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_3"
@@ -8167,6 +9571,9 @@
     26,
     26
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_4"
@@ -8195,6 +9602,9 @@
     27,
     27
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_5"
@@ -8223,6 +9633,9 @@
     27,
     27
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_6"
@@ -8251,6 +9664,9 @@
     28,
     28
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_7"
@@ -8279,6 +9695,9 @@
     28,
     28
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado5º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_5_dba_8"
@@ -8307,6 +9726,11 @@
     29,
     29
    ],
+   "ejemplo": "A partir de la lectura de tres textos cortos sobre el origen del universo: de la Biblia, el Génesis (1:1- 10); de La historia jamás contada, de Carl Sagan, teoría del Big Bang; y el mito de Chiminigagua (mito muisca), completa el siguiente cuadro:",
+   "ejemplo_paginas": [
+    29
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_1"
@@ -8335,6 +9759,9 @@
     29,
     29
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_2"
@@ -8363,6 +9790,9 @@
     30,
     30
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_3"
@@ -8391,6 +9821,9 @@
     30,
     30
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_4"
@@ -8419,6 +9852,9 @@
     31,
     31
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_5"
@@ -8447,6 +9883,9 @@
     31,
     31
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_6"
@@ -8475,6 +9914,9 @@
     32,
     32
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_7"
@@ -8503,6 +9945,9 @@
     32,
     32
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado6º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_6_dba_8"
@@ -8531,6 +9976,11 @@
     33,
     33
    ],
+   "ejemplo": "Mediante la lectura de planisferios de diferentes époc as, explicar las diversas visiones del mundo que los pueblos han construido con base en el desarrollo de ac ciones como los viajes de los exploradores, el uso de instrumentos como la brújula y, el desarrollo del telescopio y de las imágenes de satélite, entre otros.",
+   "ejemplo_paginas": [
+    33
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_1"
@@ -8559,6 +10009,9 @@
     34,
     34
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_2"
@@ -8587,6 +10040,11 @@
     34,
     34
    ],
+   "ejemplo": "A partir de la lectura comprensiva de un mapa del imperio romano, localiza las áreas de influencia y los legados que dejaron en estos territorios.",
+   "ejemplo_paginas": [
+    34
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_3"
@@ -8615,6 +10073,9 @@
     35,
     35
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_4"
@@ -8643,6 +10104,9 @@
     35,
     35
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_5"
@@ -8671,6 +10135,11 @@
     36,
     36
    ],
+   "ejemplo": "A partir de la reconstrucción de un contexto histórico, como el de la llegada de los europeos a América, compara diferentes hechos de que se dieron durante este período y explica el rol que tuvieron los distintos actores.",
+   "ejemplo_paginas": [
+    36
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_6"
@@ -8699,6 +10168,9 @@
     36,
     36
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_7"
@@ -8727,6 +10199,11 @@
     37,
     37
    ],
+   "ejemplo": "A partir de la identificación de una situación de índole económica, ambiental o social de su comunidad, diseña una estrategia que permita generar escenarios de paz, que contenga: diagnóstico, identificación de causas, actores, plan de acción y evaluación.",
+   "ejemplo_paginas": [
+    37
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado7º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_7_dba_8"
@@ -8755,6 +10232,9 @@
     38,
     38
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_1"
@@ -8783,6 +10263,9 @@
     38,
     38
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_2"
@@ -8811,6 +10294,9 @@
     39,
     39
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_3"
@@ -8839,6 +10325,11 @@
     39,
     39
    ],
+   "ejemplo": "A partir de la lectura de caricaturas, analiza características del proceso imperialista.",
+   "ejemplo_paginas": [
+    39
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_4"
@@ -8867,6 +10358,9 @@
     40,
     40
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_5"
@@ -8895,6 +10389,9 @@
     40,
     40
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_6"
@@ -8923,6 +10420,11 @@
     41,
     41
    ],
+   "ejemplo": "A partir de la observación directa en su institución educativa y en el entorno donde vive, documenta como el diseño arquitectónico y urbanístico condiciona la movilidad de las personas en situación de discapacidad.",
+   "ejemplo_paginas": [
+    41
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_7"
@@ -8951,6 +10453,11 @@
     41,
     41
    ],
+   "ejemplo": "A partir de la conmemoración del 1 de mayo en Colombia, realiza un ejercicio de revisión de fuentes (prensa, textos de consulta, Internet, entrevistas con personas afiliadas a sindicatos) en donde se indague la forma como se alcanzaron las reivindicaciones sociales y laborales de los trabajadores en Colombia, qué tipo de movimientos fueron necesarios para que los trabajadores obtuvieran sus derechos y las dificultades que ha tenido el sindicalismo en el país en los últimos 50 años.",
+   "ejemplo_paginas": [
+    41
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "CienciasSociales•Grado8º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_8_dba_8"
@@ -8979,6 +10486,9 @@
     42,
     42
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_1"
@@ -9007,6 +10517,11 @@
     42,
     42
    ],
+   "ejemplo": "A partir del uso de datos estadísticos explica el comportamiento poblacional de algunas ciudades y departamentos del país en los últimos cincuenta años.",
+   "ejemplo_paginas": [
+    42
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_2"
@@ -9035,6 +10550,11 @@
     43,
     43
    ],
+   "ejemplo": "A partir de diferentes fuentes documentales (videos, revistas, periódicos, Internet, televisión) explica, narra y analiza las repercusiones de las crisis económicas en la vida cotidiana de las personas como el aumento de la tasa de desempleo, el alza de impuestos, entre otros.",
+   "ejemplo_paginas": [
+    43
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_3"
@@ -9063,6 +10583,9 @@
     43,
     43
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_4"
@@ -9091,6 +10614,11 @@
     44,
     44
    ],
+   "ejemplo": "A partir del análisis de casos en que se refleje la vulneración de los DD. HH. y del DIH, propone acciones para su protección o su defensa.",
+   "ejemplo_paginas": [
+    44
+   ],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_5"
@@ -9119,6 +10647,9 @@
     44,
     44
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_6"
@@ -9147,6 +10678,9 @@
     45,
     45
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_7"
@@ -9175,6 +10709,9 @@
     45,
     45
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado9º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_9_dba_8"
@@ -9203,6 +10740,9 @@
     46,
     46
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_10_dba_1"
@@ -9231,6 +10771,11 @@
     46,
     46
    ],
+   "ejemplo": "A partir de la recolección, registro, clasificación, procesamiento e interpretación de fuentes primarias y secundarias, como prensa, documentales de audio y video e Internet, analiza las causas, consecuencias y posibilidades de resolución pacífica de los conflictos que se viven en el país.",
+   "ejemplo_paginas": [
+    46
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_10_dba_2"
@@ -9259,6 +10804,9 @@
     47,
     47
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_10_dba_3"
@@ -9287,6 +10835,9 @@
     47,
     47
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_10_dba_4"
@@ -9315,6 +10866,9 @@
     48,
     48
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado10º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_10_dba_5"
@@ -9343,6 +10897,9 @@
     49,
     49
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_11_dba_1"
@@ -9371,6 +10928,11 @@
     49,
     49
    ],
+   "ejemplo": "A partir de la lectura de diferentes fuentes de información, caracteriza los procesos de paz que se desarrollaron en distintos países del mundo como El Salvador, Sudáfrica, Irlanda del Norte, Nepal y Colombia, entre otros, señalando los acuerdos básicos, la transición a la vida civil y política de los actores involucrados.",
+   "ejemplo_paginas": [
+    49
+   ],
+   "ejemplo_tiene_imagen": true,
    "encabezado_pagina": "V.1CienciasSociales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_11_dba_2"
@@ -9399,6 +10961,9 @@
     50,
     50
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_11_dba_3"
@@ -9427,6 +10992,9 @@
     50,
     50
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_11_dba_4"
@@ -9455,6 +11023,9 @@
     51,
     51
    ],
+   "ejemplo": null,
+   "ejemplo_paginas": [],
+   "ejemplo_tiene_imagen": false,
    "encabezado_pagina": "V.1CienciasSociales•Grado11º",
    "dudoso": [],
    "id_anterior": "ciencias_sociales_11_dba_5"

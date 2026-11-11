@@ -100,8 +100,8 @@ CAP[2] = ("<b>DBA y EVIDENCIA son dato del MEN</b>, referenciado, no generado po
     "(<code>formato</code>): «el formato de los ítems lo determina la evidencia» "
     "(RF-03-01), y una pregunta propia se crea con él (RF-03-07, RI-19). No lo produce el MEN, y "
     "tenerlo dentro de EVIDENCIA borraba la frontera entre contenido oficial y criterio "
-    "propio. Su participación es (0,1): mientras no termine el censo QA-014 una "
-    "evidencia puede no estar dictaminada (V-6).")
+    "propio. Su participación es (0,1): una evidencia puede existir antes de tener "
+    "dictamen. El censo QA-014 (encargo 05) dictaminó todas las del catálogo (V-6).")
 
 # ------------------------------------------------------------------ VISTA 3
 v = Lienzo()
