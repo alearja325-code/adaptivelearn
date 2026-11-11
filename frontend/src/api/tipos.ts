@@ -42,6 +42,7 @@ export interface DbaResumen {
 
 export interface DbaDetalle extends DbaResumen {
   ejemplo: string | null;
+  ejemploTieneImagen: boolean;
   documento: { titulo: string; version: string; anio: number; paginas: number; urlOficial: string };
   evidencias: {
     numero: number;

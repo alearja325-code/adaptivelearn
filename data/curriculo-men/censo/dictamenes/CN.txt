@@ -1,0 +1,214 @@
+# Censo de formato cerrado — Ciencias Naturales (V.1)
+# Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
+# DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
+#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+# Lo escribió la sesión de Claude del encargo 05, evidencia por evidencia (ADR-042).
+# Experimentos: cuando el experimento es solo el contexto y lo que se pide es
+# explicar, predecir o interpretar, aplica (criterios §4, contexto procedimental);
+# cuando lo que se pide es hacer el experimento, medir u observar, N4.
+
+# ---- 1°
+CN-01-01 1 | N4 | utilizando el sentido apropiado | «Describe y caracteriza, utilizando el sentido apropiado, sonidos, sabores, olores»: percibir objetos reales con los sentidos (N4).
+CN-01-01 2 | N4 | utilizando el tacto | «Compara y describe cambios en las temperaturas … utilizando el tacto»: percibir con el cuerpo (N4).
+CN-01-01 3 | N4 | utilizando la vista | «Describe y caracteriza, utilizando la vista, diferentes tipos de luz»: observar (N4).
+CN-01-01 4 | N4 | usa instrumentos como la lupa | «Usa instrumentos como la lupa para realizar observaciones»: instrumento real (N4).
+CN-01-02 1 | MT | clasifica | «Clasifica materiales de uso cotidiano a partir de características»: clasificar materiales conocidos en grupos (sólido o líquido, transparente u opaco) relaciona dos conjuntos (matching); percibirlos con los sentidos no queda cubierto.
+CN-01-02 2 | SC | predice | «Predice cuáles podrían ser los posibles usos de un material … de acuerdo con sus características»: respuesta correcta (single_choice).
+CN-01-02 3 | SC | selecciona | «Selecciona qué materiales utilizaría para fabricar un objeto dada cierta necesidad»: para un paraguas, un material es el adecuado (single_choice).
+CN-01-02 4 | N4 | utiliza instrumentos no convencionales | «Utiliza instrumentos no convencionales (sus manos, palos, cuerdas) para medir»: medir con objetos reales (N4).
+CN-01-03 1 | MT | clasifica … y los diferencia | «Clasifica seres vivos … y los diferencia de los objetos inertes»: clasificar en grupos (matching).
+CN-01-03 2 | SC | compara | «Compara características y partes de plantas y animales, utilizando instrumentos simples como la lupa»: la comparación tiene respuesta (single_choice, criterios §4); usar la lupa no queda cubierto.
+CN-01-03 3 | SC | describe | «Describe las partes de las plantas … así como las de animales»: respuesta correcta (single_choice).
+CN-01-03 4 | N3 | propone acciones de cuidado | «Propone acciones de cuidado a plantas y animales»: una propuesta propia de qué hacer; no hay una única respuesta (N3, «propone»).
+CN-01-04 1 | N4 | registra cambios … en su cuerpo | «Registra cambios físicos ocurridos en su cuerpo durante el crecimiento»: medirse y registrar (N4).
+CN-01-04 2 | SC | predice | «Describe su cuerpo y predice los cambios que se producirán en un futuro»: qué cambios trae el crecimiento tiene respuesta (single_choice). | dudoso: la primera acción, describir su propio cuerpo, no se puede preguntar; se dictamina por la predicción
+CN-01-04 3 | N4 | observa entre niños y niñas de su grado | «Describe y registra similitudes y diferencias físicas que observa entre niños y niñas de su grado»: observar a sus compañeros (N4).
+CN-01-04 4 | SC | establece relaciones hereditarias | «Establece relaciones hereditarias a partir de las características físicas de sus padres»: con una familia descrita en la pregunta, qué rasgo se hereda tiene respuesta (single_choice, criterios §4); sus propios padres no quedan cubiertos.
+
+# ---- 2°
+CN-02-01 1 | SC | compara | «Compara los cambios de forma que se generan sobre objetos constituidos por distintos materiales»: qué material se deforma y cómo tiene respuesta (single_choice).
+CN-02-01 2 | MT | clasifica | «Clasifica los materiales según su resistencia a ser deformados»: clasificar en grupos (matching).
+CN-02-01 3 | SC | predice | «Predice el tipo de acción requerida para producir una deformación determinada»: respuesta correcta (single_choice); comunicarla no queda cubierto.
+CN-02-02 1 | MT | clasifica | «Clasifica materiales de su entorno según su estado (sólidos, líquidos o gases)»: tres grupos (matching).
+CN-02-02 2 | SC | compara | «Compara las características físicas observables (fluidez, viscosidad, transparencia) de un conjunto de líquidos»: cuál es más viscoso tiene respuesta (single_choice).
+CN-02-02 3 | SC | reconoce | «Reconoce el aire como un material a partir de evidencias de su presencia»: qué experiencia muestra que hay aire tiene respuesta (single_choice).
+CN-02-03 1 | SC | describe y clasifica | «Describe y clasifica plantas y animales … según su tipo de desplazamiento, dieta y protección»: respuesta correcta (single_choice; ante la duda con matching).
+CN-02-03 2 | SC | explica | «Explica cómo las características físicas de un animal o planta le ayudan a vivir en un cierto ambiente»: explicación de un hecho (single_choice).
+CN-02-03 3 | SC | predice | «Predice posibles problemas … a partir de los resultados obtenidos en experimentaciones sencillas»: la predicción tiene respuesta; la experimentación va en el enunciado (single_choice, criterios §4).
+CN-02-03 4 | MT | establece relaciones entre | «Establece relaciones entre las características de los seres vivos y el ambiente donde habitan»: empareja características con ambientes (matching).
+CN-02-04 1 | N1 | representa con dibujos | «Representa con dibujos u otros formatos los cambios en el desarrollo de plantas»: dibujo propio (N1; criterios §4, «representa» a mano).
+CN-02-04 2 | N1 | representa con dibujos | «Representa con dibujos u otros formatos los cambios en el desarrollo de los animales»: dibujo propio (N1).
+
+# ---- 3°
+CN-03-01 1 | SC | compara … y selecciona | «Compara, en un experimento, distintos materiales de acuerdo con la cantidad de luz que dejan pasar … y selecciona el tipo de material»: qué material es opaco o cuál sirve para un fin tiene respuesta (single_choice, criterios §4).
+CN-03-01 2 | SC | selecciona | «Selecciona la fuente apropiada para iluminar completamente una determinada superficie»: respuesta correcta (single_choice).
+CN-03-01 3 | SC | describe | «Describe las precauciones que debe tener presentes frente a la exposición de los ojos a rayos de luz directa»: respuesta correcta (single_choice).
+CN-03-02 1 | SC | predice | «Predice dónde se producirá la sombra»: respuesta correcta (single_choice).
+CN-03-02 2 | N4 | desplaza la fuente de luz | «Desplaza la fuente de luz y el objeto para aumentar o reducir el tamaño de la sombra»: manipular objetos reales (N4).
+CN-03-02 3 | SC | explica | «Explica los datos obtenidos mediante observaciones y mediciones»: con los datos en el enunciado, la explicación tiene respuesta (single_choice, criterios §4).
+CN-03-03 1 | N4 | demuestra … mediante el uso de fuentes | «Demuestra que el sonido es una vibración mediante el uso de fuentes para producirlo: cuerdas, parches, tubos»: usar instrumentos reales (N4).
+CN-03-03 2 | N4 | describe y compara sonidos | «Describe y compara sonidos según su altura … y su intensidad»: hay que oírlos (N4, percibir).
+CN-03-03 3 | SC | compara y describe | «Compara y describe cómo se atenúa el sonido al pasar por diferentes medios … y cómo influye la distancia»: respuesta correcta (single_choice).
+CN-03-03 4 | MT | clasifica | «Clasifica materiales de acuerdo con la manera como atenúan un sonido»: clasificar en grupos (matching).
+CN-03-04 1 | SC | interpreta | «Interpreta los resultados de experimentos … al predecir lo qué ocurrirá con el estado de una sustancia»: respuesta correcta (single_choice).
+CN-03-04 2 | SC | explica | «Explica fenómenos cotidianos en los que se pone de manifiesto el cambio de estado del agua»: explicación de un hecho (single_choice).
+CN-03-04 3 | N4 | utiliza instrumentos convencionales | «Utiliza instrumentos convencionales (balanza, probeta, termómetro) para hacer mediciones»: instrumentos reales (N4).
+CN-03-05 1 | MT | diferencia … de | «Diferencia los factores bióticos … de los abióticos»: dos grupos (matching).
+CN-03-05 2 | SC | interpreta | «Interpreta el ecosistema de su región describiendo relaciones entre factores bióticos y abióticos»: con el ecosistema descrito, la relación tiene respuesta (single_choice).
+CN-03-05 3 | SC | predice | «Predice los efectos que ocurren en los organismos al alterarse un factor abiótico»: respuesta correcta (single_choice).
+CN-03-06 1 | SC | interpreta | «Interpreta las relaciones de competencia, territorialidad, … mutualismo, como esenciales para la supervivencia, dando ejemplos»: reconocer la relación en un caso dado tiene respuesta (single_choice); dar sus propios ejemplos no queda cubierto.
+CN-03-06 2 | N4 | observa y describe | «Observa y describe características que le permiten a algunos organismos camuflarse»: observar organismos (N4). | dudoso: la parte de explicar cómo el camuflaje mejora la supervivencia sí aplicaría
+CN-03-06 3 | SC | predice | «Predice qué ocurrirá con otros organismos del mismo ecosistema»: respuesta correcta (single_choice).
+CN-03-06 4 | SC | describe | «Describe y registra las relaciones intra e interespecíficas que le permiten sobrevivir como ser humano»: elegir la relación correcta (single_choice); registrar no queda cubierto.
+
+# ---- 4°
+CN-04-01 1 | SC | describe | «Describe las características de las fuerzas (magnitud y dirección) que se deben aplicar para producir un efecto»: respuesta correcta (single_choice).
+CN-04-01 2 | SC | indica | «Indica, a partir de pequeñas experiencias, cuando una fuerza aplicada … no produce cambios»: con la experiencia descrita, la respuesta es una (single_choice, criterios §4).
+CN-04-01 3 | SC | comunica resultados | «Comunica resultados sobre los efectos de la fuerza de fricción … al comparar superficies»: el efecto de la fricción se puede preguntar con los resultados en el enunciado (single_choice). | dudoso: «comunica» los resultados de su propia experiencia; el ítem solo ve si sabe qué muestran
+CN-04-01 4 | SC | predice y explica | «Predice y explica … en cuál de ellas el cuerpo puede mantenerse por más tiempo en movimiento»: respuesta correcta (single_choice).
+CN-04-02 1 | N4 | explora | «Explora cómo los cambios en el tamaño de una palanca … afectan las fuerzas»: manipular una palanca real (N4). | dudoso: lo que la exploración descubre (palanca más larga, menos fuerza) sí se puede preguntar
+CN-04-02 2 | SC | describe | «Describe la función que cumplen fuerzas en una máquina simple»: respuesta correcta (single_choice).
+CN-04-02 3 | SC | identifica | «Identifica y observa máquinas simples en objetos cotidianos para explicar su utilidad»: respuesta correcta (single_choice).
+CN-04-02 4 | SC | identifica y describe | «Identifica y describe palancas presentes en su cuerpo»: respuesta correcta (single_choice).
+CN-04-03 1 | N4 | registra y realiza dibujos | «Registra y realiza dibujos de las sombras que proyecta un objeto … en diferentes momentos del día»: observar y registrar (N4).
+CN-04-03 2 | SC | explica | «Explica cómo se producen el día y la noche por medio de una maqueta o modelo»: la explicación tiene respuesta (single_choice); construir o usar la maqueta no queda cubierto.
+CN-04-03 3 | N4 | observa y registra | «Observa y registra algunos patrones de regularidad … elabora tablas»: como en la prueba de los criterios (§2, §7), N4.
+CN-04-04 1 | N4 | realiza observaciones | «Realiza observaciones de la forma de la Luna y las registra mediante dibujos»: observar (N4).
+CN-04-04 2 | SC | predice | «Predice cuál sería la fase de la Luna … dada una cierta posición relativa»: respuesta correcta (single_choice).
+CN-04-05 1 | MT | clasifica | «Clasifica como homogénea o heterogénea una mezcla dada»: dos grupos (matching).
+CN-04-05 2 | SC | selecciona | «Selecciona las técnicas para separar una mezcla dada»: respuesta correcta (single_choice).
+CN-04-05 3 | SC | predice | «Predice el tipo de mezcla que se producirá a partir de la combinación de materiales»: respuesta correcta (single_choice).
+CN-04-05 4 | SC | compara | «Compara las ventajas y desventajas de distintas técnicas de separación»: respuesta correcta (single_choice).
+CN-04-06 1 | SC | identifica | «Identifica los niveles tróficos en cadenas y redes alimenticias y establece la función de cada uno»: respuesta correcta (single_choice).
+CN-04-06 2 | SC | indica | «Indica qué puede ocurrir con las distintas poblaciones … cuando se altera cualquiera de sus niveles»: respuesta correcta (single_choice).
+CN-04-06 3 | SC | representa | «Representa cadenas, pirámides o redes tróficas»: elegir la cadena correcta (single_choice; criterios §4; ante la duda con ordering).
+CN-04-07 1 | MT | diferencia | «Diferencia tipos de ecosistemas (terrestres y acuáticos) correspondientes a distintas ubicaciones»: empareja ecosistema con ubicación o tipo (matching).
+CN-04-07 2 | SC | explica | «Explica cómo repercuten las características físicas … en la supervivencia de los organismos»: explicación de un hecho (single_choice).
+CN-04-07 3 | N1 | propone representaciones y plantea estrategias | «Propone representaciones de los ecosistemas representativos de su región … y plantea estrategias para su conservación»: producto propio (N1).
+
+# ---- 5°
+CN-05-01 1 | N4 | realiza circuitos | «Realiza circuitos eléctricos simples»: armar con material real (N4).
+CN-05-01 2 | SC | identifica | «Identifica y soluciona dificultades cuando construye un circuito que no funciona»: en un circuito descrito o dibujado, por qué no funciona tiene respuesta (single_choice); arreglarlo con las manos no queda cubierto.
+CN-05-01 3 | SC | identifica | «Identifica los diferentes efectos que se producen en los componentes de un circuito»: respuesta correcta (single_choice).
+CN-05-02 1 | N4 | construye experimentalmente | «Construye experimentalmente circuitos sencillos»: experimentar (N4).
+CN-05-02 2 | MT | identifica … cuáles son buenos conductores … y cuáles son aislantes | «Identifica, en un conjunto de materiales dados, cuáles son buenos conductores … y cuáles son aislantes»: clasificar en dos grupos (matching).
+CN-05-02 3 | SC | explica | «Explica por qué algunos objetos se fabrican con ciertos materiales»: explicación de un hecho (single_choice).
+CN-05-02 4 | N4 | verifica, con el tacto | «Verifica, con el tacto, que los componentes de un circuito … se calientan»: percibir con el cuerpo (N4).
+CN-05-03 1 | SC | explica | «Explica la estructura (órganos, tejidos y células) y las funciones de los sistemas de su cuerpo»: respuesta correcta (single_choice).
+CN-05-03 2 | MT | relaciona | «Relaciona el funcionamiento de los tejidos de un ser vivo con los tipos de células que posee»: empareja tejido con tipo de célula (matching).
+CN-05-03 3 | MT | asocia | «Asocia el cuidado de sus sistemas con una alimentación e higiene adecuadas»: empareja sistema con hábito de cuidado (matching).
+CN-05-04 1 | SC | explica | «Explica el camino que siguen los alimentos en el organismo y los cambios que sufren»: respuesta correcta (single_choice; ante la duda con ordering).
+CN-05-04 2 | MT | relaciona | «Relaciona las características de los órganos del sistema digestivo … con los tipos de alimento que consumen»: dos conjuntos (matching).
+CN-05-04 3 | SC | explica | «Explica por qué cuando se hace ejercicio físico aumentan tanto la frecuencia cardíaca como la respiratoria»: como en la prueba de los criterios (§7), aplica (single_choice).
+CN-05-04 4 | SC | explica | «Explica el intercambio gaseoso que ocurre en los alvéolos pulmonares»: explicación de un hecho (single_choice).
+
+# ---- 6°
+CN-06-01 1 | N4 | utiliza procedimientos (frotar barra de vidrio…) | «Utiliza procedimientos (frotar barra de vidrio con seda…) para cargar eléctricamente un cuerpo»: experimentar con material (N4).
+CN-06-01 2 | SC | identifica | «Identifica si los cuerpos tienen cargas iguales o contrarias a partir de los efectos de atracción o repulsión»: respuesta correcta (single_choice).
+CN-06-02 1 | SC | interpreta | «Interpreta los resultados de experimentos en los que se observa la influencia de la variación de la temperatura y la presión»: con los resultados en el enunciado, respuesta correcta (single_choice); representarlos no queda cubierto.
+CN-06-02 2 | SC | explica | «Explica la relación entre la temperatura y la presión con algunas propiedades»: explicación de un hecho (single_choice).
+CN-06-02 3 | N1 | diseña y realiza experiencias | «Diseña y realiza experiencias para separar mezclas»: diseño propio (N1; también N4).
+CN-06-03 1 | MT | diferencia … de | «Diferencia sustancias puras … de mezclas»: dos grupos (matching).
+CN-06-03 2 | MT | identifica … con sus símbolos | «Identifica sustancias de uso cotidiano … con sus símbolos químicos (NaCl, H2O, Cu)»: empareja sustancia con símbolo (matching).
+CN-06-03 3 | SC | explica | «Explica la importancia de las propiedades del agua como solvente»: explicación de un hecho (single_choice).
+CN-06-03 4 | SC | reconoce | «Reconoce la importancia de los coloides … en los procesos industriales y biomédicos»: respuesta correcta (single_choice).
+CN-06-04 1 | SC | explica | «Explica el rol de la membrana plasmática … mediante el uso de modelos»: explicación de un hecho (single_choice).
+CN-06-04 2 | SC | explica e identifica | «Explica el proceso de respiración celular e identifica el rol de la mitocondria»: respuesta correcta (single_choice).
+CN-06-04 3 | SC | interpreta modelos | «Interpreta modelos sobre los procesos de división celular (mitosis)»: preguntas sobre un modelo dado (single_choice).
+CN-06-04 4 | SC | predice | «Predice qué ocurre … en caso de daño de alguna de las organelas celulares»: respuesta correcta (single_choice).
+CN-06-05 1 | SC | identifica … y los clasifica … siguiendo claves taxonómicas | «Identifica organismos … y los clasifica … siguiendo claves taxonómicas simples»: seguir una clave con un organismo descrito tiene un resultado (single_choice); los organismos de su entorno no quedan cubiertos.
+CN-06-05 2 | MT | clasifica | «Clasifica los organismos en diferentes dominios, de acuerdo con sus tipos de células»: clasificar en grupos (matching).
+CN-06-05 3 | SC | explica | «Explica la clasificación taxonómica como mecanismo que permite reconocer la biodiversidad»: explicación de un hecho (single_choice).
+
+# ---- 7°
+CN-07-01 1 | SC | relaciona … para describir | «Relaciona las variables velocidad y posición para describir las formas de energía mecánica»: qué energía tiene un cuerpo según su velocidad y altura tiene respuesta (single_choice).
+CN-07-01 2 | SC | identifica | «Identifica las formas de energía mecánica … en diferentes puntos del movimiento»: respuesta correcta (single_choice).
+CN-07-01 3 | SC | representa gráficamente | «Representa gráficamente las energías cinética y potencial gravitacional en función del tiempo»: como en la prueba de los criterios (§7), aplica eligiendo la gráfica correcta (single_choice).
+CN-07-02 1 | SC | ubica | «Ubica a los elementos en la Tabla Periódica con relación a los números atómicos y másicos»: respuesta correcta (single_choice).
+CN-07-02 2 | SC | usa modelos | «Usa modelos y representaciones (Bohr, Lewis) que le permiten reconocer la estructura del átomo»: respuesta correcta sobre un modelo dado (single_choice).
+CN-07-02 3 | SC | explica | «Explica la variación de algunas de las propiedades … en la tabla periódica»: explicación de un hecho (single_choice).
+CN-07-03 1 | SC | explica | «Explica tipos de nutrición (autótrofa y heterótrofa) en las cadenas y redes tróficas»: explicación de un hecho (single_choice).
+CN-07-03 2 | SC | explica y predice | «Explica la fotosíntesis … y predice qué efectos sobre la composición de la atmósfera … podría tener su disminución»: respuesta correcta (single_choice).
+CN-07-03 3 | SC | compara | «Compara el proceso de fotosíntesis con el de respiración celular, considerando sus reactivos y productos»: respuesta correcta (single_choice).
+CN-07-04 1 | SC | establece relaciones | «Establece relaciones entre los ciclos del Carbono y Nitrógeno con el mantenimiento de los suelos»: la relación tiene respuesta (single_choice).
+CN-07-04 2 | SC | explica | «Explica a partir de casos los efectos de la intervención humana … y propone posibles acciones»: la explicación del efecto tiene respuesta (single_choice); proponer acciones no queda cubierto.
+CN-07-04 3 | SC | reconoce | «Reconoce las principales funciones de los microorganismos»: respuesta correcta (single_choice).
+CN-07-04 4 | N3 | propone acciones | «Propone acciones de uso responsable del agua en su hogar, en la escuela»: una propuesta propia para su contexto; no hay una única respuesta (N3, «propone»).
+
+# ---- 8°
+CN-08-01 1 | SC | describe | «Describe el cambio en la energía interna de un sistema a partir del trabajo mecánico realizado y del calor transferido»: respuesta correcta (single_choice).
+CN-08-01 2 | SC | explica | «Explica la primera ley de la termodinámica»: explicación de un hecho (single_choice).
+CN-08-01 3 | SC | describe | «Describe la eficiencia mecánica de una máquina … mediante la segunda ley»: respuesta correcta (single_choice).
+CN-08-01 4 | SC | explica | «Explica … el funcionamiento térmico de diferentes máquinas»: explicación de un hecho (single_choice).
+CN-08-02 1 | SC | explica con esquemas | «Explica con esquemas, dada una reacción química, cómo se recombinan los átomos»: elegir el esquema correcto (single_choice).
+CN-08-02 2 | SC | representa | «Representa los tipos de enlaces (iónico y covalente) para explicar la formación de compuestos»: elegir la representación correcta (single_choice; criterios §4).
+CN-08-02 3 | SC | justifica si un cambio es físico o químico | «Justifica si un cambio en un material es físico o químico a partir de características observables»: si un cambio dado es físico o químico, y por qué, tiene respuesta (single_choice). | dudoso: «justifica» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+CN-08-02 4 | SC | predice | «Predice algunas de las propiedades … de los compuestos químicos a partir del tipo de enlace»: respuesta correcta (single_choice).
+CN-08-03 1 | SC | interpreta | «Interpreta los resultados de experimentos en los cuales analiza el comportamiento de un gas ideal»: con los resultados en el enunciado, respuesta correcta (single_choice, criterios §4).
+CN-08-03 2 | SC | explica | «Explica el comportamiento … de los gases a partir de la teoría cinético molecular»: explicación de un hecho (single_choice).
+CN-08-03 3 | SC | explica | «Explica eventos cotidianos … a partir de relaciones matemáticas entre variables como la presión»: explicación de un hecho (single_choice).
+CN-08-04 1 | MT | relaciona | «Relaciona los fenómenos homeostáticos de los organismos con el funcionamiento de órganos y sistemas»: empareja fenómeno con sistema (matching).
+CN-08-04 2 | SC | interpreta modelos | «Interpreta modelos de equilibrio existente entre algunos de los sistemas»: preguntas sobre un modelo dado (single_choice).
+CN-08-04 3 | SC | relaciona el papel | «Relaciona el papel biológico de las hormonas y las neuronas en la regulación … dando ejemplos»: el papel en una función dada tiene respuesta (single_choice); dar sus propios ejemplos no queda cubierto.
+CN-08-04 4 | SC | explica | «Explica, a través de ejemplos, los efectos de hábitos no saludables»: explicación de un hecho (single_choice).
+CN-08-05 1 | MT | diferencia | «Diferencia los tipos de reproducción en plantas y propone su aplicación»: clasificar ejemplos por tipo de reproducción (matching); proponer su aplicación no queda cubierto.
+CN-08-05 2 | SC | explica | «Explica los sistemas de reproducción sexual y asexual en animales»: explicación de un hecho (single_choice).
+CN-08-05 3 | SC | identifica | «Identifica riesgos y consecuencias físicas y psicológicas de un embarazo en la adolescencia»: respuesta correcta (single_choice).
+CN-08-05 4 | SC | explica | «Explica la importancia de la aplicación de medidas preventivas de patologías»: explicación de un hecho (single_choice).
+
+# ---- 9°
+CN-09-01 1 | SC | describe | «Describe el movimiento de un cuerpo … en gráficos»: elegir la gráfica o la descripción correcta (single_choice).
+CN-09-01 2 | SC | predice | «Predice el movimiento de un cuerpo a partir de las expresiones matemáticas»: respuesta correcta (single_choice).
+CN-09-01 3 | SC | identifica | «Identifica las modificaciones necesarias en la descripción del movimiento … cuando se cambia de marco de referencia»: respuesta correcta (single_choice).
+CN-09-02 1 | SC | compara | «Compara algunas teorías (Arrhenius, Brönsted – Lowry y Lewis)»: como en la prueba de los criterios (§7), aplica (single_choice).
+CN-09-02 2 | SC | determina | «Determina la acidez y la basicidad de compuestos dados, de manera cualitativa (colorimetría) y cuantitativa (escala de pH - pOH)»: con el dato del pH o del color, la respuesta es una (single_choice); hacer la colorimetría en el laboratorio no queda cubierto.
+CN-09-02 3 | SC | explica | «Explica la función de los ácidos y las bases en procesos propios de los seres vivos»: explicación de un hecho (single_choice).
+CN-09-03 1 | SC | explica | «Explica qué factores afectan la formación de soluciones»: como en la prueba de los criterios (§7), aplica (single_choice).
+CN-09-03 2 | SC | predice | «Predice qué ocurrirá con una solución si se modifica una variable»: respuesta correcta (single_choice).
+CN-09-03 3 | SC | identifica y representa cuantitativamente | «Identifica los componentes de una solución y representa cuantitativamente el grado de concentración»: el cálculo tiene resultado único (single_choice).
+CN-09-03 4 | SC | explica | «Explica a partir de las fuerzas intermoleculares … las propiedades físicas»: explicación de un hecho (single_choice).
+CN-09-04 1 | SC | predice | «Predice mediante la aplicación de diferentes mecanismos (probabilidades o punnet) las proporciones»: resultado único (single_choice).
+CN-09-04 2 | SC | explica | «Explica la forma como se transmite la información de padres a hijos»: explicación de un hecho (single_choice).
+CN-09-04 3 | N1 | diseña experiencias | «Diseña experiencias que puedan demostrar cada una de las leyes de Mendel»: diseño propio (N1).
+CN-09-04 4 | SC | demuestra la relación | «Demuestra la relación que existe entre el proceso de la meiosis y las segunda y tercera Leyes de la Herencia de Mendel»: la relación entre meiosis y leyes de Mendel tiene una explicación correcta (single_choice, como «explica»).
+CN-09-05 1 | SC | interpreta a partir de modelos | «Interpreta a partir de modelos la estructura del ADN … representando los pasos del proceso de traducción»: preguntas sobre un modelo dado (single_choice; ante la duda con ordering para los pasos).
+CN-09-05 2 | SC | relaciona | «Relaciona la producción de proteínas … con algunas características fenotípicas»: respuesta correcta (single_choice).
+CN-09-05 3 | SC | explica | «Explica los principales mecanismos de cambio en el ADN»: explicación de un hecho (single_choice).
+CN-09-06 1 | SC | explica | «Explica las evidencias que dan sustento a la teoría del ancestro común y a la de selección natural»: explicación de un hecho (single_choice).
+CN-09-06 2 | SC | explica | «Explica cómo actúa la selección natural en una población»: explicación de un hecho (single_choice).
+CN-09-06 3 | N3 | argumenta | «Argumenta con evidencias científicas la influencia de las mutaciones»: «argumenta» no aplica (N3).
+CN-09-06 4 | MT | identifica … en cada una de las eras | «Identifica los procesos de transformación de los seres vivos ocurridos en cada una de las eras geológicas»: empareja era con proceso (matching).
+
+# ---- 10°
+CN-10-01 1 | SC | predice | «Predice el equilibrio … de un cuerpo a partir del análisis de las fuerzas»: respuesta correcta (single_choice).
+CN-10-01 2 | SC | estima | «Estima, a partir de las expresiones matemáticas, los cambios de velocidad»: respuesta correcta (single_choice).
+CN-10-01 3 | SC | identifica | «Identifica … la fuerza de acción y la de reacción e indica sus valores y direcciones»: respuesta correcta (single_choice).
+CN-10-02 1 | SC | predice | «Predice cualitativa y cuantitativamente el movimiento de un cuerpo al hacer uso del principio de conservación de la energía»: respuesta correcta (single_choice).
+CN-10-02 2 | SC | identifica | «Identifica, en sistemas no conservativos … las transformaciones de energía»: respuesta correcta (single_choice).
+CN-10-03 1 | SC | establece la relación | «Establece la relación entre la distribución de los electrones en el átomo y el comportamiento químico»: respuesta correcta (single_choice).
+CN-10-03 2 | SC | balancea | «Balancea ecuaciones químicas dadas por el docente»: los coeficientes correctos son unos (single_choice).
+CN-10-03 3 | SC | utiliza fórmulas … y nombrarlos | «Utiliza fórmulas y ecuaciones químicas para representar las reacciones … y posteriormente nombrarlos»: elegir la fórmula o el nombre correcto (single_choice).
+CN-10-03 4 | SC | explica | «Explica a partir de relaciones cuantitativas y reacciones químicas la formación de nuevos compuestos»: explicación de un hecho (single_choice).
+CN-10-04 1 | SC | describe | «Describe distintas técnicas biotecnológicas … explicando cómo funcionan»: respuesta correcta (single_choice).
+CN-10-04 2 | SC | explica | «Explica los usos de la biotecnología y sus efectos en diferentes contextos»: explicación de un hecho (single_choice).
+CN-10-04 3 | N3 | argumenta | «Argumenta, basado en evidencias, los impactos bioéticos, legales, sociales y ambientales»: «argumenta» no aplica (N3); además es una valoración.
+
+# ---- 11°
+CN-11-01 1 | MT | clasifica | «Clasifica las ondas de luz y sonido según el medio de propagación … y la dirección de la oscilación»: clasificar en grupos (matching).
+CN-11-01 2 | SC | aplica … para predecir | «Aplica las leyes y principios del movimiento ondulatorio … para predecir el comportamiento de una onda»: la predicción tiene respuesta (single_choice); hacerlo visible en casos prácticos no queda cubierto.
+CN-11-01 3 | SC | explica | «Explica los fenómenos ondulatorios de sonido y luz en casos prácticos»: explicación de un hecho (single_choice).
+CN-11-01 4 | SC | explica | «Explica las cualidades del sonido … y de la luz … a partir de las características del fenómeno ondulatorio»: explicación de un hecho (single_choice).
+CN-11-02 1 | SC | identifica | «Identifica el tipo de carga eléctrica … que adquiere un material cuando se somete a procedimientos de fricción»: respuesta correcta (single_choice).
+CN-11-02 2 | SC | reconoce | «Reconoce que las fuerzas eléctricas y magnéticas pueden ser de atracción y repulsión»: respuesta correcta (single_choice).
+CN-11-02 3 | N4 | construye | «Construye y explica el funcionamiento de un electroimán»: armar con material real (N4), como los circuitos de CN-05-01 #1.
+CN-11-03 1 | SC | determina | «Determina las corrientes y los voltajes en elementos resistivos … utilizando la ley de Ohm»: resultado único (single_choice).
+CN-11-03 2 | SC | identifica | «Identifica configuraciones en serie, en paralelo y mixtas en diferentes circuitos representados en esquemas»: respuesta correcta (single_choice).
+CN-11-03 3 | SC | identifica | «Identifica características de circuitos en serie y paralelo a partir de la construcción de circuitos»: la característica tiene respuesta (single_choice, criterios §4); construir los circuitos no queda cubierto.
+CN-11-03 4 | SC | predice | «Predice los cambios de iluminación en bombillos resistivos en un circuito al alterarlo»: respuesta correcta (single_choice).
+CN-11-04 1 | SC | representa | «Representa las reacciones químicas entre compuestos orgánicos utilizando fórmulas … y la nomenclatura IUPAC»: elegir la fórmula o el nombre correcto (single_choice).
+CN-11-04 2 | MT | clasifica | «Clasifica compuestos orgánicos … a partir de la aplicación de pruebas químicas»: con el resultado de la prueba en el enunciado, clasificar en grupos (matching, criterios §4).
+CN-11-04 3 | SC | explica | «Explica el comportamiento exotérmico o endotérmico en una reacción química»: explicación de un hecho (single_choice).
+CN-11-05 1 | SC | explica | «Explica el fenómeno del calentamiento global, identificando sus causas y proponiendo acciones»: explicar e identificar causas tiene respuesta (single_choice); proponer acciones no queda cubierto.
+CN-11-05 2 | SC | identifica | «Identifica las implicaciones que tiene para Colombia … el hecho de ser “un país mega diverso”»: respuesta correcta (single_choice).
+CN-11-05 3 | N3 | argumenta | «Argumenta con base en evidencias sobre los efectos que tienen algunas actividades humanas»: «argumenta» no aplica (N3).
+CN-11-05 4 | N1 | diseña y propone investigaciones | «Diseña y propone investigaciones»: diseño propio (N1).

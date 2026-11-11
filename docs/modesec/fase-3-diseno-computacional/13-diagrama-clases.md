@@ -166,6 +166,7 @@ Dos diagramas: el **dominio** (21 clases, 13 enumeraciones, 25 asociaciones) y l
 | `codigo_dba` | string |
 | `enunciado` | string |
 | `ejemplo` | string [0..1] |
+| `ejemplo_tiene_imagen` | bool |
 
 | Método | Casos de uso |
 |---|---|

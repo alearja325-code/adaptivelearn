@@ -87,7 +87,8 @@ CLASES = [
           [],
           desc="El PDF del MEN del que se copiaron los DBA de un área (ADR-036, ADR-033)."),
     clase("DBA", "DBA", "dba",
-          [("codigo_dba", "string"), ("enunciado", "string"), ("ejemplo", "string [0..1]")],
+          [("codigo_dba", "string"), ("enunciado", "string"), ("ejemplo", "string [0..1]"),
+           ("ejemplo_tiene_imagen", "bool")],
           [m("evidenciasAdmitidas(): Evidencia [*]", ["CU-16", "CU-31"])],
           desc="Dato del MEN, de solo lectura. Su área y su grado son asociaciones (ADR-036); "
                "codigo_dba tiene el formato ÁREA-GG-NN (RI-21)."),

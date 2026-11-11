@@ -34,7 +34,7 @@ comprueba en cada corrida que esta fuente no se aparte del MER.
 
 | Tablas | Columnas | Llaves foráneas | UNIQUE | CHECK |
 |---|---|---|---|---|
-| 19 | 107 | 24 | 17 | 16 |
+| 19 | 108 | 24 | 17 | 16 |
 
 Reporte no aparece: no es una tabla. Se calcula sobre `resultado` cada
 vez que el docente lo abre, sin llave ni persistencia propia — así lo
@@ -287,7 +287,8 @@ Derecho Básico de Aprendizaje oficial del MEN. Dato externo, de solo lectura pa
 | `numero_grado` | `TINYINT UNSIGNED` | No | FK | — | — | Grado del DBA. Se llama `numero_grado` y no `numero` para no confundirlo con el número del DBA, que va al final del código.<br>*Fuente: MER · relación «corresponde a» · ADR-036* |
 | `id_documento` | `INT UNSIGNED` | No | FK | — | — | Documento oficial del que se copió.<br>*Fuente: MER · relación «se copia de» · ADR-036* |
 | `enunciado` | `TEXT` | No | — | — | — | Texto oficial, sin simplificar ni reescribir.<br>*Fuente: RF-06-01* |
-| `ejemplo` | `TEXT` | Sí | — | — | NULL | Ejemplo oficial; se usa como contexto al generar el banco (ADR-011). Admite NULL mientras la normalización no lo tenga (QA-011).<br>*Fuente: RF-06-01 · ADR-011 · QA-011* |
+| `ejemplo` | `TEXT` | Sí | — | — | NULL | Ejemplo oficial; se usa como contexto al generar el banco (ADR-011). NULL cuando el PDF no trae ejemplo con texto: la mayoría de los DBA de Ciencias Sociales V.1 no tienen ejemplo, y algunos de Ciencias Naturales son solo una figura (encargo 05).<br>*Fuente: RF-06-01 · ADR-011 · QA-011* |
+| `ejemplo_tiene_imagen` | `BOOLEAN` | No | — | 0 \| 1 | 0 | Si el ejemplo del PDF incluye una figura (imagen, dibujo, tabla o fórmula aparte) que el texto no trae. El Paso 2 avisa que no se muestra. Se agrega porque `06-spec` §2.4 la pide y no había dónde guardarla.<br>*Fuente: 06-spec-crear-experiencia-paso2.md §2.4 · ADR-011 · encargo 05* |
 
 **Llaves foráneas**
 
@@ -337,10 +338,10 @@ Nuestro juicio sobre una evidencia del MEN: si admite formato cerrado, y cuál. 
 |---|---|---|---|---|---|---|
 | `codigo_dba` | `VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin` | No | PK,FK | — | — | Evidencia dictaminada (parte 1).<br>*Fuente: H-6 · MER* |
 | `numero_evidencia` | `TINYINT UNSIGNED` | No | PK,FK | — | — | Evidencia dictaminada (parte 2).<br>*Fuente: H-6 · MER* |
-| `aplica_formato_cerrado` | `BOOLEAN` | No | — | true \| false | — | Si esta evidencia se puede diagnosticar con pregunta cerrada.<br>*Fuente: RF-06-02 · ADR-006 · censo QA-014 pendiente* |
+| `aplica_formato_cerrado` | `BOOLEAN` | No | — | true \| false | — | Si esta evidencia se puede diagnosticar con pregunta cerrada.<br>*Fuente: RF-06-02 · ADR-006 · ADR-042 · censo QA-014* |
 | `formato` | `ENUM('single_choice','matching','ordering')` | Sí | — | single_choice \| matching \| ordering | NULL | Qué formato cerrado admite: «el formato de los ítems lo determina la evidencia» (RF-03-01), y una pregunta propia se crea con él (RF-03-07). NULL si no admite formato cerrado (RI-19).<br>*Fuente: RF-03-01 · RF-03-07 · ADR-006* |
-| `justificacion` | `TEXT` | Sí | — | — | NULL | Por qué se dictaminó así.<br>*Fuente: H-6 · MER* |
-| `fecha_dictamen` | `DATETIME` | No | — | — | — | Cuándo se dictaminó. Obligatoria porque el dictamen puede cambiar al cerrar QA-014.<br>*Fuente: H-6 · MER · V-6* |
+| `justificacion` | `TEXT` | Sí | — | — | NULL | Por qué se dictaminó así: cita la frase decisiva de la evidencia y la regla de los criterios del censo.<br>*Fuente: H-6 · MER · ADR-042* |
+| `fecha_dictamen` | `DATETIME` | No | — | — | — | Cuándo se dictaminó. Obligatoria porque el dictamen puede cambiar al validar el censo QA-014.<br>*Fuente: H-6 · MER · V-6* |
 
 **Llaves foráneas**
 
@@ -577,9 +578,8 @@ marcados, no rellenados:
 
 | Campo | Qué falta | Dónde está declarado |
 |---|---|---|
-| `evidencia_dictamen.aplica_formato_cerrado` | El tipo está cerrado; **los valores no**: dependen del censo QA-014, que no ha corrido. Hasta entonces RI-5 no se puede evaluar contra datos reales. | **V-6**, MER |
+| `evidencia_dictamen.aplica_formato_cerrado` | El tipo está cerrado y **los valores están propuestos**: el censo QA-014 (encargo 05) dictaminó las 1282 evidencias, pero es un juicio de IA hasta que el equipo lo valide por muestreo. | **V-6**, ADR-042 |
 | `dba.codigo_dba` | El formato `ÁREA-GG-NN` está cerrado (RI-21), y los datos lo cumplen como llave desde el catálogo corregido (`data/curriculo-men/catalogo/catalogo_dba.json`, 343 DBA, encargo 02). El JSON viejo, `curriculo_men_normalizado.json`, tenía 342 DBA y solo 329 códigos distintos; cargarlo falla por llave duplicada en 13, y eso es lo correcto: se corrigió en los datos, no en el modelo. | **Pendientes, A12** · ADR-036 |
-| `dba.ejemplo` | Admite `NULL` porque el campo todavía no existe en la normalización del currículo. No es opcionalidad de diseño, es un dato que falta. | **QA-011** |
 
 **Cerrados desde el borrador anterior** (para no perder el rastro):
 `item.estado_revision` sale del modelo (V-7: tras ADR-026 revisar el

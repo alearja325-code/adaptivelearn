@@ -1,0 +1,362 @@
+# Censo de formato cerrado — Ciencias Sociales (V.1)
+# Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
+# DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
+#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+# Lo escribió la sesión de Claude del encargo 05, evidencia por evidencia (ADR-042).
+# Contexto propio: varias evidencias de los primeros grados piden saber algo de
+# la vida del propio estudiante (su familia, su casa, su municipio). Una pregunta
+# generada para cualquier estudiante no conoce esa respuesta. Los criterios no
+# tienen una regla para esto: se dictaminan N4 (requieren observar o consultar su
+# entorno) y se marcan dudosas. Ver la propuesta de ajuste en el informe.
+# Cuando lo que se pide es general (las formas del relieve, los oficios, los
+# medios de transporte) y «su comunidad» es solo el lugar donde se aprende, aplica.
+
+# ---- 1°
+CS-01-01 1 | SC | relaciona … al ubicar | «Relaciona su izquierda-derecha, adelante – atrás con los puntos cardinales, al ubicar, en representaciones gráficas de la escuela, aquellos lugares»: en un plano dado, dónde queda un lugar tiene respuesta (single_choice).
+CS-01-01 2 | N1 | dibuja | «Dibuja las instituciones sociales … existentes en su barrio»: dibujo propio (N1).
+CS-01-01 3 | SC | localiza en representaciones gráficas | «Localiza en representaciones gráficas o dibujos de su barrio … algunos referentes … teniendo en cuenta los puntos cardinales»: en un dibujo dado, la ubicación tiene respuesta (single_choice); su propio barrio no queda cubierto.
+CS-01-01 4 | N4 | el recorrido que realiza entre su casa y la institución | «Describe verbalmente el recorrido que realiza entre su casa y la institución educativa»: depende de su propio recorrido (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-02 1 | SC | reconoce | «Reconoce las diferentes formas de relieve … por ejemplo: costas, islas, montañas, valles»: reconocer cada forma de relieve tiene respuesta (single_choice); su entorno concreto no queda cubierto.
+CS-01-02 2 | N4 | sensaciones … en su cuerpo | «Diferencia los estados del tiempo atmosférico de acuerdo con las sensaciones de calor y frío manifiestas en su cuerpo»: percibir con el cuerpo y en su lugar (N4).
+CS-01-02 3 | N4 | obras … en su comunidad | «Identifica aquellas obras de infraestructura que se han realizado en su comunidad»: depende de su comunidad (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-02 4 | N1 | representa de diferentes maneras | «Representa de diferentes maneras, aquellos problemas ambientales que afectan el entorno de la comunidad»: producto propio (N1).
+CS-01-03 1 | OR | nombra ordenadamente | «Nombra ordenadamente los días de la semana y los meses del año»: orden explícito (ordering).
+CS-01-03 2 | SC | diferencia … mediante la lectura del reloj | «Diferencia el ayer, el hoy y el mañana … y la duración … mediante la lectura del reloj»: respuesta correcta (single_choice).
+CS-01-03 3 | N4 | los miembros de su familia | «Identifica los miembros de su familia y verbaliza quiénes nacieron antes o después de él»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-03 4 | N4 | cumpleaños de sus padres | «Recuerda las fechas de los cumpleaños de sus padres, hermanos, amigos»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-04 1 | N1 | relata | «Relata los principales acontecimientos sociales ocurridos en el aula de clase»: relato propio (N1).
+CS-01-04 2 | N4 | transformaciones … observadas | «Señala las transformaciones recientes observadas en el entorno físico de su comunidad»: observar el entorno (N4).
+CS-01-04 3 | SC | describe | «Describe aquellas organizaciones sociales a las que pertenece en su comunidad: familia, colegio y vecindario»: reconocer qué es una organización social tiene respuesta (single_choice).
+CS-01-04 4 | N1 | plantea preguntas | «Plantea preguntas acerca de sucesos destacados»: preguntas propias (N1).
+CS-01-05 1 | N1 | expresa … que lo hacen un ser único | «Expresa algunas características físicas y emocionales que lo hacen un ser único»: expresión propia sobre sí mismo (N1).
+CS-01-05 2 | N4 | con los demás integrantes del salón | «Compara similitudes y diferencias entre sus gustos, costumbres … con los demás integrantes del salón»: observar a sus compañeros (N4).
+CS-01-05 3 | N5 | cualidades que le ayudan a estar mejor entre los demás | «Reconoce de sí mismo, de sus compañeros y de sus familiares aquellas cualidades que le ayudan a estar mejor»: disposición hacia sí y los otros (N5). | dudoso: también depende de personas que la pregunta no conoce (contexto propio)
+CS-01-05 4 | N4 | mediante los relatos de los abuelos | «Reconoce las costumbres y tradiciones culturales de su comunidad mediante los relatos de los abuelos»: depende de su comunidad y de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-06 1 | N4 | procedencia de su familia | «Señala los lugares de procedencia de su familia»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-06 2 | N4 | la casa donde vive | «Nombra los materiales utilizados en la construcción de la casa donde vive»: depende de su casa (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-06 3 | N4 | viviendas … en su comunidad | «Identifica las viviendas que se destacan en su comunidad, que son patrimonio hoy»: depende de su comunidad (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-06 4 | SC | reconoce el valor | «Reconoce el valor de la vivienda como el espacio donde tiene lugar su hogar»: para qué sirve la vivienda a una familia tiene una respuesta compartida (single_choice).
+CS-01-07 1 | N3 | presenta sus ideas, intereses y sentimientos | «Presenta sus ideas, intereses y sentimientos frente a las normas»: expresión propia (N3).
+CS-01-07 2 | N2 | colabora … en la construcción de los acuerdos | «Expresa sus opiniones y colabora activamente en la construcción de los acuerdos grupales»: interactuar (N2); además opinión propia (N3).
+CS-01-07 3 | N3 | plantea alternativas de solución | «Plantea alternativas de solución frente a situaciones conflictivas»: propuesta propia (N3, «propone»).
+CS-01-07 4 | SC | reconoce la importancia | «Reconoce la importancia del trabajo en equipo para el logro de las metas comunes»: respuesta compartida (single_choice).
+CS-01-08 1 | N5 | expresa el valor de sí mismo | «Expresa el valor de sí mismo y de cada uno de los integrantes de la clase»: disposición (N5).
+CS-01-08 2 | SC | desde el conocimiento … de los deberes y derechos | «Expresa aquello que lo hace igual a los demás … desde el conocimiento y el respeto a los deberes y derechos»: que todos tienen los mismos derechos se puede preguntar (single_choice).
+CS-01-08 3 | SC | identifica | «Identifica situaciones de maltrato … y sabe a quiénes acudir»: respuesta correcta (single_choice).
+CS-01-08 4 | N5 | participa de acciones | «Participa de acciones que fomentan la sana convivencia»: comportamiento sostenido (N5).
+
+# ---- 2°
+CS-02-01 1 | SC | identifica | «Identifica las formas del relieve que se encuentran en la superficie terrestre … y nombra aquellas que se observan en su localidad»: identificar las formas tiene respuesta (single_choice); las de su localidad no quedan cubiertas.
+CS-02-01 2 | N3 | expresa sus apreciaciones … y señala aquellos que prefiere | «Expresa sus apreciaciones sobre los paisajes … y señala aquellos que prefiere»: preferencia propia (N3).
+CS-02-01 3 | N1 | traza … a través de dibujos y la elaboración de maquetas | «Traza las formas básicas del paisaje … a través de dibujos y la elaboración de maquetas»: producto propio (N1).
+CS-02-01 4 | SC | explica | «Explica los cambios que se han realizado en el paisaje … debido a cultivos, construcciones»: por qué cambia un paisaje tiene respuesta (single_choice); su municipio concreto no queda cubierto.
+CS-02-02 1 | SC | establece relaciones … utilizando los puntos cardinales | «Establece relaciones entre el espacio físico del salón y otros espacios … a través de dibujos, gráficos o planos, utilizando los puntos cardinales»: en un plano dado, la posición relativa tiene respuesta (single_choice).
+CS-02-02 2 | N1 | traza … y las representa en un dibujo | «Traza las rutas … y las representa en un dibujo»: dibujo propio (N1).
+CS-02-02 3 | N4 | mide distancias reales | «Mide distancias reales entre varios lugares, con pasos»: medir en el mundo (N4).
+CS-02-02 4 | N2 | da orientaciones … verbalmente | «Da orientaciones espaciales verbalmente o de otras formas para llegar a un lugar»: orientar a otro (N2). | dudoso: en un mapa, elegir las indicaciones correctas tiene respuesta, pero mediría reconocerlas y no darlas
+CS-02-03 1 | N4 | su familia antes de su nacimiento | «Describe las características de la conformación de su familia antes de su nacimiento»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-03 2 | N4 | su núcleo familiar | «Reconoce las procedencias y los recorridos de los integrantes de su núcleo familiar»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-03 3 | N4 | su registro civil | «Establece secuencias de datos históricos a nivel personal y familiar desde la lectura de su registro civil … y elabora un árbol genealógico»: depende de sus propios documentos (N4); además el árbol es un producto (N1). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-03 4 | N4 | indaga | «Indaga por los lugares de origen … de la población en su comunidad»: investigar en el mundo (N4).
+CS-02-04 1 | SC | diferencia los cambios | «Diferencia los cambios vividos en los medios de transporte en su entorno cercano, a partir de relatos de su familia»: cómo cambió el transporte tiene respuesta; el relato puede ir en el enunciado (single_choice, criterios §4).
+CS-02-04 2 | MT | clasifica | «Clasifica las formas de transportarse de las personas según el medio utilizado»: clasificar en grupos (matching).
+CS-02-04 3 | N4 | el medio de transporte que más usa | «Describe el medio de transporte que más usa … y expone sus ventajas y desventajas»: depende de su vida (N4). | dudoso: contexto propio; las ventajas de un medio dado sí se podrían preguntar
+CS-02-04 4 | N1 | representa gráficamente | «Representa gráficamente la movilidad en su comunidad»: producto propio (N1).
+CS-02-05 1 | SC | identifica | «Identifica los trabajos u oficios que las personas de su comunidad realizan»: reconocer oficios y para qué sirven tiene respuesta (single_choice); los de su comunidad concreta no quedan cubiertos.
+CS-02-05 2 | N4 | los adultos en su hogar | «Describe las actividades económicas que realizan los adultos en su hogar»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-05 3 | SC | compara … y diferencia | «Compara los oficios que los abuelos realizaban anteriormente respecto de cómo se realizan hoy y diferencia los trabajos … urbanas y rurales»: respuesta correcta (single_choice).
+CS-02-05 4 | SC | reconoce | «Reconoce experiencias donde algunos niños son explotados laboralmente»: identificar la explotación en un caso dado tiene respuesta (single_choice); expresar razones no queda cubierto.
+CS-02-06 1 | SC | reconoce | «Reconoce características de las viviendas rurales y urbanas a partir de los materiales»: respuesta correcta (single_choice).
+CS-02-06 2 | SC | describe y diferencia | «Describe y diferencia características de las viviendas de los grupos étnicos, a partir de la lectura de imágenes»: respuesta correcta (single_choice); el ítem necesita la imagen.
+CS-02-06 3 | SC | identifica | «Identifica los cambios que se dan en las viviendas con el paso del tiempo»: respuesta correcta (single_choice).
+CS-02-06 4 | SC | describe | «Describe las ventajas y desventajas que representa tener vivienda en zona urbana o rural»: respuesta correcta (single_choice).
+CS-02-07 1 | N4 | el croquis de su municipio | «Identifica el croquis de su municipio y lo diferencia entre los demás»: depende de cuál es su municipio (N4). | dudoso: contexto propio; con el municipio en el enunciado sí aplicaría
+CS-02-07 2 | N4 | el territorio de su municipio | «Ubica las comunas, corregimientos … en los que está organizado el territorio de su municipio»: depende de su municipio (N4). | dudoso: contexto propio; con el municipio en el enunciado sí aplicaría
+CS-02-07 3 | N4 | topónimos … en su municipio | «Nombra topónimos … en su municipio»: depende de su municipio (N4). | dudoso: contexto propio; con el municipio en el enunciado sí aplicaría
+CS-02-07 4 | MT | diferencia … con | «Diferencia la organización de grupos pequeños como la familia … con las de los grupos más grandes como resguardo … y municipio»: clasificar en dos grupos (matching).
+CS-02-08 1 | SC | describe | «Describe diversas características de los grupos humanos (etnia, edad, religión, género)»: respuesta correcta (single_choice); lo que le gusta de sus compañeros no queda cubierto.
+CS-02-08 2 | N4 | integrantes de su familia … compañeros | «Establece semejanzas y diferencias entre los alimentos preferidos (en los integrantes de su familia) y … los compañeros»: depende de su familia y su grupo (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-08 3 | N3 | expresa sus sentimientos | «Expresa sus sentimientos cuando es discriminado o aceptado»: expresión propia, sin una única respuesta (N3).
+CS-02-08 4 | SC | identifica | «Identifica las acciones que generan discriminación … y sabe a quién acudir»: respuesta correcta (single_choice).
+
+# ---- 3°
+CS-03-01 1 | SC | identifica | «Identifica los nombres de los continentes y de los océanos … y reconoce las actividades que se realizan en las zonas costeras»: respuesta correcta (single_choice).
+CS-03-01 2 | SC | diferencia | «Diferencia los mares como porciones de los océanos y su importancia en la fijación de límites»: respuesta correcta (single_choice).
+CS-03-01 3 | N1 | plantea preguntas | «Plantea preguntas sobre las problemáticas ambientales que viven los océanos … y explica el impacto»: la acción principal son preguntas propias (N1).
+CS-03-01 4 | N4 | su departamento, municipio | «Relaciona la ubicación geográfica de su departamento, municipio … con la presencia o no de costas»: depende de dónde vive (N4). | dudoso: contexto propio; las ventajas de tener costa sí se podrían preguntar
+CS-03-02 1 | N4 | su región | «Identifica la oferta de recursos naturales presentes en su región»: depende de su región (N4). | dudoso: contexto propio; con la región en el enunciado sí aplicaría
+CS-03-02 2 | SC | reconoce | «Reconoce las actividades que se realizan en su región: agricultura, ganadería, pesca, industria»: reconocer cada actividad tiene respuesta (single_choice); las de su región concreta no quedan cubiertas.
+CS-03-02 3 | SC | describe | «Describe las formas de organización social y económica utilizadas para la explotación de los recursos naturales»: respuesta correcta (single_choice).
+CS-03-02 4 | SC | expresa por qué | «Expresa por qué en espacios con determinados climas no se cuenta con ciertos productos»: como en la prueba de los criterios (§7), aplica (single_choice).
+CS-03-03 1 | N4 | espacios como la escuela, la plaza principal | «Reconoce los cambios y/o permanencias que se presentan en espacios como la escuela, la plaza principal y el mercado»: observar su entorno (N4). | dudoso: contexto propio; con un caso descrito sí aplicaría
+CS-03-03 2 | SC | diferencia cambios | «Diferencia cambios dados en el territorio local por la construcción de obras públicas»: qué cambia con una carretera o un acueducto tiene respuesta (single_choice); su territorio concreto no queda cubierto.
+CS-03-03 3 | N4 | indaga | «Indaga sobre el aumento o disminución de la población … a partir de diferentes fuentes documentales»: investigar (N4).
+CS-03-03 4 | SC | identifica | «Identifica problemas sociales relevantes en la población, originados en el uso de los recursos naturales»: respuesta correcta (single_choice).
+CS-03-04 1 | SC | identifica | «Identifica en su entorno algunos objetos, herramientas … que brindan información acerca del pasado»: reconocer qué objeto es una fuente del pasado tiene respuesta (single_choice).
+CS-03-04 2 | N4 | historia oral con sus abuelos | «Describe algunas costumbres y tradiciones … a través de la historia oral con sus abuelos»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-03-04 3 | N4 | municipios de su departamento | «Compara las fiestas que se celebran en diferentes municipios de su departamento»: depende de su departamento (N4). | dudoso: contexto propio; con el departamento en el enunciado sí aplicaría
+CS-03-04 4 | N4 | regiones … de su departamento | «Describe la diversidad en la gastronomía de diferentes regiones o provincias que conforman su departamento»: depende de su departamento (N4). | dudoso: contexto propio; con el departamento en el enunciado sí aplicaría
+CS-03-05 1 | N4 | en su familia | «Describe el tiempo dedicado en su familia a actividades»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-03-05 2 | N1 | organiza las actividades personales | «Organiza las actividades personales y familiares con base en el uso del calendario»: organización propia (N1).
+CS-03-05 3 | N4 | las que realiza actualmente | «Compara las actividades … llevadas a cabo el año pasado con las que realiza actualmente y expresa aquellas que quiere hacer»: depende de su vida, y sus deseos son propios (N4; también N3). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-03-05 4 | N1 | elabora esquemas | «Elabora esquemas con la distribución del tiempo dedicado en procesos de producción»: producto propio (N1).
+CS-03-06 1 | SC | caracteriza | «Caracteriza aquellos grupos humanos que habitan en su región (afrodescendientes, raizales…)»: las características de cada grupo tienen respuesta (single_choice).
+CS-03-06 2 | SC | describe | «Describe las expresiones culturales de cada uno de los grupos humanos identificados»: respuesta correcta (single_choice).
+CS-03-06 3 | SC | reconoce y explica | «Reconoce la diversidad cultural … y explica los aportes de los diferentes grupos humanos»: respuesta correcta (single_choice).
+CS-03-06 4 | N1 | elabora conclusiones | «Elabora conclusiones sobre la situación social y económica de los indígenas»: producto propio (N1).
+CS-03-07 1 | SC | identifica | «Identifica los mecanismos de elección del gobierno escolar»: respuesta correcta (single_choice).
+CS-03-07 2 | SC | reconoce el papel | «Reconoce el papel que cumplen los representantes de los estudiantes y el consejo estudiantil»: respuesta correcta (single_choice); su participación no queda cubierta.
+CS-03-07 3 | SC | compara | «Compara las propuestas que presentan los diferentes candidatos»: con las propuestas en el enunciado, sus diferencias tienen respuesta (single_choice); no pide elegir la mejor.
+CS-03-07 4 | SC | explica | «Explica la organización y el funcionamiento del consejo directivo»: respuesta correcta (single_choice).
+CS-03-08 1 | MT | diferencia … de | «Diferencia los órganos y las funciones del poder público que tiene el departamento … de los que tiene el municipio»: clasificar en dos grupos (matching).
+CS-03-08 2 | SC | explica | «Explica la importancia del gobierno departamental en el mejoramiento de las condiciones de vida»: respuesta correcta (single_choice).
+CS-03-08 3 | N3 | emite sus opiniones | «Emite sus opiniones frente a las problemáticas observadas en los procesos de elección»: opinión propia (N3).
+CS-03-08 4 | N3 | propone acciones | «Propone acciones que pueden desarrollar las instituciones departamentales para fortalecer la convivencia»: propuesta propia (N3).
+
+# ---- 4°
+CS-04-01 1 | SC | reconoce | «Reconoce los límites geográficos de Colombia a partir de la lectura de un mapa político»: respuesta correcta (single_choice).
+CS-04-01 2 | SC | describe | «Describe actividades económicas y culturales que se dan entre los países que comparten fronteras con Colombia»: respuesta correcta (single_choice).
+CS-04-01 3 | SC | explica | «Explica la importancia de las fronteras colombianas … y documenta situaciones vividas»: la importancia tiene respuesta (single_choice); documentar no queda cubierto.
+CS-04-01 4 | SC | contrasta | «Contrasta los límites de los departamentos … con base en su ubicación geográfica y su extensión»: respuesta correcta (single_choice).
+CS-04-02 1 | MT | los usos del suelo propios de las ciudades … y los del campo | «Reconoce los usos del suelo propios de las ciudades … y los del campo … a partir de la lectura de mapas temáticos»: clasificar usos en urbanos y rurales (matching).
+CS-04-02 2 | SC | identifica | «Identifica cambios generados en el uso del suelo … en la última década»: respuesta correcta (single_choice).
+CS-04-02 3 | SC | compara | «Compara la cantidad de habitantes que viven en las ciudades … con la población … rural (a partir de … el último censo)»: con los datos dados, respuesta única (single_choice).
+CS-04-02 4 | SC | expresa razones | «Expresa razones por las cuales actualmente la población se concentra más en las ciudades»: las razones de un hecho tienen respuesta, como «explica» (single_choice).
+CS-04-03 1 | SC | explica | «Explica cómo era la vida de los pueblos cuando no existía la energía eléctrica»: respuesta correcta (single_choice).
+CS-04-03 2 | SC | relaciona | «Relaciona el acceso a las tecnologías de la salud … con el bienestar de las familias»: respuesta correcta (single_choice).
+CS-04-03 3 | SC | describe | «Describe la importancia de los medios de comunicación en el desarrollo de la política»: respuesta correcta (single_choice).
+CS-04-03 4 | N3 | expresa sus opiniones | «Expresa sus opiniones sobre los cambios generados en las relaciones con su familia … y, deduce los efectos»: la acción principal es opinar (N3).
+CS-04-04 1 | MT | reconoce … y los ubica | «Reconoce los diferentes pueblos indígenas pertenecientes a las familias lingüísticas … y los ubica espacialmente»: empareja pueblo con familia lingüística o región (matching).
+CS-04-04 2 | SC | compara | «Compara las organizaciones sociales, económicas y religiosas de los pueblos ancestrales»: respuesta correcta (single_choice).
+CS-04-04 3 | N4 | busca información | «Busca información en diferentes fuentes sobre los legados culturales»: una acción en el mundo (N4). | dudoso: también podría leerse como un hábito (N5)
+CS-04-04 4 | SC | explica | «Explica las razones por las cuales la población indígena se vio reducida con la llegada de los europeos»: respuesta correcta (single_choice).
+CS-04-05 1 | SC | identifica | «Identifica las características de los diferentes grupos humanos presentes en el territorio nacional»: respuesta correcta (single_choice).
+CS-04-05 2 | SC | explica | «Explica tradiciones y costumbres propias de los diversos grupos humanos del país»: respuesta correcta (single_choice).
+CS-04-05 3 | SC | describe | «Describe el intercambio de saberes que históricamente se ha dado entre las diversas culturas»: respuesta correcta (single_choice).
+CS-04-05 4 | SC | reconoce la importancia | «Reconoce la importancia de preservar y fomentar las manifestaciones culturales»: respuesta compartida (single_choice).
+CS-04-06 1 | MT | diferencia | «Diferencia las ramas del poder público (Legislativa, Ejecutiva y Judicial), sus funciones»: empareja rama con función (matching).
+CS-04-06 2 | SC | reconoce la importancia | «Reconoce la importancia del voto popular … a partir del análisis de casos»: respuesta correcta (single_choice).
+CS-04-06 3 | SC | explica | «Explica las responsabilidades de los cargos de elección popular»: respuesta correcta (single_choice).
+CS-04-06 4 | SC | describe | «Describe el papel de los órganos de control»: respuesta correcta (single_choice).
+CS-04-07 1 | SC | describe | «Describe los derechos de la niñez y asume una posición crítica frente a situaciones de discriminación»: describir los derechos tiene respuesta (single_choice, criterios §4); la posición crítica no queda cubierta.
+CS-04-07 2 | N5 | se identifica como un sujeto de derechos | «Se identifica como un sujeto de derechos … desde su participación en diferentes eventos escolares»: disposición y participación (N5).
+CS-04-07 3 | SC | reconoce | «Reconoce las personas, instituciones y autoridades a las que puede acudir»: respuesta correcta (single_choice).
+CS-04-07 4 | SC | describe | «Describe situaciones en las que se ven vulnerados los derechos de la niñez y propone posibles soluciones»: identificar la vulneración en un caso dado tiene respuesta (single_choice); proponer soluciones no queda cubierto.
+CS-04-08 1 | SC | identifica | «Identifica las necesidades básicas de todo ser humano … y explica si se satisfacen en su comunidad»: identificar las necesidades tiene respuesta (single_choice); su comunidad no queda cubierta.
+CS-04-08 2 | N3 | en orden de importancia | «Clasifica en orden de importancia las necesidades básicas»: el orden de importancia es una valoración propia, no una secuencia con orden correcto (N3). | dudoso: tiene forma de ordering, pero el orden de importancia no tiene una única respuesta
+CS-04-08 3 | SC | reconoce | «Reconoce los factores económicos, sociales y políticos que influyen en la satisfacción de las necesidades básicas»: respuesta correcta (single_choice).
+CS-04-08 4 | N3 | sugiere posibles actuaciones | «Expresa la responsabilidad que conlleva ser parte de una comunidad y sugiere posibles actuaciones»: propuesta propia (N3).
+
+# ---- 5°
+CS-05-01 1 | SC | explica | «Explica las formas de división territorial en Colombia»: respuesta correcta (single_choice).
+CS-05-01 2 | SC | caracteriza … y los diferencia | «Caracteriza los territorios colombianos denominados distritos … y los diferencia de los municipios»: respuesta correcta (single_choice).
+CS-05-01 3 | SC | diferencia … y las reconoce a partir de la lectura de mapas | «Diferencia las regiones geográficas … y las reconoce a partir de la lectura de mapas temáticos»: reconocer una región en un mapa tiene respuesta (single_choice).
+CS-05-01 4 | MT | relaciona | «Relaciona la existencia de los pisos térmicos con los recursos naturales de cada región … y la diversidad de cultivos»: empareja piso térmico con cultivo o recurso (matching).
+CS-05-02 1 | SC | identifica | «Identifica la posición geográfica y astronómica del país … mediante la lectura de mapas temáticos»: respuesta correcta (single_choice).
+CS-05-02 2 | SC | establece relaciones | «Establece relaciones entre latitud, longitud, altitud y la proximidad al mar, con la diversidad de climas»: respuesta correcta (single_choice).
+CS-05-02 3 | SC | explica | «Explica la presencia de la órbita geoestacionaria y su importancia»: respuesta correcta (single_choice).
+CS-05-02 4 | N1 | plantea preguntas | «Plantea preguntas que le permiten reconocer la importancia … de contar con dos océanos»: preguntas propias (N1).
+CS-05-03 1 | SC | explica | «Explica la importancia que ha tenido la comunicación para la sociedad colombiana en el siglo XX y XXI»: respuesta correcta (single_choice).
+CS-05-03 2 | SC | compara | «Compara las características de los medios de comunicación que emplearon sus padres (cuando eran niños), con los que él emplea»: cómo cambiaron los medios tiene respuesta general (single_choice, criterios §4).
+CS-05-03 3 | N3 | argumenta | «Argumenta a partir de evidencias cómo el uso de diferentes medios … hace más fácil el acceso a la información»: «argumenta» no aplica (N3).
+CS-05-03 4 | N2 | participa en discusiones | «Participa en discusiones sobre el uso adecuado y respetuoso de los medios»: discutir en vivo (N2).
+CS-05-04 1 | SC | compara | «Compara el papel de las organizaciones políticas y administrativas como el Consejo Supremo de Indias … con las actuales instituciones»: respuesta correcta (single_choice).
+CS-05-04 2 | MT | diferencia | «Diferencia las formas organizativas del trabajo en la Colonia (la encomienda, la mita y el resguardo)»: empareja cada forma con su característica (matching).
+CS-05-04 3 | SC | explica | «Explica las diferencias entre los grupos sociales existentes en la Nueva Granada»: respuesta correcta (single_choice).
+CS-05-04 4 | SC | examina | «Examina el papel de la religión católica y su impacto en la vida cotidiana … a través del uso de diversas fuentes»: con la fuente en el enunciado, el papel tiene respuesta (single_choice), como «examina» en la prueba de los criterios (§7).
+CS-05-05 1 | N1 | plantea preguntas | «Plantea preguntas sobre los antecedentes que influenciaron el proceso de independencia»: preguntas propias (N1).
+CS-05-05 2 | SC | explica | «Explica los acontecimientos que permitieron el nacimiento de la República»: respuesta correcta (single_choice).
+CS-05-05 3 | SC | reconoce | «Reconoce los cambios de fronteras que ha experimentado Colombia … a partir de la lectura de mapas temáticos»: respuesta correcta (single_choice; ante la duda con ordering).
+CS-05-05 4 | SC | relaciona | «Relaciona la aparición de los partidos políticos en Colombia con las luchas ideológicas»: respuesta correcta (single_choice).
+CS-05-06 1 | SC | explica | «Explica los cambios sociales y tecnológicos … en la primera mitad del siglo XX»: respuesta correcta (single_choice).
+CS-05-06 2 | SC | reconoce | «Reconoce la influencia de los partidos políticos … a partir del uso de diferentes fuentes»: respuesta correcta (single_choice).
+CS-05-06 3 | SC | identifica | «Identifica las consecuencias de los conflictos que afectaron la convivencia … (Guerra de los Mil Días, masacre de las bananeras)»: respuesta correcta (single_choice).
+CS-05-06 4 | N2 | participa en debates | «Participa en debates y propone acciones para vivir en una sociedad pacífica»: debatir (N2); además propuesta propia (N3).
+CS-05-07 1 | SC | describe | «Describe los beneficios o ventajas que conlleva vivir en un Estado democrático»: respuesta correcta (single_choice).
+CS-05-07 2 | SC | identifica | «Identifica los derechos fundamentales … y su aplicabilidad en la vida cotidiana a partir del análisis de casos»: respuesta correcta (single_choice).
+CS-05-07 3 | N4 | el manual de convivencia de su institución | «Compara los derechos y deberes … de la Constitución … con los … del manual de convivencia de su institución»: el manual cambia de colegio a colegio (N4). | dudoso: contexto propio; con el manual en el enunciado sí aplicaría
+CS-05-07 4 | SC | explica | «Explica el valor que tiene conocer los derechos y los mecanismos constitucionales»: respuesta correcta (single_choice).
+CS-05-08 1 | SC | explica | «Explica las instituciones que defienden los Derechos Humanos»: respuesta correcta (single_choice).
+CS-05-08 2 | SC | reconoce la importancia | «Reconoce la importancia de proteger la organización social y los derechos de las colectividades»: respuesta correcta (single_choice).
+CS-05-08 3 | SC | describe | «Describe el funcionamiento de las instituciones que protegen los Derechos Humanos (Personería y Defensoría del Pueblo)»: respuesta correcta (single_choice).
+CS-05-08 4 | N5 | participa en proyectos colectivos | «Participa en proyectos colectivos … orientados a alcanzar el bien común»: comportamiento sostenido (N5).
+
+# ---- 6°
+CS-06-01 1 | SC | interpreta | «Interpreta diferentes teorías científicas sobre el origen del universo»: respuesta correcta (single_choice).
+CS-06-01 2 | SC | explica | «Explica los elementos que componen nuestro sistema solar»: respuesta correcta (single_choice).
+CS-06-01 3 | SC | compara | «Compara teorías científicas, religiosas y mitos de culturas ancestrales sobre el origen del universo»: respuesta correcta (single_choice).
+CS-06-01 4 | SC | expresa la importancia | «Expresa la importancia de explorar el universo como una posibilidad para entender el origen … de las formas de vida»: la razón tiene respuesta, como «explica» (single_choice).
+CS-06-02 1 | SC | describe | «Describe las interacciones que se dan entre el relieve, el clima, las zonas bioclimáticas … y las acciones humanas»: respuesta correcta (single_choice).
+CS-06-02 2 | SC | explica | «Explica la teoría de la deriva continental y la dinámica interna de la Tierra»: respuesta correcta (single_choice).
+CS-06-02 3 | MT | diferencia | «Diferencia las repercusiones de algunos fenómenos climáticos (huracanes, tornados, fenómeno del niño…)»: empareja fenómeno con su repercusión (matching).
+CS-06-02 4 | N3 | argumenta | «Argumenta a partir de evidencias los efectos de un sismo en la población … y conoce las recomendaciones»: la acción principal es argumentar (N3); conocer las recomendaciones sí aplicaría.
+CS-06-03 1 | MT | diferencia | «Diferencia las características fisiológicas y anatómicas presentes en los australopithecus, homo habilis…»: empareja especie con característica (matching).
+CS-06-03 2 | SC | identifica | «Identifica los cambios tecnológicos que tuvieron los homínidos»: respuesta correcta (single_choice).
+CS-06-03 3 | SC | explica | «Explica el papel del trabajo de los homínidos»: respuesta correcta (single_choice).
+CS-06-03 4 | N2 | discute | «Discute teorías sobre las posibles formas de poblamiento»: discutir con otros (N2).
+CS-06-04 1 | SC | relaciona | «Relaciona el origen de la agricultura con el desarrollo de las sociedades antiguas»: respuesta correcta (single_choice).
+CS-06-04 2 | SC | explica … y los ubica en un mapa | «Explica el papel de los ríos Nilo, Tigris, Éufrates … en la construcción de las primeras ciudades … y los ubica en un mapa»: respuesta correcta (single_choice).
+CS-06-04 3 | SC | establece las implicaciones | «Establece las implicaciones del proceso de sedentarización … en la revolución agrícola»: respuesta correcta (single_choice).
+CS-06-04 4 | N3 | expresa opiniones | «Expresa opiniones sobre la influencia de la agricultura, el surgimiento de las ciudades»: opinión propia (N3).
+CS-06-05 1 | MT | representa y sitúa en un mapa | «Representa y sitúa en un mapa los espacios geográficos en que se desarrollaron sociedades prehispánicas»: empareja cada sociedad con su lugar en un mapa dado (matching).
+CS-06-05 2 | SC | describe | «Describe los aportes tecnológicos y culturales de las sociedades prehispánicas»: respuesta correcta (single_choice).
+CS-06-05 3 | SC | compara | «Compara la estructura social, política y económica de las sociedades prehispánicas, con las sociedades actuales»: respuesta correcta (single_choice).
+CS-06-05 4 | SC | explica | «Explica la importancia de alimentos domesticados en América como el maíz»: respuesta correcta (single_choice).
+CS-06-06 1 | SC | reconoce | «Reconoce algunas formas de gobierno que se desarrollaron en las sociedades antiguas»: como en la prueba de los criterios (§7), aplica (single_choice).
+CS-06-06 2 | SC | compara | «Compara las características de la democracia ateniense, del poder feudal, del absolutismo»: respuesta correcta (single_choice).
+CS-06-06 3 | SC | explica | «Explica cómo en la antigüedad se accedía al poder, cómo se justificaba»: respuesta correcta (single_choice).
+CS-06-06 4 | SC | describe | «Describe semejanzas y diferencias … entre la democracia ateniense y las democracias actuales … para señalar fortalezas, debilidades y alternativas»: las semejanzas y diferencias tienen respuesta (single_choice); proponer alternativas no queda cubierto.
+CS-06-07 1 | SC | describe | «Describe el origen de la ciudadanía, los cambios que ha tenido en el tiempo»: respuesta correcta (single_choice).
+CS-06-07 2 | N3 | argumenta | «Argumenta la importancia de participar activamente en la toma de decisiones»: «argumenta» no aplica (N3).
+CS-06-07 3 | SC | explica | «Explica, a partir de ejemplos, las consecuencias que pueden tener … la no participación activa»: respuesta correcta (single_choice).
+CS-06-07 4 | SC | plantea razones | «Plantea razones que permitan comprender la importancia de respetar las opiniones ajenas»: elegir la razón correcta (single_choice). | dudoso: plantear razones sobre un valor puede leerse como argumentar (N3)
+CS-06-08 1 | SC | reconoce | «Reconoce que las personas tenemos derecho a no ser discriminadas»: respuesta correcta (single_choice).
+CS-06-08 2 | N3 | argumenta | «Argumenta cómo los derechos de las personas se basan en el principio de la igualdad ante la ley»: «argumenta» no aplica (N3).
+CS-06-08 3 | SC | explica | «Explica que pertenece a una sociedad multicultural y cómo ésta, ha contribuido a la construcción de su identidad»: qué es una sociedad multicultural tiene respuesta (single_choice); su identidad propia no queda cubierta.
+CS-06-08 4 | SC | reconoce | «Reconoce a partir de situaciones de la vida cotidiana que el respeto hacia el otro es inherente a la condición humana»: respuesta compartida (single_choice).
+
+# ---- 7°
+CS-07-01 1 | SC | explica | «Explica la importancia de los viajes de los exploradores del medioevo»: respuesta correcta (single_choice).
+CS-07-01 2 | SC | relaciona | «Relaciona la concepción y representación del mundo que se tenía en la Edad Media … y señala los cambios»: respuesta correcta (single_choice).
+CS-07-01 3 | SC | compara | «Compara las representaciones del mundo conocido en la Edad Media y el representado hoy»: respuesta correcta (single_choice).
+CS-07-01 4 | N3 | argumenta | «Argumenta que las representaciones del espacio son producto de las imágenes que se tienen del mundo»: «argumenta» no aplica (N3).
+CS-07-02 1 | SC | reconoce y utiliza conceptos | «Reconoce y utiliza conceptos propios de la geografía urbana … a partir de la observación directa»: usar el concepto correcto para un caso dado tiene respuesta (single_choice, criterios §4); la observación directa no queda cubierta.
+CS-07-02 2 | N4 | zonas de la ciudad o del municipio | «Localiza en zonas de la ciudad o del municipio la concentración de fenómenos sociales»: depende de su ciudad (N4). | dudoso: contexto propio; con un mapa dado sí aplicaría
+CS-07-02 3 | SC | relaciona | «Relaciona la industrialización y la migración del campo a la ciudad con los procesos de organización de las ciudades»: respuesta correcta (single_choice).
+CS-07-02 4 | SC | compara | «Compara las problemáticas urbanas más recurrentes … con algunas similares en otros períodos»: respuesta correcta (single_choice).
+CS-07-03 1 | SC | reconoce | «Reconoce el imperio romano como un sistema político, militar y económico»: respuesta correcta (single_choice).
+CS-07-03 2 | SC | describe | «Describe el legado cultural del imperio romano»: respuesta correcta (single_choice).
+CS-07-03 3 | N3 | argumenta | «Argumenta las razones que llevaron a la crisis del imperio romano»: «argumenta» no aplica (N3).
+CS-07-03 4 | SC | explica | «Explica algunas actividades de la vida contemporánea que se inventaron en la antigua Roma»: respuesta correcta (single_choice).
+CS-07-04 1 | SC | describe | «Describe los principales eventos que identificaron las sociedades europeas en la Edad Media»: respuesta correcta (single_choice).
+CS-07-04 2 | SC | reconoce | «Reconoce la organización social de las culturas precolombinas … y señala similitudes y diferencias»: respuesta correcta (single_choice).
+CS-07-04 3 | SC | compara | «Compara características sociales, culturales y económicas de ciudades del año 1000»: respuesta correcta (single_choice).
+CS-07-04 4 | N3 | argumenta | «Argumenta las continuidades del ordenamiento político y social instaurado durante la Edad Media»: «argumenta» no aplica (N3).
+CS-07-05 1 | SC | describe | «Describe algunos acontecimientos que dieron paso a la Modernidad»: respuesta correcta (single_choice).
+CS-07-05 2 | SC | interpreta mapas | «Interpreta mapas temáticos en los que reconoce ciudades estratégicas de Europa»: respuesta correcta (single_choice); el ítem necesita el mapa.
+CS-07-05 3 | SC | explica | «Explica las implicaciones políticas y económicas que tuvo la Reforma protestante»: respuesta correcta (single_choice).
+CS-07-05 4 | SC | reconoce | «Reconoce en las expresiones artísticas del Renacimiento … la vida cotidiana»: respuesta correcta sobre una obra dada (single_choice); el ítem necesita la imagen.
+CS-07-06 1 | SC | describe | «Describe los procesos de Conquista y colonización en América»: respuesta correcta (single_choice).
+CS-07-06 2 | SC | explica | «Explica los cambios y continuidades de las organizaciones sociales … durante la época colonial»: respuesta correcta (single_choice).
+CS-07-06 3 | SC | interpreta | «Interpreta las consecuencias demográficas, políticas y culturales … de la llegada de los europeos»: respuesta correcta (single_choice).
+CS-07-06 4 | N3 | argumenta | «Argumenta la importancia de la diversidad étnica y cultural del país»: «argumenta» no aplica (N3).
+CS-07-07 1 | SC | compara | «Compara la Declaración Universal de los Derechos Humanos con los derechos fundamentales enunciados en la Constitución»: respuesta correcta (single_choice).
+CS-07-07 2 | N3 | plantea soluciones alternativas | «Plantea soluciones alternativas a las problemáticas de discriminación»: propuesta propia (N3).
+CS-07-07 3 | N3 | expresa una posición argumentada | «Expresa una posición argumentada … frente a hechos … en los que se vulneran los derechos»: postura propia (N3).
+CS-07-07 4 | SC | identifica | «Identifica en qué situaciones puede usar la tutela»: respuesta correcta (single_choice).
+CS-07-08 1 | SC | identifica | «Identifica las consecuencias de los conflictos en la vida cotidiana … y plantea acciones para resolverlos»: identificar las consecuencias tiene respuesta (single_choice); plantear acciones no queda cubierto.
+CS-07-08 2 | SC | reconoce | «Reconoce los distintos puntos de vista de personas o grupos en una situación de conflicto»: en un conflicto descrito, los puntos de vista tienen respuesta (single_choice); plantear alternativas no queda cubierto.
+CS-07-08 3 | SC | compara | «Compara diferentes estrategias para la solución de conflictos, como la negociación, el arbitraje, la conciliación»: respuesta correcta (single_choice).
+CS-07-08 4 | SC | explica | «Explica situaciones donde el conflicto se ha convertido en una oportunidad para aprender»: respuesta correcta (single_choice).
+
+# ---- 8°
+CS-08-01 1 | SC | reconoce | «Reconoce la constitución de la Unión Europea como un ejemplo de cooperación»: respuesta correcta (single_choice).
+CS-08-01 2 | SC | describe | «Describe diversas alianzas de cooperación dadas entre países: MERCOSUR, OTAN, NEPAD y APEC»: respuesta correcta (single_choice; ante la duda con matching).
+CS-08-01 3 | N1 | formula preguntas | «Formula preguntas sobre cómo lograr el bienestar colectivo»: preguntas propias (N1).
+CS-08-01 4 | SC | explica | «Explica las relaciones económicas y políticas que Colombia sostiene hoy con otros países»: respuesta correcta (single_choice).
+CS-08-02 1 | SC | describe | «Describe el fenómeno de las migraciones humanas que tienen lugar en la actualidad»: respuesta correcta (single_choice).
+CS-08-02 2 | SC | reconoce | «Reconoce los niveles en el Índice de Desarrollo Humano»: como en la prueba de los criterios (§7), aplica (single_choice).
+CS-08-02 3 | SC | explica | «Explica las principales diferencias entre los países que atraen emigrantes y aquellos de donde salen»: respuesta correcta (single_choice).
+CS-08-02 4 | N3 | argumenta | «Argumenta los aportes que han realizado los migrantes»: «argumenta» no aplica (N3).
+CS-08-03 1 | SC | describe | «Describe las transformaciones que se produjeron en Europa a finales del siglo XVIII y durante el siglo XIX»: respuesta correcta (single_choice).
+CS-08-03 2 | SC | explica | «Explica las características del sistema económico capitalista … y las ventajas o desventajas»: respuesta correcta (single_choice).
+CS-08-03 3 | SC | compara | «Compara los sistemas económicos actuales (capitalista, socialista y el de economía mixta)»: respuesta correcta (single_choice).
+CS-08-03 4 | SC | reconoce | «Reconoce las diferencias en el nivel de desarrollo … entre los países de América Latina y de Europa»: respuesta correcta (single_choice).
+CS-08-04 1 | SC | describe e interpreta mapas | «Describe la expansión y distribución territorial de los imperios europeos … e interpreta mapas temáticos»: respuesta correcta (single_choice).
+CS-08-04 2 | SC | relaciona | «Relaciona el crecimiento económico Europeo con la explotación de Asia y África»: respuesta correcta (single_choice).
+CS-08-04 3 | SC | compara | «Compara la influencia de los países colonialistas en el siglo XIX … con la que ejercen las actuales potencias»: respuesta correcta (single_choice).
+CS-08-04 4 | SC | explica | «Explica la influencia actual de países como Estados Unidos en la dinámica económica, social y política de Colombia»: respuesta correcta (single_choice).
+CS-08-05 1 | SC | describe | «Describe la influencia política y económica de las revoluciones Francesa e Industrial»: respuesta correcta (single_choice).
+CS-08-05 2 | SC | reconoce | «Reconoce los aportes de la Revolución Francesa en el campo político»: respuesta correcta (single_choice).
+CS-08-05 3 | SC | compara | «Compara la organización político-administrativa entre las colonias americanas»: respuesta correcta (single_choice).
+CS-08-05 4 | N3 | argumenta | «Argumenta acerca de las consecuencias que trae para los pueblos … la intervención de algunos Estados»: «argumenta» no aplica (N3).
+CS-08-06 1 | SC | describe | «Describe el papel del telégrafo, el correo, el ferrocarril … en el desarrollo económico de Colombia»: respuesta correcta (single_choice).
+CS-08-06 2 | SC | relaciona | «Relaciona los procesos de industrialización dados en el país con los cambios sociales»: respuesta correcta (single_choice).
+CS-08-06 3 | SC | reconoce | «Reconoce el papel de la Comisión Corográfica de Agustín Codazzi»: respuesta correcta (single_choice).
+CS-08-06 4 | SC | explica | «Explica algunos problemas ambientales provocados por procesos de industrialización … y realiza conjeturas»: la explicación tiene respuesta (single_choice); las conjeturas no quedan cubiertas.
+CS-08-07 1 | SC | reconoce | «Reconoce que la discriminación y la exclusión social son factores generadores de situaciones negativas»: respuesta correcta (single_choice).
+CS-08-07 2 | SC | describe | «Describe la situación actual, desde casos concretos, de la vulneración de los derechos fundamentales»: respuesta correcta sobre un caso dado (single_choice).
+CS-08-07 3 | SC | explica | «Explica algunas situaciones que develan prejuicios y estereotipos»: respuesta correcta (single_choice).
+CS-08-07 4 | N3 | propone acciones | «Propone acciones para mejorar el cumplimiento de los Derechos Humanos»: propuesta propia (N3).
+CS-08-08 1 | SC | describe | «Describe el surgimiento de los movimientos sociales (campesinos, estudiantiles y obreros)»: respuesta correcta (single_choice).
+CS-08-08 2 | SC | explica | «Explica algunas herramientas y procedimientos alternativos (diálogo, conciliación, arbitraje, mediación)»: respuesta correcta (single_choice).
+CS-08-08 3 | SC | interpreta | «Interpreta a partir de evidencias sobre casos concretos … como todo conflicto social o laboral, puede resolverse mediante la concertación»: respuesta correcta sobre un caso dado (single_choice).
+CS-08-08 4 | N3 | argumenta | «Argumenta la importancia de un desarrollo social, económico y tecnológico … orientado al bienestar colectivo»: «argumenta» no aplica (N3).
+
+# ---- 9°
+CS-09-01 1 | SC | reconoce la importancia … y los ubica | «Reconoce la importancia que tienen para la sociedad colombiana los geosistemas biodiversos … y los ubica geográficamente»: respuesta correcta (single_choice).
+CS-09-01 2 | SC | explica | «Explica las consecuencias para la biodiversidad colombiana acciones como la ampliación de la frontera agrícola»: respuesta correcta (single_choice).
+CS-09-01 3 | SC | describe | «Describe los niveles de deforestación … y su incidencia en el deterioro de las fuentes hídricas»: respuesta correcta (single_choice).
+CS-09-01 4 | N3 | argumenta | «Argumenta acerca de las condiciones de otros geosistemas colombianos»: «argumenta» no aplica (N3).
+CS-09-02 1 | SC | identifica | «Identifica en la historia de Colombia las causas de los movimientos migratorios»: respuesta correcta (single_choice).
+CS-09-02 2 | MT | diferencia | «Diferencia procesos de emigración e inmigración dados en Colombia»: clasificar casos en dos grupos (matching).
+CS-09-02 3 | SC | relaciona | «Relaciona los movimientos de la población … con los cambios políticos, ambientales, laborales y sociales»: respuesta correcta (single_choice).
+CS-09-02 4 | SC | explica | «Explica desde situaciones de la vida cotidiana, las consecuencias económicas y sociales … del desplazamiento»: respuesta correcta (single_choice).
+CS-09-03 1 | SC | caracteriza | «Caracteriza a través de estudios de caso algunas crisis económicas en Colombia»: respuesta correcta sobre un caso dado (single_choice).
+CS-09-03 2 | SC | establece algunas causas | «Establece algunas causas que han generado crisis económicas … y sus efectos en la economía del hogar»: respuesta correcta (single_choice).
+CS-09-03 3 | SC | explica | «Explica las consecuencias sociales de las crisis económicas en la vida diaria»: respuesta correcta (single_choice).
+CS-09-03 4 | N3 | plantea hipótesis de un futuro | «Plantea hipótesis de un futuro económico posible en que las personas vivan en mejores condiciones»: propuesta propia sobre el futuro; no tiene una respuesta correcta (N3).
+CS-09-04 1 | SC | explica | «Explica los cambios del proceso de modernización en Colombia en la primera mitad del siglo XX»: respuesta correcta (single_choice).
+CS-09-04 2 | SC | relaciona | «Relaciona el proceso de industrialización del país con el surgimiento de los sindicatos»: respuesta correcta (single_choice).
+CS-09-04 3 | SC | compara | «Compara los hábitos de vida de las personas antes y después de la llegada al país del cine, la radio»: respuesta correcta (single_choice).
+CS-09-04 4 | SC | establece posibles relaciones | «Establece posibles relaciones entre los hechos sociales y políticos de la segunda mitad del siglo XX en Colombia y los que tienen lugar en la actualidad»: la relación entre dos hechos dados tiene una respuesta mejor sustentada (single_choice).
+CS-09-05 1 | MT | identifica | «Identifica los derechos constitucionales fundamentales, los derechos sociales, económicos y culturales y los derechos colectivos»: clasificar derechos en sus grupos (matching).
+CS-09-05 2 | SC | examina | «Examina las implicaciones que tiene para la democracia … la vulneración de los Derechos Humanos y sugiere … mecanismos»: como en la prueba de los criterios (§4, §7), aplica; el diagnóstico cubre «examina» (single_choice).
+CS-09-05 3 | SC | justifica el uso | «Justifica el uso de los mecanismos de participación ciudadana: el voto, el plebiscito, el referendo»: para qué sirve cada mecanismo y cuándo se usa tiene respuesta (single_choice). | dudoso: «justifica» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+CS-09-05 4 | SC | explica | «Explica mediante estudios de caso el papel que cumplen las autoridades que protegen los DD. HH.»: respuesta correcta (single_choice).
+CS-09-06 1 | SC | identifica | «Identifica la participación de las mujeres en la historia de Colombia»: respuesta correcta (single_choice).
+CS-09-06 2 | MT | caracteriza formas de violencia | «Caracteriza formas de violencia contra las mujeres … (psicológica, sexual, económica…) y propone alternativas»: empareja cada caso con su tipo de violencia (matching); proponer alternativas no queda cubierto.
+CS-09-06 3 | SC | explica | «Explica las contribuciones de las mujeres en la construcción de una sociedad justa»: respuesta correcta (single_choice).
+CS-09-06 4 | N3 | propone acciones | «Propone acciones para que las diversas formas de identidad de género sean respetadas»: propuesta propia (N3).
+CS-09-07 1 | SC | explica | «Explica las consecuencias de aquellas acciones que pueden causar sufrimiento a otras personas»: respuesta correcta (single_choice).
+CS-09-07 2 | SC | analiza | «Analiza los conflictos entre grupos con el fin de proponer alternativas de solución»: analizar un conflicto dado tiene respuesta (single_choice); proponer no queda cubierto.
+CS-09-07 3 | N3 | plantea argumentos | «Plantea argumentos sobre los discursos que legitiman la violencia con el fin de rechazarlos»: es argumentar (N3).
+CS-09-07 4 | N3 | propone alternativas | «Propone alternativas para la solución de conflictos que ocurren en las relaciones»: propuesta propia (N3).
+CS-09-08 1 | SC | reconoce | «Reconoce cómo las condiciones geográficas regionales pueden influir en la construcción o no de infraestructuras»: respuesta correcta (single_choice).
+CS-09-08 2 | SC | compara | «Compara las características que tienen las zonas con mejores índices de crecimiento económico»: respuesta correcta (single_choice).
+CS-09-08 3 | SC | relaciona | «Relaciona la inversión social, la presencia de los gremios … en aquellas regiones de menor índice de desarrollo humano»: respuesta correcta (single_choice).
+CS-09-08 4 | SC | explica posibles acciones | «Explica posibles acciones a considerar en el mejoramiento del crecimiento de las regiones»: qué acción atiende una causa dada del rezago tiene respuesta (single_choice). | dudoso: explicar «posibles acciones» se parece a una propuesta propia (N3)
+
+# ---- 10°
+CS-10-01 1 | SC | explica | «Explica la disponibilidad y el uso del recurso hídrico en las diferentes regiones colombianas»: respuesta correcta (single_choice).
+CS-10-01 2 | MT | diferencia | «Diferencia los diversos tipos de contaminación … y sugiere acciones»: empareja caso con tipo de contaminación (matching); sugerir acciones no queda cubierto.
+CS-10-01 3 | SC | describe | «Describe el impacto ambiental, económico, social y político que ha tenido la minería legal e ilegal, a partir del estudio de casos»: respuesta correcta (single_choice).
+CS-10-01 4 | N3 | argumenta | «Argumenta la pérdida de biodiversidad en el país a partir de la revisión de los informes»: «argumenta» no aplica (N3).
+CS-10-02 1 | SC | establece semejanzas y diferencias | «Establece semejanzas y diferencias entre los conflictos asociados a la convivencia social, a escala regional y nacional»: respuesta correcta (single_choice).
+CS-10-02 2 | SC | compara | «Compara los diferentes tipos de violencia (directa, estructural y cultural)»: respuesta correcta (single_choice).
+CS-10-02 3 | SC | explica | «Explica las características de la violencia ejercida en el contexto del conflicto armado»: respuesta correcta (single_choice).
+CS-10-02 4 | N3 | propone estrategias | «Propone estrategias para utilizar el diálogo como recurso mediador»: propuesta propia (N3).
+CS-10-03 1 | SC | identifica | «Identifica formas de discriminación social, su origen y las consecuencias»: respuesta correcta (single_choice).
+CS-10-03 2 | SC | explica | «Explica la diversidad cultural y étnica como una característica de las sociedades actuales»: respuesta correcta (single_choice).
+CS-10-03 3 | SC | compara | «Compara los mecanismos de protección de DDHH (conciliación, acción de tutela, acciones populares)»: respuesta correcta (single_choice).
+CS-10-03 4 | N3 | argumenta | «Argumenta por qué es necesario rechazar las formas de discriminación»: «argumenta» no aplica (N3).
+CS-10-04 1 | SC | describe | «Describe las características demográficas, económicas … de las sociedades actuales … bajo el paradigma de la globalización»: respuesta correcta (single_choice).
+CS-10-04 2 | SC | reconoce | «Reconoce el papel de los organismos multilaterales en la formulación de políticas»: respuesta correcta (single_choice).
+CS-10-04 3 | SC | explica | «Explica cómo los organismos multilaterales de los que hace parte Colombia, inciden en sus políticas internas»: respuesta correcta (single_choice).
+CS-10-04 4 | N3 | argumenta | «Argumenta el papel desempeñado por los organismos e instituciones nacionales e internacionales»: como en la prueba de los criterios (§2, §7), N3.
+CS-10-05 1 | SC | reconoce | «Reconoce los avances militares, tecnológicos y científicos que las potencias utilizaron durante las dos Guerras Mundiales y asume una posición crítica»: reconocer tiene respuesta (single_choice, criterios §4); la posición crítica no queda cubierta.
+CS-10-05 2 | SC | describe | «Describe el desarrollo histórico de las guerras mundiales y las consecuencias sociales»: respuesta correcta (single_choice).
+CS-10-05 3 | SC | explica y representa … desde la interpretación de mapas | «Explica y representa las transformaciones geopolíticas … desde la interpretación de mapas temáticos»: respuesta correcta (single_choice); el ítem necesita el mapa.
+CS-10-05 4 | N3 | argumenta | «Argumenta acerca de las causas directas e indirectas que determinaron el inicio de los conflictos bélicos»: «argumenta» no aplica (N3).
+
+# ---- 11°
+CS-11-01 1 | SC | describe | «Describe las razones económicas y políticas que sustentan aquellos países que más influyen en el problema del calentamiento global»: respuesta correcta (single_choice).
+CS-11-01 2 | SC | reconoce | «Reconoce acciones y propuestas que ha creado la Organización de Naciones Unidas»: respuesta correcta (single_choice).
+CS-11-01 3 | SC | explica | «Explica las acciones que se sugieren desde las instituciones y organizaciones ambientales en Colombia»: respuesta correcta (single_choice).
+CS-11-01 4 | N3 | propone acciones | «Propone acciones a seguir para disminuir las causas y los efectos actuales del calentamiento global»: propuesta propia (N3).
+CS-11-02 1 | SC | reconoce | «Reconoce los principales conflictos sociales y políticos vividos en Colombia en las últimas décadas»: respuesta correcta (single_choice).
+CS-11-02 2 | SC | explica | «Explica la importancia que tiene para una sociedad la resolución pacífica de sus conflictos»: respuesta correcta (single_choice).
+CS-11-02 3 | SC | describe | «Describe las implicaciones que tiene para las sociedades democráticas considerar la justicia, la verdad, el perdón y la reparación»: respuesta correcta (single_choice).
+CS-11-02 4 | N3 | argumenta | «Argumenta razones para defender la búsqueda de la paz como un deber ético, moral y constitucional»: «argumenta» no aplica (N3).
+CS-11-03 1 | SC | caracteriza | «Caracteriza algunos conflictos geopolíticos contemporáneos»: respuesta correcta (single_choice).
+CS-11-03 2 | SC | reconoce | «Reconoce que en las relaciones internacionales existen dinámicas geopolíticas … mediante el análisis de casos recientes»: respuesta correcta (single_choice).
+CS-11-03 3 | SC | describe | «Describe los intereses políticos, económicos e ideológicos de las grandes potencias»: respuesta correcta (single_choice).
+CS-11-03 4 | N3 | argumenta | «Argumenta las consecuencias sociales que generan los conflictos internacionales»: «argumenta» no aplica (N3).
+CS-11-04 1 | MT | reconoce las características … de los dos bloques | «Reconoce las características fundamentales de los dos bloques hegemónicos (Capitalista-Comunista)»: clasificar características en los dos bloques (matching).
+CS-11-04 2 | SC | explica | «Explica las implicaciones que trajo a la vida cotidiana de los pueblos el que sus países hicieran parte de uno u otro bloque»: respuesta correcta (single_choice).
+CS-11-04 3 | SC | interpreta | «Interpreta las repercusiones sociales, políticas y económicas que la Guerra Fría tuvo para Latinoamérica»: respuesta correcta (single_choice).
+CS-11-04 4 | N3 | plantea argumentos | «Plantea argumentos acerca de las amenazas constantes con armas de destrucción masiva»: es argumentar (N3).
+CS-11-05 1 | SC | reconoce | «Reconoce las características de la globalización económica y política»: respuesta correcta (single_choice).
+CS-11-05 2 | SC | explica y sitúa | «Explica y sitúa los bloques económicos y los tratados de integración»: respuesta correcta (single_choice).
+CS-11-05 3 | SC | describe | «Describe las ventajas y desventajas económicas, políticas y sociales que tiene el proceso de globalización»: respuesta correcta (single_choice).
+CS-11-05 4 | N3 | argumenta | «Argumenta acerca del papel de las organizaciones políticas y económicas en la integración»: «argumenta» no aplica (N3).

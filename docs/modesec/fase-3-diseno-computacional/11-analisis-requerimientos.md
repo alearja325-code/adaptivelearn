@@ -610,7 +610,7 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Requerimiento de | Sistema |
 | Tipo | Funcional |
 | Actor | — |
-| Detalle | Es un juicio del proyecto, no un dato del MEN. Las evidencias que no lo admiten se muestran marcadas al elegir el DBA. Censo pendiente: QA-014. |
+| Detalle | Es un juicio del proyecto, no un dato del MEN. Las evidencias que no lo admiten se muestran marcadas al elegir el DBA. El censo QA-014 (encargo 05) lo propone para las 1282 evidencias; falta validarlo por muestreo (ADR-042). |
 | Precondición | — |
 | Postcondición | — |
 | Fuente | Ventana 003, ADR-006 |
@@ -837,7 +837,7 @@ Toda ventana especificada en la Fase II está cubierta por al menos un requerimi
 ## 5. Vacíos que estos requerimientos heredan, declarados
 
 - ~~**V-11**~~ — **cerrado por ADR-035** (2026-10-26): eliminar una experiencia (RF-02-07) o salir de una (RF-04-12) borra en cascada lo que depende de ella.
-- **QA-013 / QA-014** — errores de extracción del catálogo y censo de formato cerrado (RF-06-01, RF-06-02).
+- **QA-013 / QA-014** — los errores de extracción del catálogo se corrigieron (encargo 02); el censo de formato cerrado está hecho y falta validarlo por muestreo (encargo 05, ADR-042) (RF-06-01, RF-06-02).
 - **V-10** — una excepción de contraste, diferida (RNF-03).
 - **RNF-13** — el tiempo límite de la generación no tiene número todavía; se mide.
 - **RNF-06** — la autorización del acudiente: condición no satisfecha que impide usar el sistema con estudiantes reales.

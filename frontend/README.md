@@ -47,7 +47,7 @@ Se sigue el `backend/README.md`, pasos 1 a 4. En resumen:
 cd backend
 npm install
 cp .env.example .env      # y se completa .env (la tabla del README del backend)
-npm run db:preparar       # crea la base y carga los 343 DBA del catálogo
+npm run db:preparar       # crea la base y carga los 343 DBA del catálogo y el censo
 npm run start:dev         # deja esta terminal abierta
 ```
 

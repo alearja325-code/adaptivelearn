@@ -2,7 +2,7 @@
 <rect x="0" y="0" width="4800" height="3374" fill="#F3F5F8" rx="20" ry="20" stroke="#E3E7ED"/>
 <text x="40" y="86" font-family="Helvetica" font-size="13" font-weight="400" fill="#888888">Línea doble = participación total. (mín, máx) junto a cada entidad; razón de cardinalidad (1:1, 1:n, n:m) bajo cada rombo. Elipse punteada = derivado. Punteado {xor} = relaciones excluyentes. Rombo y caja punteados = derivados, no persisten.</text>
 <text x="40" y="66" font-family="Helvetica" font-size="13" font-weight="400" fill="#888888">Notación Chen estricta. Elipse negra = llave primaria. Subrayado punteado = llave parcial. Doble borde = entidad débil. Rombo doble = relación identificadora. Sin llaves foráneas: las deriva el modelo relacional de cada relación (H-8).</text>
-<text x="40" y="46" font-family="Helvetica" font-size="13" font-weight="700" fill="#555555" letter-spacing="1.5">MAPA COMPLETO · 19 entidades + Reporte (derivado) · 73 atributos · 25 relaciones (23 propias + 2 derivadas)</text>
+<text x="40" y="46" font-family="Helvetica" font-size="13" font-weight="700" fill="#555555" letter-spacing="1.5">MAPA COMPLETO · 19 entidades + Reporte (derivado) · 74 atributos · 25 relaciones (23 propias + 2 derivadas)</text>
 <rect x="330.0" y="1890.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
 <text x="420" y="1925" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">CREDENCIAL</text>
 <path d="M 346.0 1950.0 C 346.0 1980.0, 101.0 1960.0, 101.0 2060" fill="none" stroke="#888888" stroke-width="1"/>
@@ -97,7 +97,7 @@
 <rect x="1810.0" y="840.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
 <text x="1900" y="875" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">DBA</text>
 <path d="M 1974.0 900.0 C 1974.0 930.0, 2219.0 910.0, 2219.0 1010" fill="none" stroke="#888888" stroke-width="1"/>
-<line x1="2219.0" y1="1010" x2="2219.0" y2="1126" stroke="#888888" stroke-width="1"/>
+<line x1="2219.0" y1="1010" x2="2219.0" y2="1184" stroke="#888888" stroke-width="1"/>
 <line x1="2219.0" y1="1010" x2="2160.25" y2="1010" stroke="#888888" stroke-width="1"/>
 <ellipse cx="2095" cy="1010" rx="65.25" ry="20.0" fill="#111111" stroke="#111111" stroke-width="1"/>
 <text x="2095" y="1014" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#FFFFFF">codigo_dba (PK)</text>
@@ -107,6 +107,9 @@
 <line x1="2219.0" y1="1126" x2="2150.0" y2="1126" stroke="#888888" stroke-width="1"/>
 <ellipse cx="2095" cy="1126" rx="55.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
 <text x="2095" y="1130" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">ejemplo</text>
+<line x1="2219.0" y1="1184" x2="2178.0" y2="1184" stroke="#888888" stroke-width="1"/>
+<ellipse cx="2095" cy="1184" rx="83.0" ry="20.0" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="2095" y="1188" text-anchor="middle" font-family="Helvetica" font-size="12.5" fill="#111111">ejemplo_tiene_imagen</text>
 <rect x="2625.0" y="835.0" width="190" height="70" fill="none" stroke="#111111" stroke-width="2"/>
 <rect x="2630.0" y="840.0" width="180" height="60" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
 <text x="2720" y="875" text-anchor="middle" font-family="Helvetica" font-size="14" font-weight="700" fill="#111111">EVIDENCIA</text>

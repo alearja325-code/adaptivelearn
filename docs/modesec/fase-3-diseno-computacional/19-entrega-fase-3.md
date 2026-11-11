@@ -84,9 +84,9 @@ se edita, se regenera.
 
 | Pendiente | Qué falta | Dónde se declara |
 |---|---|---|
-| **V-6 / QA-014** | El censo de qué evidencias admiten formato cerrado: los valores de `evidencia_dictamen`. | `16` §12, `18` |
+| **V-6 / QA-014** | El censo de qué evidencias admiten formato cerrado: los valores de `evidencia_dictamen`. **Hecho el 2026-11-10** (encargo 05, `data/curriculo-men/censo/`): propuesto por IA; falta validarlo por muestreo (ADR-042). | `16` §12, `18` |
 | **QA-013** | Errores de extracción del catálogo del MEN. | `11` §5 |
-| **QA-011** | `dba.ejemplo` todavía no está en la normalización del currículo. | `18` |
+| **QA-011** | `dba.ejemplo` todavía no está en la normalización del currículo. **Hecho el 2026-11-10** (encargo 05): el catálogo trae el ejemplo de cada DBA y `ejemplo_tiene_imagen`, columna nueva de `dba` que pide `06-spec` §2.4. | `18` |
 | **V-12** (nuevo) | Qué muestra la pantalla con un DBA en el que ninguna evidencia admite formato cerrado. | `12` §7, `16` §12 |
 | **V-9** | Versionar el contenido del ítem: diferido. | `16` §12 |
 | **V-10** | Una excepción de contraste en la interfaz: diferida. | `11` §5 |

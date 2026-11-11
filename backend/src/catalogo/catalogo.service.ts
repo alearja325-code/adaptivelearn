@@ -15,11 +15,13 @@ export interface DbaResumen {
 
 export interface DbaDetalle extends DbaResumen {
   ejemplo: string | null;
+  // si el ejemplo del PDF incluye una figura que el texto no trae (06-spec §2.4)
+  ejemploTieneImagen: boolean;
   documento: { titulo: string; version: string; anio: number; paginas: number; urlOficial: string };
   evidencias: {
     numero: number;
     enunciado: string;
-    // null mientras no haya dictamen (censo QA-014 pendiente, V-6)
+    // null si la evidencia no tuviera dictamen; el censo QA-014 dictamina todas
     admiteFormatoCerrado: boolean | null;
     formato: string | null;
   }[];
@@ -96,6 +98,7 @@ export class CatalogoService {
     return {
       ...resumen(dba),
       ejemplo: dba.ejemplo,
+      ejemploTieneImagen: dba.ejemploTieneImagen,
       documento: { titulo, version, anio, paginas, urlOficial },
       evidencias: dba.evidencias.map((e) => ({
         numero: e.numero,

@@ -96,6 +96,7 @@ Table dba {
   id_documento "int unsigned" [not null]
   enunciado text [not null]
   ejemplo text
+  ejemplo_tiene_imagen boolean [not null]
 }
 
 Table evidencia {

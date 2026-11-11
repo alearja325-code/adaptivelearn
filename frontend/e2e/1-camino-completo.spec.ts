@@ -1,7 +1,8 @@
 // El camino completo del encargo 04 §1, en un navegador real, contra el
 // backend real y MySQL: crear la cuenta → recibir el código → verificar →
 // completar el perfil → elegir "Docente" → Dashboard → Crear experiencia →
-// Paso 1 → Paso 2 (filtrar por grado, buscar, expandir CS-08-08) → Paso 3 → parar.
+// Paso 1 → Paso 2 (filtrar por grado, ver un ejemplo con imagen, buscar, expandir
+// CS-08-08 con una evidencia que no aplica y su ejemplo) → Paso 3 → parar.
 import { expect, test } from '@playwright/test';
 import { CLAVE, captura, correoNuevo, escribirCodigo, fotoPng, leerCodigo } from './ayudas';
 
@@ -77,6 +78,16 @@ test('el camino completo, hasta el aviso del Paso 3', async ({ page }) => {
   expect(deOctavo.every((c) => c?.startsWith('CS-08-'))).toBe(true);
   await captura(page, '003-paso2-filtrado-grado-8');
 
+  // CS-08-02: su ejemplo en el PDF es solo un mapa → el aviso de imagen, sin texto (§2.4, encargo 05)
+  const conImagen = lista.locator('li[data-codigo="CS-08-02"]');
+  await conImagen.getByRole('button', { name: 'Ver CS-08-02' }).click();
+  await expect(conImagen.getByText('Ejemplo', { exact: true })).toBeVisible();
+  const aviso = conImagen.getByText('Este ejemplo incluye una imagen que no se muestra en esta versión.');
+  await aviso.scrollIntoViewIfNeeded();
+  await expect(aviso).toBeVisible();
+  await captura(page, '003-paso2-ejemplo-con-imagen');
+  await conImagen.getByRole('button', { name: 'Ocultar CS-08-02' }).click();
+
   // buscar por texto
   await modal.getByLabel('Buscar por enunciado').fill('asociaciones');
   await expect(lista.locator('li[data-codigo]')).toHaveCount(1);
@@ -88,9 +99,16 @@ test('el camino completo, hasta el aviso del Paso 3', async ({ page }) => {
   await card.getByRole('button', { name: 'Ver CS-08-08' }).click();
   await expect(card.getByText('Evidencias', { exact: true })).toBeVisible();
   await expect(card.locator('ul li').first()).toBeVisible();
-  // sin dictamen (QA-014): ninguna tachada; sin ejemplo (QA-011): sin infoblock
-  await expect(card.getByText('— no aplica a formato cerrado')).toHaveCount(0);
-  await expect(card.getByText('Ejemplo', { exact: true })).toHaveCount(0);
+  // censo QA-014 (encargo 05): la 4.ª, «Argumenta…», no aplica (N3) y sale tachada; las otras 3, no
+  await expect(card.getByText('— no aplica a formato cerrado')).toHaveCount(1);
+  await expect(card.getByText(/^Argumenta la importancia de un desarrollo social/)).toHaveClass(/line-through/);
+  await expect(card.locator('ul li .line-through')).toHaveCount(1);
+  // el ejemplo del PDF (QA-011), con texto y sin imagen
+  await expect(card.getByText('Ejemplo', { exact: true })).toBeVisible();
+  await expect(card.getByText(/^A partir de la conmemoración del 1 de mayo en Colombia/)).toBeVisible();
+  await expect(card.getByText('Este ejemplo incluye una imagen que no se muestra en esta versión.')).toHaveCount(0);
+  await card.getByText('Ejemplo', { exact: true }).scrollIntoViewIfNeeded();
+  await captura(page, '003-paso2-evidencia-tachada-y-ejemplo');
   await card.getByRole('radio', { name: 'Elegir CS-08-08' }).click();
   await captura(page, '003-paso2-dba-elegido-y-expandido');
   await modal.getByRole('button', { name: 'Continuar' }).click();
