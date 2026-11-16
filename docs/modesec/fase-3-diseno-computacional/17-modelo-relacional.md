@@ -25,7 +25,7 @@ no se ejecutó: queda como prueba pendiente al integrar.
 
 | Tablas | Columnas | Llaves foráneas | UNIQUE | CHECK |
 |---|---|---|---|---|
-| 19 | 107 | 24 | 17 | 16 |
+| 19 | 108 | 24 | 17 | 16 |
 
 Una tabla por entidad del MER; Reporte no tiene tabla (sección 5). Los tipos, tamaños y
 dominios de cada columna están en `18-diccionario-datos.md`.
@@ -42,7 +42,7 @@ Llave primaria <u>subrayada</u>; llave foránea en *cursiva*, con la tabla a la 
 - **area**(<u>codigo_area</u>, nombre)
 - **grado**(<u>numero</u>, nombre, nivel)
 - **documento_oficial**(<u>id_documento</u>, *codigo_area* → area, titulo, version, anio, paginas, url_oficial)
-- **dba**(<u>codigo_dba</u>, *codigo_area* → area, documento_oficial, *numero_grado* → grado, *id_documento* → documento_oficial, enunciado, ejemplo)
+- **dba**(<u>codigo_dba</u>, *codigo_area* → area, documento_oficial, *numero_grado* → grado, *id_documento* → documento_oficial, enunciado, ejemplo, ejemplo_tiene_imagen)
 - **evidencia**(*<u>codigo_dba</u>* → dba, <u>numero_evidencia</u>, enunciado)
 - **evidencia_dictamen**(*<u>codigo_dba</u>* → evidencia, *<u>numero_evidencia</u>* → evidencia, aplica_formato_cerrado, formato, justificacion, fecha_dictamen)
 - **experiencia_evidencia**(*<u>id_experiencia</u>* → experiencia, *<u>codigo_dba</u>* → experiencia, evidencia, *<u>numero_evidencia</u>* → evidencia)

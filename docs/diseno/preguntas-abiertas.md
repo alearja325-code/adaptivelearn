@@ -152,10 +152,16 @@ idea que QA-001).
 
 **Estado:** resuelta por ADR-011 (2026-08-07) — el ejemplo se usa como
 contexto/escenario para la generación de ítems de diagnóstico, verificado
-contra los 4 documentos oficiales (mayoría texto real, no imágenes). Sigue
-pendiente que la normalización capture el campo — hoy no existe en
-`curriculo_men_normalizado.json` —, misma naturaleza de dependencia que
-QA-006/QA-013.
+contra los 4 documentos oficiales (mayoría texto real, no imágenes).
+**Datos cargados el 2026-11-10 (encargo 05, en revisión):** el catálogo
+(`data/curriculo-men/catalogo/catalogo_dba.json`) trae el ejemplo de cada
+DBA, copiado exacto y verificado contra su página, y la marca
+`ejemplo_tiene_imagen`; el backend lo carga y el Paso 2 lo muestra
+(`06-spec` §2.4). **Hallazgo que corrige a ADR-011:** las figuras no son
+"2 a 8 por área": 259 de los 343 ejemplos incluyen una (imagen, dibujo,
+tabla o fórmula aparte), aunque casi todos traen también texto completo.
+Ciencias Sociales V.1 trae ejemplo en solo 21 de 82 DBA. Detalle en
+`catalogo/informe-correccion.md` §8.
 
 **Surgió en:** discusión de Bloom / diagnóstico — 2026-08-06, catch de
 Alejandro.
@@ -240,6 +246,18 @@ resultado no sería confiable.
 Alejandro.
 **Retomar cuando:** se audite/corrija QA-013, y exista una UI para hacer
 el censo cómodamente (mismo motivo que QA-013).
+
+**Estado (2026-11-10): censo hecho, propuesto por IA, falta validarlo.**
+Cómo: ADR-042 y `criterios-censo-formato-cerrado.md`. Resultado
+(encargo 05, `data/curriculo-men/censo/informe-censo.md`): **904 de 1282
+evidencias (71 %) admiten formato cerrado**: Matemáticas 77 %, Ciencias
+Naturales 83 %, Ciencias Sociales 70 %, y **Lenguaje 56 %**. La respuesta
+a la pregunta de fondo: el enfoque cerrado-únicamente es viable en tres
+áreas, pero **en Lenguaje deja fuera casi la mitad** (hablar, escuchar,
+escribir), como anticipaba ADR-002. **16 DBA quedan sin ninguna evidencia
+aplicable** (10 de Lenguaje) y no se pueden usar para crear una
+experiencia en esta versión (QA-012). Se cierra cuando dos integrantes
+validen la muestra (`censo/muestra_validacion.md`, criterios §5).
 
 ---
 

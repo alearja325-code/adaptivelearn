@@ -114,6 +114,7 @@ CREATE TABLE dba (
   id_documento INTEGER NOT NULL,
   enunciado TEXT NOT NULL,
   ejemplo TEXT,
+  ejemplo_tiene_imagen INTEGER NOT NULL DEFAULT 0,
   CHECK (codigo_dba = codigo_area || '-' || printf('%02d', numero_grado) || '-' || substr(codigo_dba, -2) AND substr(codigo_dba, -2) GLOB '[0-9][0-9]' AND substr(codigo_dba, -2) <> '00'),
   FOREIGN KEY (codigo_area) REFERENCES area(codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT,
   FOREIGN KEY (numero_grado) REFERENCES grado(numero) ON DELETE RESTRICT ON UPDATE RESTRICT,

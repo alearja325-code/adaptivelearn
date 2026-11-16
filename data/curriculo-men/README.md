@@ -11,15 +11,19 @@ aplicación (subsistema SUB-06): los Derechos Básicos de Aprendizaje
 | `raw_text/`, `text/` | Texto extraído de esos PDF |
 | `normalized/` | `curriculo_men_normalizado.json`: el currículo estructurado que usa el diseño |
 | `metadata/` | Registro de cada fuente y su auditoría |
-| `catalogo/` | **El catálogo de DBA corregido y verificado contra los PDF** (encargo 02, 2026-10-27): `catalogo_dba.json`, el script que lo arma, su verificador y el informe de lo que se corrigió. Es la fuente para cargar el catálogo; el JSON de `normalized/` queda como registro de lo que había |
+| `censo/` | **El censo de formato cerrado** (encargo 05, QA-014): por cada evidencia, si admite pregunta cerrada y con qué formato, propuesto por IA y pendiente de validar por muestreo (ADR-042) |
+| `catalogo/` | **El catálogo de DBA corregido y verificado contra los PDF** (encargo 02, 2026-10-27; con el ejemplo de cada DBA desde el encargo 05, 2026-11-10): `catalogo_dba.json`, el script que lo arma, su verificador y el informe de lo que se corrigió. Es la fuente para cargar el catálogo; el JSON de `normalized/` queda como registro de lo que había |
 | `herramientas-v2/` | Los scripts que construyeron y auditaron estos datos en la versión anterior. **Solo como registro de cómo se generaron**: dependen de módulos de la V2 que no están aquí y no se ejecutan solos |
 
 ## Estado: pendiente de auditoría
 
 > **Actualización 2026-10-27.** Los DBA y sus evidencias ya tienen una
 > versión verificada contra los PDF: `catalogo/catalogo_dba.json` (343 DBA;
-> ver `catalogo/informe-correccion.md`). Lo que sigue sin auditar es el
-> resto: los ejemplos de cada DBA, los Estándares y los Lineamientos.
+> ver `catalogo/informe-correccion.md`). **Actualización 2026-11-10
+> (encargo 05):** también los ejemplos de cada DBA, con la marca de si
+> incluyen una figura (sección 8 del informe), y el censo de formato
+> cerrado de las evidencias (`censo/`). Lo que sigue sin auditar: los
+> Estándares y los Lineamientos.
 
 Estos datos vienen de la versión anterior (V2) y **todavía no se han
 auditado** contra los PDF. Hay errores de extracción conocidos (QA-013:

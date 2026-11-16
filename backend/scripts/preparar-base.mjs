@@ -2,11 +2,15 @@
 //   1. crea la base, si no existe (utf8mb4);
 //   2. crea las tablas con sql/001_esquema.sql (generado del modelo relacional);
 //   3. carga los datos de referencia con sql/002_datos_referencia.sql;
-//   4. carga los 343 DBA y sus evidencias desde
-//      data/curriculo-men/catalogo/catalogo_dba.json (encargo 02).
+//   4. carga los 343 DBA, con su ejemplo y la marca de imagen, y sus
+//      evidencias desde data/curriculo-men/catalogo/catalogo_dba.json
+//      (encargos 02 y 05);
+//   5. carga el dictamen de cada evidencia (evidencia_dictamen) desde
+//      data/curriculo-men/censo/censo_formato_cerrado.json (encargo 05).
 // Lee la conexión de .env (DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD,
 // DB_DATABASE). No inventa ni corrige datos: si el catálogo no coincide con
-// los documentos de 002 (área o versión), se detiene.
+// los documentos de 002 (área o versión), o si el censo no tiene exactamente
+// un dictamen por evidencia, se detiene.
 //
 // Uso:
 //   node scripts/preparar-base.mjs                 base de DB_DATABASE
@@ -21,6 +25,7 @@ import mysql from 'mysql2/promise';
 const AQUI = dirname(fileURLToPath(import.meta.url));
 const BACKEND = join(AQUI, '..');
 const CATALOGO = join(BACKEND, '..', 'data', 'curriculo-men', 'catalogo', 'catalogo_dba.json');
+const CENSO = join(BACKEND, '..', 'data', 'curriculo-men', 'censo', 'censo_formato_cerrado.json');
 
 if (existsSync(join(BACKEND, '.env'))) process.loadEnvFile(join(BACKEND, '.env'));
 
@@ -79,9 +84,9 @@ try {
       );
     }
     await conexion.query(
-      'INSERT INTO dba (codigo_dba, codigo_area, numero_grado, id_documento, enunciado, ejemplo) ' +
-        'VALUES (?, ?, ?, ?, ?, NULL)',
-      [d.codigo_dba, d.codigo_area, d.grado, doc.id_documento, d.enunciado],
+      'INSERT INTO dba (codigo_dba, codigo_area, numero_grado, id_documento, enunciado, ejemplo, ' +
+        'ejemplo_tiene_imagen) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [d.codigo_dba, d.codigo_area, d.grado, doc.id_documento, d.enunciado, d.ejemplo, d.ejemplo_tiene_imagen],
     );
     // numero_evidencia = la posición en la lista oficial del DBA (ADR-024)
     for (const [i, texto] of d.evidencias.entries()) {
@@ -92,12 +97,35 @@ try {
       evidencias += 1;
     }
   }
-  await conexion.commit();
   console.log(`catálogo: ${dbas.length} DBA y ${evidencias} evidencias cargados`);
+
+  // ---------------------------------------------- el censo (QA-014, ADR-042)
+  const { _meta: censo, dictamenes } = JSON.parse(await readFile(CENSO, 'utf8'));
+  const textoDe = new Map(dbas.flatMap((d) => d.evidencias.map((e, i) => [`${d.codigo_dba}#${i + 1}`, e])));
+  const vistos = new Set();
+  for (const x of dictamenes) {
+    const clave = `${x.codigo_dba}#${x.numero_evidencia}`;
+    if (!textoDe.has(clave) || vistos.has(clave) || textoDe.get(clave) !== x.evidencia) {
+      throw new Error(`${clave}: el censo no coincide con el catálogo (falta, sobra o cambió el texto)`);
+    }
+    vistos.add(clave);
+    await conexion.query(
+      'INSERT INTO evidencia_dictamen (codigo_dba, numero_evidencia, aplica_formato_cerrado, formato, ' +
+        'justificacion, fecha_dictamen) VALUES (?, ?, ?, ?, ?, ?)',
+      [x.codigo_dba, x.numero_evidencia, x.aplica, x.formato, x.justificacion, censo.fecha],
+    );
+  }
+  if (vistos.size !== textoDe.size) {
+    throw new Error(`el censo tiene ${vistos.size} dictámenes y el catálogo ${textoDe.size} evidencias`);
+  }
+  await conexion.commit();
+  console.log(
+    `censo: ${dictamenes.length} dictámenes cargados (${censo.aplican} aplican); estado: ${censo.estado}`,
+  );
 
   const dudosos = dbas.filter((d) => d.dudoso.length > 0);
   if (dudosos.length > 0) {
-    console.log('DBA marcados como dudosos en el catálogo (encargo 02), cargados tal cual:');
+    console.log('DBA marcados como dudosos en el catálogo (encargos 02 y 05), cargados tal cual:');
     for (const d of dudosos) console.log(`  ${d.codigo_dba} (página ${d.pagina}): ${d.dudoso.join('; ')}`);
   }
   console.log(`listo: base ${base}`);

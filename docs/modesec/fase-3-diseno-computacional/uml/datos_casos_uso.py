@@ -228,7 +228,7 @@ CASOS = [
        "Filtrar Matemáticas por 8° muestra solo DBA de 8°; las evidencias que no admiten formato cerrado se ven marcadas.",
        notas=["Cada DBA se muestra con su código `ÁREA-GG-NN` (`MAT-08-01`) y puede decir de qué documento oficial del MEN se copió, con su versión (ADR-036, ADR-033).",
               "Cargar el catálogo y el dictamen no es un caso de uso: no tiene pantalla (`10`, §2.3). Lo hace el equipo con los datos del MEN y el censo QA-014.",
-              "Vacío nuevo, V-12: un DBA en el que **ninguna** evidencia admitiera formato cerrado no podría generar banco. Qué muestra la pantalla en ese caso no está especificado; depende del censo QA-014."]),
+              "Vacío V-12: un DBA en el que **ninguna** evidencia admite formato cerrado no puede generar banco. El censo QA-014 dice que son 16; qué muestra la pantalla en ese caso no está especificado."]),
     # ================================================================ SUB-03
     cu("CU-16", "Generar banco con IA", "SUB-03", "Servicio de IA",
        ["RF-03-01", "RF-03-02", "RF-03-03"], ["024"],

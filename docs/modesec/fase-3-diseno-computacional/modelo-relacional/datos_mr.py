@@ -350,8 +350,16 @@ TABLAS = [
              c("ejemplo", "TEXT", "TEXT", True, "",
                "", "NULL",
                "Ejemplo oficial; se usa como contexto al generar el banco (ADR-011). "
-               "Admite NULL mientras la normalización no lo tenga (QA-011).",
+               "NULL cuando el PDF no trae ejemplo con texto: la mayoría de los DBA de "
+               "Ciencias Sociales V.1 no tienen ejemplo, y algunos de Ciencias Naturales "
+               "son solo una figura (encargo 05).",
                "RF-06-01 · ADR-011 · QA-011"),
+             c("ejemplo_tiene_imagen", "BOOLEAN", "INTEGER", False, "",
+               "0 | 1", "0",
+               "Si el ejemplo del PDF incluye una figura (imagen, dibujo, tabla o "
+               "fórmula aparte) que el texto no trae. El Paso 2 avisa que no se muestra. "
+               "Se agrega porque `06-spec` §2.4 la pide y no había dónde guardarla.",
+               "06-spec-crear-experiencia-paso2.md §2.4 · ADR-011 · encargo 05"),
          ]),
     # ---------------------------------------------------------------- 9
     dict(tabla="evidencia", entidad="Evidencia", clase="men debil",
@@ -383,7 +391,7 @@ TABLAS = [
              c("aplica_formato_cerrado", "BOOLEAN", "INTEGER", False, "",
                "true | false", "",
                "Si esta evidencia se puede diagnosticar con pregunta cerrada.",
-               "RF-06-02 · ADR-006 · censo QA-014 pendiente"),
+               "RF-06-02 · ADR-006 · ADR-042 · censo QA-014"),
              c("formato", "ENUM('single_choice','matching','ordering')", "TEXT", True, "",
                "single_choice | matching | ordering", "NULL",
                "Qué formato cerrado admite: «el formato de los ítems lo determina la "
@@ -391,10 +399,11 @@ TABLAS = [
                "NULL si no admite formato cerrado (RI-19).",
                "RF-03-01 · RF-03-07 · ADR-006"),
              c("justificacion", "TEXT", "TEXT", True, "",
-               "", "NULL", "Por qué se dictaminó así.", "H-6 · MER"),
+               "", "NULL", "Por qué se dictaminó así: cita la frase decisiva de la "
+               "evidencia y la regla de los criterios del censo.", "H-6 · MER · ADR-042"),
              c("fecha_dictamen", FECHA, "TEXT", False, "",
                "", "",
-               "Cuándo se dictaminó. Obligatoria porque el dictamen puede cambiar al cerrar QA-014.",
+               "Cuándo se dictaminó. Obligatoria porque el dictamen puede cambiar al validar el censo QA-014.",
                "H-6 · MER · V-6"),
          ]),
     # --------------------------------------------------------------- 11

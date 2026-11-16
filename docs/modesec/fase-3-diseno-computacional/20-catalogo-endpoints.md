@@ -293,11 +293,11 @@ CU-31 Consultar catálogo curricular · CU-11 Crear experiencia. Operación: `Ca
 
 - **Quién:** Docente.
 - **Recibe:** nada (`:codigo` es el código `ÁREA-GG-NN`, ej. `MAT-08-01`).
-- **Responde:** 200: enunciado oficial, ejemplo, área, grado, el documento oficial del que se copió (título y versión) y las evidencias en el orden oficial, cada una marcada si admite o no formato cerrado (RF-06-02). El enunciado prellena el nombre en el Paso 3.
+- **Responde:** 200: enunciado oficial, ejemplo y si el ejemplo incluye una imagen (`ejemploTieneImagen`, `06-spec` §2.4), área, grado, el documento oficial del que se copió (título y versión) y las evidencias en el orden oficial, cada una marcada si admite o no formato cerrado y con qué formato (RF-06-02). El enunciado prellena el nombre en el Paso 3.
 - **Toca:** DBA (lee); AREA (lee); GRADO (lee); DOCUMENTO_OFICIAL (lee); EVIDENCIA (lee); EVIDENCIA_DICTAMEN (lee).
 - **Reglas y errores:**
   - `404` no existe ese DBA.
-- **Nota:** Mientras no termine el censo QA-014, `evidencia_dictamen` está vacía: cada evidencia sale con `admiteFormatoCerrado: null` (sin dictaminar, V-6).
+- **Nota:** El dictamen de cada evidencia es el del censo QA-014 (encargo 05), propuesto por IA y pendiente de validar por muestreo (ADR-042). Una evidencia sin dictamen saldría con `admiteFormatoCerrado: null`.
 
 #### E-16 · `GET /catalogo/areas`
 

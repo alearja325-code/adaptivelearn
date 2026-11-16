@@ -1,6 +1,7 @@
 # Informe de corrección del catálogo de DBA
 
-**Encargo 02** (`docs/encargos/02-catalogo-curricular-corregido.md`). **Archivo generado** por
+**Encargos 02 y 05** (`docs/encargos/02-catalogo-curricular-corregido.md`, `05-ejemplos-y-censo.md`).
+**Archivo generado** por
 `construir_catalogo.py`: no se edita a mano. Las cifras y las tablas salen del catálogo que ese
 script arma leyendo los cuatro PDF oficiales del MEN (`../pdfs/`).
 
@@ -173,10 +174,16 @@ comprueba cada una.
 
 | DBA | Dónde | El PDF trae | Se copia | Página | Por qué |
 |---|---|---|---|---|---|
+| `MAT-01-03` | ejemplo | «dife-rente» | «diferente» | 9 | guion de partición al final de la línea (la palabra se corta en dos renglones) |
+| `MAT-01-05` | ejemplo | «tama-ños» | «tamaños» | 10 | guion de partición al final de la línea (la palabra se corta en dos renglones) |
 | `MAT-02-01` | evidencia 2 | «? +b = c.» | «? + b = c.» | 15 | la página muestra «+ b», como «a + b» en la línea anterior; la capa de texto no trae ese espacio |
+| `MAT-04-01` | ejemplo | «preparar limona-das» | «preparar limonadas» | 30 | guion de partición al final de la línea (la palabra se corta en dos renglones) |
+| `MAT-04-01` | ejemplo | «dife-rentes» | «diferentes» | 30 | guion de partición al final de la línea (la palabra se corta en dos renglones) |
 | `MAT-04-02` | enunciado | «(fraccionarios)1» | «(fraccionarios)» | 30 | el «1» es la llamada en superíndice a una nota al pie de la misma página, no parte del enunciado |
+| `MAT-04-05` | ejemplo | «personas es1» | «personas es» | 33 | el «1» (de 6 pt) es la llamada a la nota al pie que dice de dónde se tomó la receta |
 | `MAT-09-06` | evidencia 1 | «bidimen-sionales» | «bidimensionales» | 69 | guion de partición al final de la línea (la palabra se corta en dos renglones) |
 | `CS-06-05` | evidencia 1 | «geográ cos» | «geográficos» | 31 | la ligadura «fi» está dibujada pero el PDF no la declara como texto: queda un hueco |
+| `CS-07-06` | ejemplo | «histó-rico» | «histórico» | 36 | guion de partición al final de la línea (la palabra se corta en dos renglones) |
 | `CS-07-07` | enunciado | «Co mprende» | «Comprende» | 36 | hueco de diagramación dentro de la palabra, sin carácter de espacio |
 | `CS-08-08` | enunciado | «Comprendelaimportanciadelasasociaciones,» | «Comprende la importancia de las asociaciones,» | 41 | el PDF oficial imprime esas palabras sin espacios (se ve así en la página): solo se agregan los espacios |
 
@@ -186,6 +193,8 @@ No se adivinó. Cada uno está marcado en el registro (campo `dudoso`):
 
 - **`MAT-11-09`** (p. 86): la página no tiene encabezado de grado: se toma el de la página anterior y la numeración que sigue
 - **`MAT-11-10`** (p. 86): la página no tiene encabezado de grado: se toma el de la página anterior y la numeración que sigue
+
+Los ejemplos dudosos están en la sección 8.
 
 Además, cosas del propio PDF que se copiaron tal cual y conviene que el equipo conozca:
 
@@ -197,9 +206,9 @@ Además, cosas del propio PDF que se copiaron tal cual y conviene que el equipo 
 - **Evidencias repetidas por el MEN:** algunas evidencias tienen las mismas palabras en DBA
   distintos (sobre todo en Matemáticas). El verificador comprueba que el PDF las imprime bajo
   cada uno: no es un error de extracción.
-- **Guiones al final de un renglón:** se unen sin espacio a la línea siguiente. Tres son
-  guiones reales («arena-gravilla,», «(Boyle-Mariotte,», «(Capitalista-Comunista),»);
-  el de «bidimen-sionales» es partición de palabra y se corrigió (3.3).
+- **Guiones al final de un renglón:** se unen sin espacio a la línea siguiente. Son
+  guiones reales («anrep.gov.co/es/encuesta-expectativas-trimestral)», «es/encuesta-expectativas-trimestral», «arena-gravilla,», «(Boyle-Mariotte,», «(Capitalista-Comunista),»);
+  los de partición de palabra («bidimen-sionales», «dife-rente», «tama-ños», «preparar limona-das», «dife-rentes», «histó-rico») se corrigieron (3.3).
 
 ## 5. Conteos finales, según el PDF
 
@@ -237,8 +246,10 @@ Documentos (ADR-033): Matemáticas **V.2** (`dba_matematicas_v2.pdf`); Lenguaje 
   numeración sin huecos, enunciado y evidencias literales en su página (las letras en orden, sin
   los espacios), grado igual al del encabezado, cada evidencia en un solo DBA, que los números
   de DBA impresos en cada página sean exactamente los del catálogo, y la versión de cada
-  documento. Al final introduce siete errores a propósito en copias en memoria y comprueba que
-  los atrapa todos.
+  documento. Desde el encargo 05, también el ejemplo: cada párrafo tiene que estar en sus
+  páginas como renglones completos (así se salta las figuras sin dejar pasar una palabra
+  cambiada). Al final introduce nueve errores a propósito en copias en memoria (dos sobre
+  ejemplos: una palabra cambiada y el ejemplo de otro DBA) y comprueba que los atrapa todos.
 - **Lo que el verificador anota sin que sea falla:** textos que siguen en la otra columna o
   en la página siguiente (se aceptan solo si el corte cae justo en un borde de renglón);
   textos cuyo espaciado no coincide con el de poppler, que lee distinto las palabras que el
@@ -251,18 +262,119 @@ Documentos (ADR-033): Matemáticas **V.2** (`dba_matematicas_v2.pdf`); Lenguaje 
   diferencias con el JSON viejo se revisaron una por una, y las de Ciencias Sociales 3°, 6°, 7°
   y 8° se confirmaron mirando la página renderizada.
 
-## 7. Notas para la auditoría completa (A12) — fuera de este encargo
+## 7. Notas para la auditoría completa (A12)
 
-- **El ejemplo de cada DBA** no se copió (QA-011). Al leer los PDF se vio que muchos ejemplos
-  dependen de una imagen, una tabla o una fórmula (por ejemplo, Matemáticas 9°, `MAT-09-03`, y
-  10°, `MAT-10-07`; Ciencias Sociales, con fotografías y sus créditos). El JSON viejo pegaba
-  parte de esos ejemplos al final de la última evidencia; aquí se quitaron porque no son
-  evidencia.
+- **El ejemplo de cada DBA** se copió en el encargo 05: sección 8.
 - **Notas al pie:** hay llamadas a nota en algunos títulos «Ejemplo» de Matemáticas (páginas
   )
   y en el enunciado de `MAT-04-02`. El catálogo no tiene dónde guardar notas.
 - **Las direcciones del JSON viejo** apuntan a rutas de Colombia Aprende de 2022; las vigentes
   son las de ADR-033.
+
+## 8. El ejemplo de cada DBA (encargo 05, QA-011)
+
+Cada DBA del MEN tiene, además del enunciado y las evidencias, un **ejemplo**: una situación
+concreta que muestra lo que el estudiante debe poder hacer. El catálogo lo trae ahora en el
+campo `ejemplo`, con las páginas de donde se copió (`ejemplo_paginas`) y la marca
+`ejemplo_tiene_imagen`. El texto se copia exacto, como el enunciado; cada párrafo, viñeta o
+verso va en su propia línea.
+
+| Área | DBA | Con ejemplo (texto) | Incluye una figura | Solo figura, sin texto | Sin ejemplo | Dudosos |
+|---|---|---|---|---|---|---|
+| Matemáticas | 119 | 119 | 110 | 0 | 0 | 7 |
+| Lenguaje | 88 | 87 | 87 | 0 | 1 | 0 |
+| Ciencias Naturales | 54 | 26 | 47 | 28 | 0 | 0 |
+| Ciencias Sociales | 82 | 18 | 15 | 3 | 61 | 0 |
+| **Total** | 343 | 250 | 259 | 31 | 62 | 7 |
+
+**«Incluye una figura»** quiere decir que en la zona del ejemplo hay una imagen, un dibujo, una
+tabla o una fórmula en renglón aparte. El texto que la acompaña se copió; el texto que está
+**dentro** de la figura (rótulos, celdas de una tabla, letreros de un dibujo) y las notas de
+dónde se tomó (créditos, de 9 pt) no. En el Paso 2 esos ejemplos muestran el aviso *«Este
+ejemplo incluye una imagen que no se muestra en esta versión.»* (`06-spec` §2.4).
+
+**Esto corrige una cifra de ADR-011.** ADR-011 estimó que las figuras eran «rara excepción (2 a 8
+casos)» por área, contando las menciones a una figura en el texto. Mirando las páginas, casi
+todos los ejemplos de Matemáticas, Lenguaje y Ciencias Naturales traen una figura: muchas son
+ilustraciones que acompañan un texto completo, pero en otras el texto no se entiende sin la
+figura (una tabla de datos, una gráfica). La decisión de ADR-011 (el ejemplo como escenario para
+generar preguntas) no cambia, pero el ejemplo llega a la IA sin su figura en la mayoría de los
+casos. Ver el informe del encargo 05.
+
+**Ciencias Sociales** (V.1) casi no trae ejemplos: de sus 82 DBA, solo
+21 tienen el título «Ejemplo».
+Los demás solo tienen una ilustración sin título ni texto, y quedan sin ejemplo (`null`).
+**Ciencias Naturales:** 28 ejemplos son solo una figura (una infografía, un esquema) con el
+texto dentro de la imagen: quedan con `ejemplo` vacío y la marca de figura.
+**Lenguaje:** `LEN-10-05`
+no tiene título «Ejemplo» (solo una ilustración).
+
+### 8.1 Cómo se decidió qué se copia y qué es figura
+
+El programa propone; la revisión de cada página renderizada (todas las páginas con ejemplo, de
+los cuatro documentos) confirma o corrige. Lo que la revisión cambió está escrito en el script
+(`EJEMPLO_AJUSTES`, `IMAGEN_REVISADA`, `EJEMPLO_DUDOSO`), con su razón:
+
+| DBA | Qué cambió la revisión | Razón |
+|---|---|---|
+| `MAT-01-06` | quitar el renglón «Mariposa Pingüino…» (p. 11) | es un rótulo de la figura, no texto corrido |
+| `MAT-02-10` | quitar el renglón «Candidato 1…» (p. 20) | es un rótulo de la figura, no texto corrido |
+| `MAT-02-10` | quitar el renglón «Candidato 2…» (p. 20) | es un rótulo de la figura, no texto corrido |
+| `MAT-02-10` | quitar el renglón «Candidato 3…» (p. 20) | es un rótulo de la figura, no texto corrido |
+| `MAT-02-10` | quitar el renglón «Candidato 4…» (p. 20) | es un rótulo de la figura, no texto corrido |
+| `MAT-02-10` | quitar el renglón «Cada Equivale…» (p. 20) | es la leyenda del pictograma (un ícono de estrella entre «Cada» y «Equivale») |
+| `MAT-03-10` | quitar el renglón «Caminando 10…» (p. 28) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-03-10` | quitar el renglón «Carro particular 12…» (p. 28) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-06-08` | quitar el renglón «Empresa A…» (p. 49) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-06-08` | quitar el renglón «Hasta 300…» (p. 49) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-06-08` | quitar el renglón «kilos para…» (p. 49) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-06-08` | quitar el renglón «pesos. 250.000…» (p. 49) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-06-08` | quitar el renglón «pesos más…» (p. 49) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-06-08` | quitar el renglón «de más.…» (p. 49) | es parte de una tabla del ejemplo, no texto corrido |
+| `MAT-11-08` | quitar el renglón «dy…» (p. 85) | es una fracción (dy/dx) escrita en dos renglones, parte de una fórmula |
+| `MAT-11-08` | quitar el renglón «dx…» (p. 85) | es una fracción (dy/dx) escrita en dos renglones, parte de una fórmula |
+| `MAT-11-10` | quitar el renglón «TOTAL 183…» (p. 86) | es parte de una tabla del ejemplo, no texto corrido |
+| `CN-04-05` | quitar el renglón «Agua - Sal…» (p. 17) | es una fila de la tabla «Mezcla» del ejemplo, no texto corrido |
+| `CN-04-05` | quitar el renglón «Trozos de banano…» (p. 17) | es una fila de la tabla «Mezcla» del ejemplo, no texto corrido |
+| `CN-04-05` | quitar el renglón «Agua – Azúcar…» (p. 17) | es una fila de la tabla «Mezcla» del ejemplo, no texto corrido |
+| `CN-04-05` | quitar el renglón «Agua - Arena…» (p. 17) | es una fila de la tabla «Mezcla» del ejemplo, no texto corrido |
+| `MAT-01-05` | con figura | las tiras de colores son un dibujo; el texto nombra tiras por su color dibujado |
+| `MAT-02-07` | con figura | el mapa es un dibujo: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-02-09` | con figura | la niña y su globo de pensamiento son un dibujo: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-05-01` | con figura | el plano de la finca es un dibujo: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-05-07` | con figura | el mapa del barrio es un dibujo: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-05-10` | con figura | los gráficos de barras y circular: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-06-03` | con figura | las tres balanzas: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-07-03` | con figura | la calculadora: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-07-07` | con figura | las balanzas con gallinas: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-07-09` | con figura | el menú del almuerzo: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-08-07` | con figura | los rompecabezas sobre la cuadrícula: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-08-12` | con figura | la tabla «Rango de edades» está dibujada, sin texto que el programa lea |
+| `MAT-09-10` | con figura | los diagramas de caja y bigote: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-10-01` | con figura | los triángulos: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `MAT-10-04` | con figura | el disco de colores: la figura está dibujada con trazos (no es una imagen pegada), y el programa no la ve |
+| `LEN-03-04` | con figura | el plan textual es un organizador dibujado (cuadros y flechas), no una imagen pegada |
+| `LEN-08-04` | con figura | el poema está escrito sobre el dibujo de una hoja |
+| `LEN-09-08` | con figura | la lista de recomendaciones está manuscrita en el dibujo de una hoja |
+| `LEN-11-03` | con figura | las preguntas están manuscritas en el dibujo de un cuaderno |
+| `LEN-11-08` | con figura | las indicaciones están escritas en el dibujo de un tablero |
+
+Las correcciones de texto del ejemplo (guiones de partición y una llamada a nota) están en la
+tabla de la sección 3.3, con las del enunciado y las evidencias.
+
+### 8.2 Ejemplos dudosos
+
+Se copiaron tal cual y se marcaron en el campo `dudoso` del DBA. En todos, el problema es una
+fórmula escrita dentro de la frase: la capa de texto del PDF no la trae completa, y escribirla
+a mano sería agregar texto que no se leyó del documento.
+
+- **`MAT-05-03`**: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: las fracciones 9/5 y 11/6 quedan como «9 … 11» y «5 6».
+- **`MAT-08-02`**: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: los símbolos del triángulo y el cuadrado faltan («en las casillas y y»).
+- **`MAT-09-01`**: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: D/d y 4/3 π(d/2)³ quedan como «tablero:dd», «=√5» y «4 π(d)3».
+- **`MAT-10-02`**: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: «Conjunto 1: 1, 1 , 1» (faltan los denominadores 10, 100 y 1000).
+- **`MAT-10-04`**: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: «posición de inicio =0°» (falta la letra α).
+- **`MAT-10-10`**: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: «aproximadamente 1» y «haya sido 1» (falta el denominador 2 de 1/2).
+- **`MAT-11-08`**: una fórmula escrita dentro de la frase (fracción en dos pisos o símbolo especial) no se lee completa: faltan dy/dx y los denominadores de y(x).
 
 ## Anexo · cada diferencia de texto con el JSON viejo
 

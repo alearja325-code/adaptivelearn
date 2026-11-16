@@ -263,12 +263,15 @@ ENDPOINTS = [
        {"DBA": "R", "AREA": "R", "GRADO": "R", "DOCUMENTO_OFICIAL": "R", "EVIDENCIA": "R",
         "EVIDENCIA_DICTAMEN": "R"}, "hecho",
        "nada (`:codigo` es el código `ÁREA-GG-NN`, ej. `MAT-08-01`)",
-       "200: enunciado oficial, ejemplo, área, grado, el documento oficial del que se copió "
-       "(título y versión) y las evidencias en el orden oficial, cada una marcada si admite "
-       "o no formato cerrado (RF-06-02). El enunciado prellena el nombre en el Paso 3",
+       "200: enunciado oficial, ejemplo y si el ejemplo incluye una imagen "
+       "(`ejemploTieneImagen`, `06-spec` §2.4), área, grado, el documento oficial del que se "
+       "copió (título y versión) y las evidencias en el orden oficial, cada una marcada si "
+       "admite o no formato cerrado y con qué formato (RF-06-02). El enunciado prellena el "
+       "nombre en el Paso 3",
        [("404", "no existe ese DBA")],
-       nota="Mientras no termine el censo QA-014, `evidencia_dictamen` está vacía: cada "
-            "evidencia sale con `admiteFormatoCerrado: null` (sin dictaminar, V-6)."),
+       nota="El dictamen de cada evidencia es el del censo QA-014 (encargo 05), propuesto "
+            "por IA y pendiente de validar por muestreo (ADR-042). Una evidencia sin "
+            "dictamen saldría con `admiteFormatoCerrado: null`."),
     ep("GET", "/catalogo/areas", "SUB-06", ["CU-31", "CU-11"], "Catalogo.areas", "docente",
        {"AREA": "R"}, "hecho",
        "nada",

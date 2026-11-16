@@ -27,6 +27,11 @@ export class Dba {
   @Column({ type: 'text', nullable: true })
   ejemplo: string | null;
 
+  // Si el ejemplo del PDF incluye una figura que el texto no trae: el Paso 2
+  // avisa que no se muestra (06-spec §2.4; encargo 05)
+  @Column({ name: 'ejemplo_tiene_imagen', type: 'boolean', default: false })
+  ejemploTieneImagen: boolean;
+
   @ManyToOne(() => Area)
   @JoinColumn({ name: 'codigo_area' })
   area: Relation<Area>;

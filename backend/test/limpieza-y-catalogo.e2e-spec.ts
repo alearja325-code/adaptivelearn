@@ -138,9 +138,33 @@ describe('Catálogo curricular (E-14 a E-17): solo lectura, solo docente', () =>
     const numeros = res.body.evidencias.map((e: { numero: number }) => e.numero);
     expect(numeros).toEqual([...numeros].sort((a, b) => a - b));
     expect(numeros[0]).toBe(1);
-    // Sin dictamen todavía (censo QA-014): ni sí ni no
-    expect(res.body.evidencias[0]).toMatchObject({ admiteFormatoCerrado: null, formato: null });
+    // Ciencias Sociales V.1 no trae ejemplo en este DBA (encargo 05)
+    expect(res.body).toMatchObject({ ejemplo: null, ejemploTieneImagen: false });
+    // El dictamen del censo QA-014 (encargo 05): las 4 aplican; la última, «relaciona», con matching
+    expect(res.body.evidencias.map((e: { formato: string }) => e.formato)).toEqual([
+      'single_choice',
+      'single_choice',
+      'single_choice',
+      'matching',
+    ]);
 
     await t.http.get('/catalogo/dbas/MAT-99-99').set(bearer(docente)).expect(404);
+  });
+
+  it('GET /catalogo/dbas/:codigo — el ejemplo, su marca de imagen y las evidencias que no aplican (encargo 05)', async () => {
+    const res = await t.http.get('/catalogo/dbas/MAT-03-01').set(bearer(docente)).expect(200);
+    // el ejemplo del PDF, con la imagen del marcador de baloncesto que no se muestra
+    expect(res.body.ejemplo).toMatch(/^En los partidos de baloncesto, una cesta puede tener un valor de tres puntos/);
+    expect(res.body.ejemploTieneImagen).toBe(true);
+    // #1 «Construye diagramas» y #3 «Propone estrategias»: no aplican (N1); #2 «Resuelve problemas»: sí
+    expect(res.body.evidencias.map((e: { admiteFormatoCerrado: boolean; formato: string | null }) => [
+      e.admiteFormatoCerrado,
+      e.formato,
+    ])).toEqual([
+      [false, null],
+      [true, 'single_choice'],
+      [false, null],
+      [true, 'single_choice'],
+    ]);
   });
 });

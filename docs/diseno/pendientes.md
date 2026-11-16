@@ -347,6 +347,35 @@ conserva el XML dañado, a propósito: es el estado original).
 
 ### A12. Currículo del MEN — anotado 2026-10-24, EN CURSO
 
+**Hecho el 2026-11-10 (encargo 05): el ejemplo de cada DBA y el censo de
+formato cerrado.** En revisión (rama `encargo-05-ejemplos-y-censo`).
+- **Ejemplos** (`catalogo/informe-correccion.md` §8): el catálogo trae
+  ahora el ejemplo de 250 de los 343 DBA, copiado exacto de los PDF, con
+  sus páginas, y la marca `ejemplo_tiene_imagen` (259 incluyen una
+  figura: imagen, dibujo, tabla o fórmula aparte). Se revisaron todas las
+  páginas con ejemplo, renderizadas. **Ciencias Sociales V.1 casi no trae
+  ejemplos** (21 de 82, y solo 18 con texto); 28 de Ciencias Naturales
+  son solo una figura. **7 dudosos** (Matemáticas: fórmulas dentro de la
+  frase que el PDF no trae completas). El verificador comprueba cada
+  ejemplo en su página y atrapa 9 de 9 errores a propósito.
+- **Esto corrige la cifra de ADR-011** ("2 a 8 figuras por área"): casi
+  todos los ejemplos de Matemáticas, Lenguaje y Ciencias Naturales traen
+  una figura. La decisión de ADR-011 no cambia, pero el ejemplo llega a
+  la IA, en la mayoría de los casos, sin su figura. **Pregunta para
+  Alejandro:** ¿se anota en ADR-011 o se abre una ADR nueva?
+- **Censo QA-014** (`censo/informe-censo.md`): 904 de 1282 evidencias
+  (71 %) aplican a formato cerrado: Matemáticas 77 %, **Lenguaje 56 %**,
+  Ciencias Naturales 83 %, Ciencias Sociales 70 %. **16 DBA no tienen
+  ninguna evidencia que aplique** (10 de Lenguaje). **Propuesto por IA,
+  sin validar:** falta que dos integrantes validen
+  `censo/muestra_validacion.md` (40 al azar + 84 dudosas, criterios §5).
+  El informe trae 7 propuestas de ajuste a los criterios.
+- **Cargado en el sistema:** el backend carga el ejemplo, la marca y el
+  dictamen (`evidencia_dictamen`); el Paso 2 muestra las evidencias que
+  no aplican tachadas y el ejemplo, o el aviso de imagen.
+- **Sigue pendiente de esta sección:** validar el censo; los Estándares y
+  los Lineamientos (no auditados).
+
 **Hecho el 2026-10-27 (encargo 02): catálogo corregido y verificado contra
 los PDF.** `data/curriculo-men/catalogo/catalogo_dba.json`, armado por
 `construir_catalogo.py` leyendo los cuatro PDF oficiales (el JSON viejo no
@@ -494,6 +523,10 @@ revisa en local antes de unirlo:
    Prerrequisito de datos de I2. Criterios del censo aceptados ese día
    (`docs/diseno/criterios-censo-formato-cerrado.md`, ADR-042); lo que el
    formato cerrado no alcanza queda para otra versión (QA-017).
+   **Hecho el 2026-11-10, en revisión** (rama
+   `encargo-05-ejemplos-y-censo`): ejemplos y censo, cargados en la base
+   y visibles en el Paso 2 (detalle en A12). **Antes del 06:** validar
+   el censo por muestreo y decidir las propuestas de ajuste del informe.
 5. **06 — I2, experiencia y banco:** se escribe cuando el 05 esté unido.
    Solo con DeepSeek (ADR-043); la clave ya está en el `.env` local y se
    comprobó que responde.

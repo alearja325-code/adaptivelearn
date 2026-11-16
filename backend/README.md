@@ -11,7 +11,9 @@ Hecho hasta el **catálogo curricular** (encargo 03, 2026-10-27):
   completar el perfil y elegir el rol, inicio de sesión, recuperar la contraseña, editar el
   propio perfil, y entrar con Google o Microsoft (cuando se configuren).
 - **El catálogo curricular** (E-14 a E-17): áreas, grados, DBA y evidencias, de solo
-  lectura, para la sesión de un docente.
+  lectura, para la sesión de un docente. Desde el encargo 05 (2026-11-10), cada DBA trae su
+  ejemplo y la marca de si incluye una imagen (`ejemploTieneImagen`), y cada evidencia, el
+  dictamen del censo de formato cerrado (`admiteFormatoCerrado`, `formato`).
 - **Las rutas de la guía del docente** (`/users` para administrador y `/example/*`), que el
   curso evalúa (ADR-040).
 
@@ -64,7 +66,7 @@ la cuenta; **nunca se escribe en el código ni se sube**.
 npm run db:preparar
 ```
 
-Hace cuatro cosas, en orden:
+Hace cinco cosas, en orden:
 
 1. Crea la base `DB_DATABASE` si no existe (`utf8mb4`).
 2. Crea las tablas con **`sql/001_esquema.sql`**. Ese archivo **no se edita a mano**: lo
@@ -75,12 +77,17 @@ Hace cuatro cosas, en orden:
    grados con su nivel y los 4 documentos oficiales del MEN (ADR-033, ADR-036; Ciencias
    Sociales es V.1).
 4. Carga los **343 DBA y sus 1282 evidencias** desde
-   `data/curriculo-men/catalogo/catalogo_dba.json` (encargo 02). Si el catálogo no coincide
-   con los documentos de 002, se detiene: no corrige nada por su cuenta.
+   `data/curriculo-men/catalogo/catalogo_dba.json` (encargo 02), con el **ejemplo** de cada DBA
+   y la marca de si incluye una imagen (encargo 05). Si el catálogo no coincide con los
+   documentos de 002, se detiene: no corrige nada por su cuenta.
+5. Carga el **dictamen de cada evidencia** (si admite pregunta cerrada y con qué formato) en
+   `evidencia_dictamen`, desde `data/curriculo-men/censo/censo_formato_cerrado.json` (censo
+   QA-014, encargo 05). Es un juicio **propuesto por IA y sin validar** (ADR-042). Si el censo
+   no tiene exactamente un dictamen por evidencia, se detiene.
 
-Dos DBA vienen marcados como **dudosos** en el catálogo (`MAT-11-09` y `MAT-11-10`: su página
-del PDF no tiene encabezado de grado) y se cargan tal cual; el script los lista. La tabla
-`evidencia_dictamen` queda vacía hasta el censo QA-014.
+Algunos DBA vienen marcados como **dudosos** en el catálogo (`MAT-11-09` y `MAT-11-10`: su página
+del PDF no tiene encabezado de grado; y siete ejemplos de Matemáticas con fórmulas que el PDF no
+trae completas) y se cargan tal cual; el script los lista.
 
 Si la base ya tiene tablas, el script se detiene. Para empezar de cero —**borra todo**—:
 `node scripts/preparar-base.mjs --borrar`.
@@ -115,7 +122,7 @@ llama a `/users`.
 |---|---|
 | `npm run start:dev` | Arranca y se reinicia solo al guardar cambios |
 | `npm run build` | Compila a `dist/` |
-| `npm run db:preparar` | Crea la base y carga el catálogo (paso 3) |
+| `npm run db:preparar` | Crea la base y carga el catálogo y el censo (paso 3) |
 | `npm test` | Pruebas unitarias |
 | `npm run test:e2e` | Pruebas de punta a punta **contra MySQL**: crea `DB_DATABASE_PRUEBAS` desde cero con el mismo script del paso 3 |
 | `npm run pruebas:guia` | Con el servidor encendido: las 6 pruebas de la sección 7 de la guía y su tabla de respuestas. **Borra las cuentas** de la base de desarrollo (`sql/borrar-cuentas.sql`) para que los ids empiecen en 1 |

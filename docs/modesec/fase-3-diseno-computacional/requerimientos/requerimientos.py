@@ -273,7 +273,7 @@ req("RF-06-01", "SUB-06", S, F, "—",
     ["V-003", "ADR-001", "ADR-011"], "I2")
 req("RF-06-02", "SUB-06", S, F, "—",
     "El sistema debe registrar, por evidencia, si admite formato cerrado, y solo incluir en una experiencia las que sí.",
-    "Es un juicio del proyecto, no un dato del MEN. Las evidencias que no lo admiten se muestran marcadas al elegir el DBA. Censo pendiente: QA-014.",
+    "Es un juicio del proyecto, no un dato del MEN. Las evidencias que no lo admiten se muestran marcadas al elegir el DBA. El censo QA-014 (encargo 05) lo propone para las 1282 evidencias; falta validarlo por muestreo (ADR-042).",
     "—", "—",
     ["V-003", "ADR-006"], "I2")
 
@@ -444,7 +444,7 @@ def generar(esp):
     w("## 5. Vacíos que estos requerimientos heredan, declarados")
     w("")
     w("- ~~**V-11**~~ — **cerrado por ADR-035** (2026-10-26): eliminar una experiencia (RF-02-07) o salir de una (RF-04-12) borra en cascada lo que depende de ella.")
-    w("- **QA-013 / QA-014** — errores de extracción del catálogo y censo de formato cerrado (RF-06-01, RF-06-02).")
+    w("- **QA-013 / QA-014** — los errores de extracción del catálogo se corrigieron (encargo 02); el censo de formato cerrado está hecho y falta validarlo por muestreo (encargo 05, ADR-042) (RF-06-01, RF-06-02).")
     w("- **V-10** — una excepción de contraste, diferida (RNF-03).")
     w("- **RNF-13** — el tiempo límite de la generación no tiene número todavía; se mide.")
     w("- **RNF-06** — la autorización del acudiente: condición no satisfecha que impide usar el sistema con estudiantes reales.")

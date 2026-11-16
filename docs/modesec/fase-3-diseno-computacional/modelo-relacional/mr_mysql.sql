@@ -101,6 +101,7 @@ CREATE TABLE dba (
   id_documento INT UNSIGNED NOT NULL,
   enunciado TEXT NOT NULL,
   ejemplo TEXT NULL,
+  ejemplo_tiene_imagen BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (codigo_dba),
   KEY idx_dba_codigo_area (codigo_area),
   KEY idx_dba_numero_grado (numero_grado),

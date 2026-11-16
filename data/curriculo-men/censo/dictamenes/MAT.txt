@@ -1,0 +1,465 @@
+# Censo de formato cerrado — Matemáticas (V.2)
+# Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
+# DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
+#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+# SEÑAL: el verbo o la frase que decide. Lo escribió la sesión de Claude del
+# encargo 05, evidencia por evidencia (ADR-042): es juicio, no búsqueda de palabras.
+
+# ---- 1°
+MAT-01-01 1 | N1 | construye | «Construye e interpreta representaciones»: la acción principal es construir la representación, un producto propio; elegir la correcta mediría solo reconocerla (N1). «Interpreta» queda cubierto en otras evidencias.
+MAT-01-01 2 | SC | explica | «Explica cómo y por qué es posible hacer una operación»: la explicación de un hecho matemático tiene una correcta y otras equivocadas (single_choice, ADR-006).
+MAT-01-01 3 | SC | reconoce | «Reconoce … posibilidades de uso de los números»: reconocer en qué situación se usa un número o una operación tiene una respuesta correcta (single_choice).
+MAT-01-01 4 | SC | resuelve | «Interpreta y resuelve problemas de juntar, quitar y completar»: un problema con un resultado único (single_choice).
+MAT-01-01 5 | SC | utiliza | «Utiliza las operaciones … para representar el cambio»: elegir la operación que representa un cambio dado tiene una respuesta correcta (single_choice).
+MAT-01-02 1 | SC | realiza conteos | «Realiza conteos (de uno en uno, de dos en dos…) iniciando en cualquier número»: continuar un conteo tiene un número correcto (single_choice).
+MAT-01-02 2 | SC | determina | «Determina la cantidad de elementos de una colección agrupándolos»: la cantidad es una sola (single_choice); el agrupamiento puede ir en el enunciado del ítem.
+MAT-01-02 3 | SC | describe y resuelve | «Describe y resuelve situaciones … a + ? = c»: hallar el término que falta tiene una respuesta (single_choice).
+MAT-01-02 4 | SC | establece conjeturas | «Establece y argumenta conjeturas de los posibles resultados en una secuencia numérica»: la acción principal, conjeturar el resultado siguiente, tiene respuesta correcta (single_choice, criterios §4); «argumenta» no queda cubierto.
+MAT-01-02 5 | N1 | crear estrategias | «Utiliza las características del sistema decimal para crear estrategias de cálculo»: lo que se observa es la estrategia que el estudiante inventa, un producto propio (N1).
+MAT-01-03 1 | SC | realiza composiciones y descomposiciones | «Realiza composiciones y descomposiciones … en dieces y unos»: cada número tiene una descomposición correcta (single_choice).
+MAT-01-03 2 | SC | encuentra | «Encuentra parejas de números que al adicionarse dan … un número dado»: elegir la pareja que suma lo pedido tiene respuesta correcta (single_choice).
+MAT-01-03 3 | SC | halla | «Halla los números … “diez más” o “diez menos”»: resultado único (single_choice).
+MAT-01-03 4 | SC | emplea estrategias | «Emplea estrategias de cálculo como “el paso por el diez”»: la estrategia la da la evidencia; se puede preguntar cuál paso intermedio es el correcto (single_choice).
+MAT-01-04 1 | SC | identifica | «Identifica atributos que se pueden medir»: elegir, entre varios, el atributo medible tiene una respuesta (single_choice).
+MAT-01-04 2 | MT | diferencia … en términos de | «Diferencia atributos medibles … en términos de los instrumentos y las unidades»: relaciona dos conjuntos finitos, atributo con instrumento o unidad (matching).
+MAT-01-04 3 | OR | compara y ordena | «Compara y ordena objetos de acuerdo con atributos»: pide explícitamente un orden (ordering).
+MAT-01-04 4 | OR | compara y ordena | «Compara y ordena colecciones según la cantidad de elementos»: pide explícitamente un orden (ordering).
+MAT-01-05 1 | N4 | mide | «Mide longitudes con diferentes instrumentos»: usar instrumentos reales (N4).
+MAT-01-05 2 | SC | compara | «Compara objetos a partir de su longitud, masa…»: decidir cuál es más largo o más pesado tiene respuesta (single_choice).
+MAT-01-05 3 | N3 | toma decisiones | «Toma decisiones a partir de las mediciones realizadas»: depende de mediciones propias y de una decisión del estudiante; la señal «toma decisiones» es de N3.
+MAT-01-06 1 | N1 | crea, compone | «Crea, compone y descompone formas … utiliza plastilina, papel»: hacer un objeto con material (N1; también N4).
+MAT-01-06 2 | SC | describe | «Describe … las cualidades y propiedades de un objeto relativas a su forma»: elegir la descripción correcta (single_choice). «De forma verbal» no exige conversación.
+MAT-01-06 3 | MT | agrupa | «Agrupa objetos … de acuerdo con las semejanzas y las diferencias»: clasificar objetos en grupos dados relaciona dos conjuntos (matching); «explica el criterio» no queda cubierto. | dudoso: en la evidencia el criterio lo elige el estudiante; el ítem tendría que fijarlo
+MAT-01-06 4 | SC | identifica | «Identifica objetos a partir de las descripciones verbales»: dada la descripción, un objeto correcto (single_choice).
+MAT-01-07 1 | SC | utiliza representaciones | «Utiliza representaciones como planos para ubicarse»: leer un plano para decir dónde está algo tiene respuesta (single_choice).
+MAT-01-07 2 | SC | toma decisiones | «Toma decisiones a partir de la ubicación espacial»: dado un plano, qué camino o lado tomar tiene una respuesta correcta (single_choice). | dudoso: «toma decisiones» es señal de N3, pero aquí la decisión es espacial y tiene respuesta correcta
+MAT-01-07 3 | N1 | dibuja | «Dibuja recorridos»: un dibujo propio (N1).
+MAT-01-07 4 | SC | compara | «Compara distancias a partir de la observación del plano»: cuál distancia es mayor tiene respuesta (single_choice).
+MAT-01-08 1 | SC | identifica | «Identifica y nombra diferencias entre objetos»: elegir la diferencia correcta entre dos objetos (single_choice).
+MAT-01-08 2 | N1 | comunica y justifica | «Comunica las características identificadas y justifica las diferencias»: pide producir una comunicación y su justificación (N1). | dudoso: «comunica» no es una señal de los criterios; podría leerse como N2
+MAT-01-08 3 | SC | establece relaciones | «Establece relaciones de dependencia entre magnitudes»: reconocer qué magnitud depende de cuál tiene respuesta (single_choice).
+MAT-01-09 1 | SC | propone números | «Propone números que satisfacen una igualdad»: el número que hace verdadera la igualdad se puede elegir entre opciones y es correcto o no (single_choice). | dudoso: «propone» es señal de N3; aquí lo propuesto es un valor que se comprueba, no una postura
+MAT-01-09 2 | SC | describe | «Describe las características de los números que deben ubicarse en una ecuación»: elegir la característica correcta (single_choice).
+MAT-01-09 3 | N3 | argumenta | «Argumenta sobre el uso de la propiedad transitiva»: «argumenta» no aplica (N3).
+MAT-01-10 1 | SC | identifica | «Identifica … los valores de la variable en estudio»: cuál es el valor de una ficha tiene respuesta (single_choice).
+MAT-01-10 2 | N1 | organiza | «Organiza los datos en tablas de conteo y/o en pictogramas»: construir la tabla o el pictograma es un producto (N1).
+MAT-01-10 3 | SC | lee | «Lee la información presentada en tablas de conteo y/o pictogramas»: leer un dato de una tabla tiene respuesta (single_choice).
+MAT-01-10 4 | SC | comunica … respondiendo preguntas | «Comunica los resultados respondiendo preguntas tales como: ¿cuántos hay en total?»: las preguntas que nombra tienen respuesta única (single_choice).
+
+# ---- 2°
+MAT-02-01 1 | SC | interpreta y construye | «Interpreta y construye diagramas»: la acción principal es interpretar, elegir qué relación muestra un diagrama (single_choice); «construye» no queda cubierto.
+MAT-02-01 2 | SC | describe y resuelve | «Describe y resuelve situaciones … a + ? = c»: término desconocido con respuesta única (single_choice).
+MAT-02-01 3 | SC | reconoce | «Reconoce … relaciones aditivas y multiplicativas y formula problemas»: reconocer la relación tiene respuesta (single_choice); «formula problemas» no queda cubierto.
+MAT-02-02 1 | N1 | construye | «Construye representaciones pictóricas»: la representación propia es el producto (N1).
+MAT-02-02 2 | SC | usa algoritmos | «Usa algoritmos no convencionales para calcular … los describe y los justifica»: el resultado y el paso de un algoritmo dado tienen respuesta (single_choice); describirlo y justificarlo no queda cubierto. | dudoso: lo propio de la evidencia es el algoritmo no convencional del estudiante, que una pregunta cerrada no ve
+MAT-02-03 1 | OR | compara y ordena | «Compara y ordena números de menor a mayor»: orden explícito (ordering).
+MAT-02-03 2 | N1 | propone ejemplos y comunica | «Propone ejemplos y comunica de forma oral y escrita las condiciones»: producir ejemplos propios y comunicarlos (N1).
+MAT-02-03 3 | SC | reconoce | «Reconoce y establece relaciones entre expresiones numéricas (hay más, hay menos…)»: reconocer la relación tiene respuesta (single_choice).
+MAT-02-04 1 | N4 | utiliza instrumentos | «Utiliza instrumentos y unidades de medición apropiados para medir»: usar instrumentos reales (N4).
+MAT-02-04 2 | SC | describe | «Describe los procedimientos necesarios para medir»: elegir el procedimiento correcto de medición (single_choice).
+MAT-02-04 3 | N4 | mide | «Mide magnitudes con unidades arbitrarias y estandarizadas»: medir con objetos reales (N4).
+MAT-02-04 4 | SC | estima | «Estima la medida de diferentes magnitudes»: elegir la estimación razonable (single_choice, ADR-006).
+MAT-02-05 1 | SC | describe | «Describe objetos y eventos de acuerdo con atributos medibles»: elegir el atributo que describe un objeto (single_choice).
+MAT-02-05 2 | N4 | realiza mediciones | «Realiza mediciones con instrumentos y unidades no convencionales, como pasos»: medir en el mundo (N4).
+MAT-02-05 3 | SC | compara | «Compara eventos según su duración, … utiliza relojes»: leer relojes dibujados y decir cuál dura más (single_choice).
+MAT-02-06 1 | SC | reconoce | «Reconoce las figuras geométricas según el número de lados»: respuesta única (single_choice).
+MAT-02-06 2 | SC | diferencia | «Diferencia los cuerpos geométricos»: elegir el cuerpo que corresponde a un nombre o propiedad (single_choice); no nombra dos conjuntos explícitos.
+MAT-02-06 3 | SC | compara | «Compara figuras y cuerpos geométricos y establece relaciones y diferencias»: elegir la diferencia correcta (single_choice).
+MAT-02-07 1 | SC | describe | «Describe desplazamientos a partir de las posiciones de las líneas»: elegir la descripción correcta de un desplazamiento (single_choice).
+MAT-02-07 2 | SC | representa y reconoce | «Representa líneas y reconoce las diferentes posiciones»: elegir la representación correcta (single_choice; criterios §4, «representa»).
+MAT-02-07 3 | SC | identifica | «identifica posiciones de objetos … paralelas, verticales o perpendiculares»: respuesta única (single_choice).
+MAT-02-07 4 | N3 | argumenta | «Argumenta las diferencias entre las posiciones de las líneas»: «argumenta» no aplica (N3).
+MAT-02-08 1 | SC | establece relaciones | «Establece relaciones de reversibilidad entre la suma y la resta»: elegir la resta que deshace una suma (single_choice).
+MAT-02-08 2 | SC | calcula | «Utiliza diferentes procedimientos para calcular un valor desconocido»: el valor es uno (single_choice).
+MAT-02-09 1 | SC | encuentra | «Utiliza las propiedades … para encontrar números desconocidos en igualdades»: respuesta única (single_choice).
+MAT-02-09 2 | SC | encuentra | «… para encontrar operaciones faltantes»: la operación faltante es una (single_choice).
+MAT-02-09 3 | SC | reconoce | «Reconoce que un número puede escribirse de varias maneras equivalentes»: elegir la escritura equivalente (single_choice).
+MAT-02-09 4 | SC | utiliza ensayo y error | «Utiliza ensayo y error para encontrar valores»: el valor encontrado se puede elegir entre opciones (single_choice). | dudoso: la evidencia habla del método (ensayo y error), que la pregunta cerrada no observa; solo ve el resultado
+MAT-02-10 1 | SC | identifica | «Identifica la equivalencia de fichas … con el valor de la variable»: respuesta única (single_choice).
+MAT-02-10 2 | N1 | organiza | «Organiza los datos en tablas de conteo y en pictogramas con escala»: construir la tabla o el pictograma (N1).
+MAT-02-10 3 | SC | lee | «Lee la información presentada en tablas … y gráficos de puntos»: respuesta única (single_choice).
+MAT-02-10 4 | SC | comunica … respondiendo preguntas | «Comunica los resultados respondiendo preguntas tales como: ¿cuántos hay en total?»: preguntas con respuesta única (single_choice).
+MAT-02-11 1 | MT | diferencia … de | «Diferencia situaciones … cuyo resultado puede ser incierto de aquellas cuyo resultado es conocido»: clasificar situaciones en dos grupos (matching).
+MAT-02-11 2 | SC | identifica | «Identifica resultados posibles o imposibles»: respuesta única (single_choice).
+MAT-02-11 3 | SC | predice | «Predice la ocurrencia o no de eventos cotidianos»: la predicción correcta se elige entre opciones (single_choice, ADR-006).
+
+# ---- 3°
+MAT-03-01 1 | N1 | construye | «Construye diagramas para representar las relaciones»: el diagrama propio es el producto (N1).
+MAT-03-01 2 | SC | resuelve | «Resuelve problemas aditivos … y multiplicativos»: resultado único (single_choice).
+MAT-03-01 3 | N1 | propone estrategias | «Propone estrategias para calcular el número de combinaciones»: la estrategia propia es el producto (N1).
+MAT-03-01 4 | SC | analiza e identifica | «Analiza los resultados … e identifica las condiciones bajo las cuales ese resultado es o no plausible»: decidir si un resultado es plausible tiene respuesta (single_choice).
+MAT-03-02 1 | SC | utiliza … para justificar | «Utiliza las propiedades … para justificar acciones como descomposición, duplicar»: elegir la propiedad que justifica un paso dado (single_choice). | dudoso: «justificar» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+MAT-03-02 2 | SC | reconoce | «Reconoce el uso de las operaciones para calcular la medida»: elegir la operación correcta (single_choice).
+MAT-03-02 3 | N3 | argumenta | «Argumenta cuáles atributos … pueden ser medidos»: «argumenta» no aplica (N3).
+MAT-03-03 1 | N4 | realiza mediciones | «Realiza mediciones de un mismo objeto con otros de diferente tamaño»: medir con objetos reales (N4).
+MAT-03-03 2 | SC | utiliza | «Utiliza las razones y fracciones … para establecer comparaciones»: la fracción que compara dos cantidades es una (single_choice).
+MAT-03-03 3 | SC | propone ejemplos | «Propone ejemplos de cantidades que se relacionan … según una fracción dada»: un ejemplo cumple o no la fracción, y se puede elegir (single_choice). | dudoso: «propone» es señal de N3; aquí lo propuesto se comprueba, pero elegir mide reconocer y no producir el ejemplo
+MAT-03-03 4 | SC | utiliza fracciones | «Utiliza fracciones para expresar la relación de “el todo” con … sus “partes”»: la fracción correcta es una (single_choice).
+MAT-03-04 1 | SC | toma decisiones | «Toma decisiones sobre la magnitud a medir (área o longitud) según la necesidad»: en cada situación una magnitud es la correcta (single_choice). | dudoso: «toma decisiones» es señal de N3, pero esta decisión tiene respuesta correcta
+MAT-03-04 2 | N4 | realiza recubrimientos | «Realiza recubrimientos de superficies con diferentes figuras planas»: manipular figuras sobre una superficie (N4).
+MAT-03-04 3 | SC | mide y calcula | «Mide y calcula el área y el perímetro de un rectángulo»: con las medidas dadas, el cálculo tiene resultado único (single_choice); «mide» con instrumento no queda cubierto.
+MAT-03-04 4 | SC | explica | «Explica cómo figuras de igual perímetro pueden tener diferente área»: explicación de un hecho (single_choice).
+MAT-03-05 1 | SC | compara | «Compara objetos según su longitud, área, capacidad»: respuesta única (single_choice).
+MAT-03-05 2 | SC | hace estimaciones | «Hace estimaciones de longitud, área, volumen…»: elegir la estimación razonable (single_choice).
+MAT-03-05 3 | SC | hace estimaciones | «Hace estimaciones de volumen, área y longitud … en ausencia de ellos»: la estimación sin los objetos se elige entre opciones (single_choice); la parte «en presencia de los objetos y los instrumentos» no queda cubierta.
+MAT-03-05 4 | N4 | empaca objetos | «Empaca objetos en cajas y recipientes variados»: manipular objetos reales (N4).
+MAT-03-06 1 | MT | relaciona | «Relaciona objetos de su entorno con formas bidimensionales y tridimensionales»: dos conjuntos, objeto y forma (matching).
+MAT-03-06 2 | MT | clasifica | «Clasifica y representa formas … tomando en cuenta sus características geométricas comunes»: clasificar formas en grupos dados (matching); «representa» y «describe el criterio» no quedan cubiertos.
+MAT-03-06 3 | SC | interpreta y compara | «Interpreta, compara y justifica propiedades de formas»: elegir la propiedad correcta (single_choice); «justifica» no queda cubierto.
+MAT-03-07 1 | SC | localiza | «Localiza objetos o personas a partir de la descripción … de una trayectoria»: el punto de llegada es uno (single_choice); «construye representaciones» no queda cubierto.
+MAT-03-07 2 | SC | identifica y describe | «Identifica y describe patrones de movimiento … reflexiones, traslaciones y rotaciones»: decir qué transformación se aplicó tiene respuesta (single_choice).
+MAT-03-07 3 | SC | identifica | «Identifica las propiedades … que se conservan y las que varían»: respuesta única (single_choice).
+MAT-03-07 4 | SC | plantea y resuelve | «Plantea y resuelve situaciones en las que se requiere analizar las transformaciones»: resolver la situación tiene respuesta (single_choice); «plantea» no queda cubierto.
+MAT-03-08 1 | SC | describe | «Describe de manera cualitativa situaciones de cambio y variación utilizando lenguaje natural, gestos, dibujos»: elegir la descripción correcta del cambio (single_choice). | dudoso: la evidencia nombra gestos y dibujos, que la pregunta cerrada no observa
+MAT-03-08 2 | N1 | construye | «Construye secuencias numéricas y geométricas»: la secuencia propia es el producto (N1).
+MAT-03-08 3 | SC | encuentra y representa | «Encuentra y representa generalidades y valida sus hallazgos»: la generalidad de una secuencia dada es una (single_choice); «valida» no queda cubierto.
+MAT-03-09 1 | N1 | propone soluciones | «Propone soluciones con base en los datos a pesar de no conocer el número»: la solución propia, con datos incompletos, es el producto (N1).
+MAT-03-09 2 | N3 | toma decisiones | «Toma decisiones sobre cantidades aunque no conozca exactamente los valores»: sin valores exactos no hay una única respuesta; señal de N3.
+MAT-03-09 3 | SC | trabaja sobre números desconocidos | «Trabaja sobre números desconocidos … para dar respuestas a los problemas»: un problema con un dato desconocido tiene respuesta (single_choice).
+MAT-03-10 1 | SC | identifica y halla | «Identifica las características de la población y halla su tamaño»: respuesta única (single_choice).
+MAT-03-10 2 | N1 | construye | «Construye tablas y gráficos»: producto propio (N1).
+MAT-03-10 3 | SC | interpreta | «Analiza e interpreta información que ofrecen las tablas y los gráficos»: preguntas sobre un gráfico dado (single_choice).
+MAT-03-10 4 | SC | identifica | «Identifica la moda»: respuesta única (single_choice).
+MAT-03-10 5 | SC | compara | «Compara la información representada en diferentes tablas y gráficos para formular y responder preguntas»: responder preguntas comparando dos gráficos (single_choice); «formular» no queda cubierto.
+MAT-03-11 1 | SC | formula y resuelve | «Formula y resuelve preguntas que involucran … imposible, menos posible, igualmente posible»: jerarquizar la posibilidad de eventos dados tiene respuesta (single_choice); «formula» no queda cubierto.
+MAT-03-11 2 | SC | representa | «Representa los posibles resultados de una situación aleatoria simple por enumeración o usando diagramas»: elegir la enumeración correcta (single_choice; criterios §4, «representa»).
+MAT-03-11 3 | SC | asigna | «Asigna la posibilidad de ocurrencia de un evento de acuerdo con la escala definida»: respuesta única (single_choice).
+MAT-03-11 4 | SC | predice | «Predice la posibilidad de ocurrencia … al utilizar los resultados de una situación aleatoria»: predicción con respuesta (single_choice).
+
+# ---- 4°
+MAT-04-01 1 | SC | describe | «Describe situaciones en las cuales puede usar fracciones y decimales»: elegir la situación en que se usa una fracción (single_choice).
+MAT-04-01 2 | SC | reconoce y determina | «Reconoce situaciones en las que dos cantidades covarían … determina la razón entre ellas»: la razón es una (single_choice).
+MAT-04-02 1 | SC | utiliza | «Utiliza el sistema de numeración decimal para representar, comparar y operar con números mayores o iguales a 10.000»: respuestas únicas (single_choice).
+MAT-04-02 2 | SC | describe | «Describe y desarrolla estrategias para calcular sumas y restas basadas en descomposiciones»: describir un paso de una descomposición dada tiene respuesta (single_choice); «desarrolla» no queda cubierto.
+MAT-04-02 3 | SC | utiliza | «Utiliza y justifica algoritmos … para realizar operaciones aditivas con representaciones decimales»: el resultado de la operación es uno (single_choice); «justifica» no queda cubierto.
+MAT-04-02 4 | SC | identifica | «Identifica y construye fracciones equivalentes a una fracción dada»: elegir la equivalente (single_choice); «construye» no queda cubierto.
+MAT-04-02 5 | N1 | propone estrategias | «Propone estrategias para calcular sumas y restas de algunos fraccionarios»: la estrategia propia es el producto (N1).
+MAT-04-03 1 | N1 | construye | «Construye y utiliza representaciones pictóricas para comparar números racionales»: la acción principal es construir la representación propia (N1).
+MAT-04-03 2 | SC | establece criterios | «Establece, justifica y utiliza criterios para comparar fracciones y decimales»: elegir el criterio que permite comparar, o la comparación correcta (single_choice); «justifica» no queda cubierto.
+MAT-04-03 3 | N1 | construye | «Construye y compara expresiones numéricas que contienen decimales y fracciones»: la acción principal es construir la expresión (N1).
+MAT-04-04 1 | SC | reconoce | «Reconoce que para medir la capacidad y la masa se hacen comparaciones con … recipientes y paquetes»: respuesta correcta (single_choice).
+MAT-04-04 2 | MT | diferencia … a partir de | «Diferencia los atributos medibles … a partir de los procedimientos e instrumentos empleados para medirlos»: relaciona atributo con instrumento (matching).
+MAT-04-04 3 | SC | identifica | «Identifica unidades y los instrumentos para medir masa y capacidad»: elegir la unidad o el instrumento correcto (single_choice).
+MAT-04-04 4 | SC | describe | «Describe procesos para medir capacidades … o el peso»: elegir el proceso correcto (single_choice).
+MAT-04-04 5 | N3 | argumenta | «Argumenta sobre la importancia y necesidad de medir algunas magnitudes»: «argumenta» no aplica (N3).
+MAT-04-05 1 | SC | expresa … establece equivalencias | «Expresa una misma medida en diferentes unidades, establece equivalencias … y toma decisiones de la unidad más conveniente»: conversiones con respuesta única (single_choice).
+MAT-04-05 2 | N1 | propone procedimientos | «Propone diferentes procedimientos para realizar cálculos»: los procedimientos propios son el producto (N1).
+MAT-04-05 3 | SC | emplea | «Emplea las relaciones de proporcionalidad directa e inversa para resolver diversas situaciones»: resultado único (single_choice).
+MAT-04-05 4 | N1 | propone y explica procedimientos | «Propone y explica procedimientos para lograr mayor precisión en la medición»: la acción principal es proponer un procedimiento propio (N1).
+MAT-04-06 1 | N1 | arma, desarma y crea | «Arma, desarma y crea formas bidimensionales y tridimensionales»: hacer formas con material (N1; también N4).
+MAT-04-06 2 | SC | reconoce | «Reconoce entre un conjunto de desarrollos planos, los que corresponden a determinados sólidos»: respuesta única (single_choice).
+MAT-04-07 1 | SC | aplica movimientos | «Aplica movimientos a figuras en el plano»: elegir la figura que resulta de una rotación o traslación (single_choice).
+MAT-04-07 2 | MT | diferencia | «Diferencia los efectos de la ampliación y la reducción»: clasificar efectos en dos grupos (matching).
+MAT-04-07 3 | N3 | elabora argumentos | «Elabora argumentos referente a las modificaciones que sufre una imagen»: es argumentar (N3).
+MAT-04-07 4 | N1 | representa elementos del entorno | «Representa elementos del entorno que sufren modificaciones en su forma»: el elemento lo escoge el estudiante y la representación es suya (N1).
+MAT-04-08 1 | SC | realiza cálculos | «Realiza cálculos numéricos, organiza la información en tablas, elabora representaciones gráficas y las interpreta»: la primera acción, calcular, e interpretar tienen respuesta (single_choice); organizar y elaborar no quedan cubiertos.
+MAT-04-08 2 | N1 | propone patrones | «Propone patrones de comportamiento numérico»: el patrón propio es el producto (N1).
+MAT-04-08 3 | SC | trabaja sobre números desconocidos | «Trabaja sobre números desconocidos … para dar respuestas a los problemas»: respuesta única (single_choice).
+MAT-04-09 1 | N1 | comunica en forma verbal y pictórica | «Comunica en forma verbal y pictórica las regularidades observadas»: pide producir la comunicación, oral y en dibujo (N1). | dudoso: «comunica» no es una señal de los criterios; la regularidad sí se podría elegir entre opciones
+MAT-04-09 2 | N1 | establece estrategias | «Establece diferentes estrategias para calcular los siguientes elementos»: las estrategias propias son el producto (N1).
+MAT-04-09 3 | SC | conjetura | «Conjetura y argumenta un valor futuro … (predecir la posición 10, 20 o 100)»: el valor en la posición pedida es uno (single_choice, criterios §4); «argumenta» no queda cubierto.
+MAT-04-10 1 | N1 | elabora encuestas | «Elabora encuestas sencillas»: producto propio (N1).
+MAT-04-10 2 | N1 | construye | «Construye tablas de doble entrada y gráficos»: producto propio (N1).
+MAT-04-10 3 | SC | lee e interpreta | «Lee e interpreta los datos representados en tablas … y gráficos»: respuesta única (single_choice).
+MAT-04-10 4 | SC | encuentra e interpreta | «Encuentra e interpreta la moda y el rango»: respuesta única (single_choice).
+MAT-04-11 1 | SC | reconoce | «Reconoce situaciones aleatorias en contextos cotidianos»: respuesta única (single_choice).
+MAT-04-11 2 | SC | enuncia diferencias | «Enuncia diferencias entre situaciones aleatorias y deterministas»: elegir la diferencia correcta, como «explica» (single_choice).
+MAT-04-11 3 | SC | usa adecuadamente | «Usa adecuadamente expresiones como azar o posibilidad»: elegir la expresión adecuada para una situación (single_choice).
+MAT-04-11 4 | SC | anticipa | «Anticipa los posibles resultados de una situación aleatoria»: como en la prueba de los criterios (§7), aplica (single_choice).
+
+# ---- 5°
+MAT-05-01 1 | SC | interpreta y representa | «Interpreta la relación parte - todo y la representa por medio de fracciones»: la fracción correcta es una (single_choice).
+MAT-05-01 2 | SC | interpreta y utiliza | «Interpreta y utiliza números naturales y racionales … para solucionar problemas»: resultado único (single_choice).
+MAT-05-01 3 | SC | determina | «Determina las operaciones suficientes y necesarias para solucionar … problemas»: elegir la operación correcta (single_choice).
+MAT-05-01 4 | SC | resuelve | «Resuelve problemas que requieran reconocer un patrón de medida»: resultado único (single_choice).
+MAT-05-02 1 | SC | utiliza … para justificar | «Utiliza las propiedades de las operaciones … para justificar algunas estrategias de cálculo»: elegir la propiedad que justifica una estrategia dada (single_choice). | dudoso: «justificar» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+MAT-05-02 2 | SC | descompone | «Descompone un número en sus factores primos»: respuesta única (single_choice).
+MAT-05-02 3 | SC | identifica y utiliza | «Identifica y utiliza las propiedades de la potenciación para resolver problemas»: respuesta única (single_choice).
+MAT-05-02 4 | SC | determina la validez | «Determina y argumenta acerca de la validez o no de estrategias para calcular potencias»: si una estrategia dada es válida o no tiene respuesta (single_choice, criterios §4); «argumenta» no queda cubierto.
+MAT-05-03 1 | SC | representa | «Representa fracciones con la ayuda de la recta numérica»: elegir el punto correcto (single_choice).
+MAT-05-03 2 | SC | determina criterios | «Determina criterios para ordenar fracciones y expresiones decimales»: elegir el criterio correcto o la fracción mayor (single_choice); ante la duda con ordering, single_choice (criterios §3).
+MAT-05-04 1 | SC | determina | «Determina las medidas reales de una figura a partir de un registro gráfico (un plano)»: cálculo con escala, respuesta única (single_choice).
+MAT-05-04 2 | N4 | mide | «Mide superficies y longitudes utilizando diferentes estrategias (composición, recubrimiento, bordeado, cálculo)»: medir con material (N4).
+MAT-05-04 3 | N1 | construye | «Construye y descompone figuras planas y sólidos a partir de medidas establecidas»: producto propio (N1).
+MAT-05-04 4 | SC | realiza estimaciones | «Realiza estimaciones y mediciones con unidades apropiadas»: elegir la estimación o la unidad apropiada (single_choice); medir con instrumentos no queda cubierto.
+MAT-05-05 1 | SC | compara | «Compara diferentes figuras a partir de las medidas de sus lados»: respuesta única (single_choice).
+MAT-05-05 2 | SC | calcula | «Calcula las medidas de los lados de una figura a partir de su área»: respuesta única (single_choice).
+MAT-05-05 3 | N1 | dibuja | «Dibuja figuras planas cuando se dan las medidas de los lados»: dibujo propio (N1).
+MAT-05-05 4 | N1 | propone estrategias | «Propone estrategias para la solución de problemas relativos a la medida de la superficie»: estrategia propia (N1).
+MAT-05-05 5 | SC | reconoce | «Reconoce que figuras con áreas diferentes pueden tener el mismo perímetro»: respuesta correcta (single_choice).
+MAT-05-05 6 | N4 | mide | «Mide superficies y longitudes utilizando diferentes estrategias (composición, recubrimiento, bordeado, cálculo)»: medir con material (N4).
+MAT-05-06 1 | MT | relaciona | «Relaciona objetos tridimensionales … con sus respectivos desarrollos planos»: dos conjuntos (matching).
+MAT-05-06 2 | SC | reconoce | «Reconoce relaciones intra e interfigurales»: respuesta correcta (single_choice).
+MAT-05-06 3 | SC | determina | «Determina las mediciones reales de una figura a partir de un registro gráfico (un plano)»: cálculo con escala (single_choice).
+MAT-05-06 4 | N1 | construye | «Construye y descompone figuras planas y sólidos a partir de medidas establecidas»: producto propio (N1).
+MAT-05-06 5 | SC | utiliza transformaciones | «Utiliza transformaciones a figuras en el plano para describirlas y calcular sus medidas»: respuesta única (single_choice).
+MAT-05-06 6 | SC | reconoce y lee | «Reconoce diferentes distribuciones de plantillas de un cuerpo … lee la información que presenta la plantilla»: respuesta correcta (single_choice).
+MAT-05-07 1 | SC | localiza | «Localiza puntos en un mapa a partir de coordenadas cartesianas»: respuesta única (single_choice).
+MAT-05-07 2 | SC | interpreta | «Interpreta los elementos de un sistema de referencia (ejes, cuadrantes, coordenadas)»: respuesta única (single_choice).
+MAT-05-07 3 | N1 | grafica | «Grafica en el plano cartesiano la posición de un objeto»: pide hacer la gráfica a mano (N1; criterios §4, «representa»).
+MAT-05-07 4 | SC | emplea … al resolver | «Emplea el plano cartesiano al plantear y resolver situaciones de localización»: resolver tiene respuesta (single_choice); «plantear» no queda cubierto.
+MAT-05-07 5 | SC | representa | «Representa en forma gráfica y simbólica la localización y trayectoria de un objeto»: elegir la representación correcta (single_choice; criterios §4).
+MAT-05-08 1 | N1 | propone patrones | «Propone patrones de comportamiento numéricos y … gráficos»: patrón propio (N1).
+MAT-05-08 2 | SC | realiza cálculos | «Realiza cálculos numéricos, organiza la información en tablas, elabora representaciones gráficas y las interpreta»: calcular e interpretar tienen respuesta (single_choice); organizar y elaborar no quedan cubiertos.
+MAT-05-08 3 | SC | trabaja sobre números desconocidos | «Trabaja sobre números desconocidos para dar respuestas a los problemas»: respuesta única (single_choice).
+MAT-05-09 1 | SC | interpreta y opera | «Interpreta y opera con operaciones no convencionales»: con la regla dada, el resultado es uno (single_choice).
+MAT-05-09 2 | SC | explora y busca propiedades | «Explora y busca propiedades de tales operaciones»: reconocer qué propiedad cumple una operación dada tiene respuesta (single_choice). | dudoso: la evidencia es un proceso de indagación; la pregunta cerrada solo ve si reconoce la propiedad
+MAT-05-09 3 | SC | compara | «Compara las propiedades de las operaciones convencionales … con … las no convencionales»: respuesta correcta (single_choice).
+MAT-05-09 4 | SC | resuelve | «Resuelve ecuaciones numéricas cuando se involucran operaciones no convencionales»: solución única (single_choice).
+MAT-05-10 1 | N1 | formula preguntas y elabora encuestas | «Formula preguntas y elabora encuestas para obtener los datos requeridos»: producto propio (N1).
+MAT-05-10 2 | N1 | registra, organiza y presenta | «Registra, organiza y presenta la información recolectada usando tablas, gráficos»: producto propio (N1).
+MAT-05-10 3 | SC | selecciona | «Selecciona los gráficos teniendo en cuenta el tipo de datos»: el gráfico adecuado para un tipo de datos se elige (single_choice).
+MAT-05-10 4 | SC | interpreta | «Interpreta la información obtenida y produce conclusiones que le permiten comparar dos grupos de datos»: interpretar datos dados tiene respuesta (single_choice); «produce conclusiones» no queda cubierto.
+MAT-05-10 5 | N1 | escribe informes | «Escribe informes sencillos»: texto propio (N1).
+MAT-05-11 1 | SC | interpreta y encuentra | «Interpreta y encuentra la media y la mediana»: respuesta única (single_choice).
+MAT-05-11 2 | SC | explica | «Explica la información que brinda cada medida»: explicación con respuesta correcta (single_choice).
+MAT-05-11 3 | SC | selecciona | «Selecciona una de las medidas como la más representativa»: con datos dados (por ejemplo, con un valor atípico) hay una elección correcta (single_choice).
+MAT-05-11 4 | N3 | argumenta | «Argumenta la selección realizada»: «argumenta» no aplica (N3).
+MAT-05-12 1 | SC | reconoce | «Reconoce situaciones aleatorias»: respuesta correcta (single_choice).
+MAT-05-12 2 | SC | enumera | «Enumera todos los posibles resultados de un experimento aleatorio simple»: elegir la lista completa (single_choice).
+MAT-05-12 3 | SC | identifica y enumera | «Identifica y enumera los resultados favorables»: respuesta única (single_choice).
+MAT-05-12 4 | SC | anticipa | «Anticipa la ocurrencia de un evento simple»: predicción con respuesta (single_choice).
+
+# ---- 6°
+MAT-06-01 1 | SC | resuelve | «Resuelve problemas en los que intervienen cantidades positivas y negativas»: resultado único (single_choice).
+MAT-06-01 2 | N1 | propone y justifica estrategias | «Propone y justifica diferentes estrategias para resolver problemas»: estrategia propia (N1).
+MAT-06-01 3 | SC | representa | «Representa en la recta numérica la posición de un número»: elegir el punto (single_choice).
+MAT-06-01 4 | SC | interpreta | «Interpreta y justifica cálculos numéricos al solucionar problemas»: interpretar un cálculo dado tiene respuesta (single_choice); «justifica» no queda cubierto.
+MAT-06-02 1 | N1 | propone y utiliza procedimientos | «Propone y utiliza diferentes procedimientos para realizar operaciones»: la acción principal es proponer procedimientos propios (N1).
+MAT-06-02 2 | N3 | argumenta | «Argumenta de diversas maneras la necesidad de establecer relaciones»: «argumenta» no aplica (N3).
+MAT-06-03 1 | SC | determina criterios | «Determina criterios de comparación para establecer relaciones de orden entre dos o más números»: elegir el criterio o la relación correcta (single_choice).
+MAT-06-03 2 | SC | representa | «Representa en la recta numérica la posición de un número»: elegir el punto (single_choice).
+MAT-06-03 3 | SC | describe | «Describe procedimientos para resolver ecuaciones lineales»: elegir el paso correcto (single_choice).
+MAT-06-04 1 | N1 | construye plantillas | «Construye plantillas para cuerpos geométricos dadas sus medidas»: producto propio (N1).
+MAT-06-04 2 | SC | selecciona | «Selecciona las plantillas que genera cada cuerpo»: respuesta única (single_choice).
+MAT-06-04 3 | N4 | utiliza la regla y el compás | «Utiliza la regla no graduada y el compás para dibujar las plantillas»: instrumentos reales (N4).
+MAT-06-05 1 | SC | decide y analiza las causas de error | «Decide acerca de las estrategias para determinar qué tan pertinente es la estimación y analiza las causas de error»: reconocer una causa de error en una medición dada tiene respuesta (single_choice). | dudoso: «decide» es señal de N3; la parte de decidir la pertinencia puede no tener una única respuesta
+MAT-06-05 2 | SC | estima | «Estima el resultado de una medición sin realizarla, de acuerdo con un referente previo»: elegir la estimación razonable (single_choice); «valora el resultado» no queda cubierto.
+MAT-06-05 3 | SC | estima | «Estima la medida de longitudes, áreas, volúmenes … en presencia o no de los objetos y decide sobre la conveniencia de los instrumentos»: estimar sin los objetos y elegir el instrumento conveniente tienen respuesta (single_choice).
+MAT-06-06 1 | SC | diferencia | «Diferencia las propiedades geométricas de las figuras y cuerpos geométricos»: elegir la propiedad que corresponde (single_choice; ante la duda con matching).
+MAT-06-06 2 | SC | identifica | «Identifica los elementos que componen las figuras y cuerpos geométricos»: respuesta única (single_choice).
+MAT-06-06 3 | SC | describe | «Describe las congruencias y semejanzas en figuras»: elegir la descripción correcta (single_choice).
+MAT-06-06 4 | SC | estima | «Estima áreas y volúmenes»: elegir la estimación razonable (single_choice).
+MAT-06-06 5 | N1 | construye | «Construye cuerpos geométricos con el apoyo de instrumentos de medida»: producto propio con instrumentos (N1; también N4).
+MAT-06-07 1 | SC | localiza, describe y representa | «Localiza, describe y representa la posición y la trayectoria de un objeto en un plano cartesiano»: respuesta única (single_choice).
+MAT-06-07 2 | SC | identifica e interpreta | «Identifica e interpreta la semejanza de dos figuras al realizar rotaciones, ampliaciones y reducciones»: respuesta correcta (single_choice).
+MAT-06-08 1 | N1 | propone patrones | «Propone patrones de comportamiento numéricos y expresa … los procedimientos»: patrón propio (N1).
+MAT-06-08 2 | SC | realiza cálculos | «Realiza cálculos numéricos, organiza la información en tablas, elabora representaciones gráficas y las interpreta»: calcular e interpretar tienen respuesta (single_choice); organizar y elaborar no quedan cubiertos.
+MAT-06-08 3 | SC | trabaja sobre números desconocidos | «Trabaja sobre números desconocidos … para dar respuestas a los problemas»: respuesta única (single_choice).
+MAT-06-09 1 | SC | utiliza | «Utiliza las operaciones y sus inversas en problemas de cálculo numérico»: respuesta única (single_choice).
+MAT-06-09 2 | SC | realiza cálculos | «Realiza cálculos numéricos, organiza la información en tablas, elabora representaciones gráficas y las interpreta»: calcular e interpretar tienen respuesta (single_choice); organizar y elaborar no quedan cubiertos.
+MAT-06-09 3 | SC | resuelve | «Realiza combinaciones de operaciones, encuentra propiedades y resuelve ecuaciones»: respuestas únicas (single_choice).
+MAT-06-10 1 | SC | lee y extrae | «Lee y extrae la información estadística publicada»: respuesta única sobre una fuente dada (single_choice).
+MAT-06-10 2 | N1 | plantea una pregunta | «Plantea una pregunta que le facilite recolectar información»: la pregunta propia es el producto (N1).
+MAT-06-10 3 | N1 | organiza y representa | «Organiza la información recolectada en tablas y la representa mediante gráficas»: producto propio con sus datos (N1).
+MAT-06-10 4 | SC | calcula | «Calcula las medidas requeridas de acuerdo a los datos recolectados»: con datos dados, el cálculo es único (single_choice).
+MAT-06-10 5 | N1 | escribe un informe | «Escribe un informe»: texto propio (N1).
+MAT-06-11 1 | SC | comprende la diferencia | «Comprende la diferencia entre la muestra y la población»: respuesta correcta (single_choice).
+MAT-06-11 2 | SC | selecciona | «Selecciona y produce representaciones gráficas apropiadas al conjunto de datos»: elegir el gráfico apropiado (single_choice); «produce» no queda cubierto.
+MAT-06-11 3 | SC | interpreta | «Interpreta la información que se presenta en los gráficos usando las medidas de tendencia central»: respuesta única (single_choice).
+MAT-06-11 4 | SC | compara | «Compara las características de dos o más poblaciones … haciendo uso … de las medidas de tendencia central»: respuesta correcta con datos dados (single_choice).
+MAT-06-11 5 | SC | describe | «Describe el comportamiento de las características de dos o más poblaciones»: elegir la descripción correcta (single_choice).
+MAT-06-12 1 | SC | enumera | «Enumera los posibles resultados de un experimento aleatorio sencillo»: elegir la lista completa (single_choice).
+MAT-06-12 2 | N4 | realiza repeticiones del experimento | «Realiza repeticiones del experimento aleatorio sencillo y registra los resultados»: experimentar (N4).
+MAT-06-12 3 | SC | interpreta y asigna | «Interpreta y asigna la probabilidad de ocurrencia de un evento dado»: respuesta única (single_choice).
+MAT-06-12 4 | SC | compara | «Compara los resultados obtenidos experimentalmente con las predicciones anticipadas»: con resultados dados, la comparación tiene respuesta (single_choice).
+
+# ---- 7°
+MAT-07-01 1 | SC | describe | «Describe situaciones en las que los números enteros y racionales … están presentes»: elegir la situación correcta (single_choice).
+MAT-07-01 2 | SC | utiliza los signos | «Utiliza los signos “positivo” y “negativo” para describir cantidades relativas»: respuesta única (single_choice).
+MAT-07-01 3 | SC | resuelve | «Resuelve problemas en los que se involucran variaciones porcentuales»: resultado único (single_choice).
+MAT-07-02 1 | SC | representa | «Representa los números enteros y racionales en una recta numérica»: elegir el punto (single_choice).
+MAT-07-02 2 | SC | estima | «Estima el valor de una raíz cuadrada y de una potencia»: elegir la estimación (single_choice).
+MAT-07-02 3 | N1 | construye | «Construye representaciones geométricas y pictóricas»: producto propio (N1).
+MAT-07-02 4 | SC | calcula e interpreta | «Calcula e interpreta el máximo común divisor y el mínimo común múltiplo»: respuesta única (single_choice).
+MAT-07-02 5 | SC | describe | «Describe procedimientos para calcular el resultado de una operación»: elegir el procedimiento correcto (single_choice).
+MAT-07-03 1 | SC | realiza operaciones | «Realiza operaciones para calcular el número decimal que representa una fracción»: respuesta única (single_choice).
+MAT-07-03 2 | SC | usa las propiedades | «Usa las propiedades distributiva, asociativa … para proponer diferentes caminos al realizar un cálculo»: reconocer qué propiedad permite un camino dado tiene respuesta (single_choice); proponer caminos propios no queda cubierto.
+MAT-07-03 3 | SC | determina | «Determina el valor desconocido de una cantidad»: respuesta única (single_choice).
+MAT-07-04 1 | SC | identifica y selecciona | «Identifica los tipos de escalas y selecciona la adecuada»: respuesta correcta (single_choice).
+MAT-07-04 2 | SC | expresa | «Expresa la misma medida con diferentes unidades»: conversión única (single_choice).
+MAT-07-04 3 | SC | representa e interpreta | «Representa e interpreta situaciones de ampliación y reducción»: elegir la representación correcta (single_choice).
+MAT-07-05 1 | MT | establece relaciones entre | «Establece relaciones entre la posición y las vistas de un objeto»: relaciona dos conjuntos, posición y vista (matching).
+MAT-07-05 2 | SC | reconoce e interpreta | «Reconoce e interpreta la representación de un objeto»: respuesta correcta (single_choice).
+MAT-07-05 3 | SC | representa | «Representa objetos tridimensionales cuando se transforman»: elegir la representación del objeto transformado (single_choice; criterios §4).
+MAT-07-06 1 | SC | interpreta | «Interpreta las modificaciones entre el perímetro y el área con un factor de variación»: respuesta única (single_choice).
+MAT-07-06 2 | SC | establece diferencias | «Establece diferencias entre los gráficos del perímetro y del área»: elegir la diferencia correcta (single_choice).
+MAT-07-06 3 | SC | coordina los cambios | «Coordina los cambios de la variación entre el perímetro y la longitud de los lados»: cómo cambia uno cuando cambia el otro tiene respuesta (single_choice).
+MAT-07-06 4 | N1 | organiza | «Organiza la información (registros tabulares y gráficos)»: producto propio (N1).
+MAT-07-07 1 | SC | plantea modelos | «Plantea modelos algebraicos, gráficos o numéricos en los que identifica variables»: elegir el modelo que corresponde a una situación (single_choice; criterios §4, «representa»). | dudoso: plantear un modelo es cercano a «representa» (aplica si se elige), pero aquí el modelo lo construye el estudiante
+MAT-07-07 2 | N3 | toma decisiones informadas | «Toma decisiones informadas en exploraciones … de los modelos matemáticos usados»: decisiones propias en una exploración abierta; señal de N3.
+MAT-07-07 3 | SC | utiliza métodos informales | «Utiliza métodos informales exploratorios para resolver ecuaciones»: la solución se elige entre opciones (single_choice). | dudoso: la evidencia habla del método informal, que la pregunta cerrada no observa; solo ve la solución
+MAT-07-08 1 | N1 | plantea, diseña y realiza un plan | «Plantea preguntas, diseña y realiza un plan para recolectar la información»: producto propio (N1).
+MAT-07-08 2 | N1 | construye | «Construye tablas de frecuencia y gráficos»: producto propio (N1).
+MAT-07-08 3 | SC | encuentra e interpreta | «Encuentra e interpreta las medidas de tendencia central y el rango en datos agrupados»: respuesta única (single_choice).
+MAT-07-08 4 | SC | analiza | «Analiza la información presentada identificando variaciones, relaciones o tendencias»: identificar la tendencia de datos dados (single_choice); «elabora conclusiones» no queda cubierto.
+MAT-07-09 1 | N1 | elabora | «Elabora tablas o diagramas de árbol»: producto propio (N1).
+MAT-07-09 2 | SC | usa el principio multiplicativo | «Usa el principio multiplicativo para calcular el número de resultados posibles»: respuesta única (single_choice).
+MAT-07-09 3 | SC | interpreta | «Interpreta el número de resultados considerando que cuando se cambia de orden no se altera el resultado»: respuesta correcta (single_choice).
+
+# ---- 8°
+MAT-08-01 1 | N1 | utiliza procedimientos geométricos para representar | «Utiliza procedimientos geométricos para representar números racionales e irracionales»: es hacer la construcción geométrica (N1; criterios §4, «representa» a mano).
+MAT-08-01 2 | SC | identifica | «Identifica las diferentes representaciones … para argumentar por qué un número es o no racional»: decidir si un número es racional por su representación tiene respuesta (single_choice); argumentar no queda cubierto.
+MAT-08-02 1 | N1 | construir | «Utiliza procedimientos geométricos o aritméticos para construir algunos números irracionales»: construcción propia (N1).
+MAT-08-02 2 | SC | justificar | «Justificar procedimientos con los cuales se representa geométricamente números»: elegir la justificación correcta de un procedimiento dado (single_choice). | dudoso: «justificar» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+MAT-08-02 3 | N1 | construye | «Construye varias representaciones … de un mismo número»: producto propio (N1).
+MAT-08-03 1 | SC | reconoce | «Reconoce el uso del signo igual como relación de equivalencia»: respuesta correcta (single_choice).
+MAT-08-03 2 | N1 | propone y ejecuta procedimientos | «Propone y ejecuta procedimientos para resolver una ecuación lineal … y argumenta»: la acción principal es proponer el procedimiento propio (N1).
+MAT-08-03 3 | SC | usa el conjunto solución | «Usa el conjunto solución de una relación … para argumentar la validez o no de un procedimiento»: decidir si un procedimiento dado es válido tiene respuesta (single_choice); argumentar no queda cubierto.
+MAT-08-04 1 | SC | utiliza lenguaje algebraico para representar | «Utiliza lenguaje algebraico para representar el volumen de un prisma»: elegir la expresión correcta (single_choice).
+MAT-08-04 2 | N1 | realiza la representación gráfica | «Realiza la representación gráfica del desarrollo plano de un prisma»: dibujo propio (N1).
+MAT-08-04 3 | SC | estima, calcula y compara | «Estima, calcula y compara volúmenes»: respuesta única (single_choice).
+MAT-08-04 4 | SC | interpreta | «Interpreta las expresiones algebraicas que representan el volumen»: como en la prueba de los criterios (§7), aplica (single_choice).
+MAT-08-05 1 | SC | estima | «Estima medidas de volumen»: elegir la estimación (single_choice).
+MAT-08-05 2 | SC | utiliza la relación | «Utiliza la relación de las unidades de capacidad con las unidades de volumen»: conversión única (single_choice).
+MAT-08-05 3 | SC | identifica | «Identifica la posibilidad del error en la medición del volumen»: reconocer la fuente de error tiene respuesta (single_choice).
+MAT-08-05 4 | N1 | explora y crea estrategias | «Explora y crea estrategias para calcular el volumen»: estrategia propia (N1).
+MAT-08-06 1 | SC | utiliza criterios | «Utiliza criterios para argumentar la congruencia de dos triángulos»: qué criterio prueba la congruencia de dos triángulos dados tiene respuesta (single_choice); argumentar no queda cubierto.
+MAT-08-06 2 | SC | discrimina | «Discrimina casos de semejanza de triángulos»: respuesta correcta (single_choice).
+MAT-08-06 3 | SC | resuelve | «Resuelve problemas que implican aplicación de los criterios de semejanza»: respuesta única (single_choice).
+MAT-08-06 4 | SC | compara | «Compara figuras y argumenta la posibilidad de ser congruentes o semejantes»: si dos figuras dadas son semejantes tiene respuesta (single_choice, criterios §4); «argumenta» no queda cubierto.
+MAT-08-07 1 | SC | describe | «Describe teoremas y argumenta su validez a través de diferentes recursos (software, tangram, papel)»: elegir el enunciado correcto de un teorema (single_choice); argumentar con los recursos no queda cubierto.
+MAT-08-07 2 | N3 | argumenta | «Argumenta la relación pitagórica por medio de construcción al utilizar material concreto»: «argumenta» no aplica (N3); además usa material (N4).
+MAT-08-07 3 | SC | reconoce | «Reconoce relaciones geométricas al utilizar el teorema de Pitágoras y Thales»: respuesta correcta (single_choice).
+MAT-08-07 4 | SC | aplica | «Aplica el teorema de Pitágoras para calcular la medida de cualquier lado»: respuesta única (single_choice).
+MAT-08-07 5 | SC | resuelve | «Resuelve problemas utilizando teoremas básicos»: respuesta única (single_choice).
+MAT-08-08 1 | SC | opera e interpreta | «Opera con formas simbólicas y las interpreta»: respuesta única (single_choice).
+MAT-08-08 2 | SC | relaciona un cambio | «Relaciona un cambio en la variable independiente con el cambio correspondiente en la variable dependiente»: el cambio correspondiente es uno (single_choice); no son dos listas que emparejar.
+MAT-08-08 3 | SC | encuentra | «Encuentra valores desconocidos en ecuaciones algebraicas»: respuesta única (single_choice).
+MAT-08-08 4 | SC | reconoce y representa | «Reconoce y representa relaciones numéricas mediante expresiones algebraicas»: elegir la expresión correcta (single_choice).
+MAT-08-09 1 | SC | opera y encuentra | «Opera con formas simbólicas … y encuentra valores desconocidos»: respuesta única (single_choice).
+MAT-08-09 2 | SC | reconoce | «Reconoce patrones numéricos y los describe verbalmente»: elegir el patrón correcto (single_choice).
+MAT-08-09 3 | SC | representa | «Representa relaciones numéricas mediante expresiones algebraicas»: elegir la expresión correcta (single_choice).
+MAT-08-09 4 | SC | describe | «Describe diferentes usos del signo igual»: respuesta correcta (single_choice).
+MAT-08-09 5 | SC | utiliza | «Utiliza las propiedades de los conjuntos numéricos para resolver ecuaciones»: respuesta única (single_choice).
+MAT-08-10 1 | N3 | toma decisiones informadas | «Toma decisiones informadas en exploraciones … de los modelos matemáticos usados»: decisiones propias en una exploración abierta; señal de N3.
+MAT-08-10 2 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas»: empareja expresiones con gráficas (matching).
+MAT-08-11 1 | SC | interpreta | «Interpreta los datos representados en diferentes tablas y gráficos»: respuesta única (single_choice).
+MAT-08-11 2 | SC | encuentra | «Usa estrategias gráficas o numéricas para encontrar las medidas de tendencia central»: respuesta única (single_choice).
+MAT-08-11 3 | SC | describe | «Describe el comportamiento de los datos empleando las medidas de tendencia central»: elegir la descripción correcta (single_choice).
+MAT-08-11 4 | SC | reconoce | «Reconoce cómo varían las medidas de tendencia central y el rango cuando varían los datos»: respuesta correcta (single_choice).
+MAT-08-12 1 | SC | identifica y enumera | «Identifica y enumera el espacio muestral»: elegir la lista completa (single_choice).
+MAT-08-12 2 | SC | identifica y enumera | «Identifica y enumera los resultados favorables»: respuesta única (single_choice).
+MAT-08-12 3 | SC | asigna | «Asigna la probabilidad de la ocurrencia de un evento usando valores entre 0 y 1»: respuesta única (single_choice).
+MAT-08-12 4 | SC | reconoce y asigna | «Reconoce cuando dos eventos son o no mutuamente excluyentes y les asigna la probabilidad»: respuesta única (single_choice).
+
+# ---- 9°
+MAT-09-01 1 | SC | considera el error | «Considera el error que genera la aproximación de un número real»: el error de una aproximación dada se calcula o se reconoce (single_choice).
+MAT-09-01 2 | SC | identifica | «Identifica la diferencia entre exactitud y aproximación»: respuesta correcta (single_choice).
+MAT-09-01 3 | N1 | construye | «Construye representaciones geométricas y numéricas de los números reales … y realiza conversiones»: la acción principal es construir (N1); las conversiones no quedan cubiertas.
+MAT-09-02 1 | SC | identifica y utiliza | «Identifica y utiliza múltiples representaciones … para realizar transformaciones y comparaciones»: respuesta única (single_choice).
+MAT-09-02 2 | N1 | establece conjeturas | «Establece conjeturas al resolver una situación problema»: la conjetura propia, en una situación abierta, es el producto (N1). | dudoso: conjeturar puede tener respuesta correcta (como en MAT-01-02 #4), pero aquí la evidencia no fija sobre qué
+MAT-09-02 3 | SC | determina y describe | «Determina y describe relaciones al comparar características de gráficas y expresiones algebraicas»: respuesta correcta (single_choice).
+MAT-09-03 1 | SC | encuentra | «Encuentra las relaciones y propiedades que determinan la formación de secuencias numéricas»: la regla de una secuencia dada es una (single_choice).
+MAT-09-03 2 | SC | determina y utiliza | «Determina y utiliza la expresión general de una sucesión»: respuesta única (single_choice).
+MAT-09-04 1 | SC | estima | «Estima la capacidad de objetos con superficies redondas»: como en la prueba de los criterios (§7), aplica (single_choice).
+MAT-09-04 2 | N1 | construye | «Construye cuerpos redondos usando diferentes estrategias»: producto propio (N1).
+MAT-09-04 3 | SC | compara y representa | «Compara y representa las relaciones que encuentra de manera experimental entre el volumen y la capacidad»: el experimento se puede describir en la pregunta y la relación tiene respuesta (single_choice; criterios §4, contexto procedimental).
+MAT-09-04 4 | SC | explica | «Explica la pertinencia o no de la solución de un problema»: si una solución dada es pertinente tiene respuesta (single_choice).
+MAT-09-05 1 | SC | describe | «Describe y justifica procesos de medición de longitudes»: elegir el proceso correcto (single_choice); «justifica» no queda cubierto.
+MAT-09-05 2 | SC | explica | «Explica propiedades de figuras geométricas que se involucran en los procesos de medición»: explicación con respuesta correcta (single_choice).
+MAT-09-05 3 | SC | justifica | «Justifica procedimientos de medición a partir del Teorema de Thales, Teorema de Pitágoras»: elegir qué teorema justifica un procedimiento dado (single_choice). | dudoso: «justifica» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+MAT-09-05 4 | N4 | valida la precisión de instrumentos | «Valida la precisión de instrumentos para medir longitudes»: usar instrumentos reales (N4).
+MAT-09-05 5 | N1 | propone alternativas | «Propone alternativas para estimar y medir con precisión»: alternativa propia (N1).
+MAT-09-06 1 | SC | reconoce | «Reconoce regularidades en formas bidimensionales y tridimensionales»: respuesta correcta (single_choice).
+MAT-09-06 2 | SC | explica | «Explica criterios de semejanza y congruencia a partir del teorema de Thales»: explicación de un hecho (single_choice).
+MAT-09-06 3 | SC | compara | «Compara figuras geométricas y conjetura sobre posibles regularidades»: la comparación tiene respuesta (single_choice, criterios §4); conjeturar no queda cubierto.
+MAT-09-06 4 | N1 | redacta | «Redacta y argumenta procesos llevados a cabo»: texto propio (N1).
+MAT-09-07 1 | SC | describe | «Describe verbalmente procesos de trayectorias y de desplazamiento»: elegir la descripción correcta (single_choice).
+MAT-09-07 2 | SC | explica | «Explica y representa gráficamente la variación del movimiento»: la explicación tiene respuesta correcta (single_choice); representar a mano no queda cubierto.
+MAT-09-08 1 | SC | opera | «Opera con formas simbólicas que representan cantidades»: respuesta única (single_choice).
+MAT-09-08 2 | SC | reconoce | «Reconoce que las letras pueden representar números y cantidades»: respuesta correcta (single_choice).
+MAT-09-08 3 | SC | interpreta | «Interpreta expresiones numéricas, algebraicas o gráficas y toma decisiones con base en su interpretación»: la interpretación tiene respuesta (single_choice); la decisión no queda cubierta.
+MAT-09-09 1 | N1 | efectúa exploraciones y propone patrones | «Efectúa exploraciones, organiza los resultados … y propone patrones»: proceso y producto propios (N1).
+MAT-09-09 2 | N1 | propone conjeturas | «Propone conjeturas sobre configuraciones geométricas o numéricas y las expresa»: producto propio (N1).
+MAT-09-09 3 | SC | valida | «Valida las conjeturas y explica sus conclusiones»: decidir si una conjetura dada es verdadera tiene respuesta (single_choice). | dudoso: las conjeturas son las del propio estudiante (evidencia anterior); el ítem tendría que darlas
+MAT-09-09 4 | SC | interpreta | «Interpreta expresiones numéricas y toma decisiones con base en su interpretación»: la interpretación tiene respuesta (single_choice); la decisión no queda cubierta.
+MAT-09-10 1 | N1 | define el método | «Define el método para recolectar los datos … e identifica la población»: como «define el plan» de MAT-11-09 #2 en los criterios, es un producto propio (N1).
+MAT-09-10 2 | N1 | construye | «Construye diagramas de caja y a partir de los resultados … describe y compara»: la acción principal es construir (N1).
+MAT-09-10 3 | SC | compara | «Compara las distribuciones de los conjuntos de datos a partir de las medidas»: respuesta correcta con datos dados (single_choice).
+MAT-09-10 4 | N1 | elabora conclusiones | «Elabora conclusiones para responder el problema planteado»: texto propio (N1).
+MAT-09-11 1 | MT | diferencia … de | «Diferencia experimentos aleatorios realizados con reemplazo, de experimentos … sin reemplazo»: clasificar en dos grupos (matching).
+MAT-09-11 2 | SC | encuentra | «Encuentra el número de posibles resultados de un experimento aleatorio»: respuesta única (single_choice).
+MAT-09-11 3 | SC | justifica la elección | «Justifica la elección de un método particular de acuerdo al tipo de situación»: elegir el método adecuado y su razón (single_choice). | dudoso: «justifica» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+MAT-09-11 4 | SC | encuentra | «Encuentra la probabilidad de eventos dados usando razón entre frecuencias»: respuesta única (single_choice).
+
+# ---- 10°
+MAT-10-01 1 | N3 | argumenta | «Argumenta la existencia de los números irracionales»: «argumenta» no aplica (N3).
+MAT-10-01 2 | SC | utiliza representaciones y ubica | «Utiliza representaciones geométricas de los números irracionales y los ubica en una recta numérica»: ubicar un número dado tiene respuesta (single_choice).
+MAT-10-01 3 | SC | describe | «Describe la propiedad de densidad … y utiliza estrategias para calcular un número entre otros dos»: respuesta correcta (single_choice).
+MAT-10-02 1 | OR | ordena | «Ordena de menor a mayor o viceversa números reales»: orden explícito (ordering).
+MAT-10-02 2 | SC | describe | «Describe el ‘efecto’ que tendría realizar operaciones con números reales … sobre la cantidad»: respuesta correcta (single_choice).
+MAT-10-02 3 | SC | utiliza | «Utiliza las propiedades de la equivalencia para realizar cálculos»: respuesta única (single_choice).
+MAT-10-03 1 | SC | reconoce | «Reconoce la relación funcional entre variables»: respuesta correcta (single_choice).
+MAT-10-03 2 | SC | interpreta y expresa | «Interpreta y expresa magnitudes definidas como razones … con las unidades respectivas»: respuesta única (single_choice).
+MAT-10-03 3 | SC | utiliza e interpreta | «Utiliza e interpreta la razón de cambio para resolver problemas»: respuesta única (single_choice).
+MAT-10-03 4 | SC | explica | «Explica las respuestas y resultados en un problema … y la pertinencia de las unidades»: explicación con respuesta correcta (single_choice).
+MAT-10-04 1 | SC | reconoce | «Reconoce el significado de las razones trigonométricas»: respuesta correcta (single_choice).
+MAT-10-04 2 | SC | explora | «Explora, en una situación o fenómeno de variación periódica, valores, condiciones, relaciones»: reconocer un valor o una relación en una representación dada tiene respuesta (single_choice). | dudoso: la evidencia es un proceso de exploración; la pregunta cerrada solo ve si reconoce el valor o la relación
+MAT-10-04 3 | SC | calcula | «Calcula algunos valores de las razones seno y coseno para ángulos no agudos»: respuesta única (single_choice).
+MAT-10-04 4 | SC | reconoce | «Reconoce algunas aplicaciones de las funciones trigonométricas»: respuesta correcta (single_choice).
+MAT-10-04 5 | SC | modela | «Modela fenómenos periódicos a través de funciones trigonométricas»: elegir la función que modela un fenómeno dado (single_choice; criterios §4, «representa»). | dudoso: modelar es cercano a «representa» (aplica si se elige), pero aquí el modelo lo construye el estudiante
+MAT-10-05 1 | SC | localiza | «Localiza objetos geométricos en el plano cartesiano»: respuesta única (single_choice).
+MAT-10-05 2 | SC | identifica | «Identifica las propiedades de lugares geométricos a través de su representación»: respuesta correcta (single_choice).
+MAT-10-05 3 | SC | propone los rangos | «Utiliza las expresiones simbólicas de las cónicas y propone los rangos de variación para obtener una gráfica requerida»: el rango que produce la gráfica pedida se comprueba y se puede elegir (single_choice). | dudoso: «propone» es señal de N3; aquí lo propuesto es un valor que se comprueba, no una postura
+MAT-10-05 4 | SC | representa | «Representa lugares geométricos en el plano cartesiano, a partir de su expresión algebraica»: elegir la gráfica correcta (single_choice; criterios §4).
+MAT-10-06 1 | SC | utiliza representaciones | «Utiliza representaciones gráficas o numéricas para tomar decisiones, frente a la solución de problemas prácticos»: con datos dados, la decisión mejor sustentada es una (single_choice).
+MAT-10-06 2 | SC | determina | «Determina la tendencia numérica … como predicción del comportamiento futuro»: respuesta correcta (single_choice).
+MAT-10-06 3 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-10-07 1 | SC | utiliza representaciones | «Utiliza representaciones gráficas o numéricas para tomar decisiones en problemas prácticos»: con datos dados, la decisión mejor sustentada es una (single_choice).
+MAT-10-07 2 | SC | usa la pendiente | «Usa la pendiente de la recta tangente como razón de cambio, la reconoce y verbaliza»: respuesta correcta (single_choice).
+MAT-10-07 3 | SC | utiliza la razón | «Utiliza la razón entre magnitudes para tomar decisiones sobre el cambio»: con datos dados, la decisión es una (single_choice).
+MAT-10-07 4 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-10-08 1 | N1 | define la población | «Define la población de la cual va a extraer las muestras»: decisión de diseño de su propio estudio, como «define el plan» (N1).
+MAT-10-08 2 | N1 | define el tamaño y el método | «Define el tamaño y el método de selección de la muestra»: diseño propio (N1).
+MAT-10-08 3 | N1 | construye gráficas | «Construye gráficas para representar las distribuciones … y encuentra los estadígrafos»: la acción principal es construir (N1).
+MAT-10-08 4 | SC | hace inferencias | «Hace inferencias sobre los parámetros basadas en los estadígrafos calculados»: con estadígrafos dados, la inferencia correcta es una (single_choice).
+MAT-10-08 5 | SC | hace análisis críticos | «Hace análisis críticos de las conclusiones de los estudios presentados en medios»: reconocer el error de una conclusión dada (muestra pequeña, sesgo) tiene respuesta (single_choice). | dudoso: «análisis crítico» puede leerse como una valoración propia (N3)
+MAT-10-09 1 | SC | encuentra | «Encuentra las medidas de tendencia central y de dispersión»: respuesta única (single_choice).
+MAT-10-09 2 | SC | interpreta y compara | «Interpreta y compara lo que representan cada una de las medidas de tendencia central»: respuesta correcta (single_choice).
+MAT-10-09 3 | SC | interpreta y compara | «Interpreta y compara lo que representan cada una de las medidas de dispersión»: respuesta correcta (single_choice).
+MAT-10-09 4 | SC | usa propiedades | «Usa algunas de las propiedades de las medidas … para caracterizar un conjunto de datos»: respuesta correcta (single_choice).
+MAT-10-09 5 | N1 | formula conclusiones | «Formula conclusiones sobre la distribución de un conjunto de datos»: texto propio (N1).
+MAT-10-10 1 | SC | plantea o identifica | «Plantea o identifica una pregunta cuya solución requiera de la realización de un experimento aleatorio»: la evidencia admite identificar, que tiene respuesta (single_choice).
+MAT-10-10 2 | SC | identifica | «Identifica la población y las variables en estudio»: respuesta correcta (single_choice).
+MAT-10-10 3 | N4 | encuentra muestras aleatorias | «Encuentra muestras aleatorias para hacer predicciones»: obtener la muestra es una acción en el mundo, como recolectar datos (N4). | dudoso: podría leerse como elegir qué muestra es aleatoria, que sí aplica
+MAT-10-10 4 | SC | usa la probabilidad frecuencial | «Usa la probabilidad frecuencial para interpretar la posibilidad de ocurrencia»: respuesta correcta (single_choice).
+MAT-10-10 5 | SC | infiere o valida | «Infiere o valida la probabilidad de ocurrencia del evento»: respuesta correcta (single_choice).
+
+# ---- 11°
+MAT-11-01 1 | SC | describe | «Describe propiedades de los números y las operaciones que son comunes y diferentes en los distintos sistemas»: respuesta correcta (single_choice).
+MAT-11-01 2 | SC | utiliza … para justificar | «Utiliza la propiedad de densidad para justificar la necesidad de otras notaciones»: elegir la razón correcta (single_choice). | dudoso: «justificar» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+MAT-11-01 3 | N1 | construye | «Construye representaciones de los conjuntos numéricos y establece relaciones»: producto propio (N1).
+MAT-11-02 1 | SC | utiliza | «Utiliza propiedades del producto de números reales para resolver ecuaciones e inecuaciones»: solución única (single_choice).
+MAT-11-02 2 | SC | interpreta | «Interpreta las operaciones en diversos dominios numéricos para validar propiedades»: respuesta correcta (single_choice).
+MAT-11-03 1 | SC | reconoce | «Reconoce magnitudes definidas como razones entre otras magnitudes»: respuesta correcta (single_choice).
+MAT-11-03 2 | SC | interpreta y expresa | «Interpreta y expresa magnitudes como velocidad y aceleración, con las unidades»: respuesta única (single_choice).
+MAT-11-03 3 | SC | utiliza e interpreta | «Utiliza e interpreta la derivada para resolver problemas»: respuesta única (single_choice).
+MAT-11-03 4 | SC | explica | «Explica las respuestas y resultados en un problema … y la pertinencia de las unidades»: explicación con respuesta correcta (single_choice).
+MAT-11-04 1 | SC | interpreta | «Interpreta la rapidez como una razón de cambio»: respuesta correcta (single_choice).
+MAT-11-04 2 | SC | justifica | «Justifica la precisión de una medición … de acuerdo con información suministrada en gráficas y tablas»: con la información dada, la justificación correcta es una (single_choice). | dudoso: «justifica» está entre «explica» (aplica) y «argumenta» (N3); los criterios no lo nombran
+MAT-11-04 3 | N1 | establece conclusiones | «Establece conclusiones pertinentes con respecto a la precisión de mediciones»: producir conclusiones propias, como «elabora conclusiones» (N1).
+MAT-11-04 4 | SC | determina | «Determina las unidades e instrumentos adecuados para mejorar la precisión»: respuesta correcta (single_choice).
+MAT-11-04 5 | SC | reconoce | «Reconoce la diferencia entre la precisión y la exactitud»: respuesta correcta (single_choice).
+MAT-11-05 1 | SC | relaciona | «Relaciona la noción derivada con características numéricas, geométricas y métricas»: elegir la característica que corresponde a la derivada (single_choice); no son dos listas que emparejar.
+MAT-11-05 2 | SC | utiliza | «Utiliza la derivada para estudiar la covariación … y relaciona características»: respuesta correcta (single_choice).
+MAT-11-05 3 | SC | halla | «Halla la derivada de algunas funciones empleando métodos gráficos y numéricos»: respuesta única (single_choice).
+MAT-11-06 1 | SC | reconoce y utiliza | «Reconoce y utiliza distintos sistemas de coordenadas para modelar»: respuesta correcta (single_choice).
+MAT-11-06 2 | SC | compara | «Compara objetos geométricos, a partir de puntos de referencia diferentes»: respuesta correcta (single_choice).
+MAT-11-06 3 | N4 | explora el entorno | «Explora el entorno y lo representa mediante diversos sistemas de coordenadas»: observar el entorno (N4).
+MAT-11-07 1 | SC | plantea modelos | «Plantea modelos funcionales en los que identifica variables y rangos de variación»: elegir el modelo que corresponde a una situación (single_choice; criterios §4, «representa»). | dudoso: plantear un modelo es cercano a «representa» (aplica si se elige), pero aquí el modelo lo construye el estudiante
+MAT-11-07 2 | MT | relaciona | «Relaciona el signo de la derivada con características numéricas, geométricas y métricas»: empareja signo de la derivada con comportamiento de la función (matching).
+MAT-11-07 3 | SC | utiliza | «Utiliza la derivada para estudiar la variación y relaciona características»: respuesta correcta (single_choice).
+MAT-11-07 4 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-11-08 1 | SC | utiliza | «Utiliza la derivada para estudiar la variación y relaciona características»: respuesta correcta (single_choice).
+MAT-11-08 2 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-11-08 3 | SC | calcula | «Calcula derivadas de funciones»: respuesta única (single_choice).
+MAT-11-09 1 | N1 | plantea preguntas | «Plantea preguntas que indagan por la correlación o la asociación entre variables»: pregunta propia (N1).
+MAT-11-09 2 | N1 | define el plan | «Define el plan de recolección de la información»: como en la prueba de los criterios (§2, §7), N1.
+MAT-11-09 3 | N1 | elabora gráficos | «Elabora gráficos de dispersión usando software»: producto propio (N1).
+MAT-11-09 4 | SC | expresa cualitativamente | «Expresa cualitativamente las relaciones entre las variables»: elegir la descripción correcta de la relación (single_choice).
+MAT-11-09 5 | SC | usa adecuadamente | «Usa adecuadamente la desviación estándar, la media, el coeficiente de variación y el de correlación»: respuesta única con datos dados (single_choice).
+MAT-11-10 1 | N1 | propone problemas | «Propone problemas a estudiar en variedad de situaciones aleatorias»: producto propio (N1).
+MAT-11-10 2 | SC | reconoce | «Reconoce los diferentes eventos que se proponen en una situación»: respuesta correcta (single_choice).
+MAT-11-10 3 | SC | interpreta y asigna | «Interpreta y asigna la probabilidad de cada evento»: respuesta única (single_choice).
+MAT-11-10 4 | SC | usa la probabilidad condicional | «Usa la probabilidad condicional de cada evento para decidir si son o no independientes»: respuesta única (single_choice).

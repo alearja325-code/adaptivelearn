@@ -133,8 +133,11 @@ DOCUMENTO_OFICIAL = ("DOCUMENTO_OFICIAL", "men", [
 ])
 # area y grado ya no son atributos: son las relaciones «pertenece a» y
 # «corresponde a» (ADR-036). codigo_dba tiene el formato AREA-GG-NN (RI-21).
+# ejemplo_tiene_imagen: si el ejemplo del PDF incluye una figura que el texto
+# no trae. 06-spec §2.4 muestra un aviso para esos casos y no había dónde
+# guardarlo (encargo 05). Es dato del MEN leído de la página, no juicio nuestro.
 DBA = ("DBA", "men", [
-    ("codigo_dba", "PK"), ("enunciado", ""), ("ejemplo", ""),
+    ("codigo_dba", "PK"), ("enunciado", ""), ("ejemplo", ""), ("ejemplo_tiene_imagen", ""),
 ])
 EVIDENCIA = ("EVIDENCIA", "men", [
     ("numero_evidencia", "PD"), ("enunciado", ""),

@@ -71,7 +71,7 @@ SIN_CREADOR = {
     "DOCUMENTO_OFICIAL": "catálogo (ADR-036): lo carga el equipo con los datos que verificó ADR-033",
     "DBA": "dato del MEN: lo carga el equipo, fuera del sistema (`10`, §2.3)",
     "EVIDENCIA": "dato del MEN: lo carga el equipo, fuera del sistema",
-    "EVIDENCIA_DICTAMEN": "juicio del equipo: lo carga con el censo QA-014, fuera del sistema",
+    "EVIDENCIA_DICTAMEN": "el censo QA-014 (propuesto por IA, validado por el equipo, ADR-042): se carga fuera del sistema",
     "REPORTE": "no se crea ni se guarda: se calcula al abrirlo (ADR-022)",
 }
 # Casos de uso que no tocan datos, y por que.
