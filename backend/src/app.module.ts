@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { CorreoModule } from './correo/correo.module.js';
 import { CatalogoModule } from './catalogo/catalogo.module.js';
+import { BancoModule } from './banco/banco.module.js';
 import { LimpiezaModule } from './limpieza/limpieza.module.js';
 import { ExampleController } from './example/example.controller.js';
 
@@ -47,6 +48,7 @@ import { ExampleController } from './example/example.controller.js';
     UserModule,
     AuthModule,
     CatalogoModule,
+    BancoModule,
     LimpiezaModule,
   ],
   // Ejemplo de uso de Guards y Decoradores (sección 6 de la guía)

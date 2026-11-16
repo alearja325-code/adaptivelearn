@@ -147,9 +147,9 @@ req("RF-03-01", "SUB-03", S, F, "Servicio de IA",
     ["ADR-005", "ADR-006", "ADR-008", "ADR-011", "ADR-014", "ADR-016"], "I2")
 req("RF-03-02", "SUB-03", S, F, "Servicio de IA",
     "La generación debe usar un servicio de IA principal y, si falla o supera el tiempo límite, uno de respaldo, sin que el docente lo note.",
-    "Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo. Un ítem generado que no pasa la validación de su formato cuenta como falla del servicio (ADR-035).",
-    "Se pidió generar un banco.", "Banco completo de un solo servicio, o error si fallan los dos.",
-    ["ADR-030", "ADR-027", "ADR-035"], "I2")
+    "Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo. Un ítem generado que no pasa la validación de su formato cuenta como falla del servicio (ADR-035). **Respaldo suspendido por ADR-043** (2026-11-10): en esta versión el banco se genera solo con DeepSeek, detrás de una interfaz para poder agregar el respaldo después; en su lugar, cada evidencia se pide una vez más al mismo servicio si falla, y si vuelve a fallar no se guarda nada (ADR-045, punto 3; encargo 06).",
+    "Se pidió generar un banco.", "Banco completo de un solo servicio, o error si fallan los dos. *(Mientras rija ADR-043: banco completo de DeepSeek, o la generación queda fallida y no se guarda nada.)*",
+    ["ADR-030", "ADR-027", "ADR-035", "ADR-043", "ADR-045"], "I2")
 req("RF-03-03", "SUB-03", S, F, "—",
     "Cada ítem debe registrar su origen, y cada experiencia, qué servicio y qué modelo de IA generaron su banco.",
     "Origen del ítem: generado por IA, editado por el docente o creado por el docente. El servicio se guarda una vez en la experiencia, porque un banco sale entero de un solo servicio: un ítem generado o editado es de ese servicio; uno creado por el docente no se atribuye a la IA. El docente no ve el servicio. *(Corregido el 2026-10-26: decía que cada ítem guardaba su servicio; ADR-035 lo cambió.)*",
@@ -328,8 +328,8 @@ req("RNF-12", "SUB-00", S, NF, "—",
     "—", "—", ["V-024", "ADR-027"], "Todos")
 req("RNF-13", "SUB-00", S, NF, "—",
     "El tiempo límite de la generación del banco debe medirse y registrarse al construir el incremento 2.",
-    "Hoy no tiene número: un valor sin medir sería inventado. Con un DBA de muchas evidencias, la espera puede ser de minutos.",
-    "—", "—", ["ADR-027", "ADR-030"], "I2")
+    "Hoy no tiene número: un valor sin medir sería inventado. Con un DBA de muchas evidencias, la espera puede ser de minutos. *(Encargo 06, 2026-11-16: el backend ya tiene un límite por llamada configurable, `IA_TIEMPO_LIMITE_MS`, con 120 000 ms por defecto —un punto de partida, no una medición—, y registra en la consola cuánto tardó cada evidencia y el total, sin datos del docente. **Pendiente de la medición local con DeepSeek** al revisar el encargo.)*",
+    "—", "—", ["ADR-027", "ADR-030", "ADR-045"], "I2")
 req("RNF-14", "SUB-00", S, NF, "—",
     "El backend debe construirse con NestJS y MySQL.",
     "Exigencia del curso DSE-2; el acceso ya empezó así (`DSE-2/backend-auth/`).",
@@ -446,7 +446,7 @@ def generar(esp):
     w("- ~~**V-11**~~ — **cerrado por ADR-035** (2026-10-26): eliminar una experiencia (RF-02-07) o salir de una (RF-04-12) borra en cascada lo que depende de ella.")
     w("- **QA-013 / QA-014** — los errores de extracción del catálogo se corrigieron (encargo 02); el censo de formato cerrado está hecho y falta validarlo por muestreo (encargo 05, ADR-042) (RF-06-01, RF-06-02).")
     w("- **V-10** — una excepción de contraste, diferida (RNF-03).")
-    w("- **RNF-13** — el tiempo límite de la generación no tiene número todavía; se mide.")
+    w("- **RNF-13** — el tiempo límite de la generación no tiene número medido todavía: el backend usa 120 s por llamada mientras tanto y registra los tiempos; se mide en local con DeepSeek (encargo 06).")
     w("- **RNF-06** — la autorización del acudiente: condición no satisfecha que impide usar el sistema con estudiantes reales.")
     w("")
     return "\n".join(L)

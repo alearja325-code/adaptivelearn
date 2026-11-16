@@ -11,19 +11,19 @@ secuencia se ve (`15`), qué entidades crea, lee, modifica o borra —las mismas
 CRUD de `16` §7—, quién puede llamarlo y si ya existe en el backend.
 
 Es, casi literalmente, la lista de tareas de cada incremento: cada endpoint lleva un número,
-de E-01 a E-37, para repartirlo.
+de E-01 a E-38, para repartirlo.
 
 ## 1. En cifras
 
 | Incremento | Subsistemas | Endpoints | Hechos | Por ajustar | Faltan | Opcionales |
 |---|---|---|---|---|---|---|
 | **I1 — Acceso** | SUB-01 | 13 | 12 | 0 | 0 | 1 |
-| **I2 — Experiencia y banco** | SUB-02, SUB-03, SUB-06 | 15 | 4 | 0 | 11 | 0 |
+| **I2 — Experiencia y banco** | SUB-02, SUB-03, SUB-06 | 16 | 16 | 0 | 0 | 0 |
 | **I3 — Diagnóstico** | SUB-04 | 6 | 0 | 0 | 6 | 0 |
 | **I4 — Reporte y seguimiento** | SUB-05 | 3 | 0 | 0 | 3 | 0 |
-| **Total** | | **37** | **16** | **0** | **20** | **1** |
+| **Total** | | **38** | **28** | **0** | **9** | **1** |
 
-De los 37, 16 ya existen en el backend
+De los 38, 28 ya existen en el backend
 (`backend/` del repositorio): lo dice su código, revisado el 2026-10-27, al cerrar el
 encargo 03. 0 de ellos funcionan, pero el diseño les pide algo distinto.
 Incrementos empezados: **I1**, el acceso completo (encargo 03); **I2**, solo el catálogo curricular, SUB-06 (encargo 03). Lo demás está por construir.
@@ -58,7 +58,7 @@ lo llama un Estudiante, y el verificador lo comprueba.
 | `409` | El estado no lo permite: correo ya registrado, rol ya elegido, banco congelado, experiencia ya publicada, pregunta ya respondida. |
 | `413` | La foto pesa más de 5 MB (RF-01-05): el límite lo pone la subida del archivo. |
 | `429` | Demasiados intentos fallidos. |
-| `503` | Fallaron el servicio de IA principal y el de respaldo; no se guardó nada. |
+| `503` | Un servicio externo no está configurado en el servidor (Google o Microsoft). La IA ya no responde 503: con un solo servicio (ADR-043) y la generación en segundo plano (ADR-045), su falla se ve como generación `fallida`. |
 
 Un endpoint que no es del dueño responde `403`, no `404`, como en la guía del docente. Los mensajes
 de error van en español y nunca afirman certeza sobre el aprendizaje (RNF-02, RNF-04).
@@ -324,16 +324,17 @@ CU-31 Consultar catálogo curricular. Operación: `Catalogo.grados(): Grado [*]`
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-18** | `GET /experiencias` | CU-10 | `ServicioExperiencias.listar` | Docente | Falta |
-| **E-19** | `POST /experiencias` | CU-11<br>CU-16 | `ServicioExperiencias.crear` | Docente | Falta |
-| **E-20** | `GET /experiencias/:id` | CU-12<br>CU-13<br>CU-15 | `ServicioExperiencias.consultar` | Docente dueño | Falta |
-| **E-21** | `POST /experiencias/:id/publicar` | CU-13 | `ServicioExperiencias.publicar` | Docente dueño | Falta |
-| **E-22** | `GET /experiencias/:id/codigo` | CU-14 | `ServicioExperiencias.codigoInvitacion` | Docente dueño | Falta |
-| **E-23** | `DELETE /experiencias/:id` | CU-15 | `ServicioExperiencias.eliminar` | Docente dueño | Falta |
+| **E-18** | `GET /experiencias` | CU-10 | `ServicioExperiencias.listar` | Docente | Hecho |
+| **E-19** | `POST /experiencias` | CU-11<br>CU-16 | `ServicioExperiencias.crear` | Docente | Hecho |
+| **E-20** | `GET /experiencias/:id` | CU-12<br>CU-13<br>CU-15 | `ServicioExperiencias.consultar` | Docente dueño | Hecho |
+| **E-21** | `POST /experiencias/:id/publicar` | CU-13 | `ServicioExperiencias.publicar` | Docente dueño | Hecho |
+| **E-22** | `GET /experiencias/:id/codigo` | CU-14 | `ServicioExperiencias.codigoInvitacion` | Docente dueño | Hecho |
+| **E-23** | `DELETE /experiencias/:id` | CU-15 | `ServicioExperiencias.eliminar` | Docente dueño | Hecho |
+| **E-38** | `GET /experiencias/generaciones/:id` | CU-11<br>CU-16 | `ServicioExperiencias.generacion` | Docente | Hecho |
 
 #### E-18 · `GET /experiencias`
 
-CU-10 Consultar mis experiencias. Operación: `ServicioExperiencias.listar(docente: Docente): Experiencia [*]`. **Falta.**
+CU-10 Consultar mis experiencias. Operación: `ServicioExperiencias.listar(docente: Docente): Experiencia [*]`. **Hecho.**
 
 - **Quién:** Docente.
 - **Recibe:** `estado` (borrador o publicada) y `q`, en la consulta.
@@ -342,22 +343,25 @@ CU-10 Consultar mis experiencias. Operación: `ServicioExperiencias.listar(docen
 
 #### E-19 · `POST /experiencias`
 
-CU-11 Crear experiencia · CU-16 Generar banco con IA. Operación: `ServicioExperiencias.crear(docente: Docente, codigo_dba: string, nombre: string): Experiencia`; se ve en `15` §3. **Falta.**
+CU-11 Crear experiencia · CU-16 Generar banco con IA. Operación: `ServicioExperiencias.crear(docente: Docente, codigo_dba: string, nombre: string): Generacion`; se ve en `15` §3. **Hecho.**
 
 - **Quién:** Docente.
 - **Recibe:** `codigo_dba`, `nombre`.
-- **Responde:** 201: la experiencia en Borrador, con 12 ítems por evidencia incluida, su código de invitación, y el servicio y el modelo de IA que generaron el banco.
+- **Responde:** 202: el identificador de la generación, en estado `generando` (ADR-045 punto 1). La experiencia se crea en segundo plano y la pantalla de carga (024) consulta `GET /experiencias/generaciones/:id` hasta que termine: en Borrador, con 12 ítems por evidencia incluida, su código de invitación, y el servicio y el modelo de IA que generaron el banco.
 - **Toca:** EXPERIENCIA (crea); EXPERIENCIA_EVIDENCIA (crea); ITEM (crea); OPCION (crea); DBA (lee); EVIDENCIA (lee); EVIDENCIA_DICTAMEN (lee).
 - **Reglas y errores:**
-  - `503` fallaron el servicio principal y el de respaldo: no se guarda nada, y la pantalla conserva nombre y DBA para reintentar (RF-02-03, ADR-027, CU-11 5a).
-  - Si el principal falla o pasa del tiempo límite (RNF-13), se pide el banco entero al de respaldo; un banco no mezcla servicios (RF-03-02, RI-17).
+  - Solo DeepSeek, sin servicio de respaldo (ADR-043); una llamada por evidencia, hasta 3 a la vez (ADR-045 punto 2).
+  - Si la respuesta de una evidencia no llega a tiempo (`IA_TIEMPO_LIMITE_MS`, RNF-13) o algún ítem no pasa RI-4, se pide esa evidencia una vez más; si vuelve a fallar, la generación queda `fallida` y no se guarda nada (ADR-045 punto 3, ADR-027).
   - Solo entran las evidencias cuyo dictamen admite formato cerrado (RI-5), y cada ítem sale con el formato de ese dictamen (RI-19).
+  - El código de invitación se crea al guardar la experiencia (RI-3).
+  - `400` falta el nombre, pasa de 160 caracteres, o el código del DBA no tiene la forma ÁREA-GG-NN.
   - `404` no existe el DBA.
-- **Nota:** Puede tardar minutos: ver la generación asíncrona en «Adicionales que conviene agregar».
+  - `409` el DBA no tiene ninguna evidencia diagnosticable: "Este DBA no tiene evidencias que se puedan diagnosticar con preguntas cerradas en esta versión." (ADR-045 punto 6).
+- **Nota:** La generación vive en memoria (ADR-045 punto 1): si el servidor se reinicia, se pierde, y en la base no queda nada a medias.
 
 #### E-20 · `GET /experiencias/:id`
 
-CU-12 Consultar experiencia · CU-13 Publicar experiencia · CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.consultar(id: int): Experiencia`; se ve en `15` §4 y §8. **Falta.**
+CU-12 Consultar experiencia · CU-13 Publicar experiencia · CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.consultar(id: int): Experiencia`; se ve en `15` §4 y §8. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
@@ -369,7 +373,7 @@ CU-12 Consultar experiencia · CU-13 Publicar experiencia · CU-15 Eliminar expe
 
 #### E-21 · `POST /experiencias/:id/publicar`
 
-CU-13 Publicar experiencia. Operación: `ServicioExperiencias.publicar(id: int)`; se ve en `15` §4. **Falta.**
+CU-13 Publicar experiencia. Operación: `ServicioExperiencias.publicar(id: int)`; se ve en `15` §4. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
@@ -381,7 +385,7 @@ CU-13 Publicar experiencia. Operación: `ServicioExperiencias.publicar(id: int)`
 
 #### E-22 · `GET /experiencias/:id/codigo`
 
-CU-14 Compartir código de invitación. Operación: `ServicioExperiencias.codigoInvitacion(id: int): string`. **Falta.**
+CU-14 Compartir código de invitación. Operación: `ServicioExperiencias.codigoInvitacion(id: int): string`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
@@ -392,7 +396,7 @@ CU-14 Compartir código de invitación. Operación: `ServicioExperiencias.codigo
 
 #### E-23 · `DELETE /experiencias/:id`
 
-CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.eliminar(id: int)`; se ve en `15` §8. **Falta.**
+CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.eliminar(id: int)`; se ve en `15` §8. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
@@ -402,20 +406,33 @@ CU-15 Eliminar experiencia. Operación: `ServicioExperiencias.eliminar(id: int)`
 - **Reglas y errores:**
   - Irreversible; las cuentas de los estudiantes siguen existiendo (CU-15).
 
+#### E-38 · `GET /experiencias/generaciones/:id`
+
+CU-11 Crear experiencia · CU-16 Generar banco con IA. Operación: `ServicioExperiencias.generacion(id: string): Generacion`. **Hecho.**
+
+- **Quién:** Docente.
+- **Recibe:** nada (`:id` es el identificador que devolvió `POST /experiencias`).
+- **Responde:** 200: `generando`; `lista`, con el id de la experiencia creada; o `fallida`, con el mensaje de `07-spec`: "No se pudieron generar las preguntas. Intenta de nuevo." (ADR-043 punto 2).
+- **Toca:** nada guardado.
+- **Reglas y errores:**
+  - `403` la generación la pidió otro docente.
+  - `404` no existe, o terminó hace más de una hora y ya se olvidó.
+- **Nota:** Nueva (ADR-045 punto 1, encargo 06). No toca la base: el estado de la generación vive en memoria, sin tabla nueva.
+
 ### 4.3 SUB-03 · Banco de preguntas
 
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-24** | `GET /experiencias/:id/banco` | CU-17 | `ServicioBanco.banco` | Docente dueño | Falta |
-| **E-25** | `PATCH /items/:id` | CU-18 | `ServicioBanco.editarItem` | Docente dueño | Falta |
-| **E-26** | `POST /items/:id/descartar` | CU-19 | `ServicioBanco.descartar` | Docente dueño | Falta |
-| **E-27** | `POST /items/:id/reincluir` | CU-19 | `ServicioBanco.reincluir` | Docente dueño | Falta |
-| **E-28** | `POST /experiencias/:id/evidencias/:n/items` | CU-20 | `ServicioBanco.agregarItem` | Docente dueño | Falta |
+| **E-24** | `GET /experiencias/:id/banco` | CU-17 | `ServicioBanco.banco` | Docente dueño | Hecho |
+| **E-25** | `PATCH /items/:id` | CU-18 | `ServicioBanco.editarItem` | Docente dueño | Hecho |
+| **E-26** | `POST /items/:id/descartar` | CU-19 | `ServicioBanco.descartar` | Docente dueño | Hecho |
+| **E-27** | `POST /items/:id/reincluir` | CU-19 | `ServicioBanco.reincluir` | Docente dueño | Hecho |
+| **E-28** | `POST /experiencias/:id/evidencias/:n/items` | CU-20 | `ServicioBanco.agregarItem` | Docente dueño | Hecho |
 
 #### E-24 · `GET /experiencias/:id/banco`
 
-CU-17 Revisar banco. Operación: `ServicioBanco.banco(id_experiencia: int): ExperienciaEvidencia [*]`. **Falta.**
+CU-17 Revisar banco. Operación: `ServicioBanco.banco(id_experiencia: int): ExperienciaEvidencia [*]`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** `formato` y `q`, en la consulta.
@@ -426,7 +443,7 @@ CU-17 Revisar banco. Operación: `ServicioBanco.banco(id_experiencia: int): Expe
 
 #### E-25 · `PATCH /items/:id`
 
-CU-18 Editar ítem. Operación: `ServicioBanco.editarItem(id_item: int, enunciado: string, opciones: Opcion [*])`. **Falta.**
+CU-18 Editar ítem. Operación: `ServicioBanco.editarItem(id_item: int, enunciado: string, opciones: Opcion [*])`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** `enunciado` y la lista completa de `opciones` (`texto`, `es_correcta`, `orden`, `grupo`).
@@ -438,7 +455,7 @@ CU-18 Editar ítem. Operación: `ServicioBanco.editarItem(id_item: int, enunciad
 
 #### E-26 · `POST /items/:id/descartar`
 
-CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.descartar(id_item: int)`. **Falta.**
+CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.descartar(id_item: int)`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
@@ -449,7 +466,7 @@ CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.descartar(id_item:
 
 #### E-27 · `POST /items/:id/reincluir`
 
-CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.reincluir(id_item: int)`. **Falta.**
+CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.reincluir(id_item: int)`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
@@ -460,7 +477,7 @@ CU-19 Descartar o reincluir ítem. Operación: `ServicioBanco.reincluir(id_item:
 
 #### E-28 · `POST /experiencias/:id/evidencias/:n/items`
 
-CU-20 Agregar pregunta propia. Operación: `ServicioBanco.agregarItem(id_experiencia: int, numero_evidencia: int): Item`. **Falta.**
+CU-20 Agregar pregunta propia. Operación: `ServicioBanco.agregarItem(id_experiencia: int, numero_evidencia: int): Item`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** `:n` es el número de la evidencia; el cuerpo, como en `PATCH /items/:id`.
@@ -628,7 +645,6 @@ lo que el sistema hace.
 | `GET /docs` | Documentación interactiva (Swagger/OpenAPI, `@nestjs/swagger`): el docente puede probar cada endpoint desde el navegador, sin Insomnia. | Ninguno. |
 | `GET /health` | Comprobar en la demostración que el servidor y la base responden. | Ninguno. |
 | `POST /auth/refresh` | Renovar la sesión sin volver a pedir la contraseña. | Si los tokens de renovación se guardan para poder revocarlos, es una tabla que el MER no tiene. |
-| Generación asíncrona: `POST /experiencias` responde 202 y la espera consulta `GET /experiencias/generaciones/:id` | Generar el banco puede tardar minutos (RNF-13), y una sola petición larga puede cortarse. La pantalla de espera (RNF-12) consulta hasta que termine. El «todo o nada» (ADR-027) no cambia: la experiencia se guarda solo al final. | Si el estado de la generación se guarda en la base, es una tabla nueva, fuera del MER; en memoria, ninguno. Decidirlo al medir RNF-13 en I2. |
 | Límite de peticiones por IP en login, códigos y recuperación (no es un endpoint: `@nestjs/throttler`) | Complementa el bloqueo por credencial que ya tiene I1. | Ninguno. |
 
 ## 9. Lo que no se debe agregar

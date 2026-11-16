@@ -35,6 +35,19 @@ Cambios del 2026-10-27 (encargo 03, ADR-039, ADR-040):
     Paso 2 de crear experiencia), E-16 y E-17;
   * el catalogo (SUB-06, del incremento I2) se construye antes que el resto
     de I2: EMPEZADOS dice que incrementos tienen endpoints hechos.
+
+Cambios del 2026-11-16 (encargo 06, ADR-043, ADR-045), comprobados contra
+los controladores de `banco/` (`experiencias.controller.ts`,
+`items.controller.ts`):
+  * E-18 a E-28 (SUB-02 y SUB-03) pasan a hecho;
+  * E-19 responde 202 con el id de una generacion en segundo plano (ADR-045
+    punto 1), sin servicio de respaldo (ADR-043) y con un reintento por
+    evidencia (ADR-045 punto 3); el 503 de la version anterior ya no existe:
+    la falla se ve en la generacion;
+  * nueva `GET /experiencias/generaciones/:id` (ADR-045 punto 1), que
+    antes estaba en ADICIONALES; va al final de la lista (E-38) para que
+    los demas conserven su numero, que citan los encargos 06 y 07; su operacion,
+    `ServicioExperiencias.generacion`, se agrega al diagrama de clases.
 """
 
 
@@ -104,7 +117,9 @@ ERRORES = [
             "experiencia ya publicada, pregunta ya respondida."),
     ("413", "La foto pesa más de 5 MB (RF-01-05): el límite lo pone la subida del archivo."),
     ("429", "Demasiados intentos fallidos."),
-    ("503", "Fallaron el servicio de IA principal y el de respaldo; no se guardó nada."),
+    ("503", "Un servicio externo no está configurado en el servidor (Google o Microsoft). La "
+            "IA ya no responde 503: con un solo servicio (ADR-043) y la generación en segundo "
+            "plano (ADR-045), su falla se ve como generación `fallida`."),
 ]
 
 SUB_PUBLICADA = ("409", "la experiencia está Publicada: el banco es de solo lectura (RF-03-08, ADR-026)")
@@ -286,29 +301,41 @@ ENDPOINTS = [
        "por grado del Paso 2 (CU-31 paso 2)",
        nota="Nueva (encargo 03), por la misma razón que `GET /catalogo/areas`."),
     ep("GET", "/experiencias", "SUB-02", ["CU-10"], "ServicioExperiencias.listar", "docente",
-       {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "INSCRIPCION": "R"}, "falta",
+       {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "INSCRIPCION": "R"}, "hecho",
        "`estado` (borrador o publicada) y `q`, en la consulta",
        "200: solo las experiencias del docente, cada una con estado, nombre, área, grado y "
        "número de estudiantes (CU-10 paso 1)"),
     ep("POST", "/experiencias", "SUB-02", ["CU-11", "CU-16"], "ServicioExperiencias.crear",
        "docente",
        {"EXPERIENCIA": "C", "EXPERIENCIA_EVIDENCIA": "C", "ITEM": "C", "OPCION": "C",
-        "DBA": "R", "EVIDENCIA": "R", "EVIDENCIA_DICTAMEN": "R"}, "falta",
+        "DBA": "R", "EVIDENCIA": "R", "EVIDENCIA_DICTAMEN": "R"}, "hecho",
        "`codigo_dba`, `nombre`",
-       "201: la experiencia en Borrador, con 12 ítems por evidencia incluida, su código de "
-       "invitación, y el servicio y el modelo de IA que generaron el banco",
-       [("503", "fallaron el servicio principal y el de respaldo: no se guarda nada, y la "
-                "pantalla conserva nombre y DBA para reintentar (RF-02-03, ADR-027, CU-11 5a)"),
-        ("—", "si el principal falla o pasa del tiempo límite (RNF-13), se pide el banco "
-              "entero al de respaldo; un banco no mezcla servicios (RF-03-02, RI-17)"),
+       "202: el identificador de la generación, en estado `generando` (ADR-045 punto 1). La "
+       "experiencia se crea en segundo plano y la pantalla de carga (024) consulta "
+       "`GET /experiencias/generaciones/:id` hasta que termine: en Borrador, con 12 ítems por "
+       "evidencia incluida, su código de invitación, y el servicio y el modelo de IA que "
+       "generaron el banco",
+       [("—", "solo DeepSeek, sin servicio de respaldo (ADR-043); una llamada por evidencia, "
+              "hasta 3 a la vez (ADR-045 punto 2)"),
+        ("—", "si la respuesta de una evidencia no llega a tiempo (`IA_TIEMPO_LIMITE_MS`, "
+              "RNF-13) o algún ítem no pasa RI-4, se pide esa evidencia una vez más; si vuelve "
+              "a fallar, la generación queda `fallida` y no se guarda nada (ADR-045 punto 3, "
+              "ADR-027)"),
         ("—", "solo entran las evidencias cuyo dictamen admite formato cerrado (RI-5), y cada "
               "ítem sale con el formato de ese dictamen (RI-19)"),
-        ("404", "no existe el DBA")],
-       nota="Puede tardar minutos: ver la generación asíncrona en «Adicionales que conviene agregar»."),
+        ("—", "el código de invitación se crea al guardar la experiencia (RI-3)"),
+        ("400", "falta el nombre, pasa de 160 caracteres, o el código del DBA no tiene la forma "
+                "ÁREA-GG-NN"),
+        ("404", "no existe el DBA"),
+        ("409", "el DBA no tiene ninguna evidencia diagnosticable: \"Este DBA no tiene "
+                "evidencias que se puedan diagnosticar con preguntas cerradas en esta versión.\" "
+                "(ADR-045 punto 6)")],
+       nota="La generación vive en memoria (ADR-045 punto 1): si el servidor se reinicia, se "
+            "pierde, y en la base no queda nada a medias."),
     ep("GET", "/experiencias/:id", "SUB-02", ["CU-12", "CU-13", "CU-15"],
        "ServicioExperiencias.consultar", "docente_dueno",
        {"EXPERIENCIA": "R", "DBA": "R", "AREA": "R", "GRADO": "R", "EVIDENCIA": "R",
-        "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R", "INSCRIPCION": "R", "RESPUESTA": "R"}, "falta",
+        "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R", "INSCRIPCION": "R", "RESPUESTA": "R"}, "hecho",
        "nada",
        "200: encabezado (nombre, estado, fecha, área, grado, número de inscritos), el DBA, "
        "cuántos ítems activos faltan por evidencia para publicar (CU-13 1a), y cuántos "
@@ -316,7 +343,7 @@ ENDPOINTS = [
        [("403", "la experiencia no es del docente"),
         ("404", "no existe")]),
     ep("POST", "/experiencias/:id/publicar", "SUB-02", ["CU-13"], "ServicioExperiencias.publicar",
-       "docente_dueno", {"EXPERIENCIA": "RU", "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R"}, "falta",
+       "docente_dueno", {"EXPERIENCIA": "RU", "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R"}, "hecho",
        "nada",
        "200: la experiencia Publicada, con su fecha de publicación; el banco queda congelado "
        "(RF-03-08)",
@@ -324,44 +351,44 @@ ENDPOINTS = [
         ("409", "alguna evidencia tiene menos de 6 ítems activos; dice cuántos faltan (RF-02-05, "
                 "RI-14)")]),
     ep("GET", "/experiencias/:id/codigo", "SUB-02", ["CU-14"],
-       "ServicioExperiencias.codigoInvitacion", "docente_dueno", {"EXPERIENCIA": "R"}, "falta",
+       "ServicioExperiencias.codigoInvitacion", "docente_dueno", {"EXPERIENCIA": "R"}, "hecho",
        "nada",
        "200: el código de 6 caracteres, sin 0/O ni 1/I/L (RI-3)",
        [("409", "la experiencia está en Borrador: el código existe, pero no se muestra "
                 "(RF-02-06, CU-14 1a)")]),
     ep("DELETE", "/experiencias/:id", "SUB-02", ["CU-15"], "ServicioExperiencias.eliminar",
-       "docente_dueno", {"EXPERIENCIA": "RD"}, "falta",
+       "docente_dueno", {"EXPERIENCIA": "RD"}, "hecho",
        "nada",
        "204",
        [("—", "irreversible; las cuentas de los estudiantes siguen existiendo (CU-15)")]),
     ep("GET", "/experiencias/:id/banco", "SUB-03", ["CU-17"], "ServicioBanco.banco",
        "docente_dueno",
-       {"EXPERIENCIA": "R", "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R", "OPCION": "R"}, "falta",
+       {"EXPERIENCIA": "R", "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R", "OPCION": "R"}, "hecho",
        "`formato` y `q`, en la consulta",
        "200: las evidencias en el orden oficial del DBA, cada una con su formato, sus ítems "
        "—opciones y respuesta correcta— y cuántos activos le faltan para publicar (RF-03-04)",
        [("—", "con la experiencia Publicada responde igual, marcada de solo lectura "
               "(CU-17 4a)")]),
     ep("PATCH", "/items/:id", "SUB-03", ["CU-18"], "ServicioBanco.editarItem", "docente_dueno",
-       {"ITEM": "RU", "OPCION": "CRUD"}, "falta",
+       {"ITEM": "RU", "OPCION": "CRUD"}, "hecho",
        "`enunciado` y la lista completa de `opciones` (`texto`, `es_correcta`, `orden`, `grupo`)",
        "200: el ítem guardado; si venía de la IA, su origen pasa a `editado_docente` (RF-03-03)",
        [("400", "ítem inválido: algo vacío, menos opciones que el mínimo del formato, dos "
                 "correctas en selección única, orden incompleto o repetido (CU-18 paso 3, RI-4)"),
         SUB_PUBLICADA]),
     ep("POST", "/items/:id/descartar", "SUB-03", ["CU-19"], "ServicioBanco.descartar",
-       "docente_dueno", {"ITEM": "U"}, "falta",
+       "docente_dueno", {"ITEM": "U"}, "hecho",
        "nada",
        "204: el ítem queda excluido, sin borrarse y sin confirmación (RF-03-06)",
        [SUB_PUBLICADA]),
     ep("POST", "/items/:id/reincluir", "SUB-03", ["CU-19"], "ServicioBanco.reincluir",
-       "docente_dueno", {"ITEM": "U"}, "falta",
+       "docente_dueno", {"ITEM": "U"}, "hecho",
        "nada",
        "204: el ítem vuelve a estar activo, con el mismo contenido",
        [SUB_PUBLICADA]),
     ep("POST", "/experiencias/:id/evidencias/:n/items", "SUB-03", ["CU-20"],
        "ServicioBanco.agregarItem", "docente_dueno",
-       {"ITEM": "C", "OPCION": "C", "EVIDENCIA_DICTAMEN": "R"}, "falta",
+       {"ITEM": "C", "OPCION": "C", "EVIDENCIA_DICTAMEN": "R"}, "hecho",
        "`:n` es el número de la evidencia; el cuerpo, como en `PATCH /items/:id`",
        "201: ítem activo, de origen `creado_docente`, con el formato del dictamen de esa "
        "evidencia (RI-19)",
@@ -460,6 +487,19 @@ ENDPOINTS = [
        "(CU-29)",
        [("403", "solo el docente dueño de la experiencia de esa inscripción; el estudiante "
                 "nunca (ADR-028)")]),
+
+    # ======================================= agregado despues (al final, para
+    # no cambiar el numero de los demas: los encargos los citan)
+    ep("GET", "/experiencias/generaciones/:id", "SUB-02", ["CU-11", "CU-16"],
+       "ServicioExperiencias.generacion", "docente", {}, "hecho",
+       "nada (`:id` es el identificador que devolvió `POST /experiencias`)",
+       "200: `generando`; `lista`, con el id de la experiencia creada; o `fallida`, con el "
+       "mensaje de `07-spec`: \"No se pudieron generar las preguntas. Intenta de nuevo.\" "
+       "(ADR-043 punto 2)",
+       [("403", "la generación la pidió otro docente"),
+        ("404", "no existe, o terminó hace más de una hora y ya se olvidó")],
+       nota="Nueva (ADR-045 punto 1, encargo 06). No toca la base: el estado de la generación "
+            "vive en memoria, sin tabla nueva."),
 ]
 
 # Operaciones de clases «servicio» que no tienen ruta propia, y por que.
@@ -494,13 +534,6 @@ ADICIONALES = [
     ("`POST /auth/refresh`", "Renovar la sesión sin volver a pedir la contraseña.",
      "Si los tokens de renovación se guardan para poder revocarlos, es una tabla que el MER no "
      "tiene."),
-    ("Generación asíncrona: `POST /experiencias` responde 202 y la espera consulta "
-     "`GET /experiencias/generaciones/:id`",
-     "Generar el banco puede tardar minutos (RNF-13), y una sola petición larga puede cortarse. "
-     "La pantalla de espera (RNF-12) consulta hasta que termine. El «todo o nada» (ADR-027) no "
-     "cambia: la experiencia se guarda solo al final.",
-     "Si el estado de la generación se guarda en la base, es una tabla nueva, fuera del MER; en "
-     "memoria, ninguno. Decidirlo al medir RNF-13 en I2."),
     ("Límite de peticiones por IP en login, códigos y recuperación (no es un endpoint: "
      "`@nestjs/throttler`)",
      "Complementa el bloqueo por credencial que ya tiene I1.",

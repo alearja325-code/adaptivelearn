@@ -415,7 +415,8 @@ Generalizaciones: Docente → Usuario; Estudiante → Usuario.
 | Operación | Casos de uso |
 |---|---|
 | `listar(docente: Docente): Experiencia [*]` | CU-10 |
-| `crear(docente: Docente, codigo_dba: string, nombre: string): Experiencia` | CU-11 |
+| `crear(docente: Docente, codigo_dba: string, nombre: string): Generacion` | CU-11 |
+| `generacion(id: string): Generacion` | CU-11, CU-16 |
 | `consultar(id: int): Experiencia` | CU-12, CU-13, CU-15 |
 | `publicar(id: int)` | CU-13 |
 | `codigoInvitacion(id: int): string` | CU-14 |

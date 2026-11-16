@@ -538,6 +538,25 @@ revisa en local antes de unirlo:
      experiencia y generar el banco con DeepSeek (ADR-043, ADR-044,
      ADR-045). En la nube se prueba con una IA falsa; DeepSeek se prueba
      en local al revisar, y ahí se mide RNF-13.
+     **Hecho el 2026-11-16, en revisión** (rama `encargo-06-backend-i2`):
+     E-18 a E-28 y la nueva `GET /experiencias/generaciones/:id` (E-38 en
+     el catálogo, al final para no cambiar los números de 07) en
+     `backend/src/banco/`. Generación en segundo plano, una llamada por
+     evidencia (hasta 3 a la vez), un reintento, todo o nada en una
+     transacción. El texto para la IA, en `instrucciones-ia.ts`, explicado
+     en `docs/diseno/instrucciones-ia-banco.md`. 36 pruebas unitarias del
+     banco y 20 de punta a punta, con la IA falsa; las pruebas atrapan los
+     dos errores puestos a propósito (una regla de RI-4 y la transacción).
+     Diagrama de clases: se agregó `ServicioExperiencias.generacion`.
+     **Falta, en local:** probar con DeepSeek de verdad (`.env`:
+     `IA_SERVICIO`, `DEEPSEEK_API_KEY`, `DEEPSEEK_MODEL`), medir RNF-13 con
+     los tiempos de la consola y fijar `IA_TIEMPO_LIMITE_MS` (hoy 120 s,
+     sin medir), y revisar a ojo la calidad de las preguntas.
+     **Por confirmar:** las decisiones propias que lista el pull request.
+     **Queda abierto:** el diagrama de clases sigue mostrando
+     `GeneradorBanco` con un servicio principal y uno de respaldo
+     (ADR-030); ADR-043 suspende el respaldo, pero no se redibujó porque
+     el encargo no lo pidió y el respaldo puede volver.
    - **07 — Backend de I3 e I4** (`docs/encargos/07-backend-i3-i4.md`):
      unirse, el diagnóstico adaptativo y el reporte.
    - **08 — Frontend de I2 a I4:** se escribe cuando 06 y 07 estén
