@@ -1,29 +1,29 @@
 # Censo de formato cerrado — Ciencias Sociales (V.1)
 # Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
 # DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
-#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+#           N1 a N7 si no aplica (criterios-censo-formato-cerrado.md §2).
 # Lo escribió la sesión de Claude del encargo 05, evidencia por evidencia (ADR-042).
 # Contexto propio: varias evidencias de los primeros grados piden saber algo de
 # la vida del propio estudiante (su familia, su casa, su municipio). Una pregunta
-# generada para cualquier estudiante no conoce esa respuesta. Los criterios no
-# tienen una regla para esto: se dictaminan N4 (requieren observar o consultar su
-# entorno) y se marcan dudosas. Ver la propuesta de ajuste en el informe.
+# generada para cualquier estudiante no conoce esa respuesta. En la versión 1 de
+# los criterios se dictaminaron N4 y dudosas; la versión 2 (2026-11-16, ADR-044)
+# agrega N6, contexto propio, y esas líneas pasaron a N6 (dicen «Antes: …»).
 # Cuando lo que se pide es general (las formas del relieve, los oficios, los
 # medios de transporte) y «su comunidad» es solo el lugar donde se aprende, aplica.
 
 # ---- 1°
-CS-01-01 1 | SC | relaciona … al ubicar | «Relaciona su izquierda-derecha, adelante – atrás con los puntos cardinales, al ubicar, en representaciones gráficas de la escuela, aquellos lugares»: en un plano dado, dónde queda un lugar tiene respuesta (single_choice).
+CS-01-01 1 | N6 | representaciones gráficas de la escuela | «Relaciona su izquierda-derecha … al ubicar, en representaciones gráficas de la escuela, … rectoría, cafetería»: depende de cómo es su escuela (N6; además necesita ver el plano). Antes: SC (criterios v2).
 CS-01-01 2 | N1 | dibuja | «Dibuja las instituciones sociales … existentes en su barrio»: dibujo propio (N1).
-CS-01-01 3 | SC | localiza en representaciones gráficas | «Localiza en representaciones gráficas o dibujos de su barrio … algunos referentes … teniendo en cuenta los puntos cardinales»: en un dibujo dado, la ubicación tiene respuesta (single_choice); su propio barrio no queda cubierto.
-CS-01-01 4 | N4 | el recorrido que realiza entre su casa y la institución | «Describe verbalmente el recorrido que realiza entre su casa y la institución educativa»: depende de su propio recorrido (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-01 3 | N6 | dibujos de su barrio | «Localiza en representaciones gráficas o dibujos de su barrio … algunos referentes»: depende de su barrio (N6; además necesita ver el dibujo). Antes: SC (criterios v2).
+CS-01-01 4 | N6 | el recorrido que realiza entre su casa y la institución | «Describe verbalmente el recorrido que realiza entre su casa y la institución educativa»: depende de su propio recorrido (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-01-02 1 | SC | reconoce | «Reconoce las diferentes formas de relieve … por ejemplo: costas, islas, montañas, valles»: reconocer cada forma de relieve tiene respuesta (single_choice); su entorno concreto no queda cubierto.
 CS-01-02 2 | N4 | sensaciones … en su cuerpo | «Diferencia los estados del tiempo atmosférico de acuerdo con las sensaciones de calor y frío manifiestas en su cuerpo»: percibir con el cuerpo y en su lugar (N4).
-CS-01-02 3 | N4 | obras … en su comunidad | «Identifica aquellas obras de infraestructura que se han realizado en su comunidad»: depende de su comunidad (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-02 3 | N6 | obras … en su comunidad | «Identifica aquellas obras de infraestructura que se han realizado en su comunidad»: depende de su comunidad (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-01-02 4 | N1 | representa de diferentes maneras | «Representa de diferentes maneras, aquellos problemas ambientales que afectan el entorno de la comunidad»: producto propio (N1).
 CS-01-03 1 | OR | nombra ordenadamente | «Nombra ordenadamente los días de la semana y los meses del año»: orden explícito (ordering).
 CS-01-03 2 | SC | diferencia … mediante la lectura del reloj | «Diferencia el ayer, el hoy y el mañana … y la duración … mediante la lectura del reloj»: respuesta correcta (single_choice).
-CS-01-03 3 | N4 | los miembros de su familia | «Identifica los miembros de su familia y verbaliza quiénes nacieron antes o después de él»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-CS-01-03 4 | N4 | cumpleaños de sus padres | «Recuerda las fechas de los cumpleaños de sus padres, hermanos, amigos»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-03 3 | N6 | los miembros de su familia | «Identifica los miembros de su familia y verbaliza quiénes nacieron antes o después de él»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-01-03 4 | N6 | cumpleaños de sus padres | «Recuerda las fechas de los cumpleaños de sus padres, hermanos, amigos»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-01-04 1 | N1 | relata | «Relata los principales acontecimientos sociales ocurridos en el aula de clase»: relato propio (N1).
 CS-01-04 2 | N4 | transformaciones … observadas | «Señala las transformaciones recientes observadas en el entorno físico de su comunidad»: observar el entorno (N4).
 CS-01-04 3 | SC | describe | «Describe aquellas organizaciones sociales a las que pertenece en su comunidad: familia, colegio y vecindario»: reconocer qué es una organización social tiene respuesta (single_choice).
@@ -31,10 +31,10 @@ CS-01-04 4 | N1 | plantea preguntas | «Plantea preguntas acerca de sucesos dest
 CS-01-05 1 | N1 | expresa … que lo hacen un ser único | «Expresa algunas características físicas y emocionales que lo hacen un ser único»: expresión propia sobre sí mismo (N1).
 CS-01-05 2 | N4 | con los demás integrantes del salón | «Compara similitudes y diferencias entre sus gustos, costumbres … con los demás integrantes del salón»: observar a sus compañeros (N4).
 CS-01-05 3 | N5 | cualidades que le ayudan a estar mejor entre los demás | «Reconoce de sí mismo, de sus compañeros y de sus familiares aquellas cualidades que le ayudan a estar mejor»: disposición hacia sí y los otros (N5). | dudoso: también depende de personas que la pregunta no conoce (contexto propio)
-CS-01-05 4 | N4 | mediante los relatos de los abuelos | «Reconoce las costumbres y tradiciones culturales de su comunidad mediante los relatos de los abuelos»: depende de su comunidad y de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-CS-01-06 1 | N4 | procedencia de su familia | «Señala los lugares de procedencia de su familia»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-CS-01-06 2 | N4 | la casa donde vive | «Nombra los materiales utilizados en la construcción de la casa donde vive»: depende de su casa (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-CS-01-06 3 | N4 | viviendas … en su comunidad | «Identifica las viviendas que se destacan en su comunidad, que son patrimonio hoy»: depende de su comunidad (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-01-05 4 | N6 | mediante los relatos de los abuelos | «Reconoce las costumbres y tradiciones culturales de su comunidad mediante los relatos de los abuelos»: depende de su comunidad y de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-01-06 1 | N6 | procedencia de su familia | «Señala los lugares de procedencia de su familia»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-01-06 2 | N6 | la casa donde vive | «Nombra los materiales utilizados en la construcción de la casa donde vive»: depende de su casa (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-01-06 3 | N6 | viviendas … en su comunidad | «Identifica las viviendas que se destacan en su comunidad, que son patrimonio hoy»: depende de su comunidad (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-01-06 4 | SC | reconoce el valor | «Reconoce el valor de la vivienda como el espacio donde tiene lugar su hogar»: para qué sirve la vivienda a una familia tiene una respuesta compartida (single_choice).
 CS-01-07 1 | N3 | presenta sus ideas, intereses y sentimientos | «Presenta sus ideas, intereses y sentimientos frente a las normas»: expresión propia (N3).
 CS-01-07 2 | N2 | colabora … en la construcción de los acuerdos | «Expresa sus opiniones y colabora activamente en la construcción de los acuerdos grupales»: interactuar (N2); además opinión propia (N3).
@@ -49,33 +49,33 @@ CS-01-08 4 | N5 | participa de acciones | «Participa de acciones que fomentan l
 CS-02-01 1 | SC | identifica | «Identifica las formas del relieve que se encuentran en la superficie terrestre … y nombra aquellas que se observan en su localidad»: identificar las formas tiene respuesta (single_choice); las de su localidad no quedan cubiertas.
 CS-02-01 2 | N3 | expresa sus apreciaciones … y señala aquellos que prefiere | «Expresa sus apreciaciones sobre los paisajes … y señala aquellos que prefiere»: preferencia propia (N3).
 CS-02-01 3 | N1 | traza … a través de dibujos y la elaboración de maquetas | «Traza las formas básicas del paisaje … a través de dibujos y la elaboración de maquetas»: producto propio (N1).
-CS-02-01 4 | SC | explica | «Explica los cambios que se han realizado en el paisaje … debido a cultivos, construcciones»: por qué cambia un paisaje tiene respuesta (single_choice); su municipio concreto no queda cubierto.
-CS-02-02 1 | SC | establece relaciones … utilizando los puntos cardinales | «Establece relaciones entre el espacio físico del salón y otros espacios … a través de dibujos, gráficos o planos, utilizando los puntos cardinales»: en un plano dado, la posición relativa tiene respuesta (single_choice).
+CS-02-01 4 | N6 | paisaje del municipio | «Explica los cambios que se han realizado en el paisaje del municipio»: depende de su municipio (N6). Antes: SC (criterios v2).
+CS-02-02 1 | N6 | espacios de la Institución Educativa | «Establece relaciones entre el espacio físico del salón de clases y otros espacios de la Institución Educativa»: depende de cómo es su colegio (N6). Antes: SC (criterios v2).
 CS-02-02 2 | N1 | traza … y las representa en un dibujo | «Traza las rutas … y las representa en un dibujo»: dibujo propio (N1).
 CS-02-02 3 | N4 | mide distancias reales | «Mide distancias reales entre varios lugares, con pasos»: medir en el mundo (N4).
 CS-02-02 4 | N2 | da orientaciones … verbalmente | «Da orientaciones espaciales verbalmente o de otras formas para llegar a un lugar»: orientar a otro (N2). | dudoso: en un mapa, elegir las indicaciones correctas tiene respuesta, pero mediría reconocerlas y no darlas
-CS-02-03 1 | N4 | su familia antes de su nacimiento | «Describe las características de la conformación de su familia antes de su nacimiento»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-CS-02-03 2 | N4 | su núcleo familiar | «Reconoce las procedencias y los recorridos de los integrantes de su núcleo familiar»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-CS-02-03 3 | N4 | su registro civil | «Establece secuencias de datos históricos a nivel personal y familiar desde la lectura de su registro civil … y elabora un árbol genealógico»: depende de sus propios documentos (N4); además el árbol es un producto (N1). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-03 1 | N6 | su familia antes de su nacimiento | «Describe las características de la conformación de su familia antes de su nacimiento»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-02-03 2 | N6 | su núcleo familiar | «Reconoce las procedencias y los recorridos de los integrantes de su núcleo familiar»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-02-03 3 | N6 | su registro civil | «Establece secuencias de datos históricos a nivel personal y familiar desde la lectura de su registro civil … y elabora un árbol genealógico»: depende de sus propios documentos (N6); además el árbol es un producto (N1). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-02-03 4 | N4 | indaga | «Indaga por los lugares de origen … de la población en su comunidad»: investigar en el mundo (N4).
 CS-02-04 1 | SC | diferencia los cambios | «Diferencia los cambios vividos en los medios de transporte en su entorno cercano, a partir de relatos de su familia»: cómo cambió el transporte tiene respuesta; el relato puede ir en el enunciado (single_choice, criterios §4).
 CS-02-04 2 | MT | clasifica | «Clasifica las formas de transportarse de las personas según el medio utilizado»: clasificar en grupos (matching).
-CS-02-04 3 | N4 | el medio de transporte que más usa | «Describe el medio de transporte que más usa … y expone sus ventajas y desventajas»: depende de su vida (N4). | dudoso: contexto propio; las ventajas de un medio dado sí se podrían preguntar
+CS-02-04 3 | N6 | el medio de transporte que más usa | «Describe el medio de transporte que más usa … y expone sus ventajas y desventajas»: depende de su vida (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-02-04 4 | N1 | representa gráficamente | «Representa gráficamente la movilidad en su comunidad»: producto propio (N1).
 CS-02-05 1 | SC | identifica | «Identifica los trabajos u oficios que las personas de su comunidad realizan»: reconocer oficios y para qué sirven tiene respuesta (single_choice); los de su comunidad concreta no quedan cubiertos.
-CS-02-05 2 | N4 | los adultos en su hogar | «Describe las actividades económicas que realizan los adultos en su hogar»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-05 2 | N6 | los adultos en su hogar | «Describe las actividades económicas que realizan los adultos en su hogar»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-02-05 3 | SC | compara … y diferencia | «Compara los oficios que los abuelos realizaban anteriormente respecto de cómo se realizan hoy y diferencia los trabajos … urbanas y rurales»: respuesta correcta (single_choice).
 CS-02-05 4 | SC | reconoce | «Reconoce experiencias donde algunos niños son explotados laboralmente»: identificar la explotación en un caso dado tiene respuesta (single_choice); expresar razones no queda cubierto.
 CS-02-06 1 | SC | reconoce | «Reconoce características de las viviendas rurales y urbanas a partir de los materiales»: respuesta correcta (single_choice).
 CS-02-06 2 | SC | describe y diferencia | «Describe y diferencia características de las viviendas de los grupos étnicos, a partir de la lectura de imágenes»: respuesta correcta (single_choice); el ítem necesita la imagen.
 CS-02-06 3 | SC | identifica | «Identifica los cambios que se dan en las viviendas con el paso del tiempo»: respuesta correcta (single_choice).
 CS-02-06 4 | SC | describe | «Describe las ventajas y desventajas que representa tener vivienda en zona urbana o rural»: respuesta correcta (single_choice).
-CS-02-07 1 | N4 | el croquis de su municipio | «Identifica el croquis de su municipio y lo diferencia entre los demás»: depende de cuál es su municipio (N4). | dudoso: contexto propio; con el municipio en el enunciado sí aplicaría
-CS-02-07 2 | N4 | el territorio de su municipio | «Ubica las comunas, corregimientos … en los que está organizado el territorio de su municipio»: depende de su municipio (N4). | dudoso: contexto propio; con el municipio en el enunciado sí aplicaría
-CS-02-07 3 | N4 | topónimos … en su municipio | «Nombra topónimos … en su municipio»: depende de su municipio (N4). | dudoso: contexto propio; con el municipio en el enunciado sí aplicaría
+CS-02-07 1 | N6 | el croquis de su municipio | «Identifica el croquis de su municipio y lo diferencia entre los demás»: depende de cuál es su municipio (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-02-07 2 | N6 | el territorio de su municipio | «Ubica las comunas, corregimientos … en los que está organizado el territorio de su municipio»: depende de su municipio (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-02-07 3 | N6 | topónimos … en su municipio | «Nombra topónimos … en su municipio»: depende de su municipio (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-02-07 4 | MT | diferencia … con | «Diferencia la organización de grupos pequeños como la familia … con las de los grupos más grandes como resguardo … y municipio»: clasificar en dos grupos (matching).
 CS-02-08 1 | SC | describe | «Describe diversas características de los grupos humanos (etnia, edad, religión, género)»: respuesta correcta (single_choice); lo que le gusta de sus compañeros no queda cubierto.
-CS-02-08 2 | N4 | integrantes de su familia … compañeros | «Establece semejanzas y diferencias entre los alimentos preferidos (en los integrantes de su familia) y … los compañeros»: depende de su familia y su grupo (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-02-08 2 | N6 | integrantes de su familia … compañeros | «Establece semejanzas y diferencias entre los alimentos preferidos (en los integrantes de su familia) y … los compañeros»: depende de su familia y su grupo (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-02-08 3 | N3 | expresa sus sentimientos | «Expresa sus sentimientos cuando es discriminado o aceptado»: expresión propia, sin una única respuesta (N3).
 CS-02-08 4 | SC | identifica | «Identifica las acciones que generan discriminación … y sabe a quién acudir»: respuesta correcta (single_choice).
 
@@ -83,22 +83,22 @@ CS-02-08 4 | SC | identifica | «Identifica las acciones que generan discriminac
 CS-03-01 1 | SC | identifica | «Identifica los nombres de los continentes y de los océanos … y reconoce las actividades que se realizan en las zonas costeras»: respuesta correcta (single_choice).
 CS-03-01 2 | SC | diferencia | «Diferencia los mares como porciones de los océanos y su importancia en la fijación de límites»: respuesta correcta (single_choice).
 CS-03-01 3 | N1 | plantea preguntas | «Plantea preguntas sobre las problemáticas ambientales que viven los océanos … y explica el impacto»: la acción principal son preguntas propias (N1).
-CS-03-01 4 | N4 | su departamento, municipio | «Relaciona la ubicación geográfica de su departamento, municipio … con la presencia o no de costas»: depende de dónde vive (N4). | dudoso: contexto propio; las ventajas de tener costa sí se podrían preguntar
-CS-03-02 1 | N4 | su región | «Identifica la oferta de recursos naturales presentes en su región»: depende de su región (N4). | dudoso: contexto propio; con la región en el enunciado sí aplicaría
+CS-03-01 4 | N6 | su departamento, municipio | «Relaciona la ubicación geográfica de su departamento, municipio … con la presencia o no de costas»: depende de dónde vive (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-03-02 1 | N6 | su región | «Identifica la oferta de recursos naturales presentes en su región»: depende de su región (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-03-02 2 | SC | reconoce | «Reconoce las actividades que se realizan en su región: agricultura, ganadería, pesca, industria»: reconocer cada actividad tiene respuesta (single_choice); las de su región concreta no quedan cubiertas.
 CS-03-02 3 | SC | describe | «Describe las formas de organización social y económica utilizadas para la explotación de los recursos naturales»: respuesta correcta (single_choice).
 CS-03-02 4 | SC | expresa por qué | «Expresa por qué en espacios con determinados climas no se cuenta con ciertos productos»: como en la prueba de los criterios (§7), aplica (single_choice).
-CS-03-03 1 | N4 | espacios como la escuela, la plaza principal | «Reconoce los cambios y/o permanencias que se presentan en espacios como la escuela, la plaza principal y el mercado»: observar su entorno (N4). | dudoso: contexto propio; con un caso descrito sí aplicaría
+CS-03-03 1 | N6 | espacios como la escuela, la plaza principal | «Reconoce los cambios y/o permanencias que se presentan en espacios como la escuela, la plaza principal y el mercado»: observar su entorno (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-03-03 2 | SC | diferencia cambios | «Diferencia cambios dados en el territorio local por la construcción de obras públicas»: qué cambia con una carretera o un acueducto tiene respuesta (single_choice); su territorio concreto no queda cubierto.
 CS-03-03 3 | N4 | indaga | «Indaga sobre el aumento o disminución de la población … a partir de diferentes fuentes documentales»: investigar (N4).
 CS-03-03 4 | SC | identifica | «Identifica problemas sociales relevantes en la población, originados en el uso de los recursos naturales»: respuesta correcta (single_choice).
-CS-03-04 1 | SC | identifica | «Identifica en su entorno algunos objetos, herramientas … que brindan información acerca del pasado»: reconocer qué objeto es una fuente del pasado tiene respuesta (single_choice).
-CS-03-04 2 | N4 | historia oral con sus abuelos | «Describe algunas costumbres y tradiciones … a través de la historia oral con sus abuelos»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-CS-03-04 3 | N4 | municipios de su departamento | «Compara las fiestas que se celebran en diferentes municipios de su departamento»: depende de su departamento (N4). | dudoso: contexto propio; con el departamento en el enunciado sí aplicaría
-CS-03-04 4 | N4 | regiones … de su departamento | «Describe la diversidad en la gastronomía de diferentes regiones o provincias que conforman su departamento»: depende de su departamento (N4). | dudoso: contexto propio; con el departamento en el enunciado sí aplicaría
-CS-03-05 1 | N4 | en su familia | «Describe el tiempo dedicado en su familia a actividades»: depende de su familia (N4). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-03-04 1 | N6 | en su entorno … pasado de su región | «Identifica en su entorno algunos objetos … que brindan información acerca del pasado de su región»: depende de su entorno (N6). Antes: SC (criterios v2).
+CS-03-04 2 | N6 | historia oral con sus abuelos | «Describe algunas costumbres y tradiciones … a través de la historia oral con sus abuelos»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-03-04 3 | N6 | municipios de su departamento | «Compara las fiestas que se celebran en diferentes municipios de su departamento»: depende de su departamento (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-03-04 4 | N6 | regiones … de su departamento | «Describe la diversidad en la gastronomía de diferentes regiones o provincias que conforman su departamento»: depende de su departamento (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
+CS-03-05 1 | N6 | en su familia | «Describe el tiempo dedicado en su familia a actividades»: depende de su familia (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-03-05 2 | N1 | organiza las actividades personales | «Organiza las actividades personales y familiares con base en el uso del calendario»: organización propia (N1).
-CS-03-05 3 | N4 | las que realiza actualmente | «Compara las actividades … llevadas a cabo el año pasado con las que realiza actualmente y expresa aquellas que quiere hacer»: depende de su vida, y sus deseos son propios (N4; también N3). | dudoso: contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+CS-03-05 3 | N6 | las que realiza actualmente | «Compara las actividades … llevadas a cabo el año pasado con las que realiza actualmente y expresa aquellas que quiere hacer»: depende de su vida, y sus deseos son propios (N6; también N3). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-03-05 4 | N1 | elabora esquemas | «Elabora esquemas con la distribución del tiempo dedicado en procesos de producción»: producto propio (N1).
 CS-03-06 1 | SC | caracteriza | «Caracteriza aquellos grupos humanos que habitan en su región (afrodescendientes, raizales…)»: las características de cada grupo tienen respuesta (single_choice).
 CS-03-06 2 | SC | describe | «Describe las expresiones culturales de cada uno de los grupos humanos identificados»: respuesta correcta (single_choice).
@@ -174,7 +174,7 @@ CS-05-06 3 | SC | identifica | «Identifica las consecuencias de los conflictos 
 CS-05-06 4 | N2 | participa en debates | «Participa en debates y propone acciones para vivir en una sociedad pacífica»: debatir (N2); además propuesta propia (N3).
 CS-05-07 1 | SC | describe | «Describe los beneficios o ventajas que conlleva vivir en un Estado democrático»: respuesta correcta (single_choice).
 CS-05-07 2 | SC | identifica | «Identifica los derechos fundamentales … y su aplicabilidad en la vida cotidiana a partir del análisis de casos»: respuesta correcta (single_choice).
-CS-05-07 3 | N4 | el manual de convivencia de su institución | «Compara los derechos y deberes … de la Constitución … con los … del manual de convivencia de su institución»: el manual cambia de colegio a colegio (N4). | dudoso: contexto propio; con el manual en el enunciado sí aplicaría
+CS-05-07 3 | N6 | el manual de convivencia de su institución | «Compara los derechos y deberes … de la Constitución … con los … del manual de convivencia de su institución»: el manual cambia de colegio a colegio (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-05-07 4 | SC | explica | «Explica el valor que tiene conocer los derechos y los mecanismos constitucionales»: respuesta correcta (single_choice).
 CS-05-08 1 | SC | explica | «Explica las instituciones que defienden los Derechos Humanos»: respuesta correcta (single_choice).
 CS-05-08 2 | SC | reconoce la importancia | «Reconoce la importancia de proteger la organización social y los derechos de las colectividades»: respuesta correcta (single_choice).
@@ -198,7 +198,7 @@ CS-06-04 1 | SC | relaciona | «Relaciona el origen de la agricultura con el des
 CS-06-04 2 | SC | explica … y los ubica en un mapa | «Explica el papel de los ríos Nilo, Tigris, Éufrates … en la construcción de las primeras ciudades … y los ubica en un mapa»: respuesta correcta (single_choice).
 CS-06-04 3 | SC | establece las implicaciones | «Establece las implicaciones del proceso de sedentarización … en la revolución agrícola»: respuesta correcta (single_choice).
 CS-06-04 4 | N3 | expresa opiniones | «Expresa opiniones sobre la influencia de la agricultura, el surgimiento de las ciudades»: opinión propia (N3).
-CS-06-05 1 | MT | representa y sitúa en un mapa | «Representa y sitúa en un mapa los espacios geográficos en que se desarrollaron sociedades prehispánicas»: empareja cada sociedad con su lugar en un mapa dado (matching).
+CS-06-05 1 | N7 | sitúa en un mapa | «Representa y sitúa en un mapa los espacios geográficos de las sociedades prehispánicas»: el trabajo es sobre el mapa (N7). Antes: MT (criterios v2).
 CS-06-05 2 | SC | describe | «Describe los aportes tecnológicos y culturales de las sociedades prehispánicas»: respuesta correcta (single_choice).
 CS-06-05 3 | SC | compara | «Compara la estructura social, política y económica de las sociedades prehispánicas, con las sociedades actuales»: respuesta correcta (single_choice).
 CS-06-05 4 | SC | explica | «Explica la importancia de alimentos domesticados en América como el maíz»: respuesta correcta (single_choice).
@@ -218,10 +218,10 @@ CS-06-08 4 | SC | reconoce | «Reconoce a partir de situaciones de la vida cotid
 # ---- 7°
 CS-07-01 1 | SC | explica | «Explica la importancia de los viajes de los exploradores del medioevo»: respuesta correcta (single_choice).
 CS-07-01 2 | SC | relaciona | «Relaciona la concepción y representación del mundo que se tenía en la Edad Media … y señala los cambios»: respuesta correcta (single_choice).
-CS-07-01 3 | SC | compara | «Compara las representaciones del mundo conocido en la Edad Media y el representado hoy»: respuesta correcta (single_choice).
+CS-07-01 3 | N7 | mapas e imágenes satelitales | «Compara las representaciones del mundo … desde los mapas e imágenes satelitales»: hay que ver los mapas (N7). Antes: SC (criterios v2).
 CS-07-01 4 | N3 | argumenta | «Argumenta que las representaciones del espacio son producto de las imágenes que se tienen del mundo»: «argumenta» no aplica (N3).
 CS-07-02 1 | SC | reconoce y utiliza conceptos | «Reconoce y utiliza conceptos propios de la geografía urbana … a partir de la observación directa»: usar el concepto correcto para un caso dado tiene respuesta (single_choice, criterios §4); la observación directa no queda cubierta.
-CS-07-02 2 | N4 | zonas de la ciudad o del municipio | «Localiza en zonas de la ciudad o del municipio la concentración de fenómenos sociales»: depende de su ciudad (N4). | dudoso: contexto propio; con un mapa dado sí aplicaría
+CS-07-02 2 | N6 | zonas de la ciudad o del municipio | «Localiza en zonas de la ciudad o del municipio la concentración de fenómenos sociales»: depende de su ciudad (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 CS-07-02 3 | SC | relaciona | «Relaciona la industrialización y la migración del campo a la ciudad con los procesos de organización de las ciudades»: respuesta correcta (single_choice).
 CS-07-02 4 | SC | compara | «Compara las problemáticas urbanas más recurrentes … con algunas similares en otros períodos»: respuesta correcta (single_choice).
 CS-07-03 1 | SC | reconoce | «Reconoce el imperio romano como un sistema político, militar y económico»: respuesta correcta (single_choice).
@@ -233,7 +233,7 @@ CS-07-04 2 | SC | reconoce | «Reconoce la organización social de las culturas 
 CS-07-04 3 | SC | compara | «Compara características sociales, culturales y económicas de ciudades del año 1000»: respuesta correcta (single_choice).
 CS-07-04 4 | N3 | argumenta | «Argumenta las continuidades del ordenamiento político y social instaurado durante la Edad Media»: «argumenta» no aplica (N3).
 CS-07-05 1 | SC | describe | «Describe algunos acontecimientos que dieron paso a la Modernidad»: respuesta correcta (single_choice).
-CS-07-05 2 | SC | interpreta mapas | «Interpreta mapas temáticos en los que reconoce ciudades estratégicas de Europa»: respuesta correcta (single_choice); el ítem necesita el mapa.
+CS-07-05 2 | N7 | interpreta mapas temáticos | «Interpreta mapas temáticos en los que reconoce ciudades estratégicas de Europa»: el verbo principal es leer el mapa (N7). Antes: SC (criterios v2).
 CS-07-05 3 | SC | explica | «Explica las implicaciones políticas y económicas que tuvo la Reforma protestante»: respuesta correcta (single_choice).
 CS-07-05 4 | SC | reconoce | «Reconoce en las expresiones artísticas del Renacimiento … la vida cotidiana»: respuesta correcta sobre una obra dada (single_choice); el ítem necesita la imagen.
 CS-07-06 1 | SC | describe | «Describe los procesos de Conquista y colonización en América»: respuesta correcta (single_choice).

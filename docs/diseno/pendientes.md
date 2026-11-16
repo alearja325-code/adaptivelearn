@@ -361,15 +361,17 @@ formato cerrado.** En revisión (rama `encargo-05-ejemplos-y-censo`).
 - **Esto corrige la cifra de ADR-011** ("2 a 8 figuras por área"): casi
   todos los ejemplos de Matemáticas, Lenguaje y Ciencias Naturales traen
   una figura. La decisión de ADR-011 no cambia, pero el ejemplo llega a
-  la IA, en la mayoría de los casos, sin su figura. **Pregunta para
-  Alejandro:** ¿se anota en ADR-011 o se abre una ADR nueva?
-- **Censo QA-014** (`censo/informe-censo.md`): 904 de 1282 evidencias
-  (71 %) aplican a formato cerrado: Matemáticas 77 %, **Lenguaje 56 %**,
-  Ciencias Naturales 83 %, Ciencias Sociales 70 %. **16 DBA no tienen
-  ninguna evidencia que aplique** (10 de Lenguaje). **Propuesto por IA,
+  la IA, en la mayoría de los casos, sin su figura. Anotado como
+  corrección en ADR-011 (2026-11-16).
+- **Censo QA-014** (`censo/informe-censo.md`), con los criterios
+  versión 2 (N6 y N7, ADR-044, 2026-11-16): 859 de 1282 evidencias
+  (67 %) aplican a formato cerrado: Matemáticas 72 %, **Lenguaje 52 %**,
+  Ciencias Naturales 80 %, Ciencias Sociales 68 %. **25 DBA no tienen
+  ninguna evidencia que aplique** (13 de Lenguaje). **Propuesto por IA,
   sin validar:** falta que dos integrantes validen
-  `censo/muestra_validacion.md` (40 al azar + 84 dudosas, criterios §5).
-  El informe trae 7 propuestas de ajuste a los criterios.
+  `censo/muestra_validacion.md` (40 al azar + las dudosas, criterios §5).
+  De las 7 propuestas de ajuste, la 1 y la 2 se decidieron (ADR-044); las
+  otras 5 se deciden con la validación.
 - **Cargado en el sistema:** el backend carga el ejemplo, la marca y el
   dictamen (`evidencia_dictamen`); el Paso 2 muestra las evidencias que
   no aplican tachadas y el ejemplo, o el aviso de imagen.

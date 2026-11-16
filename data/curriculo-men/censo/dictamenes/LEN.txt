@@ -1,19 +1,22 @@
 # Censo de formato cerrado — Lenguaje (V.2)
 # Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
 # DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
-#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+#           N1 a N7 si no aplica (criterios-censo-formato-cerrado.md §2).
 # Lo escribió la sesión de Claude del encargo 05, evidencia por evidencia (ADR-042).
 # Escuchar: las evidencias sobre lo que el estudiante escucha (un discurso,
 # una voz, sonidos) se dictaminan N2, porque la pregunta del sistema es escrita:
 # leer un texto cambia lo que la evidencia pide. Ver el informe.
+# Criterios versión 2 (2026-11-16, ADR-044): N7, necesita ver o escuchar. Las
+# evidencias que miden leer una imagen, un gesto o una señal, o escuchar una voz,
+# pasaron a N7 (dicen «Antes: …»). Las de escucha ya dictaminadas N2 se dejan N2.
 
 # ---- 1°
 LEN-01-01 1 | SC | establece semejanzas y diferencias | «Establece semejanzas y diferencias entre los principales medios de comunicación»: elegir la diferencia correcta entre dos medios (single_choice).
 LEN-01-01 2 | SC | comprende | «Comprende los mensajes emitidos por diferentes medios de comunicación»: preguntas de comprensión sobre un mensaje dado (single_choice).
 LEN-01-01 3 | MT | distingue | «Distingue los medios de comunicación para reconocer los posibles usos»: empareja cada medio con su uso (matching).
-LEN-01-01 4 | SC | describe | «Describe los diferentes tipos de voz que se usan en los programas radiales y televisivos»: elegir cómo es la voz de quien narra un partido o da una noticia (single_choice). | dudoso: reconocer un tipo de voz sin oírla cambia la evidencia; con solo texto el ítem mide lo que el estudiante sabe de esos programas
-LEN-01-02 1 | SC | identifica | «Identifica las intenciones de los gestos y los movimientos corporales»: dado un gesto (descrito o en imagen), su intención es una (single_choice).
-LEN-01-02 2 | SC | interpreta | «Interpreta ilustraciones e imágenes en relación a sus colores, formas y tamaños»: preguntas sobre una imagen dada (single_choice); el ítem necesita la imagen.
+LEN-01-01 4 | N7 | tipos de voz | «Describe los diferentes tipos de voz que se usan en los programas radiales y televisivos»: hay que oír las voces (N7). Antes: SC (criterios v2).
+LEN-01-02 1 | N7 | gestos y movimientos corporales | «Identifica las intenciones de los gestos y los movimientos corporales de los interlocutores»: hay que ver los gestos (N7). Antes: SC (criterios v2).
+LEN-01-02 2 | N7 | interpreta ilustraciones e imágenes | «Interpreta ilustraciones e imágenes en relación a sus colores, formas y tamaños»: hay que ver la imagen (N7). Antes: SC (criterios v2).
 LEN-01-02 3 | N1 | representa … mediante imágenes | «Representa objetos, personas y lugares mediante imágenes»: dibujo propio (N1).
 LEN-01-02 4 | N2 | cualidades sonoras | «Reconoce el sentido de algunas cualidades sonoras como la entonación, las pausas y los silencios»: hay que oírlas; en una pregunta escrita no están (N2, escuchar).
 LEN-01-03 1 | N5 | escucha o lee | «Escucha o lee adivinanzas, anagramas, retahílas…»: describe una práctica habitual, no un conocimiento que se pueda preguntar (N5). | dudoso: también podría leerse como comprensión de esos textos, que sí aplica
@@ -21,7 +24,7 @@ LEN-01-03 2 | SC | comprende | «Comprende el sentido de los textos de la tradic
 LEN-01-03 3 | SC | entiende | «Entiende que hay diferencias en la forma en que se escriben … acrósticos y adivinanzas»: reconocer cuál es un acróstico tiene respuesta (single_choice).
 LEN-01-03 4 | N2 | interactúa | «Interactúa con sus compañeros en dinámicas grupales que incluyen: declamación, canto»: interacción en vivo (N2).
 LEN-01-04 1 | N2 | comparte sus impresiones | «Comparte sus impresiones sobre los textos literarios»: comunicar a otros (N2); además las impresiones son propias (N3).
-LEN-01-04 2 | SC | emplea las imágenes | «Emplea las imágenes o ilustraciones de los textos literarios para comprenderlos»: preguntas sobre un texto con su ilustración (single_choice); el ítem necesita la imagen.
+LEN-01-04 2 | N7 | imágenes o ilustraciones | «Emplea las imágenes o ilustraciones de los textos literarios para comprenderlos»: hay que ver las ilustraciones (N7). Antes: SC (criterios v2).
 LEN-01-04 3 | N1 | expresa … a través de dibujos | «Expresa sus opiniones e impresiones a través de dibujos, caricaturas, canciones»: es el caso que ADR-006 da como producción creativa (N1).
 LEN-01-04 4 | SC | identifica | «Identifica la repetición de algunos sonidos al final de los versos … y los vincula con su escritura»: elegir las palabras que riman en un verso escrito (single_choice).
 LEN-01-05 1 | SC | extrae información | «Extrae información del contexto comunicativo que le permite identificar quién lo produce y en dónde»: dada una situación, quién habla y dónde tiene respuesta (single_choice).
@@ -29,7 +32,7 @@ LEN-01-05 2 | N2 | textos que escucha | «Comprende las temáticas tratadas en d
 LEN-01-05 3 | N2 | discursos que escucha | «Segmenta los discursos que escucha en unidades significativas como las palabras»: segmentar lo oído (N2, escuchar).
 LEN-01-05 4 | N2 | palabras … que escucha | «Identifica los sonidos presentes en las palabras, oraciones y discursos que escucha»: conciencia de lo que se oye (N2, escuchar).
 LEN-01-06 1 | SC | comprende | «Comprende el propósito de los textos que lee, apoyándose en sus títulos, imágenes»: respuesta correcta (single_choice).
-LEN-01-06 2 | SC | explica | «Explica las semejanzas y diferencias … entre lo que dice un texto y lo que muestran las imágenes»: elegir la diferencia correcta (single_choice); el ítem necesita la imagen.
+LEN-01-06 2 | N7 | lo que muestran las imágenes | «Explica las semejanzas y diferencias entre lo que dice un texto y lo que muestran las imágenes»: hay que ver las imágenes (N7). Antes: SC (criterios v2).
 LEN-01-06 3 | SC | lee | «Lee palabras sencillas»: leer una palabra y elegir su significado o su dibujo (single_choice).
 LEN-01-06 4 | SC | identifica | «Identifica la letra o grupo de letras que corresponden con un sonido»: respuesta única (single_choice).
 LEN-01-07 1 | N2 | en sus conversaciones | «Emplea palabras adecuadas según la situación comunicativa en sus conversaciones y diálogos»: conversación en vivo (N2).
@@ -47,8 +50,8 @@ LEN-02-01 1 | N3 | manifestar sus puntos de vista | «Utiliza los medios de comu
 LEN-02-01 2 | SC | identifica | «Identifica las diferencias y semejanzas entre los contenidos … de los diversos medios»: respuesta correcta (single_choice).
 LEN-02-01 3 | SC | contrasta | «Contrasta las características de diferentes medios … a partir de la manera como presentan la información»: elegir la diferencia correcta (single_choice).
 LEN-02-01 4 | N1 | expresa con claridad | «Expresa con claridad contenidos propios de los medios de comunicación masiva»: producir la expresión (N1).
-LEN-02-02 1 | SC | utiliza las señales | «Utiliza las señales que circulan en su entorno para informar, prevenir, prohibir»: elegir la señal que corresponde a una intención (single_choice). | dudoso: la evidencia pide usar señales para comunicar; el ítem solo ve si elige la adecuada
-LEN-02-02 2 | MT | asocia | «Asocia los dibujos de las señales y símbolos con sus posibles significados»: dos conjuntos (matching).
+LEN-02-02 1 | N7 | señales | «Utiliza las señales que circulan en su entorno»: las señales son visuales (N7). Antes: SC (criterios v2).
+LEN-02-02 2 | N7 | dibujos de las señales | «Asocia los dibujos de las señales y símbolos con sus posibles significados»: hay que ver los dibujos (N7). Antes: MT (criterios v2).
 LEN-02-02 3 | SC | identifica | «Identifica la función de las imágenes en textos como: manuales de instrucción, carteles»: respuesta correcta (single_choice).
 LEN-02-03 1 | SC | establece semejanzas y diferencias | «Establece semejanzas y diferencias entre los textos literarios que lee»: respuesta correcta (single_choice).
 LEN-02-03 2 | MT | relaciona | «Relaciona los personajes, tiempos, espacios y acciones»: empareja personajes con acciones o lugares de la historia (matching).
@@ -83,7 +86,7 @@ LEN-03-01 1 | SC | reconoce | «Reconoce los usos de los medios de comunicación
 LEN-03-01 2 | SC | compara | «Compara la información proveniente de diferentes medios»: respuesta correcta (single_choice).
 LEN-03-01 3 | SC | diferencia | «Diferencia los formatos en los que se presentan los medios»: elegir el formato de un medio (single_choice; ante la duda con matching).
 LEN-03-02 1 | SC | identifica | «Identifica diversas manifestaciones artísticas … y relaciona su contenido con el contexto en el que vive»: identificar la manifestación tiene respuesta (single_choice); relacionarla con su propio contexto no queda cubierto.
-LEN-03-02 2 | SC | interpreta | «Interpreta la información difundida en textos no verbales: caricaturas, tiras cómicas»: preguntas sobre una caricatura dada (single_choice); el ítem necesita la imagen.
+LEN-03-02 2 | N7 | textos no verbales | «Interpreta la información difundida en textos no verbales: caricaturas, tiras cómicas, historietas…»: hay que ver la caricatura o la historieta (N7). Antes: SC (criterios v2).
 LEN-03-02 3 | SC | comprende | «Comprende que algunos escritos están compuestos por texto y gráficos»: respuesta correcta (single_choice).
 LEN-03-02 4 | N2 | analiza los sonidos | «Analiza los sonidos que se emplean en diferentes manifestaciones artísticas»: hay que oírlos (N2, escuchar). | dudoso: oír una obra no es conversar; podría leerse como N4 (percibir el entorno)
 LEN-03-03 1 | MT | diferencia entre | «Diferencia entre textos ficcionales y no ficcionales»: clasificar en dos grupos (matching).
@@ -120,7 +123,7 @@ LEN-04-01 2 | SC | reconoce | «Reconoce las relaciones de contenido de diferent
 LEN-04-01 3 | SC | identifica | «Identifica las diferentes estructuras … de los medios de comunicación masiva»: respuesta correcta (single_choice).
 LEN-04-01 4 | N2 | dialoga | «Dialoga sobre el contenido de los textos informativos»: conversar (N2).
 LEN-04-02 1 | N1 | emplea … en los textos que escribe | «Emplea elementos no verbales en los textos que escribe»: producción propia (N1).
-LEN-04-02 2 | SC | comprende | «Comprende el sentido de las manifestaciones no verbales presentes en canciones, afiches y conversaciones»: preguntas sobre un afiche dado (single_choice); el ítem necesita la imagen.
+LEN-04-02 2 | N7 | manifestaciones no verbales | «Comprende el sentido de las manifestaciones no verbales presentes en canciones, afiches y conversaciones»: lo no verbal se ve o se oye (N7). Antes: SC (criterios v2).
 LEN-04-02 3 | N1 | complementa sus escritos | «Complementa sus escritos por medio de secuencias de imágenes o dibujos»: producción propia (N1).
 LEN-04-03 1 | SC | identifica | «Identifica el contexto en que se crea una obra literaria»: respuesta correcta (single_choice); relacionarlo con lo que él sabe no queda cubierto.
 LEN-04-03 2 | SC | reconoce | «Reconoce los temas que aborda un texto literario»: respuesta correcta (single_choice).
@@ -153,7 +156,7 @@ LEN-05-01 1 | SC | caracteriza | «Caracteriza los elementos constitutivos de la
 LEN-05-01 2 | SC | reconoce | «Reconoce los roles desempeñados por los sujetos que participan en las emisiones de los medios»: respuesta correcta (single_choice).
 LEN-05-01 3 | N2 | dialoga | «Dialoga con sus compañeros sobre el sentido de los mensajes»: conversar (N2).
 LEN-05-01 4 | SC | selecciona | «Selecciona la información de acuerdo con el formato en que ha sido presentada»: respuesta correcta (single_choice).
-LEN-05-02 1 | SC | infiere | «Infiere el significado del lenguaje gestual y corporal de emoticones, gestos, fotografías»: dado un emoticón o un gesto, su significado tiene respuesta (single_choice); el ítem necesita la imagen.
+LEN-05-02 1 | N7 | lenguaje gestual y corporal | «Infiere el significado del lenguaje gestual y corporal de emoticones, gestos, fotografías…»: hay que ver los gestos o las fotografías (N7). Antes: SC (criterios v2).
 LEN-05-02 2 | SC | compara | «Compara manifestaciones artísticas de acuerdo con sus características»: respuesta correcta (single_choice).
 LEN-05-02 3 | SC | identifica | «Identifica la coherencia de las imágenes en los textos representados con ellas»: respuesta correcta (single_choice); el ítem necesita la imagen.
 LEN-05-03 1 | SC | establece diferencias | «Establece diferencias entre narrador y autor»: respuesta correcta (single_choice).
@@ -183,8 +186,8 @@ LEN-06-01 3 | SC | busca información específica | «Busca información especí
 LEN-06-01 4 | N1 | sus elaboraciones textuales | «Retoma los formatos empleados por algunos medios … como modelos para sus elaboraciones textuales»: producción propia (N1).
 LEN-06-02 1 | N1 | utiliza los organizadores gráficos | «Utiliza los organizadores gráficos para procesar la información»: como en la prueba de los criterios (§7), N1, dudoso. | dudoso: así quedó en la prueba de los criterios (§7): usar el organizador es producirlo, pero puede leerse como interpretarlo
 LEN-06-02 2 | N1 | expone … mediante organizadores gráficos | «Expone sus ideas … mediante organizadores gráficos»: producto propio (N1).
-LEN-06-02 3 | SC | interpreta | «Interpreta signos no verbales presentes en … mapas de ideas, cuadros sinópticos, infografías»: preguntas sobre un organizador dado (single_choice); el ítem necesita la imagen.
-LEN-06-02 4 | SC | reconoce | «Reconoce cómo se relacionan y estructuran los símbolos … en los organizadores gráficos»: respuesta correcta (single_choice).
+LEN-06-02 3 | N7 | signos no verbales | «Interpreta signos no verbales presentes en textos gráficos (mapas de ideas, planos, infografías, esquemas)»: hay que ver el texto gráfico (N7). Antes: SC (criterios v2).
+LEN-06-02 4 | N7 | símbolos, colores, señales e imágenes | «Reconoce cómo se relacionan … los símbolos, colores, señales e imágenes en los organizadores gráficos»: hay que ver el organizador (N7). Antes: SC (criterios v2).
 LEN-06-03 1 | SC | comprende | «Comprende que las obras literarias se enmarcan en contextos culturales e históricos»: respuesta correcta (single_choice).
 LEN-06-03 2 | SC | interpreta | «Interpreta los argumentos y temáticas … para crear nuevos textos»: interpretar tiene respuesta (single_choice); crear no queda cubierto.
 LEN-06-03 3 | SC | define elementos literarios | «Define elementos literarios tales como personajes, lugar, tiempo … al interior de una obra»: identificarlos en una obra dada tiene respuesta (single_choice).

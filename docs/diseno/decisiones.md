@@ -514,6 +514,16 @@ Usarlo en la práctica depende de que se extienda esa extracción, misma
 naturaleza de dependencia que QA-006 y QA-013 — trabajo de datos, no de
 diseño, pospuesto hasta que exista la UI para revisarlo.
 
+**Corrección (2026-11-16), con el encargo 05:** la cifra del contexto no
+se sostiene. Al extraer el ejemplo de los 343 DBA revisando cada página
+impresa, **259 ejemplos incluyen una figura** (imagen, dibujo, tabla o
+fórmula aparte), no "2 a 8 por área": la búsqueda de agosto contó solo
+las menciones escritas de figuras. Además, **Ciencias Sociales casi no
+tiene ejemplos** (21 de 82 DBA). La decisión no cambia: el ejemplo sigue
+siendo el escenario de la generación. Pero la IA lo recibe, casi
+siempre, **sin su figura** (ADR-044: solo texto), y el Paso 2 avisa
+cuando hay una (`06-spec` §2.4). Cifras: `data/curriculo-men/catalogo/informe-correccion.md`.
+
 **Reemplaza a:** ninguna — resuelve QA-011.
 
 ---
@@ -2206,3 +2216,63 @@ docente sin poder crear experiencias hasta que vuelva. Es aceptable en
 una versión que no se usa con estudiantes reales (ADR-029).
 
 **Reemplaza a:** ADR-030, puntos 1 a 3, mientras haya un solo servicio.
+
+---
+
+## ADR-044 — En esta versión las preguntas son solo de texto, y el censo agrega dos reglas: contexto propio (N6) y necesita ver o escuchar (N7)
+
+**Fecha:** 2026-11-16
+**Estado:** aceptada (Alejandro, 2026-11-16)
+
+**Contexto:** el censo del encargo 05 (ADR-042) dejó siete propuestas de
+ajuste a los criterios. Dos cambian qué preguntas puede generar el banco
+en I2, y se decidieron antes de escribir el encargo 06:
+
+- **Contexto propio (propuesta 7.1):** algunas evidencias piden algo que
+  solo sabe el estudiante (los cumpleaños de sus padres, el plano de su
+  escuela, el paisaje de su municipio). Una pregunta generada para
+  cualquier estudiante no conoce esa respuesta, y el docente no escribe
+  ese contexto al crear la experiencia.
+- **Imagen y audio (propuesta 7.2):** DeepSeek genera texto (ADR-043), y
+  el ítem no tiene dónde guardar una imagen ni un audio. Las evidencias
+  que miden leer una gráfica, un mapa o una caricatura, o escuchar una
+  voz, se habían dictaminado como "aplica", pero el banco no podría
+  generarlas sin cambiar lo que miden.
+
+**Decisión:**
+
+1. **Las preguntas de esta versión son solo de texto.** Sin imágenes ni
+   audio en el enunciado ni en las opciones. Una tabla o una figura que se
+   pueda escribir o describir en el enunciado (*"un triángulo de lados 3,
+   4 y 5 cm"*) sí cabe.
+2. **N6, contexto propio:** no aplica cuando la respuesta correcta
+   depende de **cuál** es la familia, el barrio, la escuela o el
+   municipio del estudiante. Si el lugar es solo el escenario de un
+   conocimiento general (las formas del relieve, los oficios), aplica.
+3. **N7, necesita ver o escuchar:** no aplica cuando lo que la evidencia
+   mide es **leer** lo visual o lo sonoro. Si la evidencia nombra tablas y
+   gráficos, aplica con las tablas, y la justificación dice que los
+   gráficos no quedan cubiertos.
+4. Quedan en los criterios, versión 2 (`criterios-censo-formato-cerrado.md`).
+   La sesión local del 2026-11-16 revisó las evidencias afectadas y
+   rehízo 73 dictámenes; cada uno dice "Antes: …". Resultado: **859 de
+   1282 aplican (67 %)**, y **25 DBA** quedan sin ninguna evidencia
+   aplicable (`data/curriculo-men/censo/informe-censo.md`). La validación
+   del equipo (ADR-042, punto 3) se hace sobre esta versión.
+5. Las otras cinco propuestas del informe siguen abiertas y se deciden
+   con la validación.
+
+**Por qué no lo demás:** generar la imagen con IA o dibujar gráficas
+desde datos agrega un servicio y una revisión nueva que esta versión no
+tiene; dejar esas evidencias como "aplica" haría que DeepSeek generara
+preguntas que no miden lo que la evidencia pide. Lo que queda fuera
+está en QA-017.
+
+**Consecuencia reconocida:** se pierden sobre todo evidencias de
+geometría y estadística de Matemáticas (leer gráficas, desarrollos
+planos), de lectura de imágenes en Lenguaje, y de 1° a 3° de Ciencias
+Sociales. Dos DBA de Matemáticas (MAT-04-06 y MAT-08-10) quedan sin
+evidencias aplicables.
+
+**Reemplaza a:** ninguna. Completa ADR-042 (criterios del censo).
+

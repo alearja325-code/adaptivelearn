@@ -7,7 +7,7 @@ Encargo 05, Parte B.3. Comprueba:
   2. `formato` es nulo si y solo si la evidencia no aplica (RI-19), y cuando
      aplica es uno de los tres formatos de ADR-006.
   3. Toda justificación cita su regla: la que no aplica nombra su regla (N1 a
-     N5), la que aplica nombra su formato; y `regla` dice lo mismo que
+     N7), la que aplica nombra su formato; y `regla` dice lo mismo que
      `aplica` y `formato`.
   4. Un dictamen dudoso dice por qué; uno que no lo es, no.
   5. La cabecera dice el estado del censo (propuesto por IA o validado por
@@ -86,7 +86,7 @@ def verificar(censo, catalogo, texto_muestra):
                 f"{k}: la regla dice el formato y su señal")
             chk(x["formato"] in x["justificacion"], f"{k}: la justificación cita su formato ({x['formato']})")
         else:
-            chk(re.fullmatch(r"N[1-5]", x["regla"] or "") is not None, f"{k}: la regla es una de N1 a N5")
+            chk(re.fullmatch(r"N[1-7]", x["regla"] or "") is not None, f"{k}: la regla es una de N1 a N7")
             chk(re.search(rf"\b{x['regla']}\b", x["justificacion"]) is not None,
                 f"{k}: la justificación cita su regla ({x['regla']})")
         chk(len(x["justificacion"]) >= 30 and "«" in x["justificacion"],

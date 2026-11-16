@@ -597,7 +597,7 @@ VACIOS = """
 | V-9 | Versionar el contenido del ítem | **Diferido**, y menos necesario: con ADR-026 el banco se congela al publicar y antes no hay respuestas |
 | V-10 | Una excepción de contraste (RNF-03) | No es del modelo de datos; sigue diferido en la interfaz |
 | V-11 | Qué pasa con los datos al eliminar o salir de una experiencia | **Resuelto** en el MR: borrado en cascada desde Experiencia e Inscripción (sección 7), probado contra MySQL |
-| V-12 | Un DBA sin ninguna evidencia que admita formato cerrado | **Abierto**: el MER ya impide crear su experiencia (*incluye* es (1,N)), pero qué muestra la pantalla no está especificado. El censo QA-014 dice que son 16 DBA (`data/curriculo-men/censo/informe-censo.md` §5) |
+| V-12 | Un DBA sin ninguna evidencia que admita formato cerrado | **Abierto**: el MER ya impide crear su experiencia (*incluye* es (1,N)), pero qué muestra la pantalla no está especificado. El censo QA-014 dice que son 25 DBA (criterios versión 2, ADR-044) (`data/curriculo-men/censo/informe-censo.md` §5) |
 
 Fuera de este modelo, como en el borrador: Unidad, Práctica y Verificación (ADR-007); la
 hipótesis de error como dato reportado (ADR-008); Bloom como campo activo; umbrales del

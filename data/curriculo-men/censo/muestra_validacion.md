@@ -84,9 +84,11 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 
 > Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación sucesiva.
 
-**Dictamen:** aplica · `matching`
+**Dictamen:** no aplica · N7 · **dudoso**
 
-**Justificación:** «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+**Justificación:** «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2).
+
+**Por qué es dudoso:** algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
 
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
@@ -367,11 +369,9 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 
 > Nombra los materiales utilizados en la construcción de la casa donde vive y la distribución de las habitaciones que hay en ella.
 
-**Dictamen:** no aplica · N4 · **dudoso**
+**Dictamen:** no aplica · N6
 
-**Justificación:** «Nombra los materiales utilizados en la construcción de la casa donde vive»: depende de su casa (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
+**Justificación:** «Nombra los materiales utilizados en la construcción de la casa donde vive»: depende de su casa (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
 
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
@@ -466,7 +466,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-## 2. Las dudosas que no salieron al azar (84)
+## 2. Las dudosas que no salieron al azar (61)
 
 ### 41. `MAT-01-06` #3
 
@@ -689,7 +689,20 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 58. `MAT-09-02` #2
+### 58. `MAT-08-10` #2
+
+> Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación sucesiva.
+
+**Dictamen:** no aplica · N7 · **dudoso**
+
+**Justificación:** «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2).
+
+**Por qué es dudoso:** algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
+
+- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
+- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
+
+### 59. `MAT-09-02` #2
 
 > Establece conjeturas al resolver una situación problema, apoyado en propiedades y relaciones entre números reales.
 
@@ -702,7 +715,20 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 59. `MAT-09-05` #3
+### 60. `MAT-09-02` #3
+
+> Determina y describe relaciones al comparar características de gráficas y expresiones algebraicas o funciones.
+
+**Dictamen:** no aplica · N7 · **dudoso**
+
+**Justificación:** «Determina y describe relaciones al comparar características de gráficas y expresiones algebraicas»: comparar con la gráfica exige verla (N7). Antes: SC (criterios v2).
+
+**Por qué es dudoso:** algunas características de la gráfica se podrían decir con palabras
+
+- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
+- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
+
+### 61. `MAT-09-05` #3
 
 > Justifica procedimientos de medición a partir del Teorema de Thales, Teorema de Pitágoras y relaciones intra e interfigurales.
 
@@ -715,7 +741,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 60. `MAT-09-09` #3
+### 62. `MAT-09-09` #3
 
 > Valida las conjeturas y explica sus conclusiones.
 
@@ -728,7 +754,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 61. `MAT-09-11` #3
+### 63. `MAT-09-11` #3
 
 > Justifica la elección de un método particular de acuerdo al tipo de situación.
 
@@ -741,7 +767,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 62. `MAT-10-04` #2
+### 64. `MAT-10-04` #2
 
 > Explora, en una situación o fenómeno de variación periódica, valores, condiciones, relaciones o comportamientos, a través de diferentes representaciones.
 
@@ -754,7 +780,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 63. `MAT-10-04` #5
+### 65. `MAT-10-04` #5
 
 > Modela fenómenos periódicos a través de funciones trigonométricas.
 
@@ -767,7 +793,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 64. `MAT-10-05` #3
+### 66. `MAT-10-05` #3
 
 > Utiliza las expresiones simbólicas de las cónicas y propone los rangos de variación para obtener una gráfica requerida.
 
@@ -780,7 +806,20 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 65. `MAT-10-08` #5
+### 67. `MAT-10-07` #4
+
+> Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación sucesiva.
+
+**Dictamen:** no aplica · N7 · **dudoso**
+
+**Justificación:** «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2).
+
+**Por qué es dudoso:** algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
+
+- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
+- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
+
+### 68. `MAT-10-08` #5
 
 > Hace análisis críticos de las conclusiones de los estudios presentados en medios de comunicación o en artículos científicos.
 
@@ -793,7 +832,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 66. `MAT-10-10` #3
+### 69. `MAT-10-10` #3
 
 > Encuentra muestras aleatorias para hacer predicciones sobre el comportamiento de las variables en estudio.
 
@@ -806,7 +845,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 67. `MAT-11-01` #2
+### 70. `MAT-11-01` #2
 
 > Utiliza la propiedad de densidad para justificar la necesidad de otras notaciones para subconjuntos de los números reales.
 
@@ -819,7 +858,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 68. `MAT-11-07` #1
+### 71. `MAT-11-07` #1
 
 > Plantea modelos funcionales en los que identifica variables y rangos de variación de las variables.
 
@@ -832,20 +871,33 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 69. `LEN-01-01` #4
+### 72. `MAT-11-07` #4
 
-> Describe los diferentes tipos de voz que se usan en los programas radiales y televisivos para dar una noticia, narrar un partido de fútbol o leer un texto escrito.
+> Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación sucesiva.
 
-**Dictamen:** aplica · `single_choice` · **dudoso**
+**Dictamen:** no aplica · N7 · **dudoso**
 
-**Justificación:** «Describe los diferentes tipos de voz que se usan en los programas radiales y televisivos»: elegir cómo es la voz de quien narra un partido o da una noticia (single_choice).
+**Justificación:** «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2).
 
-**Por qué es dudoso:** reconocer un tipo de voz sin oírla cambia la evidencia; con solo texto el ítem mide lo que el estudiante sabe de esos programas
+**Por qué es dudoso:** algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
 
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 70. `LEN-01-03` #1
+### 73. `MAT-11-08` #2
+
+> Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación sucesiva.
+
+**Dictamen:** no aplica · N7 · **dudoso**
+
+**Justificación:** «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2).
+
+**Por qué es dudoso:** algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
+
+- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
+- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
+
+### 74. `LEN-01-03` #1
 
 > Escucha o lee adivinanzas, anagramas, retahílas, pregones y acrósticos que hacen parte de su entorno cultural.
 
@@ -858,20 +910,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 71. `LEN-02-02` #1
-
-> Utiliza las señales que circulan en su entorno para informar, prevenir, prohibir, instruir y obligar.
-
-**Dictamen:** aplica · `single_choice` · **dudoso**
-
-**Justificación:** «Utiliza las señales que circulan en su entorno para informar, prevenir, prohibir»: elegir la señal que corresponde a una intención (single_choice).
-
-**Por qué es dudoso:** la evidencia pide usar señales para comunicar; el ítem solo ve si elige la adecuada
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 72. `LEN-02-06` #2
+### 75. `LEN-02-06` #2
 
 > Lee con suficiente fluidez para comprender un escrito.
 
@@ -884,7 +923,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 73. `LEN-03-02` #4
+### 76. `LEN-03-02` #4
 
 > Analiza los sonidos que se emplean en diferentes manifestaciones artísticas.
 
@@ -897,7 +936,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 74. `LEN-03-03` #2
+### 77. `LEN-03-03` #2
 
 > Verifica las hipótesis que plantea acerca del contenido de los textos que lee.
 
@@ -910,7 +949,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 75. `LEN-04-08` #2
+### 78. `LEN-04-08` #2
 
 > Consulta diversos tipos de fuentes antes de redactar un texto.
 
@@ -923,7 +962,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 76. `LEN-04-08` #4
+### 79. `LEN-04-08` #4
 
 > Complementa el sentido de sus producciones escritas, mediante el uso consciente de recursos de puntuación, como la exclamación y la interrogación.
 
@@ -936,7 +975,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 77. `LEN-04-08` #5
+### 80. `LEN-04-08` #5
 
 > Marca la tilde en las palabras agudas, graves y esdrújulas.
 
@@ -949,7 +988,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 78. `LEN-06-02` #1
+### 81. `LEN-06-02` #1
 
 > Utiliza los organizadores gráficos para procesar la información que encuentra en diferentes fuentes.
 
@@ -962,7 +1001,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 79. `LEN-06-07` #2
+### 82. `LEN-06-07` #2
 
 > Selecciona las ideas que emplea en un discurso oral.
 
@@ -975,7 +1014,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 80. `LEN-06-08` #2
+### 83. `LEN-06-08` #2
 
 > Consulta diversas fuentes para nutrir sus textos, y comprende el sentido de lo que escribe atendiendo a factores como el contexto, la temática y el propósito comunicativo.
 
@@ -988,7 +1027,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 81. `LEN-06-08` #3
+### 84. `LEN-06-08` #3
 
 > Tiene en cuenta las concordancias gramaticales entre los elementos de la oración (género, número) al momento de escribir textos.
 
@@ -1001,7 +1040,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 82. `LEN-08-05` #2
+### 85. `LEN-08-05` #2
 
 > Comprende los contenidos de un diálogo y predice las posibles ideas que pueden darse en él.
 
@@ -1014,7 +1053,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 83. `LEN-08-05` #3
+### 86. `LEN-08-05` #3
 
 > Identifica el nivel de formalidad o informalidad que se da en un diálogo con sus compañeros.
 
@@ -1027,7 +1066,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 84. `LEN-08-06` #2
+### 87. `LEN-08-06` #2
 
 > Elabora hipótesis sobre el sentido global de un texto a partir de la relación de información explícita e implícita.
 
@@ -1040,7 +1079,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 85. `LEN-08-08` #4
+### 88. `LEN-08-08` #4
 
 > Emplea de forma precisa los signos de puntuación.
 
@@ -1053,7 +1092,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 86. `LEN-10-04` #1
+### 89. `LEN-10-04` #1
 
 > Amplía su visión de las corrientes literarias mediante el conocimiento de las manifestaciones artísticas de una época determinada.
 
@@ -1066,7 +1105,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 87. `LEN-10-05` #1
+### 90. `LEN-10-05` #1
 
 > Profundiza en los contextos en los que se dan las temáticas tratadas, a partir de la búsqueda de información en diversas fuentes.
 
@@ -1079,7 +1118,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 88. `CN-01-04` #2
+### 91. `CN-01-04` #2
 
 > Describe su cuerpo y predice los cambios que se producirán en un futuro, a partir de los ejercicios de comparación que realiza entre un niño y un adulto.
 
@@ -1092,7 +1131,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 89. `CN-03-06` #2
+### 92. `CN-03-06` #2
 
 > Observa y describe características que le permiten a algunos organismos camuflarse con el entorno, para explicar cómo mejoran su posibilidad de supervivencia.
 
@@ -1105,7 +1144,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 90. `CN-04-01` #3
+### 93. `CN-04-01` #3
 
 > Comunica resultados sobre los efectos de la fuerza de fricción en el movimiento de los objetos al comparar superficies con distintos niveles de rozamiento.
 
@@ -1118,7 +1157,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 91. `CN-04-02` #1
+### 94. `CN-04-02` #1
 
 > Explora cómo los cambios en el tamaño de una palanca (longitud) o la posición del punto de apoyo afectan las fuerzas y los movimientos implicados.
 
@@ -1131,7 +1170,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 92. `CN-08-02` #3
+### 95. `CN-08-02` #3
 
 > Justifica si un cambio en un material es físico o químico a partir de características observables que indiquen, para el caso de los cambios químicos, la formación de nuevas sustancias (cambio de color, desprendimiento de gas, entre otros).
 
@@ -1144,59 +1183,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 93. `CS-01-01` #4
-
-> Describe verbalmente el recorrido que realiza entre su casa y la institución educativa donde estudia, señalando aquellos lugares que considera representativos o muy conocidos en su comunidad y el porqué de su importancia.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Describe verbalmente el recorrido que realiza entre su casa y la institución educativa»: depende de su propio recorrido (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 94. `CS-01-02` #3
-
-> Identifica aquellas obras de infraestructura que se han realizado en su comunidad y expresa las ventajas que estas traen.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Identifica aquellas obras de infraestructura que se han realizado en su comunidad»: depende de su comunidad (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 95. `CS-01-03` #3
-
-> Identifica los miembros de su familia y verbaliza quiénes nacieron antes o después de él.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Identifica los miembros de su familia y verbaliza quiénes nacieron antes o después de él»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 96. `CS-01-03` #4
-
-> Recuerda las fechas de los cumpleaños de sus padres, hermanos, amigos y compañeros de clase más cercanos, diferenciando las edades entre ellos.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Recuerda las fechas de los cumpleaños de sus padres, hermanos, amigos»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 97. `CS-01-05` #3
+### 96. `CS-01-05` #3
 
 > Reconoce de sí mismo, de sus compañeros y de sus familiares aquellas cualidades que le ayudan a estar mejor entre los demás.
 
@@ -1209,46 +1196,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 98. `CS-01-05` #4
-
-> Reconoce las costumbres y tradiciones culturales de su comunidad mediante los relatos de los abuelos y personas mayores del barrio, vereda o lugar donde vive.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Reconoce las costumbres y tradiciones culturales de su comunidad mediante los relatos de los abuelos»: depende de su comunidad y de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 99. `CS-01-06` #1
-
-> Señala los lugares de procedencia de su familia y comprende cómo llegaron a su vivienda actual.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Señala los lugares de procedencia de su familia»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 100. `CS-01-06` #3
-
-> Identifica las viviendas que se destacan en su comunidad, que son patrimonio hoy y que deben conservarse.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Identifica las viviendas que se destacan en su comunidad, que son patrimonio hoy»: depende de su comunidad (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 101. `CS-02-02` #4
+### 97. `CS-02-02` #4
 
 > Da orientaciones espaciales verbalmente o de otras formas para llegar a un lugar específico, utilizando expresiones de lateralidad (izquierda, derecha, adelante, atrás) y los puntos cardinales.
 
@@ -1261,228 +1209,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 102. `CS-02-03` #1
-
-> Describe las características de la conformación de su familia antes de su nacimiento.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Describe las características de la conformación de su familia antes de su nacimiento»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 103. `CS-02-03` #2
-
-> Reconoce las procedencias y los recorridos de los integrantes de su núcleo familiar antes de llegar al municipio donde viven actualmente, a través de relatos.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Reconoce las procedencias y los recorridos de los integrantes de su núcleo familiar»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 104. `CS-02-03` #3
-
-> Establece secuencias de datos históricos a nivel personal y familiar desde la lectura de su registro civil de nacimiento y elabora un árbol genealógico.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Establece secuencias de datos históricos a nivel personal y familiar desde la lectura de su registro civil … y elabora un árbol genealógico»: depende de sus propios documentos (N4); además el árbol es un producto (N1).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 105. `CS-02-04` #3
-
-> Describe el medio de transporte que más usa para llegar o salir de su casa y expone sus ventajas y desventajas.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Describe el medio de transporte que más usa … y expone sus ventajas y desventajas»: depende de su vida (N4).
-
-**Por qué es dudoso:** contexto propio; las ventajas de un medio dado sí se podrían preguntar
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 106. `CS-02-05` #2
-
-> Describe las actividades económicas que realizan los adultos en su hogar y los beneficios que éstas traen para todos los integrantes de la familia.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Describe las actividades económicas que realizan los adultos en su hogar»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 107. `CS-02-07` #1
-
-> Identifica el croquis de su municipio y lo diferencia entre los demás municipios del departamento.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Identifica el croquis de su municipio y lo diferencia entre los demás»: depende de cuál es su municipio (N4).
-
-**Por qué es dudoso:** contexto propio; con el municipio en el enunciado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 108. `CS-02-07` #2
-
-> Ubica las comunas, corregimientos, localidades y/o territorios indígenas en los que está organizado el territorio de su municipio, teniendo en cuenta los puntos cardinales.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Ubica las comunas, corregimientos … en los que está organizado el territorio de su municipio»: depende de su municipio (N4).
-
-**Por qué es dudoso:** contexto propio; con el municipio en el enunciado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 109. `CS-02-07` #3
-
-> Nombra topónimos (nombres propios que adoptan los lugares geográficos) en su municipio y diferencia su ubicación en el medio urbano o rural.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Nombra topónimos … en su municipio»: depende de su municipio (N4).
-
-**Por qué es dudoso:** contexto propio; con el municipio en el enunciado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 110. `CS-02-08` #2
-
-> Establece semejanzas y diferencias entre los alimentos preferidos (en los integrantes de su familia) y en las preferencias en los juegos entre los compañeros del grupo en la escuela.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Establece semejanzas y diferencias entre los alimentos preferidos (en los integrantes de su familia) y … los compañeros»: depende de su familia y su grupo (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 111. `CS-03-01` #4
-
-> Relaciona la ubicación geográfica de su departamento, municipio, resguardo o lugar donde vive, con la presencia o no de costas sobre los océanos, y reconoce las ventajas y desventajas de tenerlas.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Relaciona la ubicación geográfica de su departamento, municipio … con la presencia o no de costas»: depende de dónde vive (N4).
-
-**Por qué es dudoso:** contexto propio; las ventajas de tener costa sí se podrían preguntar
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 112. `CS-03-02` #1
-
-> Identifica la oferta de recursos naturales presentes en su región respecto del suelo, clima, flora, fauna y agua.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Identifica la oferta de recursos naturales presentes en su región»: depende de su región (N4).
-
-**Por qué es dudoso:** contexto propio; con la región en el enunciado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 113. `CS-03-03` #1
-
-> Reconoce los cambios y/o permanencias que se presentan en espacios como la escuela, la plaza principal y el mercado, entre otros.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Reconoce los cambios y/o permanencias que se presentan en espacios como la escuela, la plaza principal y el mercado»: observar su entorno (N4).
-
-**Por qué es dudoso:** contexto propio; con un caso descrito sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 114. `CS-03-04` #2
-
-> Describe algunas costumbres y tradiciones que le permiten reconocerse como miembro de un grupo poblacional y de una nación a través de la historia oral con sus abuelos.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Describe algunas costumbres y tradiciones … a través de la historia oral con sus abuelos»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 115. `CS-03-04` #3
-
-> Compara las fiestas que se celebran en diferentes municipios de su departamento, en aspectos como: origen, propósito, duración y participantes.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Compara las fiestas que se celebran en diferentes municipios de su departamento»: depende de su departamento (N4).
-
-**Por qué es dudoso:** contexto propio; con el departamento en el enunciado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 116. `CS-03-04` #4
-
-> Describe la diversidad en la gastronomía de diferentes regiones o provincias que conforman su departamento.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Describe la diversidad en la gastronomía de diferentes regiones o provincias que conforman su departamento»: depende de su departamento (N4).
-
-**Por qué es dudoso:** contexto propio; con el departamento en el enunciado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 117. `CS-03-05` #1
-
-> Describe el tiempo dedicado en su familia a actividades como trabajar, estudiar, viajar, jugar, practicar deporte y leer.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Describe el tiempo dedicado en su familia a actividades»: depende de su familia (N4).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 118. `CS-03-05` #3
-
-> Compara las actividades escolares, familiares y de uso del tiempo libre, llevadas a cabo el año pasado con las que realiza actualmente y expresa aquellas que quiere hacer el año próximo.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Compara las actividades … llevadas a cabo el año pasado con las que realiza actualmente y expresa aquellas que quiere hacer»: depende de su vida, y sus deseos son propios (N4; también N3).
-
-**Por qué es dudoso:** contexto propio; los criterios no tienen una regla para lo que solo el estudiante conoce
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 119. `CS-04-04` #3
+### 98. `CS-04-04` #3
 
 > Busca información en diferentes fuentes sobre los legados culturales de las comunidades indígenas y describe su situación actual.
 
@@ -1495,20 +1222,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 120. `CS-05-07` #3
-
-> Compara los derechos y deberes planteados en la Constitución Política del país con los derechos y deberes contemplados en el manual de convivencia de su institución educativa.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Compara los derechos y deberes … de la Constitución … con los … del manual de convivencia de su institución»: el manual cambia de colegio a colegio (N4).
-
-**Por qué es dudoso:** contexto propio; con el manual en el enunciado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 121. `CS-06-07` #4
+### 99. `CS-06-07` #4
 
 > Plantea razones que permitan comprender la importancia de respetar las opiniones ajenas y aportar constructivamente a las discusiones en el grupo.
 
@@ -1521,20 +1235,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 122. `CS-07-02` #2
-
-> Localiza en zonas de la ciudad o del municipio la concentración de fenómenos sociales como la pobreza, la violencia, los asentamientos informales y explica las posibles causas y consecuencias de estos.
-
-**Dictamen:** no aplica · N4 · **dudoso**
-
-**Justificación:** «Localiza en zonas de la ciudad o del municipio la concentración de fenómenos sociales»: depende de su ciudad (N4).
-
-**Por qué es dudoso:** contexto propio; con un mapa dado sí aplicaría
-
-- [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
-- [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
-
-### 123. `CS-09-05` #3
+### 100. `CS-09-05` #3
 
 > Justifica el uso de los mecanismos de participación ciudadana: el voto, el plebiscito, el referendo, la consulta popular, el cabildo abierto, la iniciativa popular, la revocatoria del mandato.
 
@@ -1547,7 +1248,7 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______
 
-### 124. `CS-09-08` #4
+### 101. `CS-09-08` #4
 
 > Explica posibles acciones a considerar en el mejoramiento del crecimiento de las regiones con menor índice de desarrollo humano.
 

@@ -4,6 +4,9 @@
 2026-11-10, con las dos recomendaciones: "argumenta" no aplica (N3) y
 las evidencias compuestas se dictaminan por la acción principal (§4).
 ADR-042. Lo que queda fuera en esta versión: QA-017.
+**Versión 2 (2026-11-16):** agrega las reglas **N6** (contexto propio) y
+**N7** (necesita ver o escuchar), decididas por Alejandro el 2026-11-16 a
+partir de las propuestas 7.1 y 7.2 del informe del censo (ADR-044).
 **Para qué:** decidir, para cada una de las **1282 evidencias** del
 catálogo (`data/curriculo-men/catalogo/catalogo_dba.json`), si se puede
 diagnosticar con una pregunta cerrada y con cuál de los tres formatos.
@@ -54,6 +57,22 @@ Se revisan en orden; la primera que se cumple decide.
 | **N3. Sostener una postura propia** | defender una opinión, una valoración o una propuesta personal: **no existe una única respuesta correcta**, y fijar una como "la correcta" le impondría una postura al estudiante | argumenta, asume una postura, propone, valora, opina, toma decisiones | CS-10-04 #4: *"Argumenta el papel desempeñado por los organismos…"* |
 | **N4. Actuar en el mundo** | manipular objetos o instrumentos reales, o observar el entorno | mide con instrumentos, usa la regla y el compás, observa y registra, recolecta datos, experimenta | CN-04-03 #3: *"Observa y registra algunos patrones de regularidad…"* |
 | **N5. Una actitud o disposición** | un comportamiento sostenido, no un conocimiento | respeta, cuida, muestra interés, se responsabiliza, asume con respeto | LEN 5° DBA-5 (de ADR-006): *"asume una postura crítica y respetuosa"* |
+| **N6. Contexto propio** | algo que solo sabe el estudiante, de su vida o de su lugar: una pregunta generada para cualquier estudiante no conoce la respuesta correcta | su familia, sus padres, su barrio, su municipio, su colegio, su región, su entorno (cuando la respuesta depende de cuál es) | CS 1° a 3°: *"los cumpleaños de sus padres"*, *"el croquis de su municipio"* |
+| **N7. Necesita ver o escuchar** | **leer** una gráfica, un mapa, una imagen o un audio: lo que se mide es esa lectura, y esta versión solo genera preguntas de texto (ADR-043, ADR-044) | interpreta gráficas, lee mapas, observa una imagen o caricatura, escucha | MAT: *"Lee e interpreta … gráficos de barras"* |
+
+**Hasta dónde llegan N6 y N7.**
+- **N6** es para cuando la respuesta correcta depende de **cuál** es la
+  familia, el municipio o el colegio del estudiante: lo que se mide es que
+  conozca **los suyos**. En esta versión el docente no escribe ese contexto
+  al crear la experiencia, así que no aplica. Si el lugar es solo el
+  escenario de un conocimiento general (*"interpreta el ecosistema de su
+  región describiendo relaciones entre factores bióticos y abióticos"*: las
+  relaciones son las mismas en cualquier región), aplica.
+- **N7** es solo para cuando la evidencia mide **leer** lo visual o lo
+  sonoro. Si la figura o la tabla se puede escribir o describir en el
+  enunciado sin cambiar lo que se mide (una tabla de datos, *"un triángulo
+  de lados 3, 4 y 5 cm"*, una secuencia de figuras descrita), aplica.
+- Lo que queda fuera por N6 y N7 está en QA-017.
 
 **"Explica" sí aplica** (ADR-006): explicar un hecho tiene una
 explicación correcta y otras equivocadas, y se mide con opción múltiple
@@ -84,8 +103,9 @@ Ante la duda entre dos formatos, `single_choice`.
   resultados obtenidos en procedimientos…"*): el procedimiento se puede
   describir en la pregunta; decide el verbo principal.
 - **"Representa"**: aplica si se puede elegir la representación correcta
-  entre varias (una gráfica, una expresión). Si pide construirla a mano,
-  N1.
+  entre varias **escritas** (una expresión, una tabla). Si hay que elegir
+  entre gráficas, N7 (versión 2: las preguntas son solo de texto). Si pide
+  construirla a mano, N1.
 - **Dudoso:** si después de aplicar las reglas no queda claro, se
   dictamina igual, pero se marca `dudoso` con la razón. Los dudosos van
   primero a la validación.
@@ -106,7 +126,7 @@ Ante la duda entre dos formatos, `single_choice`.
 En `data/curriculo-men/censo/`:
 
 - **censo_formato_cerrado.json** (por crear): por evidencia, `aplica`, `formato`,
-  `regla` (N1 a N5, o el formato y su señal), `justificacion` (una o dos
+  `regla` (N1 a N7, o el formato y su señal), `justificacion` (una o dos
   frases que citan el verbo o la frase decisiva), `dudoso`, y el estado
   general del censo (`propuesto-por-ia` o `validado-por-muestreo`).
 - **informe-censo.md** (por crear): cuántas aplican por área y por grado, y con qué
@@ -138,7 +158,7 @@ estos criterios antes de escribirlos en firme:
 | CN-04-03 #3 | Observa y registra patrones de regularidad, elabora tablas y comunica… | **no aplica** · N4 |
 | CN-09-02 #1 | Compara algunas teorías (Arrhenius, Brönsted–Lowry, Lewis)… | aplica · `single_choice` |
 | CN-09-03 #1 | Explica qué factores afectan la formación de soluciones… | aplica · `single_choice` |
-| CN-07-01 #3 | Representa gráficamente las energías cinética y potencial… | aplica · `single_choice` (elegir la gráfica correcta) |
+| CN-07-01 #3 | Representa gráficamente las energías cinética y potencial… | aplica · `single_choice` (elegir la gráfica correcta). **En la versión 2: no aplica · N7** |
 | CS-09-05 #2 | Examina las implicaciones… y sugiere mecanismos constitucionales | aplica · `single_choice` (solo "examina") |
 | CS-03-02 #4 | Expresa por qué en ciertos climas no se cuenta con ciertos productos… | aplica · `single_choice` |
 | CS-06-06 #1 | Reconoce algunas formas de gobierno de las sociedades antiguas… | aplica · `single_choice` |
