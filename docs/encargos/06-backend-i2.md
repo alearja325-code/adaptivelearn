@@ -1,11 +1,19 @@
-# Encargo 06 — I2: crear la experiencia y generar su banco
+# Encargo 06 — Backend de I2: crear la experiencia y generar su banco
 
 **Para:** una sesión de Claude Code sobre este repositorio.
 **Escrito:** 2026-11-16, desde la sesión local de Alejandro.
-**Es el incremento I2** (`docs/modesec/fase-4-produccion/01-seleccion-herramienta-desarrollo.md`):
+**Es el backend del incremento I2**
+(`docs/modesec/fase-4-produccion/01-seleccion-herramienta-desarrollo.md`):
 el docente crea una experiencia sobre un DBA, el sistema genera su banco
 de preguntas con DeepSeek, el docente lo revisa y lo publica, y obtiene
-el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
+el código de invitación.
+
+**Solo backend.** El docente del curso pide todo el backend antes de que
+termine noviembre de 2026; el frontend de I2 a I4 va después, en otro
+encargo. **Corre en paralelo con el encargo 07** (backend de I3 e I4) en
+otra sesión: no toques los módulos de inscripciones, diagnóstico ni
+reporte, y si los dos necesitan el mismo archivo (`app.module.ts`,
+`datos_api.py`, `pendientes.md`), cambia solo tus partes.
 
 **Antes de empezar, lee:**
 1. `CLAUDE.md` y `docs/diseno/pendientes.md` (A12, A15, A16).
@@ -19,26 +27,17 @@ el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
    (CU-10 a CU-20). El modelo: `17-modelo-relacional.md` y
    `18-diccionario-datos.md` (tablas `experiencia`, `experiencia_evidencia`,
    `item`, `opcion`; reglas RI-3, RI-4, RI-5, RI-14, RI-17, RI-18, RI-19).
-4. Las especificaciones de las ventanas (`docs/modesec/fase-2-diseno-multimedial/`):
-   `04` (001 Dashboard), `07` (004 Paso 3), `09` a `12` (006 Vista
-   interna, 007 Resumen, 008 Materiales, 009 Banco), `14` (011
-   Estudiantes, solo su estado vacío), `15` (012 Publicar), `16` (013
-   Código), `24` (024 Cargando), `25` (025 Eliminar), y la guía de
-   movimiento `31`.
-5. Cómo se trabajó antes: `docs/encargos/03-backend-hasta-catalogo.md` y
-   `04-frontend-hasta-paso-3.md` (mismas reglas de estilo, pruebas y
-   capturas).
+4. Lo que las pantallas necesitan del backend, en las especificaciones
+   de `docs/modesec/fase-2-diseno-multimedial/`: `07` (004 Paso 3, y su
+   mensaje de error), `12` (009 Banco), `15` (012 Publicar), `16` (013
+   Código) y `24` (024 Cargando). Solo para saber qué datos piden.
+5. Cómo se trabajó antes: `docs/encargos/03-backend-hasta-catalogo.md`.
 
-## Parte A — La base
+## Parte A — La base (ya hecha)
 
-1. `backend/sql/001_esquema.sql` pasa a tener **todas** las tablas del
-   modelo relacional (hoy tiene solo hasta el catálogo). Se genera, no se
-   edita: amplía la lista de tablas en
-   `modelo-relacional/generar.py`. Las de I3 e I4 quedan vacías, pero
-   `DELETE /experiencias/:id` y los conteos de inscritos las necesitan.
-2. `preparar-base.mjs` no cambia de comportamiento. Anota en el README
-   del backend que la base local hay que crearla de nuevo con `--borrar`
-   (borra las cuentas de prueba).
+`backend/sql/001_esquema.sql` ya tiene **todas** las tablas del modelo
+relacional (2026-11-16, `modelo-relacional/generar.py`). No hay que
+cambiar el esquema: si lo necesitas, el cambio va al MR y se regenera.
 
 ## Parte B — El backend
 
@@ -59,6 +58,9 @@ el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
    variable de entorno (`IA_SERVICIO=deepseek|falsa`); las pruebas
    siempre usan la falsa. **La clave nunca se escribe en un log ni en una
    respuesta**, ni siquiera en un error.
+   Agrega las variables a `.env.example`, sin valores reales. Sin
+   `IA_SERVICIO` se usa DeepSeek; el arranque de las pruebas del frontend
+   (`frontend/e2e/arrancar-backend.mjs`) pone `IA_SERVICIO=falsa`.
 3. **El texto que se envía a la IA** (ADR-045 punto 4) va en un solo
    archivo, por ejemplo `backend/src/banco/instrucciones-ia.ts`, en
    español, con:
@@ -94,33 +96,7 @@ el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
    menos de 6 activos → `409`), código (en Borrador → `409`), eliminar
    en cascada, y que otro docente recibe `403`.
 
-## Parte C — El frontend
-
-1. **Paso 3 → crear de verdad:** "Crear experiencia" llama a
-   `POST /experiencias`, abre la 024 ("Generando preguntas…", `24-spec`)
-   y pregunta por la generación hasta que termine (una vez cada 2 s). Si
-   termina bien, va a la Vista interna (006) de la experiencia nueva; si
-   falla, vuelve al Paso 3 con el mensaje de `07-spec` y el nombre
-   conservado. Quita el aviso provisional del encargo 04.
-2. **Paso 2, V-12** (ADR-045 punto 6): la card del DBA sin evidencias
-   aplicables, con el texto exacto de la ADR y el radio deshabilitado.
-   Agrega ese caso a `06-spec` (§2.4 y §7), con su razón.
-3. **El Dashboard (001)** lista las experiencias reales del docente
-   (E-18), con búsqueda y filtro por estado, como dice `04-spec`.
-4. **La Vista interna (006)** con sus pestañas: **Resumen (007)**,
-   **Materiales (008)** con el **Banco (009)** completo (ver, editar,
-   descartar, reincluir, agregar, solo lectura si está Publicada) y
-   **Estudiantes (011)** solo con su estado vacío y lo que ahí vive de
-   I2: **Publicar (012)** y el **Código (013)**. **Eliminar (025)**.
-5. Todo sigue `npm run verificar:estilos` (solo valores de `tokens.json`)
-   y la guía de movimiento (`31`): cada animación cita su patrón.
-6. **Pruebas de punta a punta** (con el backend usando `IaFalsa`): el
-   camino completo desde crear la experiencia hasta publicarla y ver el
-   código, el error de generación con reintento, editar un ítem de cada
-   formato, y el DBA no elegible del Paso 2. Capturas nuevas en
-   `frontend/capturas/` de cada ventana nueva.
-
-## Parte D — Los documentos
+## Parte C — Los documentos
 
 1. `datos_api.py` (y su salida `20-catalogo-endpoints.md`): E-18 a E-28
    pasan a **Hecho**; E-19 dice lo de ADR-043 y ADR-045 (sin respaldo,
@@ -129,8 +105,8 @@ el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
    ADR-043, y RNF-13 queda pendiente de la medición local.
 3. Si cambias el MR o el diagrama de clases, regenera la cadena de la
    Fase III (`19-entrega-fase-3.md` §3) y deja los verificadores en verde.
-4. `pendientes.md` (A16) y `12-casos-de-uso.md` (V-12 resuelto por
-   ADR-045) con su estado real.
+4. `pendientes.md` (A16) con su estado real. V-12 (ADR-045 punto 6) es
+   de la pantalla: queda para el encargo del frontend.
 
 ## Lo que NO debes hacer
 
@@ -138,7 +114,9 @@ el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
   clave y las pruebas usan `IaFalsa`. La prueba real la hace Alejandro en
   local, al revisar.
 - **No construyas I3 ni I4** (unirse con código, tomar el diagnóstico,
-  reporte): la pestaña Estudiantes queda en su estado vacío.
+  reporte): son el encargo 07, en paralelo.
+- **No toques el frontend**, salvo si un cambio del backend rompe sus
+  pruebas actuales.
 - **No cambies el censo ni el catálogo** ni el texto del MEN.
 - **No subas secretos** ni escribas valores de ejemplo que parezcan una
   clave real en `.env.example`.
@@ -147,8 +125,8 @@ el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
 
 1. Los verificadores de `CLAUDE.md`, `_verificar_catalogo.py` y
    `_verificar_censo.py` pasan.
-2. Backend: `npm test` y `npm run test:e2e`. Frontend: `npm test`,
-   `npm run test:e2e` y `npm run verificar:estilos`. Todo en verde.
+2. Backend: `npm test` y `npm run test:e2e`. Las pruebas del frontend
+   (`npm test`, `npm run test:e2e`) siguen en verde.
 3. Las pruebas atrapan errores puestos a propósito: rompe a mano una
    regla de RI-4 en la validación y el todo o nada en la transacción,
    comprueba que alguna prueba falla, y vuelve a dejarlos bien. Dilo en
@@ -156,9 +134,8 @@ el código de invitación. Los estudiantes (I3) y el reporte (I4) no entran.
 
 ## Cómo entregarlo
 
-Rama **`encargo-06-i2-experiencia-y-banco`** y **pull request hacia
+Rama **`encargo-06-backend-i2`** y **pull request hacia
 `main`**, sin hacer merge. En la descripción, en español simple: qué
-ventanas y endpoints quedaron; cómo es el texto que se envía a la IA,
-copiado entero; qué decidiste por tu cuenta (sobre todo textos de pantalla
-que las specs no traen); qué quedó para la prueba local con DeepSeek; y
+endpoints quedaron, con un ejemplo de petición y respuesta de cada uno; cómo es el texto que se envía a la IA,
+copiado entero; qué decidiste por tu cuenta; qué quedó para la prueba local con DeepSeek; y
 qué no alcanzaste.

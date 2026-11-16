@@ -2145,7 +2145,7 @@ animaciones complejas.
 ## ADR-042 — El censo de formato cerrado lo propone la IA con criterios escritos, y el equipo lo valida por muestreo
 
 **Fecha:** 2026-11-10
-**Estado:** aceptada
+**Estado:** aceptada; **punto 3 (validación por muestreo) diferido el 2026-11-16** por Alejandro: el sistema es solo de prueba entre el equipo y la entrega del backend es en noviembre, así que el censo se usa como quedó, marcado `propuesto-por-ia`. La validación se hace antes de usar el sistema con docentes reales.
 
 **Contexto:** el incremento I2 necesita saber, por cada evidencia, si
 admite pregunta cerrada y con qué formato (`evidencia_dictamen`, RI-19;
@@ -2282,7 +2282,7 @@ evidencias aplicables.
 ## ADR-045 — Cómo se genera el banco en I2: en segundo plano, una llamada por evidencia, un reintento, y nunca DeepSeek en las pruebas
 
 **Fecha:** 2026-11-16
-**Estado:** propuesta, pendiente de Alejandro
+**Estado:** aceptada (Alejandro, 2026-11-16: «tenemos que avanzar y tomar las decisiones más rápido»; se aceptan las recomendaciones)
 
 **Contexto:** el encargo 06 construye I2 (crear la experiencia y su
 banco). Los requerimientos y las decisiones dicen **qué** debe pasar
