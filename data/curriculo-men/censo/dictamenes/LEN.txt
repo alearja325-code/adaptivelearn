@@ -158,7 +158,7 @@ LEN-05-01 3 | N2 | dialoga | «Dialoga con sus compañeros sobre el sentido de l
 LEN-05-01 4 | SC | selecciona | «Selecciona la información de acuerdo con el formato en que ha sido presentada»: respuesta correcta (single_choice).
 LEN-05-02 1 | N7 | lenguaje gestual y corporal | «Infiere el significado del lenguaje gestual y corporal de emoticones, gestos, fotografías…»: hay que ver los gestos o las fotografías (N7). Antes: SC (criterios v2).
 LEN-05-02 2 | SC | compara | «Compara manifestaciones artísticas de acuerdo con sus características»: respuesta correcta (single_choice).
-LEN-05-02 3 | SC | identifica | «Identifica la coherencia de las imágenes en los textos representados con ellas»: respuesta correcta (single_choice); el ítem necesita la imagen.
+LEN-05-02 3 | N7 | coherencia de las imágenes | «Identifica la coherencia de las imágenes en los textos representados con ellas»: el ítem necesita la imagen (N7). Antes: SC (criterios v2).
 LEN-05-03 1 | SC | establece diferencias | «Establece diferencias entre narrador y autor»: respuesta correcta (single_choice).
 LEN-05-03 2 | SC | reconoce | «Reconoce las temáticas de los textos literarios que lee para relacionarlas con su contexto»: reconocer la temática tiene respuesta (single_choice); relacionarla con su contexto no queda cubierto.
 LEN-05-03 3 | SC | identifica | «Identifica las características de los géneros literarios»: respuesta correcta (single_choice).

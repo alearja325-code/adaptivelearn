@@ -67,7 +67,7 @@ CS-02-05 2 | N6 | los adultos en su hogar | «Describe las actividades económic
 CS-02-05 3 | SC | compara … y diferencia | «Compara los oficios que los abuelos realizaban anteriormente respecto de cómo se realizan hoy y diferencia los trabajos … urbanas y rurales»: respuesta correcta (single_choice).
 CS-02-05 4 | SC | reconoce | «Reconoce experiencias donde algunos niños son explotados laboralmente»: identificar la explotación en un caso dado tiene respuesta (single_choice); expresar razones no queda cubierto.
 CS-02-06 1 | SC | reconoce | «Reconoce características de las viviendas rurales y urbanas a partir de los materiales»: respuesta correcta (single_choice).
-CS-02-06 2 | SC | describe y diferencia | «Describe y diferencia características de las viviendas de los grupos étnicos, a partir de la lectura de imágenes»: respuesta correcta (single_choice); el ítem necesita la imagen.
+CS-02-06 2 | N7 | a partir de la lectura de imágenes | «Describe y diferencia características de las viviendas de los grupos étnicos, a partir de la lectura de imágenes»: el ítem necesita la imagen (N7). Antes: SC (criterios v2).
 CS-02-06 3 | SC | identifica | «Identifica los cambios que se dan en las viviendas con el paso del tiempo»: respuesta correcta (single_choice).
 CS-02-06 4 | SC | describe | «Describe las ventajas y desventajas que representa tener vivienda en zona urbana o rural»: respuesta correcta (single_choice).
 CS-02-07 1 | N6 | el croquis de su municipio | «Identifica el croquis de su municipio y lo diferencia entre los demás»: depende de cuál es su municipio (N6). Antes: N4 dudoso; la regla N6 (criterios v2) cubre este caso.
@@ -235,7 +235,7 @@ CS-07-04 4 | N3 | argumenta | «Argumenta las continuidades del ordenamiento pol
 CS-07-05 1 | SC | describe | «Describe algunos acontecimientos que dieron paso a la Modernidad»: respuesta correcta (single_choice).
 CS-07-05 2 | N7 | interpreta mapas temáticos | «Interpreta mapas temáticos en los que reconoce ciudades estratégicas de Europa»: el verbo principal es leer el mapa (N7). Antes: SC (criterios v2).
 CS-07-05 3 | SC | explica | «Explica las implicaciones políticas y económicas que tuvo la Reforma protestante»: respuesta correcta (single_choice).
-CS-07-05 4 | SC | reconoce | «Reconoce en las expresiones artísticas del Renacimiento … la vida cotidiana»: respuesta correcta sobre una obra dada (single_choice); el ítem necesita la imagen.
+CS-07-05 4 | N7 | expresiones artísticas del Renacimiento | «Reconoce en las expresiones artísticas del Renacimiento (pintura, escultura y literatura) la vida cotidiana»: sobre una pintura o escultura, el ítem necesita la imagen (N7); la literatura sola no basta para la evidencia. Antes: SC (criterios v2).
 CS-07-06 1 | SC | describe | «Describe los procesos de Conquista y colonización en América»: respuesta correcta (single_choice).
 CS-07-06 2 | SC | explica | «Explica los cambios y continuidades de las organizaciones sociales … durante la época colonial»: respuesta correcta (single_choice).
 CS-07-06 3 | SC | interpreta | «Interpreta las consecuencias demográficas, políticas y culturales … de la llegada de los europeos»: respuesta correcta (single_choice).
@@ -336,7 +336,7 @@ CS-10-04 3 | SC | explica | «Explica cómo los organismos multilaterales de los
 CS-10-04 4 | N3 | argumenta | «Argumenta el papel desempeñado por los organismos e instituciones nacionales e internacionales»: como en la prueba de los criterios (§2, §7), N3.
 CS-10-05 1 | SC | reconoce | «Reconoce los avances militares, tecnológicos y científicos que las potencias utilizaron durante las dos Guerras Mundiales y asume una posición crítica»: reconocer tiene respuesta (single_choice, criterios §4); la posición crítica no queda cubierta.
 CS-10-05 2 | SC | describe | «Describe el desarrollo histórico de las guerras mundiales y las consecuencias sociales»: respuesta correcta (single_choice).
-CS-10-05 3 | SC | explica y representa … desde la interpretación de mapas | «Explica y representa las transformaciones geopolíticas … desde la interpretación de mapas temáticos»: respuesta correcta (single_choice); el ítem necesita el mapa.
+CS-10-05 3 | N7 | desde la interpretación de mapas | «Explica y representa las transformaciones geopolíticas … desde la interpretación de mapas temáticos»: el ítem necesita el mapa (N7). Antes: SC (criterios v2).
 CS-10-05 4 | N3 | argumenta | «Argumenta acerca de las causas directas e indirectas que determinaron el inicio de los conflictos bélicos»: «argumenta» no aplica (N3).
 
 # ---- 11°

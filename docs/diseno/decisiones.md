@@ -2255,7 +2255,7 @@ en I2, y se decidieron antes de escribir el encargo 06:
    gráficos no quedan cubiertos.
 4. Quedan en los criterios, versión 2 (`criterios-censo-formato-cerrado.md`).
    La sesión local del 2026-11-16 revisó las evidencias afectadas y
-   rehízo 73 dictámenes; cada uno dice "Antes: …". Resultado: **859 de
+   rehízo 78 dictámenes; cada uno dice "Antes: …". Resultado: **853 de
    1282 aplican (67 %)**, y **25 DBA** quedan sin ninguna evidencia
    aplicable (`data/curriculo-men/censo/informe-censo.md`). La validación
    del equipo (ADR-042, punto 3) se hace sobre esta versión.

@@ -364,9 +364,9 @@ formato cerrado.** En revisión (rama `encargo-05-ejemplos-y-censo`).
   la IA, en la mayoría de los casos, sin su figura. Anotado como
   corrección en ADR-011 (2026-11-16).
 - **Censo QA-014** (`censo/informe-censo.md`), con los criterios
-  versión 2 (N6 y N7, ADR-044, 2026-11-16): 859 de 1282 evidencias
+  versión 2 (N6 y N7, ADR-044, 2026-11-16): 853 de 1282 evidencias
   (67 %) aplican a formato cerrado: Matemáticas 72 %, **Lenguaje 52 %**,
-  Ciencias Naturales 80 %, Ciencias Sociales 68 %. **25 DBA no tienen
+  Ciencias Naturales 80 %, Ciencias Sociales 67 %. **25 DBA no tienen
   ninguna evidencia que aplique** (13 de Lenguaje). **Propuesto por IA,
   sin validar:** falta que dos integrantes validen
   `censo/muestra_validacion.md` (40 al azar + las dudosas, criterios §5).

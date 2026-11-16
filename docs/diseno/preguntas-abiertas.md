@@ -250,9 +250,9 @@ el censo cómodamente (mismo motivo que QA-013).
 **Estado (2026-11-16): censo hecho, propuesto por IA, falta validarlo.**
 Cómo: ADR-042, ADR-044 y `criterios-censo-formato-cerrado.md` (versión
 2, con N6 contexto propio y N7 necesita ver o escuchar). Resultado
-(`data/curriculo-men/censo/informe-censo.md`): **859 de 1282 evidencias
+(`data/curriculo-men/censo/informe-censo.md`): **853 de 1282 evidencias
 (67 %) admiten formato cerrado**: Matemáticas 72 %, Ciencias Naturales
-80 %, Ciencias Sociales 68 %, y **Lenguaje 52 %**. La respuesta a la
+80 %, Ciencias Sociales 67 %, y **Lenguaje 52 %**. La respuesta a la
 pregunta de fondo: el enfoque cerrado-únicamente es viable en tres áreas,
 pero **en Lenguaje deja fuera casi la mitad** (hablar, escuchar,
 escribir), como anticipaba ADR-002. **25 DBA quedan sin ninguna evidencia

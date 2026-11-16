@@ -9,8 +9,8 @@ por decisión de Alejandro (ADR-044). Los dictámenes que cambió la versión 2 
 
 ## 1. En una frase
 
-De las **1282 evidencias** del catálogo, **859 (67 %) se pueden diagnosticar
-con una pregunta cerrada** y 423 no. Por área: Matemáticas 316 de 437 (72 %); Lenguaje 174 de 333 (52 %); Ciencias Naturales 147 de 184 (80 %); Ciencias Sociales 222 de 328 (68 %).
+De las **1282 evidencias** del catálogo, **853 (67 %) se pueden diagnosticar
+con una pregunta cerrada** y 429 no. Por área: Matemáticas 314 de 437 (72 %); Lenguaje 173 de 333 (52 %); Ciencias Naturales 147 de 184 (80 %); Ciencias Sociales 219 de 328 (67 %).
 
 Es un juicio de IA, no del equipo: lo hizo la sesión de Claude del encargo 05, leyendo cada
 evidencia y escribiendo su razón (`dictamenes/`). Antes de usarlo como dato del proyecto, dos
@@ -20,11 +20,11 @@ integrantes validan la muestra de `muestra_validacion.md` (criterios §5).
 
 | Área | Evidencias | Aplican | % | No aplican |
 |---|---|---|---|---|
-| Matemáticas | 437 | 316 | **72 %** | 121 |
-| Lenguaje | 333 | 174 | **52 %** | 159 |
+| Matemáticas | 437 | 314 | **72 %** | 123 |
+| Lenguaje | 333 | 173 | **52 %** | 160 |
 | Ciencias Naturales | 184 | 147 | **80 %** | 37 |
-| Ciencias Sociales | 328 | 222 | **68 %** | 106 |
-| **Total** | 1282 | 859 | **67 %** | 423 |
+| Ciencias Sociales | 328 | 219 | **67 %** | 109 |
+| **Total** | 1282 | 853 | **67 %** | 429 |
 
 **Respuesta:** en Matemáticas, Ciencias Naturales y Ciencias Sociales el formato cerrado
 alcanza a la mayoría de las evidencias. **En Lenguaje la proporción es baja: algo más de la
@@ -43,10 +43,10 @@ Cuántas aplican de las que hay, por área y grado:
 
 | Área | 1° | 2° | 3° | 4° | 5° | 6° | 7° | 8° | 9° | 10° | 11° |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Matemáticas | 28/39 | 27/35 | 29/41 | 23/39 | 36/51 | 29/42 | 24/31 | 35/44 | 26/38 | 32/41 | 27/36 |
-| Lenguaje | 11/33 | 17/34 | 20/34 | 11/32 | 15/26 | 20/31 | 16/28 | 18/28 | 15/29 | 14/28 | 17/30 |
+| Matemáticas | 28/39 | 25/35 | 29/41 | 23/39 | 36/51 | 29/42 | 24/31 | 35/44 | 26/38 | 32/41 | 27/36 |
+| Lenguaje | 11/33 | 17/34 | 20/34 | 11/32 | 14/26 | 20/31 | 16/28 | 18/28 | 15/29 | 14/28 | 17/30 |
 | Ciencias Naturales | 7/16 | 10/12 | 15/20 | 18/23 | 11/14 | 14/16 | 11/13 | 19/19 | 17/21 | 11/12 | 14/18 |
-| Ciencias Sociales | 8/32 | 13/32 | 16/32 | 27/32 | 25/32 | 26/32 | 23/32 | 27/32 | 27/32 | 15/20 | 15/20 |
+| Ciencias Sociales | 8/32 | 12/32 | 16/32 | 27/32 | 25/32 | 26/32 | 22/32 | 27/32 | 27/32 | 14/20 | 15/20 |
 
 En los primeros grados de Ciencias Sociales muchas evidencias piden saber algo de la vida del
 propio estudiante (su familia, su casa, su municipio): ver la sección 6.
@@ -55,11 +55,11 @@ propio estudiante (su familia, su casa, su municipio): ver la sección 6.
 
 | Área | single_choice | matching | ordering |
 |---|---|---|---|
-| Matemáticas | 302 | 10 | 4 |
-| Lenguaje | 158 | 13 | 3 |
+| Matemáticas | 300 | 10 | 4 |
+| Lenguaje | 157 | 13 | 3 |
 | Ciencias Naturales | 126 | 21 | 0 |
-| Ciencias Sociales | 206 | 15 | 1 |
-| **Total** | 792 | 59 | 8 |
+| Ciencias Sociales | 203 | 15 | 1 |
+| **Total** | 786 | 59 | 8 |
 
 `matching` y `ordering` son minoría, como esperaban los criterios (§7): se usan solo cuando la
 evidencia nombra explícitamente dos conjuntos que emparejar (clasifica, diferencia… de…,
@@ -75,7 +75,7 @@ relaciona X con Y) o un orden (ordena, el orden de los eventos). Ante la duda, `
 | **N4** | actuar en el mundo | 14 | 3 | 21 | 7 | 45 |
 | **N5** | una actitud o disposición | 0 | 2 | 0 | 5 | 7 |
 | **N6** | contexto propio | 0 | 0 | 1 | 32 | 33 |
-| **N7** | necesita ver o escuchar | 20 | 12 | 4 | 3 | 39 |
+| **N7** | necesita ver o escuchar | 22 | 13 | 4 | 6 | 45 |
 
 - **N1 (producir)** es la regla más usada en Matemáticas y Lenguaje: construir tablas y
   gráficas, proponer estrategias, escribir textos.

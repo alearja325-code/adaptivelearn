@@ -51,7 +51,7 @@ MAT-01-10 3 | SC | lee | «Lee la información presentada en tablas de conteo y/
 MAT-01-10 4 | SC | comunica … respondiendo preguntas | «Comunica los resultados respondiendo preguntas tales como: ¿cuántos hay en total?»: las preguntas que nombra tienen respuesta única (single_choice).
 
 # ---- 2°
-MAT-02-01 1 | SC | interpreta y construye | «Interpreta y construye diagramas»: la acción principal es interpretar, elegir qué relación muestra un diagrama (single_choice); «construye» no queda cubierto.
+MAT-02-01 1 | N7 | interpreta diagramas | «Interpreta y construye diagramas»: la acción principal es interpretar un diagrama, que hay que ver (N7); «construye» es N1. Antes: SC (criterios v2).
 MAT-02-01 2 | SC | describe y resuelve | «Describe y resuelve situaciones … a + ? = c»: término desconocido con respuesta única (single_choice).
 MAT-02-01 3 | SC | reconoce | «Reconoce … relaciones aditivas y multiplicativas y formula problemas»: reconocer la relación tiene respuesta (single_choice); «formula problemas» no queda cubierto.
 MAT-02-02 1 | N1 | construye | «Construye representaciones pictóricas»: la representación propia es el producto (N1).
@@ -70,7 +70,7 @@ MAT-02-06 1 | SC | reconoce | «Reconoce las figuras geométricas según el núm
 MAT-02-06 2 | SC | diferencia | «Diferencia los cuerpos geométricos»: elegir el cuerpo que corresponde a un nombre o propiedad (single_choice); no nombra dos conjuntos explícitos.
 MAT-02-06 3 | SC | compara | «Compara figuras y cuerpos geométricos y establece relaciones y diferencias»: elegir la diferencia correcta (single_choice).
 MAT-02-07 1 | SC | describe | «Describe desplazamientos a partir de las posiciones de las líneas»: elegir la descripción correcta de un desplazamiento (single_choice).
-MAT-02-07 2 | SC | representa y reconoce | «Representa líneas y reconoce las diferentes posiciones»: elegir la representación correcta (single_choice; criterios §4, «representa»).
+MAT-02-07 2 | N7 | representa líneas | «Representa líneas y reconoce las diferentes posiciones»: elegir la representación correcta es elegir entre dibujos (N7; criterios §4, «representa», versión 2). Antes: SC (criterios v2).
 MAT-02-07 3 | N7 | en dibujos … identifica | «En dibujos, objetos o espacios reales, identifica … líneas paralelas, verticales o perpendiculares»: hay que ver el dibujo o el objeto (N7). Antes: SC (criterios v2).
 MAT-02-07 4 | N3 | argumenta | «Argumenta las diferencias entre las posiciones de las líneas»: «argumenta» no aplica (N3).
 MAT-02-08 1 | SC | establece relaciones | «Establece relaciones de reversibilidad entre la suma y la resta»: elegir la resta que deshace una suma (single_choice).

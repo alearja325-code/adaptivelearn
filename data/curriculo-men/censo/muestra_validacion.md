@@ -18,9 +18,9 @@ MAT, LEN, CN, CS, sobre las evidencias en el orden del censo). `_verificar_censo
 
 > Representa líneas y reconoce las diferentes posiciones y la relación entre ellas.
 
-**Dictamen:** aplica · `single_choice`
+**Dictamen:** no aplica · N7
 
-**Justificación:** «Representa líneas y reconoce las diferentes posiciones»: elegir la representación correcta (single_choice; criterios §4, «representa»).
+**Justificación:** «Representa líneas y reconoce las diferentes posiciones»: elegir la representación correcta es elegir entre dibujos (N7; criterios §4, «representa», versión 2). Antes: SC (criterios v2).
 
 - [ ] Validador 1 de acuerdo · si no, ¿qué dictamen?: ______
 - [ ] Validador 2 de acuerdo · si no, ¿qué dictamen?: ______

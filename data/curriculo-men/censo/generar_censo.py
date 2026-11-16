@@ -46,7 +46,7 @@ REGLAS = {
     "N7": "necesita ver o escuchar",
 }
 # Fecha del dictamen vigente: la versión 2 de los criterios (N6 y N7, ADR-044)
-# rehízo 73 dictámenes el 2026-11-16; los demás son del 2026-11-10.
+# rehízo 78 dictámenes el 2026-11-16; los demás son del 2026-11-10.
 FECHA = "2026-11-16"
 VERSION_CRITERIOS = 2
 ESTADO = "propuesto-por-ia"     # pasa a "validado-por-muestreo" cuando el equipo valide (criterios §5)
