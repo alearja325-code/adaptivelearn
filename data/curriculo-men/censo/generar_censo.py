@@ -15,7 +15,7 @@ Ninguno de los tres se edita a mano: si un dictamen cambia, se cambia su línea 
 Formato de una línea de `dictamenes/`:
   CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
 DICTAMEN es SC (single_choice), MT (matching) u OR (ordering) si aplica, o N1 a
-N5 si no aplica. SEÑAL es el verbo o la frase que decide.
+N7 si no aplica (N6 y N7 desde la versión 2 de los criterios, ADR-044). SEÑAL es el verbo o la frase que decide.
 
 Uso:  python3 generar_censo.py
 """
@@ -42,8 +42,13 @@ REGLAS = {
     "N3": "sostener una postura propia",
     "N4": "actuar en el mundo",
     "N5": "una actitud o disposición",
+    "N6": "contexto propio",
+    "N7": "necesita ver o escuchar",
 }
-FECHA = "2026-11-10"
+# Fecha del dictamen vigente: la versión 2 de los criterios (N6 y N7, ADR-044)
+# rehízo 78 dictámenes el 2026-11-16; los demás son del 2026-11-10.
+FECHA = "2026-11-16"
+VERSION_CRITERIOS = 2
 ESTADO = "propuesto-por-ia"     # pasa a "validado-por-muestreo" cuando el equipo valide (criterios §5)
 
 # La muestra de validación (criterios §5): 10 evidencias al azar por área, con
@@ -60,7 +65,7 @@ PRUEBA_CRITERIOS = {
     ("LEN-08-07", 3): "N1", ("LEN-07-01", 2): "SC", ("LEN-06-02", 1): "N1",
     ("LEN-03-07", 1): "N2", ("LEN-10-04", 2): "SC",
     ("CN-05-04", 3): "SC", ("CN-04-03", 3): "N4", ("CN-09-02", 1): "SC",
-    ("CN-09-03", 1): "SC", ("CN-07-01", 3): "SC",
+    ("CN-09-03", 1): "SC", ("CN-07-01", 3): "SC",   # en la versión 2 pasa a N7 (§8 del informe)
     ("CS-09-05", 2): "SC", ("CS-03-02", 4): "SC", ("CS-06-06", 1): "SC",
     ("CS-10-04", 4): "N3", ("CS-08-02", 2): "SC",
 }
@@ -97,7 +102,8 @@ def leer_dictamenes():
 def version_criterios():
     contenido = open(CRITERIOS, "rb").read()
     return dict(archivo="docs/diseno/criterios-censo-formato-cerrado.md",
-                estado="aceptados por Alejandro el 2026-11-10 (ADR-042)",
+                estado="aceptados por Alejandro el 2026-11-10 (ADR-042); versión 2 el 2026-11-16, con N6 y N7 (ADR-044)",
+                version=VERSION_CRITERIOS,
                 sha256=hashlib.sha256(contenido).hexdigest())
 
 
@@ -161,7 +167,9 @@ def escribir_json(registros):
         generado_por="data/curriculo-men/censo/generar_censo.py",
         fuente="Los dictámenes de data/curriculo-men/censo/dictamenes/ (una línea por evidencia), "
                "escritos por la sesión de Claude del encargo 05 aplicando los criterios a cada "
-               "evidencia (ADR-042). El texto de la evidencia es el del catálogo.",
+               "evidencia (ADR-042); los cambios de la versión 2 de los criterios (N6 y N7, ADR-044) los "
+               "escribió la sesión local de Claude del 2026-11-16, y dicen «Antes: …». El texto de la "
+               "evidencia es el del catálogo.",
         estado=ESTADO,
         fecha=FECHA,
         criterios=version_criterios(),
@@ -178,6 +186,7 @@ def escribir_json(registros):
 
 # Para el informe: los motivos de duda, agrupados (el primero que coincide)
 GRUPOS_DUDA = [
+    (r"se podrían decir con palabras", "N7 con matiz: algunas características de la gráfica se podrían decir con palabras"),
     (r"contexto propio", "contexto propio: la respuesta depende de la vida del estudiante (su familia, su municipio)"),
     (r"justific", "«justifica»: entre «explica» (aplica) y «argumenta» (N3)"),
     (r"ortografía|puntuación|concordancia", "ortografía, puntuación y concordancia: elegir la forma correcta es reconocer, no escribir"),
@@ -215,7 +224,9 @@ def escribir_informe(catalogo, registros):
     w("")
     w("**Encargo 05**, Parte B. **Archivo generado** por `generar_censo.py`: no se edita a mano.")
     w(f"**Estado: propuesto por IA, sin validar** (`{ESTADO}`, ADR-042). Fecha: {FECHA}.")
-    w("Criterios aplicados: `docs/diseno/criterios-censo-formato-cerrado.md`, aceptados el 2026-11-10")
+    w("Criterios aplicados: `docs/diseno/criterios-censo-formato-cerrado.md`, **versión 2**: aceptados")
+    w("el 2026-11-10 y ampliados el 2026-11-16 con N6 (contexto propio) y N7 (necesita ver o escuchar),")
+    w("por decisión de Alejandro (ADR-044). Los dictámenes que cambió la versión 2 dicen «Antes: …»")
     w(f"(huella sha256 `{version_criterios()['sha256'][:16]}…`, en la cabecera del JSON).")
     w("")
     w("## 1. En una frase")
@@ -295,11 +306,15 @@ def escribir_informe(catalogo, registros):
     w("- **N2 (comunicar en vivo)** es casi toda de Lenguaje: hablar, leer en voz alta, conversar y")
     w("  **escuchar**. Las evidencias sobre lo que el estudiante escucha (un discurso, una voz) se")
     w("  dictaminaron N2 porque la pregunta del sistema es escrita: leer un texto cambia lo que la")
-    w("  evidencia pide (ver la propuesta 7.2).")
+    w("  evidencia pide. Con la versión 2 serían también N7; se dejaron N2.")
     w("- **N3 (postura propia)** es sobre todo de Ciencias Sociales: «argumenta» (que los criterios")
     w("  fijan como no aplica), «propone acciones», «expresa sus opiniones».")
-    w("- **N4 (actuar en el mundo)** incluye medir, experimentar y observar, y en Ciencias Sociales las")
-    w("  evidencias de contexto propio (sección 6).")
+    w("- **N4 (actuar en el mundo)** incluye medir, experimentar y observar.")
+    w("- **N6 (contexto propio)** es casi toda de Ciencias Sociales de 1° a 3°: la respuesta depende de")
+    w("  la familia, el barrio, la escuela o el municipio del estudiante (sección 6.1).")
+    w("- **N7 (necesita ver o escuchar)** reúne lo que mide leer una gráfica, un plano, un mapa, una")
+    w("  imagen, un gesto o una voz. Esta versión solo genera preguntas de texto (ADR-043, ADR-044).")
+    w("  Si la tabla o la figura se puede escribir en el enunciado, la evidencia sigue aplicando.")
     w("")
     w("## 5. DBA sin ninguna evidencia que aplique")
     w("")
@@ -339,19 +354,21 @@ def escribir_informe(catalogo, registros):
     w("")
     w("Varias evidencias piden algo que solo sabe el estudiante: los cumpleaños de sus padres, de dónde")
     w("vino su familia, el croquis de su municipio, el manual de convivencia de su colegio. Una pregunta")
-    w("generada para cualquier estudiante no conoce esa respuesta. Los criterios no tienen una regla")
-    w("para esto: se dictaminaron **N4** (requieren observar o consultar su entorno) y se marcaron")
-    w("dudosas. Ver la propuesta 7.1.")
+    w("generada para cualquier estudiante no conoce esa respuesta. En la versión 1 se dictaminaron **N4**")
+    w("y dudosas; la versión 2 de los criterios les da su regla, **N6**, y dejaron de ser dudosas. Cuando")
+    w("lo que se pide es general (las formas del relieve, los oficios) y «su comunidad» es solo el lugar")
+    w("donde se aprende, la evidencia aplica.")
     w("")
     w("## 7. Propuestas de ajuste a los criterios")
     w("")
-    w("No se cambiaron los criterios (encargo 05, B.2). Estos patrones no quedan bien cubiertos y se")
-    w("proponen para que el equipo decida:")
+    w("El encargo 05 no cambió los criterios (B.2): propuso estos ajustes. **Las propuestas 1 y 2 se")
+    w("decidieron el 2026-11-16** (ADR-044) y son las reglas N6 y N7 de la versión 2. Las otras cinco")
+    w("siguen abiertas: se deciden con la validación.")
     w("")
-    w("1. **Contexto propio.** Agregar una regla (por ejemplo **N6, contexto propio**: la respuesta")
+    w("1. **Decidida: N6.** **Contexto propio.** Agregar una regla (por ejemplo **N6, contexto propio**: la respuesta")
     w("   depende de la vida o el lugar del estudiante) o decir que, si el docente escribe ese contexto")
     w("   al crear la experiencia (el municipio, el manual), aplica. Hoy se dictaminan N4 y dudosas.")
-    w("2. **Escuchar.** Decidir si el sistema tendrá preguntas con audio. Si no, las evidencias de")
+    w("2. **Decidida: N7, sin imagen ni audio en esta versión.** **Escuchar.** Decidir si el sistema tendrá preguntas con audio. Si no, las evidencias de")
     w("   escucha son N2 (así quedaron). Si sí, varias pasarían a `single_choice`. Lo mismo, en menor")
     w("   medida, con las evidencias que necesitan una imagen en la pregunta (caricaturas, mapas,")
     w("   afiches): se dictaminaron como aplican, pero el banco solo puede generarlas si la pregunta")
@@ -375,8 +392,8 @@ def escribir_informe(catalogo, registros):
     w("")
     w("## 8. Frente a la prueba de los criterios (§7)")
     w("")
-    w("Las 20 evidencias que los criterios clasificaron a mano se volvieron a leer y dictaminar, sin")
-    w("copiar la tabla.")
+    w("Las 20 evidencias que los criterios clasificaron a mano (con la versión 1) se volvieron a leer y")
+    w("dictaminar, sin copiar la tabla. Con la versión 1 coincidieron las 20.")
     w("")
     distintas = []
     for (cod, num), esperado in PRUEBA_CRITERIOS.items():

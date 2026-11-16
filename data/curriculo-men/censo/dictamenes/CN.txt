@@ -1,11 +1,15 @@
 # Censo de formato cerrado — Ciencias Naturales (V.1)
 # Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
 # DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
-#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+#           N1 a N7 si no aplica (criterios-censo-formato-cerrado.md §2).
 # Lo escribió la sesión de Claude del encargo 05, evidencia por evidencia (ADR-042).
 # Experimentos: cuando el experimento es solo el contexto y lo que se pide es
 # explicar, predecir o interpretar, aplica (criterios §4, contexto procedimental);
 # cuando lo que se pide es hacer el experimento, medir u observar, N4.
+# Criterios versión 2 (2026-11-16, ADR-044): N7, necesita ver o escuchar. Las
+# evidencias que miden leer una gráfica, un plano, un desarrollo plano o un
+# esquema pasaron a N7 (dicen «Antes: …»). Si la tabla o la figura se puede
+# escribir o describir en el enunciado, sigue aplicando.
 
 # ---- 1°
 CN-01-01 1 | N4 | utilizando el sentido apropiado | «Describe y caracteriza, utilizando el sentido apropiado, sonidos, sabores, olores»: percibir objetos reales con los sentidos (N4).
@@ -23,7 +27,7 @@ CN-01-03 4 | N3 | propone acciones de cuidado | «Propone acciones de cuidado a 
 CN-01-04 1 | N4 | registra cambios … en su cuerpo | «Registra cambios físicos ocurridos en su cuerpo durante el crecimiento»: medirse y registrar (N4).
 CN-01-04 2 | SC | predice | «Describe su cuerpo y predice los cambios que se producirán en un futuro»: qué cambios trae el crecimiento tiene respuesta (single_choice). | dudoso: la primera acción, describir su propio cuerpo, no se puede preguntar; se dictamina por la predicción
 CN-01-04 3 | N4 | observa entre niños y niñas de su grado | «Describe y registra similitudes y diferencias físicas que observa entre niños y niñas de su grado»: observar a sus compañeros (N4).
-CN-01-04 4 | SC | establece relaciones hereditarias | «Establece relaciones hereditarias a partir de las características físicas de sus padres»: con una familia descrita en la pregunta, qué rasgo se hereda tiene respuesta (single_choice, criterios §4); sus propios padres no quedan cubiertos.
+CN-01-04 4 | N6 | características físicas de sus padres | «Establece relaciones hereditarias a partir de las características físicas de sus padres»: la respuesta depende de cómo son sus padres (N6). Antes: SC (criterios v2).
 
 # ---- 2°
 CN-02-01 1 | SC | compara | «Compara los cambios de forma que se generan sobre objetos constituidos por distintos materiales»: qué material se deforma y cómo tiene respuesta (single_choice).
@@ -123,7 +127,7 @@ CN-06-05 3 | SC | explica | «Explica la clasificación taxonómica como mecanis
 # ---- 7°
 CN-07-01 1 | SC | relaciona … para describir | «Relaciona las variables velocidad y posición para describir las formas de energía mecánica»: qué energía tiene un cuerpo según su velocidad y altura tiene respuesta (single_choice).
 CN-07-01 2 | SC | identifica | «Identifica las formas de energía mecánica … en diferentes puntos del movimiento»: respuesta correcta (single_choice).
-CN-07-01 3 | SC | representa gráficamente | «Representa gráficamente las energías cinética y potencial gravitacional en función del tiempo»: como en la prueba de los criterios (§7), aplica eligiendo la gráfica correcta (single_choice).
+CN-07-01 3 | N7 | representa gráficamente | «Representa gráficamente las energías cinética y potencial gravitacional en función del tiempo»: elegir la gráfica correcta exige mostrar gráficas, y la pregunta es solo de texto (N7). En la prueba de los criterios (§7, versión 1) aplicaba. Antes: SC (criterios v2).
 CN-07-02 1 | SC | ubica | «Ubica a los elementos en la Tabla Periódica con relación a los números atómicos y másicos»: respuesta correcta (single_choice).
 CN-07-02 2 | SC | usa modelos | «Usa modelos y representaciones (Bohr, Lewis) que le permiten reconocer la estructura del átomo»: respuesta correcta sobre un modelo dado (single_choice).
 CN-07-02 3 | SC | explica | «Explica la variación de algunas de las propiedades … en la tabla periódica»: explicación de un hecho (single_choice).
@@ -157,9 +161,9 @@ CN-08-05 3 | SC | identifica | «Identifica riesgos y consecuencias físicas y p
 CN-08-05 4 | SC | explica | «Explica la importancia de la aplicación de medidas preventivas de patologías»: explicación de un hecho (single_choice).
 
 # ---- 9°
-CN-09-01 1 | SC | describe | «Describe el movimiento de un cuerpo … en gráficos»: elegir la gráfica o la descripción correcta (single_choice).
+CN-09-01 1 | N7 | en gráficos | «Describe el movimiento de un cuerpo … en gráficos que relacionan el desplazamiento, la velocidad y la aceleración»: lo que se mide es leer el gráfico (N7). Antes: SC (criterios v2).
 CN-09-01 2 | SC | predice | «Predice el movimiento de un cuerpo a partir de las expresiones matemáticas»: respuesta correcta (single_choice).
-CN-09-01 3 | SC | identifica | «Identifica las modificaciones necesarias en la descripción del movimiento … cuando se cambia de marco de referencia»: respuesta correcta (single_choice).
+CN-09-01 3 | N7 | representada en gráficos | «Identifica las modificaciones … en la descripción del movimiento de un cuerpo, representada en gráficos»: hay que ver el gráfico (N7). Antes: SC (criterios v2).
 CN-09-02 1 | SC | compara | «Compara algunas teorías (Arrhenius, Brönsted – Lowry y Lewis)»: como en la prueba de los criterios (§7), aplica (single_choice).
 CN-09-02 2 | SC | determina | «Determina la acidez y la basicidad de compuestos dados, de manera cualitativa (colorimetría) y cuantitativa (escala de pH - pOH)»: con el dato del pH o del color, la respuesta es una (single_choice); hacer la colorimetría en el laboratorio no queda cubierto.
 CN-09-02 3 | SC | explica | «Explica la función de los ácidos y las bases en procesos propios de los seres vivos»: explicación de un hecho (single_choice).
@@ -202,7 +206,7 @@ CN-11-02 1 | SC | identifica | «Identifica el tipo de carga eléctrica … que 
 CN-11-02 2 | SC | reconoce | «Reconoce que las fuerzas eléctricas y magnéticas pueden ser de atracción y repulsión»: respuesta correcta (single_choice).
 CN-11-02 3 | N4 | construye | «Construye y explica el funcionamiento de un electroimán»: armar con material real (N4), como los circuitos de CN-05-01 #1.
 CN-11-03 1 | SC | determina | «Determina las corrientes y los voltajes en elementos resistivos … utilizando la ley de Ohm»: resultado único (single_choice).
-CN-11-03 2 | SC | identifica | «Identifica configuraciones en serie, en paralelo y mixtas en diferentes circuitos representados en esquemas»: respuesta correcta (single_choice).
+CN-11-03 2 | N7 | representados en esquemas | «Identifica configuraciones en serie, en paralelo y mixtas en diferentes circuitos representados en esquemas»: hay que ver el esquema (N7). Antes: SC (criterios v2).
 CN-11-03 3 | SC | identifica | «Identifica características de circuitos en serie y paralelo a partir de la construcción de circuitos»: la característica tiene respuesta (single_choice, criterios §4); construir los circuitos no queda cubierto.
 CN-11-03 4 | SC | predice | «Predice los cambios de iluminación en bombillos resistivos en un circuito al alterarlo»: respuesta correcta (single_choice).
 CN-11-04 1 | SC | representa | «Representa las reacciones químicas entre compuestos orgánicos utilizando fórmulas … y la nomenclatura IUPAC»: elegir la fórmula o el nombre correcto (single_choice).

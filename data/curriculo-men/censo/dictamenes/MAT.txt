@@ -1,9 +1,13 @@
 # Censo de formato cerrado — Matemáticas (V.2)
 # Una línea por evidencia: CÓDIGO NÚMERO | DICTAMEN | SEÑAL | JUSTIFICACIÓN [| dudoso: RAZÓN]
 # DICTAMEN: SC (single_choice), MT (matching), OR (ordering) si aplica;
-#           N1 a N5 si no aplica (criterios-censo-formato-cerrado.md §2).
+#           N1 a N7 si no aplica (criterios-censo-formato-cerrado.md §2).
 # SEÑAL: el verbo o la frase que decide. Lo escribió la sesión de Claude del
 # encargo 05, evidencia por evidencia (ADR-042): es juicio, no búsqueda de palabras.
+# Criterios versión 2 (2026-11-16, ADR-044): N7, necesita ver o escuchar. Las
+# evidencias que miden leer una gráfica, un plano, un desarrollo plano o un
+# esquema pasaron a N7 (dicen «Antes: …»). Si la tabla o la figura se puede
+# escribir o describir en el enunciado, sigue aplicando.
 
 # ---- 1°
 MAT-01-01 1 | N1 | construye | «Construye e interpreta representaciones»: la acción principal es construir la representación, un producto propio; elegir la correcta mediría solo reconocerla (N1). «Interpreta» queda cubierto en otras evidencias.
@@ -31,10 +35,10 @@ MAT-01-06 1 | N1 | crea, compone | «Crea, compone y descompone formas … utili
 MAT-01-06 2 | SC | describe | «Describe … las cualidades y propiedades de un objeto relativas a su forma»: elegir la descripción correcta (single_choice). «De forma verbal» no exige conversación.
 MAT-01-06 3 | MT | agrupa | «Agrupa objetos … de acuerdo con las semejanzas y las diferencias»: clasificar objetos en grupos dados relaciona dos conjuntos (matching); «explica el criterio» no queda cubierto. | dudoso: en la evidencia el criterio lo elige el estudiante; el ítem tendría que fijarlo
 MAT-01-06 4 | SC | identifica | «Identifica objetos a partir de las descripciones verbales»: dada la descripción, un objeto correcto (single_choice).
-MAT-01-07 1 | SC | utiliza representaciones | «Utiliza representaciones como planos para ubicarse»: leer un plano para decir dónde está algo tiene respuesta (single_choice).
+MAT-01-07 1 | N7 | planos para ubicarse | «Utiliza representaciones como planos para ubicarse en el espacio»: lo que se mide es leer el plano, y la pregunta sería solo de texto (N7). Antes: SC (criterios v2).
 MAT-01-07 2 | SC | toma decisiones | «Toma decisiones a partir de la ubicación espacial»: dado un plano, qué camino o lado tomar tiene una respuesta correcta (single_choice). | dudoso: «toma decisiones» es señal de N3, pero aquí la decisión es espacial y tiene respuesta correcta
 MAT-01-07 3 | N1 | dibuja | «Dibuja recorridos»: un dibujo propio (N1).
-MAT-01-07 4 | SC | compara | «Compara distancias a partir de la observación del plano»: cuál distancia es mayor tiene respuesta (single_choice).
+MAT-01-07 4 | N7 | observación del plano | «Compara distancias a partir de la observación del plano»: lo que se mide es leer el plano (N7). Antes: SC (criterios v2).
 MAT-01-08 1 | SC | identifica | «Identifica y nombra diferencias entre objetos»: elegir la diferencia correcta entre dos objetos (single_choice).
 MAT-01-08 2 | N1 | comunica y justifica | «Comunica las características identificadas y justifica las diferencias»: pide producir una comunicación y su justificación (N1). | dudoso: «comunica» no es una señal de los criterios; podría leerse como N2
 MAT-01-08 3 | SC | establece relaciones | «Establece relaciones de dependencia entre magnitudes»: reconocer qué magnitud depende de cuál tiene respuesta (single_choice).
@@ -47,7 +51,7 @@ MAT-01-10 3 | SC | lee | «Lee la información presentada en tablas de conteo y/
 MAT-01-10 4 | SC | comunica … respondiendo preguntas | «Comunica los resultados respondiendo preguntas tales como: ¿cuántos hay en total?»: las preguntas que nombra tienen respuesta única (single_choice).
 
 # ---- 2°
-MAT-02-01 1 | SC | interpreta y construye | «Interpreta y construye diagramas»: la acción principal es interpretar, elegir qué relación muestra un diagrama (single_choice); «construye» no queda cubierto.
+MAT-02-01 1 | N7 | interpreta diagramas | «Interpreta y construye diagramas»: la acción principal es interpretar un diagrama, que hay que ver (N7); «construye» es N1. Antes: SC (criterios v2).
 MAT-02-01 2 | SC | describe y resuelve | «Describe y resuelve situaciones … a + ? = c»: término desconocido con respuesta única (single_choice).
 MAT-02-01 3 | SC | reconoce | «Reconoce … relaciones aditivas y multiplicativas y formula problemas»: reconocer la relación tiene respuesta (single_choice); «formula problemas» no queda cubierto.
 MAT-02-02 1 | N1 | construye | «Construye representaciones pictóricas»: la representación propia es el producto (N1).
@@ -66,8 +70,8 @@ MAT-02-06 1 | SC | reconoce | «Reconoce las figuras geométricas según el núm
 MAT-02-06 2 | SC | diferencia | «Diferencia los cuerpos geométricos»: elegir el cuerpo que corresponde a un nombre o propiedad (single_choice); no nombra dos conjuntos explícitos.
 MAT-02-06 3 | SC | compara | «Compara figuras y cuerpos geométricos y establece relaciones y diferencias»: elegir la diferencia correcta (single_choice).
 MAT-02-07 1 | SC | describe | «Describe desplazamientos a partir de las posiciones de las líneas»: elegir la descripción correcta de un desplazamiento (single_choice).
-MAT-02-07 2 | SC | representa y reconoce | «Representa líneas y reconoce las diferentes posiciones»: elegir la representación correcta (single_choice; criterios §4, «representa»).
-MAT-02-07 3 | SC | identifica | «identifica posiciones de objetos … paralelas, verticales o perpendiculares»: respuesta única (single_choice).
+MAT-02-07 2 | N7 | representa líneas | «Representa líneas y reconoce las diferentes posiciones»: elegir la representación correcta es elegir entre dibujos (N7; criterios §4, «representa», versión 2). Antes: SC (criterios v2).
+MAT-02-07 3 | N7 | en dibujos … identifica | «En dibujos, objetos o espacios reales, identifica … líneas paralelas, verticales o perpendiculares»: hay que ver el dibujo o el objeto (N7). Antes: SC (criterios v2).
 MAT-02-07 4 | N3 | argumenta | «Argumenta las diferencias entre las posiciones de las líneas»: «argumenta» no aplica (N3).
 MAT-02-08 1 | SC | establece relaciones | «Establece relaciones de reversibilidad entre la suma y la resta»: elegir la resta que deshace una suma (single_choice).
 MAT-02-08 2 | SC | calcula | «Utiliza diferentes procedimientos para calcular un valor desconocido»: el valor es uno (single_choice).
@@ -107,9 +111,9 @@ MAT-03-06 1 | MT | relaciona | «Relaciona objetos de su entorno con formas bidi
 MAT-03-06 2 | MT | clasifica | «Clasifica y representa formas … tomando en cuenta sus características geométricas comunes»: clasificar formas en grupos dados (matching); «representa» y «describe el criterio» no quedan cubiertos.
 MAT-03-06 3 | SC | interpreta y compara | «Interpreta, compara y justifica propiedades de formas»: elegir la propiedad correcta (single_choice); «justifica» no queda cubierto.
 MAT-03-07 1 | SC | localiza | «Localiza objetos o personas a partir de la descripción … de una trayectoria»: el punto de llegada es uno (single_choice); «construye representaciones» no queda cubierto.
-MAT-03-07 2 | SC | identifica y describe | «Identifica y describe patrones de movimiento … reflexiones, traslaciones y rotaciones»: decir qué transformación se aplicó tiene respuesta (single_choice).
+MAT-03-07 2 | N7 | patrones de movimiento de figuras | «Identifica y describe patrones de movimiento de figuras bidimensionales (reflexiones, traslaciones, rotaciones)»: reconocer la transformación es ver la figura antes y después (N7). Antes: SC (criterios v2).
 MAT-03-07 3 | SC | identifica | «Identifica las propiedades … que se conservan y las que varían»: respuesta única (single_choice).
-MAT-03-07 4 | SC | plantea y resuelve | «Plantea y resuelve situaciones en las que se requiere analizar las transformaciones»: resolver la situación tiene respuesta (single_choice); «plantea» no queda cubierto.
+MAT-03-07 4 | N7 | transformaciones de figuras en el plano | «Plantea y resuelve situaciones … transformaciones de diferentes figuras en el plano»: en 3° la transformación se ve, no se escribe (N7). Antes: SC (criterios v2).
 MAT-03-08 1 | SC | describe | «Describe de manera cualitativa situaciones de cambio y variación utilizando lenguaje natural, gestos, dibujos»: elegir la descripción correcta del cambio (single_choice). | dudoso: la evidencia nombra gestos y dibujos, que la pregunta cerrada no observa
 MAT-03-08 2 | N1 | construye | «Construye secuencias numéricas y geométricas»: la secuencia propia es el producto (N1).
 MAT-03-08 3 | SC | encuentra y representa | «Encuentra y representa generalidades y valida sus hallazgos»: la generalidad de una secuencia dada es una (single_choice); «valida» no queda cubierto.
@@ -147,8 +151,8 @@ MAT-04-05 2 | N1 | propone procedimientos | «Propone diferentes procedimientos 
 MAT-04-05 3 | SC | emplea | «Emplea las relaciones de proporcionalidad directa e inversa para resolver diversas situaciones»: resultado único (single_choice).
 MAT-04-05 4 | N1 | propone y explica procedimientos | «Propone y explica procedimientos para lograr mayor precisión en la medición»: la acción principal es proponer un procedimiento propio (N1).
 MAT-04-06 1 | N1 | arma, desarma y crea | «Arma, desarma y crea formas bidimensionales y tridimensionales»: hacer formas con material (N1; también N4).
-MAT-04-06 2 | SC | reconoce | «Reconoce entre un conjunto de desarrollos planos, los que corresponden a determinados sólidos»: respuesta única (single_choice).
-MAT-04-07 1 | SC | aplica movimientos | «Aplica movimientos a figuras en el plano»: elegir la figura que resulta de una rotación o traslación (single_choice).
+MAT-04-06 2 | N7 | desarrollos planos | «Reconoce entre un conjunto de desarrollos planos los que corresponden a determinados sólidos»: hay que ver los desarrollos (N7). Antes: SC (criterios v2).
+MAT-04-07 1 | N7 | movimientos a figuras | «Aplica movimientos a figuras en el plano»: el resultado del movimiento se ve en la figura (N7). Antes: SC (criterios v2).
 MAT-04-07 2 | MT | diferencia | «Diferencia los efectos de la ampliación y la reducción»: clasificar efectos en dos grupos (matching).
 MAT-04-07 3 | N3 | elabora argumentos | «Elabora argumentos referente a las modificaciones que sufre una imagen»: es argumentar (N3).
 MAT-04-07 4 | N1 | representa elementos del entorno | «Representa elementos del entorno que sufren modificaciones en su forma»: el elemento lo escoge el estudiante y la representación es suya (N1).
@@ -188,13 +192,13 @@ MAT-05-05 3 | N1 | dibuja | «Dibuja figuras planas cuando se dan las medidas de
 MAT-05-05 4 | N1 | propone estrategias | «Propone estrategias para la solución de problemas relativos a la medida de la superficie»: estrategia propia (N1).
 MAT-05-05 5 | SC | reconoce | «Reconoce que figuras con áreas diferentes pueden tener el mismo perímetro»: respuesta correcta (single_choice).
 MAT-05-05 6 | N4 | mide | «Mide superficies y longitudes utilizando diferentes estrategias (composición, recubrimiento, bordeado, cálculo)»: medir con material (N4).
-MAT-05-06 1 | MT | relaciona | «Relaciona objetos tridimensionales … con sus respectivos desarrollos planos»: dos conjuntos (matching).
+MAT-05-06 1 | N7 | desarrollos planos | «Relaciona objetos tridimensionales … con sus respectivos desarrollos planos»: hay que ver los desarrollos (N7). Antes: MT (criterios v2).
 MAT-05-06 2 | SC | reconoce | «Reconoce relaciones intra e interfigurales»: respuesta correcta (single_choice).
 MAT-05-06 3 | SC | determina | «Determina las mediciones reales de una figura a partir de un registro gráfico (un plano)»: cálculo con escala (single_choice).
 MAT-05-06 4 | N1 | construye | «Construye y descompone figuras planas y sólidos a partir de medidas establecidas»: producto propio (N1).
 MAT-05-06 5 | SC | utiliza transformaciones | «Utiliza transformaciones a figuras en el plano para describirlas y calcular sus medidas»: respuesta única (single_choice).
-MAT-05-06 6 | SC | reconoce y lee | «Reconoce diferentes distribuciones de plantillas de un cuerpo … lee la información que presenta la plantilla»: respuesta correcta (single_choice).
-MAT-05-07 1 | SC | localiza | «Localiza puntos en un mapa a partir de coordenadas cartesianas»: respuesta única (single_choice).
+MAT-05-06 6 | N7 | plantillas de un cuerpo | «Reconoce diferentes distribuciones de plantillas de un cuerpo … lee la información que presenta la plantilla»: hay que ver la plantilla (N7). Antes: SC (criterios v2).
+MAT-05-07 1 | N7 | puntos en un mapa | «Localiza puntos en un mapa a partir de coordenadas cartesianas»: hay que ver el mapa (N7). Antes: SC (criterios v2).
 MAT-05-07 2 | SC | interpreta | «Interpreta los elementos de un sistema de referencia (ejes, cuadrantes, coordenadas)»: respuesta única (single_choice).
 MAT-05-07 3 | N1 | grafica | «Grafica en el plano cartesiano la posición de un objeto»: pide hacer la gráfica a mano (N1; criterios §4, «representa»).
 MAT-05-07 4 | SC | emplea … al resolver | «Emplea el plano cartesiano al plantear y resolver situaciones de localización»: resolver tiene respuesta (single_choice); «plantear» no queda cubierto.
@@ -231,7 +235,7 @@ MAT-06-03 1 | SC | determina criterios | «Determina criterios de comparación p
 MAT-06-03 2 | SC | representa | «Representa en la recta numérica la posición de un número»: elegir el punto (single_choice).
 MAT-06-03 3 | SC | describe | «Describe procedimientos para resolver ecuaciones lineales»: elegir el paso correcto (single_choice).
 MAT-06-04 1 | N1 | construye plantillas | «Construye plantillas para cuerpos geométricos dadas sus medidas»: producto propio (N1).
-MAT-06-04 2 | SC | selecciona | «Selecciona las plantillas que genera cada cuerpo»: respuesta única (single_choice).
+MAT-06-04 2 | N7 | plantillas que genera cada cuerpo | «Selecciona las plantillas que genera cada cuerpo»: hay que ver las plantillas (N7). Antes: SC (criterios v2).
 MAT-06-04 3 | N4 | utiliza la regla y el compás | «Utiliza la regla no graduada y el compás para dibujar las plantillas»: instrumentos reales (N4).
 MAT-06-05 1 | SC | decide y analiza las causas de error | «Decide acerca de las estrategias para determinar qué tan pertinente es la estimación y analiza las causas de error»: reconocer una causa de error en una medición dada tiene respuesta (single_choice). | dudoso: «decide» es señal de N3; la parte de decidir la pertinencia puede no tener una única respuesta
 MAT-06-05 2 | SC | estima | «Estima el resultado de una medición sin realizarla, de acuerdo con un referente previo»: elegir la estimación razonable (single_choice); «valora el resultado» no queda cubierto.
@@ -256,7 +260,7 @@ MAT-06-10 4 | SC | calcula | «Calcula las medidas requeridas de acuerdo a los d
 MAT-06-10 5 | N1 | escribe un informe | «Escribe un informe»: texto propio (N1).
 MAT-06-11 1 | SC | comprende la diferencia | «Comprende la diferencia entre la muestra y la población»: respuesta correcta (single_choice).
 MAT-06-11 2 | SC | selecciona | «Selecciona y produce representaciones gráficas apropiadas al conjunto de datos»: elegir el gráfico apropiado (single_choice); «produce» no queda cubierto.
-MAT-06-11 3 | SC | interpreta | «Interpreta la información que se presenta en los gráficos usando las medidas de tendencia central»: respuesta única (single_choice).
+MAT-06-11 3 | N7 | información … en los gráficos | «Interpreta la información que se presenta en los gráficos»: lo que se mide es leer el gráfico (N7). Antes: SC (criterios v2).
 MAT-06-11 4 | SC | compara | «Compara las características de dos o más poblaciones … haciendo uso … de las medidas de tendencia central»: respuesta correcta con datos dados (single_choice).
 MAT-06-11 5 | SC | describe | «Describe el comportamiento de las características de dos o más poblaciones»: elegir la descripción correcta (single_choice).
 MAT-06-12 1 | SC | enumera | «Enumera los posibles resultados de un experimento aleatorio sencillo»: elegir la lista completa (single_choice).
@@ -283,7 +287,7 @@ MAT-07-05 1 | MT | establece relaciones entre | «Establece relaciones entre la 
 MAT-07-05 2 | SC | reconoce e interpreta | «Reconoce e interpreta la representación de un objeto»: respuesta correcta (single_choice).
 MAT-07-05 3 | SC | representa | «Representa objetos tridimensionales cuando se transforman»: elegir la representación del objeto transformado (single_choice; criterios §4).
 MAT-07-06 1 | SC | interpreta | «Interpreta las modificaciones entre el perímetro y el área con un factor de variación»: respuesta única (single_choice).
-MAT-07-06 2 | SC | establece diferencias | «Establece diferencias entre los gráficos del perímetro y del área»: elegir la diferencia correcta (single_choice).
+MAT-07-06 2 | N7 | los gráficos del perímetro y del área | «Establece diferencias entre los gráficos del perímetro y del área»: hay que ver los gráficos (N7). Antes: SC (criterios v2).
 MAT-07-06 3 | SC | coordina los cambios | «Coordina los cambios de la variación entre el perímetro y la longitud de los lados»: cómo cambia uno cuando cambia el otro tiene respuesta (single_choice).
 MAT-07-06 4 | N1 | organiza | «Organiza la información (registros tabulares y gráficos)»: producto propio (N1).
 MAT-07-07 1 | SC | plantea modelos | «Plantea modelos algebraicos, gráficos o numéricos en los que identifica variables»: elegir el modelo que corresponde a una situación (single_choice; criterios §4, «representa»). | dudoso: plantear un modelo es cercano a «representa» (aplica si se elige), pero aquí el modelo lo construye el estudiante
@@ -333,7 +337,7 @@ MAT-08-09 3 | SC | representa | «Representa relaciones numéricas mediante expr
 MAT-08-09 4 | SC | describe | «Describe diferentes usos del signo igual»: respuesta correcta (single_choice).
 MAT-08-09 5 | SC | utiliza | «Utiliza las propiedades de los conjuntos numéricos para resolver ecuaciones»: respuesta única (single_choice).
 MAT-08-10 1 | N3 | toma decisiones informadas | «Toma decisiones informadas en exploraciones … de los modelos matemáticos usados»: decisiones propias en una exploración abierta; señal de N3.
-MAT-08-10 2 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas»: empareja expresiones con gráficas (matching).
+MAT-08-10 2 | N7 | relaciona … sus gráficas | «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2). | dudoso: algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
 MAT-08-11 1 | SC | interpreta | «Interpreta los datos representados en diferentes tablas y gráficos»: respuesta única (single_choice).
 MAT-08-11 2 | SC | encuentra | «Usa estrategias gráficas o numéricas para encontrar las medidas de tendencia central»: respuesta única (single_choice).
 MAT-08-11 3 | SC | describe | «Describe el comportamiento de los datos empleando las medidas de tendencia central»: elegir la descripción correcta (single_choice).
@@ -349,7 +353,7 @@ MAT-09-01 2 | SC | identifica | «Identifica la diferencia entre exactitud y apr
 MAT-09-01 3 | N1 | construye | «Construye representaciones geométricas y numéricas de los números reales … y realiza conversiones»: la acción principal es construir (N1); las conversiones no quedan cubiertas.
 MAT-09-02 1 | SC | identifica y utiliza | «Identifica y utiliza múltiples representaciones … para realizar transformaciones y comparaciones»: respuesta única (single_choice).
 MAT-09-02 2 | N1 | establece conjeturas | «Establece conjeturas al resolver una situación problema»: la conjetura propia, en una situación abierta, es el producto (N1). | dudoso: conjeturar puede tener respuesta correcta (como en MAT-01-02 #4), pero aquí la evidencia no fija sobre qué
-MAT-09-02 3 | SC | determina y describe | «Determina y describe relaciones al comparar características de gráficas y expresiones algebraicas»: respuesta correcta (single_choice).
+MAT-09-02 3 | N7 | características de gráficas | «Determina y describe relaciones al comparar características de gráficas y expresiones algebraicas»: comparar con la gráfica exige verla (N7). Antes: SC (criterios v2). | dudoso: algunas características de la gráfica se podrían decir con palabras
 MAT-09-03 1 | SC | encuentra | «Encuentra las relaciones y propiedades que determinan la formación de secuencias numéricas»: la regla de una secuencia dada es una (single_choice).
 MAT-09-03 2 | SC | determina y utiliza | «Determina y utiliza la expresión general de una sucesión»: respuesta única (single_choice).
 MAT-09-04 1 | SC | estima | «Estima la capacidad de objetos con superficies redondas»: como en la prueba de los criterios (§7), aplica (single_choice).
@@ -402,14 +406,14 @@ MAT-10-04 5 | SC | modela | «Modela fenómenos periódicos a través de funcion
 MAT-10-05 1 | SC | localiza | «Localiza objetos geométricos en el plano cartesiano»: respuesta única (single_choice).
 MAT-10-05 2 | SC | identifica | «Identifica las propiedades de lugares geométricos a través de su representación»: respuesta correcta (single_choice).
 MAT-10-05 3 | SC | propone los rangos | «Utiliza las expresiones simbólicas de las cónicas y propone los rangos de variación para obtener una gráfica requerida»: el rango que produce la gráfica pedida se comprueba y se puede elegir (single_choice). | dudoso: «propone» es señal de N3; aquí lo propuesto es un valor que se comprueba, no una postura
-MAT-10-05 4 | SC | representa | «Representa lugares geométricos en el plano cartesiano, a partir de su expresión algebraica»: elegir la gráfica correcta (single_choice; criterios §4).
+MAT-10-05 4 | N7 | representa … en el plano cartesiano | «Representa lugares geométricos en el plano cartesiano, a partir de su expresión algebraica»: elegir la representación correcta es elegir entre gráficas, que la pregunta de texto no puede mostrar (N7). Antes: SC (criterios v2).
 MAT-10-06 1 | SC | utiliza representaciones | «Utiliza representaciones gráficas o numéricas para tomar decisiones, frente a la solución de problemas prácticos»: con datos dados, la decisión mejor sustentada es una (single_choice).
 MAT-10-06 2 | SC | determina | «Determina la tendencia numérica … como predicción del comportamiento futuro»: respuesta correcta (single_choice).
-MAT-10-06 3 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-10-06 3 | N7 | relaciona … sus gráficas | «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2). | dudoso: algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
 MAT-10-07 1 | SC | utiliza representaciones | «Utiliza representaciones gráficas o numéricas para tomar decisiones en problemas prácticos»: con datos dados, la decisión mejor sustentada es una (single_choice).
 MAT-10-07 2 | SC | usa la pendiente | «Usa la pendiente de la recta tangente como razón de cambio, la reconoce y verbaliza»: respuesta correcta (single_choice).
 MAT-10-07 3 | SC | utiliza la razón | «Utiliza la razón entre magnitudes para tomar decisiones sobre el cambio»: con datos dados, la decisión es una (single_choice).
-MAT-10-07 4 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-10-07 4 | N7 | relaciona … sus gráficas | «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2). | dudoso: algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
 MAT-10-08 1 | N1 | define la población | «Define la población de la cual va a extraer las muestras»: decisión de diseño de su propio estudio, como «define el plan» (N1).
 MAT-10-08 2 | N1 | define el tamaño y el método | «Define el tamaño y el método de selección de la muestra»: diseño propio (N1).
 MAT-10-08 3 | N1 | construye gráficas | «Construye gráficas para representar las distribuciones … y encuentra los estadígrafos»: la acción principal es construir (N1).
@@ -450,9 +454,9 @@ MAT-11-06 3 | N4 | explora el entorno | «Explora el entorno y lo representa med
 MAT-11-07 1 | SC | plantea modelos | «Plantea modelos funcionales en los que identifica variables y rangos de variación»: elegir el modelo que corresponde a una situación (single_choice; criterios §4, «representa»). | dudoso: plantear un modelo es cercano a «representa» (aplica si se elige), pero aquí el modelo lo construye el estudiante
 MAT-11-07 2 | MT | relaciona | «Relaciona el signo de la derivada con características numéricas, geométricas y métricas»: empareja signo de la derivada con comportamiento de la función (matching).
 MAT-11-07 3 | SC | utiliza | «Utiliza la derivada para estudiar la variación y relaciona características»: respuesta correcta (single_choice).
-MAT-11-07 4 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-11-07 4 | N7 | relaciona … sus gráficas | «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2). | dudoso: algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
 MAT-11-08 1 | SC | utiliza | «Utiliza la derivada para estudiar la variación y relaciona características»: respuesta correcta (single_choice).
-MAT-11-08 2 | MT | relaciona | «Relaciona características algebraicas de las funciones, sus gráficas y procesos de aproximación»: empareja expresiones con gráficas (matching).
+MAT-11-08 2 | N7 | relaciona … sus gráficas | «Relaciona características algebraicas de las funciones, sus gráficas…»: emparejar expresiones con gráficas exige verlas (N7). Antes: MT (criterios v2). | dudoso: algunas características de la gráfica (crece, corta el eje en 2) se podrían decir con palabras
 MAT-11-08 3 | SC | calcula | «Calcula derivadas de funciones»: respuesta única (single_choice).
 MAT-11-09 1 | N1 | plantea preguntas | «Plantea preguntas que indagan por la correlación o la asociación entre variables»: pregunta propia (N1).
 MAT-11-09 2 | N1 | define el plan | «Define el plan de recolección de la información»: como en la prueba de los criterios (§2, §7), N1.

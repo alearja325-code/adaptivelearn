@@ -247,15 +247,16 @@ Alejandro.
 **Retomar cuando:** se audite/corrija QA-013, y exista una UI para hacer
 el censo cómodamente (mismo motivo que QA-013).
 
-**Estado (2026-11-10): censo hecho, propuesto por IA, falta validarlo.**
-Cómo: ADR-042 y `criterios-censo-formato-cerrado.md`. Resultado
-(encargo 05, `data/curriculo-men/censo/informe-censo.md`): **904 de 1282
-evidencias (71 %) admiten formato cerrado**: Matemáticas 77 %, Ciencias
-Naturales 83 %, Ciencias Sociales 70 %, y **Lenguaje 56 %**. La respuesta
-a la pregunta de fondo: el enfoque cerrado-únicamente es viable en tres
-áreas, pero **en Lenguaje deja fuera casi la mitad** (hablar, escuchar,
-escribir), como anticipaba ADR-002. **16 DBA quedan sin ninguna evidencia
-aplicable** (10 de Lenguaje) y no se pueden usar para crear una
+**Estado (2026-11-16): censo hecho, propuesto por IA, falta validarlo.**
+Cómo: ADR-042, ADR-044 y `criterios-censo-formato-cerrado.md` (versión
+2, con N6 contexto propio y N7 necesita ver o escuchar). Resultado
+(`data/curriculo-men/censo/informe-censo.md`): **853 de 1282 evidencias
+(67 %) admiten formato cerrado**: Matemáticas 72 %, Ciencias Naturales
+80 %, Ciencias Sociales 67 %, y **Lenguaje 52 %**. La respuesta a la
+pregunta de fondo: el enfoque cerrado-únicamente es viable en tres áreas,
+pero **en Lenguaje deja fuera casi la mitad** (hablar, escuchar,
+escribir), como anticipaba ADR-002. **25 DBA quedan sin ninguna evidencia
+aplicable** (13 de Lenguaje) y no se pueden usar para crear una
 experiencia en esta versión (QA-012). Se cierra cuando dos integrantes
 validen la muestra (`censo/muestra_validacion.md`, criterios §5).
 
@@ -318,7 +319,7 @@ de que se esconda.
 
 **La duda de fondo (Alejandro, 2026-11-10):** son muchas las evidencias
 que piden producir, comunicar, argumentar, actuar o una actitud (reglas
-N1 a N5 del censo). ¿Se pueden crear otras evidencias a partir de ellas,
+N1 a N5 del censo; desde ADR-044 también N6 y N7). ¿Se pueden crear otras evidencias a partir de ellas,
 adaptarlas, o diagnosticarlas de otra forma?
 
 **Caminos posibles, sin decidir.** Cada uno, con lo que choca:
@@ -346,6 +347,13 @@ adaptarlas, o diagnosticarlas de otra forma?
 5. **Que la IA proponga los indicadores derivados.** Posible solo como
    propuesta que el docente revisa y acepta. Si no, rompe el principio
    "evidencia oficial, no invención de la IA" (QA-012).
+
+**Se suman (2026-11-16, ADR-044) las reglas N6 y N7:** lo que depende de
+la vida del estudiante, y lo que necesita ver o escuchar. Para N7, un
+camino futuro es que la aplicación dibuje la gráfica a partir de datos
+que la IA genere (no una imagen generada), o que el docente suba la
+imagen. Para N6, que el docente escriba el contexto (su municipio, su
+colegio) al crear la experiencia.
 
 **Lo que hay que saber antes de decidir:** el censo de esta versión dice
 cuántas evidencias quedan fuera, por área y por regla. Si son pocas, el

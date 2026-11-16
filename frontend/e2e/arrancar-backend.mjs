@@ -1,6 +1,6 @@
 // Arranca el backend real para las pruebas e2e (Playwright lo llama antes de
 // las pruebas, desde playwright.config.ts):
-//  1. compila el backend si todavía no está compilado;
+//  1. compila el backend (siempre, para no probar una compilación vieja);
 //  2. crea la base de pruebas desde cero con el mismo script del equipo
 //     (esquema del MR + catálogo) — se BORRA en cada corrida;
 //  3. lo arranca en el puerto 3100, con esa base, sin correo (los códigos
@@ -8,15 +8,15 @@
 //  4. copia su consola a e2e/.salida/backend.log, de donde las pruebas leen
 //     los códigos de 6 dígitos.
 import { execFileSync, execSync, spawn } from 'node:child_process';
-import { createWriteStream, existsSync, mkdirSync, rmSync } from 'node:fs';
+import { createWriteStream, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { BACKEND, LOG_BACKEND, SALIDA, basePruebas } from './comun.mjs';
 
 rmSync(SALIDA, { recursive: true, force: true });
 mkdirSync(SALIDA, { recursive: true });
-if (!existsSync(join(BACKEND, 'dist', 'main.js'))) {
-  execSync('npm run build', { cwd: BACKEND, stdio: 'inherit' });
-}
+// Siempre: un dist/ de una versión anterior del backend haría fallar las
+// pruebas con datos nuevos (pasó al revisar el PR #8, encargo 05)
+execSync('npm run build', { cwd: BACKEND, stdio: 'inherit' });
 execFileSync(process.execPath, [join(BACKEND, 'scripts', 'preparar-base.mjs'), '--borrar', '--base', basePruebas()], {
   stdio: 'inherit',
 });
