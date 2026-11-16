@@ -2276,3 +2276,66 @@ evidencias aplicables.
 
 **Reemplaza a:** ninguna. Completa ADR-042 (criterios del censo).
 
+
+---
+
+## ADR-045 — Cómo se genera el banco en I2: en segundo plano, una llamada por evidencia, un reintento, y nunca DeepSeek en las pruebas
+
+**Fecha:** 2026-11-16
+**Estado:** propuesta, pendiente de Alejandro
+
+**Contexto:** el encargo 06 construye I2 (crear la experiencia y su
+banco). Los requerimientos y las decisiones dicen **qué** debe pasar
+(12 ítems por evidencia, todo o nada, solo DeepSeek, solo texto), pero
+no **cómo** se pide el banco a la IA ni qué pasa si responde mal. Con un
+solo servicio (ADR-043), la regla de ADR-035 punto 3 ("un ítem inválido
+cuenta como falla y se pasa al respaldo") ya no tiene a dónde pasar.
+Además, un banco de 3 a 5 evidencias son 36 a 60 ítems: puede tardar
+minutos, y una sola petición HTTP tan larga se puede cortar.
+
+**Decisión:**
+
+1. **En segundo plano.** `POST /experiencias` responde `202` con un
+   identificador de generación, y la pantalla de carga (024) pregunta
+   por `GET /experiencias/generaciones/:id` hasta que termine. El estado
+   de la generación vive en memoria (sin tabla nueva: no cambia el MER).
+   El todo o nada (ADR-027) no cambia: la experiencia se guarda en una
+   sola transacción, solo al final.
+2. **Una llamada por evidencia**, con 12 ítems cada una, hasta 3 a la
+   vez. Así un error afecta a una evidencia y no a todo el banco, y cada
+   respuesta es más corta.
+3. **Un reintento con el mismo servicio.** Si la respuesta de una
+   evidencia no llega a tiempo, o algún ítem no pasa la validación de su
+   formato (RI-4), se pide esa evidencia **una vez más** a DeepSeek. Si
+   vuelve a fallar, falla la creación completa, no se guarda nada y el
+   docente ve "No se pudieron generar las preguntas. Intenta de nuevo."
+   **Reemplaza a ADR-035, punto 3**, mientras haya un solo servicio.
+4. **El texto que se le envía a la IA está en el repositorio**, en un
+   solo archivo, y se revisa como cualquier otro: datos del DBA, la
+   evidencia, el formato, el grado y el ejemplo como escenario (ADR-011),
+   y las reglas: solo texto (ADR-044), distractores plausibles con su
+   hipótesis de error (ADR-020) sin rotularlos, nada de "todas las
+   anteriores". La IA responde en JSON, y el backend lo valida antes de
+   aceptarlo.
+5. **Las pruebas nunca llaman a DeepSeek.** El servicio de IA está detrás
+   de una interfaz (ADR-043, punto 3), y las pruebas usan una
+   implementación falsa que devuelve ítems fijos, válidos o inválidos
+   según el caso. DeepSeek se prueba a mano, en local, al revisar el
+   encargo; ahí se mide el tiempo de generación (RNF-13).
+6. **Un DBA sin ninguna evidencia aplicable (V-12)** se ve en el Paso 2,
+   pero no se puede elegir: la card dice "Este DBA no tiene evidencias
+   que se puedan diagnosticar con preguntas cerradas en esta versión." y
+   su radio está deshabilitado. Son 25 DBA (censo, versión 2).
+
+**Por qué no lo demás:** una sola petición larga se puede cortar en la
+red o en el navegador; pedir el banco entero en una llamada hace que un
+solo ítem malo tire 60; reintentar sin límite puede dejar al docente
+esperando sin fin; y probar contra DeepSeek de verdad hace las pruebas
+lentas, costosas y distintas cada vez.
+
+**Consecuencia reconocida:** si el servidor se reinicia durante una
+generación, esa generación se pierde (vive en memoria) y el docente tiene
+que intentar de nuevo. Nada queda a medias en la base.
+
+**Reemplaza a:** ADR-035, punto 3, mientras haya un solo servicio.
+Resuelve V-12.
