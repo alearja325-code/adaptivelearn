@@ -540,6 +540,23 @@ revisa en local antes de unirlo:
      en local al revisar, y ahí se mide RNF-13.
    - **07 — Backend de I3 e I4** (`docs/encargos/07-backend-i3-i4.md`):
      unirse, el diagnóstico adaptativo y el reporte.
+     **Hecho el 2026-11-16, en revisión** (rama `encargo-07-backend-i3-i4`):
+     E-29 a E-37 en `backend/src/diagnostico/` y `backend/src/reporte/`.
+     La regla adaptativa (ADR-031), qué pregunta sigue, cuándo una
+     respuesta es correcta, el estado general (ADR-022) y la clasificación
+     (ADR-032) están en clases sin base de datos, con una prueba por caso;
+     78 pruebas unitarias y 83 de punta a punta contra MySQL 8.0.46 (39 son
+     de este encargo, con los tres formatos); las pruebas atrapan los tres
+     errores puestos a propósito. Las experiencias de prueba las arma un
+     ayudante directo en la base (`backend/test/experiencias-prueba.ts`),
+     porque I2 se hace en paralelo. **Por confirmar** (lo explica el pull
+     request): E-32 responde siempre 200 sin pregunta a una experiencia
+     completada (se retiró el `409` del catálogo, que chocaba con RF-04-11);
+     cómo se valida una respuesta de emparejar y ordenar; el reporte con
+     N = 0 responde 200 sin clasificación; las opciones se barajan para el
+     estudiante. **Al unir con el 06:** el diagnóstico lee `experiencia`,
+     `item` y `opcion` con SQL directo, sin entidades, para no chocar con
+     las del 06; se pueden pasar a sus entidades después.
    - **08 — Frontend de I2 a I4:** se escribe cuando 06 y 07 estén
      unidos. Incluye V-12 en el Paso 2 (ADR-045, punto 6).
 

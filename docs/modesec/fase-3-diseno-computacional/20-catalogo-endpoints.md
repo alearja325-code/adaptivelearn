@@ -19,14 +19,14 @@ de E-01 a E-37, para repartirlo.
 |---|---|---|---|---|---|---|
 | **I1 — Acceso** | SUB-01 | 13 | 12 | 0 | 0 | 1 |
 | **I2 — Experiencia y banco** | SUB-02, SUB-03, SUB-06 | 15 | 4 | 0 | 11 | 0 |
-| **I3 — Diagnóstico** | SUB-04 | 6 | 0 | 0 | 6 | 0 |
-| **I4 — Reporte y seguimiento** | SUB-05 | 3 | 0 | 0 | 3 | 0 |
-| **Total** | | **37** | **16** | **0** | **20** | **1** |
+| **I3 — Diagnóstico** | SUB-04 | 6 | 6 | 0 | 0 | 0 |
+| **I4 — Reporte y seguimiento** | SUB-05 | 3 | 3 | 0 | 0 | 0 |
+| **Total** | | **37** | **25** | **0** | **11** | **1** |
 
-De los 37, 16 ya existen en el backend
+De los 37, 25 ya existen en el backend
 (`backend/` del repositorio): lo dice su código, revisado el 2026-10-27, al cerrar el
 encargo 03. 0 de ellos funcionan, pero el diseño les pide algo distinto.
-Incrementos empezados: **I1**, el acceso completo (encargo 03); **I2**, solo el catálogo curricular, SUB-06 (encargo 03). Lo demás está por construir.
+Incrementos empezados: **I1**, el acceso completo (encargo 03); **I2**, solo el catálogo curricular, SUB-06 (encargo 03); **I3**, el diagnóstico completo (encargo 07); **I4**, el reporte y el seguimiento completos (encargo 07). Lo demás está por construir.
 
 ## 2. Convenciones
 
@@ -477,16 +477,16 @@ CU-20 Agregar pregunta propia. Operación: `ServicioBanco.agregarItem(id_experie
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-29** | `GET /inscripciones` | CU-21 | `ServicioDiagnostico.misInscripciones` | Estudiante | Falta |
-| **E-30** | `POST /inscripciones` | CU-22 | `ServicioDiagnostico.unirse` | Estudiante | Falta |
-| **E-31** | `GET /inscripciones/:id` | CU-23<br>CU-26 | `ServicioDiagnostico.consultar` | Estudiante dueño | Falta |
-| **E-32** | `POST /inscripciones/:id/presentaciones` | CU-23 | `ServicioDiagnostico.siguientePregunta` | Estudiante dueño | Falta |
-| **E-33** | `POST /inscripciones/:id/respuestas` | CU-24<br>CU-25 | `ServicioDiagnostico.responder` | Estudiante dueño | Falta |
-| **E-34** | `DELETE /inscripciones/:id` | CU-26 | `ServicioDiagnostico.salir` | Estudiante dueño | Falta |
+| **E-29** | `GET /inscripciones` | CU-21 | `ServicioDiagnostico.misInscripciones` | Estudiante | Hecho |
+| **E-30** | `POST /inscripciones` | CU-22 | `ServicioDiagnostico.unirse` | Estudiante | Hecho |
+| **E-31** | `GET /inscripciones/:id` | CU-23<br>CU-26 | `ServicioDiagnostico.consultar` | Estudiante dueño | Hecho |
+| **E-32** | `POST /inscripciones/:id/presentaciones` | CU-23 | `ServicioDiagnostico.siguientePregunta` | Estudiante dueño | Hecho |
+| **E-33** | `POST /inscripciones/:id/respuestas` | CU-24<br>CU-25 | `ServicioDiagnostico.responder` | Estudiante dueño | Hecho |
+| **E-34** | `DELETE /inscripciones/:id` | CU-26 | `ServicioDiagnostico.salir` | Estudiante dueño | Hecho |
 
 #### E-29 · `GET /inscripciones`
 
-CU-21 Consultar mis experiencias (estudiante). Operación: `ServicioDiagnostico.misInscripciones(estudiante: Estudiante): Inscripcion [*]`. **Falta.**
+CU-21 Consultar mis experiencias (estudiante). Operación: `ServicioDiagnostico.misInscripciones(estudiante: Estudiante): Inscripcion [*]`. **Hecho.**
 
 - **Quién:** Estudiante.
 - **Recibe:** `progreso` (no_iniciada, en_curso o completada) y `q`, en la consulta.
@@ -497,7 +497,7 @@ CU-21 Consultar mis experiencias (estudiante). Operación: `ServicioDiagnostico.
 
 #### E-30 · `POST /inscripciones`
 
-CU-22 Unirse con código. Operación: `ServicioDiagnostico.unirse(estudiante: Estudiante, codigo: string): Inscripcion`; se ve en `15` §5. **Falta.**
+CU-22 Unirse con código. Operación: `ServicioDiagnostico.unirse(estudiante: Estudiante, codigo: string): Inscripcion`; se ve en `15` §5. **Hecho.**
 
 - **Quién:** Estudiante.
 - **Recibe:** `codigo`, sin distinguir mayúsculas.
@@ -508,7 +508,7 @@ CU-22 Unirse con código. Operación: `ServicioDiagnostico.unirse(estudiante: Es
 
 #### E-31 · `GET /inscripciones/:id`
 
-CU-23 Tomar el diagnóstico · CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.consultar(id_inscripcion: int): Inscripcion`. **Falta.**
+CU-23 Tomar el diagnóstico · CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.consultar(id_inscripcion: int): Inscripcion`. **Hecho.**
 
 - **Quién:** Estudiante dueño.
 - **Recibe:** nada.
@@ -520,7 +520,7 @@ CU-23 Tomar el diagnóstico · CU-26 Salir de la experiencia. Operación: `Servi
 
 #### E-32 · `POST /inscripciones/:id/presentaciones`
 
-CU-23 Tomar el diagnóstico. Operación: `ServicioDiagnostico.siguientePregunta(id_inscripcion: int): Presentacion [0..1]`; se ve en `15` §6. **Falta.**
+CU-23 Tomar el diagnóstico. Operación: `ServicioDiagnostico.siguientePregunta(id_inscripcion: int): Presentacion [0..1]`; se ve en `15` §6. **Hecho.**
 
 - **Quién:** Estudiante dueño.
 - **Recibe:** nada.
@@ -530,11 +530,11 @@ CU-23 Tomar el diagnóstico. Operación: `ServicioDiagnostico.siguientePregunta(
   - POST y no GET: cada llamada puede crear una PRESENTACIÓN, con su orden y su fecha (RI-8).
   - La evidencia es la primera sin concluir en el orden oficial; el ítem, uno activo no visto, al azar (ADR-024, RI-9).
   - Nunca envía `es_correcta` ni `hipotesis_error` de las opciones, ni el número de pregunta, ni cuántas faltan (RF-04-08).
-  - `409` la experiencia ya está completada (CU-23 1a).
+  - Con todas las evidencias concluidas responde 200 sin pregunta, también si se vuelve a llamar: el cierre se puede recargar. La pantalla de inicio no ofrece el botón a una experiencia Completada (CU-23 1a), con el progreso de E-31.
 
 #### E-33 · `POST /inscripciones/:id/respuestas`
 
-CU-24 Responder ítem · CU-25 Aplicar la regla adaptativa. Operación: `ServicioDiagnostico.responder(id_inscripcion: int, id_item: int, seleccion: RespuestaOpcion [*], certeza: int)`; se ve en `15` §6. **Falta.**
+CU-24 Responder ítem · CU-25 Aplicar la regla adaptativa. Operación: `ServicioDiagnostico.responder(id_inscripcion: int, id_item: int, seleccion: RespuestaOpcion [*], certeza: int)`; se ve en `15` §6. **Hecho.**
 
 - **Quién:** Estudiante dueño.
 - **Recibe:** `id_item`, las `opciones` elegidas (con `valor_dado` al emparejar y al ordenar) y `certeza` de 0 a 5.
@@ -548,7 +548,7 @@ CU-24 Responder ítem · CU-25 Aplicar la regla adaptativa. Operación: `Servici
 
 #### E-34 · `DELETE /inscripciones/:id`
 
-CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.salir(id_inscripcion: int)`. **Falta.**
+CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.salir(id_inscripcion: int)`. **Hecho.**
 
 - **Quién:** Estudiante dueño.
 - **Recibe:** nada.
@@ -563,13 +563,13 @@ CU-26 Salir de la experiencia. Operación: `ServicioDiagnostico.salir(id_inscrip
 <!-- tabla:endpoints -->
 | N.º | Endpoint | Casos de uso | Operación | Quién | Estado |
 |---|---|---|---|---|---|
-| **E-35** | `GET /experiencias/:id/reporte` | CU-27<br>CU-30 | `ServicioReporte.reporte` | Docente dueño | Falta |
-| **E-36** | `GET /experiencias/:id/estudiantes` | CU-28 | `ServicioReporte.estudiantesPorEstado` | Docente dueño | Falta |
-| **E-37** | `GET /inscripciones/:id/historial` | CU-29 | `ServicioReporte.historial` | Docente dueño | Falta |
+| **E-35** | `GET /experiencias/:id/reporte` | CU-27<br>CU-30 | `ServicioReporte.reporte` | Docente dueño | Hecho |
+| **E-36** | `GET /experiencias/:id/estudiantes` | CU-28 | `ServicioReporte.estudiantesPorEstado` | Docente dueño | Hecho |
+| **E-37** | `GET /inscripciones/:id/historial` | CU-29 | `ServicioReporte.historial` | Docente dueño | Hecho |
 
 #### E-35 · `GET /experiencias/:id/reporte`
 
-CU-27 Consultar el reporte · CU-30 Calcular estado general. Operación: `ServicioReporte.reporte(id_experiencia: int): Reporte`; se ve en `15` §7. **Falta.**
+CU-27 Consultar el reporte · CU-30 Calcular estado general. Operación: `ServicioReporte.reporte(id_experiencia: int): Reporte`; se ve en `15` §7. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
@@ -581,7 +581,7 @@ CU-27 Consultar el reporte · CU-30 Calcular estado general. Operación: `Servic
 
 #### E-36 · `GET /experiencias/:id/estudiantes`
 
-CU-28 Consultar estudiantes por estado. Operación: `ServicioReporte.estudiantesPorEstado(id_experiencia: int): Estudiante [*]`. **Falta.**
+CU-28 Consultar estudiantes por estado. Operación: `ServicioReporte.estudiantesPorEstado(id_experiencia: int): Estudiante [*]`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** `estado` y `q` (nombre), en la consulta.
@@ -592,7 +592,7 @@ CU-28 Consultar estudiantes por estado. Operación: `ServicioReporte.estudiantes
 
 #### E-37 · `GET /inscripciones/:id/historial`
 
-CU-29 Consultar historial de un estudiante. Operación: `ServicioReporte.historial(id_inscripcion: int): Presentacion [*]`. **Falta.**
+CU-29 Consultar historial de un estudiante. Operación: `ServicioReporte.historial(id_inscripcion: int): Presentacion [*]`. **Hecho.**
 
 - **Quién:** Docente dueño.
 - **Recibe:** nada.
