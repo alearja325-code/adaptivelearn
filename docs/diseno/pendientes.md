@@ -525,13 +525,16 @@ revisa en local antes de unirlo:
    Prerrequisito de datos de I2. Criterios del censo aceptados ese día
    (`docs/diseno/criterios-censo-formato-cerrado.md`, ADR-042); lo que el
    formato cerrado no alcanza queda para otra versión (QA-017).
-   **Hecho el 2026-11-10, en revisión** (rama
-   `encargo-05-ejemplos-y-censo`): ejemplos y censo, cargados en la base
-   y visibles en el Paso 2 (detalle en A12). **Antes del 06:** validar
+   **Hecho el 2026-11-10 y unido el 2026-11-16** (pull request #8;
+   el censo versión 2, con N6 y N7, en el #9): ejemplos y censo, cargados
+   en la base y visibles en el Paso 2 (detalle en A12). **Antes del 06:** validar
    el censo por muestreo y decidir las propuestas de ajuste del informe.
-5. **06 — I2, experiencia y banco:** se escribe cuando el 05 esté unido.
-   Solo con DeepSeek (ADR-043); la clave ya está en el `.env` local y se
-   comprobó que responde.
+5. **06 — I2, experiencia y banco:**
+   `docs/encargos/06-i2-experiencia-y-banco.md`, escrito el 2026-11-16.
+   Solo con DeepSeek (ADR-043), preguntas solo de texto (ADR-044), y la
+   forma de generar de **ADR-045 (propuesta, pendiente de Alejandro)**. En
+   la nube se prueba con una IA falsa; DeepSeek se prueba en local al
+   revisar, y ahí se mide RNF-13.
 
 ### A15. Fase IV (Producción) — EMPEZADA 2026-10-26
 
