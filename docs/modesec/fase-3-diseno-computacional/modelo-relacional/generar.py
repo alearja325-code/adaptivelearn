@@ -26,12 +26,14 @@ FASE3 = os.path.join(AQUI, "..")
 RAIZ = os.path.normpath(os.path.join(FASE3, "..", "..", ".."))
 SQL_BACKEND = os.path.join(RAIZ, "backend", "sql", "001_esquema.sql")
 
-# Las tablas de la etapa del backend del encargo 03: el acceso y el catalogo
-# curricular, hasta el Paso 3 de crear experiencia (sin crear la
-# experiencia). Tiene que ser cerrada: toda FK de una de ellas apunta a otra.
+# Las tablas que usa el backend. Desde los encargos 06 y 07 (2026-11-16):
+# todas, porque I2, I3 e I4 se construyen a la vez. Tiene que ser cerrada:
+# toda FK de una de ellas apunta a otra.
 TABLAS_BACKEND = ["credencial", "codigo_verificacion", "docente", "estudiante",
                   "area", "grado", "documento_oficial", "dba", "evidencia",
-                  "evidencia_dictamen"]
+                  "evidencia_dictamen", "experiencia", "experiencia_evidencia",
+                  "inscripcion", "item", "opcion", "presentacion", "respuesta",
+                  "respuesta_opcion", "resultado"]
 
 CLASES = {
     "propia": "Propia",
@@ -404,7 +406,7 @@ def sql_mysql(tablas=None):
         w("-- Esquema del backend — AdaptiveLearn")
         w("-- GENERADO por docs/modesec/fase-3-diseno-computacional/modelo-relacional/")
         w("-- generar.py desde datos_mr.py — no editar a mano: cambiar el MR y regenerar.")
-        w("-- Es mr_mysql.sql, solo con las tablas que el backend usa hoy (encargo 03):")
+        w("-- Es mr_mysql.sql, con las tablas que el backend usa (desde los encargos 06 y 07, todas):")
         w("-- " + ", ".join(tablas) + ".")
     w("-- Dialecto: MySQL 8.0.16 o posterior (RNF-14). Tambien corre en")
     w("-- MariaDB 10.11: no usa nada que ese motor no tenga.")

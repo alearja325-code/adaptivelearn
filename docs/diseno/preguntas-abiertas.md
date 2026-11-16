@@ -259,6 +259,8 @@ escribir), como anticipaba ADR-002. **25 DBA quedan sin ninguna evidencia
 aplicable** (13 de Lenguaje) y no se pueden usar para crear una
 experiencia en esta versión (QA-012). Se cierra cuando dos integrantes
 validen la muestra (`censo/muestra_validacion.md`, criterios §5).
+**La validación se difirió el 2026-11-16** (ADR-042, punto 3): el sistema
+es de prueba entre el equipo, y el censo se usa como lo propuso la IA.
 
 ---
 

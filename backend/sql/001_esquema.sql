@@ -1,8 +1,8 @@
 -- Esquema del backend — AdaptiveLearn
 -- GENERADO por docs/modesec/fase-3-diseno-computacional/modelo-relacional/
 -- generar.py desde datos_mr.py — no editar a mano: cambiar el MR y regenerar.
--- Es mr_mysql.sql, solo con las tablas que el backend usa hoy (encargo 03):
--- credencial, codigo_verificacion, docente, estudiante, area, grado, documento_oficial, dba, evidencia, evidencia_dictamen.
+-- Es mr_mysql.sql, con las tablas que el backend usa (desde los encargos 06 y 07, todas):
+-- credencial, codigo_verificacion, docente, estudiante, area, grado, documento_oficial, dba, evidencia, evidencia_dictamen, experiencia, experiencia_evidencia, inscripcion, item, opcion, presentacion, respuesta, respuesta_opcion, resultado.
 -- Dialecto: MySQL 8.0.16 o posterior (RNF-14). Tambien corre en
 -- MariaDB 10.11: no usa nada que ese motor no tenga.
 -- Ejecutar dentro de una base de datos VACIA, ya seleccionada con USE.
@@ -115,6 +115,28 @@ CREATE TABLE dba (
   CONSTRAINT fk_dba_3 FOREIGN KEY (id_documento, codigo_area) REFERENCES documento_oficial(id_documento, codigo_area) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE experiencia (
+  id_experiencia INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  id_docente INT UNSIGNED NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  nombre VARCHAR(160) NOT NULL,
+  estado ENUM('Borrador','Publicada') NOT NULL DEFAULT 'Borrador',
+  fecha_creacion DATETIME NOT NULL,
+  fecha_publicacion DATETIME NULL,
+  codigo_invitacion CHAR(6) NOT NULL,
+  servicio_ia ENUM('gemini','deepseek') NOT NULL,
+  modelo_ia VARCHAR(80) NOT NULL,
+  PRIMARY KEY (id_experiencia),
+  CONSTRAINT uq_experiencia_1 UNIQUE (codigo_invitacion),
+  CONSTRAINT uq_experiencia_2 UNIQUE (id_experiencia, codigo_dba),
+  KEY idx_experiencia_id_docente (id_docente),
+  KEY idx_experiencia_codigo_dba (codigo_dba),
+  CONSTRAINT ck_experiencia_1 CHECK ((estado = 'Borrador' AND fecha_publicacion IS NULL) OR (estado = 'Publicada' AND fecha_publicacion IS NOT NULL)),
+  CONSTRAINT ck_experiencia_2 CHECK (codigo_invitacion REGEXP '^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$'),
+  CONSTRAINT fk_experiencia_1 FOREIGN KEY (id_docente) REFERENCES docente(id_docente) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_experiencia_2 FOREIGN KEY (codigo_dba) REFERENCES dba(codigo_dba) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE evidencia (
   codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   numero_evidencia TINYINT UNSIGNED NOT NULL,
@@ -134,5 +156,112 @@ CREATE TABLE evidencia_dictamen (
   PRIMARY KEY (codigo_dba, numero_evidencia),
   CONSTRAINT ck_evidencia_dictamen_1 CHECK ((aplica_formato_cerrado = 1 AND formato IS NOT NULL) OR (aplica_formato_cerrado = 0 AND formato IS NULL)),
   CONSTRAINT fk_evidencia_dictamen_1 FOREIGN KEY (codigo_dba, numero_evidencia) REFERENCES evidencia(codigo_dba, numero_evidencia) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE experiencia_evidencia (
+  id_experiencia INT UNSIGNED NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  numero_evidencia TINYINT UNSIGNED NOT NULL,
+  PRIMARY KEY (id_experiencia, codigo_dba, numero_evidencia),
+  KEY idx_experiencia_evidencia_codigo_dba_numero_evidencia (codigo_dba, numero_evidencia),
+  CONSTRAINT fk_experiencia_evidencia_1 FOREIGN KEY (id_experiencia, codigo_dba) REFERENCES experiencia(id_experiencia, codigo_dba) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_experiencia_evidencia_2 FOREIGN KEY (codigo_dba, numero_evidencia) REFERENCES evidencia(codigo_dba, numero_evidencia) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE inscripcion (
+  id_inscripcion INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  id_estudiante INT UNSIGNED NOT NULL,
+  id_experiencia INT UNSIGNED NOT NULL,
+  fecha_union DATETIME NOT NULL,
+  PRIMARY KEY (id_inscripcion),
+  CONSTRAINT uq_inscripcion_1 UNIQUE (id_estudiante, id_experiencia),
+  CONSTRAINT uq_inscripcion_2 UNIQUE (id_inscripcion, id_experiencia),
+  KEY idx_inscripcion_id_experiencia (id_experiencia),
+  CONSTRAINT fk_inscripcion_1 FOREIGN KEY (id_estudiante) REFERENCES estudiante(id_estudiante) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_inscripcion_2 FOREIGN KEY (id_experiencia) REFERENCES experiencia(id_experiencia) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE item (
+  id_item INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  id_experiencia INT UNSIGNED NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  numero_evidencia TINYINT UNSIGNED NOT NULL,
+  enunciado TEXT NOT NULL,
+  formato ENUM('single_choice','matching','ordering') NOT NULL DEFAULT 'single_choice',
+  origen ENUM('ia','editado_docente','creado_docente') NOT NULL DEFAULT 'ia',
+  excluido BOOLEAN NOT NULL DEFAULT FALSE,
+  PRIMARY KEY (id_item),
+  CONSTRAINT uq_item_1 UNIQUE (id_item, id_experiencia),
+  KEY idx_item_id_experiencia_codigo_dba_numero_evidencia (id_experiencia, codigo_dba, numero_evidencia),
+  CONSTRAINT fk_item_1 FOREIGN KEY (id_experiencia, codigo_dba, numero_evidencia) REFERENCES experiencia_evidencia(id_experiencia, codigo_dba, numero_evidencia) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE opcion (
+  id_opcion INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  id_item INT UNSIGNED NOT NULL,
+  texto TEXT NOT NULL,
+  orden TINYINT UNSIGNED NULL,
+  es_correcta BOOLEAN NULL,
+  grupo ENUM('izquierda','derecha') NULL,
+  hipotesis_error TEXT NULL,
+  PRIMARY KEY (id_opcion),
+  CONSTRAINT uq_opcion_1 UNIQUE (id_opcion, id_item),
+  KEY idx_opcion_id_item (id_item),
+  CONSTRAINT fk_opcion_1 FOREIGN KEY (id_item) REFERENCES item(id_item) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE presentacion (
+  id_inscripcion INT UNSIGNED NOT NULL,
+  id_item INT UNSIGNED NOT NULL,
+  id_experiencia INT UNSIGNED NOT NULL,
+  orden_presentacion TINYINT UNSIGNED NOT NULL,
+  fecha_presentacion DATETIME NOT NULL,
+  PRIMARY KEY (id_inscripcion, id_item),
+  CONSTRAINT uq_presentacion_1 UNIQUE (id_inscripcion, orden_presentacion),
+  KEY idx_presentacion_id_inscripcion_id_experiencia (id_inscripcion, id_experiencia),
+  KEY idx_presentacion_id_item_id_experiencia (id_item, id_experiencia),
+  CONSTRAINT ck_presentacion_1 CHECK (orden_presentacion > 0),
+  CONSTRAINT fk_presentacion_1 FOREIGN KEY (id_inscripcion, id_experiencia) REFERENCES inscripcion(id_inscripcion, id_experiencia) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_presentacion_2 FOREIGN KEY (id_item, id_experiencia) REFERENCES item(id_item, id_experiencia) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE respuesta (
+  id_respuesta INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  id_inscripcion INT UNSIGNED NOT NULL,
+  id_item INT UNSIGNED NOT NULL,
+  certeza TINYINT UNSIGNED NOT NULL,
+  fecha_respuesta DATETIME NOT NULL,
+  correcta BOOLEAN NOT NULL,
+  PRIMARY KEY (id_respuesta),
+  CONSTRAINT uq_respuesta_1 UNIQUE (id_inscripcion, id_item),
+  CONSTRAINT uq_respuesta_2 UNIQUE (id_respuesta, id_item),
+  CONSTRAINT ck_respuesta_1 CHECK (certeza BETWEEN 0 AND 5),
+  CONSTRAINT fk_respuesta_1 FOREIGN KEY (id_inscripcion, id_item) REFERENCES presentacion(id_inscripcion, id_item) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE respuesta_opcion (
+  id_respuesta INT UNSIGNED NOT NULL,
+  id_opcion INT UNSIGNED NOT NULL,
+  id_item INT UNSIGNED NOT NULL,
+  valor_dado TINYINT UNSIGNED NULL,
+  PRIMARY KEY (id_respuesta, id_opcion),
+  KEY idx_respuesta_opcion_id_respuesta_id_item (id_respuesta, id_item),
+  KEY idx_respuesta_opcion_id_opcion_id_item (id_opcion, id_item),
+  CONSTRAINT fk_respuesta_opcion_1 FOREIGN KEY (id_respuesta, id_item) REFERENCES respuesta(id_respuesta, id_item) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_respuesta_opcion_2 FOREIGN KEY (id_opcion, id_item) REFERENCES opcion(id_opcion, id_item) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE resultado (
+  id_inscripcion INT UNSIGNED NOT NULL,
+  id_experiencia INT UNSIGNED NOT NULL,
+  codigo_dba VARCHAR(9) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  numero_evidencia TINYINT UNSIGNED NOT NULL,
+  estado ENUM('muestra','no_muestra','no_concluyente') NOT NULL,
+  fecha_calculo DATETIME NOT NULL,
+  PRIMARY KEY (id_inscripcion, codigo_dba, numero_evidencia),
+  KEY idx_resultado_id_inscripcion_id_experiencia (id_inscripcion, id_experiencia),
+  KEY idx_resultado_id_experiencia_codigo_dba_numero_evidencia (id_experiencia, codigo_dba, numero_evidencia),
+  CONSTRAINT fk_resultado_1 FOREIGN KEY (id_inscripcion, id_experiencia) REFERENCES inscripcion(id_inscripcion, id_experiencia) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_resultado_2 FOREIGN KEY (id_experiencia, codigo_dba, numero_evidencia) REFERENCES experiencia_evidencia(id_experiencia, codigo_dba, numero_evidencia) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

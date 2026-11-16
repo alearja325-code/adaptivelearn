@@ -529,12 +529,19 @@ revisa en local antes de unirlo:
    el censo versión 2, con N6 y N7, en el #9): ejemplos y censo, cargados
    en la base y visibles en el Paso 2 (detalle en A12). **Antes del 06:** validar
    el censo por muestreo y decidir las propuestas de ajuste del informe.
-5. **06 — I2, experiencia y banco:**
-   `docs/encargos/06-i2-experiencia-y-banco.md`, escrito el 2026-11-16.
-   Solo con DeepSeek (ADR-043), preguntas solo de texto (ADR-044), y la
-   forma de generar de **ADR-045 (propuesta, pendiente de Alejandro)**. En
-   la nube se prueba con una IA falsa; DeepSeek se prueba en local al
-   revisar, y ahí se mide RNF-13.
+5. **Plan de noviembre (2026-11-16):** el docente pide **todo el backend**
+   antes de que termine el semestre (noviembre de 2026). Se hace primero
+   el backend completo y el frontend después. El censo se usa sin validar
+   (ADR-042, punto 3 diferido). El esquema del backend ya tiene todas las
+   tablas del MR, así que 06 y 07 corren **en paralelo**:
+   - **06 — Backend de I2** (`docs/encargos/06-backend-i2.md`): crear la
+     experiencia y generar el banco con DeepSeek (ADR-043, ADR-044,
+     ADR-045). En la nube se prueba con una IA falsa; DeepSeek se prueba
+     en local al revisar, y ahí se mide RNF-13.
+   - **07 — Backend de I3 e I4** (`docs/encargos/07-backend-i3-i4.md`):
+     unirse, el diagnóstico adaptativo y el reporte.
+   - **08 — Frontend de I2 a I4:** se escribe cuando 06 y 07 estén
+     unidos. Incluye V-12 en el Paso 2 (ADR-045, punto 6).
 
 ### A15. Fase IV (Producción) — EMPEZADA 2026-10-26
 
