@@ -8,6 +8,7 @@
 | Diseño y Desarrollo de Software Educativo I (203447) | Selenis Acosta Paternina · Dagner Causil Almanza · Marinelly Pérez Salcedo · Natalia Pinto Torres · Carmen Sarmiento Villadiego · Alejandro Álvarez Peralta ([`EQUIPO.md`](EQUIPO.md)) |
 
 **Entregas de DSE-2:**
+- **Backend terminado en NestJS** (entrega del 2026-11-24): [qué hace, cómo arrancarlo y cómo probarlo en Swagger](backend/README.md) · [los 38 endpoints, uno por uno](docs/modesec/fase-3-diseno-computacional/20-catalogo-endpoints.md)
 - **Módulo de autenticación en NestJS:** [cumplimiento punto por punto](docs/cursos/dse-2-203453/actividad-modulo-autenticacion.md) · código en [`backend/`](backend/) · [comparación con la guía del docente](docs/cursos/dse-2-203453/backend-auth-informe-guia.md)
 - **Avance del proyecto:** [del acceso hasta el Paso 3 de "Crear experiencia"](#avance-del-acceso-hasta-el-paso-3-de-crear-experiencia) · [cómo ejecutarlo](frontend/README.md) · [documentos de la Fase III en PDF](docs/modesec/fase-3-diseno-computacional/entrega-pdf/)
 
@@ -36,10 +37,10 @@ redactado por IA.
 | Diseño educativo (MODESEC, Fase I) | Completo — 8 documentos |
 | Diseño multimedial (Fase II) | Completo — 27 ventanas en 24 especificaciones, mapa de navegación, guión técnico, índice de recursos |
 | Diseño computacional (Fase III) | Completo, en el orden de MODESEC: proceso de desarrollo (`10`), requerimientos (`11`), casos de uso, clases, objetos y secuencias (`12` a `15`), MER, MR y diccionario de datos (`16` a `18`), y como anexo el catálogo de endpoints (`20`). Índice y cómo se comprueba: `19-entrega-fase-3.md`. El borrador anterior al cierre de la Fase II se conserva como insumo |
-| Producción (Fase IV) | **En curso.** Herramientas elegidas (`docs/modesec/fase-4-produccion/`) y programada la primera etapa: **del acceso hasta el Paso 3 de "Crear experiencia"** (ver abajo) |
-| Backend | NestJS + MySQL: acceso completo según la guía del docente (registro, verificación del correo con envío real, perfil, rol, inicio de sesión, recuperación de contraseña, administración de usuarios) y catálogo de DBA de solo lectura. Lo que falta, ruta por ruta: `20-catalogo-endpoints.md` |
+| Producción (Fase IV) | **En curso.** Herramientas elegidas (`docs/modesec/fase-4-produccion/`). **Backend terminado** (2026-11-17); frontend hecho hasta el Paso 3 de "Crear experiencia" (ver abajo) y el resto, en construcción |
+| Backend | **Terminado.** NestJS + MySQL, los cuatro incrementos: **I1** acceso (registro, verificación del correo con envío real, perfil, rol, sesión, recuperación de contraseña); **I2** catálogo de DBA, experiencias y **banco de preguntas generado con IA (DeepSeek)**, revisión y publicación; **I3** diagnóstico adaptativo del estudiante; **I4** reporte para el docente. 37 de 38 endpoints (el que falta es opcional), 112 pruebas unitarias y 105 de punta a punta contra MySQL, y **Swagger en `/docs`**. Detalle: [`backend/README.md`](backend/README.md) |
 | Frontend | React + Vite + TypeScript + Tailwind (ADR-038): las 11 ventanas de la primera etapa, con los estilos atados al sistema de diseño |
-| Datos del currículo del MEN | **Catálogo corregido y verificado contra los PDF oficiales**: 343 DBA y 1282 evidencias (`data/curriculo-men/catalogo/`). Pendiente: el ejemplo de cada DBA |
+| Datos del currículo del MEN | **Catálogo corregido y verificado contra los PDF oficiales**: 343 DBA y 1282 evidencias, con el ejemplo de cada DBA (`data/curriculo-men/catalogo/`), y el censo de cuáles evidencias admiten pregunta cerrada (`data/curriculo-men/censo/`, propuesto por IA) |
 
 ## Avance: del acceso hasta el Paso 3 de "Crear experiencia"
 
@@ -72,7 +73,7 @@ completo), y una captura de cada ventana en `frontend/capturas/`.
 
 ```
 docs/                        Toda la documentación
-  diseno/                    El cerebro del proyecto: 44 decisiones (ADR),
+  diseno/                    El cerebro del proyecto: 45 decisiones (ADR),
                              visión, glosario, preguntas abiertas y
                              pendientes.md (qué falta y qué recibe el MER)
   modesec/                   La metodología, fase por fase
