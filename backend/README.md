@@ -4,20 +4,23 @@ API del sistema, en **NestJS 12** con **MySQL 8** (exigencia del curso DSE-2, RN
 
 ## Estado
 
-Hecho hasta el **catálogo curricular** (encargo 03, 2026-10-27):
+**Terminado** (2026-11-17): los cuatro incrementos del sistema, con **37 de los 38 endpoints**
+del diseño (`docs/modesec/fase-3-diseno-computacional/20-catalogo-endpoints.md`; el que falta,
+cerrar sesión, es opcional porque la sesión es un token que el navegador olvida).
 
-- **El acceso completo** (incremento I1, `20-catalogo-endpoints.md` §3, E-01 a E-12):
-  registro, verificación del correo con un código de 6 dígitos que llega por correo,
-  completar el perfil y elegir el rol, inicio de sesión, recuperar la contraseña, editar el
-  propio perfil, y entrar con Google o Microsoft (cuando se configuren).
-- **El catálogo curricular** (E-14 a E-17): áreas, grados, DBA y evidencias, de solo
-  lectura, para la sesión de un docente. Desde el encargo 05 (2026-11-10), cada DBA trae su
-  ejemplo y la marca de si incluye una imagen (`ejemploTieneImagen`), y cada evidencia, el
-  dictamen del censo de formato cerrado (`admiteFormatoCerrado`, `formato`).
-- **Las rutas de la guía del docente** (`/users` para administrador y `/example/*`), que el
-  curso evalúa (ADR-040).
+| Incremento | Qué hace | Endpoints |
+|---|---|---|
+| **I1 — Acceso** | Registro, verificación del correo con un código de 6 dígitos que llega por correo, completar el perfil y elegir el rol (docente o estudiante), inicio de sesión, recuperar la contraseña, editar el propio perfil; Google y Microsoft cuando se configuren | E-01 a E-12 |
+| **I2 — Catálogo** | Las 4 áreas, los 11 grados y los 343 DBA del MEN con sus 1282 evidencias, su ejemplo y el dictamen de formato cerrado de cada evidencia, de solo lectura | E-14 a E-17 |
+| **I2 — Experiencias y banco** | El docente crea una experiencia sobre un DBA y **DeepSeek genera su banco** (12 preguntas por evidencia, en segundo plano, todo o nada); el docente lo revisa (editar, descartar, volver a incluir, agregar las suyas), lo publica y obtiene el código de invitación | E-18 a E-28 y E-38 |
+| **I3 — Diagnóstico** | El estudiante se une con el código y responde pregunta por pregunta, con su certeza; la **regla adaptativa** (ADR-031) decide cuándo concluye cada evidencia; puede retomar y salirse | E-29 a E-34 |
+| **I4 — Reporte** | El docente ve cuántos estudiantes hay en cada estado, por evidencia y en general; los estudiantes por estado; y el historial de cada uno | E-35 a E-37 |
+| **Guía del curso** | `/users` (administrador) y `/example/*`, que el curso evalúa (ADR-040) | — |
 
-Todavía no existe nada de crear experiencias, banco de preguntas, IA, diagnóstico ni reporte.
+**Cómo se comprueba:** 112 pruebas unitarias y 105 de punta a punta contra MySQL real
+(`npm test`, `npm run test:e2e`), incluidas las 6 de la guía del docente. Las reglas del
+diagnóstico y del reporte tienen una prueba por cada caso de su decisión. La generación con
+DeepSeek se probó de verdad el 2026-11-16: 4 evidencias, 48 preguntas, 114 segundos.
 
 La forma sigue la guía del docente; el modelo de datos es el de la Fase III. Cada diferencia
 con la guía está en `docs/cursos/dse-2-203453/backend-auth-informe-guia.md`.
@@ -51,6 +54,9 @@ Y completar `.env` (nunca se sube al repositorio; cada integrante tiene el suyo)
 | `GOOGLE_CLIENT_ID`, `MICROSOFT_CLIENT_ID` | El identificador de la aplicación en Google Cloud y en Azure. Vacíos: esas rutas responden 503 «no configurado». |
 | `LIMPIEZA_CRON`, `LIMPIEZA_ZONA_HORARIA`, `LIMPIEZA_DIAS_SIN_TERMINAR` | La tarea nocturna. Vacíos: a las 3:00 a. m. de Colombia, y 7 días. |
 | `UPLOADS_DIR` | Dónde se guardan las fotos de perfil. Vacío: la carpeta `uploads/` (no se sube). |
+| `IA_SERVICIO` | `deepseek` (por defecto) genera el banco con DeepSeek; **`falsa`** genera preguntas fijas de prueba sin llamar a nadie: sirve para probar todo el sistema **sin clave de DeepSeek**. |
+| `DEEPSEEK_API_KEY`, `DEEPSEEK_MODEL` | La clave de la cuenta de DeepSeek (**nunca se sube**) y el modelo (por defecto `deepseek-chat`). |
+| `IA_TIEMPO_LIMITE_MS` | Cuánto se espera la respuesta de cada evidencia. Vacío: 180000 (3 minutos), medido en RNF-13. |
 | `DB_DATABASE_PRUEBAS` | La base de las pruebas automáticas. **Se borra en cada corrida.** Vacío: el nombre de `DB_DATABASE` con `_pruebas` al final. |
 
 **El correo del sistema (nota R5 del docente).** La cuenta es
@@ -108,7 +114,31 @@ reporte). Para las que piden sesión: ejecuta `POST /auth/login`, copia el `toke
 respuesta, pulsa **Authorize** y pégalo. La especificación OpenAPI está en `/docs-json`
 (se puede importar en Insomnia o Postman).
 
-### 5. Marcar al primer administrador
+### 5. Recorrido para probarlo todo en Swagger
+
+Con el servidor encendido, en **http://localhost:3000/docs**. Sin clave de DeepSeek, arrancar
+con `IA_SERVICIO=falsa` en `.env`. Los códigos de verificación salen en la consola si el correo
+no está configurado.
+
+1. **Docente:** `POST /auth/register` → `POST /auth/verificar-correo` (con el código) →
+   `POST /auth/elegir-rol` con `role: docente`. Copiar el `token` de la respuesta en **Authorize**.
+2. **Catálogo:** `GET /catalogo/dbas?codigo_area=MAT&numero_grado=1` y
+   `GET /catalogo/dbas/MAT-01-04`: sus evidencias, cuáles admiten pregunta cerrada y con qué
+   formato.
+3. **Crear la experiencia:** `POST /experiencias` con `{"codigo_dba": "MAT-01-04", "nombre":
+   "Medición 1.°"}` responde `202` con el id de la generación. Repetir
+   `GET /experiencias/generaciones/{id}` hasta que diga `lista` (con DeepSeek, unos 2 minutos).
+4. **Revisar y publicar:** `GET /experiencias/{id}/banco` → `POST /experiencias/{id}/publicar`
+   → `GET /experiencias/{id}/codigo`: el código de invitación.
+5. **Estudiante** (otro correo, `role: estudiante`, su propio token en Authorize):
+   `POST /inscripciones` con el código → `POST /inscripciones/{id}/presentaciones` (la
+   pregunta) → `POST /inscripciones/{id}/respuestas` (las opciones y la certeza de 0 a 5).
+   Repetir hasta que `presentaciones` responda `"pregunta": null`: el diagnóstico concluyó.
+   El estudiante nunca recibe si acertó ni cómo va (ADR-028).
+6. **Reporte** (de nuevo con el token del docente): `GET /experiencias/{id}/reporte`,
+   `GET /experiencias/{id}/estudiantes` y `GET /inscripciones/{id}/historial`.
+
+### 6. Marcar al primer administrador
 
 Las rutas `/users` son solo para administrador, como en la guía del docente. **Ninguna ruta
 da ese permiso**: se pone en MySQL, sobre una cuenta ya registrada, y después esa persona
@@ -144,6 +174,9 @@ src/
   auth/        registro, sesión, códigos, recuperación, perfil, Google y Microsoft
   user/        la cuenta (tabla credencial), docente y estudiante; /users (admin)
   catalogo/    áreas, grados, DBA y evidencias (solo lectura)
+  banco/       experiencias, banco de preguntas, generación con IA (DeepSeek o la falsa)
+  diagnostico/ inscripciones, la siguiente pregunta, las respuestas y la regla adaptativa
+  reporte/     el reporte, los estudiantes por estado y el historial
   correo/      el envío de los códigos por SMTP (o a la consola)
   limpieza/    la tarea nocturna (ADR-039)
   example/     los ejemplos de guards de la guía
@@ -176,4 +209,6 @@ test/          pruebas de punta a punta
   `docs/cursos/dse-2-203453/backend-auth-informe-guia.md`.
 - Endpoints: `docs/modesec/fase-3-diseno-computacional/20-catalogo-endpoints.md`.
 - Modelo de datos: `docs/modesec/fase-3-diseno-computacional/17-modelo-relacional.md`.
-- Decisiones: ADR-034 a ADR-040 en `docs/diseno/decisiones.md`.
+- Decisiones: `docs/diseno/decisiones.md` (las del backend: ADR-034 a ADR-045; las reglas del
+  diagnóstico y del reporte: ADR-016, ADR-022, ADR-031 y ADR-032).
+- El texto que se envía a la IA y por qué: `docs/diseno/instrucciones-ia-banco.md`.
