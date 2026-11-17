@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -17,6 +18,7 @@ import { BancoService, type ItemVista } from './banco.service.js';
 import { ItemDto } from './dto/item.dto.js';
 
 // SUB-03 Banco de preguntas: E-25 a E-27 (`20` §4.3)
+@ApiTags('I2 · Banco de preguntas')
 @Controller('items')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('docente')

@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -32,6 +33,7 @@ import {
 
 // SUB-02 Experiencias (`20` §4.2) y E-24, E-28 del banco (§4.3). Solo
 // docentes; cada experiencia, solo su dueño (403 si es de otro).
+@ApiTags('I2 · Experiencias')
 @Controller('experiencias')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('docente')

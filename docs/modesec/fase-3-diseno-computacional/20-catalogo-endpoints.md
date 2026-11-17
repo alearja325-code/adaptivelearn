@@ -642,7 +642,7 @@ lo que el sistema hace.
 
 | Qué | Para qué | Efecto en el MER |
 |---|---|---|
-| `GET /docs` | Documentación interactiva (Swagger/OpenAPI, `@nestjs/swagger`): el docente puede probar cada endpoint desde el navegador, sin Insomnia. | Ninguno. |
+| `GET /docs` | Documentación interactiva (Swagger/OpenAPI, `@nestjs/swagger`): el docente puede probar cada endpoint desde el navegador, sin Insomnia. **Hecho el 2026-11-17**: `/docs` y `/docs-json`, con las rutas agrupadas por incremento. | Ninguno. |
 | `GET /health` | Comprobar en la demostración que el servidor y la base responden. | Ninguno. |
 | `POST /auth/refresh` | Renovar la sesión sin volver a pedir la contraseña. | Si los tokens de renovación se guardan para poder revocarlos, es una tabla que el MER no tiene. |
 | Límite de peticiones por IP en login, códigos y recuperación (no es un endpoint: `@nestjs/throttler`) | Complementa el bloqueo por credencial que ya tiene I1. | Ninguno. |

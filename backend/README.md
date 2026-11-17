@@ -102,6 +102,12 @@ En la consola aparece `🚀 Servidor corriendo en http://localhost:3000`. Si el 
 configurado, también un aviso: *«MAIL_HOST no está configurado: los códigos NO se envían
 por correo; se escriben en esta consola»*. Ahí aparece cada código.
 
+**Probar la API desde el navegador:** abre **http://localhost:3000/docs** (Swagger). Las rutas
+están agrupadas por incremento (I1 acceso, I2 experiencias y banco, I3 diagnóstico, I4
+reporte). Para las que piden sesión: ejecuta `POST /auth/login`, copia el `token` de la
+respuesta, pulsa **Authorize** y pégalo. La especificación OpenAPI está en `/docs-json`
+(se puede importar en Insomnia o Postman).
+
 ### 5. Marcar al primer administrador
 
 Las rutas `/users` son solo para administrador, como en la guía del docente. **Ninguna ruta

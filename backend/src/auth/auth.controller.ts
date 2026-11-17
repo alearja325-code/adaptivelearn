@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Post,
@@ -32,6 +33,7 @@ import { OPCIONES_FOTO, type ArchivoSubido } from './foto.js';
 
 // Rutas de la guía (register, login, profile) y las del acceso de
 // AdaptiveLearn (`20` §3). El número E-xx es el del catálogo de endpoints.
+@ApiTags('I1 · Acceso')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

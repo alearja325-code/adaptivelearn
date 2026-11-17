@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { RolesGuard } from '../auth/guards/roles.guard.js';
@@ -11,6 +12,7 @@ interface ExampleResponse {
 }
 
 // Sección 6 de la guía: los dos niveles de protección. No es del producto.
+@ApiTags('Guía del curso · Rutas de ejemplo')
 @Controller('example')
 export class ExampleController {
   // Ruta protegida solo con autenticación

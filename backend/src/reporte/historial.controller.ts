@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Get,
@@ -15,6 +16,7 @@ import { ReporteService, type Historial } from './reporte.service.js';
 // E-37 (`20` §6): solo el docente dueño de la experiencia de la inscripción;
 // el estudiante nunca (ADR-028). Comparte el prefijo /inscripciones con el
 // diagnóstico, pero es del Reporte (SUB-05).
+@ApiTags('I4 · Reporte')
 @Controller('inscripciones')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('docente')

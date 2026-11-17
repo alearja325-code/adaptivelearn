@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Get,
@@ -22,6 +23,7 @@ import { Roles } from '../auth/decorators/roles.decorator.js';
 // Los guards y el rol aplican a todas las rutas del controlador.
 // Rutas de la guía del docente (ADR-040), no del producto: el rol 'admin'
 // sale de la marca es_admin, que solo se pone por SQL.
+@ApiTags('Guía del curso · Usuarios (administrador)')
 @Controller('users')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('admin')
