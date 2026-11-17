@@ -42,17 +42,18 @@
 <text x="458.5" y="456.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">ProveedorIdentidad</text>
 <line x1="355" y1="481" x2="562" y2="481" stroke="#111111" stroke-width="1.2"/>
 <text x="367.0" y="500.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ validar(token: string): Perfil</text>
-<rect x="610.0" y="110.0" width="468.0" height="171.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
-<rect x="610.0" y="110.0" width="468.0" height="47.0" rx="0" ry="0" fill="#E3F2E6" stroke="#111111" stroke-width="1.5"/>
-<text x="844.0" y="128.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«servicio»</text>
-<text x="844.0" y="146.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">ServicioExperiencias</text>
-<line x1="610" y1="171" x2="1078" y2="171" stroke="#111111" stroke-width="1.2"/>
+<rect x="610.0" y="110.0" width="464.0" height="187.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<rect x="610.0" y="110.0" width="464.0" height="47.0" rx="0" ry="0" fill="#E3F2E6" stroke="#111111" stroke-width="1.5"/>
+<text x="842.0" y="128.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«servicio»</text>
+<text x="842.0" y="146.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">ServicioExperiencias</text>
+<line x1="610" y1="171" x2="1074" y2="171" stroke="#111111" stroke-width="1.2"/>
 <text x="622.0" y="190.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ listar(docente: Docente): Experiencia [*]</text>
-<text x="622.0" y="206.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ crear(docente: Docente, codigo_dba: string, nombre: string): Experiencia</text>
-<text x="622.0" y="222.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ consultar(id: int): Experiencia</text>
-<text x="622.0" y="238.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ publicar(id: int)</text>
-<text x="622.0" y="254.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ codigoInvitacion(id: int): string</text>
-<text x="622.0" y="270.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ eliminar(id: int)</text>
+<text x="622.0" y="206.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ crear(docente: Docente, codigo_dba: string, nombre: string): Generacion</text>
+<text x="622.0" y="222.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ generacion(id: string): Generacion</text>
+<text x="622.0" y="238.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ consultar(id: int): Experiencia</text>
+<text x="622.0" y="254.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ publicar(id: int)</text>
+<text x="622.0" y="270.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ codigoInvitacion(id: int): string</text>
+<text x="622.0" y="286.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#111111">+ eliminar(id: int)</text>
 <rect x="610.0" y="340.0" width="436.0" height="139.0" rx="0" ry="0" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
 <rect x="610.0" y="340.0" width="436.0" height="47.0" rx="0" ry="0" fill="#E3F2E6" stroke="#111111" stroke-width="1.5"/>
 <text x="828.0" y="358.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#555555">«servicio»</text>
@@ -130,10 +131,10 @@
 <text x="158.0" y="394.5" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
 <polyline points="440.0,361.0 440.0,420.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="7,5" marker-end="url(#abierta)"/>
 <text x="448.0" y="394.5" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
-<polyline points="750.0,281.0 750.0,340.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="7,5" marker-end="url(#abierta)"/>
-<text x="758.0" y="314.5" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
-<polyline points="1078.0,160.0 1160.0,160.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="7,5" marker-end="url(#abierta)"/>
-<text x="1119.0" y="152.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
+<polyline points="750.0,297.0 750.0,340.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="7,5" marker-end="url(#abierta)"/>
+<text x="758.0" y="322.5" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
+<polyline points="1074.0,160.0 1160.0,160.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="7,5" marker-end="url(#abierta)"/>
+<text x="1117.0" y="152.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
 <polyline points="1260.0,233.0 1260.0,300.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="7,5" marker-end="url(#abierta)"/>
 <text x="1268.0" y="270.5" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#555555">«usa»</text>
 <polyline points="1060.0,480.0 1060.0,345.0 1160.0,345.0" fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="7,5" marker-end="url(#herencia)"/>

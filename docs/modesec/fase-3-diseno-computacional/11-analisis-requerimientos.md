@@ -292,10 +292,10 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Requerimiento de | Sistema |
 | Tipo | Funcional |
 | Actor | Servicio de IA |
-| Detalle | Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo. Un ítem generado que no pasa la validación de su formato cuenta como falla del servicio (ADR-035). |
+| Detalle | Gemini y DeepSeek; cuál es el principal es un ajuste de configuración. Un banco se genera completo con un solo servicio: si el principal falla a mitad de camino, el respaldo lo genera completo de nuevo. Un ítem generado que no pasa la validación de su formato cuenta como falla del servicio (ADR-035). **Respaldo suspendido por ADR-043** (2026-11-10): en esta versión el banco se genera solo con DeepSeek, detrás de una interfaz para poder agregar el respaldo después; en su lugar, cada evidencia se pide una vez más al mismo servicio si falla, y si vuelve a fallar no se guarda nada (ADR-045, punto 3; encargo 06). |
 | Precondición | Se pidió generar un banco. |
-| Postcondición | Banco completo de un solo servicio, o error si fallan los dos. |
-| Fuente | ADR-030, ADR-027, ADR-035 |
+| Postcondición | Banco completo de un solo servicio, o error si fallan los dos. *(Mientras rija ADR-043: banco completo de DeepSeek, o la generación queda fallida y no se guarda nada.)* |
+| Fuente | ADR-030, ADR-027, ADR-035, ADR-043, ADR-045 |
 | Incremento | I2 |
 
 #### RF-03-03 — Cada ítem debe registrar su origen, y cada experiencia, qué servicio y qué modelo de IA generaron su banco.
@@ -781,10 +781,10 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Requerimiento de | Sistema |
 | Tipo | No funcional |
 | Actor | — |
-| Detalle | Hoy no tiene número: un valor sin medir sería inventado. Con un DBA de muchas evidencias, la espera puede ser de minutos. |
+| Detalle | Hoy no tiene número: un valor sin medir sería inventado. Con un DBA de muchas evidencias, la espera puede ser de minutos. *(Encargo 06, 2026-11-16: el backend ya tiene un límite por llamada configurable, `IA_TIEMPO_LIMITE_MS`, y registra en la consola cuánto tardó cada evidencia y el total, sin datos del docente.)* **Medido el 2026-11-16** en local, con DeepSeek (`deepseek-v4-pro`) y el DBA MAT-01-04 (4 evidencias, los tres formatos, 48 ítems): cada evidencia tardó entre 48 y 99 s (el emparejamiento, la más lenta), y el banco completo 114 s, sin reintentos. **Límite fijado: 180 s por llamada** (`IA_TIEMPO_LIMITE_MS`), casi el doble del caso más lento medido. Con hasta 3 evidencias a la vez y un reintento, la espera del docente puede llegar a unos minutos en un DBA de muchas evidencias: la pantalla de carga (024) lo cubre. |
 | Precondición | — |
 | Postcondición | — |
-| Fuente | ADR-027, ADR-030 |
+| Fuente | ADR-027, ADR-030, ADR-045 |
 | Incremento | I2 |
 
 #### RNF-14 — El backend debe construirse con NestJS y MySQL.
@@ -839,5 +839,5 @@ Toda ventana especificada en la Fase II está cubierta por al menos un requerimi
 - ~~**V-11**~~ — **cerrado por ADR-035** (2026-10-26): eliminar una experiencia (RF-02-07) o salir de una (RF-04-12) borra en cascada lo que depende de ella.
 - **QA-013 / QA-014** — los errores de extracción del catálogo se corrigieron (encargo 02); el censo de formato cerrado está hecho y falta validarlo por muestreo (encargo 05, ADR-042) (RF-06-01, RF-06-02).
 - **V-10** — una excepción de contraste, diferida (RNF-03).
-- **RNF-13** — el tiempo límite de la generación no tiene número todavía; se mide.
+- **RNF-13** — medido el 2026-11-16 con una sola generación (4 evidencias, 114 s): el límite de 180 s por llamada sale de ahí, y conviene volver a medirlo con DBA de más evidencias.
 - **RNF-06** — la autorización del acudiente: condición no satisfecha que impide usar el sistema con estudiantes reales.

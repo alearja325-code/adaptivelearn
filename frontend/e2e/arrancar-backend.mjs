@@ -31,6 +31,8 @@ const hijo = spawn(process.execPath, [join(BACKEND, 'dist', 'main.js')], {
     CORS_ORIGIN: 'http://localhost:5174',
     GOOGLE_CLIENT_ID: '',
     MICROSOFT_CLIENT_ID: '',
+    // Nunca DeepSeek en las pruebas: la IA falsa (ADR-045 punto 5)
+    IA_SERVICIO: 'falsa',
     UPLOADS_DIR: join(SALIDA, 'uploads'),
     NO_COLOR: '1',
   },

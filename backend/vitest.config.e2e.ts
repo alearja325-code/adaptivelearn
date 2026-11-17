@@ -24,6 +24,8 @@ export default defineConfig({
       MAIL_HOST: '',
       GOOGLE_CLIENT_ID: '',
       MICROSOFT_CLIENT_ID: '',
+      // Nunca DeepSeek: la IA falsa (ADR-045 punto 5)
+      IA_SERVICIO: 'falsa',
     },
   },
 });
