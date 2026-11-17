@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -29,6 +30,7 @@ import { ResponderDto } from './dto/responder.dto.js';
 
 // SUB-04, Diagnóstico (I3): E-29 a E-34 (`20` §5). Solo para la sesión de
 // un estudiante, y cada inscripción solo para su dueño (403 si no).
+@ApiTags('I3 · Diagnóstico (estudiante)')
 @Controller('inscripciones')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('estudiante')

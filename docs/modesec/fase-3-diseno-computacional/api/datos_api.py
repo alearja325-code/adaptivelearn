@@ -541,7 +541,8 @@ AJENOS_I1 = [
 # probar o presentar. (ruta, para que, efecto en el MER)
 ADICIONALES = [
     ("`GET /docs`", "Documentación interactiva (Swagger/OpenAPI, `@nestjs/swagger`): el docente "
-                    "puede probar cada endpoint desde el navegador, sin Insomnia.",
+                    "puede probar cada endpoint desde el navegador, sin Insomnia. **Hecho el "
+                    "2026-11-17**: `/docs` y `/docs-json`, con las rutas agrupadas por incremento.",
      "Ninguno."),
     ("`GET /health`", "Comprobar en la demostración que el servidor y la base responden.",
      "Ninguno."),

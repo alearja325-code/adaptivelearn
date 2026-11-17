@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Get,
@@ -22,6 +23,7 @@ import { FiltroEstudiantesDto } from './dto/filtro-estudiantes.dto.js';
 // docente dueño de la experiencia (403 si no); el estudiante nunca (ADR-028).
 // El historial (E-37) cuelga de /inscripciones: está en historial.controller.ts.
 
+@ApiTags('I4 · Reporte')
 @Controller('experiencias')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('docente')

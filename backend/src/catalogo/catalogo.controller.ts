@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { RolesGuard } from '../auth/guards/roles.guard.js';
@@ -9,6 +10,7 @@ import { Grado } from './entities/grado.entity.js';
 
 // El catálogo curricular (SUB-06): solo lectura y solo para la sesión de
 // un docente (`20` §4.1). Se protege como /users en la guía: token y rol.
+@ApiTags('I2 · Catálogo curricular')
 @Controller('catalogo')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('docente')
