@@ -48,6 +48,16 @@ los controladores de `banco/` (`experiencias.controller.ts`,
     antes estaba en ADICIONALES; va al final de la lista (E-38) para que
     los demas conserven su numero, que citan los encargos 06 y 07; su operacion,
     `ServicioExperiencias.generacion`, se agrega al diagrama de clases.
+
+Cambios del 2026-11-16 (encargo 07, backend de I3 e I4):
+  * E-29 a E-37 pasan a `hecho` (`backend/src/diagnostico/` y
+    `backend/src/reporte/`); I3 e I4 entran en EMPEZADOS;
+  * E-32: el `409` por "experiencia ya completada" se retira. La misma
+    situacion (todas las evidencias concluidas) tenia dos respuestas
+    escritas: 200 sin pregunta (RF-04-11) y 409 (CU-23 1a). Se deja la
+    primera, que es la que muestra el cierre; CU-23 1a ("Completada: un
+    aviso, sin boton") lo resuelve la pantalla con el progreso de E-31.
+    Decision del encargo 07, declarada para que el equipo la confirme.
 """
 
 
@@ -103,7 +113,9 @@ INCREMENTOS = {"I1": "Acceso", "I2": "Experiencia y banco", "I3": "Diagnóstico"
 # es de I2, pero el encargo 03 lo pidio junto con el acceso: es lo que
 # necesitan los Pasos 1 y 2 de crear experiencia, y no dispara la IA.
 EMPEZADOS = {"I1": "el acceso completo (encargo 03)",
-             "I2": "solo el catálogo curricular, SUB-06 (encargo 03)"}
+             "I2": "el catálogo (encargo 03), y las experiencias y el banco (encargo 06)",
+             "I3": "el diagnóstico completo (encargo 07)",
+             "I4": "el reporte y el seguimiento completos (encargo 07)"}
 
 # Codigos de error comunes. Cada endpoint dice cuales usa y por que.
 ERRORES = [
@@ -402,14 +414,14 @@ ENDPOINTS = [
     ep("GET", "/inscripciones", "SUB-04", ["CU-21"], "ServicioDiagnostico.misInscripciones",
        "estudiante",
        {"INSCRIPCION": "R", "EXPERIENCIA": "R", "DOCENTE": "R", "PRESENTACION": "R",
-        "RESULTADO": "R"}, "falta",
+        "RESULTADO": "R"}, "hecho",
        "`progreso` (no_iniciada, en_curso o completada) y `q`, en la consulta",
        "200: las experiencias del estudiante, cada una con su progreso, área y nombre del "
        "docente (CU-21 paso 1)",
        [("—", "el progreso se calcula, no se guarda: `progreso` es un atributo calculado del "
               "MER")]),
     ep("POST", "/inscripciones", "SUB-04", ["CU-22"], "ServicioDiagnostico.unirse", "estudiante",
-       {"EXPERIENCIA": "R", "INSCRIPCION": "CR"}, "falta",
+       {"EXPERIENCIA": "R", "INSCRIPCION": "CR"}, "hecho",
        "`codigo`, sin distinguir mayúsculas",
        "201: la inscripción nueva; 200 con la que ya existía si el estudiante ya estaba "
        "inscrito, sin duplicarla (RI-1, CU-22 3a)",
@@ -418,7 +430,7 @@ ENDPOINTS = [
     ep("GET", "/inscripciones/:id", "SUB-04", ["CU-23", "CU-26"],
        "ServicioDiagnostico.consultar", "estudiante_dueno",
        {"INSCRIPCION": "R", "EXPERIENCIA_EVIDENCIA": "R", "PRESENTACION": "R", "RESULTADO": "R",
-        "RESPUESTA": "R"}, "falta",
+        "RESPUESTA": "R"}, "hecho",
        "nada",
        "200: la experiencia y su progreso, que decide «Comenzar» o «Continuar» (CU-23 paso 1), "
        "y cuántas respuestas se perderían al salir (CU-26 paso 2)",
@@ -427,7 +439,7 @@ ENDPOINTS = [
     ep("POST", "/inscripciones/:id/presentaciones", "SUB-04", ["CU-23"],
        "ServicioDiagnostico.siguientePregunta", "estudiante_dueno",
        {"INSCRIPCION": "R", "EXPERIENCIA_EVIDENCIA": "R", "ITEM": "R", "OPCION": "R",
-        "PRESENTACION": "CR", "RESULTADO": "R"}, "falta",
+        "PRESENTACION": "CR", "RESULTADO": "R"}, "hecho",
        "nada",
        "201: el ítem presentado —enunciado, formato y opciones—. 200 con la misma pregunta si "
        "quedó una sin responder (ADR-031). 200 sin pregunta si ya concluyeron todas las "
@@ -438,11 +450,13 @@ ENDPOINTS = [
               "no visto, al azar (ADR-024, RI-9)"),
         ("—", "nunca envía `es_correcta` ni `hipotesis_error` de las opciones, ni el número de "
               "pregunta, ni cuántas faltan (RF-04-08)"),
-        ("409", "la experiencia ya está completada (CU-23 1a)")]),
+        ("—", "con todas las evidencias concluidas responde 200 sin pregunta, también si se "
+              "vuelve a llamar: el cierre se puede recargar. La pantalla de inicio no ofrece "
+              "el botón a una experiencia Completada (CU-23 1a), con el progreso de E-31")]),
     ep("POST", "/inscripciones/:id/respuestas", "SUB-04", ["CU-24", "CU-25"],
        "ServicioDiagnostico.responder", "estudiante_dueno",
        {"PRESENTACION": "R", "ITEM": "R", "OPCION": "R", "RESPUESTA": "CR",
-        "RESPUESTA_OPCION": "C", "RESULTADO": "C"}, "falta",
+        "RESPUESTA_OPCION": "C", "RESULTADO": "C"}, "hecho",
        "`id_item`, las `opciones` elegidas (con `valor_dado` al emparejar y al ordenar) y "
        "`certeza` de 0 a 5",
        "201, sin decir si acertó ni cómo va (RF-04-08)",
@@ -454,7 +468,7 @@ ENDPOINTS = [
               "3 a 5) y, si concluye, guarda el resultado de la evidencia como fotografía "
               "(RNF-11)")]),
     ep("DELETE", "/inscripciones/:id", "SUB-04", ["CU-26"], "ServicioDiagnostico.salir",
-       "estudiante_dueno", {"INSCRIPCION": "D"}, "falta",
+       "estudiante_dueno", {"INSCRIPCION": "D"}, "hecho",
        "nada",
        "204",
        [("—", "para volver necesita el código otra vez, y la experiencia aparece «No iniciada» "
@@ -464,7 +478,7 @@ ENDPOINTS = [
     ep("GET", "/experiencias/:id/reporte", "SUB-05", ["CU-27", "CU-30"],
        "ServicioReporte.reporte", "docente_dueno",
        {"REPORTE": "R", "RESULTADO": "R", "INSCRIPCION": "R", "EXPERIENCIA_EVIDENCIA": "R"},
-       "falta",
+       "hecho",
        "nada",
        "200: cuántos estudiantes hay en cada estado general y, por evidencia, la distribución "
        "de resultados y su clasificación (CU-27 paso 4)",
@@ -472,7 +486,7 @@ ENDPOINTS = [
         ("—", "ningún texto afirma certeza (RNF-04)")]),
     ep("GET", "/experiencias/:id/estudiantes", "SUB-05", ["CU-28"],
        "ServicioReporte.estudiantesPorEstado", "docente_dueno",
-       {"REPORTE": "R", "ESTUDIANTE": "R", "INSCRIPCION": "R", "RESULTADO": "R"}, "falta",
+       {"REPORTE": "R", "ESTUDIANTE": "R", "INSCRIPCION": "R", "RESULTADO": "R"}, "hecho",
        "`estado` y `q` (nombre), en la consulta",
        "200: los estudiantes agrupados por estado general —No muestra, No concluyente, Sin "
        "concluir, Muestra—, en orden alfabético y con su resultado en cada evidencia (CU-28)",
@@ -480,7 +494,7 @@ ENDPOINTS = [
     ep("GET", "/inscripciones/:id/historial", "SUB-05", ["CU-29"], "ServicioReporte.historial",
        "docente_dueno",
        {"PRESENTACION": "R", "RESPUESTA": "R", "RESPUESTA_OPCION": "R", "ITEM": "R",
-        "OPCION": "R", "RESULTADO": "R"}, "falta",
+        "OPCION": "R", "RESULTADO": "R"}, "hecho",
        "nada",
        "200: por evidencia y con su resultado, los ítems presentados en orden: qué respondió, "
        "si fue correcto y con qué certeza; las preguntas sin respuesta aparecen como tales "

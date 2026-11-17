@@ -8,6 +8,8 @@ import { CorreoModule } from './correo/correo.module.js';
 import { CatalogoModule } from './catalogo/catalogo.module.js';
 import { BancoModule } from './banco/banco.module.js';
 import { LimpiezaModule } from './limpieza/limpieza.module.js';
+import { DiagnosticoModule } from './diagnostico/diagnostico.module.js';
+import { ReporteModule } from './reporte/reporte.module.js';
 import { ExampleController } from './example/example.controller.js';
 
 @Module({
@@ -50,6 +52,9 @@ import { ExampleController } from './example/example.controller.js';
     CatalogoModule,
     BancoModule,
     LimpiezaModule,
+    // I3 y I4 (encargo 07)
+    DiagnosticoModule,
+    ReporteModule,
   ],
   // Ejemplo de uso de Guards y Decoradores (sección 6 de la guía)
   controllers: [ExampleController],
