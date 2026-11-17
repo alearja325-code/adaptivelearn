@@ -20,7 +20,7 @@ export interface ItemGenerado {
 }
 
 export interface OpcionesGenerador {
-  /** Límite de cada llamada a la IA (IA_TIEMPO_LIMITE_MS; por defecto 120000). */
+  /** Límite de cada llamada a la IA (IA_TIEMPO_LIMITE_MS; por defecto 180000). */
   tiempoLimiteMs: number;
   /** Cuántas evidencias se piden a la vez (ADR-045 punto 2: hasta 3). */
   concurrencia: number;
@@ -29,7 +29,7 @@ export interface OpcionesGenerador {
 }
 
 export const OPCIONES_POR_DEFECTO: OpcionesGenerador = {
-  tiempoLimiteMs: 120_000,
+  tiempoLimiteMs: 180_000,
   concurrencia: 3,
   intentos: 2,
 };

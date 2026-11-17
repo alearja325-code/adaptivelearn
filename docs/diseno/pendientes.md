@@ -548,11 +548,15 @@ revisa en local antes de unirlo:
      banco y 20 de punta a punta, con la IA falsa; las pruebas atrapan los
      dos errores puestos a propósito (una regla de RI-4 y la transacción).
      Diagrama de clases: se agregó `ServicioExperiencias.generacion`.
-     **Falta, en local:** probar con DeepSeek de verdad (`.env`:
-     `IA_SERVICIO`, `DEEPSEEK_API_KEY`, `DEEPSEEK_MODEL`), medir RNF-13 con
-     los tiempos de la consola y fijar `IA_TIEMPO_LIMITE_MS` (hoy 120 s,
-     sin medir), y revisar a ojo la calidad de las preguntas.
-     **Por confirmar:** las decisiones propias que lista el pull request.
+     **Revisado y unido el 2026-11-16, junto con el 07** (una sola rama de
+     integración; los dos solo chocaban en el catálogo de endpoints):
+     112 pruebas unitarias y 103 de punta a punta del backend, y las del
+     frontend, en verde. **Probado con DeepSeek de verdad** en local
+     (MAT-01-04: 4 evidencias, los tres formatos, 48 ítems, 114 s, sin
+     reintentos); las preguntas, revisadas a ojo, miden la evidencia y son
+     adecuadas al grado. RNF-13 medido: `IA_TIEMPO_LIMITE_MS` pasa a 180 s.
+     Las decisiones propias del pull request (4 opciones en selección
+     única, 3 a 6 elementos al ordenar, 3 a 5 parejas, E-38) se aceptan.
      **Queda abierto:** el diagrama de clases sigue mostrando
      `GeneradorBanco` con un servicio principal y uno de respaldo
      (ADR-030); ADR-043 suspende el respaldo, pero no se redibujó porque
@@ -568,7 +572,8 @@ revisa en local antes de unirlo:
      de este encargo, con los tres formatos); las pruebas atrapan los tres
      errores puestos a propósito. Las experiencias de prueba las arma un
      ayudante directo en la base (`backend/test/experiencias-prueba.ts`),
-     porque I2 se hace en paralelo. **Por confirmar** (lo explica el pull
+     porque I2 se hace en paralelo. **Revisado y unido el 2026-11-16, junto
+     con el 06; sus decisiones propias se aceptan** (lo explica el pull
      request): E-32 responde siempre 200 sin pregunta a una experiencia
      completada (se retiró el `409` del catálogo, que chocaba con RF-04-11);
      cómo se valida una respuesta de emparejar y ordenar; el reporte con

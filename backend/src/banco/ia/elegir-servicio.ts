@@ -22,10 +22,10 @@ export function elegirServicioIa(config: ConfigService): ServicioIa {
   throw new Error(`IA_SERVICIO debe ser deepseek o falsa (vale "${cual}")`);
 }
 
-/** IA_TIEMPO_LIMITE_MS: un entero positivo; por defecto 120000 (RNF-13, ADR-045). */
+/** IA_TIEMPO_LIMITE_MS: un entero positivo; por defecto 180000 (RNF-13 medido el 2026-11-16, ADR-045). */
 export function tiempoLimite(config: ConfigService): number {
   const texto = config.get<string>('IA_TIEMPO_LIMITE_MS')?.trim();
-  if (!texto) return 120_000;
+  if (!texto) return 180_000;
   const ms = Number(texto);
   if (!Number.isInteger(ms) || ms <= 0)
     throw new Error(

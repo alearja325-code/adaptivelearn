@@ -42,8 +42,8 @@ describe('elegirServicioIa (IA_SERVICIO, ADR-045 punto 5)', () => {
 });
 
 describe('tiempoLimite (IA_TIEMPO_LIMITE_MS)', () => {
-  it('120000 por defecto; el valor si es un entero positivo; si no, error', () => {
-    expect(tiempoLimite(config({}))).toBe(120_000);
+  it('180000 por defecto; el valor si es un entero positivo; si no, error', () => {
+    expect(tiempoLimite(config({}))).toBe(180_000);
     expect(tiempoLimite(config({ IA_TIEMPO_LIMITE_MS: '90000' }))).toBe(90_000);
     expect(() =>
       tiempoLimite(config({ IA_TIEMPO_LIMITE_MS: 'dos minutos' })),

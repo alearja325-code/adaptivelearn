@@ -781,7 +781,7 @@ Cada requerimiento va en el formato de la Tabla 5 de MODESEC. Comunes a todos: *
 | Requerimiento de | Sistema |
 | Tipo | No funcional |
 | Actor | — |
-| Detalle | Hoy no tiene número: un valor sin medir sería inventado. Con un DBA de muchas evidencias, la espera puede ser de minutos. *(Encargo 06, 2026-11-16: el backend ya tiene un límite por llamada configurable, `IA_TIEMPO_LIMITE_MS`, con 120 000 ms por defecto —un punto de partida, no una medición—, y registra en la consola cuánto tardó cada evidencia y el total, sin datos del docente. **Pendiente de la medición local con DeepSeek** al revisar el encargo.)* |
+| Detalle | Hoy no tiene número: un valor sin medir sería inventado. Con un DBA de muchas evidencias, la espera puede ser de minutos. *(Encargo 06, 2026-11-16: el backend ya tiene un límite por llamada configurable, `IA_TIEMPO_LIMITE_MS`, y registra en la consola cuánto tardó cada evidencia y el total, sin datos del docente.)* **Medido el 2026-11-16** en local, con DeepSeek (`deepseek-v4-pro`) y el DBA MAT-01-04 (4 evidencias, los tres formatos, 48 ítems): cada evidencia tardó entre 48 y 99 s (el emparejamiento, la más lenta), y el banco completo 114 s, sin reintentos. **Límite fijado: 180 s por llamada** (`IA_TIEMPO_LIMITE_MS`), casi el doble del caso más lento medido. Con hasta 3 evidencias a la vez y un reintento, la espera del docente puede llegar a unos minutos en un DBA de muchas evidencias: la pantalla de carga (024) lo cubre. |
 | Precondición | — |
 | Postcondición | — |
 | Fuente | ADR-027, ADR-030, ADR-045 |
@@ -839,5 +839,5 @@ Toda ventana especificada en la Fase II está cubierta por al menos un requerimi
 - ~~**V-11**~~ — **cerrado por ADR-035** (2026-10-26): eliminar una experiencia (RF-02-07) o salir de una (RF-04-12) borra en cascada lo que depende de ella.
 - **QA-013 / QA-014** — los errores de extracción del catálogo se corrigieron (encargo 02); el censo de formato cerrado está hecho y falta validarlo por muestreo (encargo 05, ADR-042) (RF-06-01, RF-06-02).
 - **V-10** — una excepción de contraste, diferida (RNF-03).
-- **RNF-13** — el tiempo límite de la generación no tiene número medido todavía: el backend usa 120 s por llamada mientras tanto y registra los tiempos; se mide en local con DeepSeek (encargo 06).
+- **RNF-13** — medido el 2026-11-16 con una sola generación (4 evidencias, 114 s): el límite de 180 s por llamada sale de ahí, y conviene volver a medirlo con DBA de más evidencias.
 - **RNF-06** — la autorización del acudiente: condición no satisfecha que impide usar el sistema con estudiantes reales.
